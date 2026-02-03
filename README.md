@@ -91,14 +91,16 @@ gli <command> <api call>
 | Command | Description |
 | ------- | ----------- |
 | `oapi` | Call OAPI |
+| `update` | Update to the latest version |
 | `version` | Display version |
 
 ### Options
 
-| Option             | Description |
-| ------------------ | ----------- |
-| `-v, --verbose`    | Dump HTTP request and response |
-| `-h, --help`       | Help about a command |
+| Option | Description |
+| ------ | ----------- |
+| `-v, --verbose` | Dump HTTP request and response |
+| `-h, --help` | Help about a command |
+| `--jq` | jq-like output filter |
 
 ---
 
@@ -111,11 +113,19 @@ List all VMs in the `running` state:
 gli oapi ReadVms --Filters.VmStateNames running
 ```
 
-### Using `jq` to filter JSON output
+### Using jq filters
 
 ```bash
-jq '.[] | select(.ResponseStatusCode != 200)' logs.json
+gli oapi ReadVms --Filters.VmStateNames running --jq ".Vms[].VmId"
 ```
+
+### Self updating
+
+```bash
+gli update
+```
+
+> This requires write access to the binary. If `gli update` does not work, you will need to download the binary from the [latest release](./releases/latest).
 
 ---
 
