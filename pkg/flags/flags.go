@@ -14,6 +14,8 @@ import (
 	"strings"
 
 	"github.com/outscale/gli/pkg/debug"
+	"github.com/samber/lo"
+	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
 
@@ -26,7 +28,8 @@ func init() {
 	}
 }
 
-func FromStruct(fs *pflag.FlagSet, arg reflect.Type, prefix string) {
+func FromStruct(cmd *cobra.Command, arg reflect.Type, prefix string) {
+	fs := cmd.Flags()
 	for i := range arg.NumField() {
 		f := arg.Field(i)
 		t := f.Type
@@ -39,6 +42,12 @@ func FromStruct(fs *pflag.FlagSet, arg reflect.Type, prefix string) {
 			fs.Bool(prefix+f.Name, false, "")
 		case reflect.String:
 			fs.String(prefix+f.Name, "", "")
+			if t.Implements(reflect.TypeFor[enum]()) {
+				values := reflect.New(t).Interface().(enum).Values()
+				_ = cmd.RegisterFlagCompletionFunc(prefix+f.Name, func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
+					return lo.Map(values, func(v string, _ int) cobra.Completion { return cobra.Completion(v) }), cobra.ShellCompDirectiveDefault
+				})
+			}
 		case reflect.Int:
 			fs.Int(prefix+f.Name, 0, "")
 		case reflect.Slice:
@@ -47,6 +56,12 @@ func FromStruct(fs *pflag.FlagSet, arg reflect.Type, prefix string) {
 				fs.BoolSlice(prefix+f.Name, nil, "")
 			case reflect.String:
 				fs.StringSlice(prefix+f.Name, nil, "")
+				if t.Elem().Implements(reflect.TypeFor[enum]()) {
+					values := reflect.New(t.Elem()).Interface().(enum).Values()
+					_ = cmd.RegisterFlagCompletionFunc(prefix+f.Name, func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
+						return lo.Map(values, func(v string, _ int) cobra.Completion { return cobra.Completion(v) }), cobra.ShellCompDirectiveDefault
+					})
+				}
 			case reflect.Int:
 				fs.IntSlice(prefix+f.Name, nil, "")
 			case reflect.Struct:
@@ -54,7 +69,7 @@ func FromStruct(fs *pflag.FlagSet, arg reflect.Type, prefix string) {
 					fs.StringSlice(prefix+f.Name, nil, "")
 				} else {
 					for i := range numEntriesInSlices {
-						FromStruct(fs, t.Elem(), prefix+f.Name+"."+strconv.Itoa(i)+".")
+						FromStruct(cmd, t.Elem(), prefix+f.Name+"."+strconv.Itoa(i)+".")
 					}
 				}
 			}
@@ -62,13 +77,14 @@ func FromStruct(fs *pflag.FlagSet, arg reflect.Type, prefix string) {
 			if ot.Implements(reflect.TypeFor[json.Marshaler]()) {
 				fs.String(prefix+f.Name, "", "")
 			} else {
-				FromStruct(fs, t, prefix+f.Name+".")
+				FromStruct(cmd, t, prefix+f.Name+".")
 			}
 		}
 	}
 }
 
-func ToStruct(fs *pflag.FlagSet, arg reflect.Value, prefix string) error {
+func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string) error {
+	fs := cmd.Flags()
 	debug.Println(reflect.Indirect(arg).Type().Name())
 	var err error
 	fs.VisitAll(func(f *pflag.Flag) {

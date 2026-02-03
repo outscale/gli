@@ -48,7 +48,7 @@ func init() {
 			},
 		}
 		arg := m.Type.In(2)
-		flags.FromStruct(cmd.Flags(), arg, "")
+		flags.FromStruct(cmd, arg, "")
 		oapiCmd.AddCommand(cmd)
 	}
 }
@@ -75,7 +75,7 @@ func oapi(cmd *cobra.Command) {
 	m, _ := clt.MethodByName(cmd.Name())
 	argType := m.Type.In(2)
 	arg := reflect.New(argType)
-	err = flags.ToStruct(cmd.Flags(), arg, "")
+	err = flags.ToStruct(cmd, arg, "")
 	if err != nil {
 		errors.ExitErr(err)
 	}
