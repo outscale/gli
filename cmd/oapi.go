@@ -15,6 +15,7 @@ import (
 	"github.com/outscale/gli/pkg/debug"
 	"github.com/outscale/gli/pkg/errors"
 	"github.com/outscale/gli/pkg/flags"
+	"github.com/outscale/gli/pkg/output"
 	"github.com/outscale/gli/pkg/sdk"
 	"github.com/outscale/osc-sdk-go/v3/pkg/middleware"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
@@ -93,7 +94,9 @@ func oapi(cmd *cobra.Command) {
 		}
 		errors.ExitErr(err)
 	}
-	enc := json.NewEncoder(os.Stdout)
-	enc.SetIndent("", "  ")
-	_ = enc.Encode(res[0].Interface())
+	out, err := output.NewFromFlags(cmd.Flags())
+	if err != nil {
+		errors.ExitErr(err)
+	}
+	_ = out.Output(ctx, res[0].Interface())
 }
