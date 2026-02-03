@@ -19,28 +19,20 @@ import (
 
 func TestOAPI(t *testing.T) {
 	t.Run("ReadVms works", func(t *testing.T) {
-		os.Args = []string{"gli", "oapi", "ReadVms"}
-		stderr, stdout := os.Stderr, os.Stdout
+		os.Args = []string{"gli", "oapi", "ReadVms", "-v", "--Filters.VmStateNames", "running"}
+		stdout := os.Stdout
 		defer func() {
-			os.Stderr, os.Stdout = stderr, stdout
+			os.Stdout = stdout
 		}()
 		dir := t.TempDir()
 		var err error
-		os.Stderr, err = os.Create(filepath.Join(dir, "stderr")) //nolint
-		require.NoError(t, err)
 		os.Stdout, err = os.Create(filepath.Join(dir, "stdout")) //nolint
 		require.NoError(t, err)
 		cmd.Execute()
 
-		err = os.Stderr.Close()
-		require.NoError(t, err)
-		content, err := os.ReadFile(os.Stderr.Name())
-		require.NoError(t, err)
-		assert.Empty(t, content)
-
 		err = os.Stdout.Close()
 		require.NoError(t, err)
-		content, err = os.ReadFile(os.Stdout.Name())
+		content, err := os.ReadFile(os.Stdout.Name())
 		require.NoError(t, err)
 		resp := osc.ReadVmsResponse{}
 		err = json.Unmarshal(content, &resp)

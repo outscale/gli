@@ -50,12 +50,16 @@ func FromStruct(fs *pflag.FlagSet, arg reflect.Type, prefix string) {
 			case reflect.Int:
 				fs.IntSlice(prefix+f.Name, nil, "")
 			case reflect.Struct:
-				for i := range numEntriesInSlices {
-					FromStruct(fs, t.Elem(), prefix+f.Name+"."+strconv.Itoa(i)+".")
+				if t.Elem().Implements(reflect.TypeFor[json.Marshaler]()) {
+					fs.StringSlice(prefix+f.Name, nil, "")
+				} else {
+					for i := range numEntriesInSlices {
+						FromStruct(fs, t.Elem(), prefix+f.Name+"."+strconv.Itoa(i)+".")
+					}
 				}
 			}
 		case reflect.Struct:
-			if _, ok := ot.MethodByName("MarshalJSON"); ok {
+			if ot.Implements(reflect.TypeFor[json.Marshaler]()) {
 				fs.String(prefix+f.Name, "", "")
 			} else {
 				FromStruct(fs, t, prefix+f.Name+".")
@@ -117,6 +121,8 @@ func setValue(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
 			return setValueIntSlice(arg, fs, flag)
 		case reflect.String:
 			return setValueStringSlice(arg, fs, flag)
+		case reflect.Struct:
+			return setValueStructSlice(arg, fs, flag)
 		default:
 			debug.Println("invalid slice kind", arg.Elem().Kind())
 		}
@@ -205,7 +211,7 @@ func setValueStringSlice(arg reflect.Value, fs *pflag.FlagSet, flag string) erro
 }
 
 func setValueStruct(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
-	if _, ok := arg.Addr().Type().MethodByName("UnmarshalJSON"); !ok {
+	if !arg.Addr().Type().Implements(reflect.TypeFor[json.Unmarshaler]()) {
 		return nil
 	}
 	ss, err := fs.GetString(flag)
@@ -219,5 +225,27 @@ func setValueStruct(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
 		return fmt.Errorf("invalid %s value: %w", flag, err)
 	}
 	arg.Set(reflect.ValueOf(v).Elem())
+	return nil
+}
+
+func setValueStructSlice(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
+	if !reflect.PointerTo(arg.Type().Elem()).Implements(reflect.TypeFor[json.Unmarshaler]()) {
+		return nil
+	}
+	ss, err := fs.GetStringSlice(flag)
+	if err != nil {
+		return fmt.Errorf("invalid %s value: %w", flag, err)
+	}
+	debug.Println("setValueStructSlice/JSON", flag, ss)
+	narg := reflect.MakeSlice(arg.Type(), len(ss), len(ss))
+	for i, s := range ss {
+		v := reflect.New(arg.Type().Elem()).Interface()
+		err = json.Unmarshal([]byte(`"`+s+`"`), v)
+		if err != nil {
+			return fmt.Errorf("invalid %s value: %w", flag, err)
+		}
+		narg.Index(i).Set(reflect.ValueOf(v).Elem())
+	}
+	arg.Set(narg)
 	return nil
 }
