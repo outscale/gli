@@ -39,4 +39,5 @@ func Execute() {
 func init() {
 	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "Verbose output")
 	rootCmd.PersistentFlags().BoolP("yes", "y", false, "Auto accept all prompts")
+	rootCmd.PersistentFlags().String("jq", "", "jq-like output filter")
 }
