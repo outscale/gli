@@ -2,18 +2,13 @@
 
 [![Project Stage](https://docs.outscale.com/fr/userguide/_images/Project-Sandbox-yellow.svg)](https://docs.outscale.com/en/userguide/Open-Source-Projects.html) [![](https://dcbadge.limes.pink/api/server/HUVtY5gT6s?style=flat&theme=default-inverted)](https://discord.gg/HUVtY5gT6s)
 
-<p align="center">
-  <img alt="<Project Logo or Icon>" src="<Logo URL or Placeholder>" width="100px">
-</p>
-
 ---
 
 ## 🌐 Links
 
 - Documentation: <https://docs.outscale.com/en/>
-- Project website: <https://github.com/outscale/<project-name>>
+- Project website: <https://github.com/outscale/gli>
 - Join our community on [Discord](https://discord.gg/HUVtY5gT6s)
-- Related tools or community: <<https://example.com>> *(optional)*
 
 ---
 
@@ -32,7 +27,17 @@
 
 ## 🧭 Overview
 
-**CLI** is an experimental CLI for the Outscale APIs, written in Go.
+**GLI** is an experimental CLI for the Outscale APIs, written in Go.
+
+It supports:
+* installation via a single static binary,
+* direct flags to all request fields, without JSON,
+* autocompletion support for all API calls, flags, and flag values,
+* jq-style output filters,
+* syntax highlighting of output,
+* auto-update to latest version.
+
+It currenty only supports OAPI, but other Outscale APIs are planned.
 
 ---
 
@@ -45,6 +50,33 @@
 ## ⚙ Installation
 
 Download the latest binary from the [Releases page](https://github.com/outscale/gli/releases).
+
+### Autocompletion configuration
+
+#### Bash
+
+```shell
+gli completion bash > gli-completion.bash
+sudo cp gli-completion.bash /etc/bash_completion.d/
+source ~/.bashrc
+```
+
+#### Zsh
+
+```shell
+gli completion zsh > _gli
+sudo mkdir -p /usr/local/share/zsh/site-functions
+sudo cp _gli /usr/local/share/zsh/site-functions/
+source ~/.zshrc
+```
+
+#### Fish
+
+```shell
+gli completion fish > gli.fish
+sudo cp gli.fish /usr/share/fish/completions/
+source ~/.config/fish/config.fish
+```
 
 ---
 
