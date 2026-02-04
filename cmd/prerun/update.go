@@ -24,7 +24,7 @@ func CheckUpdate(cmd *cobra.Command, args []string) {
 	defer cancel()
 	latest, err := update.LatestRelease(ghCtx)
 	if err != nil {
-		errors.Warn("❌ Unable to fetch latest release: %v\n", err)
+		errors.Info("❌ Unable to fetch latest release: %v", err)
 		return
 	}
 	debug.Println("check update", version.Version, latest, semver.Compare(version.Version, latest) < 0)

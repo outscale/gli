@@ -37,6 +37,7 @@ var rootCmd = &cobra.Command{
 `) + d(`one CLI to bring them all
 `) + e(`and in the terminal bind them.`),
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
+		prerun.CheckFalse(cmd, args)
 		prerun.CheckUpdate(cmd, args)
 	},
 }

@@ -19,7 +19,3 @@ func Exit(code int, format string, a ...any) {
 func ExitErr(err error) {
 	Exit(1, "an error occurred: %v", err)
 }
-
-func Warn(format string, a ...any) {
-	_, _ = color.New(color.FgYellow).Add(color.Faint).Fprintf(os.Stderr, format, a...)
-}
