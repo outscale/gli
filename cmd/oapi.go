@@ -8,6 +8,7 @@ package cmd
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"os"
 	"reflect"
 	"strings"
@@ -15,6 +16,7 @@ import (
 	"github.com/outscale/gli/pkg/debug"
 	"github.com/outscale/gli/pkg/errors"
 	"github.com/outscale/gli/pkg/flags"
+	"github.com/outscale/gli/pkg/openapi"
 	"github.com/outscale/gli/pkg/output"
 	"github.com/outscale/gli/pkg/sdk"
 	"github.com/outscale/gli/pkg/version"
@@ -35,20 +37,34 @@ var oapiCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(oapiCmd)
 
+	ospec, err := osc.GetSwagger()
+	if err != nil {
+		errors.Warn(fmt.Sprintf("⚠️ unable to load OpenAPI spec: %v", err))
+	}
+	spec := openapi.NewSpec(ospec)
+	b := flags.NewBuilder(spec)
+
 	c := reflect.TypeOf(&osc.Client{})
 	for i := range c.NumMethod() {
 		m := c.Method(i)
 		if m.Type.NumIn() != 4 || m.Type.NumOut() != 2 || strings.HasSuffix(m.Name, "Raw") {
 			continue
 		}
+		short, help, group, _ := spec.SummaryForOperation(m.Name)
+		if !oapiCmd.ContainsGroup(group) {
+			oapiCmd.AddGroup(&cobra.Group{ID: group, Title: group})
+		}
 		cmd := &cobra.Command{
-			Use: m.Name,
+			Use:     m.Name,
+			Short:   short,
+			Long:    help,
+			GroupID: group,
 			Run: func(cmd *cobra.Command, args []string) {
 				oapi(cmd)
 			},
 		}
 		arg := m.Type.In(2)
-		flags.FromStruct(cmd, arg, "")
+		b.FromStruct(cmd, arg, "")
 		oapiCmd.AddCommand(cmd)
 	}
 }

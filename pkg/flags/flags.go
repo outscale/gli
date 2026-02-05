@@ -14,6 +14,7 @@ import (
 	"strings"
 
 	"github.com/outscale/gli/pkg/debug"
+	"github.com/outscale/gli/pkg/openapi"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -28,7 +29,16 @@ func init() {
 	}
 }
 
-func FromStruct(cmd *cobra.Command, arg reflect.Type, prefix string) {
+type Builder struct {
+	spec *openapi.Spec
+}
+
+func NewBuilder(spec *openapi.Spec) *Builder {
+	return &Builder{spec: spec}
+}
+
+func (b *Builder) FromStruct(cmd *cobra.Command, arg reflect.Type, prefix string) {
+	typeName := arg.Name()
 	fs := cmd.Flags()
 	for i := range arg.NumField() {
 		f := arg.Field(i)
@@ -37,11 +47,12 @@ func FromStruct(cmd *cobra.Command, arg reflect.Type, prefix string) {
 		if t.Kind() == reflect.Ptr {
 			t = t.Elem()
 		}
+		help := b.spec.SummaryForAttribute(typeName, f.Name)
 		switch t.Kind() {
 		case reflect.Bool:
-			fs.Bool(prefix+f.Name, false, "")
+			fs.Bool(prefix+f.Name, false, help)
 		case reflect.String:
-			fs.String(prefix+f.Name, "", "")
+			fs.String(prefix+f.Name, "", help)
 			if t.Implements(reflect.TypeFor[enum]()) {
 				values := reflect.New(t).Interface().(enum).Values()
 				_ = cmd.RegisterFlagCompletionFunc(prefix+f.Name, func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
@@ -49,13 +60,13 @@ func FromStruct(cmd *cobra.Command, arg reflect.Type, prefix string) {
 				})
 			}
 		case reflect.Int:
-			fs.Int(prefix+f.Name, 0, "")
+			fs.Int(prefix+f.Name, 0, help)
 		case reflect.Slice:
 			switch t.Elem().Kind() {
 			case reflect.Bool:
-				fs.BoolSlice(prefix+f.Name, nil, "")
+				fs.BoolSlice(prefix+f.Name, nil, help)
 			case reflect.String:
-				fs.StringSlice(prefix+f.Name, nil, "")
+				fs.StringSlice(prefix+f.Name, nil, help)
 				if t.Elem().Implements(reflect.TypeFor[enum]()) {
 					values := reflect.New(t.Elem()).Interface().(enum).Values()
 					_ = cmd.RegisterFlagCompletionFunc(prefix+f.Name, func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
@@ -63,21 +74,21 @@ func FromStruct(cmd *cobra.Command, arg reflect.Type, prefix string) {
 					})
 				}
 			case reflect.Int:
-				fs.IntSlice(prefix+f.Name, nil, "")
+				fs.IntSlice(prefix+f.Name, nil, help)
 			case reflect.Struct:
 				if t.Elem().Implements(reflect.TypeFor[json.Marshaler]()) {
-					fs.StringSlice(prefix+f.Name, nil, "")
+					fs.StringSlice(prefix+f.Name, nil, help)
 				} else {
 					for i := range numEntriesInSlices {
-						FromStruct(cmd, t.Elem(), prefix+f.Name+"."+strconv.Itoa(i)+".")
+						b.FromStruct(cmd, t.Elem(), prefix+f.Name+"."+strconv.Itoa(i)+".")
 					}
 				}
 			}
 		case reflect.Struct:
 			if ot.Implements(reflect.TypeFor[json.Marshaler]()) {
-				fs.String(prefix+f.Name, "", "")
+				fs.String(prefix+f.Name, "", help)
 			} else {
-				FromStruct(cmd, t, prefix+f.Name+".")
+				b.FromStruct(cmd, t, prefix+f.Name+".")
 			}
 		}
 	}
