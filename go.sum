@@ -62,8 +62,8 @@ github.com/oasdiff/yaml v0.0.0-20250309154309-f31be36b4037 h1:G7ERwszslrBzRxj//J
 github.com/oasdiff/yaml v0.0.0-20250309154309-f31be36b4037/go.mod h1:2bpvgLBZEtENV5scfDFEtB/5+1M4hkQhDQrccEJ/qGw=
 github.com/oasdiff/yaml3 v0.0.0-20250309153720-d2182401db90 h1:bQx3WeLcUWy+RletIKwUIt4x3t8n2SxavmoclizMb8c=
 github.com/oasdiff/yaml3 v0.0.0-20250309153720-d2182401db90/go.mod h1:y5+oSEHCPT/DGrS++Wc/479ERge0zTFxaF8PbGKcg2o=
-github.com/outscale/osc-sdk-go/v3 v3.0.0-beta.4.0.20260205153720-279ee1a47ec2 h1:Oc82EMSOv4osytcELR93ZUd+Kjq47GUMErxa/sMMtdQ=
-github.com/outscale/osc-sdk-go/v3 v3.0.0-beta.4.0.20260205153720-279ee1a47ec2/go.mod h1:WG7XKScXXlmbWQU7n1HSERoY/ON+juRkbw40bL50xLk=
+github.com/outscale/osc-sdk-go/v3 v3.0.0-beta.4.0.20260205164636-e2e3ff6156f6 h1:6Y+/YXDPPE9r8aMhZKzFJ8sOrH2VWnilsNdP67KQOb0=
+github.com/outscale/osc-sdk-go/v3 v3.0.0-beta.4.0.20260205164636-e2e3ff6156f6/go.mod h1:WG7XKScXXlmbWQU7n1HSERoY/ON+juRkbw40bL50xLk=
 github.com/perimeterx/marshmallow v1.1.5 h1:a2LALqQ1BlHM8PZblsDdidgv1mWi1DgC2UmX50IvK2s=
 github.com/perimeterx/marshmallow v1.1.5/go.mod h1:dsXbUu8CRzfYP5a87xpp0xq9S3u0Vchtcl8we9tYaXw=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

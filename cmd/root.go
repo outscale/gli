@@ -6,10 +6,14 @@ SPDX-License-Identifier: BSD-3-Clause
 package cmd
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/fatih/color"
 	"github.com/outscale/gli/cmd/prerun"
+	"github.com/outscale/gli/pkg/version"
+	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
+	sdkversion "github.com/outscale/osc-sdk-go/v3/pkg/version"
 	"github.com/spf13/cobra"
 )
 
@@ -40,6 +44,15 @@ var rootCmd = &cobra.Command{
 		prerun.CheckFalse(cmd, args)
 		prerun.CheckUpdate(cmd, args)
 	},
+	Run: func(cmd *cobra.Command, _ []string) {
+		if b, _ := cmd.Flags().GetBool("version"); b {
+			fmt.Printf("gli version %s\n", version.Version)
+			fmt.Printf("based on Go SDK %s\n", sdkversion.Version)
+			fmt.Printf("Providers:\n* oapi: %s\n", osc.Version)
+			return
+		}
+		_ = cmd.Help()
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -52,6 +65,7 @@ func Execute() {
 }
 
 func init() {
+	rootCmd.Flags().Bool("version", false, "Display version")
 	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "Verbose output")
 	rootCmd.PersistentFlags().String("jq", "", "jq-like output filter")
 }

@@ -9,7 +9,7 @@ require (
 	github.com/itchyny/gojq v0.12.18
 	github.com/mattn/go-isatty v0.0.20
 	github.com/minio/selfupdate v0.6.0
-	github.com/outscale/osc-sdk-go/v3 v3.0.0-beta.4.0.20260205153720-279ee1a47ec2
+	github.com/outscale/osc-sdk-go/v3 v3.0.0-beta.4.0.20260205164636-e2e3ff6156f6
 	github.com/samber/lo v1.52.0
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/pflag v1.0.10

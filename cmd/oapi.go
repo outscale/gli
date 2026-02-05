@@ -30,7 +30,7 @@ import (
 // oapiCmd represents the oapi command
 var oapiCmd = &cobra.Command{
 	Use:   "oapi",
-	Short: "OAPI calls",
+	Short: "Call OAPI",
 	Long:  `Send commands to the Outscale API.`,
 }
 
