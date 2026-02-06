@@ -6,18 +6,13 @@ SPDX-License-Identifier: BSD-3-Clause
 package cmd
 
 import (
-	"context"
-	"encoding/json"
 	"fmt"
-	"os"
 	"reflect"
 	"strings"
 
 	"github.com/outscale/gli/pkg/builder"
 	"github.com/outscale/gli/pkg/debug"
 	"github.com/outscale/gli/pkg/errors"
-	"github.com/outscale/gli/pkg/openapi"
-	"github.com/outscale/gli/pkg/output"
 	"github.com/outscale/gli/pkg/runner"
 	"github.com/outscale/gli/pkg/sdk"
 	"github.com/outscale/gli/pkg/version"
@@ -37,36 +32,17 @@ var oapiCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(oapiCmd)
-	ospec, err := osc.GetSwagger()
+	spec, err := osc.GetSwagger()
 	if err != nil {
 		errors.Warn(fmt.Sprintf("⚠️ unable to load OpenAPI spec: %v", err))
 	}
-	spec := openapi.NewSpec(ospec)
-	b := builder.NewBuilder(spec)
+	b := builder.NewBuilder[osc.Client](spec)
 
-	c := reflect.TypeOf(&osc.Client{})
-	for i := range c.NumMethod() {
-		m := c.Method(i)
-		if m.Type.NumIn() != 4 || m.Type.NumOut() != 2 || strings.HasSuffix(m.Name, "Raw") {
-			continue
-		}
-		short, help, group, _ := spec.SummaryForOperation(m.Name)
-		if !oapiCmd.ContainsGroup(group) {
-			oapiCmd.AddGroup(&cobra.Group{ID: group, Title: group})
-		}
-		cmd := &cobra.Command{
-			Use:     m.Name,
-			Short:   short,
-			Long:    help,
-			GroupID: group,
-			Run: func(cmd *cobra.Command, args []string) {
-				oapi(cmd)
-			},
-		}
-		arg := m.Type.In(2)
-		b.FromStruct(cmd, arg, "")
-		oapiCmd.AddCommand(cmd)
-	}
+	b.Build(oapiCmd, func(m reflect.Method) bool {
+		return m.Type.NumIn() == 4 && m.Type.NumOut() == 2 && !strings.HasSuffix(m.Name, "Raw")
+	}, func(cmd *cobra.Command, _ []string) {
+		oapi(cmd)
+	})
 }
 
 func oapi(cmd *cobra.Command) {
@@ -84,36 +60,10 @@ func oapi(cmd *cobra.Command) {
 		opts = append(opts, options.WithoutLogging())
 	}
 	cl, err := osc.NewClient(p, opts...)
+	if err == nil {
+		err = runner.Run[osc.Client, *osc.ErrorResponse](cmd, cl)
+	}
 	if err != nil {
 		errors.ExitErr(err)
 	}
-	clt := reflect.TypeOf(cl)
-	m, _ := clt.MethodByName(cmd.Name())
-	argType := m.Type.In(2)
-	arg := reflect.New(argType)
-	err = runner.ToStruct(cmd, arg, "")
-	if err != nil {
-		errors.ExitErr(err)
-	}
-	ctx := context.Background()
-	res := reflect.ValueOf(cl).MethodByName(cmd.Name()).Call([]reflect.Value{
-		reflect.ValueOf(ctx),
-		arg.Elem(),
-	})
-	debug.Println(len(res), "results")
-	if !res[1].IsNil() {
-		err = res[1].Interface().(error)
-		if oerr := osc.AsErrorResponse(err); oerr != nil {
-			enc := json.NewEncoder(os.Stderr)
-			enc.SetIndent("", "  ")
-			_ = enc.Encode(oerr)
-			os.Exit(1)
-		}
-		errors.ExitErr(err)
-	}
-	out, err := output.NewFromFlags(cmd.Flags())
-	if err != nil {
-		errors.ExitErr(err)
-	}
-	_ = out.Output(ctx, res[0].Interface())
 }

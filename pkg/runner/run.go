@@ -6,74 +6,50 @@ SPDX-License-Identifier: BSD-3-Clause
 package runner
 
 import (
+	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
-	"io"
 	"os"
 	"reflect"
-	"slices"
 	"strconv"
 	"strings"
-	"text/template"
 
-	"github.com/mattn/go-isatty"
 	"github.com/outscale/gli/pkg/debug"
-	"github.com/outscale/gli/pkg/errors"
+	"github.com/outscale/gli/pkg/output"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
 
-var (
-	stdinChecked bool
-	stdin        []byte
-)
-
-func Stdin() ([]byte, bool) {
-	return stdin, stdinChecked && len(stdin) > 0
-}
-
-func CheckStdin() error {
-	stdinChecked = true
-	if isatty.IsTerminal(os.Stdin.Fd()) {
-		debug.Println("terminal, skipping stdin")
-		return nil
-	}
-	debug.Println("reading stdin")
-	var err error
-	stdin, err = io.ReadAll(os.Stdin)
+func Run[Client any, Error error](cmd *cobra.Command, cl *Client) error {
+	clt := reflect.TypeOf(cl)
+	m, _ := clt.MethodByName(cmd.Name())
+	argType := m.Type.In(2)
+	arg := reflect.New(argType)
+	err := ToStruct(cmd, arg, "")
 	if err != nil {
-		return fmt.Errorf("unable to read stdin: %w", err)
+		return err
 	}
-	if !slices.ContainsFunc(os.Args, func(arg string) bool {
-		return strings.HasPrefix(arg, "{{")
-	}) {
-		return nil
-	}
-	debug.Println("templating args")
-	var input map[string]any
-	err = json.Unmarshal(stdin, &input)
+	ctx := context.Background()
+	res := reflect.ValueOf(cl).MethodByName(cmd.Name()).Call([]reflect.Value{
+		reflect.ValueOf(ctx),
+		arg.Elem(),
+	})
+
+	out, err := output.NewFromFlags(cmd.Flags())
 	if err != nil {
-		return fmt.Errorf("input is not a JSON object: %w", err)
+		return err
 	}
-	for i, arg := range os.Args {
-		if !strings.HasPrefix(arg, "{{") {
-			continue
+
+	if !res[1].IsNil() {
+		var appErr Error
+		if errors.As(res[1].Interface().(error), &appErr) {
+			_ = out.Output(ctx, appErr)
+			os.Exit(1)
 		}
-		tmpl, err := template.New("tpl").Parse(arg)
-		if err != nil {
-			errors.Warn("unable to parse argument", arg)
-			continue
-		}
-		w := &strings.Builder{}
-		err = tmpl.Execute(w, input)
-		if err != nil {
-			errors.Warn("unable to get value for argument", arg)
-			continue
-		}
-		debug.Println("replacing", arg, "with", w.String())
-		os.Args[i] = w.String()
+		return res[1].Interface().(error)
 	}
-	debug.Println("new args", os.Args)
+	_ = out.Output(ctx, res[0].Interface())
 	return nil
 }
 
