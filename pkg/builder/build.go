@@ -11,7 +11,6 @@ import (
 
 	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/outscale/gli/pkg/config"
-	"github.com/outscale/gli/pkg/options"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 )
@@ -106,7 +105,7 @@ func (b *Builder[T]) BuildArg(cmd *cobra.Command, arg reflect.Type, prefix strin
 				if t.Elem().Implements(reflect.TypeFor[json.Marshaler]()) {
 					fs.StringSlice(prefix+f.Name, nil, help)
 				} else {
-					for i := range options.NumEntriesInSlices {
+					for i := range NumEntriesInSlices {
 						b.BuildArg(cmd, t.Elem(), prefix+f.Name+"."+strconv.Itoa(i)+".")
 					}
 				}
