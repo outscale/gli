@@ -9,21 +9,46 @@ import (
 	"reflect"
 	"strconv"
 
-	"github.com/outscale/gli/pkg/openapi"
+	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/outscale/gli/pkg/options"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 )
 
-type Builder struct {
-	spec *openapi.Spec
+type Builder[T any] struct {
+	spec *Spec
 }
 
-func NewBuilder(spec *openapi.Spec) *Builder {
-	return &Builder{spec: spec}
+func NewBuilder[T any](spec *openapi3.T) *Builder[T] {
+	return &Builder[T]{spec: NewSpec(spec)}
 }
 
-func (b *Builder) FromStruct(cmd *cobra.Command, arg reflect.Type, prefix string) {
+func (b *Builder[T]) Build(rootCmd *cobra.Command, methodFilter func(m reflect.Method) bool, run func(cmd *cobra.Command, args []string)) {
+	var client *T
+	ct := reflect.TypeOf(client)
+	for i := range ct.NumMethod() {
+		m := ct.Method(i)
+		if !methodFilter(m) {
+			continue
+		}
+		short, help, group, _ := b.spec.SummaryForOperation(m.Name)
+		if !rootCmd.ContainsGroup(group) {
+			rootCmd.AddGroup(&cobra.Group{ID: group, Title: group})
+		}
+		cmd := &cobra.Command{
+			Use:     m.Name,
+			Short:   short,
+			Long:    help,
+			GroupID: group,
+			Run:     run,
+		}
+		arg := m.Type.In(2)
+		b.BuildArg(cmd, arg, "")
+		rootCmd.AddCommand(cmd)
+	}
+}
+
+func (b *Builder[T]) BuildArg(cmd *cobra.Command, arg reflect.Type, prefix string) {
 	typeName := arg.Name()
 	fs := cmd.Flags()
 	for i := range arg.NumField() {
@@ -66,7 +91,7 @@ func (b *Builder) FromStruct(cmd *cobra.Command, arg reflect.Type, prefix string
 					fs.StringSlice(prefix+f.Name, nil, help)
 				} else {
 					for i := range options.NumEntriesInSlices {
-						b.FromStruct(cmd, t.Elem(), prefix+f.Name+"."+strconv.Itoa(i)+".")
+						b.BuildArg(cmd, t.Elem(), prefix+f.Name+"."+strconv.Itoa(i)+".")
 					}
 				}
 			}
@@ -74,7 +99,7 @@ func (b *Builder) FromStruct(cmd *cobra.Command, arg reflect.Type, prefix string
 			if ot.Implements(reflect.TypeFor[json.Marshaler]()) {
 				fs.String(prefix+f.Name, "", help)
 			} else {
-				b.FromStruct(cmd, t, prefix+f.Name+".")
+				b.BuildArg(cmd, t, prefix+f.Name+".")
 			}
 		}
 	}
