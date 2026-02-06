@@ -52,5 +52,12 @@ func TestOAPI(t *testing.T) {
 		require.Len(t, *resp.Vms, 1)
 		assert.Equal(t, vmId, (*resp.Vms)[0].VmId)
 	})
-
+	t.Run("NumEntriesInSlices is automatically computed", func(t *testing.T) {
+		out := run(t, []string{"oapi", "CreateVms", "-h"}, nil)
+		assert.Contains(t, string(out), "--BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion")
+		assert.NotContains(t, string(out), "--BlockDeviceMappings.1.Bsu.DeleteOnVmDeletion")
+		out = run(t, []string{"oapi", "CreateVms", "--BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion", "-h"}, nil)
+		assert.Contains(t, string(out), "--BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion")
+		assert.Contains(t, string(out), "--BlockDeviceMappings.1.Bsu.DeleteOnVmDeletion")
+	})
 }

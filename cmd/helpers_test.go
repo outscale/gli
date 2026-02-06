@@ -1,45 +1,26 @@
 package cmd_test
 
 import (
+	"bytes"
 	"encoding/json"
-	"io"
 	"os"
-	"path/filepath"
+	"os/exec"
 	"testing"
 
-	"github.com/outscale/gli/cmd"
-	"github.com/outscale/gli/pkg/runner"
 	"github.com/stretchr/testify/require"
 )
 
 func run(t *testing.T, args []string, input []byte) []byte {
-	os.Args = append([]string{"gli"}, args...)
-	stdin, stdout := os.Stdin, os.Stdout
-	defer func() {
-		os.Stdin, os.Stdout = stdin, stdout
-	}()
-	dir := t.TempDir()
-	var err error
+	cmd := exec.CommandContext(t.Context(), "go", append([]string{"run", "../main.go"}, args...)...)
 	if len(input) > 0 {
-		os.Stdin, err = os.Create(filepath.Join(dir, "stdin")) //nolint
-		require.NoError(t, err)
-		_, err = os.Stdin.Write(input)
-		require.NoError(t, err)
-		_, err = os.Stdin.Seek(0, io.SeekStart)
-		require.NoError(t, err)
+		cmd.Stdin = bytes.NewBuffer(input)
 	}
-	os.Stdout, err = os.Create(filepath.Join(dir, "stdout")) //nolint
+	stdout := &bytes.Buffer{}
+	cmd.Stdout = stdout
+	cmd.Stderr = os.Stderr
+	err := cmd.Run()
 	require.NoError(t, err)
-
-	err = runner.CheckStdin()
-	require.NoError(t, err)
-	cmd.Execute()
-
-	err = os.Stdout.Close()
-	require.NoError(t, err)
-	content, err := os.ReadFile(os.Stdout.Name())
-	require.NoError(t, err)
-	return content
+	return stdout.Bytes()
 }
 
 func runJSON(t *testing.T, args []string, input []byte, resp any) {

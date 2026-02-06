@@ -47,7 +47,7 @@ jobs:
         secret_key: ${{ secrets.OSC_SECRET_KEY }}
         region: "eu-west-2"
     - name: 🧪 Test
-      run: go test ./...
+      run: go test -v ./...
       env:
         OSC_ACCESS_KEY: ${{ secrets.OSC_ACCESS_KEY }}
         OSC_SECRET_KEY: ${{ secrets.OSC_SECRET_KEY }}
