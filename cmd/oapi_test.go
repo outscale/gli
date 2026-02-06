@@ -41,4 +41,16 @@ func TestOAPI(t *testing.T) {
 		require.NotNil(t, resp.Net)
 		assert.NotEmpty(t, resp.Net.NetId)
 	})
+	t.Run("Aliases work", func(t *testing.T) {
+		resp := osc.ReadVmsResponse{}
+		runJSON(t, []string{"oapi", "ReadVms"}, nil, &resp)
+		require.NotNil(t, resp.Vms)
+		require.NotEmpty(t, *resp.Vms)
+		vmId := (*resp.Vms)[0].VmId
+		runJSON(t, []string{"oapi", "ReadVm", vmId}, nil, &resp)
+		require.NotNil(t, resp.Vms)
+		require.Len(t, *resp.Vms, 1)
+		assert.Equal(t, vmId, (*resp.Vms)[0].VmId)
+	})
+
 }

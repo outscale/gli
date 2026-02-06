@@ -1,0 +1,212 @@
+aliases:
+    - group: AccessKey
+      use: ReadAccessKey
+      short: alias for ReadAccessKeys --Filters.AccessKeyIds
+      command:
+        - ReadAccessKeys
+        - --Filters.AccessKeyIds
+        - '%0'
+    - group: ApiAccessRule
+      use: ReadApiAccessRule
+      short: alias for ReadApiAccessRules --Filters.ApiAccessRuleIds
+      command:
+        - ReadApiAccessRules
+        - --Filters.ApiAccessRuleIds
+        - '%0'
+    - group: Ca
+      use: ReadCa
+      short: alias for ReadCas --Filters.CaIds
+      command:
+        - ReadCas
+        - --Filters.CaIds
+        - '%0'
+    - group: ClientGateway
+      use: ReadClientGateway
+      short: alias for ReadClientGateways --Filters.ClientGatewayIds
+      command:
+        - ReadClientGateways
+        - --Filters.ClientGatewayIds
+        - '%0'
+    - group: DedicatedGroup
+      use: ReadDedicatedGroup
+      short: alias for ReadDedicatedGroups --Filters.DedicatedGroupIds
+      command:
+        - ReadDedicatedGroups
+        - --Filters.DedicatedGroupIds
+        - '%0'
+    - group: DirectLinkInterface
+      use: ReadDirectLinkInterface
+      short: alias for ReadDirectLinkInterfaces --Filters.DirectLinkInterfaceIds
+      command:
+        - ReadDirectLinkInterfaces
+        - --Filters.DirectLinkInterfaceIds
+        - '%0'
+    - group: DirectLink
+      use: ReadDirectLink
+      short: alias for ReadDirectLinks --Filters.DirectLinkIds
+      command:
+        - ReadDirectLinks
+        - --Filters.DirectLinkIds
+        - '%0'
+    - group: FlexibleGpu
+      use: ReadFlexibleGpu
+      short: alias for ReadFlexibleGpus --Filters.FlexibleGpuIds
+      command:
+        - ReadFlexibleGpus
+        - --Filters.FlexibleGpuIds
+        - '%0'
+    - group: Image
+      use: ReadImage
+      short: alias for ReadImages --Filters.ImageIds
+      command:
+        - ReadImages
+        - --Filters.ImageIds
+        - '%0'
+    - group: InternetService
+      use: ReadInternetService
+      short: alias for ReadInternetServices --Filters.InternetServiceIds
+      command:
+        - ReadInternetServices
+        - --Filters.InternetServiceIds
+        - '%0'
+    - group: Keypair
+      use: ReadKeypair
+      short: alias for ReadKeypairs --Filters.KeypairIds
+      command:
+        - ReadKeypairs
+        - --Filters.KeypairIds
+        - '%0'
+    - group: NatService
+      use: ReadNatService
+      short: alias for ReadNatServices --Filters.NatServiceIds
+      command:
+        - ReadNatServices
+        - --Filters.NatServiceIds
+        - '%0'
+    - group: NetAccessPoint
+      use: ReadNetAccessPoint
+      short: alias for ReadNetAccessPoints --Filters.NetAccessPointIds
+      command:
+        - ReadNetAccessPoints
+        - --Filters.NetAccessPointIds
+        - '%0'
+    - group: NetPeering
+      use: ReadNetPeering
+      short: alias for ReadNetPeerings --Filters.NetPeeringIds
+      command:
+        - ReadNetPeerings
+        - --Filters.NetPeeringIds
+        - '%0'
+    - group: Net
+      use: ReadNet
+      short: alias for ReadNets --Filters.NetIds
+      command:
+        - ReadNets
+        - --Filters.NetIds
+        - '%0'
+    - group: Nic
+      use: ReadNic
+      short: alias for ReadNics --Filters.NicIds
+      command:
+        - ReadNics
+        - --Filters.NicIds
+        - '%0'
+    - group: ProductType
+      use: ReadProductType
+      short: alias for ReadProductTypes --Filters.ProductTypeIds
+      command:
+        - ReadProductTypes
+        - --Filters.ProductTypeIds
+        - '%0'
+    - group: PublicIp
+      use: ReadPublicIp
+      short: alias for ReadPublicIps --Filters.PublicIpIds
+      command:
+        - ReadPublicIps
+        - --Filters.PublicIpIds
+        - '%0'
+    - group: RouteTable
+      use: ReadRouteTable
+      short: alias for ReadRouteTables --Filters.RouteTableIds
+      command:
+        - ReadRouteTables
+        - --Filters.RouteTableIds
+        - '%0'
+    - group: SecurityGroup
+      use: ReadSecurityGroup
+      short: alias for ReadSecurityGroups --Filters.SecurityGroupIds
+      command:
+        - ReadSecurityGroups
+        - --Filters.SecurityGroupIds
+        - '%0'
+    - group: Snapshot
+      use: ReadSnapshot
+      short: alias for ReadSnapshots --Filters.SnapshotIds
+      command:
+        - ReadSnapshots
+        - --Filters.SnapshotIds
+        - '%0'
+    - group: Subnet
+      use: ReadSubnet
+      short: alias for ReadSubnets --Filters.SubnetIds
+      command:
+        - ReadSubnets
+        - --Filters.SubnetIds
+        - '%0'
+    - group: UserGroup
+      use: ReadUserGroup
+      short: alias for ReadUserGroups --Filters.UserGroupIds
+      command:
+        - ReadUserGroups
+        - --Filters.UserGroupIds
+        - '%0'
+    - group: User
+      use: ReadUser
+      short: alias for ReadUsers --Filters.UserIds
+      command:
+        - ReadUsers
+        - --Filters.UserIds
+        - '%0'
+    - group: VirtualGateway
+      use: ReadVirtualGateway
+      short: alias for ReadVirtualGateways --Filters.VirtualGatewayIds
+      command:
+        - ReadVirtualGateways
+        - --Filters.VirtualGatewayIds
+        - '%0'
+    - group: VmGroup
+      use: ReadVmGroup
+      short: alias for ReadVmGroups --Filters.VmGroupIds
+      command:
+        - ReadVmGroups
+        - --Filters.VmGroupIds
+        - '%0'
+    - group: VmTemplate
+      use: ReadVmTemplate
+      short: alias for ReadVmTemplates --Filters.VmTemplateIds
+      command:
+        - ReadVmTemplates
+        - --Filters.VmTemplateIds
+        - '%0'
+    - group: Vm
+      use: ReadVm
+      short: alias for ReadVms --Filters.VmIds
+      command:
+        - ReadVms
+        - --Filters.VmIds
+        - '%0'
+    - group: Volume
+      use: ReadVolume
+      short: alias for ReadVolumes --Filters.VolumeIds
+      command:
+        - ReadVolumes
+        - --Filters.VolumeIds
+        - '%0'
+    - group: VpnConnection
+      use: ReadVpnConnection
+      short: alias for ReadVpnConnections --Filters.VpnConnectionIds
+      command:
+        - ReadVpnConnections
+        - --Filters.VpnConnectionIds
+        - '%0'
+flags: []

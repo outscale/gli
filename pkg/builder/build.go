@@ -10,17 +10,24 @@ import (
 	"strconv"
 
 	"github.com/getkin/kin-openapi/openapi3"
+	"github.com/outscale/gli/pkg/config"
 	"github.com/outscale/gli/pkg/options"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 )
 
 type Builder[T any] struct {
-	spec *Spec
+	provider string
+	spec     *Spec
+	cfg      config.Config
 }
 
-func NewBuilder[T any](spec *openapi3.T) *Builder[T] {
-	return &Builder[T]{spec: NewSpec(spec)}
+func NewBuilder[T any](provider string, spec *openapi3.T) *Builder[T] {
+	return &Builder[T]{
+		provider: provider,
+		spec:     NewSpec(spec),
+		cfg:      config.For("oapi"),
+	}
 }
 
 func (b *Builder[T]) Build(rootCmd *cobra.Command, methodFilter func(m reflect.Method) bool, run func(cmd *cobra.Command, args []string)) {
@@ -44,6 +51,15 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command, methodFilter func(m reflect.M
 		}
 		arg := m.Type.In(2)
 		b.BuildArg(cmd, arg, "")
+		rootCmd.AddCommand(cmd)
+	}
+	for _, a := range b.cfg.Aliases {
+		cmd := &cobra.Command{
+			Use:     a.Use,
+			Short:   a.Short,
+			GroupID: a.Group,
+			Run:     runAlias(b.provider, a, rootCmd),
+		}
 		rootCmd.AddCommand(cmd)
 	}
 }

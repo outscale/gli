@@ -36,7 +36,7 @@ func init() {
 	if err != nil {
 		errors.Warn(fmt.Sprintf("⚠️ unable to load OpenAPI spec: %v", err))
 	}
-	b := builder.NewBuilder[osc.Client](spec)
+	b := builder.NewBuilder[osc.Client]("oapi", spec)
 
 	b.Build(oapiCmd, func(m reflect.Method) bool {
 		return m.Type.NumIn() == 4 && m.Type.NumOut() == 2 && !strings.HasSuffix(m.Name, "Raw")

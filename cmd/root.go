@@ -7,10 +7,10 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/fatih/color"
 	"github.com/outscale/gli/cmd/prerun"
+	"github.com/outscale/gli/pkg/errors"
 	"github.com/outscale/gli/pkg/version"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
 	sdkversion "github.com/outscale/osc-sdk-go/v3/pkg/version"
@@ -60,7 +60,7 @@ var rootCmd = &cobra.Command{
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
-		os.Exit(1)
+		errors.ExitErr(err)
 	}
 }
 
