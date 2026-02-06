@@ -23,16 +23,24 @@ import (
 	"github.com/spf13/pflag"
 )
 
-var Input []byte
+var (
+	stdinChecked bool
+	stdin        []byte
+)
 
-func Prefilter() error {
+func Stdin() ([]byte, bool) {
+	return stdin, stdinChecked && len(stdin) > 0
+}
+
+func CheckStdin() error {
+	stdinChecked = true
 	if isatty.IsTerminal(os.Stdin.Fd()) {
 		debug.Println("terminal, skipping stdin")
 		return nil
 	}
 	debug.Println("reading stdin")
 	var err error
-	Input, err = io.ReadAll(os.Stdin)
+	stdin, err = io.ReadAll(os.Stdin)
 	if err != nil {
 		return fmt.Errorf("unable to read stdin: %w", err)
 	}
@@ -43,7 +51,7 @@ func Prefilter() error {
 	}
 	debug.Println("templating args")
 	var input map[string]any
-	err = json.Unmarshal(Input, &input)
+	err = json.Unmarshal(stdin, &input)
 	if err != nil {
 		return fmt.Errorf("input is not a JSON object: %w", err)
 	}
@@ -73,14 +81,19 @@ func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string) error {
 	fs := cmd.Flags()
 	debug.Println(reflect.Indirect(arg).Type().Name())
 	var err error
+	noneset := true
 	fs.VisitAll(func(f *pflag.Flag) {
 		if f.Changed { // skipping default values
+			noneset = false
 			debug.Println(f.Name, "=>", f.Value)
 			if serr := set(arg, fs, f.Name, f.Name); serr != nil {
 				err = serr
 			}
 		}
 	})
+	if stdin, ok := Stdin(); ok && noneset {
+		err = json.Unmarshal(stdin, arg.Interface())
+	}
 	return err
 }
 

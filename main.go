@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	err := runner.Prefilter()
+	err := runner.CheckStdin()
 	if err != nil {
 		errors.ExitErr(err)
 	}

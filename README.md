@@ -161,6 +161,12 @@ Commands may be chained, and attributes returned by a command can be reinjected 
 gli oapi CreateNic --SubnetId subnet-foo | gli oapi LinkNic -v --NicId {{.Nic.NicId}} --VmId i-foo --DeviceNumber 7
 ```
 
+### Sending raw JSON
+
+```shell
+echo '{"SubnetId":"subnet-foo"}' | gli oapi CreateNic
+```
+
 ### Using jq filters
 
 ```shell

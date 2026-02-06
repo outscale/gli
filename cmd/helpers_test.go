@@ -31,7 +31,7 @@ func run(t *testing.T, args []string, input []byte) []byte {
 	os.Stdout, err = os.Create(filepath.Join(dir, "stdout")) //nolint
 	require.NoError(t, err)
 
-	err = runner.Prefilter()
+	err = runner.CheckStdin()
 	require.NoError(t, err)
 	cmd.Execute()
 

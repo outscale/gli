@@ -34,4 +34,11 @@ func TestOAPI(t *testing.T) {
 		require.NotNil(t, resp.Subnet)
 		assert.NotEmpty(t, resp.Subnet.SubnetId)
 	})
+	t.Run("JSON can be injected", func(t *testing.T) {
+		in := `{"IpRange":"10.0.0.0/16"}`
+		resp := osc.CreateNetResponse{}
+		runJSON(t, []string{"oapi", "CreateNet"}, []byte(in), &resp)
+		require.NotNil(t, resp.Net)
+		assert.NotEmpty(t, resp.Net.NetId)
+	})
 }
