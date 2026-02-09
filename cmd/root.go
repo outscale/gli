@@ -13,6 +13,7 @@ import (
 	"github.com/outscale/gli/pkg/errors"
 	"github.com/outscale/gli/pkg/version"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
+	"github.com/outscale/osc-sdk-go/v3/pkg/profile"
 	sdkversion "github.com/outscale/osc-sdk-go/v3/pkg/version"
 	"github.com/spf13/cobra"
 )
@@ -68,4 +69,7 @@ func init() {
 	rootCmd.Flags().Bool("version", false, "Display version")
 	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "Verbose output")
 	rootCmd.PersistentFlags().String("jq", "", "jq-like output filter")
+	path, _ := profile.DefaultConfigPath()
+	rootCmd.PersistentFlags().String("config", path, "Path of profile file")
+	rootCmd.PersistentFlags().String("profile", profile.DefaultProfile, "Profile to use in profile file")
 }

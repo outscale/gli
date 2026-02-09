@@ -47,8 +47,9 @@ func init() {
 
 func oapi(cmd *cobra.Command) {
 	debug.Println(cmd.Name() + " called")
-
-	p, err := profile.New()
+	path, _ := cmd.Flags().GetString("config")
+	prof, _ := cmd.Flags().GetString("profile")
+	p, err := profile.NewFrom(path, prof)
 	if err != nil {
 		errors.ExitErr(err)
 	}

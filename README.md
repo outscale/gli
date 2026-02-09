@@ -94,7 +94,11 @@ The tool will try to read the following environment variables:
 
 ### Profile file
 
-If no environment variables are defined, the tool will read `~/.osc/config.json` and look for the `default` profile.
+If no environment variables are defined, the tool expects to find a profile in a profile file.
+
+The default profile file path is `~/.osc/config.json` and can be set with the `--config` flag or the `OSC_CONFIG_FILE` environment variable.
+
+The default profile name path is `default` and can be set with the `--profile` flag or the `OSC_PROFILE` environment variable.
 
 ### Example
 
