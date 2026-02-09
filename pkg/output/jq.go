@@ -12,19 +12,19 @@ import (
 	"github.com/itchyny/gojq"
 )
 
-type JQFilter struct {
+type JQ struct {
 	query *gojq.Query
 }
 
-func NewJQFilter(s string) (*JQFilter, error) {
+func NewJQ(s string) (*JQ, error) {
 	query, err := gojq.Parse(s)
 	if err != nil {
 		return nil, fmt.Errorf("parse jq filter: %w", err)
 	}
-	return &JQFilter{query: query}, nil
+	return &JQ{query: query}, nil
 }
 
-func (j *JQFilter) Output(ctx context.Context, v any) error {
+func (j *JQ) Output(ctx context.Context, v any) error {
 	buf, err := json.Marshal(v)
 	if err != nil {
 		return fmt.Errorf("to JSON: %w", err)
@@ -35,7 +35,7 @@ func (j *JQFilter) Output(ctx context.Context, v any) error {
 		return fmt.Errorf("from JSON: %w", err)
 	}
 	iter := j.query.RunWithContext(ctx, raw)
-	out := Default{}
+	out := JSON{}
 	for {
 		v, ok := iter.Next()
 		if !ok {

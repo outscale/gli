@@ -19,7 +19,6 @@
 - [Installation](#-installation)
 - [Configuration](#-configuration)
 - [Usage](#-usage)
-- [Examples](#-examples)
 - [License](#-license)
 - [Contributing](#-contributing)
 
@@ -37,7 +36,7 @@ It supports:
 * syntax highlighting of output,
 * auto-update to latest version.
 
-It currenty only supports OAPI, but other Outscale APIs are planned.
+It currenty only supports iaas api, but other Outscale APIs are planned.
 
 ---
 
@@ -82,7 +81,6 @@ source ~/.config/fish/config.fish
 
 ## 🛠 Configuration
 
-
 The tool expects either environment variables or a configuration file.
 
 ### Environment variables
@@ -119,56 +117,110 @@ Use `OSC_CONFIG_FILE` to define an alternate config file and `OSC_PROFILE` an al
 ## 🚀 Usage
 
 ```bash
-gli <command> <api call>
+gli <command> <command>
 ```
 
 ### Commands
 
 | Command | Description |
 | ------- | ----------- |
-| `oapi` | Call OAPI |
+| `iaas` | Core IaaS API |
 | `update` | Update to the latest version |
-| `version` | Display version |
+| `completion` | Generate completion shell script |
 
 ### Options
 
-| Option | Description |
-| ------ | ----------- |
-| `-v, --verbose` | Dump HTTP request and response |
-| `-h, --help` | Help about a command |
-| `--jq` | jq-like output filter |
+| Option | Default | Allowed values | Description |
+| ------ | ------- | -------------- | ----------- |
+| `--version` | | | Display gli version |
+| `-v, --verbose` | | | Dump HTTP request and response |
+| `-h, --help` | | | Help about a command |
+| `--jq` | | | jq-like output filter |
+| `--template` | | | JSON template for query body |
+| `--config` | `~/.osc/config.json` | | config file path |
+| `--profile` | `default` | | profile name |
+| `--output` | | `raw`, `json`, `yaml`, `table` | output format |
+| `--columns` | | | columns to display in a table (`title:field,title:field`) |
 
----
+### Output formats
 
-## 💡 Examples
+* `raw` is the raw JSON format, as returned by the API.
+* `json` displays the content in JSON format, without response context,
+* `yaml` displays the content in YAML format, without response context,
+* `table` displays the content in a text table, based on columns defined by the `--columns` flag.
 
-### Querying oapi
+### High level command
 
-List all VMs in the `running` state:
+High level commands are available:
+
+* `gli iaas <entity> list` lists all entities using the `table` format:
 ```shell
-gli oapi ReadVms --Filters.VmStateNames running
+gli iaas volume list
+┌──────────────┬──────────┬───────────┬───────────────┬──────┬──────┐
+│      ID      │   Type   │   State   │ SubregionName │ Size │ Iops │
+├──────────────┼──────────┼───────────┼───────────────┼──────┼──────┤
+│ vol-foo      │ io1      │ in-use    │ eu-west-2a    │ 300  │ 5000 │
+│ vol-bar      │ standard │ in-use    │ eu-west-2a    │ 20   │ 0    │
+│ vol-baz      │ gp2      │ available │ eu-west-2a    │ 4    │ 100  │
+└──────────────┴──────────┴───────────┴───────────────┴──────┴──────┘
+```
+* `gli iaas <entity> describe <id>` displays an entity using the `yaml` format:
+```shell
+gli iaas volume describe vol-foo
+CreationDate: '2024-12-17T11:07:58.757Z'
+Iops: 5000
+LinkedVolumes:
+- DeviceName: /dev/sda1
+  State: attached
+  VmId: i-foo
+  VolumeId: vol-foo
+Size: 300
+SnapshotId: snap-foo
+State: in-use
+SubregionName: eu-west-2a
+Tags: []
+VolumeId: vol-foo
+VolumeType: io1
 ```
 
+Columns can be changed:
+```shell
+gli iaas vm list --columns ID:VmId,DNS:PrivateDnsName
+┌────────────┬───────────────────────────────────────────┐
+│     ID     │                    DNS                    │
+├────────────┼───────────────────────────────────────────┤
+│ i-foo      │ ip-10-1-112-23.eu-west-2.compute.internal │
+│ i-bar      │ ip-10-9-35-211.eu-west-2.compute.internal │
+│ i-baz      │ ip-10-0-4-143.eu-west-2.compute.internal  │
+└────────────┴───────────────────────────────────────────┘
+```
+
+### API access
+
+The API can be directly called, with a `raw` output:
+```shell
+gli iaas api ReadVms --Filters.VmStateNames running
+```
+
+### Flag syntax
+
 The flag syntax is:
-* list of values are comma-separated: `--Filters.VmStateNames running,stopped`
-* boolean flags can be set to false by setting: `--TmpEnabled=false`
-
-### Multiple values
-
-Lists of embedded objects (e.g. `Nics` or `BlockDeviceMappings` in `CreateVms`) can be configured using indexes: `--BlockDeviceMappings.0.Bsu.VolumeType`.
+* list of values are comma-separated: `--Filters.VmStateNames running,stopped`,
+* boolean flags can be set to false by setting: `--TmpEnabled=false`,
+* lists of embedded objects (e.g. `Nics` or `BlockDeviceMappings` in `CreateVms`) can be configured using indexes: `--BlockDeviceMappings.0.Bsu.VolumeType`.
 
 ### Chaining
 
 Commands may be chained, and attributes returned by a command can be reinjected in a subsequent command, using Go template syntax:
 
 ```shell
-gli oapi CreateNic --SubnetId subnet-foo | gli oapi LinkNic -v --NicId {{.Nic.NicId}} --VmId i-foo --DeviceNumber 7
+gli iaas api CreateNic --SubnetId subnet-foo | gli iaas api LinkNic -v --NicId {{.Nic.NicId}} --VmId i-foo --DeviceNumber 7
 ```
 
 ### Sending raw JSON
 
 ```shell
-echo '{"SubnetId":"subnet-foo"}' | gli oapi CreateNic
+echo '{"SubnetId":"subnet-foo"}' | gli iaas api CreateNic
 ```
 
 ### Templating
@@ -177,18 +229,20 @@ A JSON document can be used as a template, with additional config using flags.
 
 Either from stdin:
 ```shell
-echo '{"NetId":"vpc-foo"}' | gli oapi CreateSubnet --IpRange 10.0.1.0/24
+echo '{"NetId":"vpc-foo"}' | gli iaas api CreateSubnet --IpRange 10.0.1.0/24
 ```
 Or from a file:
 ```shell
-gli oapi CreateSubnet --IpRange 10.0.1.0/24 --template subnet.json
+gli iaas api CreateSubnet --IpRange 10.0.1.0/24 --template subnet.json
 ```
 
 ### Using jq filters
 
 ```shell
-gli oapi ReadVms --Filters.VmStateNames running --jq ".Vms[].VmId"
+gli iaas api ReadVms --Filters.VmStateNames running --jq ".Vms[].VmId"
 ```
+
+> Note: `--jq` is not currently compatible with `--output`
 
 ### Self updating
 

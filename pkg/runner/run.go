@@ -15,13 +15,14 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/outscale/gli/pkg/config"
 	"github.com/outscale/gli/pkg/debug"
 	"github.com/outscale/gli/pkg/output"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
 
-func Run[Client any, Error error](cmd *cobra.Command, cl *Client) error {
+func Run[Client any, Error error](cmd *cobra.Command, cl *Client, cfg config.Config) error {
 	clt := reflect.TypeOf(cl)
 	m, _ := clt.MethodByName(cmd.Name())
 	argType := m.Type.In(2)
@@ -36,7 +37,9 @@ func Run[Client any, Error error](cmd *cobra.Command, cl *Client) error {
 		arg.Elem(),
 	})
 
-	out, err := output.NewFromFlags(cmd.Flags())
+	c := cfg.Calls[cmd.Name()]
+	e := cfg.Entities[c.Entity]
+	out, err := output.NewFromFlags(cmd.Flags(), c, e)
 	if err != nil {
 		return err
 	}
@@ -59,7 +62,7 @@ func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string) error {
 	var err error
 	if tpl, ferr := cmd.Flags().GetString("template"); ferr == nil && tpl != "" {
 		var content []byte
-		content, err = os.ReadFile(tpl)
+		content, err = os.ReadFile(tpl) //nolint:gosec
 		if err == nil {
 			err = json.Unmarshal(content, arg.Interface())
 		}

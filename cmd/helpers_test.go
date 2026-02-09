@@ -11,7 +11,7 @@ import (
 )
 
 func run(t *testing.T, args []string, input []byte) []byte {
-	cmd := exec.CommandContext(t.Context(), "go", append([]string{"run", "../main.go"}, args...)...)
+	cmd := exec.CommandContext(t.Context(), "go", append([]string{"run", "../main.go"}, args...)...) //nolint
 	if len(input) > 0 {
 		cmd.Stdin = bytes.NewBuffer(input)
 	}

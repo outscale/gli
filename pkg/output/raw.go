@@ -4,8 +4,4 @@ SPDX-License-Identifier: BSD-3-Clause
 */
 package output
 
-import "context"
-
-type Output interface {
-	Output(ctx context.Context, v any) error
-}
+type Default = JSON

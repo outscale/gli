@@ -2,7 +2,8 @@
 SPDX-FileCopyrightText: 2026 Outscale SAS <opensource@outscale.com>
 
 SPDX-License-Identifier: BSD-3-Clause
-*/package builder
+*/
+package builder
 
 import (
 	"encoding/json"
@@ -25,11 +26,64 @@ func NewBuilder[T any](provider string, spec *openapi3.T) *Builder[T] {
 	return &Builder[T]{
 		provider: provider,
 		spec:     NewSpec(spec),
-		cfg:      config.For("oapi"),
+		cfg:      config.For(provider),
 	}
 }
 
-func (b *Builder[T]) Build(rootCmd *cobra.Command, methodFilter func(m reflect.Method) bool, run func(cmd *cobra.Command, args []string)) {
+// Build builds the high-level API, must be run after BuildAPI as aliases might use API flags.
+func (b *Builder[T]) Build(rootCmd *cobra.Command) {
+	rootCmd.AddGroup(&cobra.Group{
+		ID:    "service",
+		Title: "service",
+	})
+	apiCmd, _ := lo.Find(rootCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == "api" })
+	for _, a := range b.cfg.Aliases {
+		c, found := lo.Find(rootCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == a.Entity })
+		if !found {
+			c = &cobra.Command{
+				GroupID: "service",
+				Use:     a.Entity,
+				Short:   a.Entity + " commands",
+			}
+			rootCmd.AddCommand(c)
+		}
+		cmd := &cobra.Command{
+			Use:     a.Use,
+			Aliases: a.Aliases,
+			Short:   a.Short,
+			Run:     runAlias(b.provider, a, rootCmd),
+		}
+		c.AddCommand(cmd)
+		if apiCmd == nil || len(a.Command) < 2 {
+			continue
+		}
+		callCmd, _ := lo.Find(apiCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == a.Command[1] })
+		if callCmd == nil {
+			continue
+		}
+		for f, fapi := range a.Flags {
+			flag := callCmd.Flags().Lookup(fapi)
+			if flag != nil {
+				nflag := *flag
+				nflag.Name = f
+				cmd.Flags().AddFlag(&nflag)
+			}
+		}
+	}
+}
+
+// BuildAPI builds the api command.
+func (b *Builder[T]) BuildAPI(rootCmd *cobra.Command, methodFilter func(m reflect.Method) bool, run func(cmd *cobra.Command, args []string)) {
+	rootCmd.AddGroup(&cobra.Group{
+		ID:    "api",
+		Title: "api",
+	})
+	var apiCmd = &cobra.Command{
+		Use:     "api",
+		GroupID: "api",
+		Short:   rootCmd.Use + " api calls",
+	}
+	rootCmd.AddCommand(apiCmd)
 	var client *T
 	ct := reflect.TypeOf(client)
 	for i := range ct.NumMethod() {
@@ -38,8 +92,8 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command, methodFilter func(m reflect.M
 			continue
 		}
 		short, help, group, _ := b.spec.SummaryForOperation(m.Name)
-		if !rootCmd.ContainsGroup(group) {
-			rootCmd.AddGroup(&cobra.Group{ID: group, Title: group})
+		if !apiCmd.ContainsGroup(group) {
+			apiCmd.AddGroup(&cobra.Group{ID: group, Title: group})
 		}
 		cmd := &cobra.Command{
 			Use:     m.Name,
@@ -50,16 +104,7 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command, methodFilter func(m reflect.M
 		}
 		arg := m.Type.In(2)
 		b.BuildArg(cmd, arg, "")
-		rootCmd.AddCommand(cmd)
-	}
-	for _, a := range b.cfg.Aliases {
-		cmd := &cobra.Command{
-			Use:     a.Use,
-			Short:   a.Short,
-			GroupID: a.Group,
-			Run:     runAlias(b.provider, a, rootCmd),
-		}
-		rootCmd.AddCommand(cmd)
+		apiCmd.AddCommand(cmd)
 	}
 }
 

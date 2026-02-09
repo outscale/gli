@@ -14,9 +14,9 @@ import (
 	"github.com/tidwall/pretty"
 )
 
-type Default struct{}
+type JSON struct{}
 
-func (Default) Output(ctx context.Context, v any) error {
+func (JSON) Output(ctx context.Context, v any) error {
 	buf, err := json.MarshalIndent(v, "", "  ")
 	if err != nil {
 		return fmt.Errorf("marshal json: %w", err)

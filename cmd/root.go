@@ -49,7 +49,7 @@ var rootCmd = &cobra.Command{
 		if b, _ := cmd.Flags().GetBool("version"); b {
 			fmt.Printf("gli version %s\n", version.Version)
 			fmt.Printf("based on Go SDK %s\n", sdkversion.Version)
-			fmt.Printf("Providers:\n* oapi: %s\n", osc.Version)
+			fmt.Printf("Providers:\n* iaas: %s\n", osc.Version)
 			return
 		}
 		_ = cmd.Help()
@@ -72,5 +72,11 @@ func init() {
 	path, _ := profile.DefaultConfigPath()
 	rootCmd.PersistentFlags().String("config", path, "Path of profile file")
 	rootCmd.PersistentFlags().String("profile", profile.DefaultProfile, "Profile to use in profile file")
-	rootCmd.PersistentFlags().String("template", "", "JSON template for API query")
+	rootCmd.PersistentFlags().String("template", "", "JSON template for query body")
+	rootCmd.PersistentFlags().StringP("columns", "c", "", "columns to display")
+	rootCmd.PersistentFlags().StringP("output", "o", "", "output format (raw, json, yaml, table)")
+
+	_ = rootCmd.RegisterFlagCompletionFunc("output", func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
+		return []cobra.Completion{"raw", "json", "yaml", "table"}, cobra.ShellCompDirectiveDefault
+	})
 }

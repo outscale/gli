@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/outscale/gli/pkg/builder"
+	"github.com/outscale/gli/pkg/config"
 	"github.com/outscale/gli/pkg/debug"
 	"github.com/outscale/gli/pkg/errors"
 	"github.com/outscale/gli/pkg/runner"
@@ -23,26 +24,25 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// oapiCmd represents the oapi command
-var oapiCmd = &cobra.Command{
-	Use:   "oapi",
-	Short: "Call OAPI",
-	Long:  `Send commands to the Outscale API.`,
+// iaasCmd represents the iaascommand
+var iaasCmd = &cobra.Command{
+	Use:   "iaas",
+	Short: "IaaS management",
 }
 
 func init() {
-	rootCmd.AddCommand(oapiCmd)
+	rootCmd.AddCommand(iaasCmd)
 	spec, err := osc.GetSwagger()
 	if err != nil {
 		errors.Warn(fmt.Sprintf("⚠️ unable to load OpenAPI spec: %v", err))
 	}
-	b := builder.NewBuilder[osc.Client]("oapi", spec)
-
-	b.Build(oapiCmd, func(m reflect.Method) bool {
+	b := builder.NewBuilder[osc.Client]("iaas", spec)
+	b.BuildAPI(iaasCmd, func(m reflect.Method) bool {
 		return m.Type.NumIn() == 4 && m.Type.NumOut() == 2 && !strings.HasSuffix(m.Name, "Raw")
 	}, func(cmd *cobra.Command, _ []string) {
 		oapi(cmd)
 	})
+	b.Build(iaasCmd)
 }
 
 func oapi(cmd *cobra.Command) {
@@ -62,7 +62,7 @@ func oapi(cmd *cobra.Command) {
 	}
 	cl, err := osc.NewClient(p, opts...)
 	if err == nil {
-		err = runner.Run[osc.Client, *osc.ErrorResponse](cmd, cl)
+		err = runner.Run[osc.Client, *osc.ErrorResponse](cmd, cl, config.For("iaas"))
 	}
 	if err != nil {
 		errors.ExitErr(err)

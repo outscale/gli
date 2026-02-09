@@ -1,0 +1,1714 @@
+contents:
+  ReadAccessKeys:
+    content: AccessKeys
+    entity: accesskey
+  ReadAccounts:
+    content: Accounts
+    entity: account
+  ReadAdminPassword:
+    content: AdminPassword
+    entity: adminpassword
+  ReadApiAccessPolicy:
+    content: ApiAccessPolicy
+    entity: apiaccesspolicy
+  ReadApiAccessRules:
+    content: ApiAccessRules
+    entity: apiaccessrule
+  ReadApiLogs:
+    content: ApiLogs
+    entity: apilog
+  ReadCO2EmissionAccount:
+    content: CO2EmissionAccount
+    entity: co2emissionaccount
+  ReadCas:
+    content: Cas
+    entity: ca
+  ReadCatalog:
+    content: Catalog
+    entity: catalog
+  ReadCatalogs:
+    content: Catalogs
+    entity: catalog
+  ReadClientGateways:
+    content: ClientGateways
+    entity: clientgateway
+  ReadConsoleOutput:
+    content: ConsoleOutput
+    entity: consoleoutput
+  ReadConsumptionAccount:
+    content: ConsumptionAccount
+    entity: consumptionaccount
+  ReadDedicatedGroups:
+    content: DedicatedGroups
+    entity: dedicatedgroup
+  ReadDhcpOptions:
+    content: DhcpOptions
+    entity: dhcpoption
+  ReadDirectLinkInterfaces:
+    content: DirectLinkInterfaces
+    entity: directlinkinterface
+  ReadDirectLinks:
+    content: DirectLinks
+    entity: directlink
+  ReadEntitiesLinkedToPolicy:
+    content: EntitiesLinkedToPolicy
+    entity: entitieslinkedtopolicy
+  ReadFlexibleGpuCatalog:
+    content: FlexibleGpuCatalog
+    entity: flexiblegpucatalog
+  ReadFlexibleGpus:
+    content: FlexibleGpus
+    entity: flexiblegpu
+  ReadImageExportTasks:
+    content: ImageExportTasks
+    entity: imageexporttask
+  ReadImages:
+    content: Images
+    entity: image
+  ReadInternetServices:
+    content: InternetServices
+    entity: internetservice
+  ReadKeypairs:
+    content: Keypairs
+    entity: keypair
+  ReadLinkedPolicies:
+    content: LinkedPolicies
+    entity: linkedpolicie
+  ReadListenerRules:
+    content: ListenerRules
+    entity: listenerrule
+  ReadLoadBalancerTags:
+    content: LoadBalancerTags
+    entity: loadbalancertag
+  ReadLoadBalancers:
+    content: LoadBalancers
+    entity: loadbalancer
+  ReadLocations:
+    content: Locations
+    entity: location
+  ReadManagedPoliciesLinkedToUserGroup:
+    content: ManagedPoliciesLinkedToUserGroup
+    entity: managedpolicieslinkedtousergroup
+  ReadNatServices:
+    content: NatServices
+    entity: natservice
+  ReadNetAccessPointServices:
+    content: NetAccessPointServices
+    entity: netaccesspointservice
+  ReadNetAccessPoints:
+    content: NetAccessPoints
+    entity: netaccesspoint
+  ReadNetPeerings:
+    content: NetPeerings
+    entity: netpeering
+  ReadNets:
+    content: Nets
+    entity: net
+  ReadNics:
+    content: Nics
+    entity: nic
+  ReadPolicies:
+    content: Policies
+    entity: policie
+  ReadPolicy:
+    content: Policy
+    entity: policy
+  ReadPolicyVersion:
+    content: PolicyVersion
+    entity: policyversion
+  ReadPolicyVersions:
+    content: PolicyVersions
+    entity: policyversion
+  ReadProductTypes:
+    content: ProductTypes
+    entity: producttype
+  ReadPublicCatalog:
+    content: PublicCatalog
+    entity: publiccatalog
+  ReadPublicIpRanges:
+    content: PublicIpRanges
+    entity: publiciprange
+  ReadPublicIps:
+    content: PublicIps
+    entity: publicip
+  ReadQuotas:
+    content: Quotas
+    entity: quota
+  ReadRegions:
+    content: Regions
+    entity: region
+  ReadRouteTables:
+    content: RouteTables
+    entity: routetable
+  ReadSecurityGroups:
+    content: SecurityGroups
+    entity: securitygroup
+  ReadServerCertificates:
+    content: ServerCertificates
+    entity: servercertificate
+  ReadSnapshotExportTasks:
+    content: SnapshotExportTasks
+    entity: snapshotexporttask
+  ReadSnapshots:
+    content: Snapshots
+    entity: snapshot
+  ReadSubnets:
+    content: Subnets
+    entity: subnet
+  ReadSubregions:
+    content: Subregions
+    entity: subregion
+  ReadTags:
+    content: Tags
+    entity: tag
+  ReadUnitPrice:
+    content: UnitPrice
+    entity: unitprice
+  ReadUserGroup:
+    content: UserGroup
+    entity: usergroup
+  ReadUserGroupPolicies:
+    content: UserGroupPolicies
+    entity: usergrouppolicie
+  ReadUserGroupPolicy:
+    content: UserGroupPolicy
+    entity: usergrouppolicy
+  ReadUserGroups:
+    content: UserGroups
+    entity: usergroup
+  ReadUserGroupsPerUser:
+    content: UserGroupsPerUser
+    entity: usergroupsperuser
+  ReadUserPolicies:
+    content: UserPolicies
+    entity: userpolicie
+  ReadUserPolicy:
+    content: UserPolicy
+    entity: userpolicy
+  ReadUsers:
+    content: Users
+    entity: user
+  ReadVirtualGateways:
+    content: VirtualGateways
+    entity: virtualgateway
+  ReadVmGroups:
+    content: VmGroups
+    entity: vmgroup
+  ReadVmTemplates:
+    content: VmTemplates
+    entity: vmtemplate
+  ReadVmTypes:
+    content: VmTypes
+    entity: vmtype
+  ReadVms:
+    content: Vms
+    entity: vm
+  ReadVmsHealth:
+    content: VmsHealth
+    entity: vmshealth
+  ReadVmsState:
+    content: VmsState
+    entity: vmsstate
+  ReadVolumeUpdateTasks:
+    content: VolumeUpdateTasks
+    entity: volumeupdatetask
+  ReadVolumes:
+    content: Volumes
+    entity: volume
+  ReadVpnConnections:
+    content: VpnConnections
+    entity: vpnconnection
+entities:
+  accesskey:
+    columns:
+    - title: ID
+      content: AccessKeyId
+    - title: State
+      content: State
+  apiaccessrule:
+    columns:
+    - title: ID
+      content: ApiAccessRuleId
+  ca:
+    columns:
+    - title: ID
+      content: CaId
+  clientgateway:
+    columns:
+    - title: ID
+      content: ClientGatewayId
+    - title: State
+      content: State
+    - title: PublicIp
+      content: PublicIp
+  dedicatedgroup:
+    columns:
+    - title: ID
+      content: DedicatedGroupId
+    - title: SubregionName
+      content: SubregionName
+  directlink:
+    columns:
+    - title: ID
+      content: DirectLinkId
+    - title: Name
+      content: DirectLinkName
+    - title: State
+      content: State
+  directlinkinterface:
+    columns:
+    - title: ID
+      content: DirectLinkInterfaceId
+    - title: Name
+      content: DirectLinkInterfaceName
+    - title: State
+      content: State
+  flexiblegpu:
+    columns:
+    - title: ID
+      content: FlexibleGpuId
+    - title: State
+      content: State
+    - title: SubregionName
+      content: SubregionName
+  image:
+    columns:
+    - title: ID
+      content: ImageId
+    - title: Name
+      content: ImageName
+    - title: Type
+      content: ImageType
+    - title: State
+      content: State
+  internetservice:
+    columns:
+    - title: ID
+      content: InternetServiceId
+    - title: State
+      content: State
+    - title: NetId
+      content: NetId
+  keypair:
+    columns:
+    - title: ID
+      content: KeypairId
+    - title: Name
+      content: KeypairName
+    - title: Type
+      content: KeypairType
+  listenerrule:
+    columns:
+    - title: ID
+      content: ListenerRuleId
+    - title: Name
+      content: ListenerRuleName
+  loadbalancer:
+    columns:
+    - title: Name
+      content: LoadBalancerName
+    - title: Type
+      content: LoadBalancerType
+    - title: PublicIp
+      content: PublicIp
+    - title: NetId
+      content: NetId
+    - title: SubregionNames
+      content: SubregionNames
+  natservice:
+    columns:
+    - title: ID
+      content: NatServiceId
+    - title: State
+      content: State
+    - title: NetId
+      content: NetId
+    - title: SubnetId
+      content: SubnetId
+  net:
+    columns:
+    - title: ID
+      content: NetId
+    - title: State
+      content: State
+    - title: IpRange
+      content: IpRange
+  netaccesspoint:
+    columns:
+    - title: ID
+      content: NetAccessPointId
+    - title: State
+      content: State
+    - title: NetId
+      content: NetId
+  netpeering:
+    columns:
+    - title: ID
+      content: NetPeeringId
+    - title: State
+      content: State
+  nic:
+    columns:
+    - title: ID
+      content: NicId
+    - title: State
+      content: State
+    - title: NetId
+      content: NetId
+    - title: SubnetId
+      content: SubnetId
+    - title: SubregionName
+      content: SubregionName
+  producttype:
+    columns:
+    - title: ID
+      content: ProductTypeId
+  publicip:
+    columns:
+    - title: ID
+      content: PublicIpId
+    - title: PublicIp
+      content: PublicIp
+    - title: PrivateIp
+      content: PrivateIp
+  routetable:
+    columns:
+    - title: ID
+      content: RouteTableId
+    - title: NetId
+      content: NetId
+  securitygroup:
+    columns:
+    - title: ID
+      content: SecurityGroupId
+    - title: Name
+      content: SecurityGroupName
+    - title: NetId
+      content: NetId
+  snapshot:
+    columns:
+    - title: ID
+      content: SnapshotId
+    - title: State
+      content: State
+  subnet:
+    columns:
+    - title: ID
+      content: SubnetId
+    - title: State
+      content: State
+    - title: NetId
+      content: NetId
+    - title: IpRange
+      content: IpRange
+    - title: SubregionName
+      content: SubregionName
+  subregion:
+    columns:
+    - title: Name
+      content: SubregionName
+    - title: State
+      content: State
+  user:
+    columns:
+    - title: ID
+      content: UserId
+    - title: Name
+      content: UserName
+  usergroup:
+    columns:
+    - title: ID
+      content: UserGroupId
+  virtualgateway:
+    columns:
+    - title: ID
+      content: VirtualGatewayId
+    - title: State
+      content: State
+  vm:
+    columns:
+    - title: ID
+      content: VmId
+    - title: Type
+      content: VmType
+    - title: State
+      content: State
+    - title: PublicIp
+      content: PublicIp
+    - title: PrivateIp
+      content: PrivateIp
+    - title: NetId
+      content: NetId
+    - title: SubnetId
+      content: SubnetId
+  vmgroup:
+    columns:
+    - title: ID
+      content: VmGroupId
+    - title: Name
+      content: VmGroupName
+    - title: State
+      content: State
+    - title: SubnetId
+      content: SubnetId
+  vmtemplate:
+    columns:
+    - title: ID
+      content: VmTemplateId
+    - title: Name
+      content: VmTemplateName
+  vmtype:
+    columns:
+    - title: Name
+      content: VmTypeName
+  volume:
+    columns:
+    - title: ID
+      content: VolumeId
+    - title: Type
+      content: VolumeType
+    - title: State
+      content: State
+    - title: SubregionName
+      content: SubregionName
+    - title: Size
+      content: Size
+    - title: Iops
+      content: Iops
+  vpnconnection:
+    columns:
+    - title: ID
+      content: VpnConnectionId
+    - title: State
+      content: State
+aliases:
+- entity: accesskey
+  group: accesskey
+  use: describe accesskey_id
+  aliases:
+  - desc
+  short: alias for api ReadAccessKeys --Filters.AccessKeyIds accesskey_id
+  command:
+  - api
+  - ReadAccessKeys
+  - --Filters.AccessKeyIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: accesskey
+  group: accesskey
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadAccessKeys
+  command:
+  - api
+  - ReadAccessKeys
+  - -o
+  - table
+  flags:
+    access_key_ids: Filters.AccessKeyIds
+    states: Filters.States
+- entity: apiaccessrule
+  group: apiaccessrule
+  use: describe apiaccessrule_id
+  aliases:
+  - desc
+  short: alias for api ReadApiAccessRules --Filters.ApiAccessRuleIds apiaccessrule_id
+  command:
+  - api
+  - ReadApiAccessRules
+  - --Filters.ApiAccessRuleIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: apiaccessrule
+  group: apiaccessrule
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadApiAccessRules
+  command:
+  - api
+  - ReadApiAccessRules
+  - -o
+  - table
+  flags:
+    api_access_rule_ids: Filters.ApiAccessRuleIds
+    ca_ids: Filters.CaIds
+    cns: Filters.Cns
+    descriptions: Filters.Descriptions
+    ip_ranges: Filters.IpRanges
+- entity: ca
+  group: ca
+  use: describe ca_id
+  aliases:
+  - desc
+  short: alias for api ReadCas --Filters.CaIds ca_id
+  command:
+  - api
+  - ReadCas
+  - --Filters.CaIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: ca
+  group: ca
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadCas
+  command:
+  - api
+  - ReadCas
+  - -o
+  - table
+  flags:
+    descriptions: Filters.Descriptions
+    fingerprints: Filters.CaFingerprints
+    ids: Filters.CaIds
+- entity: clientgateway
+  group: clientgateway
+  use: describe clientgateway_id
+  aliases:
+  - desc
+  short: alias for api ReadClientGateways --Filters.ClientGatewayIds clientgateway_id
+  command:
+  - api
+  - ReadClientGateways
+  - --Filters.ClientGatewayIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: clientgateway
+  group: clientgateway
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadClientGateways
+  command:
+  - api
+  - ReadClientGateways
+  - -o
+  - table
+  flags:
+    bgp_asns: Filters.BgpAsns
+    client_gateway_ids: Filters.ClientGatewayIds
+    connection_types: Filters.ConnectionTypes
+    public_ips: Filters.PublicIps
+    states: Filters.States
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+- entity: dedicatedgroup
+  group: dedicatedgroup
+  use: describe dedicatedgroup_id
+  aliases:
+  - desc
+  short: alias for api ReadDedicatedGroups --Filters.DedicatedGroupIds dedicatedgroup_id
+  command:
+  - api
+  - ReadDedicatedGroups
+  - --Filters.DedicatedGroupIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: dedicatedgroup
+  group: dedicatedgroup
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadDedicatedGroups
+  command:
+  - api
+  - ReadDedicatedGroups
+  - -o
+  - table
+  flags:
+    cpu_generations: Filters.CpuGenerations
+    dedicated_group_ids: Filters.DedicatedGroupIds
+    names: Filters.Names
+    subregion_names: Filters.SubregionNames
+- entity: directlinkinterface
+  group: directlinkinterface
+  use: describe directlinkinterface_id
+  aliases:
+  - desc
+  short: alias for api ReadDirectLinkInterfaces --Filters.DirectLinkInterfaceIds directlinkinterface_id
+  command:
+  - api
+  - ReadDirectLinkInterfaces
+  - --Filters.DirectLinkInterfaceIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: directlinkinterface
+  group: directlinkinterface
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadDirectLinkInterfaces
+  command:
+  - api
+  - ReadDirectLinkInterfaces
+  - -o
+  - table
+  flags:
+    direct_link_ids: Filters.DirectLinkIds
+    direct_link_interface_ids: Filters.DirectLinkInterfaceIds
+- entity: directlink
+  group: directlink
+  use: describe directlink_id
+  aliases:
+  - desc
+  short: alias for api ReadDirectLinks --Filters.DirectLinkIds directlink_id
+  command:
+  - api
+  - ReadDirectLinks
+  - --Filters.DirectLinkIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: directlink
+  group: directlink
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadDirectLinks
+  command:
+  - api
+  - ReadDirectLinks
+  - -o
+  - table
+  flags:
+    direct_link_ids: Filters.DirectLinkIds
+- entity: flexiblegpu
+  group: flexiblegpu
+  use: describe flexiblegpu_id
+  aliases:
+  - desc
+  short: alias for api ReadFlexibleGpus --Filters.FlexibleGpuIds flexiblegpu_id
+  command:
+  - api
+  - ReadFlexibleGpus
+  - --Filters.FlexibleGpuIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: flexiblegpu
+  group: flexiblegpu
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadFlexibleGpus
+  command:
+  - api
+  - ReadFlexibleGpus
+  - -o
+  - table
+  flags:
+    delete_on_vm_deletion: Filters.DeleteOnVmDeletion
+    flexible_gpu_ids: Filters.FlexibleGpuIds
+    generations: Filters.Generations
+    model_names: Filters.ModelNames
+    states: Filters.States
+    subregion_names: Filters.SubregionNames
+    tags: Filters.Tags
+    vm_ids: Filters.VmIds
+- entity: image
+  group: image
+  use: describe image_id
+  aliases:
+  - desc
+  short: alias for api ReadImages --Filters.ImageIds image_id
+  command:
+  - api
+  - ReadImages
+  - --Filters.ImageIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: image
+  group: image
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadImages
+  command:
+  - api
+  - ReadImages
+  - -o
+  - table
+  flags:
+    account_aliases: Filters.AccountAliases
+    account_ids: Filters.AccountIds
+    architectures: Filters.Architectures
+    block_device_mapping_delete_on_vm_deletion: Filters.BlockDeviceMappingDeleteOnVmDeletion
+    block_device_mapping_device_names: Filters.BlockDeviceMappingDeviceNames
+    block_device_mapping_snapshot_ids: Filters.BlockDeviceMappingSnapshotIds
+    block_device_mapping_volume_sizes: Filters.BlockDeviceMappingVolumeSizes
+    block_device_mapping_volume_types: Filters.BlockDeviceMappingVolumeTypes
+    boot_modes: Filters.BootModes
+    descriptions: Filters.Descriptions
+    file_locations: Filters.FileLocations
+    hypervisors: Filters.Hypervisors
+    ids: Filters.ImageIds
+    names: Filters.ImageNames
+    permissions_to_launch_account_ids: Filters.PermissionsToLaunchAccountIds
+    permissions_to_launch_global_permission: Filters.PermissionsToLaunchGlobalPermission
+    product_code_names: Filters.ProductCodeNames
+    product_codes: Filters.ProductCodes
+    root_device_names: Filters.RootDeviceNames
+    root_device_types: Filters.RootDeviceTypes
+    secure_boot: Filters.SecureBoot
+    states: Filters.States
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+    tpm_mandatory: Filters.TpmMandatory
+    virtualization_types: Filters.VirtualizationTypes
+- entity: internetservice
+  group: internetservice
+  use: describe internetservice_id
+  aliases:
+  - desc
+  short: alias for api ReadInternetServices --Filters.InternetServiceIds internetservice_id
+  command:
+  - api
+  - ReadInternetServices
+  - --Filters.InternetServiceIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: internetservice
+  group: internetservice
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadInternetServices
+  command:
+  - api
+  - ReadInternetServices
+  - -o
+  - table
+  flags:
+    internet_service_ids: Filters.InternetServiceIds
+    link_net_ids: Filters.LinkNetIds
+    link_states: Filters.LinkStates
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+- entity: keypair
+  group: keypair
+  use: describe keypair_id
+  aliases:
+  - desc
+  short: alias for api ReadKeypairs --Filters.KeypairIds keypair_id
+  command:
+  - api
+  - ReadKeypairs
+  - --Filters.KeypairIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: keypair
+  group: keypair
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadKeypairs
+  command:
+  - api
+  - ReadKeypairs
+  - -o
+  - table
+  flags:
+    fingerprints: Filters.KeypairFingerprints
+    ids: Filters.KeypairIds
+    names: Filters.KeypairNames
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+    types: Filters.KeypairTypes
+- entity: listenerrule
+  group: listenerrule
+  use: describe listenerrule_id
+  aliases:
+  - desc
+  short: alias for api ReadListenerRules --Filters.ListenerRuleNames listenerrule_id
+  command:
+  - api
+  - ReadListenerRules
+  - --Filters.ListenerRuleNames
+  - "%0"
+  - -o
+  - yaml,single
+- entity: listenerrule
+  group: listenerrule
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadListenerRules
+  command:
+  - api
+  - ReadListenerRules
+  - -o
+  - table
+  flags:
+    listener_rule_names: Filters.ListenerRuleNames
+- entity: loadbalancer
+  group: loadbalancer
+  use: describe loadbalancer_id
+  aliases:
+  - desc
+  short: alias for api ReadLoadBalancers --Filters.LoadBalancerNames loadbalancer_id
+  command:
+  - api
+  - ReadLoadBalancers
+  - --Filters.LoadBalancerNames
+  - "%0"
+  - -o
+  - yaml,single
+- entity: loadbalancer
+  group: loadbalancer
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadLoadBalancers
+  command:
+  - api
+  - ReadLoadBalancers
+  - -o
+  - table
+  flags:
+    load_balancer_names: Filters.LoadBalancerNames
+- entity: natservice
+  group: natservice
+  use: describe natservice_id
+  aliases:
+  - desc
+  short: alias for api ReadNatServices --Filters.NatServiceIds natservice_id
+  command:
+  - api
+  - ReadNatServices
+  - --Filters.NatServiceIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: natservice
+  group: natservice
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadNatServices
+  command:
+  - api
+  - ReadNatServices
+  - -o
+  - table
+  flags:
+    client_tokens: Filters.ClientTokens
+    nat_service_ids: Filters.NatServiceIds
+    net_ids: Filters.NetIds
+    states: Filters.States
+    subnet_ids: Filters.SubnetIds
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+- entity: netaccesspoint
+  group: netaccesspoint
+  use: describe netaccesspoint_id
+  aliases:
+  - desc
+  short: alias for api ReadNetAccessPoints --Filters.NetAccessPointIds netaccesspoint_id
+  command:
+  - api
+  - ReadNetAccessPoints
+  - --Filters.NetAccessPointIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: netaccesspoint
+  group: netaccesspoint
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadNetAccessPoints
+  command:
+  - api
+  - ReadNetAccessPoints
+  - -o
+  - table
+  flags:
+    net_access_point_ids: Filters.NetAccessPointIds
+    net_ids: Filters.NetIds
+    service_names: Filters.ServiceNames
+    states: Filters.States
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+- entity: netpeering
+  group: netpeering
+  use: describe netpeering_id
+  aliases:
+  - desc
+  short: alias for api ReadNetPeerings --Filters.NetPeeringIds netpeering_id
+  command:
+  - api
+  - ReadNetPeerings
+  - --Filters.NetPeeringIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: netpeering
+  group: netpeering
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadNetPeerings
+  command:
+  - api
+  - ReadNetPeerings
+  - -o
+  - table
+  flags:
+    accepter_net_account_ids: Filters.AccepterNetAccountIds
+    accepter_net_ip_ranges: Filters.AccepterNetIpRanges
+    accepter_net_net_ids: Filters.AccepterNetNetIds
+    expiration_dates: Filters.ExpirationDates
+    net_peering_ids: Filters.NetPeeringIds
+    source_net_account_ids: Filters.SourceNetAccountIds
+    source_net_ip_ranges: Filters.SourceNetIpRanges
+    source_net_net_ids: Filters.SourceNetNetIds
+    state_messages: Filters.StateMessages
+    state_names: Filters.StateNames
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+- entity: net
+  group: net
+  use: describe net_id
+  aliases:
+  - desc
+  short: alias for api ReadNets --Filters.NetIds net_id
+  command:
+  - api
+  - ReadNets
+  - --Filters.NetIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: net
+  group: net
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadNets
+  command:
+  - api
+  - ReadNets
+  - -o
+  - table
+  flags:
+    dhcp_options_set_ids: Filters.DhcpOptionsSetIds
+    ids: Filters.NetIds
+    ip_ranges: Filters.IpRanges
+    is_default: Filters.IsDefault
+    states: Filters.States
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+- entity: nic
+  group: nic
+  use: describe nic_id
+  aliases:
+  - desc
+  short: alias for api ReadNics --Filters.NicIds nic_id
+  command:
+  - api
+  - ReadNics
+  - --Filters.NicIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: nic
+  group: nic
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadNics
+  command:
+  - api
+  - ReadNics
+  - -o
+  - table
+  flags:
+    descriptions: Filters.Descriptions
+    ids: Filters.NicIds
+    is_source_dest_check: Filters.IsSourceDestCheck
+    link_nic_delete_on_vm_deletion: Filters.LinkNicDeleteOnVmDeletion
+    link_nic_device_numbers: Filters.LinkNicDeviceNumbers
+    link_nic_link_nic_ids: Filters.LinkNicLinkNicIds
+    link_nic_states: Filters.LinkNicStates
+    link_nic_vm_account_ids: Filters.LinkNicVmAccountIds
+    link_nic_vm_ids: Filters.LinkNicVmIds
+    link_public_ip_account_ids: Filters.LinkPublicIpAccountIds
+    link_public_ip_link_public_ip_ids: Filters.LinkPublicIpLinkPublicIpIds
+    link_public_ip_public_dns_names: Filters.LinkPublicIpPublicDnsNames
+    link_public_ip_public_ip_ids: Filters.LinkPublicIpPublicIpIds
+    link_public_ip_public_ips: Filters.LinkPublicIpPublicIps
+    mac_addresses: Filters.MacAddresses
+    net_ids: Filters.NetIds
+    private_dns_names: Filters.PrivateDnsNames
+    private_ips_link_public_ip_account_ids: Filters.PrivateIpsLinkPublicIpAccountIds
+    private_ips_link_public_ip_public_ips: Filters.PrivateIpsLinkPublicIpPublicIps
+    private_ips_primary_ip: Filters.PrivateIpsPrimaryIp
+    private_ips_private_ips: Filters.PrivateIpsPrivateIps
+    security_group_ids: Filters.SecurityGroupIds
+    security_group_names: Filters.SecurityGroupNames
+    states: Filters.States
+    subnet_ids: Filters.SubnetIds
+    subregion_names: Filters.SubregionNames
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+- entity: producttype
+  group: producttype
+  use: describe producttype_id
+  aliases:
+  - desc
+  short: alias for api ReadProductTypes --Filters.ProductTypeIds producttype_id
+  command:
+  - api
+  - ReadProductTypes
+  - --Filters.ProductTypeIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: producttype
+  group: producttype
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadProductTypes
+  command:
+  - api
+  - ReadProductTypes
+  - -o
+  - table
+  flags:
+    product_type_ids: Filters.ProductTypeIds
+- entity: publicip
+  group: publicip
+  use: describe publicip_id
+  aliases:
+  - desc
+  short: alias for api ReadPublicIps --Filters.PublicIpIds publicip_id
+  command:
+  - api
+  - ReadPublicIps
+  - --Filters.PublicIpIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: publicip
+  group: publicip
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadPublicIps
+  command:
+  - api
+  - ReadPublicIps
+  - -o
+  - table
+  flags:
+    link_public_ip_ids: Filters.LinkPublicIpIds
+    nic_account_ids: Filters.NicAccountIds
+    nic_ids: Filters.NicIds
+    placements: Filters.Placements
+    private_ips: Filters.PrivateIps
+    public_ip_ids: Filters.PublicIpIds
+    public_ips: Filters.PublicIps
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+    vm_ids: Filters.VmIds
+- entity: quota
+  group: quota
+  use: describe quota_id
+  aliases:
+  - desc
+  short: alias for api ReadQuotas --Filters.QuotaNames quota_id
+  command:
+  - api
+  - ReadQuotas
+  - --Filters.QuotaNames
+  - "%0"
+  - -o
+  - yaml,single
+- entity: quota
+  group: quota
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadQuotas
+  command:
+  - api
+  - ReadQuotas
+  - -o
+  - table
+  flags:
+    collections: Filters.Collections
+    names: Filters.QuotaNames
+    short_descriptions: Filters.ShortDescriptions
+    types: Filters.QuotaTypes
+- entity: routetable
+  group: routetable
+  use: describe routetable_id
+  aliases:
+  - desc
+  short: alias for api ReadRouteTables --Filters.RouteTableIds routetable_id
+  command:
+  - api
+  - ReadRouteTables
+  - --Filters.RouteTableIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: routetable
+  group: routetable
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadRouteTables
+  command:
+  - api
+  - ReadRouteTables
+  - -o
+  - table
+  flags:
+    link_route_table_ids: Filters.LinkRouteTableIds
+    link_route_table_link_route_table_ids: Filters.LinkRouteTableLinkRouteTableIds
+    link_route_table_main: Filters.LinkRouteTableMain
+    link_subnet_ids: Filters.LinkSubnetIds
+    net_ids: Filters.NetIds
+    route_creation_methods: Filters.RouteCreationMethods
+    route_destination_ip_ranges: Filters.RouteDestinationIpRanges
+    route_destination_service_ids: Filters.RouteDestinationServiceIds
+    route_gateway_ids: Filters.RouteGatewayIds
+    route_nat_service_ids: Filters.RouteNatServiceIds
+    route_net_peering_ids: Filters.RouteNetPeeringIds
+    route_states: Filters.RouteStates
+    route_table_ids: Filters.RouteTableIds
+    route_vm_ids: Filters.RouteVmIds
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+- entity: securitygroup
+  group: securitygroup
+  use: describe securitygroup_id
+  aliases:
+  - desc
+  short: alias for api ReadSecurityGroups --Filters.SecurityGroupIds securitygroup_id
+  command:
+  - api
+  - ReadSecurityGroups
+  - --Filters.SecurityGroupIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: securitygroup
+  group: securitygroup
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadSecurityGroups
+  command:
+  - api
+  - ReadSecurityGroups
+  - -o
+  - table
+  flags:
+    descriptions: Filters.Descriptions
+    inbound_rule_account_ids: Filters.InboundRuleAccountIds
+    inbound_rule_from_port_ranges: Filters.InboundRuleFromPortRanges
+    inbound_rule_ip_ranges: Filters.InboundRuleIpRanges
+    inbound_rule_protocols: Filters.InboundRuleProtocols
+    inbound_rule_security_group_ids: Filters.InboundRuleSecurityGroupIds
+    inbound_rule_security_group_names: Filters.InboundRuleSecurityGroupNames
+    inbound_rule_to_port_ranges: Filters.InboundRuleToPortRanges
+    net_ids: Filters.NetIds
+    outbound_rule_account_ids: Filters.OutboundRuleAccountIds
+    outbound_rule_from_port_ranges: Filters.OutboundRuleFromPortRanges
+    outbound_rule_ip_ranges: Filters.OutboundRuleIpRanges
+    outbound_rule_protocols: Filters.OutboundRuleProtocols
+    outbound_rule_security_group_ids: Filters.OutboundRuleSecurityGroupIds
+    outbound_rule_security_group_names: Filters.OutboundRuleSecurityGroupNames
+    outbound_rule_to_port_ranges: Filters.OutboundRuleToPortRanges
+    security_group_ids: Filters.SecurityGroupIds
+    security_group_names: Filters.SecurityGroupNames
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+- entity: snapshot
+  group: snapshot
+  use: describe snapshot_id
+  aliases:
+  - desc
+  short: alias for api ReadSnapshots --Filters.SnapshotIds snapshot_id
+  command:
+  - api
+  - ReadSnapshots
+  - --Filters.SnapshotIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: snapshot
+  group: snapshot
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadSnapshots
+  command:
+  - api
+  - ReadSnapshots
+  - -o
+  - table
+  flags:
+    account_aliases: Filters.AccountAliases
+    account_ids: Filters.AccountIds
+    client_tokens: Filters.ClientTokens
+    descriptions: Filters.Descriptions
+    from_creation_date: Filters.FromCreationDate
+    ids: Filters.SnapshotIds
+    permissions_to_create_volume_account_ids: Filters.PermissionsToCreateVolumeAccountIds
+    permissions_to_create_volume_global_permission: Filters.PermissionsToCreateVolumeGlobalPermission
+    progresses: Filters.Progresses
+    states: Filters.States
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+    to_creation_date: Filters.ToCreationDate
+    volume_ids: Filters.VolumeIds
+    volume_sizes: Filters.VolumeSizes
+- entity: subnet
+  group: subnet
+  use: describe subnet_id
+  aliases:
+  - desc
+  short: alias for api ReadSubnets --Filters.SubnetIds subnet_id
+  command:
+  - api
+  - ReadSubnets
+  - --Filters.SubnetIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: subnet
+  group: subnet
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadSubnets
+  command:
+  - api
+  - ReadSubnets
+  - -o
+  - table
+  flags:
+    available_ips_counts: Filters.AvailableIpsCounts
+    ids: Filters.SubnetIds
+    ip_ranges: Filters.IpRanges
+    net_ids: Filters.NetIds
+    states: Filters.States
+    subregion_names: Filters.SubregionNames
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+- entity: subregion
+  group: subregion
+  use: describe subregion_id
+  aliases:
+  - desc
+  short: alias for api ReadSubregions --Filters.SubregionNames subregion_id
+  command:
+  - api
+  - ReadSubregions
+  - --Filters.SubregionNames
+  - "%0"
+  - -o
+  - yaml,single
+- entity: subregion
+  group: subregion
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadSubregions
+  command:
+  - api
+  - ReadSubregions
+  - -o
+  - table
+  flags:
+    names: Filters.SubregionNames
+    region_names: Filters.RegionNames
+    states: Filters.States
+- entity: usergroup
+  group: usergroup
+  use: describe usergroup_id
+  aliases:
+  - desc
+  short: alias for api ReadUserGroups --Filters.UserGroupIds usergroup_id
+  command:
+  - api
+  - ReadUserGroups
+  - --Filters.UserGroupIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: usergroup
+  group: usergroup
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadUserGroups
+  command:
+  - api
+  - ReadUserGroups
+  - -o
+  - table
+  flags:
+    path_prefix: Filters.PathPrefix
+    user_group_ids: Filters.UserGroupIds
+- entity: user
+  group: user
+  use: describe user_id
+  aliases:
+  - desc
+  short: alias for api ReadUsers --Filters.UserIds user_id
+  command:
+  - api
+  - ReadUsers
+  - --Filters.UserIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: user
+  group: user
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadUsers
+  command:
+  - api
+  - ReadUsers
+  - -o
+  - table
+  flags:
+    ids: Filters.UserIds
+- entity: virtualgateway
+  group: virtualgateway
+  use: describe virtualgateway_id
+  aliases:
+  - desc
+  short: alias for api ReadVirtualGateways --Filters.VirtualGatewayIds virtualgateway_id
+  command:
+  - api
+  - ReadVirtualGateways
+  - --Filters.VirtualGatewayIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: virtualgateway
+  group: virtualgateway
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadVirtualGateways
+  command:
+  - api
+  - ReadVirtualGateways
+  - -o
+  - table
+  flags:
+    connection_types: Filters.ConnectionTypes
+    link_net_ids: Filters.LinkNetIds
+    link_states: Filters.LinkStates
+    states: Filters.States
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+    virtual_gateway_ids: Filters.VirtualGatewayIds
+- entity: vmgroup
+  group: vmgroup
+  use: describe vmgroup_id
+  aliases:
+  - desc
+  short: alias for api ReadVmGroups --Filters.VmGroupIds vmgroup_id
+  command:
+  - api
+  - ReadVmGroups
+  - --Filters.VmGroupIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: vmgroup
+  group: vmgroup
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadVmGroups
+  command:
+  - api
+  - ReadVmGroups
+  - -o
+  - table
+  flags:
+    descriptions: Filters.Descriptions
+    security_group_ids: Filters.SecurityGroupIds
+    subnet_ids: Filters.SubnetIds
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+    vm_counts: Filters.VmCounts
+    vm_group_ids: Filters.VmGroupIds
+    vm_group_names: Filters.VmGroupNames
+    vm_template_ids: Filters.VmTemplateIds
+- entity: vmtemplate
+  group: vmtemplate
+  use: describe vmtemplate_id
+  aliases:
+  - desc
+  short: alias for api ReadVmTemplates --Filters.VmTemplateIds vmtemplate_id
+  command:
+  - api
+  - ReadVmTemplates
+  - --Filters.VmTemplateIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: vmtemplate
+  group: vmtemplate
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadVmTemplates
+  command:
+  - api
+  - ReadVmTemplates
+  - -o
+  - table
+  flags:
+    cpu_cores: Filters.CpuCores
+    cpu_generations: Filters.CpuGenerations
+    cpu_performances: Filters.CpuPerformances
+    descriptions: Filters.Descriptions
+    image_ids: Filters.ImageIds
+    keypair_names: Filters.KeypairNames
+    rams: Filters.Rams
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+    vm_template_ids: Filters.VmTemplateIds
+    vm_template_names: Filters.VmTemplateNames
+- entity: vmtype
+  group: vmtype
+  use: describe vmtype_id
+  aliases:
+  - desc
+  short: alias for api ReadVmTypes --Filters.VmTypeNames vmtype_id
+  command:
+  - api
+  - ReadVmTypes
+  - --Filters.VmTypeNames
+  - "%0"
+  - -o
+  - yaml,single
+- entity: vmtype
+  group: vmtype
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadVmTypes
+  command:
+  - api
+  - ReadVmTypes
+  - -o
+  - table
+  flags:
+    bsu_optimized: Filters.BsuOptimized
+    ephemerals_types: Filters.EphemeralsTypes
+    eths: Filters.Eths
+    gpus: Filters.Gpus
+    memory_sizes: Filters.MemorySizes
+    vcore_counts: Filters.VcoreCounts
+    vm_type_names: Filters.VmTypeNames
+    volume_counts: Filters.VolumeCounts
+    volume_sizes: Filters.VolumeSizes
+- entity: vm
+  group: vm
+  use: describe vm_id
+  aliases:
+  - desc
+  short: alias for api ReadVms --Filters.VmIds vm_id
+  command:
+  - api
+  - ReadVms
+  - --Filters.VmIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: vm
+  group: vm
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadVms
+  command:
+  - api
+  - ReadVms
+  - -o
+  - table
+  flags:
+    architectures: Filters.Architectures
+    block_device_mapping_delete_on_vm_deletion: Filters.BlockDeviceMappingDeleteOnVmDeletion
+    block_device_mapping_device_names: Filters.BlockDeviceMappingDeviceNames
+    block_device_mapping_link_dates: Filters.BlockDeviceMappingLinkDates
+    block_device_mapping_states: Filters.BlockDeviceMappingStates
+    block_device_mapping_volume_ids: Filters.BlockDeviceMappingVolumeIds
+    boot_modes: Filters.BootModes
+    client_tokens: Filters.ClientTokens
+    creation_dates: Filters.CreationDates
+    ids: Filters.VmIds
+    image_ids: Filters.ImageIds
+    is_source_dest_checked: Filters.IsSourceDestChecked
+    keypair_names: Filters.KeypairNames
+    launch_numbers: Filters.LaunchNumbers
+    lifecycles: Filters.Lifecycles
+    net_ids: Filters.NetIds
+    nic_account_ids: Filters.NicAccountIds
+    nic_descriptions: Filters.NicDescriptions
+    nic_is_source_dest_checked: Filters.NicIsSourceDestChecked
+    nic_link_nic_delete_on_vm_deletion: Filters.NicLinkNicDeleteOnVmDeletion
+    nic_link_nic_device_numbers: Filters.NicLinkNicDeviceNumbers
+    nic_link_nic_link_nic_dates: Filters.NicLinkNicLinkNicDates
+    nic_link_nic_link_nic_ids: Filters.NicLinkNicLinkNicIds
+    nic_link_nic_states: Filters.NicLinkNicStates
+    nic_link_nic_vm_account_ids: Filters.NicLinkNicVmAccountIds
+    nic_link_nic_vm_ids: Filters.NicLinkNicVmIds
+    nic_link_public_ip_account_ids: Filters.NicLinkPublicIpAccountIds
+    nic_link_public_ip_link_public_ip_ids: Filters.NicLinkPublicIpLinkPublicIpIds
+    nic_link_public_ip_public_ip_ids: Filters.NicLinkPublicIpPublicIpIds
+    nic_link_public_ip_public_ips: Filters.NicLinkPublicIpPublicIps
+    nic_mac_addresses: Filters.NicMacAddresses
+    nic_net_ids: Filters.NicNetIds
+    nic_nic_ids: Filters.NicNicIds
+    nic_private_ips_link_public_ip_account_ids: Filters.NicPrivateIpsLinkPublicIpAccountIds
+    nic_private_ips_link_public_ip_ids: Filters.NicPrivateIpsLinkPublicIpIds
+    nic_private_ips_primary_ip: Filters.NicPrivateIpsPrimaryIp
+    nic_private_ips_private_ips: Filters.NicPrivateIpsPrivateIps
+    nic_security_group_ids: Filters.NicSecurityGroupIds
+    nic_security_group_names: Filters.NicSecurityGroupNames
+    nic_states: Filters.NicStates
+    nic_subnet_ids: Filters.NicSubnetIds
+    nic_subregion_names: Filters.NicSubregionNames
+    platforms: Filters.Platforms
+    private_ips: Filters.PrivateIps
+    product_codes: Filters.ProductCodes
+    public_ips: Filters.PublicIps
+    reservation_ids: Filters.ReservationIds
+    root_device_names: Filters.RootDeviceNames
+    root_device_types: Filters.RootDeviceTypes
+    security_group_ids: Filters.VmSecurityGroupIds
+    security_group_names: Filters.VmSecurityGroupNames
+    state_codes: Filters.VmStateCodes
+    state_names: Filters.VmStateNames
+    state_reason_codes: Filters.StateReasonCodes
+    state_reason_messages: Filters.StateReasonMessages
+    state_reasons: Filters.StateReasons
+    subnet_ids: Filters.SubnetIds
+    subregion_names: Filters.SubregionNames
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+    tenancies: Filters.Tenancies
+    tpm_enabled: Filters.TpmEnabled
+    types: Filters.VmTypes
+- entity: volume
+  group: volume
+  use: describe volume_id
+  aliases:
+  - desc
+  short: alias for api ReadVolumes --Filters.VolumeIds volume_id
+  command:
+  - api
+  - ReadVolumes
+  - --Filters.VolumeIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: volume
+  group: volume
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadVolumes
+  command:
+  - api
+  - ReadVolumes
+  - -o
+  - table
+  flags:
+    client_tokens: Filters.ClientTokens
+    creation_dates: Filters.CreationDates
+    ids: Filters.VolumeIds
+    link_volume_delete_on_vm_deletion: Filters.LinkVolumeDeleteOnVmDeletion
+    link_volume_device_names: Filters.LinkVolumeDeviceNames
+    link_volume_link_dates: Filters.LinkVolumeLinkDates
+    link_volume_link_states: Filters.LinkVolumeLinkStates
+    link_volume_vm_ids: Filters.LinkVolumeVmIds
+    sizes: Filters.VolumeSizes
+    snapshot_ids: Filters.SnapshotIds
+    states: Filters.VolumeStates
+    subregion_names: Filters.SubregionNames
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+    types: Filters.VolumeTypes
+- entity: vpnconnection
+  group: vpnconnection
+  use: describe vpnconnection_id
+  aliases:
+  - desc
+  short: alias for api ReadVpnConnections --Filters.VpnConnectionIds vpnconnection_id
+  command:
+  - api
+  - ReadVpnConnections
+  - --Filters.VpnConnectionIds
+  - "%0"
+  - -o
+  - yaml,single
+- entity: vpnconnection
+  group: vpnconnection
+  use: list
+  aliases:
+  - l
+  short: alias for api ReadVpnConnections
+  command:
+  - api
+  - ReadVpnConnections
+  - -o
+  - table
+  flags:
+    bgp_asns: Filters.BgpAsns
+    client_gateway_ids: Filters.ClientGatewayIds
+    connection_types: Filters.ConnectionTypes
+    route_destination_ip_ranges: Filters.RouteDestinationIpRanges
+    states: Filters.States
+    static_routes_only: Filters.StaticRoutesOnly
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
+    virtual_gateway_ids: Filters.VirtualGatewayIds
+    vpn_connection_ids: Filters.VpnConnectionIds

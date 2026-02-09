@@ -1,3 +1,8 @@
+/*
+SPDX-FileCopyrightText: 2026 Outscale SAS <opensource@outscale.com>
+
+SPDX-License-Identifier: BSD-3-Clause
+*/
 package builder
 
 import (
@@ -34,7 +39,11 @@ func runAlias(provider string, a config.Alias, rootCmd *cobra.Command) func(cmd 
 		}
 		cmd.Flags().VisitAll(func(f *pflag.Flag) {
 			if f.Changed {
-				nargs = append(nargs, "--"+f.Name+"="+f.Value.String())
+				newFlag := f.Name
+				if a.Flags[newFlag] != "" {
+					newFlag = a.Flags[newFlag]
+				}
+				nargs = append(nargs, "--"+newFlag+"="+f.Value.String())
 			}
 		})
 		errors.Info("Resolving alias to %v", nargs)
