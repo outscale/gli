@@ -7,6 +7,7 @@ package cmd_test
 
 import (
 	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
@@ -15,6 +16,8 @@ import (
 )
 
 func TestOAPI(t *testing.T) {
+	netResp := osc.CreateNetResponse{}
+	runJSON(t, []string{"oapi", "CreateNet", "--IpRange", "10.0.0.0/16"}, nil, &netResp)
 	t.Run("ReadVms works", func(t *testing.T) {
 		resp := osc.ReadVmsResponse{}
 		runJSON(t, []string{"oapi", "ReadVms", "-v", "--Filters.VmStateNames", "running"}, nil, &resp)
@@ -35,11 +38,34 @@ func TestOAPI(t *testing.T) {
 		assert.NotEmpty(t, resp.Subnet.SubnetId)
 	})
 	t.Run("JSON can be injected", func(t *testing.T) {
-		in := `{"IpRange":"10.0.0.0/16"}`
-		resp := osc.CreateNetResponse{}
-		runJSON(t, []string{"oapi", "CreateNet"}, []byte(in), &resp)
-		require.NotNil(t, resp.Net)
-		assert.NotEmpty(t, resp.Net.NetId)
+		in := `{"NetId":"` + netResp.Net.NetId + `", "IpRange":"10.0.1.0/24"}`
+		resp := osc.CreateSubnetResponse{}
+		runJSON(t, []string{"oapi", "CreateSubnet"}, []byte(in), &resp)
+		require.NotNil(t, resp.Subnet)
+		assert.NotEmpty(t, resp.Subnet.SubnetId)
+		assert.Equal(t, netResp.Net.NetId, resp.Subnet.NetId)
+		assert.Equal(t, "10.0.1.0/24", resp.Subnet.IpRange)
+	})
+	t.Run("Templating works from stdin", func(t *testing.T) {
+		in := `{"IpRange":"10.0.2.0/24"}`
+		resp := osc.CreateSubnetResponse{}
+		runJSON(t, []string{"oapi", "CreateSubnet", "--NetId", netResp.Net.NetId}, []byte(in), &resp)
+		require.NotNil(t, resp.Subnet)
+		assert.NotEmpty(t, resp.Subnet.SubnetId)
+		assert.Equal(t, netResp.Net.NetId, resp.Subnet.NetId)
+		assert.Equal(t, "10.0.2.0/24", resp.Subnet.IpRange)
+	})
+	t.Run("Templating works from a file", func(t *testing.T) {
+		in := `{"IpRange":"10.0.3.0/24"}`
+		tpl := filepath.Join(t.TempDir(), "template")
+		err := os.WriteFile(tpl, []byte(in), 0644)
+		require.NoError(t, err)
+		resp := osc.CreateSubnetResponse{}
+		runJSON(t, []string{"oapi", "CreateSubnet", "--NetId", netResp.Net.NetId, "--template", tpl}, nil, &resp)
+		require.NotNil(t, resp.Subnet)
+		assert.NotEmpty(t, resp.Subnet.SubnetId)
+		assert.Equal(t, netResp.Net.NetId, resp.Subnet.NetId)
+		assert.Equal(t, "10.0.3.0/24", resp.Subnet.IpRange)
 	})
 	t.Run("Aliases work", func(t *testing.T) {
 		resp := osc.ReadVmsResponse{}

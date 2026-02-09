@@ -171,6 +171,19 @@ gli oapi CreateNic --SubnetId subnet-foo | gli oapi LinkNic -v --NicId {{.Nic.Ni
 echo '{"SubnetId":"subnet-foo"}' | gli oapi CreateNic
 ```
 
+### Templating
+
+A JSON document can be used as a template, with additional config using flags.
+
+Either from stdin:
+```shell
+echo '{"NetId":"vpc-foo"}' | gli oapi CreateSubnet --IpRange 10.0.1.0/24
+```
+Or from a file:
+```shell
+gli oapi CreateSubnet --IpRange 10.0.1.0/24 --template subnet.json
+```
+
 ### Using jq filters
 
 ```shell

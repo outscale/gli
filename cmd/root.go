@@ -72,4 +72,5 @@ func init() {
 	path, _ := profile.DefaultConfigPath()
 	rootCmd.PersistentFlags().String("config", path, "Path of profile file")
 	rootCmd.PersistentFlags().String("profile", profile.DefaultProfile, "Profile to use in profile file")
+	rootCmd.PersistentFlags().String("template", "", "JSON template for API query")
 }

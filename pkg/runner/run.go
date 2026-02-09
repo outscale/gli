@@ -57,18 +57,24 @@ func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string) error {
 	fs := cmd.Flags()
 	debug.Println(reflect.Indirect(arg).Type().Name())
 	var err error
-	noneset := true
-	fs.VisitAll(func(f *pflag.Flag) {
-		if f.Changed { // skipping default values
-			noneset = false
-			debug.Println(f.Name, "=>", f.Value)
-			if serr := set(arg, fs, f.Name, f.Name); serr != nil {
-				err = serr
-			}
+	if tpl, ferr := cmd.Flags().GetString("template"); ferr == nil && tpl != "" {
+		var content []byte
+		content, err = os.ReadFile(tpl)
+		if err == nil {
+			err = json.Unmarshal(content, arg.Interface())
 		}
-	})
-	if stdin, ok := Stdin(); ok && noneset {
+	} else if stdin, ok := Stdin(); ok {
 		err = json.Unmarshal(stdin, arg.Interface())
+	}
+	if err == nil {
+		fs.VisitAll(func(f *pflag.Flag) {
+			if f.Changed { // skipping default values
+				debug.Println(f.Name, "=>", f.Value)
+				if serr := set(arg, fs, f.Name, f.Name); serr != nil {
+					err = serr
+				}
+			}
+		})
 	}
 	return err
 }
