@@ -14,9 +14,11 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/outscale/gli/pkg/config"
 	"github.com/outscale/gli/pkg/debug"
+	"github.com/outscale/gli/pkg/flags"
 	"github.com/outscale/gli/pkg/output"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -211,14 +213,41 @@ func setValueStringSlice(arg reflect.Value, fs *pflag.FlagSet, flag string) erro
 }
 
 func setValueStruct(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
-	if !arg.Addr().Type().Implements(reflect.TypeFor[json.Unmarshaler]()) {
+	_, ok := fs.Lookup(flag).Value.(*flags.TimeValue)
+	if ok {
+		return setValueStructTime(arg, fs, flag)
+	}
+	if arg.Type().Implements(reflect.TypeFor[json.Unmarshaler]()) {
+		return setValueStructJSON(arg, fs, flag)
+	}
+	debug.Println("unable to set struct value", flag)
+	debug.Println("flag value", reflect.TypeOf(fs.Lookup(flag).Value).Elem().Name())
+	return nil
+}
+
+func setValueStructTime(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
+	val, ok := fs.Lookup(flag).Value.(*flags.TimeValue)
+	if !ok {
 		return nil
 	}
+	debug.Println("setValueStructTime", flag, val.String())
+	if t, ok := val.Value(); ok {
+		if arg.Type() == reflect.TypeFor[time.Time]() {
+			arg.Set(reflect.ValueOf(t))
+		}
+		if f := arg.FieldByName("Time"); f.IsValid() {
+			f.Set(reflect.ValueOf(t))
+		}
+	}
+	return nil
+}
+
+func setValueStructJSON(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
 	ss, err := fs.GetString(flag)
 	if err != nil {
 		return fmt.Errorf("invalid %s value: %w", flag, err)
 	}
-	debug.Println("setValueStruct/JSON", flag, ss)
+	debug.Println("setValueStructJSON", flag, ss)
 	v := reflect.New(arg.Type()).Interface()
 	err = json.Unmarshal([]byte(`"`+ss+`"`), v)
 	if err != nil {
