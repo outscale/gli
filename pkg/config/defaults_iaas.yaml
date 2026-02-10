@@ -499,7 +499,7 @@ aliases:
   group: accesskey
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadAccessKeys
   command:
   - api
@@ -526,7 +526,7 @@ aliases:
   group: apiaccessrule
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadApiAccessRules
   command:
   - api
@@ -556,7 +556,7 @@ aliases:
   group: ca
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadCas
   command:
   - api
@@ -584,7 +584,7 @@ aliases:
   group: clientgateway
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadClientGateways
   command:
   - api
@@ -617,7 +617,7 @@ aliases:
   group: dedicatedgroup
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadDedicatedGroups
   command:
   - api
@@ -646,7 +646,7 @@ aliases:
   group: directlinkinterface
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadDirectLinkInterfaces
   command:
   - api
@@ -673,7 +673,7 @@ aliases:
   group: directlink
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadDirectLinks
   command:
   - api
@@ -699,7 +699,7 @@ aliases:
   group: flexiblegpu
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadFlexibleGpus
   command:
   - api
@@ -732,7 +732,7 @@ aliases:
   group: image
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadImages
   command:
   - api
@@ -784,7 +784,7 @@ aliases:
   group: internetservice
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadInternetServices
   command:
   - api
@@ -815,7 +815,7 @@ aliases:
   group: keypair
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadKeypairs
   command:
   - api
@@ -847,7 +847,7 @@ aliases:
   group: listenerrule
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadListenerRules
   command:
   - api
@@ -873,7 +873,7 @@ aliases:
   group: loadbalancer
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadLoadBalancers
   command:
   - api
@@ -899,7 +899,7 @@ aliases:
   group: natservice
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadNatServices
   command:
   - api
@@ -932,7 +932,7 @@ aliases:
   group: netaccesspoint
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadNetAccessPoints
   command:
   - api
@@ -964,7 +964,7 @@ aliases:
   group: netpeering
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadNetPeerings
   command:
   - api
@@ -1002,7 +1002,7 @@ aliases:
   group: net
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadNets
   command:
   - api
@@ -1035,7 +1035,7 @@ aliases:
   group: nic
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadNics
   command:
   - api
@@ -1089,7 +1089,7 @@ aliases:
   group: producttype
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadProductTypes
   command:
   - api
@@ -1115,7 +1115,7 @@ aliases:
   group: publicip
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadPublicIps
   command:
   - api
@@ -1151,7 +1151,7 @@ aliases:
   group: quota
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadQuotas
   command:
   - api
@@ -1180,7 +1180,7 @@ aliases:
   group: routetable
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadRouteTables
   command:
   - api
@@ -1222,7 +1222,7 @@ aliases:
   group: securitygroup
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadSecurityGroups
   command:
   - api
@@ -1268,7 +1268,7 @@ aliases:
   group: snapshot
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadSnapshots
   command:
   - api
@@ -1309,7 +1309,7 @@ aliases:
   group: subnet
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadSubnets
   command:
   - api
@@ -1343,7 +1343,7 @@ aliases:
   group: subregion
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadSubregions
   command:
   - api
@@ -1371,7 +1371,7 @@ aliases:
   group: usergroup
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadUserGroups
   command:
   - api
@@ -1398,7 +1398,7 @@ aliases:
   group: user
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadUsers
   command:
   - api
@@ -1424,7 +1424,7 @@ aliases:
   group: virtualgateway
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadVirtualGateways
   command:
   - api
@@ -1457,7 +1457,7 @@ aliases:
   group: vmgroup
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadVmGroups
   command:
   - api
@@ -1492,7 +1492,7 @@ aliases:
   group: vmtemplate
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadVmTemplates
   command:
   - api
@@ -1529,7 +1529,7 @@ aliases:
   group: vmtype
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadVmTypes
   command:
   - api
@@ -1563,7 +1563,7 @@ aliases:
   group: vm
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadVms
   command:
   - api
@@ -1652,7 +1652,7 @@ aliases:
   group: volume
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadVolumes
   command:
   - api
@@ -1693,7 +1693,7 @@ aliases:
   group: vpnconnection
   use: list
   aliases:
-  - l
+  - ls
   short: alias for api ReadVpnConnections
   command:
   - api
