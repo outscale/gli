@@ -108,7 +108,7 @@ func main() {
 		}, config.Alias{
 			Entity:  entity,
 			Use:     "list",
-			Aliases: []string{"l"},
+			Aliases: []string{"ls"},
 			Group:   entity,
 			Short:   "alias for api " + m.Name,
 			Command: []string{
