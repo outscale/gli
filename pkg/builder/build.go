@@ -67,6 +67,11 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command) {
 				nflag := *flag
 				nflag.Name = f
 				cmd.Flags().AddFlag(&nflag)
+
+				completion, found := callCmd.GetFlagCompletionFunc(fapi)
+				if found {
+					_ = cmd.RegisterFlagCompletionFunc(f, completion)
+				}
 			}
 		}
 	}
