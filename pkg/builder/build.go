@@ -9,9 +9,12 @@ import (
 	"encoding/json"
 	"reflect"
 	"strconv"
+	"time"
 
 	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/outscale/gli/pkg/config"
+	"github.com/outscale/gli/pkg/flags"
+	"github.com/outscale/osc-sdk-go/v3/pkg/iso8601"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 )
@@ -108,12 +111,12 @@ func (b *Builder[T]) BuildAPI(rootCmd *cobra.Command, methodFilter func(m reflec
 			Run:     run,
 		}
 		arg := m.Type.In(2)
-		b.BuildArg(cmd, arg, "")
+		b.BuildFlags(cmd, arg, "")
 		apiCmd.AddCommand(cmd)
 	}
 }
 
-func (b *Builder[T]) BuildArg(cmd *cobra.Command, arg reflect.Type, prefix string) {
+func (b *Builder[T]) BuildFlags(cmd *cobra.Command, arg reflect.Type, prefix string) {
 	typeName := arg.Name()
 	fs := cmd.Flags()
 	for i := range arg.NumField() {
@@ -152,19 +155,26 @@ func (b *Builder[T]) BuildArg(cmd *cobra.Command, arg reflect.Type, prefix strin
 			case reflect.Int:
 				fs.IntSlice(prefix+f.Name, nil, help)
 			case reflect.Struct:
-				if t.Elem().Implements(reflect.TypeFor[json.Marshaler]()) {
+				switch {
+				case ot == reflect.TypeFor[iso8601.Time]() || ot == reflect.TypeFor[time.Time]():
+					// TODO: add slice
+					fs.Var(flags.NewTimeValue(), prefix+f.Name, help)
+				case t.Elem().Implements(reflect.TypeFor[json.Marshaler]()):
 					fs.StringSlice(prefix+f.Name, nil, help)
-				} else {
+				default:
 					for i := range NumEntriesInSlices {
-						b.BuildArg(cmd, t.Elem(), prefix+f.Name+"."+strconv.Itoa(i)+".")
+						b.BuildFlags(cmd, t.Elem(), prefix+f.Name+"."+strconv.Itoa(i)+".")
 					}
 				}
 			}
 		case reflect.Struct:
-			if ot.Implements(reflect.TypeFor[json.Marshaler]()) {
+			switch {
+			case t == reflect.TypeFor[iso8601.Time]() || t == reflect.TypeFor[time.Time]():
+				fs.Var(flags.NewTimeValue(), prefix+f.Name, help)
+			case ot.Implements(reflect.TypeFor[json.Marshaler]()):
 				fs.String(prefix+f.Name, "", help)
-			} else {
-				b.BuildArg(cmd, t, prefix+f.Name+".")
+			default:
+				b.BuildFlags(cmd, t, prefix+f.Name+".")
 			}
 		}
 	}
