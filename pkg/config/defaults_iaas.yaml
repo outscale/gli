@@ -220,11 +220,17 @@ contents:
     entity: vpnconnection
 entities:
   accesskey:
+    aliases:
+    - ak
     columns:
     - title: ID
       content: AccessKeyId
+    - title: Tag
+      content: Tag
     - title: State
       content: State
+    - title: ExpirationDate
+      content: ExpirationDate
   apiaccessrule:
     columns:
     - title: ID
@@ -238,7 +244,7 @@ entities:
     - title: ID
       content: ClientGatewayId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
     - title: PublicIp
@@ -270,7 +276,7 @@ entities:
     - title: ID
       content: FlexibleGpuId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
     - title: SubregionName
@@ -290,7 +296,7 @@ entities:
     - title: ID
       content: InternetServiceId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
     - title: NetId
@@ -310,6 +316,9 @@ entities:
     - title: Name
       content: ListenerRuleName
   loadbalancer:
+    aliases:
+    - lb
+    - lbu
     columns:
     - title: Name
       content: LoadBalancerName
@@ -322,13 +331,17 @@ entities:
     - title: SubregionNames
       content: SubregionNames
   natservice:
+    aliases:
+    - nat
     columns:
     - title: ID
       content: NatServiceId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
+    - title: PublicIp
+      content: 'map(PublicIps, #?.PublicIp)'
     - title: NetId
       content: NetId
     - title: SubnetId
@@ -338,7 +351,7 @@ entities:
     - title: ID
       content: NetId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
     - title: IpRange
@@ -348,7 +361,7 @@ entities:
     - title: ID
       content: NetAccessPointId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
     - title: NetId
@@ -358,7 +371,7 @@ entities:
     - title: ID
       content: NetPeeringId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
   nic:
@@ -366,7 +379,7 @@ entities:
     - title: ID
       content: NicId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
     - title: NetId
@@ -384,7 +397,7 @@ entities:
     - title: ID
       content: PublicIpId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: PublicIp
       content: PublicIp
     - title: PrivateIp
@@ -394,7 +407,7 @@ entities:
     - title: ID
       content: RouteTableId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: NetId
       content: NetId
   securitygroup:
@@ -406,19 +419,27 @@ entities:
     - title: NetId
       content: NetId
   snapshot:
+    aliases:
+    - snap
     columns:
     - title: ID
       content: SnapshotId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
+    - title: Volume
+      content: VolumeId
+    - title: Size
+      content: VolumeSize
+    - title: CreationDate
+      content: CreationDate
   subnet:
     columns:
     - title: ID
       content: SubnetId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
     - title: NetId
@@ -448,7 +469,7 @@ entities:
     - title: ID
       content: VirtualGatewayId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
   vm:
@@ -456,7 +477,7 @@ entities:
     - title: ID
       content: VmId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: Type
       content: VmType
     - title: State
@@ -490,27 +511,31 @@ entities:
     - title: Name
       content: VmTypeName
   volume:
+    aliases:
+    - vol
     columns:
     - title: ID
       content: VolumeId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: Type
       content: VolumeType
     - title: State
       content: State
-    - title: SubregionName
-      content: SubregionName
     - title: Size
       content: Size
     - title: Iops
       content: Iops
+    - title: VM
+      content: 'map(LinkedVolumes, #?.VmId)'
+    - title: Device
+      content: 'map(LinkedVolumes, #?.DeviceName)'
   vpnconnection:
     columns:
     - title: ID
       content: VpnConnectionId
     - title: Name
-      content: "find(Tags, #?.Key == \"Name\")?.Value"
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
 aliases:
@@ -524,7 +549,7 @@ aliases:
   - api
   - ReadAccessKeys
   - --Filters.AccessKeyIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: accesskey
@@ -551,7 +576,7 @@ aliases:
   - api
   - ReadApiAccessRules
   - --Filters.ApiAccessRuleIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: apiaccessrule
@@ -581,7 +606,7 @@ aliases:
   - api
   - ReadCas
   - --Filters.CaIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: ca
@@ -609,7 +634,7 @@ aliases:
   - api
   - ReadClientGateways
   - --Filters.ClientGatewayIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: clientgateway
@@ -642,7 +667,7 @@ aliases:
   - api
   - ReadDedicatedGroups
   - --Filters.DedicatedGroupIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: dedicatedgroup
@@ -671,7 +696,7 @@ aliases:
   - api
   - ReadDirectLinkInterfaces
   - --Filters.DirectLinkInterfaceIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: directlinkinterface
@@ -698,7 +723,7 @@ aliases:
   - api
   - ReadDirectLinks
   - --Filters.DirectLinkIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: directlink
@@ -724,7 +749,7 @@ aliases:
   - api
   - ReadFlexibleGpus
   - --Filters.FlexibleGpuIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: flexiblegpu
@@ -757,7 +782,7 @@ aliases:
   - api
   - ReadImages
   - --Filters.ImageIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: image
@@ -809,7 +834,7 @@ aliases:
   - api
   - ReadInternetServices
   - --Filters.InternetServiceIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: internetservice
@@ -840,7 +865,7 @@ aliases:
   - api
   - ReadKeypairs
   - --Filters.KeypairIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: keypair
@@ -872,7 +897,7 @@ aliases:
   - api
   - ReadListenerRules
   - --Filters.ListenerRuleNames
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: listenerrule
@@ -898,7 +923,7 @@ aliases:
   - api
   - ReadLoadBalancers
   - --Filters.LoadBalancerNames
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: loadbalancer
@@ -924,7 +949,7 @@ aliases:
   - api
   - ReadNatServices
   - --Filters.NatServiceIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: natservice
@@ -957,7 +982,7 @@ aliases:
   - api
   - ReadNetAccessPoints
   - --Filters.NetAccessPointIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: netaccesspoint
@@ -989,7 +1014,7 @@ aliases:
   - api
   - ReadNetPeerings
   - --Filters.NetPeeringIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: netpeering
@@ -1027,7 +1052,7 @@ aliases:
   - api
   - ReadNets
   - --Filters.NetIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: net
@@ -1060,7 +1085,7 @@ aliases:
   - api
   - ReadNics
   - --Filters.NicIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: nic
@@ -1114,7 +1139,7 @@ aliases:
   - api
   - ReadProductTypes
   - --Filters.ProductTypeIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: producttype
@@ -1140,7 +1165,7 @@ aliases:
   - api
   - ReadPublicIps
   - --Filters.PublicIpIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: publicip
@@ -1176,7 +1201,7 @@ aliases:
   - api
   - ReadQuotas
   - --Filters.QuotaNames
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: quota
@@ -1205,7 +1230,7 @@ aliases:
   - api
   - ReadRouteTables
   - --Filters.RouteTableIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: routetable
@@ -1247,7 +1272,7 @@ aliases:
   - api
   - ReadSecurityGroups
   - --Filters.SecurityGroupIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: securitygroup
@@ -1293,7 +1318,7 @@ aliases:
   - api
   - ReadSnapshots
   - --Filters.SnapshotIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: snapshot
@@ -1334,7 +1359,7 @@ aliases:
   - api
   - ReadSubnets
   - --Filters.SubnetIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: subnet
@@ -1368,7 +1393,7 @@ aliases:
   - api
   - ReadSubregions
   - --Filters.SubregionNames
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: subregion
@@ -1396,7 +1421,7 @@ aliases:
   - api
   - ReadUserGroups
   - --Filters.UserGroupIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: usergroup
@@ -1423,7 +1448,7 @@ aliases:
   - api
   - ReadUsers
   - --Filters.UserIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: user
@@ -1449,7 +1474,7 @@ aliases:
   - api
   - ReadVirtualGateways
   - --Filters.VirtualGatewayIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: virtualgateway
@@ -1482,7 +1507,7 @@ aliases:
   - api
   - ReadVmGroups
   - --Filters.VmGroupIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: vmgroup
@@ -1517,7 +1542,7 @@ aliases:
   - api
   - ReadVmTemplates
   - --Filters.VmTemplateIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: vmtemplate
@@ -1554,7 +1579,7 @@ aliases:
   - api
   - ReadVmTypes
   - --Filters.VmTypeNames
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: vmtype
@@ -1588,7 +1613,7 @@ aliases:
   - api
   - ReadVms
   - --Filters.VmIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: vm
@@ -1677,7 +1702,7 @@ aliases:
   - api
   - ReadVolumes
   - --Filters.VolumeIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: volume
@@ -1718,7 +1743,7 @@ aliases:
   - api
   - ReadVpnConnections
   - --Filters.VpnConnectionIds
-  - "%0"
+  - '%0'
   - -o
   - yaml,single
 - entity: vpnconnection

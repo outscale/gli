@@ -8,8 +8,10 @@ package output
 import (
 	"fmt"
 	"reflect"
+	"time"
 
 	"github.com/outscale/gli/pkg/config"
+	"github.com/outscale/osc-sdk-go/v3/pkg/iso8601"
 )
 
 func GetRow(v any, cols config.Columns) ([]string, error) {
@@ -19,13 +21,38 @@ func GetRow(v any, cols config.Columns) ([]string, error) {
 		if err != nil {
 			return nil, err
 		}
-		switch {
-		case val == nil || reflect.ValueOf(val).IsZero():
-			continue
-		case reflect.TypeOf(val).Kind() == reflect.Ptr:
-			val = reflect.ValueOf(val).Elem().Interface()
+		val = deref(val)
+		switch val := val.(type) {
+		case iso8601.Time:
+			row[i] = val.Format(time.RFC3339)
+		case time.Time:
+			row[i] = val.Format(time.RFC3339)
+		default:
+			row[i] = fmt.Sprint(val)
 		}
-		row[i] = fmt.Sprint(val)
 	}
 	return row, nil
+}
+
+func deref(val any) any {
+	rval := reflect.ValueOf(val)
+	tval := reflect.TypeOf(val)
+	switch {
+	case val == nil || rval.IsZero():
+		return ""
+	case tval.Kind() == reflect.Ptr || tval.Kind() == reflect.Interface:
+		return deref(rval.Elem().Interface())
+	case tval.Kind() == reflect.Slice && rval.Len() == 0:
+		return ""
+	case tval.Kind() == reflect.Slice && rval.Len() == 1:
+		return deref(rval.Index(0).Interface())
+	case tval.Kind() == reflect.Slice:
+		// convert slice to []any, with derefs values
+		nval := make([]any, rval.Len())
+		for i := range rval.Len() {
+			nval[i] = deref(rval.Index(i).Interface())
+		}
+		return nval
+	}
+	return val
 }

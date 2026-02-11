@@ -12,6 +12,7 @@ import (
 	"slices"
 	"strings"
 
+	"dario.cat/mergo"
 	"github.com/goccy/go-yaml"
 	"github.com/iancoleman/strcase"
 	"github.com/outscale/gli/pkg/config"
@@ -165,13 +166,18 @@ func main() {
 				})
 			}
 		}
-		base.Entities[entity] = e
+		current := base.Entities[entity]
+		err = mergo.Merge(&current, e)
+		if err != nil {
+			errors.ExitErr(err)
+		}
+		base.Entities[entity] = current
 	}
 	fd, err := os.Create(dst) //nolint:gosec
 	if err != nil {
 		errors.ExitErr(err)
 	}
-	err = yaml.NewEncoder(fd).Encode(base)
+	err = yaml.NewEncoder(fd, yaml.UseSingleQuote(true)).Encode(base)
 	if err != nil {
 		errors.ExitErr(err)
 	}

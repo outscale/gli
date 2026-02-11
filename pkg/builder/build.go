@@ -43,10 +43,12 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command) {
 	for _, a := range b.cfg.Aliases {
 		c, found := lo.Find(rootCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == a.Entity })
 		if !found {
+			e := b.cfg.Entities[a.Entity]
 			c = &cobra.Command{
 				GroupID: "service",
 				Use:     a.Entity,
 				Short:   a.Entity + " commands",
+				Aliases: e.Aliases,
 			}
 			rootCmd.AddCommand(c)
 		}

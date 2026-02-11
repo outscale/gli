@@ -58,14 +58,15 @@ func ParseColumns(s string) Columns {
 }
 
 type Entity struct {
-	Columns Columns `yaml:"columns"`
+	Aliases []string `yaml:"aliases,omitempty"`
+	Columns Columns  `yaml:"columns"`
 }
 
 type Alias struct {
 	Entity  string            `yaml:"entity"`
 	Group   string            `yaml:"group"`
 	Use     string            `yaml:"use"`
-	Aliases []string          `yaml:"aliases"`
+	Aliases []string          `yaml:"aliases,omitempty"`
 	Short   string            `yaml:"short"`
 	Command []string          `yaml:"command"`
 	Flags   map[string]string `yaml:"flags,omitzero"`

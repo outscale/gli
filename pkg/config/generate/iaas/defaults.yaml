@@ -1,1 +1,69 @@
-aliases:
+entities:
+  accesskey:
+    aliases:
+    - ak
+    columns:
+    - title: ID
+      content: AccessKeyId
+    - title: Tag
+      content: Tag
+    - title: State
+      content: State
+    - title: ExpirationDate
+      content: ExpirationDate
+  loadbalancer:
+    aliases:
+    - lb
+    - lbu
+  natservice:
+    aliases:
+    - nat
+    columns:
+    - title: ID
+      content: NatServiceId
+    - title: Name
+      content: "find(Tags, #?.Key == \"Name\")?.Value"
+    - title: State
+      content: State
+    - title: PublicIp
+      content: "map(PublicIps, #?.PublicIp)"
+    - title: NetId
+      content: NetId
+    - title: SubnetId
+      content: SubnetId
+  snapshot:
+    aliases:
+    - snap
+    columns:
+    - title: ID
+      content: SnapshotId
+    - title: Name
+      content: "find(Tags, #?.Key == \"Name\")?.Value"
+    - title: State
+      content: State
+    - title: Volume
+      content: VolumeId
+    - title: Size
+      content: VolumeSize
+    - title: CreationDate
+      content: CreationDate
+  volume:
+    aliases:
+    - vol
+    columns:
+    - title: ID
+      content: VolumeId
+    - title: Name
+      content: "find(Tags, #?.Key == \"Name\")?.Value"
+    - title: Type
+      content: VolumeType
+    - title: State
+      content: State
+    - title: Size
+      content: Size
+    - title: Iops
+      content: Iops
+    - title: VM
+      content: "map(LinkedVolumes, #?.VmId)"
+    - title: Device
+      content: "map(LinkedVolumes, #?.DeviceName)"
