@@ -27,18 +27,35 @@ import (
 func Run[Client any, Error error](cmd *cobra.Command, cl *Client, cfg config.Config) error {
 	clt := reflect.TypeOf(cl)
 	m, _ := clt.MethodByName(cmd.Name())
-	argType := m.Type.In(2)
-	arg := reflect.New(argType)
-	err := ToStruct(cmd, arg, "")
-	if err != nil {
-		return err
-	}
-	ctx := context.Background()
-	res := reflect.ValueOf(cl).MethodByName(cmd.Name()).Call([]reflect.Value{
-		reflect.ValueOf(ctx),
-		arg.Elem(),
-	})
 
+	ctx := context.Background()
+	args := []reflect.Value{
+		reflect.ValueOf(ctx),
+	}
+
+	for j := 2; j < m.Type.NumIn()-1; j++ {
+		argType := m.Type.In(j)
+		if argType.Kind() == reflect.String {
+			// Id
+			arg, err := cmd.Flags().GetString("Id")
+			if err != nil {
+				return err
+			}
+
+			args = append(args, reflect.ValueOf(arg))
+			continue
+		}
+
+		arg := reflect.New(argType)
+		err := ToStruct(cmd, arg, "")
+		if err != nil {
+			return err
+		}
+
+		args = append(args, arg.Elem())
+	}
+
+	res := reflect.ValueOf(cl).MethodByName(cmd.Name()).Call(args)
 	c := cfg.Calls[cmd.Name()]
 	e := cfg.Entities[c.Entity]
 	out, err := output.NewFromFlags(cmd.Flags(), c, e)
@@ -106,6 +123,10 @@ func set(arg reflect.Value, fs *pflag.FlagSet, flag, path string) error {
 			arg.Set(reflect.Append(arg, reflect.New(arg.Type().Elem()).Elem()))
 		}
 		return set(arg.Index(idx), fs, flag, after)
+	case reflect.Pointer:
+		arg.Set(reflect.New(arg.Type().Elem()))
+		arg = reflect.Indirect(arg)
+		return set(arg, fs, flag, path)
 	default:
 		return fmt.Errorf("invalid kind %v for %s in %s", arg.Kind(), before, flag)
 	}

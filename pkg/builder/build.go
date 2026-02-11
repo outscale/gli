@@ -89,7 +89,11 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command) {
 }
 
 // BuildAPI builds the api command.
-func (b *Builder[T]) BuildAPI(rootCmd *cobra.Command, methodFilter func(m reflect.Method) bool, run func(cmd *cobra.Command, args []string)) {
+func (b *Builder[T]) BuildAPI(
+	rootCmd *cobra.Command,
+	methodFilter func(m reflect.Method) bool,
+	run func(cmd *cobra.Command, args []string),
+) {
 	rootCmd.AddGroup(&cobra.Group{
 		ID:    "api",
 		Title: "api",
@@ -118,13 +122,35 @@ func (b *Builder[T]) BuildAPI(rootCmd *cobra.Command, methodFilter func(m reflec
 			GroupID: group,
 			Run:     run,
 		}
-		arg := m.Type.In(2)
-		b.BuildFlags(cmd, arg, "", true)
+
+		for j := 2; j < m.Type.NumIn()-1; j++ {
+			arg := m.Type.In(j)
+			b.BuildFlags(cmd, arg)
+		}
+
 		apiCmd.AddCommand(cmd)
 	}
 }
 
-func (b *Builder[T]) BuildFlags(cmd *cobra.Command, arg reflect.Type, prefix string, allowRequired bool) {
+func (b *Builder[T]) BuildFlags(
+	cmd *cobra.Command,
+	arg reflect.Type,
+) {
+	switch arg.Kind() {
+	case reflect.Struct:
+		
+		b.buildFlagsFromStruct(cmd, arg, "", true)
+	case reflect.Pointer:
+		b.BuildFlags(cmd, arg.Elem())
+	case reflect.String:
+		// projectId, ClusterId
+		cmd.Flags().String("Id", "", "Id of the object")
+	default:
+		debug.Println("unsupported type for command flags: %v", arg.Kind())
+	}
+}
+
+func (b *Builder[T]) buildFlagsFromStruct(cmd *cobra.Command, arg reflect.Type, prefix string, allowRequired bool) {
 	typeName := arg.Name()
 	fs := cmd.Flags()
 	for i := range arg.NumField() {
@@ -172,7 +198,7 @@ func (b *Builder[T]) BuildFlags(cmd *cobra.Command, arg reflect.Type, prefix str
 					fs.StringSlice(flagName, nil, help)
 				default:
 					for i := range NumEntriesInSlices {
-						b.BuildFlags(cmd, t.Elem(), flagName+"."+strconv.Itoa(i)+".", required && allowRequired)
+						b.buildFlagsFromStruct(cmd, t.Elem(), flagName+"."+strconv.Itoa(i)+".", required && allowRequired)
 					}
 				}
 			}
@@ -183,7 +209,7 @@ func (b *Builder[T]) BuildFlags(cmd *cobra.Command, arg reflect.Type, prefix str
 			case ot.Implements(reflect.TypeFor[json.Marshaler]()):
 				fs.String(flagName, "", help)
 			default:
-				b.BuildFlags(cmd, t, flagName+".", required && allowRequired)
+				b.buildFlagsFromStruct(cmd, t, flagName+".", required && allowRequired)
 			}
 		}
 		// we do not mark the flag as reuired as it breaks templating (the value might come from the template)
