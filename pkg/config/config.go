@@ -69,7 +69,7 @@ type Alias struct {
 	Aliases []string          `yaml:"aliases,omitempty"`
 	Short   string            `yaml:"short"`
 	Command []string          `yaml:"command"`
-	Flags   map[string]string `yaml:"flags,omitzero"`
+	Flags   map[string]string `yaml:"flags,omitempty"`
 }
 
 type FlagConfig struct {

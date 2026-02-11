@@ -5,9 +5,6 @@ contents:
   ReadAccounts:
     content: Accounts
     entity: account
-  ReadAdminPassword:
-    content: AdminPassword
-    entity: adminpassword
   ReadApiAccessPolicy:
     content: ApiAccessPolicy
     entity: apiaccesspolicy
@@ -15,10 +12,10 @@ contents:
     content: ApiAccessRules
     entity: apiaccessrule
   ReadApiLogs:
-    content: ApiLogs
+    content: Logs
     entity: apilog
   ReadCO2EmissionAccount:
-    content: CO2EmissionAccount
+    content: CO2EmissionEntries
     entity: co2emissionaccount
   ReadCas:
     content: Cas
@@ -32,17 +29,14 @@ contents:
   ReadClientGateways:
     content: ClientGateways
     entity: clientgateway
-  ReadConsoleOutput:
-    content: ConsoleOutput
-    entity: consoleoutput
   ReadConsumptionAccount:
-    content: ConsumptionAccount
+    content: ConsumptionEntries
     entity: consumptionaccount
   ReadDedicatedGroups:
     content: DedicatedGroups
     entity: dedicatedgroup
   ReadDhcpOptions:
-    content: DhcpOptions
+    content: DhcpOptionsSets
     entity: dhcpoption
   ReadDirectLinkInterfaces:
     content: DirectLinkInterfaces
@@ -51,7 +45,7 @@ contents:
     content: DirectLinks
     entity: directlink
   ReadEntitiesLinkedToPolicy:
-    content: EntitiesLinkedToPolicy
+    content: PolicyEntities
     entity: entitieslinkedtopolicy
   ReadFlexibleGpuCatalog:
     content: FlexibleGpuCatalog
@@ -71,14 +65,11 @@ contents:
   ReadKeypairs:
     content: Keypairs
     entity: keypair
-  ReadLinkedPolicies:
-    content: LinkedPolicies
-    entity: linkedpolicie
   ReadListenerRules:
     content: ListenerRules
     entity: listenerrule
   ReadLoadBalancerTags:
-    content: LoadBalancerTags
+    content: Tags
     entity: loadbalancertag
   ReadLoadBalancers:
     content: LoadBalancers
@@ -86,14 +77,11 @@ contents:
   ReadLocations:
     content: Locations
     entity: location
-  ReadManagedPoliciesLinkedToUserGroup:
-    content: ManagedPoliciesLinkedToUserGroup
-    entity: managedpolicieslinkedtousergroup
   ReadNatServices:
     content: NatServices
     entity: natservice
   ReadNetAccessPointServices:
-    content: NetAccessPointServices
+    content: Services
     entity: netaccesspointservice
   ReadNetAccessPoints:
     content: NetAccessPoints
@@ -109,7 +97,7 @@ contents:
     entity: nic
   ReadPolicies:
     content: Policies
-    entity: policie
+    entity: policy
   ReadPolicy:
     content: Policy
     entity: policy
@@ -123,16 +111,13 @@ contents:
     content: ProductTypes
     entity: producttype
   ReadPublicCatalog:
-    content: PublicCatalog
+    content: Catalog
     entity: publiccatalog
-  ReadPublicIpRanges:
-    content: PublicIpRanges
-    entity: publiciprange
   ReadPublicIps:
     content: PublicIps
     entity: publicip
   ReadQuotas:
-    content: Quotas
+    content: QuotaTypes
     entity: quota
   ReadRegions:
     content: Regions
@@ -162,29 +147,20 @@ contents:
     content: Tags
     entity: tag
   ReadUnitPrice:
-    content: UnitPrice
+    content: UnitPriceEntry
     entity: unitprice
   ReadUserGroup:
     content: UserGroup
     entity: usergroup
-  ReadUserGroupPolicies:
-    content: UserGroupPolicies
-    entity: usergrouppolicie
   ReadUserGroupPolicy:
-    content: UserGroupPolicy
+    content: Policy
     entity: usergrouppolicy
   ReadUserGroups:
     content: UserGroups
     entity: usergroup
   ReadUserGroupsPerUser:
-    content: UserGroupsPerUser
+    content: UserGroups
     entity: usergroupsperuser
-  ReadUserPolicies:
-    content: UserPolicies
-    entity: userpolicie
-  ReadUserPolicy:
-    content: UserPolicy
-    entity: userpolicy
   ReadUsers:
     content: Users
     entity: user
@@ -204,10 +180,10 @@ contents:
     content: Vms
     entity: vm
   ReadVmsHealth:
-    content: VmsHealth
+    content: BackendVmHealth
     entity: vmshealth
   ReadVmsState:
-    content: VmsState
+    content: VmStates
     entity: vmsstate
   ReadVolumeUpdateTasks:
     content: VolumeUpdateTasks
@@ -231,14 +207,26 @@ entities:
       content: State
     - title: ExpirationDate
       content: ExpirationDate
+  account:
+    columns:
+    - title: ID
+      content: AccountId
+  apiaccesspolicy:
+    columns: []
   apiaccessrule:
     columns:
     - title: ID
       content: ApiAccessRuleId
+  apilog:
+    columns: []
   ca:
     columns:
     - title: ID
       content: CaId
+  catalog:
+    columns:
+    - title: State
+      content: State
   clientgateway:
     columns:
     - title: ID
@@ -249,12 +237,24 @@ entities:
       content: State
     - title: PublicIp
       content: PublicIp
+  co2emissionaccount:
+    columns: []
+  consumptionaccount:
+    columns:
+    - title: SubregionName
+      content: SubregionName
   dedicatedgroup:
     columns:
     - title: ID
       content: DedicatedGroupId
     - title: SubregionName
       content: SubregionName
+  dhcpoption:
+    columns:
+    - title: ID
+      content: DhcpOptionsSetId
+    - title: Name
+      content: 'find(Tags, #?.Key == "Name")?.Value'
   directlink:
     columns:
     - title: ID
@@ -271,6 +271,8 @@ entities:
       content: DirectLinkInterfaceName
     - title: State
       content: State
+  entitieslinkedtopolicy:
+    columns: []
   flexiblegpu:
     columns:
     - title: ID
@@ -281,6 +283,8 @@ entities:
       content: State
     - title: SubregionName
       content: SubregionName
+  flexiblegpucatalog:
+    columns: []
   image:
     columns:
     - title: ID
@@ -289,6 +293,12 @@ entities:
       content: ImageName
     - title: Type
       content: ImageType
+    - title: State
+      content: State
+  imageexporttask:
+    columns:
+    - title: Name
+      content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
   internetservice:
@@ -330,6 +340,10 @@ entities:
       content: NetId
     - title: SubregionNames
       content: SubregionNames
+  loadbalancertag:
+    columns: []
+  location:
+    columns: []
   natservice:
     aliases:
     - nat
@@ -366,6 +380,10 @@ entities:
       content: State
     - title: NetId
       content: NetId
+  netaccesspointservice:
+    columns:
+    - title: ID
+      content: ServiceId
   netpeering:
     columns:
     - title: ID
@@ -388,10 +406,20 @@ entities:
       content: SubnetId
     - title: SubregionName
       content: SubregionName
+  policy:
+    columns:
+    - title: ID
+      content: PolicyId
+    - title: Name
+      content: PolicyName
+  policyversion:
+    columns: []
   producttype:
     columns:
     - title: ID
       content: ProductTypeId
+  publiccatalog:
+    columns: []
   publicip:
     columns:
     - title: ID
@@ -402,6 +430,14 @@ entities:
       content: PublicIp
     - title: PrivateIp
       content: PrivateIp
+  quota:
+    columns:
+    - title: Type
+      content: QuotaType
+  region:
+    columns:
+    - title: Name
+      content: RegionName
   routetable:
     columns:
     - title: ID
@@ -418,6 +454,8 @@ entities:
       content: SecurityGroupName
     - title: NetId
       content: NetId
+  servercertificate:
+    columns: []
   snapshot:
     aliases:
     - snap
@@ -434,6 +472,12 @@ entities:
       content: VolumeSize
     - title: CreationDate
       content: CreationDate
+  snapshotexporttask:
+    columns:
+    - title: Name
+      content: 'find(Tags, #?.Key == "Name")?.Value'
+    - title: State
+      content: State
   subnet:
     columns:
     - title: ID
@@ -454,6 +498,10 @@ entities:
       content: SubregionName
     - title: State
       content: State
+  tag:
+    columns: []
+  unitprice:
+    columns: []
   user:
     columns:
     - title: ID
@@ -461,6 +509,12 @@ entities:
     - title: Name
       content: UserName
   usergroup:
+    columns:
+    - title: ID
+      content: UserGroupId
+  usergrouppolicy:
+    columns: []
+  usergroupsperuser:
     columns:
     - title: ID
       content: UserGroupId
@@ -500,6 +554,14 @@ entities:
       content: State
     - title: SubnetId
       content: SubnetId
+  vmshealth:
+    columns:
+    - title: State
+      content: State
+  vmsstate:
+    columns:
+    - title: SubregionName
+      content: SubregionName
   vmtemplate:
     columns:
     - title: ID
@@ -530,6 +592,12 @@ entities:
       content: 'map(LinkedVolumes, #?.VmId)'
     - title: Device
       content: 'map(LinkedVolumes, #?.DeviceName)'
+  volumeupdatetask:
+    columns:
+    - title: Name
+      content: 'find(Tags, #?.Key == "Name")?.Value'
+    - title: State
+      content: State
   vpnconnection:
     columns:
     - title: ID
@@ -539,19 +607,6 @@ entities:
     - title: State
       content: State
 aliases:
-- entity: accesskey
-  group: accesskey
-  use: describe accesskey_id
-  aliases:
-  - desc
-  short: alias for api ReadAccessKeys --Filters.AccessKeyIds accesskey_id
-  command:
-  - api
-  - ReadAccessKeys
-  - --Filters.AccessKeyIds
-  - '%0'
-  - -o
-  - yaml,single
 - entity: accesskey
   group: accesskey
   use: list
@@ -566,19 +621,45 @@ aliases:
   flags:
     access_key_ids: Filters.AccessKeyIds
     states: Filters.States
-- entity: apiaccessrule
-  group: apiaccessrule
-  use: describe apiaccessrule_id
+- entity: accesskey
+  group: accesskey
+  use: describe accesskey_id
   aliases:
   - desc
-  short: alias for api ReadApiAccessRules --Filters.ApiAccessRuleIds apiaccessrule_id
+  short: alias for api ReadAccessKeys --Filters.AccessKeyIds accesskey_id
   command:
   - api
-  - ReadApiAccessRules
-  - --Filters.ApiAccessRuleIds
+  - ReadAccessKeys
+  - --Filters.AccessKeyIds
   - '%0'
   - -o
   - yaml,single
+- entity: account
+  group: account
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadAccounts
+  command:
+  - api
+  - ReadAccounts
+  - -o
+  - table
+  flags:
+    dry_run: DryRun
+- entity: apiaccesspolicy
+  group: apiaccesspolicy
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadApiAccessPolicy
+  command:
+  - api
+  - ReadApiAccessPolicy
+  - -o
+  - yaml
+  flags:
+    dry_run: DryRun
 - entity: apiaccessrule
   group: apiaccessrule
   use: list
@@ -596,19 +677,55 @@ aliases:
     cns: Filters.Cns
     descriptions: Filters.Descriptions
     ip_ranges: Filters.IpRanges
-- entity: ca
-  group: ca
-  use: describe ca_id
+- entity: apiaccessrule
+  group: apiaccessrule
+  use: describe apiaccessrule_id
   aliases:
   - desc
-  short: alias for api ReadCas --Filters.CaIds ca_id
+  short: alias for api ReadApiAccessRules --Filters.ApiAccessRuleIds apiaccessrule_id
   command:
   - api
-  - ReadCas
-  - --Filters.CaIds
+  - ReadApiAccessRules
+  - --Filters.ApiAccessRuleIds
   - '%0'
   - -o
   - yaml,single
+- entity: apilog
+  group: apilog
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadApiLogs
+  command:
+  - api
+  - ReadApiLogs
+  - -o
+  - yaml
+  flags:
+    query_access_keys: Filters.QueryAccessKeys
+    query_api_names: Filters.QueryApiNames
+    query_call_names: Filters.QueryCallNames
+    query_date_after: Filters.QueryDateAfter
+    query_date_before: Filters.QueryDateBefore
+    query_ip_addresses: Filters.QueryIpAddresses
+    query_user_agents: Filters.QueryUserAgents
+    request_ids: Filters.RequestIds
+    response_status_codes: Filters.ResponseStatusCodes
+- entity: co2emissionaccount
+  group: co2emissionaccount
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadCO2EmissionAccount
+  command:
+  - api
+  - ReadCO2EmissionAccount
+  - -o
+  - yaml
+  flags:
+    from_month: FromMonth
+    overall: Overall
+    to_month: ToMonth
 - entity: ca
   group: ca
   use: list
@@ -624,19 +741,47 @@ aliases:
     descriptions: Filters.Descriptions
     fingerprints: Filters.CaFingerprints
     ids: Filters.CaIds
-- entity: clientgateway
-  group: clientgateway
-  use: describe clientgateway_id
+- entity: ca
+  group: ca
+  use: describe ca_id
   aliases:
   - desc
-  short: alias for api ReadClientGateways --Filters.ClientGatewayIds clientgateway_id
+  short: alias for api ReadCas --Filters.CaIds ca_id
   command:
   - api
-  - ReadClientGateways
-  - --Filters.ClientGatewayIds
+  - ReadCas
+  - --Filters.CaIds
   - '%0'
   - -o
   - yaml,single
+- entity: catalog
+  group: catalog
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadCatalog
+  command:
+  - api
+  - ReadCatalog
+  - -o
+  - yaml
+  flags:
+    dry_run: DryRun
+- entity: catalog
+  group: catalog
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadCatalogs
+  command:
+  - api
+  - ReadCatalogs
+  - -o
+  - table
+  flags:
+    current_catalog_only: Filters.CurrentCatalogOnly
+    from_date: Filters.FromDate
+    to_date: Filters.ToDate
 - entity: clientgateway
   group: clientgateway
   use: list
@@ -657,19 +802,37 @@ aliases:
     tag_keys: Filters.TagKeys
     tag_values: Filters.TagValues
     tags: Filters.Tags
-- entity: dedicatedgroup
-  group: dedicatedgroup
-  use: describe dedicatedgroup_id
+- entity: clientgateway
+  group: clientgateway
+  use: describe clientgateway_id
   aliases:
   - desc
-  short: alias for api ReadDedicatedGroups --Filters.DedicatedGroupIds dedicatedgroup_id
+  short: alias for api ReadClientGateways --Filters.ClientGatewayIds clientgateway_id
   command:
   - api
-  - ReadDedicatedGroups
-  - --Filters.DedicatedGroupIds
+  - ReadClientGateways
+  - --Filters.ClientGatewayIds
   - '%0'
   - -o
   - yaml,single
+- entity: consumptionaccount
+  group: consumptionaccount
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadConsumptionAccount
+  command:
+  - api
+  - ReadConsumptionAccount
+  - -o
+  - table
+  flags:
+    dry_run: DryRun
+    from_date: FromDate
+    overall: Overall
+    show_price: ShowPrice
+    show_resource_details: ShowResourceDetails
+    to_date: ToDate
 - entity: dedicatedgroup
   group: dedicatedgroup
   use: list
@@ -686,19 +849,40 @@ aliases:
     dedicated_group_ids: Filters.DedicatedGroupIds
     names: Filters.Names
     subregion_names: Filters.SubregionNames
-- entity: directlinkinterface
-  group: directlinkinterface
-  use: describe directlinkinterface_id
+- entity: dedicatedgroup
+  group: dedicatedgroup
+  use: describe dedicatedgroup_id
   aliases:
   - desc
-  short: alias for api ReadDirectLinkInterfaces --Filters.DirectLinkInterfaceIds directlinkinterface_id
+  short: alias for api ReadDedicatedGroups --Filters.DedicatedGroupIds dedicatedgroup_id
   command:
   - api
-  - ReadDirectLinkInterfaces
-  - --Filters.DirectLinkInterfaceIds
+  - ReadDedicatedGroups
+  - --Filters.DedicatedGroupIds
   - '%0'
   - -o
   - yaml,single
+- entity: dhcpoption
+  group: dhcpoption
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadDhcpOptions
+  command:
+  - api
+  - ReadDhcpOptions
+  - -o
+  - table
+  flags:
+    default: Filters.Default
+    dhcp_options_set_ids: Filters.DhcpOptionsSetIds
+    domain_name_servers: Filters.DomainNameServers
+    domain_names: Filters.DomainNames
+    log_servers: Filters.LogServers
+    ntp_servers: Filters.NtpServers
+    tag_keys: Filters.TagKeys
+    tag_values: Filters.TagValues
+    tags: Filters.Tags
 - entity: directlinkinterface
   group: directlinkinterface
   use: list
@@ -713,16 +897,16 @@ aliases:
   flags:
     direct_link_ids: Filters.DirectLinkIds
     direct_link_interface_ids: Filters.DirectLinkInterfaceIds
-- entity: directlink
-  group: directlink
-  use: describe directlink_id
+- entity: directlinkinterface
+  group: directlinkinterface
+  use: describe directlinkinterface_id
   aliases:
   - desc
-  short: alias for api ReadDirectLinks --Filters.DirectLinkIds directlink_id
+  short: alias for api ReadDirectLinkInterfaces --Filters.DirectLinkInterfaceIds directlinkinterface_id
   command:
   - api
-  - ReadDirectLinks
-  - --Filters.DirectLinkIds
+  - ReadDirectLinkInterfaces
+  - --Filters.DirectLinkInterfaceIds
   - '%0'
   - -o
   - yaml,single
@@ -739,19 +923,48 @@ aliases:
   - table
   flags:
     direct_link_ids: Filters.DirectLinkIds
-- entity: flexiblegpu
-  group: flexiblegpu
-  use: describe flexiblegpu_id
+- entity: directlink
+  group: directlink
+  use: describe directlink_id
   aliases:
   - desc
-  short: alias for api ReadFlexibleGpus --Filters.FlexibleGpuIds flexiblegpu_id
+  short: alias for api ReadDirectLinks --Filters.DirectLinkIds directlink_id
   command:
   - api
-  - ReadFlexibleGpus
-  - --Filters.FlexibleGpuIds
+  - ReadDirectLinks
+  - --Filters.DirectLinkIds
   - '%0'
   - -o
   - yaml,single
+- entity: entitieslinkedtopolicy
+  group: entitieslinkedtopolicy
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadEntitiesLinkedToPolicy
+  command:
+  - api
+  - ReadEntitiesLinkedToPolicy
+  - -o
+  - yaml
+  flags:
+    entities_type: EntitiesType
+    first_item: FirstItem
+    policy_orn: PolicyOrn
+    results_per_page: ResultsPerPage
+- entity: flexiblegpucatalog
+  group: flexiblegpucatalog
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadFlexibleGpuCatalog
+  command:
+  - api
+  - ReadFlexibleGpuCatalog
+  - -o
+  - yaml
+  flags:
+    dry_run: DryRun
 - entity: flexiblegpu
   group: flexiblegpu
   use: list
@@ -772,16 +985,42 @@ aliases:
     subregion_names: Filters.SubregionNames
     tags: Filters.Tags
     vm_ids: Filters.VmIds
-- entity: image
-  group: image
-  use: describe image_id
+- entity: flexiblegpu
+  group: flexiblegpu
+  use: describe flexiblegpu_id
   aliases:
   - desc
-  short: alias for api ReadImages --Filters.ImageIds image_id
+  short: alias for api ReadFlexibleGpus --Filters.FlexibleGpuIds flexiblegpu_id
   command:
   - api
-  - ReadImages
-  - --Filters.ImageIds
+  - ReadFlexibleGpus
+  - --Filters.FlexibleGpuIds
+  - '%0'
+  - -o
+  - yaml,single
+- entity: imageexporttask
+  group: imageexporttask
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadImageExportTasks
+  command:
+  - api
+  - ReadImageExportTasks
+  - -o
+  - table
+  flags:
+    task_ids: Filters.TaskIds
+- entity: imageexporttask
+  group: imageexporttask
+  use: describe imageexporttask_id
+  aliases:
+  - desc
+  short: alias for api ReadImageExportTasks --Filters.TaskIds imageexporttask_id
+  command:
+  - api
+  - ReadImageExportTasks
+  - --Filters.TaskIds
   - '%0'
   - -o
   - yaml,single
@@ -824,16 +1063,16 @@ aliases:
     tags: Filters.Tags
     tpm_mandatory: Filters.TpmMandatory
     virtualization_types: Filters.VirtualizationTypes
-- entity: internetservice
-  group: internetservice
-  use: describe internetservice_id
+- entity: image
+  group: image
+  use: describe image_id
   aliases:
   - desc
-  short: alias for api ReadInternetServices --Filters.InternetServiceIds internetservice_id
+  short: alias for api ReadImages --Filters.ImageIds image_id
   command:
   - api
-  - ReadInternetServices
-  - --Filters.InternetServiceIds
+  - ReadImages
+  - --Filters.ImageIds
   - '%0'
   - -o
   - yaml,single
@@ -855,16 +1094,16 @@ aliases:
     tag_keys: Filters.TagKeys
     tag_values: Filters.TagValues
     tags: Filters.Tags
-- entity: keypair
-  group: keypair
-  use: describe keypair_id
+- entity: internetservice
+  group: internetservice
+  use: describe internetservice_id
   aliases:
   - desc
-  short: alias for api ReadKeypairs --Filters.KeypairIds keypair_id
+  short: alias for api ReadInternetServices --Filters.InternetServiceIds internetservice_id
   command:
   - api
-  - ReadKeypairs
-  - --Filters.KeypairIds
+  - ReadInternetServices
+  - --Filters.InternetServiceIds
   - '%0'
   - -o
   - yaml,single
@@ -887,16 +1126,16 @@ aliases:
     tag_values: Filters.TagValues
     tags: Filters.Tags
     types: Filters.KeypairTypes
-- entity: listenerrule
-  group: listenerrule
-  use: describe listenerrule_id
+- entity: keypair
+  group: keypair
+  use: describe keypair_id
   aliases:
   - desc
-  short: alias for api ReadListenerRules --Filters.ListenerRuleNames listenerrule_id
+  short: alias for api ReadKeypairs --Filters.KeypairIds keypair_id
   command:
   - api
-  - ReadListenerRules
-  - --Filters.ListenerRuleNames
+  - ReadKeypairs
+  - --Filters.KeypairIds
   - '%0'
   - -o
   - yaml,single
@@ -913,19 +1152,33 @@ aliases:
   - table
   flags:
     listener_rule_names: Filters.ListenerRuleNames
-- entity: loadbalancer
-  group: loadbalancer
-  use: describe loadbalancer_id
+- entity: listenerrule
+  group: listenerrule
+  use: describe listenerrule_id
   aliases:
   - desc
-  short: alias for api ReadLoadBalancers --Filters.LoadBalancerNames loadbalancer_id
+  short: alias for api ReadListenerRules --Filters.ListenerRuleNames listenerrule_id
   command:
   - api
-  - ReadLoadBalancers
-  - --Filters.LoadBalancerNames
+  - ReadListenerRules
+  - --Filters.ListenerRuleNames
   - '%0'
   - -o
   - yaml,single
+- entity: loadbalancertag
+  group: loadbalancertag
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadLoadBalancerTags
+  command:
+  - api
+  - ReadLoadBalancerTags
+  - -o
+  - yaml
+  flags:
+    dry_run: DryRun
+    load_balancer_names: LoadBalancerNames
 - entity: loadbalancer
   group: loadbalancer
   use: list
@@ -939,19 +1192,34 @@ aliases:
   - table
   flags:
     load_balancer_names: Filters.LoadBalancerNames
-- entity: natservice
-  group: natservice
-  use: describe natservice_id
+- entity: loadbalancer
+  group: loadbalancer
+  use: describe loadbalancer_id
   aliases:
   - desc
-  short: alias for api ReadNatServices --Filters.NatServiceIds natservice_id
+  short: alias for api ReadLoadBalancers --Filters.LoadBalancerNames loadbalancer_id
   command:
   - api
-  - ReadNatServices
-  - --Filters.NatServiceIds
+  - ReadLoadBalancers
+  - --Filters.LoadBalancerNames
   - '%0'
   - -o
   - yaml,single
+- entity: location
+  group: location
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadLocations
+  command:
+  - api
+  - ReadLocations
+  - -o
+  - yaml
+  flags:
+    dry_run: DryRun
+    next_page_token: NextPageToken
+    results_per_page: ResultsPerPage
 - entity: natservice
   group: natservice
   use: list
@@ -972,16 +1240,43 @@ aliases:
     tag_keys: Filters.TagKeys
     tag_values: Filters.TagValues
     tags: Filters.Tags
-- entity: netaccesspoint
-  group: netaccesspoint
-  use: describe netaccesspoint_id
+- entity: natservice
+  group: natservice
+  use: describe natservice_id
   aliases:
   - desc
-  short: alias for api ReadNetAccessPoints --Filters.NetAccessPointIds netaccesspoint_id
+  short: alias for api ReadNatServices --Filters.NatServiceIds natservice_id
   command:
   - api
-  - ReadNetAccessPoints
-  - --Filters.NetAccessPointIds
+  - ReadNatServices
+  - --Filters.NatServiceIds
+  - '%0'
+  - -o
+  - yaml,single
+- entity: netaccesspointservice
+  group: netaccesspointservice
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadNetAccessPointServices
+  command:
+  - api
+  - ReadNetAccessPointServices
+  - -o
+  - table
+  flags:
+    service_ids: Filters.ServiceIds
+    service_names: Filters.ServiceNames
+- entity: netaccesspointservice
+  group: netaccesspointservice
+  use: describe netaccesspointservice_id
+  aliases:
+  - desc
+  short: alias for api ReadNetAccessPointServices --Filters.ServiceIds netaccesspointservice_id
+  command:
+  - api
+  - ReadNetAccessPointServices
+  - --Filters.ServiceIds
   - '%0'
   - -o
   - yaml,single
@@ -1004,16 +1299,16 @@ aliases:
     tag_keys: Filters.TagKeys
     tag_values: Filters.TagValues
     tags: Filters.Tags
-- entity: netpeering
-  group: netpeering
-  use: describe netpeering_id
+- entity: netaccesspoint
+  group: netaccesspoint
+  use: describe netaccesspoint_id
   aliases:
   - desc
-  short: alias for api ReadNetPeerings --Filters.NetPeeringIds netpeering_id
+  short: alias for api ReadNetAccessPoints --Filters.NetAccessPointIds netaccesspoint_id
   command:
   - api
-  - ReadNetPeerings
-  - --Filters.NetPeeringIds
+  - ReadNetAccessPoints
+  - --Filters.NetAccessPointIds
   - '%0'
   - -o
   - yaml,single
@@ -1042,16 +1337,16 @@ aliases:
     tag_keys: Filters.TagKeys
     tag_values: Filters.TagValues
     tags: Filters.Tags
-- entity: net
-  group: net
-  use: describe net_id
+- entity: netpeering
+  group: netpeering
+  use: describe netpeering_id
   aliases:
   - desc
-  short: alias for api ReadNets --Filters.NetIds net_id
+  short: alias for api ReadNetPeerings --Filters.NetPeeringIds netpeering_id
   command:
   - api
-  - ReadNets
-  - --Filters.NetIds
+  - ReadNetPeerings
+  - --Filters.NetPeeringIds
   - '%0'
   - -o
   - yaml,single
@@ -1075,16 +1370,16 @@ aliases:
     tag_keys: Filters.TagKeys
     tag_values: Filters.TagValues
     tags: Filters.Tags
-- entity: nic
-  group: nic
-  use: describe nic_id
+- entity: net
+  group: net
+  use: describe net_id
   aliases:
   - desc
-  short: alias for api ReadNics --Filters.NicIds nic_id
+  short: alias for api ReadNets --Filters.NetIds net_id
   command:
   - api
-  - ReadNics
-  - --Filters.NicIds
+  - ReadNets
+  - --Filters.NetIds
   - '%0'
   - -o
   - yaml,single
@@ -1129,19 +1424,76 @@ aliases:
     tag_keys: Filters.TagKeys
     tag_values: Filters.TagValues
     tags: Filters.Tags
-- entity: producttype
-  group: producttype
-  use: describe producttype_id
+- entity: nic
+  group: nic
+  use: describe nic_id
   aliases:
   - desc
-  short: alias for api ReadProductTypes --Filters.ProductTypeIds producttype_id
+  short: alias for api ReadNics --Filters.NicIds nic_id
   command:
   - api
-  - ReadProductTypes
-  - --Filters.ProductTypeIds
+  - ReadNics
+  - --Filters.NicIds
   - '%0'
   - -o
   - yaml,single
+- entity: policy
+  group: policy
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadPolicies
+  command:
+  - api
+  - ReadPolicies
+  - -o
+  - table
+  flags:
+    only_linked: Filters.OnlyLinked
+    path_prefix: Filters.PathPrefix
+    scope: Filters.Scope
+- entity: policy
+  group: policy
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadPolicy
+  command:
+  - api
+  - ReadPolicy
+  - -o
+  - table
+  flags:
+    orn: PolicyOrn
+- entity: policyversion
+  group: policyversion
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadPolicyVersion
+  command:
+  - api
+  - ReadPolicyVersion
+  - -o
+  - yaml
+  flags:
+    policy_orn: PolicyOrn
+    version_id: VersionId
+- entity: policyversion
+  group: policyversion
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadPolicyVersions
+  command:
+  - api
+  - ReadPolicyVersions
+  - -o
+  - yaml
+  flags:
+    first_item: FirstItem
+    policy_orn: PolicyOrn
+    results_per_page: ResultsPerPage
 - entity: producttype
   group: producttype
   use: list
@@ -1155,19 +1507,32 @@ aliases:
   - table
   flags:
     product_type_ids: Filters.ProductTypeIds
-- entity: publicip
-  group: publicip
-  use: describe publicip_id
+- entity: producttype
+  group: producttype
+  use: describe producttype_id
   aliases:
   - desc
-  short: alias for api ReadPublicIps --Filters.PublicIpIds publicip_id
+  short: alias for api ReadProductTypes --Filters.ProductTypeIds producttype_id
   command:
   - api
-  - ReadPublicIps
-  - --Filters.PublicIpIds
+  - ReadProductTypes
+  - --Filters.ProductTypeIds
   - '%0'
   - -o
   - yaml,single
+- entity: publiccatalog
+  group: publiccatalog
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadPublicCatalog
+  command:
+  - api
+  - ReadPublicCatalog
+  - -o
+  - yaml
+  flags:
+    dry_run: DryRun
 - entity: publicip
   group: publicip
   use: list
@@ -1191,16 +1556,16 @@ aliases:
     tag_values: Filters.TagValues
     tags: Filters.Tags
     vm_ids: Filters.VmIds
-- entity: quota
-  group: quota
-  use: describe quota_id
+- entity: publicip
+  group: publicip
+  use: describe publicip_id
   aliases:
   - desc
-  short: alias for api ReadQuotas --Filters.QuotaNames quota_id
+  short: alias for api ReadPublicIps --Filters.PublicIpIds publicip_id
   command:
   - api
-  - ReadQuotas
-  - --Filters.QuotaNames
+  - ReadPublicIps
+  - --Filters.PublicIpIds
   - '%0'
   - -o
   - yaml,single
@@ -1220,19 +1585,32 @@ aliases:
     names: Filters.QuotaNames
     short_descriptions: Filters.ShortDescriptions
     types: Filters.QuotaTypes
-- entity: routetable
-  group: routetable
-  use: describe routetable_id
+- entity: quota
+  group: quota
+  use: describe quota_id
   aliases:
   - desc
-  short: alias for api ReadRouteTables --Filters.RouteTableIds routetable_id
+  short: alias for api ReadQuotas --Filters.QuotaNames quota_id
   command:
   - api
-  - ReadRouteTables
-  - --Filters.RouteTableIds
+  - ReadQuotas
+  - --Filters.QuotaNames
   - '%0'
   - -o
   - yaml,single
+- entity: region
+  group: region
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadRegions
+  command:
+  - api
+  - ReadRegions
+  - -o
+  - table
+  flags:
+    dry_run: DryRun
 - entity: routetable
   group: routetable
   use: list
@@ -1262,16 +1640,16 @@ aliases:
     tag_keys: Filters.TagKeys
     tag_values: Filters.TagValues
     tags: Filters.Tags
-- entity: securitygroup
-  group: securitygroup
-  use: describe securitygroup_id
+- entity: routetable
+  group: routetable
+  use: describe routetable_id
   aliases:
   - desc
-  short: alias for api ReadSecurityGroups --Filters.SecurityGroupIds securitygroup_id
+  short: alias for api ReadRouteTables --Filters.RouteTableIds routetable_id
   command:
   - api
-  - ReadSecurityGroups
-  - --Filters.SecurityGroupIds
+  - ReadRouteTables
+  - --Filters.RouteTableIds
   - '%0'
   - -o
   - yaml,single
@@ -1308,16 +1686,55 @@ aliases:
     tag_keys: Filters.TagKeys
     tag_values: Filters.TagValues
     tags: Filters.Tags
-- entity: snapshot
-  group: snapshot
-  use: describe snapshot_id
+- entity: securitygroup
+  group: securitygroup
+  use: describe securitygroup_id
   aliases:
   - desc
-  short: alias for api ReadSnapshots --Filters.SnapshotIds snapshot_id
+  short: alias for api ReadSecurityGroups --Filters.SecurityGroupIds securitygroup_id
   command:
   - api
-  - ReadSnapshots
-  - --Filters.SnapshotIds
+  - ReadSecurityGroups
+  - --Filters.SecurityGroupIds
+  - '%0'
+  - -o
+  - yaml,single
+- entity: servercertificate
+  group: servercertificate
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadServerCertificates
+  command:
+  - api
+  - ReadServerCertificates
+  - -o
+  - yaml
+  flags:
+    paths: Filters.Paths
+- entity: snapshotexporttask
+  group: snapshotexporttask
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadSnapshotExportTasks
+  command:
+  - api
+  - ReadSnapshotExportTasks
+  - -o
+  - table
+  flags:
+    task_ids: Filters.TaskIds
+- entity: snapshotexporttask
+  group: snapshotexporttask
+  use: describe snapshotexporttask_id
+  aliases:
+  - desc
+  short: alias for api ReadSnapshotExportTasks --Filters.TaskIds snapshotexporttask_id
+  command:
+  - api
+  - ReadSnapshotExportTasks
+  - --Filters.TaskIds
   - '%0'
   - -o
   - yaml,single
@@ -1349,16 +1766,16 @@ aliases:
     to_creation_date: Filters.ToCreationDate
     volume_ids: Filters.VolumeIds
     volume_sizes: Filters.VolumeSizes
-- entity: subnet
-  group: subnet
-  use: describe subnet_id
+- entity: snapshot
+  group: snapshot
+  use: describe snapshot_id
   aliases:
   - desc
-  short: alias for api ReadSubnets --Filters.SubnetIds subnet_id
+  short: alias for api ReadSnapshots --Filters.SnapshotIds snapshot_id
   command:
   - api
-  - ReadSubnets
-  - --Filters.SubnetIds
+  - ReadSnapshots
+  - --Filters.SnapshotIds
   - '%0'
   - -o
   - yaml,single
@@ -1383,16 +1800,16 @@ aliases:
     tag_keys: Filters.TagKeys
     tag_values: Filters.TagValues
     tags: Filters.Tags
-- entity: subregion
-  group: subregion
-  use: describe subregion_id
+- entity: subnet
+  group: subnet
+  use: describe subnet_id
   aliases:
   - desc
-  short: alias for api ReadSubregions --Filters.SubregionNames subregion_id
+  short: alias for api ReadSubnets --Filters.SubnetIds subnet_id
   command:
   - api
-  - ReadSubregions
-  - --Filters.SubregionNames
+  - ReadSubnets
+  - --Filters.SubnetIds
   - '%0'
   - -o
   - yaml,single
@@ -1411,19 +1828,81 @@ aliases:
     names: Filters.SubregionNames
     region_names: Filters.RegionNames
     states: Filters.States
-- entity: usergroup
-  group: usergroup
-  use: describe usergroup_id
+- entity: subregion
+  group: subregion
+  use: describe subregion_id
   aliases:
   - desc
-  short: alias for api ReadUserGroups --Filters.UserGroupIds usergroup_id
+  short: alias for api ReadSubregions --Filters.SubregionNames subregion_id
   command:
   - api
-  - ReadUserGroups
-  - --Filters.UserGroupIds
+  - ReadSubregions
+  - --Filters.SubregionNames
   - '%0'
   - -o
   - yaml,single
+- entity: tag
+  group: tag
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadTags
+  command:
+  - api
+  - ReadTags
+  - -o
+  - yaml
+  flags:
+    keys: Filters.Keys
+    resource_ids: Filters.ResourceIds
+    resource_types: Filters.ResourceTypes
+    values: Filters.Values
+- entity: unitprice
+  group: unitprice
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadUnitPrice
+  command:
+  - api
+  - ReadUnitPrice
+  - -o
+  - yaml
+  flags:
+    operation: Operation
+    service: Service
+    type: Type
+- entity: usergroup
+  group: usergroup
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadUserGroup
+  command:
+  - api
+  - ReadUserGroup
+  - -o
+  - table
+  flags:
+    dry_run: DryRun
+    path: Path
+    user_group_name: UserGroupName
+- entity: usergrouppolicy
+  group: usergrouppolicy
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadUserGroupPolicy
+  command:
+  - api
+  - ReadUserGroupPolicy
+  - -o
+  - yaml
+  flags:
+    dry_run: DryRun
+    policy_name: PolicyName
+    user_group_name: UserGroupName
+    user_group_path: UserGroupPath
 - entity: usergroup
   group: usergroup
   use: list
@@ -1438,19 +1917,34 @@ aliases:
   flags:
     path_prefix: Filters.PathPrefix
     user_group_ids: Filters.UserGroupIds
-- entity: user
-  group: user
-  use: describe user_id
+- entity: usergroup
+  group: usergroup
+  use: describe usergroup_id
   aliases:
   - desc
-  short: alias for api ReadUsers --Filters.UserIds user_id
+  short: alias for api ReadUserGroups --Filters.UserGroupIds usergroup_id
   command:
   - api
-  - ReadUsers
-  - --Filters.UserIds
+  - ReadUserGroups
+  - --Filters.UserGroupIds
   - '%0'
   - -o
   - yaml,single
+- entity: usergroupsperuser
+  group: usergroupsperuser
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadUserGroupsPerUser
+  command:
+  - api
+  - ReadUserGroupsPerUser
+  - -o
+  - table
+  flags:
+    dry_run: DryRun
+    user_name: UserName
+    user_path: UserPath
 - entity: user
   group: user
   use: list
@@ -1464,16 +1958,16 @@ aliases:
   - table
   flags:
     ids: Filters.UserIds
-- entity: virtualgateway
-  group: virtualgateway
-  use: describe virtualgateway_id
+- entity: user
+  group: user
+  use: describe user_id
   aliases:
   - desc
-  short: alias for api ReadVirtualGateways --Filters.VirtualGatewayIds virtualgateway_id
+  short: alias for api ReadUsers --Filters.UserIds user_id
   command:
   - api
-  - ReadVirtualGateways
-  - --Filters.VirtualGatewayIds
+  - ReadUsers
+  - --Filters.UserIds
   - '%0'
   - -o
   - yaml,single
@@ -1497,16 +1991,16 @@ aliases:
     tag_values: Filters.TagValues
     tags: Filters.Tags
     virtual_gateway_ids: Filters.VirtualGatewayIds
-- entity: vmgroup
-  group: vmgroup
-  use: describe vmgroup_id
+- entity: virtualgateway
+  group: virtualgateway
+  use: describe virtualgateway_id
   aliases:
   - desc
-  short: alias for api ReadVmGroups --Filters.VmGroupIds vmgroup_id
+  short: alias for api ReadVirtualGateways --Filters.VirtualGatewayIds virtualgateway_id
   command:
   - api
-  - ReadVmGroups
-  - --Filters.VmGroupIds
+  - ReadVirtualGateways
+  - --Filters.VirtualGatewayIds
   - '%0'
   - -o
   - yaml,single
@@ -1532,16 +2026,16 @@ aliases:
     vm_group_ids: Filters.VmGroupIds
     vm_group_names: Filters.VmGroupNames
     vm_template_ids: Filters.VmTemplateIds
-- entity: vmtemplate
-  group: vmtemplate
-  use: describe vmtemplate_id
+- entity: vmgroup
+  group: vmgroup
+  use: describe vmgroup_id
   aliases:
   - desc
-  short: alias for api ReadVmTemplates --Filters.VmTemplateIds vmtemplate_id
+  short: alias for api ReadVmGroups --Filters.VmGroupIds vmgroup_id
   command:
   - api
-  - ReadVmTemplates
-  - --Filters.VmTemplateIds
+  - ReadVmGroups
+  - --Filters.VmGroupIds
   - '%0'
   - -o
   - yaml,single
@@ -1569,16 +2063,16 @@ aliases:
     tags: Filters.Tags
     vm_template_ids: Filters.VmTemplateIds
     vm_template_names: Filters.VmTemplateNames
-- entity: vmtype
-  group: vmtype
-  use: describe vmtype_id
+- entity: vmtemplate
+  group: vmtemplate
+  use: describe vmtemplate_id
   aliases:
   - desc
-  short: alias for api ReadVmTypes --Filters.VmTypeNames vmtype_id
+  short: alias for api ReadVmTemplates --Filters.VmTemplateIds vmtemplate_id
   command:
   - api
-  - ReadVmTypes
-  - --Filters.VmTypeNames
+  - ReadVmTemplates
+  - --Filters.VmTemplateIds
   - '%0'
   - -o
   - yaml,single
@@ -1603,16 +2097,16 @@ aliases:
     vm_type_names: Filters.VmTypeNames
     volume_counts: Filters.VolumeCounts
     volume_sizes: Filters.VolumeSizes
-- entity: vm
-  group: vm
-  use: describe vm_id
+- entity: vmtype
+  group: vmtype
+  use: describe vmtype_id
   aliases:
   - desc
-  short: alias for api ReadVms --Filters.VmIds vm_id
+  short: alias for api ReadVmTypes --Filters.VmTypeNames vmtype_id
   command:
   - api
-  - ReadVms
-  - --Filters.VmIds
+  - ReadVmTypes
+  - --Filters.VmTypeNames
   - '%0'
   - -o
   - yaml,single
@@ -1692,16 +2186,76 @@ aliases:
     tenancies: Filters.Tenancies
     tpm_enabled: Filters.TpmEnabled
     types: Filters.VmTypes
-- entity: volume
-  group: volume
-  use: describe volume_id
+- entity: vm
+  group: vm
+  use: describe vm_id
   aliases:
   - desc
-  short: alias for api ReadVolumes --Filters.VolumeIds volume_id
+  short: alias for api ReadVms --Filters.VmIds vm_id
   command:
   - api
-  - ReadVolumes
-  - --Filters.VolumeIds
+  - ReadVms
+  - --Filters.VmIds
+  - '%0'
+  - -o
+  - yaml,single
+- entity: vmshealth
+  group: vmshealth
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadVmsHealth
+  command:
+  - api
+  - ReadVmsHealth
+  - -o
+  - table
+  flags:
+    backend_vm_ids: BackendVmIds
+    dry_run: DryRun
+    load_balancer_name: LoadBalancerName
+- entity: vmsstate
+  group: vmsstate
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadVmsState
+  command:
+  - api
+  - ReadVmsState
+  - -o
+  - table
+  flags:
+    maintenance_event_codes: Filters.MaintenanceEventCodes
+    maintenance_event_descriptions: Filters.MaintenanceEventDescriptions
+    maintenance_events_not_after: Filters.MaintenanceEventsNotAfter
+    maintenance_events_not_before: Filters.MaintenanceEventsNotBefore
+    subregion_names: Filters.SubregionNames
+    vm_ids: Filters.VmIds
+    vm_states: Filters.VmStates
+- entity: volumeupdatetask
+  group: volumeupdatetask
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadVolumeUpdateTasks
+  command:
+  - api
+  - ReadVolumeUpdateTasks
+  - -o
+  - table
+  flags:
+    task_ids: Filters.TaskIds
+- entity: volumeupdatetask
+  group: volumeupdatetask
+  use: describe volumeupdatetask_id
+  aliases:
+  - desc
+  short: alias for api ReadVolumeUpdateTasks --Filters.TaskIds volumeupdatetask_id
+  command:
+  - api
+  - ReadVolumeUpdateTasks
+  - --Filters.TaskIds
   - '%0'
   - -o
   - yaml,single
@@ -1733,16 +2287,16 @@ aliases:
     tag_values: Filters.TagValues
     tags: Filters.Tags
     types: Filters.VolumeTypes
-- entity: vpnconnection
-  group: vpnconnection
-  use: describe vpnconnection_id
+- entity: volume
+  group: volume
+  use: describe volume_id
   aliases:
   - desc
-  short: alias for api ReadVpnConnections --Filters.VpnConnectionIds vpnconnection_id
+  short: alias for api ReadVolumes --Filters.VolumeIds volume_id
   command:
   - api
-  - ReadVpnConnections
-  - --Filters.VpnConnectionIds
+  - ReadVolumes
+  - --Filters.VolumeIds
   - '%0'
   - -o
   - yaml,single
@@ -1769,3 +2323,16 @@ aliases:
     tags: Filters.Tags
     virtual_gateway_ids: Filters.VirtualGatewayIds
     vpn_connection_ids: Filters.VpnConnectionIds
+- entity: vpnconnection
+  group: vpnconnection
+  use: describe vpnconnection_id
+  aliases:
+  - desc
+  short: alias for api ReadVpnConnections --Filters.VpnConnectionIds vpnconnection_id
+  command:
+  - api
+  - ReadVpnConnections
+  - --Filters.VpnConnectionIds
+  - '%0'
+  - -o
+  - yaml,single
