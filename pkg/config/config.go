@@ -62,6 +62,17 @@ type Entity struct {
 	Columns Columns  `yaml:"columns"`
 }
 
+type Action string
+
+const (
+	ActionDelete Action = "delete"
+)
+
+type Prompt struct {
+	Action         Action   `yaml:"action"`
+	DisplayCommand []string `yaml:"display"`
+}
+
 type Alias struct {
 	Entity  string            `yaml:"entity"`
 	Group   string            `yaml:"group"`
@@ -70,6 +81,7 @@ type Alias struct {
 	Short   string            `yaml:"short"`
 	Command []string          `yaml:"command"`
 	Flags   map[string]string `yaml:"flags,omitempty"`
+	Prompt  *Prompt           `yaml:"prompt,omitempty"`
 }
 
 type FlagConfig struct {

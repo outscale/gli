@@ -1,15 +1,16 @@
 package errors
 
 import (
+	"fmt"
 	"os"
 
-	"github.com/fatih/color"
+	"github.com/outscale/octl/pkg/style"
 )
 
 func Info(format string, a ...any) {
-	_, _ = color.New(color.FgYellow).Add(color.Faint).Fprintf(os.Stderr, format+"\n", a...)
+	_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Faint, format, a...))
 }
 
 func Warn(format string, a ...any) {
-	_, _ = color.New(color.FgYellow).Fprintf(os.Stderr, format+"\n", a...)
+	_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Yellow, "⚠️ "+format, a...))
 }

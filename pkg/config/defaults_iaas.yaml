@@ -616,7 +616,7 @@ aliases:
   command:
   - api
   - ReadAccessKeys
-  - -o
+  - --output
   - table
   flags:
     access_key_ids: Filters.AccessKeyIds
@@ -632,7 +632,7 @@ aliases:
   - ReadAccessKeys
   - --Filters.AccessKeyIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: account
   group: account
@@ -643,7 +643,7 @@ aliases:
   command:
   - api
   - ReadAccounts
-  - -o
+  - --output
   - table
   flags:
     dry_run: DryRun
@@ -656,7 +656,7 @@ aliases:
   command:
   - api
   - ReadApiAccessPolicy
-  - -o
+  - --output
   - yaml
   flags:
     dry_run: DryRun
@@ -669,7 +669,7 @@ aliases:
   command:
   - api
   - ReadApiAccessRules
-  - -o
+  - --output
   - table
   flags:
     api_access_rule_ids: Filters.ApiAccessRuleIds
@@ -688,7 +688,7 @@ aliases:
   - ReadApiAccessRules
   - --Filters.ApiAccessRuleIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: apilog
   group: apilog
@@ -699,7 +699,7 @@ aliases:
   command:
   - api
   - ReadApiLogs
-  - -o
+  - --output
   - yaml
   flags:
     query_access_keys: Filters.QueryAccessKeys
@@ -720,7 +720,7 @@ aliases:
   command:
   - api
   - ReadCO2EmissionAccount
-  - -o
+  - --output
   - yaml
   flags:
     from_month: FromMonth
@@ -735,7 +735,7 @@ aliases:
   command:
   - api
   - ReadCas
-  - -o
+  - --output
   - table
   flags:
     descriptions: Filters.Descriptions
@@ -752,7 +752,7 @@ aliases:
   - ReadCas
   - --Filters.CaIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: catalog
   group: catalog
@@ -763,7 +763,7 @@ aliases:
   command:
   - api
   - ReadCatalog
-  - -o
+  - --output
   - yaml
   flags:
     dry_run: DryRun
@@ -776,7 +776,7 @@ aliases:
   command:
   - api
   - ReadCatalogs
-  - -o
+  - --output
   - table
   flags:
     current_catalog_only: Filters.CurrentCatalogOnly
@@ -791,7 +791,7 @@ aliases:
   command:
   - api
   - ReadClientGateways
-  - -o
+  - --output
   - table
   flags:
     bgp_asns: Filters.BgpAsns
@@ -813,7 +813,7 @@ aliases:
   - ReadClientGateways
   - --Filters.ClientGatewayIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: consumptionaccount
   group: consumptionaccount
@@ -824,7 +824,7 @@ aliases:
   command:
   - api
   - ReadConsumptionAccount
-  - -o
+  - --output
   - table
   flags:
     dry_run: DryRun
@@ -842,7 +842,7 @@ aliases:
   command:
   - api
   - ReadDedicatedGroups
-  - -o
+  - --output
   - table
   flags:
     cpu_generations: Filters.CpuGenerations
@@ -860,7 +860,7 @@ aliases:
   - ReadDedicatedGroups
   - --Filters.DedicatedGroupIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: dhcpoption
   group: dhcpoption
@@ -871,7 +871,7 @@ aliases:
   command:
   - api
   - ReadDhcpOptions
-  - -o
+  - --output
   - table
   flags:
     default: Filters.Default
@@ -892,7 +892,7 @@ aliases:
   command:
   - api
   - ReadDirectLinkInterfaces
-  - -o
+  - --output
   - table
   flags:
     direct_link_ids: Filters.DirectLinkIds
@@ -908,7 +908,7 @@ aliases:
   - ReadDirectLinkInterfaces
   - --Filters.DirectLinkInterfaceIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: directlink
   group: directlink
@@ -919,7 +919,7 @@ aliases:
   command:
   - api
   - ReadDirectLinks
-  - -o
+  - --output
   - table
   flags:
     direct_link_ids: Filters.DirectLinkIds
@@ -934,7 +934,7 @@ aliases:
   - ReadDirectLinks
   - --Filters.DirectLinkIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: entitieslinkedtopolicy
   group: entitieslinkedtopolicy
@@ -945,7 +945,7 @@ aliases:
   command:
   - api
   - ReadEntitiesLinkedToPolicy
-  - -o
+  - --output
   - yaml
   flags:
     entities_type: EntitiesType
@@ -961,7 +961,7 @@ aliases:
   command:
   - api
   - ReadFlexibleGpuCatalog
-  - -o
+  - --output
   - yaml
   flags:
     dry_run: DryRun
@@ -974,7 +974,7 @@ aliases:
   command:
   - api
   - ReadFlexibleGpus
-  - -o
+  - --output
   - table
   flags:
     delete_on_vm_deletion: Filters.DeleteOnVmDeletion
@@ -996,7 +996,7 @@ aliases:
   - ReadFlexibleGpus
   - --Filters.FlexibleGpuIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: imageexporttask
   group: imageexporttask
@@ -1007,7 +1007,7 @@ aliases:
   command:
   - api
   - ReadImageExportTasks
-  - -o
+  - --output
   - table
   flags:
     task_ids: Filters.TaskIds
@@ -1022,7 +1022,7 @@ aliases:
   - ReadImageExportTasks
   - --Filters.TaskIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: image
   group: image
@@ -1033,7 +1033,7 @@ aliases:
   command:
   - api
   - ReadImages
-  - -o
+  - --output
   - table
   flags:
     account_aliases: Filters.AccountAliases
@@ -1074,7 +1074,7 @@ aliases:
   - ReadImages
   - --Filters.ImageIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: internetservice
   group: internetservice
@@ -1085,7 +1085,7 @@ aliases:
   command:
   - api
   - ReadInternetServices
-  - -o
+  - --output
   - table
   flags:
     internet_service_ids: Filters.InternetServiceIds
@@ -1105,7 +1105,7 @@ aliases:
   - ReadInternetServices
   - --Filters.InternetServiceIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: keypair
   group: keypair
@@ -1116,7 +1116,7 @@ aliases:
   command:
   - api
   - ReadKeypairs
-  - -o
+  - --output
   - table
   flags:
     fingerprints: Filters.KeypairFingerprints
@@ -1137,7 +1137,7 @@ aliases:
   - ReadKeypairs
   - --Filters.KeypairIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: listenerrule
   group: listenerrule
@@ -1148,7 +1148,7 @@ aliases:
   command:
   - api
   - ReadListenerRules
-  - -o
+  - --output
   - table
   flags:
     listener_rule_names: Filters.ListenerRuleNames
@@ -1163,7 +1163,7 @@ aliases:
   - ReadListenerRules
   - --Filters.ListenerRuleNames
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: loadbalancertag
   group: loadbalancertag
@@ -1174,7 +1174,7 @@ aliases:
   command:
   - api
   - ReadLoadBalancerTags
-  - -o
+  - --output
   - yaml
   flags:
     dry_run: DryRun
@@ -1188,7 +1188,7 @@ aliases:
   command:
   - api
   - ReadLoadBalancers
-  - -o
+  - --output
   - table
   flags:
     load_balancer_names: Filters.LoadBalancerNames
@@ -1203,7 +1203,7 @@ aliases:
   - ReadLoadBalancers
   - --Filters.LoadBalancerNames
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: location
   group: location
@@ -1214,7 +1214,7 @@ aliases:
   command:
   - api
   - ReadLocations
-  - -o
+  - --output
   - yaml
   flags:
     dry_run: DryRun
@@ -1229,7 +1229,7 @@ aliases:
   command:
   - api
   - ReadNatServices
-  - -o
+  - --output
   - table
   flags:
     client_tokens: Filters.ClientTokens
@@ -1251,7 +1251,7 @@ aliases:
   - ReadNatServices
   - --Filters.NatServiceIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: netaccesspointservice
   group: netaccesspointservice
@@ -1262,7 +1262,7 @@ aliases:
   command:
   - api
   - ReadNetAccessPointServices
-  - -o
+  - --output
   - table
   flags:
     service_ids: Filters.ServiceIds
@@ -1278,7 +1278,7 @@ aliases:
   - ReadNetAccessPointServices
   - --Filters.ServiceIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: netaccesspoint
   group: netaccesspoint
@@ -1289,7 +1289,7 @@ aliases:
   command:
   - api
   - ReadNetAccessPoints
-  - -o
+  - --output
   - table
   flags:
     net_access_point_ids: Filters.NetAccessPointIds
@@ -1310,7 +1310,7 @@ aliases:
   - ReadNetAccessPoints
   - --Filters.NetAccessPointIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: netpeering
   group: netpeering
@@ -1321,7 +1321,7 @@ aliases:
   command:
   - api
   - ReadNetPeerings
-  - -o
+  - --output
   - table
   flags:
     accepter_net_account_ids: Filters.AccepterNetAccountIds
@@ -1348,7 +1348,7 @@ aliases:
   - ReadNetPeerings
   - --Filters.NetPeeringIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: net
   group: net
@@ -1359,7 +1359,7 @@ aliases:
   command:
   - api
   - ReadNets
-  - -o
+  - --output
   - table
   flags:
     dhcp_options_set_ids: Filters.DhcpOptionsSetIds
@@ -1381,7 +1381,7 @@ aliases:
   - ReadNets
   - --Filters.NetIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: nic
   group: nic
@@ -1392,7 +1392,7 @@ aliases:
   command:
   - api
   - ReadNics
-  - -o
+  - --output
   - table
   flags:
     descriptions: Filters.Descriptions
@@ -1435,7 +1435,7 @@ aliases:
   - ReadNics
   - --Filters.NicIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: policy
   group: policy
@@ -1446,7 +1446,7 @@ aliases:
   command:
   - api
   - ReadPolicies
-  - -o
+  - --output
   - table
   flags:
     only_linked: Filters.OnlyLinked
@@ -1461,7 +1461,7 @@ aliases:
   command:
   - api
   - ReadPolicy
-  - -o
+  - --output
   - table
   flags:
     orn: PolicyOrn
@@ -1474,7 +1474,7 @@ aliases:
   command:
   - api
   - ReadPolicyVersion
-  - -o
+  - --output
   - yaml
   flags:
     policy_orn: PolicyOrn
@@ -1488,7 +1488,7 @@ aliases:
   command:
   - api
   - ReadPolicyVersions
-  - -o
+  - --output
   - yaml
   flags:
     first_item: FirstItem
@@ -1503,7 +1503,7 @@ aliases:
   command:
   - api
   - ReadProductTypes
-  - -o
+  - --output
   - table
   flags:
     product_type_ids: Filters.ProductTypeIds
@@ -1518,7 +1518,7 @@ aliases:
   - ReadProductTypes
   - --Filters.ProductTypeIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: publiccatalog
   group: publiccatalog
@@ -1529,7 +1529,7 @@ aliases:
   command:
   - api
   - ReadPublicCatalog
-  - -o
+  - --output
   - yaml
   flags:
     dry_run: DryRun
@@ -1542,7 +1542,7 @@ aliases:
   command:
   - api
   - ReadPublicIps
-  - -o
+  - --output
   - table
   flags:
     link_public_ip_ids: Filters.LinkPublicIpIds
@@ -1567,7 +1567,7 @@ aliases:
   - ReadPublicIps
   - --Filters.PublicIpIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: quota
   group: quota
@@ -1578,7 +1578,7 @@ aliases:
   command:
   - api
   - ReadQuotas
-  - -o
+  - --output
   - table
   flags:
     collections: Filters.Collections
@@ -1596,7 +1596,7 @@ aliases:
   - ReadQuotas
   - --Filters.QuotaNames
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: region
   group: region
@@ -1607,7 +1607,7 @@ aliases:
   command:
   - api
   - ReadRegions
-  - -o
+  - --output
   - table
   flags:
     dry_run: DryRun
@@ -1620,7 +1620,7 @@ aliases:
   command:
   - api
   - ReadRouteTables
-  - -o
+  - --output
   - table
   flags:
     link_route_table_ids: Filters.LinkRouteTableIds
@@ -1651,7 +1651,7 @@ aliases:
   - ReadRouteTables
   - --Filters.RouteTableIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: securitygroup
   group: securitygroup
@@ -1662,7 +1662,7 @@ aliases:
   command:
   - api
   - ReadSecurityGroups
-  - -o
+  - --output
   - table
   flags:
     descriptions: Filters.Descriptions
@@ -1697,7 +1697,7 @@ aliases:
   - ReadSecurityGroups
   - --Filters.SecurityGroupIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: servercertificate
   group: servercertificate
@@ -1708,7 +1708,7 @@ aliases:
   command:
   - api
   - ReadServerCertificates
-  - -o
+  - --output
   - yaml
   flags:
     paths: Filters.Paths
@@ -1721,7 +1721,7 @@ aliases:
   command:
   - api
   - ReadSnapshotExportTasks
-  - -o
+  - --output
   - table
   flags:
     task_ids: Filters.TaskIds
@@ -1736,7 +1736,7 @@ aliases:
   - ReadSnapshotExportTasks
   - --Filters.TaskIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: snapshot
   group: snapshot
@@ -1747,7 +1747,7 @@ aliases:
   command:
   - api
   - ReadSnapshots
-  - -o
+  - --output
   - table
   flags:
     account_aliases: Filters.AccountAliases
@@ -1777,7 +1777,7 @@ aliases:
   - ReadSnapshots
   - --Filters.SnapshotIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: subnet
   group: subnet
@@ -1788,7 +1788,7 @@ aliases:
   command:
   - api
   - ReadSubnets
-  - -o
+  - --output
   - table
   flags:
     available_ips_counts: Filters.AvailableIpsCounts
@@ -1811,7 +1811,7 @@ aliases:
   - ReadSubnets
   - --Filters.SubnetIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: subregion
   group: subregion
@@ -1822,7 +1822,7 @@ aliases:
   command:
   - api
   - ReadSubregions
-  - -o
+  - --output
   - table
   flags:
     names: Filters.SubregionNames
@@ -1839,7 +1839,7 @@ aliases:
   - ReadSubregions
   - --Filters.SubregionNames
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: tag
   group: tag
@@ -1850,7 +1850,7 @@ aliases:
   command:
   - api
   - ReadTags
-  - -o
+  - --output
   - yaml
   flags:
     keys: Filters.Keys
@@ -1866,7 +1866,7 @@ aliases:
   command:
   - api
   - ReadUnitPrice
-  - -o
+  - --output
   - yaml
   flags:
     operation: Operation
@@ -1881,7 +1881,7 @@ aliases:
   command:
   - api
   - ReadUserGroup
-  - -o
+  - --output
   - table
   flags:
     dry_run: DryRun
@@ -1896,7 +1896,7 @@ aliases:
   command:
   - api
   - ReadUserGroupPolicy
-  - -o
+  - --output
   - yaml
   flags:
     dry_run: DryRun
@@ -1912,7 +1912,7 @@ aliases:
   command:
   - api
   - ReadUserGroups
-  - -o
+  - --output
   - table
   flags:
     path_prefix: Filters.PathPrefix
@@ -1928,7 +1928,7 @@ aliases:
   - ReadUserGroups
   - --Filters.UserGroupIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: usergroupsperuser
   group: usergroupsperuser
@@ -1939,7 +1939,7 @@ aliases:
   command:
   - api
   - ReadUserGroupsPerUser
-  - -o
+  - --output
   - table
   flags:
     dry_run: DryRun
@@ -1954,7 +1954,7 @@ aliases:
   command:
   - api
   - ReadUsers
-  - -o
+  - --output
   - table
   flags:
     ids: Filters.UserIds
@@ -1969,7 +1969,7 @@ aliases:
   - ReadUsers
   - --Filters.UserIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: virtualgateway
   group: virtualgateway
@@ -1980,7 +1980,7 @@ aliases:
   command:
   - api
   - ReadVirtualGateways
-  - -o
+  - --output
   - table
   flags:
     connection_types: Filters.ConnectionTypes
@@ -2002,7 +2002,7 @@ aliases:
   - ReadVirtualGateways
   - --Filters.VirtualGatewayIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: vmgroup
   group: vmgroup
@@ -2013,7 +2013,7 @@ aliases:
   command:
   - api
   - ReadVmGroups
-  - -o
+  - --output
   - table
   flags:
     descriptions: Filters.Descriptions
@@ -2037,7 +2037,7 @@ aliases:
   - ReadVmGroups
   - --Filters.VmGroupIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: vmtemplate
   group: vmtemplate
@@ -2048,7 +2048,7 @@ aliases:
   command:
   - api
   - ReadVmTemplates
-  - -o
+  - --output
   - table
   flags:
     cpu_cores: Filters.CpuCores
@@ -2074,7 +2074,7 @@ aliases:
   - ReadVmTemplates
   - --Filters.VmTemplateIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: vmtype
   group: vmtype
@@ -2085,7 +2085,7 @@ aliases:
   command:
   - api
   - ReadVmTypes
-  - -o
+  - --output
   - table
   flags:
     bsu_optimized: Filters.BsuOptimized
@@ -2108,7 +2108,7 @@ aliases:
   - ReadVmTypes
   - --Filters.VmTypeNames
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: vm
   group: vm
@@ -2119,7 +2119,7 @@ aliases:
   command:
   - api
   - ReadVms
-  - -o
+  - --output
   - table
   flags:
     architectures: Filters.Architectures
@@ -2197,7 +2197,7 @@ aliases:
   - ReadVms
   - --Filters.VmIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: vmshealth
   group: vmshealth
@@ -2208,7 +2208,7 @@ aliases:
   command:
   - api
   - ReadVmsHealth
-  - -o
+  - --output
   - table
   flags:
     backend_vm_ids: BackendVmIds
@@ -2223,7 +2223,7 @@ aliases:
   command:
   - api
   - ReadVmsState
-  - -o
+  - --output
   - table
   flags:
     maintenance_event_codes: Filters.MaintenanceEventCodes
@@ -2242,7 +2242,7 @@ aliases:
   command:
   - api
   - ReadVolumeUpdateTasks
-  - -o
+  - --output
   - table
   flags:
     task_ids: Filters.TaskIds
@@ -2257,7 +2257,7 @@ aliases:
   - ReadVolumeUpdateTasks
   - --Filters.TaskIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: volume
   group: volume
@@ -2268,7 +2268,7 @@ aliases:
   command:
   - api
   - ReadVolumes
-  - -o
+  - --output
   - table
   flags:
     client_tokens: Filters.ClientTokens
@@ -2298,7 +2298,7 @@ aliases:
   - ReadVolumes
   - --Filters.VolumeIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
 - entity: vpnconnection
   group: vpnconnection
@@ -2309,7 +2309,7 @@ aliases:
   command:
   - api
   - ReadVpnConnections
-  - -o
+  - --output
   - table
   flags:
     bgp_asns: Filters.BgpAsns
@@ -2334,5 +2334,758 @@ aliases:
   - ReadVpnConnections
   - --Filters.VpnConnectionIds
   - '%0'
-  - -o
+  - --output
   - yaml,single
+- entity: accesskey
+  group: accesskey
+  use: delete accesskey_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteAccessKey --AccessKeyId accesskey_id
+  command:
+  - api
+  - DeleteAccessKey
+  - --AccessKeyId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadAccessKeys
+    - --Filters.AccessKeyIds
+    - '%0'
+    - --output
+    - table,single
+- entity: apiaccessrule
+  group: apiaccessrule
+  use: delete apiaccessrule_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteApiAccessRule --ApiAccessRuleId apiaccessrule_id
+  command:
+  - api
+  - DeleteApiAccessRule
+  - --ApiAccessRuleId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadApiAccessRules
+    - --Filters.ApiAccessRuleIds
+    - '%0'
+    - --output
+    - table,single
+- entity: ca
+  group: ca
+  use: delete ca_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteCa --CaId ca_id
+  command:
+  - api
+  - DeleteCa
+  - --CaId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadCas
+    - --Filters.CaIds
+    - '%0'
+    - --output
+    - table,single
+- entity: clientgateway
+  group: clientgateway
+  use: delete clientgateway_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteClientGateway --ClientGatewayId clientgateway_id
+  command:
+  - api
+  - DeleteClientGateway
+  - --ClientGatewayId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadClientGateways
+    - --Filters.ClientGatewayIds
+    - '%0'
+    - --output
+    - table,single
+- entity: dedicatedgroup
+  group: dedicatedgroup
+  use: delete dedicatedgroup_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteDedicatedGroup --DedicatedGroupId dedicatedgroup_id
+  command:
+  - api
+  - DeleteDedicatedGroup
+  - --DedicatedGroupId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadDedicatedGroups
+    - --Filters.DedicatedGroupIds
+    - '%0'
+    - --output
+    - table,single
+- entity: directlink
+  group: directlink
+  use: delete directlink_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteDirectLink --DirectLinkId directlink_id
+  command:
+  - api
+  - DeleteDirectLink
+  - --DirectLinkId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadDirectLinks
+    - --Filters.DirectLinkIds
+    - '%0'
+    - --output
+    - table,single
+- entity: directlinkinterface
+  group: directlinkinterface
+  use: delete directlinkinterface_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteDirectLinkInterface --DirectLinkInterfaceId directlinkinterface_id
+  command:
+  - api
+  - DeleteDirectLinkInterface
+  - --DirectLinkInterfaceId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadDirectLinkInterfaces
+    - --Filters.DirectLinkInterfaceIds
+    - '%0'
+    - --output
+    - table,single
+- entity: exporttask
+  group: exporttask
+  use: delete exporttask_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteExportTask --ExportTaskId exporttask_id
+  command:
+  - api
+  - DeleteExportTask
+  - --ExportTaskId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display: []
+- entity: flexiblegpu
+  group: flexiblegpu
+  use: delete flexiblegpu_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteFlexibleGpu --FlexibleGpuId flexiblegpu_id
+  command:
+  - api
+  - DeleteFlexibleGpu
+  - --FlexibleGpuId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadFlexibleGpus
+    - --Filters.FlexibleGpuIds
+    - '%0'
+    - --output
+    - table,single
+- entity: image
+  group: image
+  use: delete image_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteImage --ImageId image_id
+  command:
+  - api
+  - DeleteImage
+  - --ImageId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadImages
+    - --Filters.ImageIds
+    - '%0'
+    - --output
+    - table,single
+- entity: internetservice
+  group: internetservice
+  use: delete internetservice_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteInternetService --InternetServiceId internetservice_id
+  command:
+  - api
+  - DeleteInternetService
+  - --InternetServiceId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadInternetServices
+    - --Filters.InternetServiceIds
+    - '%0'
+    - --output
+    - table,single
+- entity: keypair
+  group: keypair
+  use: delete keypair_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteKeypair --KeypairId keypair_id
+  command:
+  - api
+  - DeleteKeypair
+  - --KeypairId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadKeypairs
+    - --Filters.KeypairIds
+    - '%0'
+    - --output
+    - table,single
+- entity: listenerrule
+  group: listenerrule
+  use: delete listenerrule_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteListenerRule --ListenerRuleName listenerrule_id
+  command:
+  - api
+  - DeleteListenerRule
+  - --ListenerRuleName
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadListenerRules
+    - --Filters.ListenerRuleNames
+    - '%0'
+    - --output
+    - table,single
+- entity: loadbalancer
+  group: loadbalancer
+  use: delete loadbalancer_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteLoadBalancer --LoadBalancerName loadbalancer_id
+  command:
+  - api
+  - DeleteLoadBalancer
+  - --LoadBalancerName
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadLoadBalancers
+    - --Filters.LoadBalancerNames
+    - '%0'
+    - --output
+    - table,single
+- entity: natservice
+  group: natservice
+  use: delete natservice_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteNatService --NatServiceId natservice_id
+  command:
+  - api
+  - DeleteNatService
+  - --NatServiceId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadNatServices
+    - --Filters.NatServiceIds
+    - '%0'
+    - --output
+    - table,single
+- entity: net
+  group: net
+  use: delete net_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteNet --NetId net_id
+  command:
+  - api
+  - DeleteNet
+  - --NetId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadNets
+    - --Filters.NetIds
+    - '%0'
+    - --output
+    - table,single
+- entity: netaccesspoint
+  group: netaccesspoint
+  use: delete netaccesspoint_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteNetAccessPoint --NetAccessPointId netaccesspoint_id
+  command:
+  - api
+  - DeleteNetAccessPoint
+  - --NetAccessPointId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadNetAccessPoints
+    - --Filters.NetAccessPointIds
+    - '%0'
+    - --output
+    - table,single
+- entity: netpeering
+  group: netpeering
+  use: delete netpeering_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteNetPeering --NetPeeringId netpeering_id
+  command:
+  - api
+  - DeleteNetPeering
+  - --NetPeeringId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadNetPeerings
+    - --Filters.NetPeeringIds
+    - '%0'
+    - --output
+    - table,single
+- entity: nic
+  group: nic
+  use: delete nic_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteNic --NicId nic_id
+  command:
+  - api
+  - DeleteNic
+  - --NicId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadNics
+    - --Filters.NicIds
+    - '%0'
+    - --output
+    - table,single
+- entity: producttype
+  group: producttype
+  use: delete producttype_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteProductType --ProductTypeId producttype_id
+  command:
+  - api
+  - DeleteProductType
+  - --ProductTypeId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadProductTypes
+    - --Filters.ProductTypeIds
+    - '%0'
+    - --output
+    - table,single
+- entity: publicip
+  group: publicip
+  use: delete publicip_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeletePublicIp --PublicIpId publicip_id
+  command:
+  - api
+  - DeletePublicIp
+  - --PublicIpId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadPublicIps
+    - --Filters.PublicIpIds
+    - '%0'
+    - --output
+    - table,single
+- entity: routetable
+  group: routetable
+  use: delete routetable_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteRouteTable --RouteTableId routetable_id
+  command:
+  - api
+  - DeleteRouteTable
+  - --RouteTableId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadRouteTables
+    - --Filters.RouteTableIds
+    - '%0'
+    - --output
+    - table,single
+- entity: securitygroup
+  group: securitygroup
+  use: delete securitygroup_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteSecurityGroup --SecurityGroupId securitygroup_id
+  command:
+  - api
+  - DeleteSecurityGroup
+  - --SecurityGroupId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadSecurityGroups
+    - --Filters.SecurityGroupIds
+    - '%0'
+    - --output
+    - table,single
+- entity: snapshot
+  group: snapshot
+  use: delete snapshot_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteSnapshot --SnapshotId snapshot_id
+  command:
+  - api
+  - DeleteSnapshot
+  - --SnapshotId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadSnapshots
+    - --Filters.SnapshotIds
+    - '%0'
+    - --output
+    - table,single
+- entity: subnet
+  group: subnet
+  use: delete subnet_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteSubnet --SubnetId subnet_id
+  command:
+  - api
+  - DeleteSubnet
+  - --SubnetId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadSubnets
+    - --Filters.SubnetIds
+    - '%0'
+    - --output
+    - table,single
+- entity: user
+  group: user
+  use: delete user_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteUser --UserName user_id
+  command:
+  - api
+  - DeleteUser
+  - --UserName
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadUsers
+    - --Filters.UserIds
+    - '%0'
+    - --output
+    - table,single
+- entity: usergroup
+  group: usergroup
+  use: delete usergroup_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteUserGroup --UserGroupName usergroup_id
+  command:
+  - api
+  - DeleteUserGroup
+  - --UserGroupName
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadUserGroups
+    - --Filters.UserGroupIds
+    - '%0'
+    - --output
+    - table,single
+- entity: virtualgateway
+  group: virtualgateway
+  use: delete virtualgateway_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteVirtualGateway --VirtualGatewayId virtualgateway_id
+  command:
+  - api
+  - DeleteVirtualGateway
+  - --VirtualGatewayId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadVirtualGateways
+    - --Filters.VirtualGatewayIds
+    - '%0'
+    - --output
+    - table,single
+- entity: vmgroup
+  group: vmgroup
+  use: delete vmgroup_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteVmGroup --VmGroupId vmgroup_id
+  command:
+  - api
+  - DeleteVmGroup
+  - --VmGroupId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadVmGroups
+    - --Filters.VmGroupIds
+    - '%0'
+    - --output
+    - table,single
+- entity: vmtemplate
+  group: vmtemplate
+  use: delete vmtemplate_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteVmTemplate --VmTemplateId vmtemplate_id
+  command:
+  - api
+  - DeleteVmTemplate
+  - --VmTemplateId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadVmTemplates
+    - --Filters.VmTemplateIds
+    - '%0'
+    - --output
+    - table,single
+- entity: vm
+  group: vm
+  use: delete vm_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteVms --VmIds vm_id
+  command:
+  - api
+  - DeleteVms
+  - --VmIds
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadVms
+    - --Filters.VmIds
+    - '%0'
+    - --output
+    - table,single
+- entity: volume
+  group: volume
+  use: delete volume_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteVolume --VolumeId volume_id
+  command:
+  - api
+  - DeleteVolume
+  - --VolumeId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadVolumes
+    - --Filters.VolumeIds
+    - '%0'
+    - --output
+    - table,single
+- entity: vpnconnection
+  group: vpnconnection
+  use: delete vpnconnection_id
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteVpnConnection --VpnConnectionId vpnconnection_id
+  command:
+  - api
+  - DeleteVpnConnection
+  - --VpnConnectionId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadVpnConnections
+    - --Filters.VpnConnectionIds
+    - '%0'
+    - --output
+    - table,single

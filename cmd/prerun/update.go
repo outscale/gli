@@ -2,13 +2,14 @@ package prerun
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"time"
 
-	"github.com/fatih/color"
 	"github.com/mattn/go-isatty"
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/style"
 	"github.com/outscale/octl/pkg/update"
 	"github.com/outscale/octl/pkg/version"
 	"github.com/spf13/cobra"
@@ -17,6 +18,9 @@ import (
 
 func CheckUpdate(cmd *cobra.Command, args []string) {
 	if !isatty.IsTerminal(os.Stdout.Fd()) {
+		return
+	}
+	if no, _ := cmd.Flags().GetBool("no-upgrade"); no {
 		return
 	}
 	ctx := context.Background()
@@ -31,5 +35,5 @@ func CheckUpdate(cmd *cobra.Command, args []string) {
 	if latest == "" || semver.Compare(version.Version, latest) >= 0 {
 		return
 	}
-	_, _ = color.New(color.FgGreen).Add(color.Bold).Printf("⬆️ New version %s detected - call octl update to update\n", latest)
+	_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Yellow, "⬆️ New version %s detected - call octl update to update", latest))
 }

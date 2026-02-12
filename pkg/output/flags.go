@@ -20,6 +20,8 @@ func NewFromFlags(fs *pflag.FlagSet, c config.Call, e config.Entity) (Output, er
 	out, _ := fs.GetString("output")
 	out, param, _ := strings.Cut(out, ",")
 	switch strings.ToLower(out) {
+	case "none":
+		return None{}, nil
 	case "json":
 		return content{content: c.Content, output: JSON{}, single: param == "single"}, nil
 	case "yaml":
@@ -35,7 +37,7 @@ func NewFromFlags(fs *pflag.FlagSet, c config.Call, e config.Entity) (Output, er
 		if len(cols) == 0 {
 			return content{content: c.Content, output: YAML{}, single: param == "single"}, nil
 		}
-		return content{content: c.Content, output: Table{Columns: cols}}, nil
+		return content{content: c.Content, output: Table{Columns: cols}, single: param == "single"}, nil
 	default:
 		return Default{}, nil
 	}

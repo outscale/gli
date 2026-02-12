@@ -19,6 +19,7 @@ import (
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/errors"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
+	"github.com/samber/lo"
 )
 
 var priorityFields = []string{
@@ -68,6 +69,18 @@ func main() {
 			}
 		}
 	}
+	for i := range ct.NumMethod() {
+		m := ct.Method(i)
+		if strings.HasSuffix(m.Name, "Raw") || strings.HasSuffix(m.Name, "WithBody") || m.Type.NumOut() != 2 {
+			continue
+		}
+		if strings.HasPrefix(m.Name, "Delete") {
+			_, err = buildDeleteCommand(&base, m)
+			if err != nil {
+				errors.ExitErr(err)
+			}
+		}
+	}
 	fd, err := os.Create(dst) //nolint:gosec
 	if err != nil {
 		errors.ExitErr(err)
@@ -78,14 +91,19 @@ func main() {
 	}
 }
 
-func buildReadCommand(cfg *config.Config, m reflect.Method) (bool, error) {
-	typesName := strings.TrimPrefix(m.Name, "Read")
-	typeName := strings.TrimSuffix(typesName, "s")
+func typeNames(m reflect.Method, prefix string) (entity, typeName, typesName string) {
+	typesName = strings.TrimPrefix(m.Name, prefix)
+	typeName = strings.TrimSuffix(typesName, "s")
 	if strings.HasSuffix(typesName, "ies") {
 		typeName = strings.TrimSuffix(typesName, "ies") + "y"
 	}
-	fmt.Println("***", typeName)
-	entity := strings.ToLower(typeName)
+	entity = strings.ToLower(typeName)
+	return
+}
+
+func buildReadCommand(cfg *config.Config, m reflect.Method) (bool, error) {
+	entity, typeName, typesName := typeNames(m, "Read")
+	fmt.Println("*** Read ", typeName)
 	typeNameList := []string{typeName}
 
 	// Entity & columns, based on response
@@ -206,7 +224,7 @@ func buildReadCommand(cfg *config.Config, m reflect.Method) (bool, error) {
 		Command: []string{
 			"api",
 			m.Name,
-			"-o", format,
+			"--output", format,
 		},
 		Flags: flags,
 	})
@@ -240,11 +258,63 @@ func buildReadCommand(cfg *config.Config, m reflect.Method) (bool, error) {
 					"api",
 					m.Name,
 					"--Filters." + fids.Name, "%0",
-					"-o", "yaml,single",
+					"--output", "yaml,single",
 				},
 			})
 		}
 	}
+
+	return true, nil
+}
+
+func buildDeleteCommand(cfg *config.Config, m reflect.Method) (bool, error) {
+	entity, typeName, _ := typeNames(m, "Delete")
+	fmt.Println("*** Delete ", typeName)
+
+	// Guess id filter
+	req := m.Type.In(2)
+	fids, found := req.FieldByName(typeName + "Id")
+	if !found {
+		fids, found = req.FieldByName(typeName + "Ids")
+	}
+	if !found {
+		fids, found = req.FieldByName(typeName + "Name")
+	}
+	if !found {
+		fids, found = req.FieldByName(typeName + "Names")
+	}
+	if !found {
+		return false, nil
+	}
+	fmt.Println("delete", typeName, fids.Name)
+	var displayCmd []string
+	for _, a := range cfg.Aliases {
+		if a.Entity == entity && strings.HasPrefix(a.Use, "describe") {
+			displayCmd = lo.Map(a.Command, func(arg string, _ int) string {
+				if arg == "yaml,single" {
+					return "table,single"
+				}
+				return arg
+			})
+		}
+	}
+	cfg.Aliases = append(cfg.Aliases, config.Alias{
+		Entity:  entity,
+		Use:     "delete " + entity + "_id",
+		Aliases: []string{"del", "rm"},
+		Group:   entity,
+		Short:   "alias for api " + m.Name + " --" + fids.Name + " " + entity + "_id",
+		Command: []string{
+			"api",
+			m.Name,
+			"--" + fids.Name, "%0",
+			"--output", "none",
+		},
+		Prompt: &config.Prompt{
+			Action:         config.ActionDelete,
+			DisplayCommand: displayCmd,
+		},
+	})
 
 	return true, nil
 }

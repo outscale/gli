@@ -6,13 +6,14 @@ SPDX-License-Identifier: BSD-3-Clause
 package errors
 
 import (
+	"fmt"
 	"os"
 
-	"github.com/fatih/color"
+	"github.com/outscale/octl/pkg/style"
 )
 
 func Exit(code int, format string, a ...any) {
-	_, _ = color.New(color.FgRed).Add(color.Bold).Fprintf(os.Stderr, format, a...)
+	_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Error, "❌ "+format, a...))
 	os.Exit(code)
 }
 

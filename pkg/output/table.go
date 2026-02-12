@@ -13,40 +13,38 @@ import (
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/lipgloss/table"
 	"github.com/outscale/octl/pkg/config"
+	"github.com/outscale/octl/pkg/style"
 	"github.com/samber/lo"
 )
 
 var (
-	green  = lipgloss.NewStyle().Foreground(lipgloss.Color("113"))
-	yellow = lipgloss.NewStyle().Foreground(lipgloss.Color("184"))
-	red    = lipgloss.NewStyle().Foreground(lipgloss.Color("202"))
 	colors = map[string]map[string]lipgloss.Style{
 		"State": map[string]lipgloss.Style{
-			"running":   green,
-			"available": green,
-			"ACTIVE":    green,
-			"InService": green,
-			"attached":  green,
+			"running":   style.Green,
+			"available": style.Green,
+			"ACTIVE":    style.Green,
+			"InService": style.Green,
+			"attached":  style.Green,
 
-			"pending":       yellow,
-			"stopping":      yellow,
-			"stopped":       yellow,
-			"deleting":      yellow,
-			"in-use":        yellow,
-			"INACTIVE":      yellow,
-			"disabled":      yellow,
-			"confirming":    yellow,
-			"allocated":     yellow,
-			"attaching":     yellow,
-			"detaching":     yellow,
-			"shutting-down": yellow,
+			"pending":       style.Yellow,
+			"stopping":      style.Yellow,
+			"stopped":       style.Yellow,
+			"deleting":      style.Yellow,
+			"in-use":        style.Yellow,
+			"INACTIVE":      style.Yellow,
+			"disabled":      style.Yellow,
+			"confirming":    style.Yellow,
+			"allocated":     style.Yellow,
+			"attaching":     style.Yellow,
+			"detaching":     style.Yellow,
+			"shutting-down": style.Yellow,
 
-			"deleted":      red,
-			"OutOfService": red,
-			"rejected":     red,
-			"expired":      red,
-			"failed":       red,
-			"terminated":   red,
+			"deleted":      style.Red,
+			"OutOfService": style.Red,
+			"rejected":     style.Red,
+			"expired":      style.Red,
+			"failed":       style.Red,
+			"terminated":   style.Red,
 		},
 	}
 )

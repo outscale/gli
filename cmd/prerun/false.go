@@ -14,6 +14,6 @@ func CheckFalse(cmd *cobra.Command, args []string) {
 		return
 	}
 	if slices.Contains(args, "false") {
-		errors.Warn("⚠️ --flag false does not work, use --flag=false")
+		errors.Warn("--flag false does not work, use --flag=false")
 	}
 }

@@ -8,11 +8,12 @@ SPDX-License-Identifier: BSD-3-Clause
 package debug
 
 import (
+	"fmt"
 	"os"
 
-	"github.com/fatih/color"
+	"github.com/outscale/octl/pkg/style"
 )
 
 func Println(s ...any) {
-	_, _ = color.New(color.Faint).Fprintln(os.Stderr, s...)
+	_, _ = fmt.Fprintln(os.Stderr, style.Faint.Render(s...))
 }

@@ -53,8 +53,8 @@ var rootCmd = &cobra.Command{
 		}
 		_ = cmd.Help()
 	},
-	SilenceErrors: true, // do not display errors when an error occured, we do it
-	SilenceUsage:  true, // do not display usage when an error occured, the user will need to call -h
+	SilenceErrors: true, // do not display errors when an error occurred, we do it
+	SilenceUsage:  true, // do not display usage when an error occurred, the user will need to call -h
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -75,9 +75,11 @@ func init() {
 	rootCmd.PersistentFlags().String("profile", "", fmt.Sprintf("Profile to use in profile file (by default, %q)", profile.DefaultProfile))
 	rootCmd.PersistentFlags().String("template", "", "JSON template for query body")
 	rootCmd.PersistentFlags().StringP("columns", "c", "", "columns to display")
-	rootCmd.PersistentFlags().StringP("output", "o", "", "output format (raw, json, yaml, table)")
+	rootCmd.PersistentFlags().StringP("output", "o", "", "output format (raw, json, yaml, table, none)")
+	rootCmd.PersistentFlags().Bool("no-upgrade", false, "do not check for new versions")
+	rootCmd.PersistentFlags().BoolP("yes", "y", false, "answer yes to all prompts")
 
 	_ = rootCmd.RegisterFlagCompletionFunc("output", func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
-		return []cobra.Completion{"raw", "json", "yaml", "table"}, cobra.ShellCompDirectiveDefault
+		return []cobra.Completion{"raw", "json", "yaml", "table", "none"}, cobra.ShellCompDirectiveDefault
 	})
 }

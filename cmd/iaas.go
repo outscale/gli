@@ -6,7 +6,6 @@ SPDX-License-Identifier: BSD-3-Clause
 package cmd
 
 import (
-	"fmt"
 	"reflect"
 	"strings"
 
@@ -34,7 +33,7 @@ func init() {
 	rootCmd.AddCommand(iaasCmd)
 	spec, err := osc.GetSwagger()
 	if err != nil {
-		errors.Warn(fmt.Sprintf("⚠️ unable to load OpenAPI spec: %v", err))
+		errors.Warn("Unable to load OpenAPI spec: %v", err)
 	}
 	b := builder.NewBuilder[osc.Client]("iaas", spec)
 	b.BuildAPI(iaasCmd, func(m reflect.Method) bool {
