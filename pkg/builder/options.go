@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/outscale/gli/pkg/debug"
+	"github.com/outscale/octl/pkg/debug"
 	"github.com/samber/lo"
 )
 

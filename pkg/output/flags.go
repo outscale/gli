@@ -8,7 +8,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/outscale/gli/pkg/config"
+	"github.com/outscale/octl/pkg/config"
 	"github.com/spf13/pflag"
 )
 

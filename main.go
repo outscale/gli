@@ -6,9 +6,9 @@ SPDX-License-Identifier: BSD-3-Clause
 package main
 
 import (
-	"github.com/outscale/gli/cmd"
-	"github.com/outscale/gli/pkg/errors"
-	"github.com/outscale/gli/pkg/runner"
+	"github.com/outscale/octl/cmd"
+	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/runner"
 )
 
 func main() {

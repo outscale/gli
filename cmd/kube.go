@@ -10,13 +10,13 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/outscale/gli/pkg/builder"
-	"github.com/outscale/gli/pkg/config"
-	"github.com/outscale/gli/pkg/debug"
-	"github.com/outscale/gli/pkg/errors"
-	"github.com/outscale/gli/pkg/runner"
-	"github.com/outscale/gli/pkg/sdk"
-	"github.com/outscale/gli/pkg/version"
+	"github.com/outscale/octl/pkg/builder"
+	"github.com/outscale/octl/pkg/config"
+	"github.com/outscale/octl/pkg/debug"
+	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/runner"
+	"github.com/outscale/octl/pkg/sdk"
+	"github.com/outscale/octl/pkg/version"
 	"github.com/outscale/osc-sdk-go/v3/pkg/middleware"
 	"github.com/outscale/osc-sdk-go/v3/pkg/oks"
 	"github.com/outscale/osc-sdk-go/v3/pkg/profile"
@@ -52,7 +52,7 @@ func kube(cmd *cobra.Command, args []string) {
 	if err != nil {
 		errors.ExitErr(err)
 	}
-	ua := "gli/" + version.Version
+	ua := "octl/" + version.Version
 	opts := []middleware.MiddlewareChainOption{options.WithUseragent(ua)}
 	if verbose, _ := cmd.Flags().GetBool("verbose"); verbose {
 		opts = append(opts, options.WithLogging(sdk.VerboseLogger{}))

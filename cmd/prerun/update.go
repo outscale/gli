@@ -7,10 +7,10 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/mattn/go-isatty"
-	"github.com/outscale/gli/pkg/debug"
-	"github.com/outscale/gli/pkg/errors"
-	"github.com/outscale/gli/pkg/update"
-	"github.com/outscale/gli/pkg/version"
+	"github.com/outscale/octl/pkg/debug"
+	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/update"
+	"github.com/outscale/octl/pkg/version"
 	"github.com/spf13/cobra"
 	"golang.org/x/mod/semver"
 )
@@ -31,5 +31,5 @@ func CheckUpdate(cmd *cobra.Command, args []string) {
 	if latest == "" || semver.Compare(version.Version, latest) >= 0 {
 		return
 	}
-	_, _ = color.New(color.FgGreen).Add(color.Bold).Printf("⬆️ New version %s detected - call gli update to update\n", latest)
+	_, _ = color.New(color.FgGreen).Add(color.Bold).Printf("⬆️ New version %s detected - call octl update to update\n", latest)
 }

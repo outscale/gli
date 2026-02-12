@@ -9,7 +9,7 @@ import (
 	"embed"
 
 	"github.com/goccy/go-yaml"
-	"github.com/outscale/gli/pkg/errors"
+	"github.com/outscale/octl/pkg/errors"
 )
 
 //go:generate go run generate/iaas/main.go generate/iaas/defaults.yaml defaults_iaas.yaml

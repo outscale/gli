@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/outscale/gli/pkg/flags"
+	"github.com/outscale/octl/pkg/flags"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

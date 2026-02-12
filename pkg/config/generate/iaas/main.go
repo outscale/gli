@@ -16,8 +16,8 @@ import (
 	"dario.cat/mergo"
 	"github.com/goccy/go-yaml"
 	"github.com/iancoleman/strcase"
-	"github.com/outscale/gli/pkg/config"
-	"github.com/outscale/gli/pkg/errors"
+	"github.com/outscale/octl/pkg/config"
+	"github.com/outscale/octl/pkg/errors"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
 )
 

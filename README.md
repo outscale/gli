@@ -1,4 +1,4 @@
-## **GLI, An Experimental CLI for Outscale, written in Go**
+## **octl, An Experimental CLI for Outscale, written in Go**
 
 [![Project Stage](https://docs.outscale.com/fr/userguide/_images/Project-Sandbox-yellow.svg)](https://docs.outscale.com/en/userguide/Open-Source-Projects.html) [![](https://dcbadge.limes.pink/api/server/HUVtY5gT6s?style=flat&theme=default-inverted)](https://discord.gg/HUVtY5gT6s)
 
@@ -7,7 +7,7 @@
 ## 🌐 Links
 
 - Documentation: <https://docs.outscale.com/en/>
-- Project website: <https://github.com/outscale/gli>
+- Project website: <https://github.com/outscale/octl>
 - Join our community on [Discord](https://discord.gg/HUVtY5gT6s)
 
 ---
@@ -26,7 +26,7 @@
 
 ## 🧭 Overview
 
-**GLI** is an experimental CLI for the Outscale APIs, written in Go.
+**octl** is an experimental CLI for the Outscale APIs, written in Go.
 
 It supports:
 * installation via a single static binary,
@@ -48,32 +48,32 @@ It currenty only supports iaas api, but other Outscale APIs are planned.
 
 ## ⚙ Installation
 
-Download the latest binary from the [Releases page](https://github.com/outscale/gli/releases).
+Download the latest binary from the [Releases page](https://github.com/outscale/octl/releases).
 
 ### Autocompletion configuration
 
 #### Bash
 
 ```shell
-gli completion bash > gli-completion.bash
-sudo cp gli-completion.bash /etc/bash_completion.d/
+octl completion bash > octl-completion.bash
+sudo cp octl-completion.bash /etc/bash_completion.d/
 source ~/.bashrc
 ```
 
 #### Zsh
 
 ```shell
-gli completion zsh > _gli
+octl completion zsh > _octl
 sudo mkdir -p /usr/local/share/zsh/site-functions
-sudo cp _gli /usr/local/share/zsh/site-functions/
+sudo cp _octl /usr/local/share/zsh/site-functions/
 source ~/.zshrc
 ```
 
 #### Fish
 
 ```shell
-gli completion fish > gli.fish
-sudo cp gli.fish /usr/share/fish/completions/
+octl completion fish > octl.fish
+sudo cp octl.fish /usr/share/fish/completions/
 source ~/.config/fish/config.fish
 ```
 
@@ -117,7 +117,7 @@ Use `OSC_CONFIG_FILE` to define an alternate config file and `OSC_PROFILE` an al
 ## 🚀 Usage
 
 ```bash
-gli <command> <command>
+octl <command> <command>
 ```
 
 ### Commands
@@ -132,7 +132,7 @@ gli <command> <command>
 
 | Option | Default | Allowed values | Description |
 | ------ | ------- | -------------- | ----------- |
-| `--version` | | | Display gli version |
+| `--version` | | | Display octl version |
 | `-v, --verbose` | | | Dump HTTP request and response |
 | `-h, --help` | | | Help about a command |
 | `--jq` | | | jq-like output filter |
@@ -153,9 +153,9 @@ gli <command> <command>
 
 High level commands are available:
 
-* `gli iaas <entity> list` lists all entities using the `table` format:
+* `octl iaas <entity> list` lists all entities using the `table` format:
 ```shell
-gli iaas volume list
+octl iaas volume list
 ┌──────────────┬──────────┬───────────┬───────────────┬──────┬──────┐
 │      ID      │   Type   │   State   │ SubregionName │ Size │ Iops │
 ├──────────────┼──────────┼───────────┼───────────────┼──────┼──────┤
@@ -164,9 +164,9 @@ gli iaas volume list
 │ vol-baz      │ gp2      │ available │ eu-west-2a    │ 4    │ 100  │
 └──────────────┴──────────┴───────────┴───────────────┴──────┴──────┘
 ```
-* `gli iaas <entity> describe <id>` displays an entity using the `yaml` format:
+* `octl iaas <entity> describe <id>` displays an entity using the `yaml` format:
 ```shell
-gli iaas volume describe vol-foo
+octl iaas volume describe vol-foo
 CreationDate: '2024-12-17T11:07:58.757Z'
 Iops: 5000
 LinkedVolumes:
@@ -185,7 +185,7 @@ VolumeType: io1
 
 Columns can be changed:
 ```shell
-gli iaas vm list --columns ID:VmId,DNS:PrivateDnsName
+octl iaas vm list --columns ID:VmId,DNS:PrivateDnsName
 ┌────────────┬───────────────────────────────────────────┐
 │     ID     │                    DNS                    │
 ├────────────┼───────────────────────────────────────────┤
@@ -199,7 +199,7 @@ gli iaas vm list --columns ID:VmId,DNS:PrivateDnsName
 
 The API can be directly called, with a `raw` output:
 ```shell
-gli iaas api ReadVms --Filters.VmStateNames running
+octl iaas api ReadVms --Filters.VmStateNames running
 ```
 
 ### Flag syntax
@@ -218,13 +218,13 @@ The flag syntax is:
 Commands may be chained, and attributes returned by a command can be reinjected in a subsequent command, using Go template syntax:
 
 ```shell
-gli iaas api CreateNic --SubnetId subnet-foo | gli iaas api LinkNic -v --NicId {{.Nic.NicId}} --VmId i-foo --DeviceNumber 7
+octl iaas api CreateNic --SubnetId subnet-foo | octl iaas api LinkNic -v --NicId {{.Nic.NicId}} --VmId i-foo --DeviceNumber 7
 ```
 
 ### Sending raw JSON
 
 ```shell
-echo '{"SubnetId":"subnet-foo"}' | gli iaas api CreateNic
+echo '{"SubnetId":"subnet-foo"}' | octl iaas api CreateNic
 ```
 
 ### Templating
@@ -233,17 +233,17 @@ A JSON document can be used as a template, with additional config using flags.
 
 Either from stdin:
 ```shell
-echo '{"NetId":"vpc-foo"}' | gli iaas api CreateSubnet --IpRange 10.0.1.0/24
+echo '{"NetId":"vpc-foo"}' | octl iaas api CreateSubnet --IpRange 10.0.1.0/24
 ```
 Or from a file:
 ```shell
-gli iaas api CreateSubnet --IpRange 10.0.1.0/24 --template subnet.json
+octl iaas api CreateSubnet --IpRange 10.0.1.0/24 --template subnet.json
 ```
 
 ### Using jq filters
 
 ```shell
-gli iaas api ReadVms --Filters.VmStateNames running --jq ".Vms[].VmId"
+octl iaas api ReadVms --Filters.VmStateNames running --jq ".Vms[].VmId"
 ```
 
 > Note: `--jq` is not currently compatible with `--output`
@@ -251,16 +251,16 @@ gli iaas api ReadVms --Filters.VmStateNames running --jq ".Vms[].VmId"
 ### Self updating
 
 ```shell
-gli update
+octl update
 ```
 
-> This requires write access to the binary. If `gli update` does not work, you will need to download the binary from the [latest release](./releases/latest).
+> This requires write access to the binary. If `octl update` does not work, you will need to download the binary from the [latest release](./releases/latest).
 
 ---
 
 ## 📜 License
 
-**GLI** is released under the BSD 3-Clause license.
+**octl** is released under the BSD 3-Clause license.
 
 © 2026 Outscale SAS
 
