@@ -15,12 +15,12 @@ import (
 
 	"github.com/google/go-github/v82/github"
 	"github.com/minio/selfupdate"
-	"github.com/outscale/gli/pkg/debug"
+	"github.com/outscale/octl/pkg/debug"
 )
 
 func latestRelease(ctx context.Context) (*github.RepositoryRelease, error) {
 	client := github.NewClient(nil)
-	rel, _, err := client.Repositories.GetLatestRelease(ctx, "outscale", "gli")
+	rel, _, err := client.Repositories.GetLatestRelease(ctx, "outscale", "octl")
 	if err != nil {
 		return nil, fmt.Errorf("github: %w", err)
 	}

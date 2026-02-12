@@ -30,7 +30,7 @@ jobs:
         args: --timeout=300s
         only-new-issues: true
     - name: 📦 Build
-      run: go build -o gli main.go
+      run: go build -o octl main.go
   unit:
     runs-on: [self-hosted, linux, eu-west-2]
     steps:

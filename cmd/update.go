@@ -9,15 +9,15 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/outscale/gli/pkg/errors"
-	"github.com/outscale/gli/pkg/update"
+	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/update"
 	"github.com/spf13/cobra"
 )
 
 // updateCmd represents the update command
 var updateCmd = &cobra.Command{
 	Use:   "update",
-	Short: "Update gli to the latest version",
+	Short: "Update octl to the latest version",
 	Run: func(cmd *cobra.Command, args []string) {
 		err := update.Update(context.Background())
 		if err != nil {

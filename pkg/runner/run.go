@@ -16,10 +16,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/outscale/gli/pkg/config"
-	"github.com/outscale/gli/pkg/debug"
-	"github.com/outscale/gli/pkg/flags"
-	"github.com/outscale/gli/pkg/output"
+	"github.com/outscale/octl/pkg/config"
+	"github.com/outscale/octl/pkg/debug"
+	"github.com/outscale/octl/pkg/flags"
+	"github.com/outscale/octl/pkg/output"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )

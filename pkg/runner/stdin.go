@@ -15,8 +15,8 @@ import (
 	"text/template"
 
 	"github.com/mattn/go-isatty"
-	"github.com/outscale/gli/pkg/debug"
-	"github.com/outscale/gli/pkg/errors"
+	"github.com/outscale/octl/pkg/debug"
+	"github.com/outscale/octl/pkg/errors"
 )
 
 var (

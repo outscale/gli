@@ -8,10 +8,10 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/fatih/color"
-	"github.com/outscale/gli/cmd/prerun"
-	"github.com/outscale/gli/pkg/errors"
-	"github.com/outscale/gli/pkg/version"
+	"github.com/charmbracelet/lipgloss"
+	"github.com/outscale/octl/cmd/prerun"
+	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/version"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
 	"github.com/outscale/osc-sdk-go/v3/pkg/profile"
 	sdkversion "github.com/outscale/osc-sdk-go/v3/pkg/version"
@@ -19,35 +19,34 @@ import (
 )
 
 var (
-	a = color.RGB(174, 86, 207).Sprint
-	b = color.RGB(35, 48, 182).Sprint
-	c = color.RGB(23, 167, 238).Sprint
-	d = color.RGB(24, 215, 89).Sprint
-	e = color.RGB(241, 241, 57).Sprint
-	// f = color.RGB(246, 104, 60).Sprint
+	a = lipgloss.NewStyle().Foreground(lipgloss.Color("#AE56CF")).Render
+	b = lipgloss.NewStyle().Foreground(lipgloss.Color("#2330B6")).Render
+	c = lipgloss.NewStyle().Foreground(lipgloss.Color("#17A7EE")).Render
+	d = lipgloss.NewStyle().Foreground(lipgloss.Color("#18D759")).Render
+	e = lipgloss.NewStyle().Foreground(lipgloss.Color("#F1F139")).Render
+	// f = lipgloss.NewStyle().Foreground(lipgloss.Color("#F6683C")).Render
 )
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "gli",
+	Use:   "octl",
 	Short: "An eperimental CLI for Outscale services",
-	Long: a(`   ______   __       ____
-  / ____/  / /      /  _/
- / / __   / /       / /
-/ /_/ /  / /___   _/ /
-\____/  /_____/  /___/
-
-`) + b(`One CLI to rule them all,
-`) + c(`one CLI to find them,
-`) + d(`one CLI to bring them all
-`) + e(`and in the terminal bind them.`),
+	Long: a(`                    __     __
+  ____     _____   / /_   / /
+ / __ \   / ___/  / __/  / / 
+/ /_/ /  / /__   / /_   / /  
+\____/   \___/   \__/  /_/`) + `   
+` + b(`One CLI to rule them all,`) + `
+` + c(`one CLI to find them,`) + `
+` + d(`one CLI to bring them all`) + `
+` + e(`and in the terminal bind them.`),
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 		prerun.CheckFalse(cmd, args)
 		prerun.CheckUpdate(cmd, args)
 	},
 	Run: func(cmd *cobra.Command, _ []string) {
 		if b, _ := cmd.Flags().GetBool("version"); b {
-			fmt.Printf("gli version %s\n", version.Version)
+			fmt.Printf("octl version %s\n", version.Version)
 			fmt.Printf("based on Go SDK %s\n", sdkversion.Version)
 			fmt.Printf("Providers:\n* iaas: %s\n", osc.Version)
 			return

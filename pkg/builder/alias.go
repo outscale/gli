@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/outscale/gli/pkg/config"
-	"github.com/outscale/gli/pkg/errors"
+	"github.com/outscale/octl/pkg/config"
+	"github.com/outscale/octl/pkg/errors"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -19,7 +19,7 @@ import (
 func runAlias(provider string, a config.Alias, rootCmd *cobra.Command) func(cmd *cobra.Command, args []string) {
 	return func(cmd *cobra.Command, args []string) {
 		nargs := make([]string, 2, len(a.Command)+2)
-		nargs[0] = "gli"
+		nargs[0] = "octl"
 		nargs[1] = provider
 		for _, arg := range a.Command {
 			if !strings.HasPrefix(arg, "%") {

@@ -3,9 +3,9 @@ package output_test
 import (
 	"testing"
 
-	"github.com/outscale/gli/pkg/config"
-	"github.com/outscale/gli/pkg/output"
 	"github.com/outscale/goutils/sdk/ptr"
+	"github.com/outscale/octl/pkg/config"
+	"github.com/outscale/octl/pkg/output"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

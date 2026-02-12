@@ -1,4 +1,4 @@
-module github.com/outscale/gli
+module github.com/outscale/octl
 
 go 1.25.3
 

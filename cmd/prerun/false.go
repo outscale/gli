@@ -5,7 +5,7 @@ import (
 	"slices"
 
 	"github.com/mattn/go-isatty"
-	"github.com/outscale/gli/pkg/errors"
+	"github.com/outscale/octl/pkg/errors"
 	"github.com/spf13/cobra"
 )
 

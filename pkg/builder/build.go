@@ -12,9 +12,9 @@ import (
 	"time"
 
 	"github.com/getkin/kin-openapi/openapi3"
-	"github.com/outscale/gli/pkg/config"
-	"github.com/outscale/gli/pkg/debug"
-	"github.com/outscale/gli/pkg/flags"
+	"github.com/outscale/octl/pkg/config"
+	"github.com/outscale/octl/pkg/debug"
+	"github.com/outscale/octl/pkg/flags"
 	"github.com/outscale/osc-sdk-go/v3/pkg/iso8601"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"

@@ -10,7 +10,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/outscale/gli/pkg/config"
+	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/osc-sdk-go/v3/pkg/iso8601"
 )
 

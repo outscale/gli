@@ -12,7 +12,7 @@ import (
 
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/lipgloss/table"
-	"github.com/outscale/gli/pkg/config"
+	"github.com/outscale/octl/pkg/config"
 	"github.com/samber/lo"
 )
 
