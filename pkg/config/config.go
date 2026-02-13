@@ -45,7 +45,7 @@ func (c *Column) Get(v any) (any, error) {
 type Columns []Column
 
 func ParseColumns(s string) Columns {
-	ss := strings.Split(s, ",")
+	ss := strings.Split(s, "|")
 	cs := make(Columns, 0, len(ss))
 	for _, s := range ss {
 		title, content, found := strings.Cut(s, ":")

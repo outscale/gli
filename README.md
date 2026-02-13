@@ -140,7 +140,7 @@ octl <command> <command>
 | `--config` | `~/.osc/config.json` | | config file path |
 | `--profile` | `default` | | profile name |
 | `--output` | | `raw`, `json`, `yaml`, `table` | output format |
-| `--columns` | | | columns to display in a table (`title:field,title:field`) |
+| `--columns` | | | columns to display in a table |
 
 ### Output formats
 
@@ -183,9 +183,9 @@ VolumeId: vol-foo
 VolumeType: io1
 ```
 
-Columns can be changed:
+Columns can be replaced:
 ```shell
-octl iaas vm list --columns ID:VmId,DNS:PrivateDnsName
+octl iaas vm list --columns "ID:VmId|DNS:PrivateDnsName"
 ┌────────────┬───────────────────────────────────────────┐
 │     ID     │                    DNS                    │
 ├────────────┼───────────────────────────────────────────┤
@@ -194,6 +194,17 @@ octl iaas vm list --columns ID:VmId,DNS:PrivateDnsName
 │ i-baz      │ ip-10-0-4-143.eu-west-2.compute.internal  │
 └────────────┴───────────────────────────────────────────┘
 ```
+
+Columns can be added to the standard columns:
+```shell
+octl iaas vm list --columns +DNS:PrivateDnsName
+```
+
+Column content is defined with the [expr language](https://expr-lang.org/docs/language-definition). To display a tag value:
+```shell
+octl iaas vm list --columns "+tag:find(Tags, #?.Key == \"Name\")?.Value"
+```
+
 
 ### API access
 

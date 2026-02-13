@@ -30,7 +30,13 @@ func NewFromFlags(fs *pflag.FlagSet, c config.Call, e config.Entity) (Output, er
 		var cols config.Columns
 		fcols, _ := fs.GetString("columns")
 		if fcols != "" {
-			cols = config.ParseColumns(fcols)
+			add := strings.HasPrefix(fcols, "+")
+			pfcols := config.ParseColumns(strings.TrimPrefix(fcols, "+"))
+			if add {
+				cols = append(slices.Clone(e.Columns), pfcols...)
+			} else {
+				cols = pfcols
+			}
 		} else {
 			cols = slices.Clone(e.Columns)
 		}
