@@ -12,7 +12,7 @@ import (
 	"github.com/charmbracelet/huh"
 	"github.com/mattn/go-isatty"
 	"github.com/outscale/octl/pkg/config"
-	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/style"
 	"github.com/spf13/cobra"
 )
@@ -33,7 +33,7 @@ func confirm(action config.Action, display, run func(cmd *cobra.Command, args []
 			return
 		}
 		if !isatty.IsTerminal(os.Stdout.Fd()) {
-			errors.Exit(1, "unable to confirm action, aborting. Add -y to skip confirmation prompt")
+			messages.Exit(1, "unable to confirm action, aborting. Add -y to skip confirmation prompt")
 		}
 		if display != nil {
 			display(cmd, args)
@@ -49,7 +49,7 @@ func confirm(action config.Action, display, run func(cmd *cobra.Command, args []
 			),
 		).WithTheme(style.Theme()).Run()
 		if err != nil {
-			errors.ExitErr(err)
+			messages.ExitErr(err)
 		}
 		if yes {
 			run(cmd, args)

@@ -17,7 +17,7 @@ import (
 	"github.com/goccy/go-yaml"
 	"github.com/iancoleman/strcase"
 	"github.com/outscale/octl/pkg/config"
-	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
 	"github.com/samber/lo"
 )
@@ -43,11 +43,11 @@ func main() {
 	var base config.Config
 	data, err := os.ReadFile(src) //nolint:gosec
 	if err != nil {
-		errors.ExitErr(err)
+		messages.ExitErr(err)
 	}
 	err = yaml.Unmarshal(data, &base)
 	if err != nil {
-		errors.ExitErr(err)
+		messages.ExitErr(err)
 	}
 	if base.Calls == nil {
 		base.Calls = map[string]config.Call{}
@@ -65,7 +65,7 @@ func main() {
 		if strings.HasPrefix(m.Name, "Read") {
 			_, err := buildReadCommand(&base, m)
 			if err != nil {
-				errors.ExitErr(err)
+				messages.ExitErr(err)
 			}
 		}
 	}
@@ -77,17 +77,17 @@ func main() {
 		if strings.HasPrefix(m.Name, "Delete") {
 			_, err = buildDeleteCommand(&base, m)
 			if err != nil {
-				errors.ExitErr(err)
+				messages.ExitErr(err)
 			}
 		}
 	}
 	fd, err := os.Create(dst) //nolint:gosec
 	if err != nil {
-		errors.ExitErr(err)
+		messages.ExitErr(err)
 	}
 	err = yaml.NewEncoder(fd, yaml.UseSingleQuote(true)).Encode(base)
 	if err != nil {
-		errors.ExitErr(err)
+		messages.ExitErr(err)
 	}
 }
 

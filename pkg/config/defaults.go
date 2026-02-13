@@ -9,7 +9,7 @@ import (
 	"embed"
 
 	"github.com/goccy/go-yaml"
-	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/messages"
 )
 
 //go:generate go run generate/iaas/main.go generate/iaas/defaults.yaml defaults_iaas.yaml
@@ -23,7 +23,7 @@ func Defaults() Configs {
 		var cfg Config
 		err := yaml.Unmarshal(data, &cfg)
 		if err != nil {
-			errors.ExitErr(err)
+			messages.ExitErr(err)
 		}
 		defaults[provider] = cfg
 	}

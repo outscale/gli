@@ -12,7 +12,7 @@ import (
 	"strings"
 
 	"github.com/outscale/octl/pkg/config"
-	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/messages"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -94,7 +94,7 @@ func runFunc(provider string, command []string, flags map[string]string, cmd *co
 			}
 			idx, err := strconv.Atoi(arg[1:])
 			if err != nil {
-				errors.Warn(err.Error())
+				messages.Warn(err.Error())
 				continue
 			}
 			if idx >= len(args) {
@@ -104,13 +104,13 @@ func runFunc(provider string, command []string, flags map[string]string, cmd *co
 			nargs = append(nargs, args[idx])
 		}
 		nargs = append(nargs, userArgs...)
-		errors.Info("Resolving alias to %v", nargs)
+		messages.Info("Resolving alias to %v", nargs)
 		// no need to check for an update a second time
 		nargs = append(nargs, "--no-upgrade")
 		os.Args = nargs
 		err := cmd.Execute()
 		if err != nil {
-			errors.ExitErr(err)
+			messages.ExitErr(err)
 		}
 		restoreFlags(cmd.Flags(), saved)
 	}

@@ -31,5 +31,6 @@ func Theme() *huh.Theme {
 		BorderForeground(lipgloss.AdaptiveColor{Light: "254", Dark: "236"}).
 		Foreground(lipgloss.AdaptiveColor{Light: "239", Dark: "248"}).
 		Background(lipgloss.NoColor{})
+	t.Focused.TextInput.Prompt = t.Focused.TextInput.Prompt.PaddingRight(1)
 	return t
 }

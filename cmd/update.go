@@ -6,10 +6,9 @@ SPDX-License-Identifier: BSD-3-Clause
 package cmd
 
 import (
-	"context"
 	"fmt"
 
-	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/update"
 	"github.com/spf13/cobra"
 )
@@ -19,9 +18,9 @@ var updateCmd = &cobra.Command{
 	Use:   "update",
 	Short: "Update octl to the latest version",
 	Run: func(cmd *cobra.Command, args []string) {
-		err := update.Update(context.Background())
+		err := update.Update(cmd.Context())
 		if err != nil {
-			errors.ExitErr(fmt.Errorf("unable to update: %w", err))
+			messages.ExitErr(fmt.Errorf("unable to update: %w", err))
 		}
 	},
 }

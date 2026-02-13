@@ -5,7 +5,7 @@ import (
 	"slices"
 
 	"github.com/mattn/go-isatty"
-	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/messages"
 	"github.com/spf13/cobra"
 )
 
@@ -14,6 +14,6 @@ func CheckFalse(cmd *cobra.Command, args []string) {
 		return
 	}
 	if slices.Contains(args, "false") {
-		errors.Warn("--flag false does not work, use --flag=false")
+		messages.Warn("--flag false does not work, use --flag=false")
 	}
 }
