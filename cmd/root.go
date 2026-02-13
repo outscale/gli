@@ -6,11 +6,12 @@ SPDX-License-Identifier: BSD-3-Clause
 package cmd
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/charmbracelet/lipgloss"
 	"github.com/outscale/octl/cmd/prerun"
-	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/version"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
 	"github.com/outscale/osc-sdk-go/v3/pkg/profile"
@@ -60,9 +61,10 @@ var rootCmd = &cobra.Command{
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
-	err := rootCmd.Execute()
+	ctx := context.Background()
+	err := rootCmd.ExecuteContext(ctx)
 	if err != nil {
-		errors.ExitErr(err)
+		messages.ExitErr(err)
 	}
 }
 

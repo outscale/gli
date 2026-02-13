@@ -10,7 +10,7 @@ import (
 	"reflect"
 
 	"github.com/outscale/octl/pkg/debug"
-	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/messages"
 )
 
 type content struct {
@@ -27,11 +27,11 @@ func (sr content) Content(ctx context.Context, v any) error {
 	if sr.single && vv.Kind() == reflect.Slice {
 		switch vv.Len() {
 		case 0:
-			errors.Exit(1, "no resource found")
+			messages.Exit(1, "no resource found")
 		case 1:
 			vv = reflect.Indirect(vv.Index(0))
 		default:
-			errors.Warn("dropping %d contents", vv.Len()-1)
+			messages.Warn("dropping %d contents", vv.Len()-1)
 			vv = reflect.Indirect(vv.Index(0))
 		}
 	}

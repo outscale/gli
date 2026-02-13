@@ -16,7 +16,7 @@ import (
 
 	"github.com/mattn/go-isatty"
 	"github.com/outscale/octl/pkg/debug"
-	"github.com/outscale/octl/pkg/errors"
+	"github.com/outscale/octl/pkg/messages"
 )
 
 var (
@@ -57,13 +57,13 @@ func CheckStdin() error {
 		}
 		tmpl, err := template.New("tpl").Parse(arg)
 		if err != nil {
-			errors.Warn("unable to parse argument", arg)
+			messages.Warn("unable to parse argument", arg)
 			continue
 		}
 		w := &strings.Builder{}
 		err = tmpl.Execute(w, input)
 		if err != nil {
-			errors.Warn("unable to get value for argument", arg)
+			messages.Warn("unable to get value for argument", arg)
 			continue
 		}
 		debug.Println("replacing", arg, "with", w.String())

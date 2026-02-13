@@ -1,4 +1,4 @@
-package errors
+package messages
 
 import (
 	"fmt"
@@ -13,4 +13,8 @@ func Info(format string, a ...any) {
 
 func Warn(format string, a ...any) {
 	_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Yellow, "⚠️ "+format, a...))
+}
+
+func Success(format string, a ...any) {
+	_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Green, "✅ "+format, a...))
 }

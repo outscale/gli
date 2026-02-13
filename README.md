@@ -81,7 +81,7 @@ source ~/.config/fish/config.fish
 
 ## 🛠 Configuration
 
-The tool expects either environment variables or a configuration file.
+The tool expects either environment variables or a profile file.
 
 ### Environment variables
 
@@ -98,8 +98,9 @@ The default profile file path is `~/.osc/config.json` and can be set with the `-
 
 The default profile name path is `default` and can be set with the `--profile` flag or the `OSC_PROFILE` environment variable.
 
-### Example
+If `--config` or `--profile` is set, `octl` will load the profile file, without checking environment,
 
+Profile file example:
 ```json
 {
   "default": {
@@ -110,7 +111,7 @@ The default profile name path is `default` and can be set with the `--profile` f
 }
 ```
 
-Use `OSC_CONFIG_FILE` to define an alternate config file and `OSC_PROFILE` an alternate profile.
+`octl profile` allows you to manage the content of the profile file.
 
 ---
 
@@ -125,6 +126,7 @@ octl <command> <command>
 | Command | Description |
 | ------- | ----------- |
 | `iaas` | Core IaaS API |
+| `profile` | Profile management |
 | `update` | Update to the latest version |
 | `completion` | Generate completion shell script |
 
@@ -258,6 +260,17 @@ octl iaas api ReadVms --Filters.VmStateNames running --jq ".Vms[].VmId"
 ```
 
 > Note: `--jq` is not currently compatible with `--output`
+
+### Profile management
+
+`octl profile` allows you to manage your profile file.
+
+* `octl profile list` lists all profile within the profile file,
+* `octl profile add` adds a profile to the profile file,
+* `octl profile delete` removes a profile from the profile file,
+* `octl profile use` marks a profile as the default profile, that will be used in future `octl` commands.
+
+> Note: Environment variables take precedence. A profile marked as the default will not be used if relevant environment variables are set.
 
 ### Self updating
 

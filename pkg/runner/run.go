@@ -6,7 +6,6 @@ SPDX-License-Identifier: BSD-3-Clause
 package runner
 
 import (
-	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -29,7 +28,7 @@ func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client,
 	clt := reflect.TypeOf(cl)
 	m, _ := clt.MethodByName(cmd.Name())
 
-	ctx := context.Background()
+	ctx := cmd.Context()
 	callArgs := []reflect.Value{
 		reflect.ValueOf(ctx),
 	}
@@ -63,7 +62,7 @@ func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client,
 	res := reflect.ValueOf(cl).MethodByName(cmd.Name()).Call(callArgs)
 	c := cfg.Calls[cmd.Name()]
 	e := cfg.Entities[c.Entity]
-	out, err := output.NewFromFlags(cmd.Flags(), c, e)
+	out, err := output.NewFromFlags(cmd.Flags(), "", c.Content, e.Columns)
 	if err != nil {
 		return err
 	}
