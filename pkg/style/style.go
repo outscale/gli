@@ -21,5 +21,15 @@ var (
 func Theme() *huh.Theme {
 	t := huh.ThemeBase()
 	t.Focused.Title = t.Focused.Title.Foreground(lipgloss.Color("184"))
+	t.Focused.FocusedButton = t.Focused.FocusedButton.
+		Border(lipgloss.NormalBorder()).
+		BorderForeground(lipgloss.AdaptiveColor{Light: "236", Dark: "254"}).
+		Foreground(lipgloss.AdaptiveColor{Light: "0", Dark: "15"}).
+		Background(lipgloss.NoColor{})
+	t.Focused.BlurredButton = t.Focused.BlurredButton.
+		Border(lipgloss.NormalBorder()).
+		BorderForeground(lipgloss.AdaptiveColor{Light: "254", Dark: "236"}).
+		Foreground(lipgloss.AdaptiveColor{Light: "239", Dark: "248"}).
+		Background(lipgloss.NoColor{})
 	return t
 }

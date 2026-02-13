@@ -43,6 +43,8 @@ func confirm(action config.Action, display, run func(cmd *cobra.Command, args []
 			huh.NewGroup(
 				huh.NewConfirm().
 					Title(prompts[action]).
+					Affirmative("✅ Yes").
+					Negative("❌ No").
 					Value(&yes),
 			),
 		).WithTheme(style.Theme()).Run()
