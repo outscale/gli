@@ -1,4 +1,133 @@
 contents:
+  CreateAccessKey:
+    content: AccessKey
+    entity: accesskey
+  CreateAccount:
+    content: Account
+    entity: account
+  CreateApiAccessRule:
+    content: ApiAccessRule
+    entity: apiaccessrule
+  CreateCa:
+    content: Ca
+    entity: ca
+  CreateClientGateway:
+    content: ClientGateway
+    entity: clientgateway
+  CreateDedicatedGroup:
+    content: DedicatedGroup
+    entity: dedicatedgroup
+  CreateDhcpOptions:
+    content: DhcpOptionsSet
+    entity: dhcpoption
+  CreateDirectLink:
+    content: DirectLink
+    entity: directlink
+  CreateDirectLinkInterface:
+    content: DirectLinkInterface
+    entity: directlinkinterface
+  CreateFlexibleGpu:
+    content: FlexibleGpu
+    entity: flexiblegpu
+  CreateImage:
+    content: Image
+    entity: image
+  CreateImageExportTask:
+    content: ImageExportTask
+    entity: imageexporttask
+  CreateInternetService:
+    content: InternetService
+    entity: internetservice
+  CreateKeypair:
+    content: Keypair
+    entity: keypair
+  CreateListenerRule:
+    content: ListenerRule
+    entity: listenerrule
+  CreateLoadBalancer:
+    content: LoadBalancer
+    entity: loadbalancer
+  CreateLoadBalancerListeners:
+    content: LoadBalancer
+    entity: loadbalancerlistener
+  CreateLoadBalancerPolicy:
+    content: LoadBalancer
+    entity: loadbalancerpolicy
+  CreateNatService:
+    content: NatService
+    entity: natservice
+  CreateNet:
+    content: Net
+    entity: net
+  CreateNetAccessPoint:
+    content: NetAccessPoint
+    entity: netaccesspoint
+  CreateNetPeering:
+    content: NetPeering
+    entity: netpeering
+  CreateNic:
+    content: Nic
+    entity: nic
+  CreatePolicy:
+    content: Policy
+    entity: policy
+  CreatePolicyVersion:
+    content: PolicyVersion
+    entity: policyversion
+  CreateProductType:
+    content: ProductType
+    entity: producttype
+  CreatePublicIp:
+    content: PublicIp
+    entity: publicip
+  CreateRoute:
+    content: RouteTable
+    entity: route
+  CreateRouteTable:
+    content: RouteTable
+    entity: routetable
+  CreateSecurityGroup:
+    content: SecurityGroup
+    entity: securitygroup
+  CreateSecurityGroupRule:
+    content: SecurityGroup
+    entity: securitygrouprule
+  CreateServerCertificate:
+    content: ServerCertificate
+    entity: servercertificate
+  CreateSnapshot:
+    content: Snapshot
+    entity: snapshot
+  CreateSnapshotExportTask:
+    content: SnapshotExportTask
+    entity: snapshotexporttask
+  CreateSubnet:
+    content: Subnet
+    entity: subnet
+  CreateUser:
+    content: User
+    entity: user
+  CreateUserGroup:
+    content: UserGroup
+    entity: usergroup
+  CreateVirtualGateway:
+    content: VirtualGateway
+    entity: virtualgateway
+  CreateVmGroup:
+    content: VmGroup
+    entity: vmgroup
+  CreateVmTemplate:
+    content: VmTemplate
+    entity: vmtemplate
+  CreateVms:
+    content: Vms
+    entity: vm
+  CreateVolume:
+    content: Volume
+    entity: volume
+  CreateVpnConnection:
+    content: VpnConnection
+    entity: vpnconnection
   ReadAccessKeys:
     content: AccessKeys
     entity: accesskey
@@ -211,14 +340,12 @@ entities:
     columns:
     - title: ID
       content: AccountId
-  apiaccesspolicy:
-    columns: []
+  apiaccesspolicy: {}
   apiaccessrule:
     columns:
     - title: ID
       content: ApiAccessRuleId
-  apilog:
-    columns: []
+  apilog: {}
   ca:
     columns:
     - title: ID
@@ -237,8 +364,7 @@ entities:
       content: State
     - title: PublicIp
       content: PublicIp
-  co2emissionaccount:
-    columns: []
+  co2emissionaccount: {}
   consumptionaccount:
     columns:
     - title: SubregionName
@@ -271,8 +397,8 @@ entities:
       content: DirectLinkInterfaceName
     - title: State
       content: State
-  entitieslinkedtopolicy:
-    columns: []
+  entitieslinkedtopolicy: {}
+  exporttask: {}
   flexiblegpu:
     columns:
     - title: ID
@@ -283,8 +409,7 @@ entities:
       content: State
     - title: SubregionName
       content: SubregionName
-  flexiblegpucatalog:
-    columns: []
+  flexiblegpucatalog: {}
   image:
     columns:
     - title: ID
@@ -340,10 +465,10 @@ entities:
       content: NetId
     - title: SubregionNames
       content: SubregionNames
-  loadbalancertag:
-    columns: []
-  location:
-    columns: []
+  loadbalancerlistener: {}
+  loadbalancerpolicy: {}
+  loadbalancertag: {}
+  location: {}
   natservice:
     aliases:
     - nat
@@ -412,14 +537,12 @@ entities:
       content: PolicyId
     - title: Name
       content: PolicyName
-  policyversion:
-    columns: []
+  policyversion: {}
   producttype:
     columns:
     - title: ID
       content: ProductTypeId
-  publiccatalog:
-    columns: []
+  publiccatalog: {}
   publicip:
     columns:
     - title: ID
@@ -438,6 +561,7 @@ entities:
     columns:
     - title: Name
       content: RegionName
+  route: {}
   routetable:
     columns:
     - title: ID
@@ -454,8 +578,8 @@ entities:
       content: SecurityGroupName
     - title: NetId
       content: NetId
-  servercertificate:
-    columns: []
+  securitygrouprule: {}
+  servercertificate: {}
   snapshot:
     aliases:
     - snap
@@ -498,10 +622,8 @@ entities:
       content: SubregionName
     - title: State
       content: State
-  tag:
-    columns: []
-  unitprice:
-    columns: []
+  tag: {}
+  unitprice: {}
   user:
     columns:
     - title: ID
@@ -512,8 +634,7 @@ entities:
     columns:
     - title: ID
       content: UserGroupId
-  usergrouppolicy:
-    columns: []
+  usergrouppolicy: {}
   usergroupsperuser:
     columns:
     - title: ID
@@ -619,8 +740,14 @@ aliases:
   - --output
   - table
   flags:
-    access_key_ids: Filters.AccessKeyIds
-    states: Filters.States
+  - name: access-key-ids
+    alias_to: Filters.AccessKeyIds
+  - name: states
+    alias_to: Filters.States
+  - name: tag
+    alias_to: Tag
+  - name: user-name
+    alias_to: UserName
 - entity: accesskey
   group: accesskey
   use: describe accesskey_id
@@ -645,8 +772,6 @@ aliases:
   - ReadAccounts
   - --output
   - table
-  flags:
-    dry_run: DryRun
 - entity: apiaccesspolicy
   group: apiaccesspolicy
   use: list
@@ -657,9 +782,7 @@ aliases:
   - api
   - ReadApiAccessPolicy
   - --output
-  - yaml
-  flags:
-    dry_run: DryRun
+  - table
 - entity: apiaccessrule
   group: apiaccessrule
   use: list
@@ -672,11 +795,16 @@ aliases:
   - --output
   - table
   flags:
-    api_access_rule_ids: Filters.ApiAccessRuleIds
-    ca_ids: Filters.CaIds
-    cns: Filters.Cns
-    descriptions: Filters.Descriptions
-    ip_ranges: Filters.IpRanges
+  - name: api-access-rule-ids
+    alias_to: Filters.ApiAccessRuleIds
+  - name: ca-ids
+    alias_to: Filters.CaIds
+  - name: cns
+    alias_to: Filters.Cns
+  - name: descriptions
+    alias_to: Filters.Descriptions
+  - name: ip-ranges
+    alias_to: Filters.IpRanges
 - entity: apiaccessrule
   group: apiaccessrule
   use: describe apiaccessrule_id
@@ -700,17 +828,58 @@ aliases:
   - api
   - ReadApiLogs
   - --output
-  - yaml
+  - table
   flags:
-    query_access_keys: Filters.QueryAccessKeys
-    query_api_names: Filters.QueryApiNames
-    query_call_names: Filters.QueryCallNames
-    query_date_after: Filters.QueryDateAfter
-    query_date_before: Filters.QueryDateBefore
-    query_ip_addresses: Filters.QueryIpAddresses
-    query_user_agents: Filters.QueryUserAgents
-    request_ids: Filters.RequestIds
-    response_status_codes: Filters.ResponseStatusCodes
+  - name: query-access-keys
+    alias_to: Filters.QueryAccessKeys
+  - name: query-api-names
+    alias_to: Filters.QueryApiNames
+  - name: query-call-names
+    alias_to: Filters.QueryCallNames
+  - name: query-date-after
+    alias_to: Filters.QueryDateAfter
+  - name: query-date-before
+    alias_to: Filters.QueryDateBefore
+  - name: query-ip-addresses
+    alias_to: Filters.QueryIpAddresses
+  - name: query-user-agents
+    alias_to: Filters.QueryUserAgents
+  - name: request-ids
+    alias_to: Filters.RequestIds
+  - name: response-status-codes
+    alias_to: Filters.ResponseStatusCodes
+  - name: with-account-id
+    alias_to: With.AccountId
+  - name: with-call-duration
+    alias_to: With.CallDuration
+  - name: with-query-access-key
+    alias_to: With.QueryAccessKey
+  - name: with-query-api-name
+    alias_to: With.QueryApiName
+  - name: with-query-api-version
+    alias_to: With.QueryApiVersion
+  - name: with-query-call-name
+    alias_to: With.QueryCallName
+  - name: with-query-date
+    alias_to: With.QueryDate
+  - name: with-query-header-raw
+    alias_to: With.QueryHeaderRaw
+  - name: with-query-header-size
+    alias_to: With.QueryHeaderSize
+  - name: with-query-ip-address
+    alias_to: With.QueryIpAddress
+  - name: with-query-payload-raw
+    alias_to: With.QueryPayloadRaw
+  - name: with-query-payload-size
+    alias_to: With.QueryPayloadSize
+  - name: with-query-user-agent
+    alias_to: With.QueryUserAgent
+  - name: with-request-id
+    alias_to: With.RequestId
+  - name: with-response-size
+    alias_to: With.ResponseSize
+  - name: with-response-status-code
+    alias_to: With.ResponseStatusCode
 - entity: co2emissionaccount
   group: co2emissionaccount
   use: list
@@ -721,11 +890,16 @@ aliases:
   - api
   - ReadCO2EmissionAccount
   - --output
-  - yaml
+  - table
   flags:
-    from_month: FromMonth
-    overall: Overall
-    to_month: ToMonth
+  - name: from-month
+    alias_to: FromMonth
+    required: true
+  - name: overall
+    alias_to: Overall
+  - name: to-month
+    alias_to: ToMonth
+    required: true
 - entity: ca
   group: ca
   use: list
@@ -738,9 +912,12 @@ aliases:
   - --output
   - table
   flags:
-    descriptions: Filters.Descriptions
-    fingerprints: Filters.CaFingerprints
-    ids: Filters.CaIds
+  - name: fingerprints
+    alias_to: Filters.CaFingerprints
+  - name: ids
+    alias_to: Filters.CaIds
+  - name: descriptions
+    alias_to: Filters.Descriptions
 - entity: ca
   group: ca
   use: describe ca_id
@@ -764,9 +941,7 @@ aliases:
   - api
   - ReadCatalog
   - --output
-  - yaml
-  flags:
-    dry_run: DryRun
+  - table
 - entity: catalog
   group: catalog
   use: list
@@ -779,9 +954,12 @@ aliases:
   - --output
   - table
   flags:
-    current_catalog_only: Filters.CurrentCatalogOnly
-    from_date: Filters.FromDate
-    to_date: Filters.ToDate
+  - name: current-catalog-only
+    alias_to: Filters.CurrentCatalogOnly
+  - name: from-date
+    alias_to: Filters.FromDate
+  - name: to-date
+    alias_to: Filters.ToDate
 - entity: clientgateway
   group: clientgateway
   use: list
@@ -794,14 +972,22 @@ aliases:
   - --output
   - table
   flags:
-    bgp_asns: Filters.BgpAsns
-    client_gateway_ids: Filters.ClientGatewayIds
-    connection_types: Filters.ConnectionTypes
-    public_ips: Filters.PublicIps
-    states: Filters.States
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
+  - name: bgp-asns
+    alias_to: Filters.BgpAsns
+  - name: client-gateway-ids
+    alias_to: Filters.ClientGatewayIds
+  - name: connection-types
+    alias_to: Filters.ConnectionTypes
+  - name: public-ips
+    alias_to: Filters.PublicIps
+  - name: states
+    alias_to: Filters.States
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
 - entity: clientgateway
   group: clientgateway
   use: describe clientgateway_id
@@ -827,12 +1013,18 @@ aliases:
   - --output
   - table
   flags:
-    dry_run: DryRun
-    from_date: FromDate
-    overall: Overall
-    show_price: ShowPrice
-    show_resource_details: ShowResourceDetails
-    to_date: ToDate
+  - name: from-date
+    alias_to: FromDate
+    required: true
+  - name: overall
+    alias_to: Overall
+  - name: show-price
+    alias_to: ShowPrice
+  - name: show-resource-details
+    alias_to: ShowResourceDetails
+  - name: to-date
+    alias_to: ToDate
+    required: true
 - entity: dedicatedgroup
   group: dedicatedgroup
   use: list
@@ -845,10 +1037,14 @@ aliases:
   - --output
   - table
   flags:
-    cpu_generations: Filters.CpuGenerations
-    dedicated_group_ids: Filters.DedicatedGroupIds
-    names: Filters.Names
-    subregion_names: Filters.SubregionNames
+  - name: cpu-generations
+    alias_to: Filters.CpuGenerations
+  - name: dedicated-group-ids
+    alias_to: Filters.DedicatedGroupIds
+  - name: names
+    alias_to: Filters.Names
+  - name: subregion-names
+    alias_to: Filters.SubregionNames
 - entity: dedicatedgroup
   group: dedicatedgroup
   use: describe dedicatedgroup_id
@@ -874,15 +1070,24 @@ aliases:
   - --output
   - table
   flags:
-    default: Filters.Default
-    dhcp_options_set_ids: Filters.DhcpOptionsSetIds
-    domain_name_servers: Filters.DomainNameServers
-    domain_names: Filters.DomainNames
-    log_servers: Filters.LogServers
-    ntp_servers: Filters.NtpServers
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
+  - name: default
+    alias_to: Filters.Default
+  - name: dhcp-options-set-ids
+    alias_to: Filters.DhcpOptionsSetIds
+  - name: domain-name-servers
+    alias_to: Filters.DomainNameServers
+  - name: domain-names
+    alias_to: Filters.DomainNames
+  - name: log-servers
+    alias_to: Filters.LogServers
+  - name: ntp-servers
+    alias_to: Filters.NtpServers
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
 - entity: directlinkinterface
   group: directlinkinterface
   use: list
@@ -895,8 +1100,10 @@ aliases:
   - --output
   - table
   flags:
-    direct_link_ids: Filters.DirectLinkIds
-    direct_link_interface_ids: Filters.DirectLinkInterfaceIds
+  - name: direct-link-ids
+    alias_to: Filters.DirectLinkIds
+  - name: direct-link-interface-ids
+    alias_to: Filters.DirectLinkInterfaceIds
 - entity: directlinkinterface
   group: directlinkinterface
   use: describe directlinkinterface_id
@@ -922,7 +1129,8 @@ aliases:
   - --output
   - table
   flags:
-    direct_link_ids: Filters.DirectLinkIds
+  - name: direct-link-ids
+    alias_to: Filters.DirectLinkIds
 - entity: directlink
   group: directlink
   use: describe directlink_id
@@ -946,12 +1154,15 @@ aliases:
   - api
   - ReadEntitiesLinkedToPolicy
   - --output
-  - yaml
+  - table
   flags:
-    entities_type: EntitiesType
-    first_item: FirstItem
-    policy_orn: PolicyOrn
-    results_per_page: ResultsPerPage
+  - name: entities-type
+    alias_to: EntitiesType
+  - name: first-item
+    alias_to: FirstItem
+  - name: policy-orn
+    alias_to: PolicyOrn
+    required: true
 - entity: flexiblegpucatalog
   group: flexiblegpucatalog
   use: list
@@ -962,9 +1173,7 @@ aliases:
   - api
   - ReadFlexibleGpuCatalog
   - --output
-  - yaml
-  flags:
-    dry_run: DryRun
+  - table
 - entity: flexiblegpu
   group: flexiblegpu
   use: list
@@ -977,14 +1186,32 @@ aliases:
   - --output
   - table
   flags:
-    delete_on_vm_deletion: Filters.DeleteOnVmDeletion
-    flexible_gpu_ids: Filters.FlexibleGpuIds
-    generations: Filters.Generations
-    model_names: Filters.ModelNames
-    states: Filters.States
-    subregion_names: Filters.SubregionNames
-    tags: Filters.Tags
-    vm_ids: Filters.VmIds
+  - name: delete-on-vm-deletion
+    alias_to: Filters.DeleteOnVmDeletion
+  - name: flexible-gpu-ids
+    alias_to: Filters.FlexibleGpuIds
+  - name: generations
+    alias_to: Filters.Generations
+  - name: model-names
+    alias_to: Filters.ModelNames
+  - name: states
+    alias_to: Filters.States
+  - name: subregion-names
+    alias_to: Filters.SubregionNames
+  - name: tag-key
+    alias_to: Filters.Tags.0.Key
+    required: true
+  - name: tag-resource-id
+    alias_to: Filters.Tags.0.ResourceId
+    required: true
+  - name: tag-resource-type
+    alias_to: Filters.Tags.0.ResourceType
+    required: true
+  - name: tag-value
+    alias_to: Filters.Tags.0.Value
+    required: true
+  - name: vm-ids
+    alias_to: Filters.VmIds
 - entity: flexiblegpu
   group: flexiblegpu
   use: describe flexiblegpu_id
@@ -1010,7 +1237,8 @@ aliases:
   - --output
   - table
   flags:
-    task_ids: Filters.TaskIds
+  - name: task-ids
+    alias_to: Filters.TaskIds
 - entity: imageexporttask
   group: imageexporttask
   use: describe imageexporttask_id
@@ -1036,33 +1264,60 @@ aliases:
   - --output
   - table
   flags:
-    account_aliases: Filters.AccountAliases
-    account_ids: Filters.AccountIds
-    architectures: Filters.Architectures
-    block_device_mapping_delete_on_vm_deletion: Filters.BlockDeviceMappingDeleteOnVmDeletion
-    block_device_mapping_device_names: Filters.BlockDeviceMappingDeviceNames
-    block_device_mapping_snapshot_ids: Filters.BlockDeviceMappingSnapshotIds
-    block_device_mapping_volume_sizes: Filters.BlockDeviceMappingVolumeSizes
-    block_device_mapping_volume_types: Filters.BlockDeviceMappingVolumeTypes
-    boot_modes: Filters.BootModes
-    descriptions: Filters.Descriptions
-    file_locations: Filters.FileLocations
-    hypervisors: Filters.Hypervisors
-    ids: Filters.ImageIds
-    names: Filters.ImageNames
-    permissions_to_launch_account_ids: Filters.PermissionsToLaunchAccountIds
-    permissions_to_launch_global_permission: Filters.PermissionsToLaunchGlobalPermission
-    product_code_names: Filters.ProductCodeNames
-    product_codes: Filters.ProductCodes
-    root_device_names: Filters.RootDeviceNames
-    root_device_types: Filters.RootDeviceTypes
-    secure_boot: Filters.SecureBoot
-    states: Filters.States
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
-    tpm_mandatory: Filters.TpmMandatory
-    virtualization_types: Filters.VirtualizationTypes
+  - name: account-aliases
+    alias_to: Filters.AccountAliases
+  - name: account-ids
+    alias_to: Filters.AccountIds
+  - name: architectures
+    alias_to: Filters.Architectures
+  - name: block-device-mapping-delete-on-vm-deletion
+    alias_to: Filters.BlockDeviceMappingDeleteOnVmDeletion
+  - name: block-device-mapping-device-names
+    alias_to: Filters.BlockDeviceMappingDeviceNames
+  - name: block-device-mapping-snapshot-ids
+    alias_to: Filters.BlockDeviceMappingSnapshotIds
+  - name: block-device-mapping-volume-sizes
+    alias_to: Filters.BlockDeviceMappingVolumeSizes
+  - name: block-device-mapping-volume-types
+    alias_to: Filters.BlockDeviceMappingVolumeTypes
+  - name: boot-modes
+    alias_to: Filters.BootModes
+  - name: descriptions
+    alias_to: Filters.Descriptions
+  - name: file-locations
+    alias_to: Filters.FileLocations
+  - name: hypervisors
+    alias_to: Filters.Hypervisors
+  - name: ids
+    alias_to: Filters.ImageIds
+  - name: names
+    alias_to: Filters.ImageNames
+  - name: permissions-to-launch-account-ids
+    alias_to: Filters.PermissionsToLaunchAccountIds
+  - name: permissions-to-launch-global-permission
+    alias_to: Filters.PermissionsToLaunchGlobalPermission
+  - name: product-code-names
+    alias_to: Filters.ProductCodeNames
+  - name: product-codes
+    alias_to: Filters.ProductCodes
+  - name: root-device-names
+    alias_to: Filters.RootDeviceNames
+  - name: root-device-types
+    alias_to: Filters.RootDeviceTypes
+  - name: secure-boot
+    alias_to: Filters.SecureBoot
+  - name: states
+    alias_to: Filters.States
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
+  - name: tpm-mandatory
+    alias_to: Filters.TpmMandatory
+  - name: virtualization-types
+    alias_to: Filters.VirtualizationTypes
 - entity: image
   group: image
   use: describe image_id
@@ -1088,12 +1343,18 @@ aliases:
   - --output
   - table
   flags:
-    internet_service_ids: Filters.InternetServiceIds
-    link_net_ids: Filters.LinkNetIds
-    link_states: Filters.LinkStates
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
+  - name: internet-service-ids
+    alias_to: Filters.InternetServiceIds
+  - name: link-net-ids
+    alias_to: Filters.LinkNetIds
+  - name: link-states
+    alias_to: Filters.LinkStates
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
 - entity: internetservice
   group: internetservice
   use: describe internetservice_id
@@ -1119,13 +1380,20 @@ aliases:
   - --output
   - table
   flags:
-    fingerprints: Filters.KeypairFingerprints
-    ids: Filters.KeypairIds
-    names: Filters.KeypairNames
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
-    types: Filters.KeypairTypes
+  - name: fingerprints
+    alias_to: Filters.KeypairFingerprints
+  - name: ids
+    alias_to: Filters.KeypairIds
+  - name: names
+    alias_to: Filters.KeypairNames
+  - name: types
+    alias_to: Filters.KeypairTypes
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
 - entity: keypair
   group: keypair
   use: describe keypair_id
@@ -1151,7 +1419,8 @@ aliases:
   - --output
   - table
   flags:
-    listener_rule_names: Filters.ListenerRuleNames
+  - name: listener-rule-names
+    alias_to: Filters.ListenerRuleNames
 - entity: listenerrule
   group: listenerrule
   use: describe listenerrule_id
@@ -1175,10 +1444,11 @@ aliases:
   - api
   - ReadLoadBalancerTags
   - --output
-  - yaml
+  - table
   flags:
-    dry_run: DryRun
-    load_balancer_names: LoadBalancerNames
+  - name: load-balancer-names
+    alias_to: LoadBalancerNames
+    required: true
 - entity: loadbalancer
   group: loadbalancer
   use: list
@@ -1191,7 +1461,8 @@ aliases:
   - --output
   - table
   flags:
-    load_balancer_names: Filters.LoadBalancerNames
+  - name: load-balancer-names
+    alias_to: Filters.LoadBalancerNames
 - entity: loadbalancer
   group: loadbalancer
   use: describe loadbalancer_id
@@ -1215,11 +1486,7 @@ aliases:
   - api
   - ReadLocations
   - --output
-  - yaml
-  flags:
-    dry_run: DryRun
-    next_page_token: NextPageToken
-    results_per_page: ResultsPerPage
+  - table
 - entity: natservice
   group: natservice
   use: list
@@ -1232,14 +1499,22 @@ aliases:
   - --output
   - table
   flags:
-    client_tokens: Filters.ClientTokens
-    nat_service_ids: Filters.NatServiceIds
-    net_ids: Filters.NetIds
-    states: Filters.States
-    subnet_ids: Filters.SubnetIds
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
+  - name: client-tokens
+    alias_to: Filters.ClientTokens
+  - name: nat-service-ids
+    alias_to: Filters.NatServiceIds
+  - name: net-ids
+    alias_to: Filters.NetIds
+  - name: states
+    alias_to: Filters.States
+  - name: subnet-ids
+    alias_to: Filters.SubnetIds
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
 - entity: natservice
   group: natservice
   use: describe natservice_id
@@ -1265,8 +1540,10 @@ aliases:
   - --output
   - table
   flags:
-    service_ids: Filters.ServiceIds
-    service_names: Filters.ServiceNames
+  - name: service-ids
+    alias_to: Filters.ServiceIds
+  - name: service-names
+    alias_to: Filters.ServiceNames
 - entity: netaccesspointservice
   group: netaccesspointservice
   use: describe netaccesspointservice_id
@@ -1292,13 +1569,20 @@ aliases:
   - --output
   - table
   flags:
-    net_access_point_ids: Filters.NetAccessPointIds
-    net_ids: Filters.NetIds
-    service_names: Filters.ServiceNames
-    states: Filters.States
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
+  - name: net-access-point-ids
+    alias_to: Filters.NetAccessPointIds
+  - name: net-ids
+    alias_to: Filters.NetIds
+  - name: service-names
+    alias_to: Filters.ServiceNames
+  - name: states
+    alias_to: Filters.States
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
 - entity: netaccesspoint
   group: netaccesspoint
   use: describe netaccesspoint_id
@@ -1324,19 +1608,32 @@ aliases:
   - --output
   - table
   flags:
-    accepter_net_account_ids: Filters.AccepterNetAccountIds
-    accepter_net_ip_ranges: Filters.AccepterNetIpRanges
-    accepter_net_net_ids: Filters.AccepterNetNetIds
-    expiration_dates: Filters.ExpirationDates
-    net_peering_ids: Filters.NetPeeringIds
-    source_net_account_ids: Filters.SourceNetAccountIds
-    source_net_ip_ranges: Filters.SourceNetIpRanges
-    source_net_net_ids: Filters.SourceNetNetIds
-    state_messages: Filters.StateMessages
-    state_names: Filters.StateNames
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
+  - name: accepter-net-account-ids
+    alias_to: Filters.AccepterNetAccountIds
+  - name: accepter-net-ip-ranges
+    alias_to: Filters.AccepterNetIpRanges
+  - name: accepter-net-net-ids
+    alias_to: Filters.AccepterNetNetIds
+  - name: expiration-dates
+    alias_to: Filters.ExpirationDates
+  - name: net-peering-ids
+    alias_to: Filters.NetPeeringIds
+  - name: source-net-account-ids
+    alias_to: Filters.SourceNetAccountIds
+  - name: source-net-ip-ranges
+    alias_to: Filters.SourceNetIpRanges
+  - name: source-net-net-ids
+    alias_to: Filters.SourceNetNetIds
+  - name: state-messages
+    alias_to: Filters.StateMessages
+  - name: state-names
+    alias_to: Filters.StateNames
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
 - entity: netpeering
   group: netpeering
   use: describe netpeering_id
@@ -1362,14 +1659,22 @@ aliases:
   - --output
   - table
   flags:
-    dhcp_options_set_ids: Filters.DhcpOptionsSetIds
-    ids: Filters.NetIds
-    ip_ranges: Filters.IpRanges
-    is_default: Filters.IsDefault
-    states: Filters.States
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
+  - name: dhcp-options-set-ids
+    alias_to: Filters.DhcpOptionsSetIds
+  - name: ip-ranges
+    alias_to: Filters.IpRanges
+  - name: is-default
+    alias_to: Filters.IsDefault
+  - name: ids
+    alias_to: Filters.NetIds
+  - name: states
+    alias_to: Filters.States
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
 - entity: net
   group: net
   use: describe net_id
@@ -1395,35 +1700,64 @@ aliases:
   - --output
   - table
   flags:
-    descriptions: Filters.Descriptions
-    ids: Filters.NicIds
-    is_source_dest_check: Filters.IsSourceDestCheck
-    link_nic_delete_on_vm_deletion: Filters.LinkNicDeleteOnVmDeletion
-    link_nic_device_numbers: Filters.LinkNicDeviceNumbers
-    link_nic_link_nic_ids: Filters.LinkNicLinkNicIds
-    link_nic_states: Filters.LinkNicStates
-    link_nic_vm_account_ids: Filters.LinkNicVmAccountIds
-    link_nic_vm_ids: Filters.LinkNicVmIds
-    link_public_ip_account_ids: Filters.LinkPublicIpAccountIds
-    link_public_ip_link_public_ip_ids: Filters.LinkPublicIpLinkPublicIpIds
-    link_public_ip_public_dns_names: Filters.LinkPublicIpPublicDnsNames
-    link_public_ip_public_ip_ids: Filters.LinkPublicIpPublicIpIds
-    link_public_ip_public_ips: Filters.LinkPublicIpPublicIps
-    mac_addresses: Filters.MacAddresses
-    net_ids: Filters.NetIds
-    private_dns_names: Filters.PrivateDnsNames
-    private_ips_link_public_ip_account_ids: Filters.PrivateIpsLinkPublicIpAccountIds
-    private_ips_link_public_ip_public_ips: Filters.PrivateIpsLinkPublicIpPublicIps
-    private_ips_primary_ip: Filters.PrivateIpsPrimaryIp
-    private_ips_private_ips: Filters.PrivateIpsPrivateIps
-    security_group_ids: Filters.SecurityGroupIds
-    security_group_names: Filters.SecurityGroupNames
-    states: Filters.States
-    subnet_ids: Filters.SubnetIds
-    subregion_names: Filters.SubregionNames
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
+  - name: descriptions
+    alias_to: Filters.Descriptions
+  - name: is-source-dest-check
+    alias_to: Filters.IsSourceDestCheck
+  - name: link-nic-delete-on-vm-deletion
+    alias_to: Filters.LinkNicDeleteOnVmDeletion
+  - name: link-nic-device-numbers
+    alias_to: Filters.LinkNicDeviceNumbers
+  - name: link-nic-link-nic-ids
+    alias_to: Filters.LinkNicLinkNicIds
+  - name: link-nic-states
+    alias_to: Filters.LinkNicStates
+  - name: link-nic-vm-account-ids
+    alias_to: Filters.LinkNicVmAccountIds
+  - name: link-nic-vm-ids
+    alias_to: Filters.LinkNicVmIds
+  - name: link-public-ip-account-ids
+    alias_to: Filters.LinkPublicIpAccountIds
+  - name: link-public-ip-link-public-ip-ids
+    alias_to: Filters.LinkPublicIpLinkPublicIpIds
+  - name: link-public-ip-public-dns-names
+    alias_to: Filters.LinkPublicIpPublicDnsNames
+  - name: link-public-ip-public-ip-ids
+    alias_to: Filters.LinkPublicIpPublicIpIds
+  - name: link-public-ip-public-ips
+    alias_to: Filters.LinkPublicIpPublicIps
+  - name: mac-addresses
+    alias_to: Filters.MacAddresses
+  - name: net-ids
+    alias_to: Filters.NetIds
+  - name: ids
+    alias_to: Filters.NicIds
+  - name: private-dns-names
+    alias_to: Filters.PrivateDnsNames
+  - name: private-ips-link-public-ip-account-ids
+    alias_to: Filters.PrivateIpsLinkPublicIpAccountIds
+  - name: private-ips-link-public-ip-public-ips
+    alias_to: Filters.PrivateIpsLinkPublicIpPublicIps
+  - name: private-ips-primary-ip
+    alias_to: Filters.PrivateIpsPrimaryIp
+  - name: private-ips-private-ips
+    alias_to: Filters.PrivateIpsPrivateIps
+  - name: security-group-ids
+    alias_to: Filters.SecurityGroupIds
+  - name: security-group-names
+    alias_to: Filters.SecurityGroupNames
+  - name: states
+    alias_to: Filters.States
+  - name: subnet-ids
+    alias_to: Filters.SubnetIds
+  - name: subregion-names
+    alias_to: Filters.SubregionNames
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
 - entity: nic
   group: nic
   use: describe nic_id
@@ -1449,9 +1783,14 @@ aliases:
   - --output
   - table
   flags:
-    only_linked: Filters.OnlyLinked
-    path_prefix: Filters.PathPrefix
-    scope: Filters.Scope
+  - name: only-linked
+    alias_to: Filters.OnlyLinked
+  - name: path-prefix
+    alias_to: Filters.PathPrefix
+  - name: scope
+    alias_to: Filters.Scope
+  - name: first-item
+    alias_to: FirstItem
 - entity: policy
   group: policy
   use: list
@@ -1464,7 +1803,9 @@ aliases:
   - --output
   - table
   flags:
-    orn: PolicyOrn
+  - name: orn
+    alias_to: PolicyOrn
+    required: true
 - entity: policyversion
   group: policyversion
   use: list
@@ -1475,10 +1816,14 @@ aliases:
   - api
   - ReadPolicyVersion
   - --output
-  - yaml
+  - table
   flags:
-    policy_orn: PolicyOrn
-    version_id: VersionId
+  - name: policy-orn
+    alias_to: PolicyOrn
+    required: true
+  - name: version-id
+    alias_to: VersionId
+    required: true
 - entity: policyversion
   group: policyversion
   use: list
@@ -1489,11 +1834,13 @@ aliases:
   - api
   - ReadPolicyVersions
   - --output
-  - yaml
+  - table
   flags:
-    first_item: FirstItem
-    policy_orn: PolicyOrn
-    results_per_page: ResultsPerPage
+  - name: first-item
+    alias_to: FirstItem
+  - name: policy-orn
+    alias_to: PolicyOrn
+    required: true
 - entity: producttype
   group: producttype
   use: list
@@ -1506,7 +1853,8 @@ aliases:
   - --output
   - table
   flags:
-    product_type_ids: Filters.ProductTypeIds
+  - name: product-type-ids
+    alias_to: Filters.ProductTypeIds
 - entity: producttype
   group: producttype
   use: describe producttype_id
@@ -1530,9 +1878,7 @@ aliases:
   - api
   - ReadPublicCatalog
   - --output
-  - yaml
-  flags:
-    dry_run: DryRun
+  - table
 - entity: publicip
   group: publicip
   use: list
@@ -1545,17 +1891,28 @@ aliases:
   - --output
   - table
   flags:
-    link_public_ip_ids: Filters.LinkPublicIpIds
-    nic_account_ids: Filters.NicAccountIds
-    nic_ids: Filters.NicIds
-    placements: Filters.Placements
-    private_ips: Filters.PrivateIps
-    public_ip_ids: Filters.PublicIpIds
-    public_ips: Filters.PublicIps
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
-    vm_ids: Filters.VmIds
+  - name: link-public-ip-ids
+    alias_to: Filters.LinkPublicIpIds
+  - name: nic-account-ids
+    alias_to: Filters.NicAccountIds
+  - name: nic-ids
+    alias_to: Filters.NicIds
+  - name: placements
+    alias_to: Filters.Placements
+  - name: private-ips
+    alias_to: Filters.PrivateIps
+  - name: public-ip-ids
+    alias_to: Filters.PublicIpIds
+  - name: public-ips
+    alias_to: Filters.PublicIps
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
+  - name: vm-ids
+    alias_to: Filters.VmIds
 - entity: publicip
   group: publicip
   use: describe publicip_id
@@ -1581,10 +1938,14 @@ aliases:
   - --output
   - table
   flags:
-    collections: Filters.Collections
-    names: Filters.QuotaNames
-    short_descriptions: Filters.ShortDescriptions
-    types: Filters.QuotaTypes
+  - name: collections
+    alias_to: Filters.Collections
+  - name: names
+    alias_to: Filters.QuotaNames
+  - name: types
+    alias_to: Filters.QuotaTypes
+  - name: short-descriptions
+    alias_to: Filters.ShortDescriptions
 - entity: quota
   group: quota
   use: describe quota_id
@@ -1609,8 +1970,6 @@ aliases:
   - ReadRegions
   - --output
   - table
-  flags:
-    dry_run: DryRun
 - entity: routetable
   group: routetable
   use: list
@@ -1623,23 +1982,40 @@ aliases:
   - --output
   - table
   flags:
-    link_route_table_ids: Filters.LinkRouteTableIds
-    link_route_table_link_route_table_ids: Filters.LinkRouteTableLinkRouteTableIds
-    link_route_table_main: Filters.LinkRouteTableMain
-    link_subnet_ids: Filters.LinkSubnetIds
-    net_ids: Filters.NetIds
-    route_creation_methods: Filters.RouteCreationMethods
-    route_destination_ip_ranges: Filters.RouteDestinationIpRanges
-    route_destination_service_ids: Filters.RouteDestinationServiceIds
-    route_gateway_ids: Filters.RouteGatewayIds
-    route_nat_service_ids: Filters.RouteNatServiceIds
-    route_net_peering_ids: Filters.RouteNetPeeringIds
-    route_states: Filters.RouteStates
-    route_table_ids: Filters.RouteTableIds
-    route_vm_ids: Filters.RouteVmIds
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
+  - name: link-route-table-ids
+    alias_to: Filters.LinkRouteTableIds
+  - name: link-route-table-link-route-table-ids
+    alias_to: Filters.LinkRouteTableLinkRouteTableIds
+  - name: link-route-table-main
+    alias_to: Filters.LinkRouteTableMain
+  - name: link-subnet-ids
+    alias_to: Filters.LinkSubnetIds
+  - name: net-ids
+    alias_to: Filters.NetIds
+  - name: route-creation-methods
+    alias_to: Filters.RouteCreationMethods
+  - name: route-destination-ip-ranges
+    alias_to: Filters.RouteDestinationIpRanges
+  - name: route-destination-service-ids
+    alias_to: Filters.RouteDestinationServiceIds
+  - name: route-gateway-ids
+    alias_to: Filters.RouteGatewayIds
+  - name: route-nat-service-ids
+    alias_to: Filters.RouteNatServiceIds
+  - name: route-net-peering-ids
+    alias_to: Filters.RouteNetPeeringIds
+  - name: route-states
+    alias_to: Filters.RouteStates
+  - name: route-table-ids
+    alias_to: Filters.RouteTableIds
+  - name: route-vm-ids
+    alias_to: Filters.RouteVmIds
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
 - entity: routetable
   group: routetable
   use: describe routetable_id
@@ -1665,27 +2041,48 @@ aliases:
   - --output
   - table
   flags:
-    descriptions: Filters.Descriptions
-    inbound_rule_account_ids: Filters.InboundRuleAccountIds
-    inbound_rule_from_port_ranges: Filters.InboundRuleFromPortRanges
-    inbound_rule_ip_ranges: Filters.InboundRuleIpRanges
-    inbound_rule_protocols: Filters.InboundRuleProtocols
-    inbound_rule_security_group_ids: Filters.InboundRuleSecurityGroupIds
-    inbound_rule_security_group_names: Filters.InboundRuleSecurityGroupNames
-    inbound_rule_to_port_ranges: Filters.InboundRuleToPortRanges
-    net_ids: Filters.NetIds
-    outbound_rule_account_ids: Filters.OutboundRuleAccountIds
-    outbound_rule_from_port_ranges: Filters.OutboundRuleFromPortRanges
-    outbound_rule_ip_ranges: Filters.OutboundRuleIpRanges
-    outbound_rule_protocols: Filters.OutboundRuleProtocols
-    outbound_rule_security_group_ids: Filters.OutboundRuleSecurityGroupIds
-    outbound_rule_security_group_names: Filters.OutboundRuleSecurityGroupNames
-    outbound_rule_to_port_ranges: Filters.OutboundRuleToPortRanges
-    security_group_ids: Filters.SecurityGroupIds
-    security_group_names: Filters.SecurityGroupNames
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
+  - name: descriptions
+    alias_to: Filters.Descriptions
+  - name: inbound-rule-account-ids
+    alias_to: Filters.InboundRuleAccountIds
+  - name: inbound-rule-from-port-ranges
+    alias_to: Filters.InboundRuleFromPortRanges
+  - name: inbound-rule-ip-ranges
+    alias_to: Filters.InboundRuleIpRanges
+  - name: inbound-rule-protocols
+    alias_to: Filters.InboundRuleProtocols
+  - name: inbound-rule-security-group-ids
+    alias_to: Filters.InboundRuleSecurityGroupIds
+  - name: inbound-rule-security-group-names
+    alias_to: Filters.InboundRuleSecurityGroupNames
+  - name: inbound-rule-to-port-ranges
+    alias_to: Filters.InboundRuleToPortRanges
+  - name: net-ids
+    alias_to: Filters.NetIds
+  - name: outbound-rule-account-ids
+    alias_to: Filters.OutboundRuleAccountIds
+  - name: outbound-rule-from-port-ranges
+    alias_to: Filters.OutboundRuleFromPortRanges
+  - name: outbound-rule-ip-ranges
+    alias_to: Filters.OutboundRuleIpRanges
+  - name: outbound-rule-protocols
+    alias_to: Filters.OutboundRuleProtocols
+  - name: outbound-rule-security-group-ids
+    alias_to: Filters.OutboundRuleSecurityGroupIds
+  - name: outbound-rule-security-group-names
+    alias_to: Filters.OutboundRuleSecurityGroupNames
+  - name: outbound-rule-to-port-ranges
+    alias_to: Filters.OutboundRuleToPortRanges
+  - name: security-group-ids
+    alias_to: Filters.SecurityGroupIds
+  - name: security-group-names
+    alias_to: Filters.SecurityGroupNames
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
 - entity: securitygroup
   group: securitygroup
   use: describe securitygroup_id
@@ -1709,9 +2106,10 @@ aliases:
   - api
   - ReadServerCertificates
   - --output
-  - yaml
+  - table
   flags:
-    paths: Filters.Paths
+  - name: paths
+    alias_to: Filters.Paths
 - entity: snapshotexporttask
   group: snapshotexporttask
   use: list
@@ -1724,7 +2122,8 @@ aliases:
   - --output
   - table
   flags:
-    task_ids: Filters.TaskIds
+  - name: task-ids
+    alias_to: Filters.TaskIds
 - entity: snapshotexporttask
   group: snapshotexporttask
   use: describe snapshotexporttask_id
@@ -1750,22 +2149,38 @@ aliases:
   - --output
   - table
   flags:
-    account_aliases: Filters.AccountAliases
-    account_ids: Filters.AccountIds
-    client_tokens: Filters.ClientTokens
-    descriptions: Filters.Descriptions
-    from_creation_date: Filters.FromCreationDate
-    ids: Filters.SnapshotIds
-    permissions_to_create_volume_account_ids: Filters.PermissionsToCreateVolumeAccountIds
-    permissions_to_create_volume_global_permission: Filters.PermissionsToCreateVolumeGlobalPermission
-    progresses: Filters.Progresses
-    states: Filters.States
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
-    to_creation_date: Filters.ToCreationDate
-    volume_ids: Filters.VolumeIds
-    volume_sizes: Filters.VolumeSizes
+  - name: account-aliases
+    alias_to: Filters.AccountAliases
+  - name: account-ids
+    alias_to: Filters.AccountIds
+  - name: client-tokens
+    alias_to: Filters.ClientTokens
+  - name: descriptions
+    alias_to: Filters.Descriptions
+  - name: from-creation-date
+    alias_to: Filters.FromCreationDate
+  - name: permissions-to-create-volume-account-ids
+    alias_to: Filters.PermissionsToCreateVolumeAccountIds
+  - name: permissions-to-create-volume-global-permission
+    alias_to: Filters.PermissionsToCreateVolumeGlobalPermission
+  - name: progresses
+    alias_to: Filters.Progresses
+  - name: ids
+    alias_to: Filters.SnapshotIds
+  - name: states
+    alias_to: Filters.States
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
+  - name: to-creation-date
+    alias_to: Filters.ToCreationDate
+  - name: volume-ids
+    alias_to: Filters.VolumeIds
+  - name: volume-sizes
+    alias_to: Filters.VolumeSizes
 - entity: snapshot
   group: snapshot
   use: describe snapshot_id
@@ -1791,15 +2206,24 @@ aliases:
   - --output
   - table
   flags:
-    available_ips_counts: Filters.AvailableIpsCounts
-    ids: Filters.SubnetIds
-    ip_ranges: Filters.IpRanges
-    net_ids: Filters.NetIds
-    states: Filters.States
-    subregion_names: Filters.SubregionNames
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
+  - name: available-ips-counts
+    alias_to: Filters.AvailableIpsCounts
+  - name: ip-ranges
+    alias_to: Filters.IpRanges
+  - name: net-ids
+    alias_to: Filters.NetIds
+  - name: states
+    alias_to: Filters.States
+  - name: ids
+    alias_to: Filters.SubnetIds
+  - name: subregion-names
+    alias_to: Filters.SubregionNames
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
 - entity: subnet
   group: subnet
   use: describe subnet_id
@@ -1825,9 +2249,12 @@ aliases:
   - --output
   - table
   flags:
-    names: Filters.SubregionNames
-    region_names: Filters.RegionNames
-    states: Filters.States
+  - name: region-names
+    alias_to: Filters.RegionNames
+  - name: states
+    alias_to: Filters.States
+  - name: names
+    alias_to: Filters.SubregionNames
 - entity: subregion
   group: subregion
   use: describe subregion_id
@@ -1851,12 +2278,16 @@ aliases:
   - api
   - ReadTags
   - --output
-  - yaml
+  - table
   flags:
-    keys: Filters.Keys
-    resource_ids: Filters.ResourceIds
-    resource_types: Filters.ResourceTypes
-    values: Filters.Values
+  - name: keys
+    alias_to: Filters.Keys
+  - name: resource-ids
+    alias_to: Filters.ResourceIds
+  - name: resource-types
+    alias_to: Filters.ResourceTypes
+  - name: values
+    alias_to: Filters.Values
 - entity: unitprice
   group: unitprice
   use: list
@@ -1867,11 +2298,17 @@ aliases:
   - api
   - ReadUnitPrice
   - --output
-  - yaml
+  - table
   flags:
-    operation: Operation
-    service: Service
-    type: Type
+  - name: operation
+    alias_to: Operation
+    required: true
+  - name: service
+    alias_to: Service
+    required: true
+  - name: type
+    alias_to: Type
+    required: true
 - entity: usergroup
   group: usergroup
   use: list
@@ -1884,9 +2321,11 @@ aliases:
   - --output
   - table
   flags:
-    dry_run: DryRun
-    path: Path
-    user_group_name: UserGroupName
+  - name: path
+    alias_to: Path
+  - name: user-group-name
+    alias_to: UserGroupName
+    required: true
 - entity: usergrouppolicy
   group: usergrouppolicy
   use: list
@@ -1897,12 +2336,16 @@ aliases:
   - api
   - ReadUserGroupPolicy
   - --output
-  - yaml
+  - table
   flags:
-    dry_run: DryRun
-    policy_name: PolicyName
-    user_group_name: UserGroupName
-    user_group_path: UserGroupPath
+  - name: policy-name
+    alias_to: PolicyName
+    required: true
+  - name: user-group-name
+    alias_to: UserGroupName
+    required: true
+  - name: user-group-path
+    alias_to: UserGroupPath
 - entity: usergroup
   group: usergroup
   use: list
@@ -1915,8 +2358,12 @@ aliases:
   - --output
   - table
   flags:
-    path_prefix: Filters.PathPrefix
-    user_group_ids: Filters.UserGroupIds
+  - name: path-prefix
+    alias_to: Filters.PathPrefix
+  - name: user-group-ids
+    alias_to: Filters.UserGroupIds
+  - name: first-item
+    alias_to: FirstItem
 - entity: usergroup
   group: usergroup
   use: describe usergroup_id
@@ -1942,9 +2389,11 @@ aliases:
   - --output
   - table
   flags:
-    dry_run: DryRun
-    user_name: UserName
-    user_path: UserPath
+  - name: user-name
+    alias_to: UserName
+    required: true
+  - name: user-path
+    alias_to: UserPath
 - entity: user
   group: user
   use: list
@@ -1957,7 +2406,10 @@ aliases:
   - --output
   - table
   flags:
-    ids: Filters.UserIds
+  - name: ids
+    alias_to: Filters.UserIds
+  - name: first-item
+    alias_to: FirstItem
 - entity: user
   group: user
   use: describe user_id
@@ -1983,14 +2435,22 @@ aliases:
   - --output
   - table
   flags:
-    connection_types: Filters.ConnectionTypes
-    link_net_ids: Filters.LinkNetIds
-    link_states: Filters.LinkStates
-    states: Filters.States
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
-    virtual_gateway_ids: Filters.VirtualGatewayIds
+  - name: connection-types
+    alias_to: Filters.ConnectionTypes
+  - name: link-net-ids
+    alias_to: Filters.LinkNetIds
+  - name: link-states
+    alias_to: Filters.LinkStates
+  - name: states
+    alias_to: Filters.States
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
+  - name: virtual-gateway-ids
+    alias_to: Filters.VirtualGatewayIds
 - entity: virtualgateway
   group: virtualgateway
   use: describe virtualgateway_id
@@ -2016,16 +2476,26 @@ aliases:
   - --output
   - table
   flags:
-    descriptions: Filters.Descriptions
-    security_group_ids: Filters.SecurityGroupIds
-    subnet_ids: Filters.SubnetIds
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
-    vm_counts: Filters.VmCounts
-    vm_group_ids: Filters.VmGroupIds
-    vm_group_names: Filters.VmGroupNames
-    vm_template_ids: Filters.VmTemplateIds
+  - name: descriptions
+    alias_to: Filters.Descriptions
+  - name: security-group-ids
+    alias_to: Filters.SecurityGroupIds
+  - name: subnet-ids
+    alias_to: Filters.SubnetIds
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
+  - name: vm-counts
+    alias_to: Filters.VmCounts
+  - name: vm-group-ids
+    alias_to: Filters.VmGroupIds
+  - name: vm-group-names
+    alias_to: Filters.VmGroupNames
+  - name: vm-template-ids
+    alias_to: Filters.VmTemplateIds
 - entity: vmgroup
   group: vmgroup
   use: describe vmgroup_id
@@ -2051,18 +2521,30 @@ aliases:
   - --output
   - table
   flags:
-    cpu_cores: Filters.CpuCores
-    cpu_generations: Filters.CpuGenerations
-    cpu_performances: Filters.CpuPerformances
-    descriptions: Filters.Descriptions
-    image_ids: Filters.ImageIds
-    keypair_names: Filters.KeypairNames
-    rams: Filters.Rams
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
-    vm_template_ids: Filters.VmTemplateIds
-    vm_template_names: Filters.VmTemplateNames
+  - name: cpu-cores
+    alias_to: Filters.CpuCores
+  - name: cpu-generations
+    alias_to: Filters.CpuGenerations
+  - name: cpu-performances
+    alias_to: Filters.CpuPerformances
+  - name: descriptions
+    alias_to: Filters.Descriptions
+  - name: image-ids
+    alias_to: Filters.ImageIds
+  - name: keypair-names
+    alias_to: Filters.KeypairNames
+  - name: rams
+    alias_to: Filters.Rams
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
+  - name: vm-template-ids
+    alias_to: Filters.VmTemplateIds
+  - name: vm-template-names
+    alias_to: Filters.VmTemplateNames
 - entity: vmtemplate
   group: vmtemplate
   use: describe vmtemplate_id
@@ -2088,15 +2570,22 @@ aliases:
   - --output
   - table
   flags:
-    bsu_optimized: Filters.BsuOptimized
-    ephemerals_types: Filters.EphemeralsTypes
-    eths: Filters.Eths
-    gpus: Filters.Gpus
-    memory_sizes: Filters.MemorySizes
-    vcore_counts: Filters.VcoreCounts
-    vm_type_names: Filters.VmTypeNames
-    volume_counts: Filters.VolumeCounts
-    volume_sizes: Filters.VolumeSizes
+  - name: bsu-optimized
+    alias_to: Filters.BsuOptimized
+  - name: ephemerals-types
+    alias_to: Filters.EphemeralsTypes
+  - name: eths
+    alias_to: Filters.Eths
+  - name: gpus
+    alias_to: Filters.Gpus
+  - name: vcore-counts
+    alias_to: Filters.VcoreCounts
+  - name: vm-type-names
+    alias_to: Filters.VmTypeNames
+  - name: volume-counts
+    alias_to: Filters.VolumeCounts
+  - name: volume-sizes
+    alias_to: Filters.VolumeSizes
 - entity: vmtype
   group: vmtype
   use: describe vmtype_id
@@ -2122,70 +2611,138 @@ aliases:
   - --output
   - table
   flags:
-    architectures: Filters.Architectures
-    block_device_mapping_delete_on_vm_deletion: Filters.BlockDeviceMappingDeleteOnVmDeletion
-    block_device_mapping_device_names: Filters.BlockDeviceMappingDeviceNames
-    block_device_mapping_link_dates: Filters.BlockDeviceMappingLinkDates
-    block_device_mapping_states: Filters.BlockDeviceMappingStates
-    block_device_mapping_volume_ids: Filters.BlockDeviceMappingVolumeIds
-    boot_modes: Filters.BootModes
-    client_tokens: Filters.ClientTokens
-    creation_dates: Filters.CreationDates
-    ids: Filters.VmIds
-    image_ids: Filters.ImageIds
-    is_source_dest_checked: Filters.IsSourceDestChecked
-    keypair_names: Filters.KeypairNames
-    launch_numbers: Filters.LaunchNumbers
-    lifecycles: Filters.Lifecycles
-    net_ids: Filters.NetIds
-    nic_account_ids: Filters.NicAccountIds
-    nic_descriptions: Filters.NicDescriptions
-    nic_is_source_dest_checked: Filters.NicIsSourceDestChecked
-    nic_link_nic_delete_on_vm_deletion: Filters.NicLinkNicDeleteOnVmDeletion
-    nic_link_nic_device_numbers: Filters.NicLinkNicDeviceNumbers
-    nic_link_nic_link_nic_dates: Filters.NicLinkNicLinkNicDates
-    nic_link_nic_link_nic_ids: Filters.NicLinkNicLinkNicIds
-    nic_link_nic_states: Filters.NicLinkNicStates
-    nic_link_nic_vm_account_ids: Filters.NicLinkNicVmAccountIds
-    nic_link_nic_vm_ids: Filters.NicLinkNicVmIds
-    nic_link_public_ip_account_ids: Filters.NicLinkPublicIpAccountIds
-    nic_link_public_ip_link_public_ip_ids: Filters.NicLinkPublicIpLinkPublicIpIds
-    nic_link_public_ip_public_ip_ids: Filters.NicLinkPublicIpPublicIpIds
-    nic_link_public_ip_public_ips: Filters.NicLinkPublicIpPublicIps
-    nic_mac_addresses: Filters.NicMacAddresses
-    nic_net_ids: Filters.NicNetIds
-    nic_nic_ids: Filters.NicNicIds
-    nic_private_ips_link_public_ip_account_ids: Filters.NicPrivateIpsLinkPublicIpAccountIds
-    nic_private_ips_link_public_ip_ids: Filters.NicPrivateIpsLinkPublicIpIds
-    nic_private_ips_primary_ip: Filters.NicPrivateIpsPrimaryIp
-    nic_private_ips_private_ips: Filters.NicPrivateIpsPrivateIps
-    nic_security_group_ids: Filters.NicSecurityGroupIds
-    nic_security_group_names: Filters.NicSecurityGroupNames
-    nic_states: Filters.NicStates
-    nic_subnet_ids: Filters.NicSubnetIds
-    nic_subregion_names: Filters.NicSubregionNames
-    platforms: Filters.Platforms
-    private_ips: Filters.PrivateIps
-    product_codes: Filters.ProductCodes
-    public_ips: Filters.PublicIps
-    reservation_ids: Filters.ReservationIds
-    root_device_names: Filters.RootDeviceNames
-    root_device_types: Filters.RootDeviceTypes
-    security_group_ids: Filters.VmSecurityGroupIds
-    security_group_names: Filters.VmSecurityGroupNames
-    state_codes: Filters.VmStateCodes
-    state_names: Filters.VmStateNames
-    state_reason_codes: Filters.StateReasonCodes
-    state_reason_messages: Filters.StateReasonMessages
-    state_reasons: Filters.StateReasons
-    subnet_ids: Filters.SubnetIds
-    subregion_names: Filters.SubregionNames
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
-    tenancies: Filters.Tenancies
-    tpm_enabled: Filters.TpmEnabled
-    types: Filters.VmTypes
+  - name: architectures
+    alias_to: Filters.Architectures
+  - name: block-device-mapping-delete-on-vm-deletion
+    alias_to: Filters.BlockDeviceMappingDeleteOnVmDeletion
+  - name: block-device-mapping-device-names
+    alias_to: Filters.BlockDeviceMappingDeviceNames
+  - name: block-device-mapping-link-dates
+    alias_to: Filters.BlockDeviceMappingLinkDates
+  - name: block-device-mapping-states
+    alias_to: Filters.BlockDeviceMappingStates
+  - name: block-device-mapping-volume-ids
+    alias_to: Filters.BlockDeviceMappingVolumeIds
+  - name: boot-modes
+    alias_to: Filters.BootModes
+  - name: client-tokens
+    alias_to: Filters.ClientTokens
+  - name: creation-dates
+    alias_to: Filters.CreationDates
+  - name: image-ids
+    alias_to: Filters.ImageIds
+  - name: is-source-dest-checked
+    alias_to: Filters.IsSourceDestChecked
+  - name: keypair-names
+    alias_to: Filters.KeypairNames
+  - name: launch-numbers
+    alias_to: Filters.LaunchNumbers
+  - name: lifecycles
+    alias_to: Filters.Lifecycles
+  - name: net-ids
+    alias_to: Filters.NetIds
+  - name: nic-account-ids
+    alias_to: Filters.NicAccountIds
+  - name: nic-descriptions
+    alias_to: Filters.NicDescriptions
+  - name: nic-is-source-dest-checked
+    alias_to: Filters.NicIsSourceDestChecked
+  - name: nic-link-nic-delete-on-vm-deletion
+    alias_to: Filters.NicLinkNicDeleteOnVmDeletion
+  - name: nic-link-nic-device-numbers
+    alias_to: Filters.NicLinkNicDeviceNumbers
+  - name: nic-link-nic-link-nic-dates
+    alias_to: Filters.NicLinkNicLinkNicDates
+  - name: nic-link-nic-link-nic-ids
+    alias_to: Filters.NicLinkNicLinkNicIds
+  - name: nic-link-nic-states
+    alias_to: Filters.NicLinkNicStates
+  - name: nic-link-nic-vm-account-ids
+    alias_to: Filters.NicLinkNicVmAccountIds
+  - name: nic-link-nic-vm-ids
+    alias_to: Filters.NicLinkNicVmIds
+  - name: nic-link-public-ip-account-ids
+    alias_to: Filters.NicLinkPublicIpAccountIds
+  - name: nic-link-public-ip-link-public-ip-ids
+    alias_to: Filters.NicLinkPublicIpLinkPublicIpIds
+  - name: nic-link-public-ip-public-ip-ids
+    alias_to: Filters.NicLinkPublicIpPublicIpIds
+  - name: nic-link-public-ip-public-ips
+    alias_to: Filters.NicLinkPublicIpPublicIps
+  - name: nic-mac-addresses
+    alias_to: Filters.NicMacAddresses
+  - name: nic-net-ids
+    alias_to: Filters.NicNetIds
+  - name: nic-nic-ids
+    alias_to: Filters.NicNicIds
+  - name: nic-private-ips-link-public-ip-account-ids
+    alias_to: Filters.NicPrivateIpsLinkPublicIpAccountIds
+  - name: nic-private-ips-link-public-ip-ids
+    alias_to: Filters.NicPrivateIpsLinkPublicIpIds
+  - name: nic-private-ips-primary-ip
+    alias_to: Filters.NicPrivateIpsPrimaryIp
+  - name: nic-private-ips-private-ips
+    alias_to: Filters.NicPrivateIpsPrivateIps
+  - name: nic-security-group-ids
+    alias_to: Filters.NicSecurityGroupIds
+  - name: nic-security-group-names
+    alias_to: Filters.NicSecurityGroupNames
+  - name: nic-states
+    alias_to: Filters.NicStates
+  - name: nic-subnet-ids
+    alias_to: Filters.NicSubnetIds
+  - name: nic-subregion-names
+    alias_to: Filters.NicSubregionNames
+  - name: platforms
+    alias_to: Filters.Platforms
+  - name: private-ips
+    alias_to: Filters.PrivateIps
+  - name: product-codes
+    alias_to: Filters.ProductCodes
+  - name: public-ips
+    alias_to: Filters.PublicIps
+  - name: reservation-ids
+    alias_to: Filters.ReservationIds
+  - name: root-device-names
+    alias_to: Filters.RootDeviceNames
+  - name: root-device-types
+    alias_to: Filters.RootDeviceTypes
+  - name: security-group-ids
+    alias_to: Filters.SecurityGroupIds
+  - name: security-group-names
+    alias_to: Filters.SecurityGroupNames
+  - name: state-reason-codes
+    alias_to: Filters.StateReasonCodes
+  - name: state-reason-messages
+    alias_to: Filters.StateReasonMessages
+  - name: state-reasons
+    alias_to: Filters.StateReasons
+  - name: subnet-ids
+    alias_to: Filters.SubnetIds
+  - name: subregion-names
+    alias_to: Filters.SubregionNames
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
+  - name: tenancies
+    alias_to: Filters.Tenancies
+  - name: tpm-enabled
+    alias_to: Filters.TpmEnabled
+  - name: ids
+    alias_to: Filters.VmIds
+  - name: vm-security-group-ids
+    alias_to: Filters.VmSecurityGroupIds
+  - name: vm-security-group-names
+    alias_to: Filters.VmSecurityGroupNames
+  - name: state-codes
+    alias_to: Filters.VmStateCodes
+  - name: state-names
+    alias_to: Filters.VmStateNames
+  - name: types
+    alias_to: Filters.VmTypes
 - entity: vm
   group: vm
   use: describe vm_id
@@ -2211,9 +2768,11 @@ aliases:
   - --output
   - table
   flags:
-    backend_vm_ids: BackendVmIds
-    dry_run: DryRun
-    load_balancer_name: LoadBalancerName
+  - name: backend-vm-ids
+    alias_to: BackendVmIds
+  - name: load-balancer-name
+    alias_to: LoadBalancerName
+    required: true
 - entity: vmsstate
   group: vmsstate
   use: list
@@ -2226,13 +2785,22 @@ aliases:
   - --output
   - table
   flags:
-    maintenance_event_codes: Filters.MaintenanceEventCodes
-    maintenance_event_descriptions: Filters.MaintenanceEventDescriptions
-    maintenance_events_not_after: Filters.MaintenanceEventsNotAfter
-    maintenance_events_not_before: Filters.MaintenanceEventsNotBefore
-    subregion_names: Filters.SubregionNames
-    vm_ids: Filters.VmIds
-    vm_states: Filters.VmStates
+  - name: all-vms
+    alias_to: AllVms
+  - name: maintenance-event-codes
+    alias_to: Filters.MaintenanceEventCodes
+  - name: maintenance-event-descriptions
+    alias_to: Filters.MaintenanceEventDescriptions
+  - name: maintenance-events-not-after
+    alias_to: Filters.MaintenanceEventsNotAfter
+  - name: maintenance-events-not-before
+    alias_to: Filters.MaintenanceEventsNotBefore
+  - name: subregion-names
+    alias_to: Filters.SubregionNames
+  - name: vm-ids
+    alias_to: Filters.VmIds
+  - name: vm-states
+    alias_to: Filters.VmStates
 - entity: volumeupdatetask
   group: volumeupdatetask
   use: list
@@ -2245,7 +2813,8 @@ aliases:
   - --output
   - table
   flags:
-    task_ids: Filters.TaskIds
+  - name: task-ids
+    alias_to: Filters.TaskIds
 - entity: volumeupdatetask
   group: volumeupdatetask
   use: describe volumeupdatetask_id
@@ -2271,22 +2840,38 @@ aliases:
   - --output
   - table
   flags:
-    client_tokens: Filters.ClientTokens
-    creation_dates: Filters.CreationDates
-    ids: Filters.VolumeIds
-    link_volume_delete_on_vm_deletion: Filters.LinkVolumeDeleteOnVmDeletion
-    link_volume_device_names: Filters.LinkVolumeDeviceNames
-    link_volume_link_dates: Filters.LinkVolumeLinkDates
-    link_volume_link_states: Filters.LinkVolumeLinkStates
-    link_volume_vm_ids: Filters.LinkVolumeVmIds
-    sizes: Filters.VolumeSizes
-    snapshot_ids: Filters.SnapshotIds
-    states: Filters.VolumeStates
-    subregion_names: Filters.SubregionNames
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
-    types: Filters.VolumeTypes
+  - name: client-tokens
+    alias_to: Filters.ClientTokens
+  - name: creation-dates
+    alias_to: Filters.CreationDates
+  - name: link-volume-delete-on-vm-deletion
+    alias_to: Filters.LinkVolumeDeleteOnVmDeletion
+  - name: link-volume-device-names
+    alias_to: Filters.LinkVolumeDeviceNames
+  - name: link-volume-link-dates
+    alias_to: Filters.LinkVolumeLinkDates
+  - name: link-volume-link-states
+    alias_to: Filters.LinkVolumeLinkStates
+  - name: link-volume-vm-ids
+    alias_to: Filters.LinkVolumeVmIds
+  - name: snapshot-ids
+    alias_to: Filters.SnapshotIds
+  - name: subregion-names
+    alias_to: Filters.SubregionNames
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
+  - name: ids
+    alias_to: Filters.VolumeIds
+  - name: sizes
+    alias_to: Filters.VolumeSizes
+  - name: states
+    alias_to: Filters.VolumeStates
+  - name: types
+    alias_to: Filters.VolumeTypes
 - entity: volume
   group: volume
   use: describe volume_id
@@ -2312,17 +2897,28 @@ aliases:
   - --output
   - table
   flags:
-    bgp_asns: Filters.BgpAsns
-    client_gateway_ids: Filters.ClientGatewayIds
-    connection_types: Filters.ConnectionTypes
-    route_destination_ip_ranges: Filters.RouteDestinationIpRanges
-    states: Filters.States
-    static_routes_only: Filters.StaticRoutesOnly
-    tag_keys: Filters.TagKeys
-    tag_values: Filters.TagValues
-    tags: Filters.Tags
-    virtual_gateway_ids: Filters.VirtualGatewayIds
-    vpn_connection_ids: Filters.VpnConnectionIds
+  - name: bgp-asns
+    alias_to: Filters.BgpAsns
+  - name: client-gateway-ids
+    alias_to: Filters.ClientGatewayIds
+  - name: connection-types
+    alias_to: Filters.ConnectionTypes
+  - name: route-destination-ip-ranges
+    alias_to: Filters.RouteDestinationIpRanges
+  - name: states
+    alias_to: Filters.States
+  - name: static-routes-only
+    alias_to: Filters.StaticRoutesOnly
+  - name: tag-keys
+    alias_to: Filters.TagKeys
+  - name: tag-values
+    alias_to: Filters.TagValues
+  - name: tags
+    alias_to: Filters.Tags
+  - name: virtual-gateway-ids
+    alias_to: Filters.VirtualGatewayIds
+  - name: vpn-connection-ids
+    alias_to: Filters.VpnConnectionIds
 - entity: vpnconnection
   group: vpnconnection
   use: describe vpnconnection_id
@@ -2336,6 +2932,1050 @@ aliases:
   - '%0'
   - --output
   - yaml,single
+- entity: accesskey
+  group: accesskey
+  use: create
+  short: alias for api CreateAccessKey
+  command:
+  - api
+  - CreateAccessKey
+  - --output
+  - yaml
+  flags:
+  - name: expiration-date
+    alias_to: ExpirationDate
+  - name: tag
+    alias_to: Tag
+  - name: user-name
+    alias_to: UserName
+- entity: account
+  group: account
+  use: create
+  short: alias for api CreateAccount
+  command:
+  - api
+  - CreateAccount
+  - --output
+  - yaml
+  flags:
+  - name: additional-emails
+    alias_to: AdditionalEmails
+  - name: city
+    alias_to: City
+    required: true
+  - name: company-name
+    alias_to: CompanyName
+    required: true
+  - name: country
+    alias_to: Country
+    required: true
+  - name: customer-id
+    alias_to: CustomerId
+    required: true
+  - name: email
+    alias_to: Email
+    required: true
+  - name: first-name
+    alias_to: FirstName
+    required: true
+  - name: job-title
+    alias_to: JobTitle
+  - name: last-name
+    alias_to: LastName
+    required: true
+  - name: mobile-number
+    alias_to: MobileNumber
+  - name: phone-number
+    alias_to: PhoneNumber
+  - name: state-province
+    alias_to: StateProvince
+  - name: vat-number
+    alias_to: VatNumber
+  - name: zip-code
+    alias_to: ZipCode
+    required: true
+- entity: apiaccessrule
+  group: apiaccessrule
+  use: create
+  short: alias for api CreateApiAccessRule
+  command:
+  - api
+  - CreateApiAccessRule
+  - --output
+  - yaml
+  flags:
+  - name: ca-ids
+    alias_to: CaIds
+  - name: cns
+    alias_to: Cns
+  - name: description
+    alias_to: Description
+  - name: ip-ranges
+    alias_to: IpRanges
+- entity: ca
+  group: ca
+  use: create
+  short: alias for api CreateCa
+  command:
+  - api
+  - CreateCa
+  - --output
+  - yaml
+  flags:
+  - name: pem
+    alias_to: CaPem
+    required: true
+  - name: description
+    alias_to: Description
+- entity: clientgateway
+  group: clientgateway
+  use: create
+  short: alias for api CreateClientGateway
+  command:
+  - api
+  - CreateClientGateway
+  - --output
+  - yaml
+  flags:
+  - name: bgp-asn
+    alias_to: BgpAsn
+    required: true
+  - name: connection-type
+    alias_to: ConnectionType
+    required: true
+  - name: public-ip
+    alias_to: PublicIp
+    required: true
+- entity: dedicatedgroup
+  group: dedicatedgroup
+  use: create
+  short: alias for api CreateDedicatedGroup
+  command:
+  - api
+  - CreateDedicatedGroup
+  - --output
+  - yaml
+  flags:
+  - name: cpu-generation
+    alias_to: CpuGeneration
+    required: true
+  - name: name
+    alias_to: Name
+    required: true
+  - name: subregion-name
+    alias_to: SubregionName
+    required: true
+- entity: dhcpoption
+  group: dhcpoption
+  use: create
+  short: alias for api CreateDhcpOptions
+  command:
+  - api
+  - CreateDhcpOptions
+  - --output
+  - yaml
+  flags:
+  - name: domain-name
+    alias_to: DomainName
+  - name: domain-name-servers
+    alias_to: DomainNameServers
+  - name: log-servers
+    alias_to: LogServers
+  - name: ntp-servers
+    alias_to: NtpServers
+- entity: directlink
+  group: directlink
+  use: create
+  short: alias for api CreateDirectLink
+  command:
+  - api
+  - CreateDirectLink
+  - --output
+  - yaml
+  flags:
+  - name: bandwidth
+    alias_to: Bandwidth
+    required: true
+  - name: direct-link-name
+    alias_to: DirectLinkName
+    required: true
+  - name: location
+    alias_to: Location
+    required: true
+- entity: directlinkinterface
+  group: directlinkinterface
+  use: create
+  short: alias for api CreateDirectLinkInterface
+  command:
+  - api
+  - CreateDirectLinkInterface
+  - --output
+  - yaml
+  flags:
+  - name: direct-link-id
+    alias_to: DirectLinkId
+    required: true
+  - name: direct-link-interface-bgp-asn
+    alias_to: DirectLinkInterface.BgpAsn
+    required: true
+  - name: direct-link-interface-bgp-key
+    alias_to: DirectLinkInterface.BgpKey
+  - name: direct-link-interface-client-private-ip
+    alias_to: DirectLinkInterface.ClientPrivateIp
+  - name: direct-link-interface-direct-link-interface-name
+    alias_to: DirectLinkInterface.DirectLinkInterfaceName
+    required: true
+  - name: direct-link-interface-outscale-private-ip
+    alias_to: DirectLinkInterface.OutscalePrivateIp
+  - name: direct-link-interface-virtual-gateway-id
+    alias_to: DirectLinkInterface.VirtualGatewayId
+    required: true
+  - name: direct-link-interface-vlan
+    alias_to: DirectLinkInterface.Vlan
+    required: true
+- entity: flexiblegpu
+  group: flexiblegpu
+  use: create
+  short: alias for api CreateFlexibleGpu
+  command:
+  - api
+  - CreateFlexibleGpu
+  - --output
+  - yaml
+  flags:
+  - name: delete-on-vm-deletion
+    alias_to: DeleteOnVmDeletion
+  - name: generation
+    alias_to: Generation
+  - name: model-name
+    alias_to: ModelName
+    required: true
+  - name: subregion-name
+    alias_to: SubregionName
+    required: true
+- entity: image
+  group: image
+  use: create
+  short: alias for api CreateImage
+  command:
+  - api
+  - CreateImage
+  - --output
+  - yaml
+  flags:
+  - name: architecture
+    alias_to: Architecture
+  - name: block-device-mapping-bsu-delete-on-vm-deletion
+    alias_to: BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion
+  - name: block-device-mapping-bsu-iops
+    alias_to: BlockDeviceMappings.0.Bsu.Iops
+  - name: block-device-mapping-bsu-snapshot-id
+    alias_to: BlockDeviceMappings.0.Bsu.SnapshotId
+  - name: block-device-mapping-bsu-volume-size
+    alias_to: BlockDeviceMappings.0.Bsu.VolumeSize
+  - name: block-device-mapping-bsu-volume-type
+    alias_to: BlockDeviceMappings.0.Bsu.VolumeType
+  - name: block-device-mapping-device-name
+    alias_to: BlockDeviceMappings.0.DeviceName
+  - name: block-device-mapping-virtual-device-name
+    alias_to: BlockDeviceMappings.0.VirtualDeviceName
+  - name: boot-modes
+    alias_to: BootModes
+  - name: description
+    alias_to: Description
+  - name: file-location
+    alias_to: FileLocation
+  - name: name
+    alias_to: ImageName
+  - name: no-reboot
+    alias_to: NoReboot
+  - name: product-codes
+    alias_to: ProductCodes
+  - name: root-device-name
+    alias_to: RootDeviceName
+  - name: source-image-id
+    alias_to: SourceImageId
+  - name: source-region-name
+    alias_to: SourceRegionName
+  - name: tpm-mandatory
+    alias_to: TpmMandatory
+  - name: vm-id
+    alias_to: VmId
+- entity: imageexporttask
+  group: imageexporttask
+  use: create
+  short: alias for api CreateImageExportTask
+  command:
+  - api
+  - CreateImageExportTask
+  - --output
+  - yaml
+  flags:
+  - name: image-id
+    alias_to: ImageId
+    required: true
+  - name: osu-export-disk-image-format
+    alias_to: OsuExport.DiskImageFormat
+    required: true
+  - name: osu-export-osu-api-key-api-key-id
+    alias_to: OsuExport.OsuApiKey.ApiKeyId
+  - name: osu-export-osu-api-key-secret-key
+    alias_to: OsuExport.OsuApiKey.SecretKey
+  - name: osu-export-osu-bucket
+    alias_to: OsuExport.OsuBucket
+    required: true
+  - name: osu-export-osu-manifest-url
+    alias_to: OsuExport.OsuManifestUrl
+  - name: osu-export-osu-prefix
+    alias_to: OsuExport.OsuPrefix
+- entity: internetservice
+  group: internetservice
+  use: create
+  short: alias for api CreateInternetService
+  command:
+  - api
+  - CreateInternetService
+  - --output
+  - yaml
+- entity: keypair
+  group: keypair
+  use: create
+  short: alias for api CreateKeypair
+  command:
+  - api
+  - CreateKeypair
+  - --output
+  - yaml
+  flags:
+  - name: name
+    alias_to: KeypairName
+    required: true
+  - name: public-key
+    alias_to: PublicKey
+- entity: listenerrule
+  group: listenerrule
+  use: create
+  short: alias for api CreateListenerRule
+  command:
+  - api
+  - CreateListenerRule
+  - --output
+  - yaml
+  flags:
+  - name: listener-load-balancer-name
+    alias_to: Listener.LoadBalancerName
+    required: true
+  - name: listener-load-balancer-port
+    alias_to: Listener.LoadBalancerPort
+    required: true
+  - name: listener-rule-action
+    alias_to: ListenerRule.Action
+  - name: listener-rule-host-name-pattern
+    alias_to: ListenerRule.HostNamePattern
+  - name: listener-rule-listener-rule-name
+    alias_to: ListenerRule.ListenerRuleName
+    required: true
+  - name: listener-rule-path-pattern
+    alias_to: ListenerRule.PathPattern
+  - name: listener-rule-priority
+    alias_to: ListenerRule.Priority
+    required: true
+  - name: vm-ids
+    alias_to: VmIds
+    required: true
+- entity: loadbalancer
+  group: loadbalancer
+  use: create
+  short: alias for api CreateLoadBalancer
+  command:
+  - api
+  - CreateLoadBalancer
+  - --output
+  - yaml
+  flags:
+  - name: listener-backend-port
+    alias_to: Listeners.0.BackendPort
+    required: true
+  - name: listener-backend-protocol
+    alias_to: Listeners.0.BackendProtocol
+  - name: listener-load-balancer-port
+    alias_to: Listeners.0.LoadBalancerPort
+    required: true
+  - name: listener-load-balancer-protocol
+    alias_to: Listeners.0.LoadBalancerProtocol
+    required: true
+  - name: listener-server-certificate-id
+    alias_to: Listeners.0.ServerCertificateId
+  - name: load-balancer-name
+    alias_to: LoadBalancerName
+    required: true
+  - name: load-balancer-type
+    alias_to: LoadBalancerType
+  - name: public-ip
+    alias_to: PublicIp
+  - name: security-groups
+    alias_to: SecurityGroups
+  - name: subnets
+    alias_to: Subnets
+  - name: subregion-names
+    alias_to: SubregionNames
+  - name: tag-key
+    alias_to: Tags.0.Key
+    required: true
+  - name: tag-value
+    alias_to: Tags.0.Value
+    required: true
+- entity: loadbalancerlistener
+  group: loadbalancerlistener
+  use: create
+  short: alias for api CreateLoadBalancerListeners
+  command:
+  - api
+  - CreateLoadBalancerListeners
+  - --output
+  - yaml
+  flags:
+  - name: listener-backend-port
+    alias_to: Listeners.0.BackendPort
+    required: true
+  - name: listener-backend-protocol
+    alias_to: Listeners.0.BackendProtocol
+  - name: listener-load-balancer-port
+    alias_to: Listeners.0.LoadBalancerPort
+    required: true
+  - name: listener-load-balancer-protocol
+    alias_to: Listeners.0.LoadBalancerProtocol
+    required: true
+  - name: listener-server-certificate-id
+    alias_to: Listeners.0.ServerCertificateId
+  - name: load-balancer-name
+    alias_to: LoadBalancerName
+    required: true
+- entity: loadbalancerpolicy
+  group: loadbalancerpolicy
+  use: create
+  short: alias for api CreateLoadBalancerPolicy
+  command:
+  - api
+  - CreateLoadBalancerPolicy
+  - --output
+  - yaml
+  flags:
+  - name: cookie-expiration-period
+    alias_to: CookieExpirationPeriod
+  - name: cookie-name
+    alias_to: CookieName
+  - name: load-balancer-name
+    alias_to: LoadBalancerName
+    required: true
+  - name: policy-name
+    alias_to: PolicyName
+    required: true
+  - name: policy-type
+    alias_to: PolicyType
+    required: true
+- entity: natservice
+  group: natservice
+  use: create
+  short: alias for api CreateNatService
+  command:
+  - api
+  - CreateNatService
+  - --output
+  - yaml
+  flags:
+  - name: client-token
+    alias_to: ClientToken
+  - name: public-ip-id
+    alias_to: PublicIpId
+    required: true
+  - name: subnet-id
+    alias_to: SubnetId
+    required: true
+- entity: net
+  group: net
+  use: create
+  short: alias for api CreateNet
+  command:
+  - api
+  - CreateNet
+  - --output
+  - yaml
+  flags:
+  - name: ip-range
+    alias_to: IpRange
+    required: true
+  - name: tenancy
+    alias_to: Tenancy
+- entity: netaccesspoint
+  group: netaccesspoint
+  use: create
+  short: alias for api CreateNetAccessPoint
+  command:
+  - api
+  - CreateNetAccessPoint
+  - --output
+  - yaml
+  flags:
+  - name: net-id
+    alias_to: NetId
+    required: true
+  - name: route-table-ids
+    alias_to: RouteTableIds
+  - name: service-name
+    alias_to: ServiceName
+    required: true
+- entity: netpeering
+  group: netpeering
+  use: create
+  short: alias for api CreateNetPeering
+  command:
+  - api
+  - CreateNetPeering
+  - --output
+  - yaml
+  flags:
+  - name: accepter-net-id
+    alias_to: AccepterNetId
+    required: true
+  - name: accepter-owner-id
+    alias_to: AccepterOwnerId
+  - name: source-net-id
+    alias_to: SourceNetId
+    required: true
+- entity: nic
+  group: nic
+  use: create
+  short: alias for api CreateNic
+  command:
+  - api
+  - CreateNic
+  - --output
+  - yaml
+  flags:
+  - name: description
+    alias_to: Description
+  - name: private-ip-is-primary
+    alias_to: PrivateIps.0.IsPrimary
+    required: true
+  - name: private-ip-private-ip
+    alias_to: PrivateIps.0.PrivateIp
+    required: true
+  - name: security-group-ids
+    alias_to: SecurityGroupIds
+  - name: subnet-id
+    alias_to: SubnetId
+    required: true
+- entity: policy
+  group: policy
+  use: create
+  short: alias for api CreatePolicy
+  command:
+  - api
+  - CreatePolicy
+  - --output
+  - yaml
+  flags:
+  - name: description
+    alias_to: Description
+  - name: document
+    alias_to: Document
+    required: true
+  - name: path
+    alias_to: Path
+  - name: name
+    alias_to: PolicyName
+    required: true
+- entity: policyversion
+  group: policyversion
+  use: create
+  short: alias for api CreatePolicyVersion
+  command:
+  - api
+  - CreatePolicyVersion
+  - --output
+  - yaml
+  flags:
+  - name: document
+    alias_to: Document
+    required: true
+  - name: policy-orn
+    alias_to: PolicyOrn
+    required: true
+  - name: set-as-default
+    alias_to: SetAsDefault
+- entity: producttype
+  group: producttype
+  use: create
+  short: alias for api CreateProductType
+  command:
+  - api
+  - CreateProductType
+  - --output
+  - yaml
+  flags:
+  - name: description
+    alias_to: Description
+    required: true
+  - name: vendor
+    alias_to: Vendor
+- entity: publicip
+  group: publicip
+  use: create
+  short: alias for api CreatePublicIp
+  command:
+  - api
+  - CreatePublicIp
+  - --output
+  - yaml
+- entity: route
+  group: route
+  use: create
+  short: alias for api CreateRoute
+  command:
+  - api
+  - CreateRoute
+  - --output
+  - yaml
+  flags:
+  - name: destination-ip-range
+    alias_to: DestinationIpRange
+    required: true
+  - name: gateway-id
+    alias_to: GatewayId
+  - name: nat-service-id
+    alias_to: NatServiceId
+  - name: net-peering-id
+    alias_to: NetPeeringId
+  - name: nic-id
+    alias_to: NicId
+  - name: table-id
+    alias_to: RouteTableId
+    required: true
+  - name: vm-id
+    alias_to: VmId
+- entity: routetable
+  group: routetable
+  use: create
+  short: alias for api CreateRouteTable
+  command:
+  - api
+  - CreateRouteTable
+  - --output
+  - yaml
+  flags:
+  - name: net-id
+    alias_to: NetId
+    required: true
+- entity: securitygroup
+  group: securitygroup
+  use: create
+  short: alias for api CreateSecurityGroup
+  command:
+  - api
+  - CreateSecurityGroup
+  - --output
+  - yaml
+  flags:
+  - name: description
+    alias_to: Description
+    required: true
+  - name: net-id
+    alias_to: NetId
+  - name: security-group-name
+    alias_to: SecurityGroupName
+    required: true
+- entity: securitygrouprule
+  group: securitygrouprule
+  use: create
+  short: alias for api CreateSecurityGroupRule
+  command:
+  - api
+  - CreateSecurityGroupRule
+  - --output
+  - yaml
+  flags:
+  - name: flow
+    alias_to: Flow
+    required: true
+  - name: from-port-range
+    alias_to: FromPortRange
+  - name: ip-protocol
+    alias_to: IpProtocol
+  - name: ip-range
+    alias_to: IpRange
+  - name: rule-from-port-range
+    alias_to: Rules.0.FromPortRange
+  - name: rule-ip-protocol
+    alias_to: Rules.0.IpProtocol
+  - name: rule-ip-ranges
+    alias_to: Rules.0.IpRanges
+  - name: rule-security-group-rule-id
+    alias_to: Rules.0.SecurityGroupRuleId
+  - name: rule-security-groups-member-account-id
+    alias_to: Rules.0.SecurityGroupsMembers.0.AccountId
+  - name: rule-security-groups-member-security-group-id
+    alias_to: Rules.0.SecurityGroupsMembers.0.SecurityGroupId
+    required: true
+  - name: rule-security-groups-member-security-group-name
+    alias_to: Rules.0.SecurityGroupsMembers.0.SecurityGroupName
+  - name: rule-service-ids
+    alias_to: Rules.0.ServiceIds
+  - name: rule-to-port-range
+    alias_to: Rules.0.ToPortRange
+  - name: security-group-account-id-to-link
+    alias_to: SecurityGroupAccountIdToLink
+  - name: security-group-id
+    alias_to: SecurityGroupId
+    required: true
+  - name: security-group-name-to-link
+    alias_to: SecurityGroupNameToLink
+  - name: to-port-range
+    alias_to: ToPortRange
+- entity: servercertificate
+  group: servercertificate
+  use: create
+  short: alias for api CreateServerCertificate
+  command:
+  - api
+  - CreateServerCertificate
+  - --output
+  - yaml
+  flags:
+  - name: body
+    alias_to: Body
+    required: true
+  - name: chain
+    alias_to: Chain
+  - name: name
+    alias_to: Name
+    required: true
+  - name: path
+    alias_to: Path
+  - name: private-key
+    alias_to: PrivateKey
+    required: true
+- entity: snapshot
+  group: snapshot
+  use: create
+  short: alias for api CreateSnapshot
+  command:
+  - api
+  - CreateSnapshot
+  - --output
+  - yaml
+  flags:
+  - name: client-token
+    alias_to: ClientToken
+  - name: description
+    alias_to: Description
+  - name: file-location
+    alias_to: FileLocation
+  - name: source-region-name
+    alias_to: SourceRegionName
+  - name: source-snapshot-id
+    alias_to: SourceSnapshotId
+  - name: volume-id
+    alias_to: VolumeId
+- entity: snapshotexporttask
+  group: snapshotexporttask
+  use: create
+  short: alias for api CreateSnapshotExportTask
+  command:
+  - api
+  - CreateSnapshotExportTask
+  - --output
+  - yaml
+  flags:
+  - name: osu-export-disk-image-format
+    alias_to: OsuExport.DiskImageFormat
+    required: true
+  - name: osu-export-osu-api-key-api-key-id
+    alias_to: OsuExport.OsuApiKey.ApiKeyId
+  - name: osu-export-osu-api-key-secret-key
+    alias_to: OsuExport.OsuApiKey.SecretKey
+  - name: osu-export-osu-bucket
+    alias_to: OsuExport.OsuBucket
+    required: true
+  - name: osu-export-osu-manifest-url
+    alias_to: OsuExport.OsuManifestUrl
+  - name: osu-export-osu-prefix
+    alias_to: OsuExport.OsuPrefix
+  - name: snapshot-id
+    alias_to: SnapshotId
+    required: true
+- entity: subnet
+  group: subnet
+  use: create
+  short: alias for api CreateSubnet
+  command:
+  - api
+  - CreateSubnet
+  - --output
+  - yaml
+  flags:
+  - name: ip-range
+    alias_to: IpRange
+    required: true
+  - name: net-id
+    alias_to: NetId
+    required: true
+  - name: subregion-name
+    alias_to: SubregionName
+- entity: user
+  group: user
+  use: create
+  short: alias for api CreateUser
+  command:
+  - api
+  - CreateUser
+  - --output
+  - yaml
+  flags:
+  - name: path
+    alias_to: Path
+  - name: email
+    alias_to: UserEmail
+  - name: name
+    alias_to: UserName
+    required: true
+- entity: usergroup
+  group: usergroup
+  use: create
+  short: alias for api CreateUserGroup
+  command:
+  - api
+  - CreateUserGroup
+  - --output
+  - yaml
+  flags:
+  - name: path
+    alias_to: Path
+  - name: user-group-name
+    alias_to: UserGroupName
+    required: true
+- entity: virtualgateway
+  group: virtualgateway
+  use: create
+  short: alias for api CreateVirtualGateway
+  command:
+  - api
+  - CreateVirtualGateway
+  - --output
+  - yaml
+  flags:
+  - name: connection-type
+    alias_to: ConnectionType
+    required: true
+- entity: vmgroup
+  group: vmgroup
+  use: create
+  short: alias for api CreateVmGroup
+  command:
+  - api
+  - CreateVmGroup
+  - --output
+  - yaml
+  flags:
+  - name: description
+    alias_to: Description
+  - name: positioning-strategy
+    alias_to: PositioningStrategy
+  - name: security-group-ids
+    alias_to: SecurityGroupIds
+    required: true
+  - name: subnet-id
+    alias_to: SubnetId
+    required: true
+  - name: tag-key
+    alias_to: Tags.0.Key
+    required: true
+  - name: tag-value
+    alias_to: Tags.0.Value
+    required: true
+  - name: vm-count
+    alias_to: VmCount
+    required: true
+  - name: vm-group-name
+    alias_to: VmGroupName
+    required: true
+  - name: vm-template-id
+    alias_to: VmTemplateId
+    required: true
+- entity: vmtemplate
+  group: vmtemplate
+  use: create
+  short: alias for api CreateVmTemplate
+  command:
+  - api
+  - CreateVmTemplate
+  - --output
+  - yaml
+  flags:
+  - name: cpu-cores
+    alias_to: CpuCores
+    required: true
+  - name: cpu-generation
+    alias_to: CpuGeneration
+    required: true
+  - name: cpu-performance
+    alias_to: CpuPerformance
+  - name: description
+    alias_to: Description
+  - name: image-id
+    alias_to: ImageId
+    required: true
+  - name: keypair-name
+    alias_to: KeypairName
+  - name: ram
+    alias_to: Ram
+    required: true
+  - name: tag-key
+    alias_to: Tags.0.Key
+    required: true
+  - name: tag-value
+    alias_to: Tags.0.Value
+    required: true
+  - name: vm-template-name
+    alias_to: VmTemplateName
+    required: true
+- entity: vm
+  group: vm
+  use: create
+  short: alias for api CreateVms
+  command:
+  - api
+  - CreateVms
+  - --output
+  - yaml
+  flags:
+  - name: actions-on-next-boot-secure-boot
+    alias_to: ActionsOnNextBoot.SecureBoot
+  - name: block-device-mapping-bsu-delete-on-vm-deletion
+    alias_to: BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion
+  - name: block-device-mapping-bsu-iops
+    alias_to: BlockDeviceMappings.0.Bsu.Iops
+  - name: block-device-mapping-bsu-snapshot-id
+    alias_to: BlockDeviceMappings.0.Bsu.SnapshotId
+  - name: block-device-mapping-bsu-volume-size
+    alias_to: BlockDeviceMappings.0.Bsu.VolumeSize
+  - name: block-device-mapping-bsu-volume-type
+    alias_to: BlockDeviceMappings.0.Bsu.VolumeType
+  - name: block-device-mapping-device-name
+    alias_to: BlockDeviceMappings.0.DeviceName
+  - name: block-device-mapping-no-device
+    alias_to: BlockDeviceMappings.0.NoDevice
+  - name: block-device-mapping-virtual-device-name
+    alias_to: BlockDeviceMappings.0.VirtualDeviceName
+  - name: boot-mode
+    alias_to: BootMode
+  - name: boot-on-creation
+    alias_to: BootOnCreation
+  - name: bsu-optimized
+    alias_to: BsuOptimized
+  - name: client-token
+    alias_to: ClientToken
+  - name: deletion-protection
+    alias_to: DeletionProtection
+  - name: image-id
+    alias_to: ImageId
+    required: true
+  - name: keypair-name
+    alias_to: KeypairName
+  - name: max-vms-count
+    alias_to: MaxVmsCount
+  - name: min-vms-count
+    alias_to: MinVmsCount
+  - name: nested-virtualization
+    alias_to: NestedVirtualization
+  - name: nic-delete-on-vm-deletion
+    alias_to: Nics.0.DeleteOnVmDeletion
+  - name: nic-description
+    alias_to: Nics.0.Description
+  - name: nic-device-number
+    alias_to: Nics.0.DeviceNumber
+  - name: nic-nic-id
+    alias_to: Nics.0.NicId
+  - name: nic-private-ip-is-primary
+    alias_to: Nics.0.PrivateIps.0.IsPrimary
+    required: true
+  - name: nic-private-ip-private-ip
+    alias_to: Nics.0.PrivateIps.0.PrivateIp
+    required: true
+  - name: nic-secondary-private-ip-count
+    alias_to: Nics.0.SecondaryPrivateIpCount
+  - name: nic-security-group-ids
+    alias_to: Nics.0.SecurityGroupIds
+  - name: nic-subnet-id
+    alias_to: Nics.0.SubnetId
+  - name: performance
+    alias_to: Performance
+  - name: placement-subregion-name
+    alias_to: Placement.SubregionName
+    required: true
+  - name: placement-tenancy
+    alias_to: Placement.Tenancy
+    required: true
+  - name: private-ips
+    alias_to: PrivateIps
+  - name: security-group-ids
+    alias_to: SecurityGroupIds
+  - name: security-groups
+    alias_to: SecurityGroups
+  - name: subnet-id
+    alias_to: SubnetId
+  - name: tpm-enabled
+    alias_to: TpmEnabled
+  - name: user-data
+    alias_to: UserData
+  - name: initiated-shutdown-behavior
+    alias_to: VmInitiatedShutdownBehavior
+  - name: type
+    alias_to: VmType
+- entity: volume
+  group: volume
+  use: create
+  short: alias for api CreateVolume
+  command:
+  - api
+  - CreateVolume
+  - --output
+  - yaml
+  flags:
+  - name: client-token
+    alias_to: ClientToken
+  - name: iops
+    alias_to: Iops
+  - name: size
+    alias_to: Size
+  - name: snapshot-id
+    alias_to: SnapshotId
+  - name: subregion-name
+    alias_to: SubregionName
+    required: true
+  - name: type
+    alias_to: VolumeType
+- entity: vpnconnection
+  group: vpnconnection
+  use: create
+  short: alias for api CreateVpnConnection
+  command:
+  - api
+  - CreateVpnConnection
+  - --output
+  - yaml
+  flags:
+  - name: client-gateway-id
+    alias_to: ClientGatewayId
+    required: true
+  - name: connection-type
+    alias_to: ConnectionType
+    required: true
+  - name: static-routes-only
+    alias_to: StaticRoutesOnly
+  - name: virtual-gateway-id
+    alias_to: VirtualGatewayId
+    required: true
 - entity: accesskey
   group: accesskey
   use: delete accesskey_id
@@ -3089,3 +4729,471 @@ aliases:
     - '%0'
     - --output
     - table,single
+- entity: accesskey
+  group: accesskey
+  use: update accesskey_id
+  short: alias for api UpdateAccessKey --AccessKeyId accesskey_id
+  command:
+  - api
+  - UpdateAccessKey
+  - --AccessKeyId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: expiration-date
+    alias_to: ExpirationDate
+  - name: state
+    alias_to: State
+    required: true
+  - name: user-name
+    alias_to: UserName
+- entity: apiaccessrule
+  group: apiaccessrule
+  use: update apiaccessrule_id
+  short: alias for api UpdateApiAccessRule --ApiAccessRuleId apiaccessrule_id
+  command:
+  - api
+  - UpdateApiAccessRule
+  - --ApiAccessRuleId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: ca-ids
+    alias_to: CaIds
+  - name: cns
+    alias_to: Cns
+  - name: description
+    alias_to: Description
+  - name: ip-ranges
+    alias_to: IpRanges
+- entity: ca
+  group: ca
+  use: update ca_id
+  short: alias for api UpdateCa --CaId ca_id
+  command:
+  - api
+  - UpdateCa
+  - --CaId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: description
+    alias_to: Description
+- entity: dedicatedgroup
+  group: dedicatedgroup
+  use: update dedicatedgroup_id
+  short: alias for api UpdateDedicatedGroup --DedicatedGroupId dedicatedgroup_id
+  command:
+  - api
+  - UpdateDedicatedGroup
+  - --DedicatedGroupId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: name
+    alias_to: Name
+    required: true
+- entity: directlinkinterface
+  group: directlinkinterface
+  use: update directlinkinterface_id
+  short: alias for api UpdateDirectLinkInterface --DirectLinkInterfaceId directlinkinterface_id
+  command:
+  - api
+  - UpdateDirectLinkInterface
+  - --DirectLinkInterfaceId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: mtu
+    alias_to: Mtu
+    required: true
+- entity: flexiblegpu
+  group: flexiblegpu
+  use: update flexiblegpu_id
+  short: alias for api UpdateFlexibleGpu --FlexibleGpuId flexiblegpu_id
+  command:
+  - api
+  - UpdateFlexibleGpu
+  - --FlexibleGpuId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: delete-on-vm-deletion
+    alias_to: DeleteOnVmDeletion
+- entity: image
+  group: image
+  use: update image_id
+  short: alias for api UpdateImage --ImageId image_id
+  command:
+  - api
+  - UpdateImage
+  - --ImageId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: description
+    alias_to: Description
+  - name: permissions-to-launch-additions-account-ids
+    alias_to: PermissionsToLaunch.Additions.AccountIds
+  - name: permissions-to-launch-additions-global-permission
+    alias_to: PermissionsToLaunch.Additions.GlobalPermission
+  - name: permissions-to-launch-removals-account-ids
+    alias_to: PermissionsToLaunch.Removals.AccountIds
+  - name: permissions-to-launch-removals-global-permission
+    alias_to: PermissionsToLaunch.Removals.GlobalPermission
+  - name: product-codes
+    alias_to: ProductCodes
+- entity: listenerrule
+  group: listenerrule
+  use: update listenerrule_id
+  short: alias for api UpdateListenerRule --ListenerRuleName listenerrule_id
+  command:
+  - api
+  - UpdateListenerRule
+  - --ListenerRuleName
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: host-pattern
+    alias_to: HostPattern
+  - name: path-pattern
+    alias_to: PathPattern
+- entity: loadbalancer
+  group: loadbalancer
+  use: update loadbalancer_id
+  short: alias for api UpdateLoadBalancer --LoadBalancerName loadbalancer_id
+  command:
+  - api
+  - UpdateLoadBalancer
+  - --LoadBalancerName
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: access-log-is-enabled
+    alias_to: AccessLog.IsEnabled
+    required: true
+  - name: access-log-osu-bucket-name
+    alias_to: AccessLog.OsuBucketName
+  - name: access-log-osu-bucket-prefix
+    alias_to: AccessLog.OsuBucketPrefix
+  - name: access-log-publication-interval
+    alias_to: AccessLog.PublicationInterval
+  - name: health-check-check-interval
+    alias_to: HealthCheck.CheckInterval
+    required: true
+  - name: health-check-healthy-threshold
+    alias_to: HealthCheck.HealthyThreshold
+    required: true
+  - name: health-check-path
+    alias_to: HealthCheck.Path
+  - name: health-check-port
+    alias_to: HealthCheck.Port
+    required: true
+  - name: health-check-protocol
+    alias_to: HealthCheck.Protocol
+    required: true
+  - name: health-check-timeout
+    alias_to: HealthCheck.Timeout
+    required: true
+  - name: health-check-unhealthy-threshold
+    alias_to: HealthCheck.UnhealthyThreshold
+    required: true
+  - name: load-balancer-port
+    alias_to: LoadBalancerPort
+  - name: policy-names
+    alias_to: PolicyNames
+  - name: public-ip
+    alias_to: PublicIp
+  - name: secured-cookies
+    alias_to: SecuredCookies
+  - name: security-groups
+    alias_to: SecurityGroups
+  - name: server-certificate-id
+    alias_to: ServerCertificateId
+- entity: net
+  group: net
+  use: update net_id
+  short: alias for api UpdateNet --NetId net_id
+  command:
+  - api
+  - UpdateNet
+  - --NetId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: dhcp-options-set-id
+    alias_to: DhcpOptionsSetId
+    required: true
+- entity: netaccesspoint
+  group: netaccesspoint
+  use: update netaccesspoint_id
+  short: alias for api UpdateNetAccessPoint --NetAccessPointId netaccesspoint_id
+  command:
+  - api
+  - UpdateNetAccessPoint
+  - --NetAccessPointId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: add-route-table-ids
+    alias_to: AddRouteTableIds
+  - name: remove-route-table-ids
+    alias_to: RemoveRouteTableIds
+- entity: nic
+  group: nic
+  use: update nic_id
+  short: alias for api UpdateNic --NicId nic_id
+  command:
+  - api
+  - UpdateNic
+  - --NicId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: description
+    alias_to: Description
+  - name: link-nic-delete-on-vm-deletion
+    alias_to: LinkNic.DeleteOnVmDeletion
+  - name: link-nic-link-nic-id
+    alias_to: LinkNic.LinkNicId
+  - name: security-group-ids
+    alias_to: SecurityGroupIds
+- entity: snapshot
+  group: snapshot
+  use: update snapshot_id
+  short: alias for api UpdateSnapshot --SnapshotId snapshot_id
+  command:
+  - api
+  - UpdateSnapshot
+  - --SnapshotId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: permissions-to-create-volume-additions-account-ids
+    alias_to: PermissionsToCreateVolume.Additions.AccountIds
+  - name: permissions-to-create-volume-additions-global-permission
+    alias_to: PermissionsToCreateVolume.Additions.GlobalPermission
+  - name: permissions-to-create-volume-removals-account-ids
+    alias_to: PermissionsToCreateVolume.Removals.AccountIds
+  - name: permissions-to-create-volume-removals-global-permission
+    alias_to: PermissionsToCreateVolume.Removals.GlobalPermission
+- entity: subnet
+  group: subnet
+  use: update subnet_id
+  short: alias for api UpdateSubnet --SubnetId subnet_id
+  command:
+  - api
+  - UpdateSubnet
+  - --SubnetId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: map-public-ip-on-launch
+    alias_to: MapPublicIpOnLaunch
+    required: true
+- entity: user
+  group: user
+  use: update user_id
+  short: alias for api UpdateUser --UserName user_id
+  command:
+  - api
+  - UpdateUser
+  - --UserName
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: new-path
+    alias_to: NewPath
+  - name: new-user-email
+    alias_to: NewUserEmail
+  - name: new-user-name
+    alias_to: NewUserName
+- entity: usergroup
+  group: usergroup
+  use: update usergroup_id
+  short: alias for api UpdateUserGroup --UserGroupName usergroup_id
+  command:
+  - api
+  - UpdateUserGroup
+  - --UserGroupName
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: new-path
+    alias_to: NewPath
+  - name: new-user-group-name
+    alias_to: NewUserGroupName
+  - name: path
+    alias_to: Path
+- entity: vm
+  group: vm
+  use: update vm_id
+  short: alias for api UpdateVm --VmId vm_id
+  command:
+  - api
+  - UpdateVm
+  - --VmId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: actions-on-next-boot-secure-boot
+    alias_to: ActionsOnNextBoot.SecureBoot
+  - name: block-device-mapping-bsu-delete-on-vm-deletion
+    alias_to: BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion
+    required: true
+  - name: block-device-mapping-bsu-volume-id
+    alias_to: BlockDeviceMappings.0.Bsu.VolumeId
+    required: true
+  - name: block-device-mapping-device-name
+    alias_to: BlockDeviceMappings.0.DeviceName
+  - name: block-device-mapping-no-device
+    alias_to: BlockDeviceMappings.0.NoDevice
+  - name: block-device-mapping-virtual-device-name
+    alias_to: BlockDeviceMappings.0.VirtualDeviceName
+  - name: bsu-optimized
+    alias_to: BsuOptimized
+  - name: deletion-protection
+    alias_to: DeletionProtection
+  - name: is-source-dest-checked
+    alias_to: IsSourceDestChecked
+  - name: keypair-name
+    alias_to: KeypairName
+  - name: nested-virtualization
+    alias_to: NestedVirtualization
+  - name: performance
+    alias_to: Performance
+  - name: security-group-ids
+    alias_to: SecurityGroupIds
+  - name: user-data
+    alias_to: UserData
+  - name: initiated-shutdown-behavior
+    alias_to: VmInitiatedShutdownBehavior
+  - name: type
+    alias_to: VmType
+- entity: vmgroup
+  group: vmgroup
+  use: update vmgroup_id
+  short: alias for api UpdateVmGroup --VmGroupId vmgroup_id
+  command:
+  - api
+  - UpdateVmGroup
+  - --VmGroupId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: description
+    alias_to: Description
+  - name: tag-key
+    alias_to: Tags.0.Key
+    required: true
+  - name: tag-value
+    alias_to: Tags.0.Value
+    required: true
+  - name: vm-group-name
+    alias_to: VmGroupName
+  - name: vm-template-id
+    alias_to: VmTemplateId
+- entity: vmtemplate
+  group: vmtemplate
+  use: update vmtemplate_id
+  short: alias for api UpdateVmTemplate --VmTemplateId vmtemplate_id
+  command:
+  - api
+  - UpdateVmTemplate
+  - --VmTemplateId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: description
+    alias_to: Description
+  - name: tag-key
+    alias_to: Tags.0.Key
+    required: true
+  - name: tag-value
+    alias_to: Tags.0.Value
+    required: true
+  - name: vm-template-name
+    alias_to: VmTemplateName
+- entity: volume
+  group: volume
+  use: update volume_id
+  short: alias for api UpdateVolume --VolumeId volume_id
+  command:
+  - api
+  - UpdateVolume
+  - --VolumeId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: iops
+    alias_to: Iops
+  - name: size
+    alias_to: Size
+  - name: type
+    alias_to: VolumeType
+- entity: vpnconnection
+  group: vpnconnection
+  use: update vpnconnection_id
+  short: alias for api UpdateVpnConnection --VpnConnectionId vpnconnection_id
+  command:
+  - api
+  - UpdateVpnConnection
+  - --VpnConnectionId
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: client-gateway-id
+    alias_to: ClientGatewayId
+  - name: virtual-gateway-id
+    alias_to: VirtualGatewayId
+  - name: vpn-options-phase-1-options-dpd-timeout-action
+    alias_to: VpnOptions.Phase1Options.DpdTimeoutAction
+  - name: vpn-options-phase-1-options-dpd-timeout-seconds
+    alias_to: VpnOptions.Phase1Options.DpdTimeoutSeconds
+  - name: vpn-options-phase-1-options-ike-versions
+    alias_to: VpnOptions.Phase1Options.IkeVersions
+  - name: vpn-options-phase-1-options-phase-1-dh-group-numbers
+    alias_to: VpnOptions.Phase1Options.Phase1DhGroupNumbers
+  - name: vpn-options-phase-1-options-phase-1-encryption-algorithms
+    alias_to: VpnOptions.Phase1Options.Phase1EncryptionAlgorithms
+  - name: vpn-options-phase-1-options-phase-1-integrity-algorithms
+    alias_to: VpnOptions.Phase1Options.Phase1IntegrityAlgorithms
+  - name: vpn-options-phase-1-options-phase-1-lifetime-seconds
+    alias_to: VpnOptions.Phase1Options.Phase1LifetimeSeconds
+  - name: vpn-options-phase-1-options-replay-window-size
+    alias_to: VpnOptions.Phase1Options.ReplayWindowSize
+  - name: vpn-options-phase-1-options-startup-action
+    alias_to: VpnOptions.Phase1Options.StartupAction
+  - name: vpn-options-phase-2-options-phase-2-dh-group-numbers
+    alias_to: VpnOptions.Phase2Options.Phase2DhGroupNumbers
+  - name: vpn-options-phase-2-options-phase-2-encryption-algorithms
+    alias_to: VpnOptions.Phase2Options.Phase2EncryptionAlgorithms
+  - name: vpn-options-phase-2-options-phase-2-integrity-algorithms
+    alias_to: VpnOptions.Phase2Options.Phase2IntegrityAlgorithms
+  - name: vpn-options-phase-2-options-phase-2-lifetime-seconds
+    alias_to: VpnOptions.Phase2Options.Phase2LifetimeSeconds
+  - name: vpn-options-phase-2-options-pre-shared-key
+    alias_to: VpnOptions.Phase2Options.PreSharedKey
+  - name: vpn-options-tunnel-inside-ip-range
+    alias_to: VpnOptions.TunnelInsideIpRange

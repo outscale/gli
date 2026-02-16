@@ -12,8 +12,9 @@ import (
 	"os"
 
 	"github.com/outscale/octl/pkg/style"
+	"github.com/samber/lo"
 )
 
 func Println(s ...any) {
-	_, _ = fmt.Fprintln(os.Stderr, style.Faint.Render(s...))
+	_, _ = fmt.Fprintln(os.Stderr, style.Faint.Render(lo.Map(s, func(s any, _ int) string { return fmt.Sprintf("%v", s) })...))
 }
