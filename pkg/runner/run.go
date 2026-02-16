@@ -16,6 +16,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/charmbracelet/huh/spinner"
+	"github.com/mattn/go-isatty"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/flags"
@@ -60,7 +62,26 @@ func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client,
 		return fmt.Errorf("too many arguments for %s", cmd.Name())
 	}
 
+	// display a spinner if API call lasts more than 200ms
+	lctx, cancel := context.WithCancel(ctx)
+	if isatty.IsTerminal(os.Stderr.Fd()) {
+		t := time.AfterFunc(200*time.Millisecond, func() {
+			_ = spinner.New().
+				Title("Waiting for server...").
+				Context(lctx).
+				Output(os.Stderr).
+				Style(style.Yellow).
+				TitleStyle(style.Faint).
+				Run()
+		})
+		defer t.Stop()
+	}
+	// call api
 	res := reflect.ValueOf(cl).MethodByName(cmd.Name()).Call(callArgs)
+
+	// kill the spinner
+	cancel()
+
 	c := cfg.Calls[cmd.Name()]
 	e := cfg.Entities[c.Entity]
 	out, err := output.NewFromFlags(cmd.Flags(), c, e)
@@ -77,6 +98,7 @@ func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client,
 		}
 		return res[1].Interface().(error)
 	}
+
 	return out.Content(ctx, res[0].Interface())
 }
 
