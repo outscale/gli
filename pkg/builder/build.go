@@ -6,32 +6,27 @@ SPDX-License-Identifier: BSD-3-Clause
 package builder
 
 import (
-	"encoding/json"
 	"reflect"
-	"strconv"
-	"time"
 
 	"github.com/getkin/kin-openapi/openapi3"
+	flagbuilder "github.com/outscale/octl/pkg/builder/flags"
+	"github.com/outscale/octl/pkg/builder/openapi"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
-	"github.com/outscale/octl/pkg/flags"
-	"github.com/outscale/osc-sdk-go/v3/pkg/iso8601"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 )
 
-const requiredAnnotation = "gli/required"
-
 type Builder[T any] struct {
 	provider string
-	spec     *Spec
+	spec     *openapi.Spec
 	cfg      config.Config
 }
 
 func NewBuilder[T any](provider string, spec *openapi3.T) *Builder[T] {
 	return &Builder[T]{
 		provider: provider,
-		spec:     NewSpec(spec),
+		spec:     openapi.NewSpec(spec),
 		cfg:      config.For(provider),
 	}
 }
@@ -69,18 +64,19 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command) {
 		if callCmd == nil {
 			continue
 		}
-		for f, fapi := range a.Flags {
-			flag := callCmd.Flags().Lookup(fapi)
+		debug.Println(a.Entity, a.Use)
+		for _, f := range a.Flags {
+			flag := callCmd.Flags().Lookup(f.AliasTo)
 			if flag != nil {
 				nflag := *flag
-				nflag.Name = f
+				nflag.Name = f.Name
 				cmd.Flags().AddFlag(&nflag)
 
-				completion, found := callCmd.GetFlagCompletionFunc(fapi)
+				completion, found := callCmd.GetFlagCompletionFunc(f.AliasTo)
 				if found {
-					_ = cmd.RegisterFlagCompletionFunc(f, completion)
+					_ = cmd.RegisterFlagCompletionFunc(f.Name, completion)
 				}
-				if _, found := nflag.Annotations[requiredAnnotation]; found {
+				if f.Required {
 					_ = cmd.MarkFlagRequired(nflag.Name)
 				}
 			}
@@ -125,26 +121,22 @@ func (b *Builder[T]) BuildAPI(
 
 		for j := 2; j < m.Type.NumIn()-1; j++ {
 			arg := m.Type.In(j)
-			b.BuildFlags(cmd, arg)
+			b.BuildArgsAndFlags(cmd, arg)
 		}
 
 		apiCmd.AddCommand(cmd)
 	}
 }
 
-func (b *Builder[T]) BuildFlags(
-	cmd *cobra.Command,
-	arg reflect.Type,
-) {
+func (b *Builder[T]) BuildArgsAndFlags(cmd *cobra.Command, arg reflect.Type) {
 	switch arg.Kind() {
 	case reflect.Struct:
-
-		b.buildFlagsFromStruct(cmd, arg, "", true)
+		b.buildFlags(cmd, arg)
 	case reflect.Pointer:
 		arg = arg.Elem()
 		switch arg.Kind() {
 		case reflect.Struct:
-			b.buildFlagsFromStruct(cmd, arg, "", true)
+			b.buildFlags(cmd, arg)
 		default:
 			debug.Println("unsupported type for command flags: *%v", arg.Kind())
 		}
@@ -155,73 +147,39 @@ func (b *Builder[T]) BuildFlags(
 	}
 }
 
-func (b *Builder[T]) buildFlagsFromStruct(cmd *cobra.Command, arg reflect.Type, prefix string, allowRequired bool) {
-	typeName := arg.Name()
+func (b *Builder[T]) buildFlags(cmd *cobra.Command, arg reflect.Type) {
+	fbuilder := flagbuilder.NewBuilder(b.spec)
+	fbs := flagbuilder.FlagSet{}
+	fbuilder.Build(&fbs, arg, "", true)
 	fs := cmd.Flags()
-	for i := range arg.NumField() {
-		f := arg.Field(i)
-		t := f.Type
-		ot := t
-		if t.Kind() == reflect.Ptr {
-			t = t.Elem()
-		}
-		help, required := b.spec.SummaryForAttribute(typeName, f.Name)
-		flagName := prefix + f.Name
-		switch t.Kind() {
+	for _, f := range fbs {
+		switch f.Kind {
 		case reflect.Bool:
-			fs.Bool(flagName, false, help)
-		case reflect.String:
-			fs.String(flagName, "", help)
-			if t.Implements(reflect.TypeFor[enum]()) {
-				values := reflect.New(t).Interface().(enum).Values()
-				_ = cmd.RegisterFlagCompletionFunc(flagName, func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
-					return lo.Map(values, func(v string, _ int) cobra.Completion { return cobra.Completion(v) }), cobra.ShellCompDirectiveDefault
-				})
+			if f.Slice {
+				fs.BoolSlice(f.Name, nil, f.Help)
+			} else {
+				fs.Bool(f.Name, false, f.Help)
 			}
 		case reflect.Int:
-			fs.Int(flagName, 0, help)
-		case reflect.Slice:
-			switch t.Elem().Kind() {
-			case reflect.Bool:
-				fs.BoolSlice(flagName, nil, help)
-			case reflect.String:
-				fs.StringSlice(flagName, nil, help)
-				if t.Elem().Implements(reflect.TypeFor[enum]()) {
-					values := reflect.New(t.Elem()).Interface().(enum).Values()
-					_ = cmd.RegisterFlagCompletionFunc(flagName, func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
-						return lo.Map(values, func(v string, _ int) cobra.Completion { return cobra.Completion(v) }), cobra.ShellCompDirectiveDefault
-					})
-				}
-			case reflect.Int:
-				fs.IntSlice(flagName, nil, help)
-			case reflect.Struct:
-				switch {
-				case ot == reflect.TypeFor[iso8601.Time]() || ot == reflect.TypeFor[time.Time]():
-					// TODO: add slice
-					fs.Var(flags.NewTimeValue(), flagName, help)
-				case t.Elem().Implements(reflect.TypeFor[json.Marshaler]()):
-					fs.StringSlice(flagName, nil, help)
-				default:
-					for i := range NumEntriesInSlices {
-						b.buildFlagsFromStruct(cmd, t.Elem(), flagName+"."+strconv.Itoa(i)+".", required && allowRequired)
-					}
-				}
+			if f.Slice {
+				fs.IntSlice(f.Name, nil, f.Help)
+			} else {
+				fs.Int(f.Name, 0, f.Help)
 			}
-		case reflect.Struct:
+		case reflect.String:
 			switch {
-			case t == reflect.TypeFor[iso8601.Time]() || t == reflect.TypeFor[time.Time]():
-				fs.Var(flags.NewTimeValue(), flagName, help)
-			case ot.Implements(reflect.TypeFor[json.Marshaler]()):
-				fs.String(flagName, "", help)
+			case f.FlagValue != nil:
+				fs.Var(f.FlagValue, f.Name, f.Help)
+			case f.Slice:
+				fs.StringSlice(f.Name, nil, f.Help)
 			default:
-				b.buildFlagsFromStruct(cmd, t, flagName+".", required && allowRequired)
+				fs.String(f.Name, "", f.Help)
 			}
-		}
-		// we do not mark the flag as reuired as it breaks templating (the value might come from the template)
-		// an annotation is set in order to mark the flag as required in the high level cli.
-		if required && allowRequired {
-			debug.Println(flagName, "is required")
-			_ = fs.SetAnnotation(flagName, requiredAnnotation, []string{"true"})
+			if len(f.AllowedValues) > 0 {
+				_ = cmd.RegisterFlagCompletionFunc(f.Name, func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
+					return lo.Map(f.AllowedValues, func(v string, _ int) cobra.Completion { return cobra.Completion(v) }), cobra.ShellCompDirectiveDefault
+				})
+			}
 		}
 	}
 }

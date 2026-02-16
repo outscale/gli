@@ -6,10 +6,12 @@ SPDX-License-Identifier: BSD-3-Clause
 package cmd_test
 
 import (
+	"context"
 	"encoding/json"
 	"os"
 	"path/filepath"
 	"testing"
+	"time"
 
 	"github.com/oasdiff/yaml"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
@@ -18,7 +20,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestOAPI(t *testing.T) {
+func TestIAASAPI(t *testing.T) {
 	netResp := osc.CreateNetResponse{}
 	runJSON(t, []string{"iaas", "api", "CreateNet", "--IpRange", "10.0.0.0/16"}, nil, &netResp)
 	t.Run("ReadVms works", func(t *testing.T) {
@@ -70,6 +72,9 @@ func TestOAPI(t *testing.T) {
 		assert.Equal(t, netResp.Net.NetId, resp.Subnet.NetId)
 		assert.Equal(t, "10.0.3.0/24", resp.Subnet.IpRange)
 	})
+}
+
+func TestIAASAliases(t *testing.T) {
 	t.Run("High level list works", func(t *testing.T) {
 		data := run(t, []string{"iaas", "vm", "list"}, nil)
 		lines := lo.Count(data, '\n')
@@ -113,5 +118,32 @@ func TestOAPI(t *testing.T) {
 		out = run(t, []string{"iaas", "api", "CreateVms", "--BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion", "-h"}, nil)
 		assert.Contains(t, string(out), "--BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion")
 		assert.Contains(t, string(out), "--BlockDeviceMappings.1.Bsu.DeleteOnVmDeletion")
+	})
+}
+
+func TestIAASCRUD(t *testing.T) {
+	t.Run("Create/Update/Delete works", func(t *testing.T) {
+		var resp osc.Volume
+		runJSON(t, []string{"iaas", "vol", "create", "--subregion-name", "eu-west-2a", "--size", "4", "-o", "json"}, nil, &resp)
+		require.NotEmpty(t, resp.VolumeId)
+		volID := resp.VolumeId
+		_ = run(t, []string{"iaas", "vol", "update", volID, "--size", "8"}, nil)
+		ctx, cancel := context.WithTimeout(t.Context(), time.Minute)
+		defer cancel()
+	LOOPWAIT:
+		for {
+			select {
+			case <-ctx.Done():
+				t.Error("timeout")
+			default:
+				var resp []osc.Volume
+				runJSON(t, []string{"iaas", "vol", "desc", volID, "-o", "json"}, nil, &resp)
+				require.Len(t, resp, 1)
+				if resp[0].Size == 8 {
+					break LOOPWAIT
+				}
+			}
+		}
+		_ = run(t, []string{"iaas", "vol", "delete", volID, "-y"}, nil)
 	})
 }

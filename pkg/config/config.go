@@ -11,6 +11,7 @@ import (
 
 	"github.com/expr-lang/expr"
 	"github.com/expr-lang/expr/vm"
+	"github.com/samber/lo"
 )
 
 type Column struct {
@@ -59,7 +60,7 @@ func ParseColumns(s string) Columns {
 
 type Entity struct {
 	Aliases []string `yaml:"aliases,omitempty"`
-	Columns Columns  `yaml:"columns"`
+	Columns Columns  `yaml:"columns,omitempty"`
 }
 
 type Action string
@@ -68,20 +69,38 @@ const (
 	ActionDelete Action = "delete"
 )
 
+type FlagSet []Flag
+
+func (fs FlagSet) Get(name string) (Flag, bool) {
+	return lo.Find(fs, func(f Flag) bool {
+		return f.Name == name
+	})
+}
+
+func (fs FlagSet) Names() []string {
+	return lo.Map(fs, func(f Flag, _ int) string { return f.Name })
+}
+
+type Flag struct {
+	Name     string `yaml:"name"`
+	AliasTo  string `yaml:"alias_to"`
+	Required bool   `yaml:"required,omitempty"`
+}
+
 type Prompt struct {
 	Action         Action   `yaml:"action"`
 	DisplayCommand []string `yaml:"display"`
 }
 
 type Alias struct {
-	Entity  string            `yaml:"entity"`
-	Group   string            `yaml:"group"`
-	Use     string            `yaml:"use"`
-	Aliases []string          `yaml:"aliases,omitempty"`
-	Short   string            `yaml:"short"`
-	Command []string          `yaml:"command"`
-	Flags   map[string]string `yaml:"flags,omitempty"`
-	Prompt  *Prompt           `yaml:"prompt,omitempty"`
+	Entity  string   `yaml:"entity"`
+	Group   string   `yaml:"group"`
+	Use     string   `yaml:"use"`
+	Aliases []string `yaml:"aliases,omitempty"`
+	Short   string   `yaml:"short"`
+	Command []string `yaml:"command"`
+	Flags   FlagSet  `yaml:"flags,omitempty"`
+	Prompt  *Prompt  `yaml:"prompt,omitempty"`
 }
 
 type FlagConfig struct {
@@ -99,7 +118,6 @@ type Config struct {
 	Calls          map[string]Call   `yaml:"contents,omitempty"`
 	Entities       map[string]Entity `yaml:"entities,omitempty"`
 	Aliases        []Alias           `yaml:"aliases,omitempty"`
-	Flags          []FlagConfig      `yaml:"flags,omitempty"`
 }
 
 type Configs map[string]Config

@@ -29,45 +29,65 @@ func runAlias(provider string, a config.Alias, cmd *cobra.Command) func(cmd *cob
 	return run
 }
 
-func saveFlags(fs *pflag.FlagSet) map[string]string {
-	saved := map[string]string{}
+func saveFlags(fs *pflag.FlagSet) map[string][]string {
+	saved := map[string][]string{}
 	fs.VisitAll(func(f *pflag.Flag) {
 		if f.Changed {
-			saved[f.Name] = f.Value.String()
+			if svalue, ok := f.Value.(pflag.SliceValue); ok {
+				saved[f.Name] = svalue.GetSlice()
+				_ = svalue.Replace(nil)
+			} else {
+				saved[f.Name] = []string{f.Value.String()}
+				_ = f.Value.Set(f.DefValue)
+			}
+			f.Changed = false
 		}
 	})
 	return saved
 }
 
-func restoreFlags(fs *pflag.FlagSet, saved map[string]string) {
+func restoreFlags(fs *pflag.FlagSet, saved map[string][]string) {
 	fs.VisitAll(func(f *pflag.Flag) {
 		val, found := saved[f.Name]
 		switch {
 		case found:
-			_ = f.Value.Set(val)
+			if svalue, ok := f.Value.(pflag.SliceValue); ok {
+				_ = svalue.Replace(val)
+			} else {
+				if len(val) > 0 {
+					_ = f.Value.Set(val[0])
+				}
+			}
 			f.Changed = true
 		case !found && f.Changed:
-			_ = f.Value.Set(f.DefValue)
+			if svalue, ok := f.Value.(pflag.SliceValue); ok {
+				_ = svalue.Replace(nil)
+			} else {
+				_ = f.Value.Set(f.DefValue)
+			}
 			f.Changed = false
 		}
 	})
 }
 
-func runFunc(provider string, command []string, flags map[string]string, cmd *cobra.Command, skipUserFlags bool) func(cmd *cobra.Command, args []string) {
+func runFunc(provider string, command []string, flags config.FlagSet, cmd *cobra.Command, skipUserFlags bool) func(cmd *cobra.Command, args []string) {
 	return func(cmd *cobra.Command, args []string) {
 		nargs := make([]string, 2, len(command)+2)
 		nargs[0] = "octl"
 		nargs[1] = provider
-		saved := saveFlags(cmd.Flags())
 		var userArgs []string
 		if !skipUserFlags {
 			cmd.Flags().VisitAll(func(f *pflag.Flag) {
 				if f.Changed {
 					newFlag := f.Name
-					if flags[newFlag] != "" {
-						newFlag = flags[newFlag]
+					if nf, found := flags.Get(newFlag); found {
+						newFlag = nf.AliasTo
 					}
-					userArgs = append(userArgs, "--"+newFlag+"="+f.Value.String())
+					if svalue, ok := f.Value.(pflag.SliceValue); ok {
+						userArgs = append(userArgs, "--"+newFlag+"="+strings.Join(svalue.GetSlice(), ","))
+					} else {
+						userArgs = append(userArgs, "--"+newFlag+"="+f.Value.String())
+					}
 				}
 			})
 		}
@@ -107,6 +127,8 @@ func runFunc(provider string, command []string, flags map[string]string, cmd *co
 		messages.Info("Resolving alias to %v", nargs)
 		// no need to check for an update a second time
 		nargs = append(nargs, "--no-upgrade")
+
+		saved := saveFlags(cmd.Flags())
 		os.Args = nargs
 		err := cmd.Execute()
 		if err != nil {
