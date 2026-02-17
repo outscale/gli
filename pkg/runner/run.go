@@ -63,8 +63,10 @@ func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client,
 	}
 
 	// display a spinner if API call lasts more than 200ms
-	lctx, cancel := context.WithCancel(ctx)
+	stopSpinner := func() {}
 	if isatty.IsTerminal(os.Stderr.Fd()) {
+		lctx, cancel := context.WithCancel(ctx)
+		spinnerDone := make(chan struct{})
 		t := time.AfterFunc(200*time.Millisecond, func() {
 			_ = spinner.New().
 				Title("Waiting for server...").
@@ -73,14 +75,20 @@ func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client,
 				Style(style.Yellow).
 				TitleStyle(style.Faint).
 				Run()
+			close(spinnerDone)
 		})
 		defer t.Stop()
+		stopSpinner = func() {
+			// kill the spinner
+			cancel()
+			// wait for the spinner to stop and clear it's display
+			<-spinnerDone
+		}
 	}
 	// call api
 	res := reflect.ValueOf(cl).MethodByName(cmd.Name()).Call(callArgs)
-
-	// kill the spinner
-	cancel()
+	// stop the spinner
+	stopSpinner()
 
 	c := cfg.Calls[cmd.Name()]
 	e := cfg.Entities[c.Entity]
