@@ -1200,16 +1200,12 @@ aliases:
     alias_to: Filters.SubregionNames
   - name: tag-key
     alias_to: Filters.Tags.0.Key
-    required: true
   - name: tag-resource-id
     alias_to: Filters.Tags.0.ResourceId
-    required: true
   - name: tag-resource-type
     alias_to: Filters.Tags.0.ResourceType
-    required: true
   - name: tag-value
     alias_to: Filters.Tags.0.Value
-    required: true
   - name: vm-ids
     alias_to: Filters.VmIds
 - entity: flexiblegpu
@@ -3321,10 +3317,8 @@ aliases:
     alias_to: SubregionNames
   - name: tag-key
     alias_to: Tags.0.Key
-    required: true
   - name: tag-value
     alias_to: Tags.0.Value
-    required: true
 - entity: loadbalancerlistener
   group: loadbalancerlistener
   use: create
@@ -3457,10 +3451,8 @@ aliases:
     alias_to: Description
   - name: private-ip-is-primary
     alias_to: PrivateIps.0.IsPrimary
-    required: true
   - name: private-ip-private-ip
     alias_to: PrivateIps.0.PrivateIp
-    required: true
   - name: security-group-ids
     alias_to: SecurityGroupIds
   - name: subnet-id
@@ -3616,7 +3608,6 @@ aliases:
     alias_to: Rules.0.SecurityGroupsMembers.0.AccountId
   - name: rule-security-groups-member-security-group-id
     alias_to: Rules.0.SecurityGroupsMembers.0.SecurityGroupId
-    required: true
   - name: rule-security-groups-member-security-group-name
     alias_to: Rules.0.SecurityGroupsMembers.0.SecurityGroupName
   - name: rule-service-ids
@@ -3789,10 +3780,8 @@ aliases:
     required: true
   - name: tag-key
     alias_to: Tags.0.Key
-    required: true
   - name: tag-value
     alias_to: Tags.0.Value
-    required: true
   - name: vm-count
     alias_to: VmCount
     required: true
@@ -3832,10 +3821,8 @@ aliases:
     required: true
   - name: tag-key
     alias_to: Tags.0.Key
-    required: true
   - name: tag-value
     alias_to: Tags.0.Value
-    required: true
   - name: vm-template-name
     alias_to: VmTemplateName
     required: true
@@ -3898,10 +3885,8 @@ aliases:
     alias_to: Nics.0.NicId
   - name: nic-private-ip-is-primary
     alias_to: Nics.0.PrivateIps.0.IsPrimary
-    required: true
   - name: nic-private-ip-private-ip
     alias_to: Nics.0.PrivateIps.0.PrivateIp
-    required: true
   - name: nic-secondary-private-ip-count
     alias_to: Nics.0.SecondaryPrivateIpCount
   - name: nic-security-group-ids
@@ -3912,10 +3897,8 @@ aliases:
     alias_to: Performance
   - name: placement-subregion-name
     alias_to: Placement.SubregionName
-    required: true
   - name: placement-tenancy
     alias_to: Placement.Tenancy
-    required: true
   - name: private-ips
     alias_to: PrivateIps
   - name: security-group-ids
@@ -4880,7 +4863,6 @@ aliases:
   flags:
   - name: access-log-is-enabled
     alias_to: AccessLog.IsEnabled
-    required: true
   - name: access-log-osu-bucket-name
     alias_to: AccessLog.OsuBucketName
   - name: access-log-osu-bucket-prefix
@@ -4889,24 +4871,18 @@ aliases:
     alias_to: AccessLog.PublicationInterval
   - name: health-check-check-interval
     alias_to: HealthCheck.CheckInterval
-    required: true
   - name: health-check-healthy-threshold
     alias_to: HealthCheck.HealthyThreshold
-    required: true
   - name: health-check-path
     alias_to: HealthCheck.Path
   - name: health-check-port
     alias_to: HealthCheck.Port
-    required: true
   - name: health-check-protocol
     alias_to: HealthCheck.Protocol
-    required: true
   - name: health-check-timeout
     alias_to: HealthCheck.Timeout
-    required: true
   - name: health-check-unhealthy-threshold
     alias_to: HealthCheck.UnhealthyThreshold
-    required: true
   - name: load-balancer-port
     alias_to: LoadBalancerPort
   - name: policy-names
@@ -5057,10 +5033,8 @@ aliases:
     alias_to: ActionsOnNextBoot.SecureBoot
   - name: block-device-mapping-bsu-delete-on-vm-deletion
     alias_to: BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion
-    required: true
   - name: block-device-mapping-bsu-volume-id
     alias_to: BlockDeviceMappings.0.Bsu.VolumeId
-    required: true
   - name: block-device-mapping-device-name
     alias_to: BlockDeviceMappings.0.DeviceName
   - name: block-device-mapping-no-device
@@ -5103,10 +5077,8 @@ aliases:
     alias_to: Description
   - name: tag-key
     alias_to: Tags.0.Key
-    required: true
   - name: tag-value
     alias_to: Tags.0.Value
-    required: true
   - name: vm-group-name
     alias_to: VmGroupName
   - name: vm-template-id
@@ -5127,10 +5099,8 @@ aliases:
     alias_to: Description
   - name: tag-key
     alias_to: Tags.0.Key
-    required: true
   - name: tag-value
     alias_to: Tags.0.Value
-    required: true
   - name: vm-template-name
     alias_to: VmTemplateName
 - entity: volume

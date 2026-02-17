@@ -75,8 +75,9 @@ func (b *Builder) Build(fs *FlagSet, arg reflect.Type, prefix string, allowRequi
 			}
 		}
 
-		help, required := b.spec.SummaryForAttribute(typeName, f.Name)
 		flagName := prefix + f.Name
+		help, required := b.spec.SummaryForAttribute(typeName, f.Name)
+		required = required && allowRequired
 		switch t.Kind() {
 		case reflect.Bool, reflect.String, reflect.Int:
 			f := Flag{
@@ -117,10 +118,10 @@ func (b *Builder) Build(fs *FlagSet, arg reflect.Type, prefix string, allowRequi
 			default:
 				if slice {
 					for i := range NumEntriesInSlices {
-						b.Build(fs, t, flagName+"."+strconv.Itoa(i)+".", required && allowRequired)
+						b.Build(fs, t, flagName+"."+strconv.Itoa(i)+".", required)
 					}
 				} else {
-					b.Build(fs, t, flagName+".", required && allowRequired)
+					b.Build(fs, t, flagName+".", required)
 				}
 			}
 		}
