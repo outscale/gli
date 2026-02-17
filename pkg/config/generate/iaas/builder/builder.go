@@ -76,7 +76,7 @@ func New(cfg *config.Config, m reflect.Method, prefix string) *Builder {
 }
 
 func (b *Builder) Build() error {
-	fmt.Println(b.m.Name)
+	fmt.Println("***", b.m.Name)
 	var err error
 	switch {
 	case strings.HasPrefix(b.m.Name, "Read"):
