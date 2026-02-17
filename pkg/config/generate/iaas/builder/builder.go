@@ -29,6 +29,7 @@ var priorityFields = []string{
 	"Subregions",
 	"Size",
 	"Iops",
+	"Email",
 }
 
 var ErrCantBuild = errors.New("cannot build")
