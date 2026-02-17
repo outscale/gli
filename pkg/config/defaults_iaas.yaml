@@ -340,12 +340,35 @@ entities:
     columns:
     - title: ID
       content: AccountId
+    - title: Email
+      content: Email
   apiaccesspolicy: {}
   apiaccessrule:
     columns:
     - title: ID
       content: ApiAccessRuleId
-  apilog: {}
+    - title: Description
+      content: Description
+    - title: CA
+      content: CaIds
+    - title: CN
+      content: Cns
+    - title: IP Ranges
+      content: IpRanges
+  apilog:
+    aliases:
+    - log
+    columns:
+    - title: Date
+      content: QueryDate
+    - title: UserAgent
+      content: QueryUserAgent
+    - title: Call
+      content: QueryCallName
+    - title: Payload
+      content: QueryPayloadRaw
+    - title: Status
+      content: ResponseStatusCode
   ca:
     columns:
     - title: ID
@@ -366,9 +389,29 @@ entities:
       content: PublicIp
   co2emissionaccount: {}
   consumptionaccount:
+    aliases:
+    - consumption
     columns:
-    - title: SubregionName
+    - title: From
+      content: FromDate
+    - title: To
+      content: ToDate
+    - title: Account
+      content: AccountId
+    - title: Category
+      content: Category
+    - title: Service
+      content: Service
+    - title: Subregion
       content: SubregionName
+    - title: Operation
+      content: Operation
+    - title: Value
+      content: Value
+    - title: Unit Price
+      content: UnitPrice
+    - title: Price
+      content: Price
   dedicatedgroup:
     columns:
     - title: ID
@@ -467,8 +510,20 @@ entities:
       content: SubregionNames
   loadbalancerlistener: {}
   loadbalancerpolicy: {}
-  loadbalancertag: {}
-  location: {}
+  loadbalancertag:
+    columns:
+    - title: LBU
+      content: LoadBalancerName
+    - title: Key
+      content: Key
+    - title: Value
+      content: Value
+  location:
+    columns:
+    - title: Code
+      content: Code
+    - title: Name
+      content: Name
   natservice:
     aliases:
     - nat
@@ -509,6 +564,10 @@ entities:
     columns:
     - title: ID
       content: ServiceId
+    - title: Name
+      content: ServiceName
+    - title: IP Ranges
+      content: IpRanges
   netpeering:
     columns:
     - title: ID
@@ -622,7 +681,16 @@ entities:
       content: SubregionName
     - title: State
       content: State
-  tag: {}
+  tag:
+    columns:
+    - title: Resource
+      content: ResourceId
+    - title: Type
+      content: ResourceType
+    - title: Key
+      content: Key
+    - title: Value
+      content: Value
   unitprice: {}
   user:
     columns:
@@ -677,12 +745,18 @@ entities:
       content: SubnetId
   vmshealth:
     columns:
+    - title: VM
+      content: VmId
     - title: State
       content: State
   vmsstate:
     columns:
+    - title: VM ID
+      content: VmId
     - title: SubregionName
       content: SubregionName
+    - title: State
+      content: VmState
   vmtemplate:
     columns:
     - title: ID

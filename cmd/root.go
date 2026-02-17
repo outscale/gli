@@ -71,13 +71,16 @@ func Execute() {
 func init() {
 	rootCmd.Flags().Bool("version", false, "Display version")
 	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "Verbose output")
-	rootCmd.PersistentFlags().String("jq", "", "jq-like output filter")
 	path, _ := profile.DefaultConfigPath()
 	rootCmd.PersistentFlags().String("config", "", fmt.Sprintf("Path of profile file (by default, %q)", path))
 	rootCmd.PersistentFlags().String("profile", "", fmt.Sprintf("Profile to use in profile file (by default, %q)", profile.DefaultProfile))
+
 	rootCmd.PersistentFlags().String("template", "", "JSON template for query body")
+
+	rootCmd.PersistentFlags().String("jq", "", "jq-like output filter")
 	rootCmd.PersistentFlags().StringP("columns", "c", "", "columns to display - [+]title:content|title:content")
 	rootCmd.PersistentFlags().StringP("output", "o", "", "output format (raw, json, yaml, table, none)")
+
 	rootCmd.PersistentFlags().Bool("no-upgrade", false, "do not check for new versions")
 	rootCmd.PersistentFlags().BoolP("yes", "y", false, "answer yes to all prompts")
 

@@ -12,6 +12,7 @@ import (
 
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/lipgloss/table"
+	"github.com/charmbracelet/x/term"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/style"
 	"github.com/samber/lo"
@@ -95,8 +96,19 @@ func (t Table) Content(ctx context.Context, v any) error {
 				return headerStyle
 			}
 			return cellStyle
-		}).Headers(headers...).
-		Rows(rows...)
+		}).Headers(headers...)
+
+	width := lo.Max(
+		lo.Map(rows, func(line []string, _ int) int {
+			return lo.SumBy(line, func(cell string) int {
+				return len(cell) + 3
+			}) + 1
+		}))
+	termWidth, _, _ := term.GetSize(os.Stdout.Fd())
+	if termWidth > 40 && width > termWidth {
+		ot.Width(termWidth)
+	}
+	ot.Rows(rows...)
 
 	_, err := fmt.Fprintln(os.Stdout, ot)
 	return err

@@ -8,6 +8,7 @@ package output
 import (
 	"fmt"
 	"reflect"
+	"strings"
 	"time"
 
 	"github.com/outscale/octl/pkg/config"
@@ -27,8 +28,10 @@ func GetRow(v any, cols config.Columns) ([]string, error) {
 			row[i] = val.Format(time.RFC3339)
 		case time.Time:
 			row[i] = val.Format(time.RFC3339)
+		case float64:
+			row[i] = fmt.Sprintf("%.2f", val)
 		default:
-			row[i] = fmt.Sprint(val)
+			row[i] = strings.TrimSpace(fmt.Sprint(val))
 		}
 	}
 	return row, nil

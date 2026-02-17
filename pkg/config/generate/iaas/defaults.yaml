@@ -11,10 +11,74 @@ entities:
       content: State
     - title: ExpirationDate
       content: ExpirationDate
+  apiaccessrule:
+    columns:
+    - title: ID
+      content: ApiAccessRuleId
+    - title: Description
+      content: Description
+    - title: CA
+      content: CaIds
+    - title: CN
+      content: Cns
+    - title: IP Ranges
+      content: IpRanges
+  apilog:
+    aliases:
+    - log
+    columns:
+    - title: Date
+      content: QueryDate
+    - title: UserAgent
+      content: QueryUserAgent
+    - title: Call
+      content: QueryCallName
+    - title: Payload
+      content: QueryPayloadRaw
+    - title: Status
+      content: ResponseStatusCode
+  consumptionaccount:
+    aliases:
+    - consumption
+    columns:
+    - title: From
+      content: FromDate
+    - title: To
+      content: ToDate
+    - title: Account
+      content: AccountId
+    - title: Category
+      content: Category
+    - title: Service
+      content: Service
+    - title: Subregion
+      content: SubregionName
+    - title: Operation
+      content: Operation
+    - title: Value
+      content: Value
+    - title: Unit Price
+      content: UnitPrice
+    - title: Price
+      content: Price
   loadbalancer:
     aliases:
     - lb
     - lbu
+  loadbalancertag:
+    columns:
+    - title: LBU
+      content: LoadBalancerName
+    - title: Key
+      content: Key
+    - title: Value
+      content: Value
+  location:
+    columns:
+    - title: Code
+      content: Code
+    - title: Name
+      content: Name
   natservice:
     aliases:
     - nat
@@ -31,6 +95,14 @@ entities:
       content: NetId
     - title: SubnetId
       content: SubnetId
+  netaccesspointservice:
+    columns:
+    - title: ID
+      content: ServiceId
+    - title: Name
+      content: ServiceName
+    - title: IP Ranges
+      content: IpRanges
   snapshot:
     aliases:
     - snap
@@ -47,6 +119,30 @@ entities:
       content: VolumeSize
     - title: CreationDate
       content: CreationDate
+  tag:
+    columns:
+    - title: Resource
+      content: ResourceId
+    - title: Type
+      content: ResourceType
+    - title: Key
+      content: Key
+    - title: Value
+      content: Value
+  vmshealth:
+    columns:
+    - title: VM
+      content: VmId
+    - title: State
+      content: State
+  vmsstate:
+    columns:
+    - title: VM ID
+      content: VmId
+    - title: SubregionName
+      content: SubregionName
+    - title: State
+      content: VmState
   volume:
     aliases:
     - vol
