@@ -7,6 +7,7 @@ require (
 	github.com/charmbracelet/huh v0.8.0
 	github.com/charmbracelet/huh/spinner v0.0.0-20260216111231-bffc99a26329
 	github.com/charmbracelet/lipgloss v1.1.0
+	github.com/charmbracelet/x/term v0.2.1
 	github.com/expr-lang/expr v1.17.8
 	github.com/getkin/kin-openapi v0.133.0
 	github.com/goccy/go-yaml v1.19.2
@@ -42,7 +43,6 @@ require (
 	github.com/charmbracelet/x/ansi v0.10.1 // indirect
 	github.com/charmbracelet/x/cellbuf v0.0.13 // indirect
 	github.com/charmbracelet/x/exp/strings v0.0.0-20240722160745-212f7b056ed0 // indirect
-	github.com/charmbracelet/x/term v0.2.1 // indirect
 	github.com/clipperhouse/stringish v0.1.1 // indirect
 	github.com/clipperhouse/uax29/v2 v2.3.0 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect

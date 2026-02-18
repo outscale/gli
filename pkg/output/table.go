@@ -51,6 +51,7 @@ var (
 )
 
 type Table struct {
+	Explode bool
 	Columns config.Columns
 }
 
@@ -62,18 +63,18 @@ func (t Table) Content(ctx context.Context, v any) error {
 	vv := reflect.ValueOf(v)
 	if vv.Kind() == reflect.Slice {
 		for i := range vv.Len() {
-			row, err := GetRow(vv.Index(i).Interface(), t.Columns)
+			add, err := GetRows(vv.Index(i).Interface(), t.Columns, t.Explode)
 			if err != nil {
 				return err
 			}
-			rows = append(rows, row)
+			rows = append(rows, add...)
 		}
 	} else {
-		row, err := GetRow(v, t.Columns)
+		add, err := GetRows(v, t.Columns, t.Explode)
 		if err != nil {
 			return err
 		}
-		rows = append(rows, row)
+		rows = append(rows, add...)
 	}
 	for r := range rows {
 		for c := range rows[r] {

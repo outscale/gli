@@ -12,7 +12,7 @@ import (
 	"github.com/spf13/pflag"
 )
 
-func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Columns) (Output, error) {
+func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Columns, explode bool) (Output, error) {
 	jq, _ := fs.GetString("jq")
 	if jq != "" {
 		return NewJQ(jq)
@@ -45,7 +45,7 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 		if len(cols) == 0 {
 			return content{contentField: contentField, output: YAML{}, single: param == "single"}, nil
 		}
-		return content{contentField: contentField, output: Table{Columns: cols}, single: param == "single"}, nil
+		return content{contentField: contentField, output: Table{Columns: cols, Explode: explode}, single: param == "single"}, nil
 	default:
 		return Default{}, nil
 	}

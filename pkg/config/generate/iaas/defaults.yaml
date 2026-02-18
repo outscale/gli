@@ -103,6 +103,21 @@ entities:
       content: ServiceName
     - title: IP Ranges
       content: IpRanges
+  quota:
+    explode: true
+    columns:
+    - title: Type
+      content: QuotaType
+    - title: Collection
+      content: "map(Quotas, #?.QuotaCollection)"
+    - title: Name
+      content: "map(Quotas, #?.Name)"
+    - title: Used
+      content: "map(Quotas, #?.UsedValue)"
+    - title: Max
+      content: "map(Quotas, #?.MaxValue)"
+    - title: Description
+      content: "map(Quotas, #?.Description)"
   snapshot:
     aliases:
     - snap
