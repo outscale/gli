@@ -5,30 +5,42 @@ SPDX-License-Identifier: BSD-3-Clause
 package output
 
 import (
+	"fmt"
 	"slices"
 	"strings"
 
 	"github.com/outscale/octl/pkg/config"
+	"github.com/outscale/octl/pkg/output/format"
+	"github.com/outscale/octl/pkg/output/read"
 	"github.com/spf13/pflag"
 )
 
-func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Columns, explode bool) (Output, error) {
+func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Columns, explode bool) (format.Interface, Outputter, error) {
 	jq, _ := fs.GetString("jq")
 	if jq != "" {
-		return NewJQ(jq)
+		format, err := format.NewJQ(jq)
+		if err != nil {
+			return nil, nil, err
+		}
+		return format, &Paginated{Read: &read.Raw{}, Format: format}, nil
 	}
 	fout, _ := fs.GetString("output")
 	if fout != "" {
 		out = fout
 	}
+	if out == "raw" || out == "" {
+		out = "json,raw"
+	}
 	out, param, _ := strings.Cut(out, ",")
+
+	var fmter format.Interface
 	switch strings.ToLower(out) {
 	case "none":
-		return None{}, nil
+		fmter = format.None{}
 	case "json":
-		return content{contentField: contentField, output: JSON{}, single: param == "single"}, nil
+		fmter = format.JSON{}
 	case "yaml":
-		return content{contentField: contentField, output: YAML{}, single: param == "single"}, nil
+		fmter = format.YAML{}
 	case "table":
 		fcols, _ := fs.GetString("columns")
 		if fcols != "" {
@@ -43,10 +55,22 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 			cols = slices.Clone(cols)
 		}
 		if len(cols) == 0 {
-			return content{contentField: contentField, output: YAML{}, single: param == "single"}, nil
+			fmter = format.YAML{}
+		} else {
+			fmter = format.Table{Columns: cols, Explode: explode}
 		}
-		return content{contentField: contentField, output: Table{Columns: cols, Explode: explode}, single: param == "single"}, nil
 	default:
-		return Default{}, nil
+		return nil, nil, fmt.Errorf("unknown format %q", out)
+	}
+
+	switch param {
+	case "raw":
+		return fmter, &Paginated{Read: read.NewRaw(), Format: fmter}, nil
+	case "single":
+		return fmter, &Single{Read: read.NewPaginated(contentField), Format: fmter}, nil
+	case "":
+		return fmter, &Paginated{Read: read.NewPaginated(contentField), Format: fmter}, nil
+	default:
+		return nil, nil, fmt.Errorf("unknown format option %q", param)
 	}
 }

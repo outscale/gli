@@ -6,7 +6,6 @@ SPDX-License-Identifier: BSD-3-Clause
 package runner
 
 import (
-	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -16,12 +15,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/charmbracelet/huh/spinner"
-	"github.com/mattn/go-isatty"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/flags"
 	"github.com/outscale/octl/pkg/output"
+	"github.com/outscale/octl/pkg/output/read"
 	"github.com/outscale/octl/pkg/style"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -62,52 +60,29 @@ func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client,
 		return fmt.Errorf("too many arguments for %s", cmd.Name())
 	}
 
-	// display a spinner if API call lasts more than 200ms
-	stopSpinner := func() {}
-	if isatty.IsTerminal(os.Stderr.Fd()) {
-		lctx, cancel := context.WithCancel(ctx)
-		spinnerDone := make(chan struct{})
-		t := time.AfterFunc(200*time.Millisecond, func() {
-			_ = spinner.New().
-				Title("Waiting for server...").
-				Context(lctx).
-				Output(os.Stderr).
-				Style(style.Yellow).
-				TitleStyle(style.Faint).
-				Run()
-			close(spinnerDone)
-		})
-		defer t.Stop()
-		stopSpinner = func() {
-			// kill the spinner
-			cancel()
-			// wait for the spinner to stop and clear it's display
-			<-spinnerDone
-		}
-	}
-	// call api
-	res := reflect.ValueOf(cl).MethodByName(cmd.Name()).Call(callArgs)
-	// stop the spinner
-	stopSpinner()
-
 	c := cfg.Calls[cmd.Name()]
 	e := cfg.Entities[c.Entity]
-	out, err := output.NewFromFlags(cmd.Flags(), "", c.Content, e.Columns, e.Explode)
+	_, out, err := output.NewFromFlags(cmd.Flags(), "", c.Content, e.Columns, e.Explode)
 	if err != nil {
 		return err
 	}
+	call := read.FetchPage{
+		Method: reflect.ValueOf(cl).MethodByName(cmd.Name()),
+		Args:   callArgs,
+	}
+	err = out.Output(ctx, call)
 
-	if !res[1].IsNil() {
+	if err != nil {
 		var appErr Error
-		if errors.As(res[1].Interface().(error), &appErr) {
+		if errors.As(err, &appErr) {
 			_, _ = fmt.Fprintln(os.Stderr, style.Error.Render("The server returned an error"))
 			_ = out.Error(ctx, appErr)
 			os.Exit(1)
 		}
-		return res[1].Interface().(error)
+		return err
 	}
 
-	return out.Content(ctx, res[0].Interface())
+	return nil
 }
 
 func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string) error {

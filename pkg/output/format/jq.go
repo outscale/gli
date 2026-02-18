@@ -2,7 +2,7 @@
 SPDX-FileCopyrightText: 2026 Outscale SAS <opensource@outscale.com>
 SPDX-License-Identifier: BSD-3-Clause
 */
-package output
+package format
 
 import (
 	"context"
@@ -16,15 +16,15 @@ type JQ struct {
 	query *gojq.Query
 }
 
-func NewJQ(s string) (*JQ, error) {
+func NewJQ(s string) (JQ, error) {
 	query, err := gojq.Parse(s)
 	if err != nil {
-		return nil, fmt.Errorf("parse jq filter: %w", err)
+		return JQ{}, fmt.Errorf("parse jq filter: %w", err)
 	}
-	return &JQ{query: query}, nil
+	return JQ{query: query}, nil
 }
 
-func (j JQ) Content(ctx context.Context, v any) error {
+func (j JQ) Format(ctx context.Context, v any) error {
 	buf, err := json.Marshal(v)
 	if err != nil {
 		return fmt.Errorf("to JSON: %w", err)
@@ -47,7 +47,7 @@ func (j JQ) Content(ctx context.Context, v any) error {
 			}
 			return fmt.Errorf("jq error: %w", err)
 		}
-		if err := out.Content(ctx, v); err != nil {
+		if err := out.Format(ctx, v); err != nil {
 			return fmt.Errorf("output: %w", err)
 		}
 	}
@@ -57,3 +57,5 @@ func (j JQ) Content(ctx context.Context, v any) error {
 func (JQ) Error(ctx context.Context, v any) error {
 	return YAML{}.Error(ctx, v)
 }
+
+var _ Interface = JQ{}
