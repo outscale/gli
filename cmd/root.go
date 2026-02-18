@@ -16,6 +16,7 @@ import (
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
 	"github.com/outscale/osc-sdk-go/v3/pkg/profile"
 	sdkversion "github.com/outscale/osc-sdk-go/v3/pkg/version"
+	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 )
 
@@ -86,5 +87,10 @@ func init() {
 
 	_ = rootCmd.RegisterFlagCompletionFunc("output", func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
 		return []cobra.Completion{"raw", "json", "yaml", "table", "none"}, cobra.ShellCompDirectiveDefault
+	})
+
+	_ = rootCmd.RegisterFlagCompletionFunc("profile", func(cmd *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
+		cf, _ := loadConfig(cmd)
+		return lo.Map(lo.Keys(cf.Profiles), func(k string, _ int) cobra.Completion { return cobra.Completion(k) }), cobra.ShellCompDirectiveDefault
 	})
 }
