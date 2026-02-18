@@ -2,7 +2,7 @@
 SPDX-FileCopyrightText: 2026 Outscale SAS <opensource@outscale.com>
 SPDX-License-Identifier: BSD-3-Clause
 */
-package output
+package format
 
 import (
 	"context"
@@ -14,7 +14,7 @@ import (
 
 type YAML struct{}
 
-func (YAML) Content(ctx context.Context, v any) error {
+func (YAML) Format(ctx context.Context, v any) error {
 	enc := yaml.NewEncoder(os.Stdout, yaml.OmitZero(), yaml.UseSingleQuote(true), yaml.Indent(2))
 	err := enc.Encode(v)
 	if err != nil {
@@ -24,5 +24,7 @@ func (YAML) Content(ctx context.Context, v any) error {
 }
 
 func (y YAML) Error(ctx context.Context, v any) error {
-	return y.Content(ctx, v)
+	return y.Format(ctx, v)
 }
+
+var _ Interface = YAML{}

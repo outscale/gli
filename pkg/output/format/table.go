@@ -2,7 +2,7 @@
 SPDX-FileCopyrightText: 2026 Outscale SAS <opensource@outscale.com>
 SPDX-License-Identifier: BSD-3-Clause
 */
-package output
+package format
 
 import (
 	"context"
@@ -55,7 +55,7 @@ type Table struct {
 	Columns config.Columns
 }
 
-func (t Table) Content(ctx context.Context, v any) error {
+func (t Table) Format(ctx context.Context, v any) error {
 	headers := lo.Map(t.Columns, func(c config.Column, _ int) string {
 		return c.Title
 	})

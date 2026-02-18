@@ -1,11 +1,15 @@
-package output_test
+/*
+SPDX-FileCopyrightText: 2026 Outscale SAS <opensource@outscale.com>
+SPDX-License-Identifier: BSD-3-Clause
+*/
+package format_test
 
 import (
 	"testing"
 
 	"github.com/outscale/goutils/sdk/ptr"
 	"github.com/outscale/octl/pkg/config"
-	"github.com/outscale/octl/pkg/output"
+	"github.com/outscale/octl/pkg/output/format"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -28,7 +32,7 @@ func TestGetRow(t *testing.T) {
 				},
 			}},
 		}
-		rows, err := output.GetRows(vm, config.Columns{
+		rows, err := format.GetRows(vm, config.Columns{
 			{Content: "VmId"},
 			{Content: "BsuOptimized"},
 			{Content: "map(Nics, #?.LinkPublicIp?.PublicIp)"},
@@ -46,7 +50,7 @@ func TestGetRow(t *testing.T) {
 				{Name: ptr.To("bar"), UsedValue: ptr.To(20)},
 			},
 		}
-		rows, err := output.GetRows(vm, config.Columns{
+		rows, err := format.GetRows(vm, config.Columns{
 			{Content: "QuotaType"},
 			{Content: "map(Quotas, #?.Name)"},
 			{Content: "map(Quotas, #?.UsedValue)"},

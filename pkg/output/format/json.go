@@ -2,7 +2,7 @@
 SPDX-FileCopyrightText: 2026 Outscale SAS <opensource@outscale.com>
 SPDX-License-Identifier: BSD-3-Clause
 */
-package output
+package format
 
 import (
 	"context"
@@ -16,7 +16,7 @@ import (
 
 type JSON struct{}
 
-func (JSON) Content(ctx context.Context, v any) error {
+func (JSON) Format(ctx context.Context, v any) error {
 	buf, err := json.MarshalIndent(v, "", "  ")
 	if err != nil {
 		return fmt.Errorf("marshal json: %w", err)
@@ -29,5 +29,7 @@ func (JSON) Content(ctx context.Context, v any) error {
 }
 
 func (j JSON) Error(ctx context.Context, v any) error {
-	return j.Content(ctx, v)
+	return j.Format(ctx, v)
 }
+
+var _ Interface = JSON{}

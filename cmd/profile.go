@@ -95,7 +95,7 @@ func listProfiles(cmd *cobra.Command, _ []string) {
 	if err != nil {
 		messages.ExitErr(err)
 	}
-	out, err := output.NewFromFlags(cmd.Flags(), "table", "", profileColumns, false)
+	out, _, err := output.NewFromFlags(cmd.Flags(), "table", "", profileColumns, false)
 	if err != nil {
 		messages.ExitErr(err)
 	}
@@ -112,7 +112,7 @@ func listProfiles(cmd *cobra.Command, _ []string) {
 		func(a, b profileEntry) int {
 			return cmp.Compare(a.Name, b.Name)
 		})
-	_ = out.Content(cmd.Context(), lst)
+	_ = out.Format(cmd.Context(), lst)
 }
 
 func addProfile(cmd *cobra.Command, args []string) {
