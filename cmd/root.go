@@ -78,7 +78,9 @@ func init() {
 
 	rootCmd.PersistentFlags().String("template", "", "JSON template for query body")
 
-	rootCmd.PersistentFlags().String("jq", "", "jq-like output filter")
+	rootCmd.PersistentFlags().String("jq", "", "jq filter")
+	rootCmd.PersistentFlags().StringSlice("filter", nil, `comma separated list of filters for results - name:value,name:value, alias to jq filter 'select(.name | test("value"))'`)
+
 	rootCmd.PersistentFlags().StringP("columns", "c", "", "columns to display - [+]title:content|title:content")
 	rootCmd.PersistentFlags().StringP("output", "o", "", "output format (raw, json, yaml, table, none)")
 

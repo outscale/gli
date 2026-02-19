@@ -7,9 +7,12 @@ package output
 
 import (
 	"context"
+	"reflect"
 	"slices"
 
+	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/messages"
+	"github.com/outscale/octl/pkg/output/filter"
 	"github.com/outscale/octl/pkg/output/format"
 	"github.com/outscale/octl/pkg/output/read"
 	"github.com/outscale/octl/pkg/output/result"
@@ -17,12 +20,16 @@ import (
 )
 
 type Paginated struct {
-	Read   read.Interface
-	Format format.Interface
+	Read    read.Interface
+	Format  format.Interface
+	Filters []filter.Interface
 }
 
-func (o *Paginated) Output(ctx context.Context, fetch read.FetchPage) error {
-	seq := o.Read.Read(ctx, fetch)
+func (p *Paginated) Output(ctx context.Context, fetch read.FetchPage) error {
+	seq := p.Read.Read(ctx, fetch)
+	for _, f := range p.Filters {
+		seq = f.Filter(ctx, seq)
+	}
 	res := slices.Collect(seq)
 	errRes, found := lo.Find(res, func(r result.Result) bool {
 		return r.Error != nil
@@ -31,24 +38,30 @@ func (o *Paginated) Output(ctx context.Context, fetch read.FetchPage) error {
 		return errRes.Error
 	}
 	if len(res) == 1 && res[0].SingleEntry {
-		return o.Format.Format(ctx, res[0].Ok)
+		return p.Format.Format(ctx, res[0].Ok)
 	}
-	return o.Format.Format(ctx, lo.Map(res, func(r result.Result, _ int) any { return r.Ok }))
+	return p.Format.Format(ctx, lo.Map(res, func(r result.Result, _ int) any { return r.Ok }))
 }
 
-func (o *Paginated) Error(ctx context.Context, v any) error {
-	return o.Format.Error(ctx, v)
+func (p *Paginated) Error(ctx context.Context, v any) error {
+	return p.Format.Error(ctx, v)
 }
 
 var _ Outputter = (*Paginated)(nil)
 
 type Single struct {
-	Read   read.Interface
-	Format format.Interface
+	Read    read.Interface
+	Format  format.Interface
+	Filters []filter.Interface
 }
 
 func (s *Single) Output(ctx context.Context, fetch read.FetchPage) error {
 	seq := s.Read.Read(ctx, fetch)
+	debug.Println("read", reflect.TypeOf(seq))
+	for _, f := range s.Filters {
+		seq = f.Filter(ctx, seq)
+	}
+	debug.Println("seq", reflect.TypeOf(seq))
 	for v := range seq {
 		if v.Error != nil {
 			return v.Error

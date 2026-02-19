@@ -137,7 +137,8 @@ octl <command> <command>
 | `--version` | | | Display octl version |
 | `-v, --verbose` | | | Dump HTTP request and response |
 | `-h, --help` | | | Help about a command |
-| `--jq` | | | jq-like output filter |
+| `--jq` | | | jq-like filter |
+| `--filter` | | | content filter |
 | `--template` | | | JSON template for query body |
 | `--config` | `~/.osc/config.json` | | config file path |
 | `--profile` | `default` | | profile name |
@@ -149,7 +150,10 @@ octl <command> <command>
 * `raw` is the raw JSON format, as returned by the API.
 * `json` displays the content in JSON format, without response context,
 * `yaml` displays the content in YAML format, without response context,
-* `table` displays the content in a text table, based on columns defined by the `--columns` flag.
+* `table` displays the content in a text table, based on columns defined by the `--columns` flag,
+* `none` disables output.
+
+Please note that `raw` output returns the raw payload whereas the other formats only output the content (e.g. a list on VMs when listing VMs instead of an object with a `Vms` attribute storing the list).
 
 ### High level command
 
@@ -207,7 +211,6 @@ Column content is defined with the [expr language](https://expr-lang.org/docs/la
 octl iaas vm list --columns "+tag:find(Tags, #?.Key == \"Name\")?.Value"
 ```
 
-
 ### API access
 
 The API can be directly called, with a `raw` output:
@@ -255,11 +258,48 @@ octl iaas api CreateSubnet --IpRange 10.0.1.0/24 --template subnet.json
 
 ### Using jq filters
 
+Based on raw payload:
 ```shell
-octl iaas api ReadVms --Filters.VmStateNames running --jq ".Vms[].VmId"
+octl iaas api ReadVms --jq ".Vms[].VmId"
 ```
 
-> Note: `--jq` is not currently compatible with `--output`
+Based on content:
+```shell
+octl iaas api ReadVms --jq ".VmId" -o json
+```
+or
+```shell
+octl iaas vm list --jq ".VmId" -o json
+```
+
+`--jq` will try to output to tables if possible:
+```shell
+octl iaas volume list --jq 'select(.State | test("in-use"))'
+┌──────────────┬──────┬──────────┬───────────┬──────┬──────┬────────────┬───────────┐
+│      ID      │ Name │   Type   │   State   │ Size │ Iops │     VM     │  Device   │
+├──────────────┼──────┼──────────┼───────────┼──────┼──────┼────────────┼───────────┤
+│ vol-foo      │      │ io1      │ in-use    │ 300  │ 5000 │ i-foo      │ /dev/sda1 │
+│ vol-bar      │      │ standard │ in-use    │ 20   │      │ i-bar      │ /dev/sda1 │
+└──────────────┴──────┴──────────┴───────────┴──────┴──────┴────────────┴───────────┘
+```
+but:
+```shell
+octl iaas volume list --jq '.VolumeId' -o table
+Unable to format as a table, switching to YAML...
+- vol-foo
+- vol-bar
+```
+
+### Using filters
+
+With `--filter`, a list of content filters can be set.
+
+To display the list of images for Kubernetes v1.31:
+```shell
+octl iaas image list --filter ImageName:kubernetes,ImageName:v1.31
+```
+
+This is the equivalent of running the two following jq filters: `select(.ImageName | test("kubernetes"))` +  `select(.ImageName | test("v1.31"))`.
 
 ### Profile management
 
@@ -270,7 +310,8 @@ octl iaas api ReadVms --Filters.VmStateNames running --jq ".Vms[].VmId"
 * `octl profile delete` removes a profile from the profile file,
 * `octl profile use` marks a profile as the default profile, that will be used in future `octl` commands.
 
-> Note: Environment variables take precedence. A profile marked as the default will not be used if relevant environment variables are set.
+> Note: Environment variables take precedence. A profile marked as the default may not be used if relevant environment variables are set. See [Configuration](#-configuration) for more information.
+
 
 ### Self updating
 
