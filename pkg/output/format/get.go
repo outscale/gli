@@ -24,7 +24,8 @@ func GetRows(v any, cols config.Columns, explode bool) ([][]string, error) {
 	for i, c := range cols {
 		val, err := c.Get(v)
 		if err != nil {
-			return nil, err
+			debug.Println("Get error: %v", err)
+			// we continue with a nil value
 		}
 		val = deref(val)
 		raw[0][i] = val

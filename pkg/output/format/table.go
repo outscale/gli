@@ -14,6 +14,7 @@ import (
 	"github.com/charmbracelet/lipgloss/table"
 	"github.com/charmbracelet/x/term"
 	"github.com/outscale/octl/pkg/config"
+	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/style"
 	"github.com/samber/lo"
 )
@@ -55,7 +56,26 @@ type Table struct {
 	Columns config.Columns
 }
 
+func validForTable(v any) bool {
+	vv := reflect.Indirect(reflect.ValueOf(v))
+	if vv.Kind() != reflect.Slice {
+		return false
+	}
+	if vv.Len() == 0 {
+		return true
+	}
+	vv = vv.Index(0)
+	for vv.Kind() == reflect.Interface || vv.Kind() == reflect.Pointer {
+		vv = vv.Elem()
+	}
+	return vv.Kind() == reflect.Struct || vv.Kind() == reflect.Map
+}
+
 func (t Table) Format(ctx context.Context, v any) error {
+	if !validForTable(v) {
+		messages.Info("Unable to format as a table, switching to YAML...")
+		return YAML{}.Format(ctx, v)
+	}
 	headers := lo.Map(t.Columns, func(c config.Column, _ int) string {
 		return c.Title
 	})

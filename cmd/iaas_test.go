@@ -21,56 +21,84 @@ import (
 )
 
 func TestIAASAPI(t *testing.T) {
-	netResp := osc.CreateNetResponse{}
-	runJSON(t, []string{"iaas", "api", "CreateNet", "--IpRange", "10.0.0.0/16"}, nil, &netResp)
-	t.Run("ReadVms works", func(t *testing.T) {
-		resp := osc.ReadVmsResponse{}
-		runJSON(t, []string{"iaas", "api", "ReadVms", "-v", "--Filters.VmStateNames", "running"}, nil, &resp)
-		require.NotNil(t, resp.Vms)
-		assert.NotEmpty(t, *resp.Vms)
-		for _, vm := range *resp.Vms {
-			assert.Equal(t, osc.VmStateRunning, vm.State)
+	region := os.Getenv("OSC_REGION")
+	if region == "" {
+		region = "eu-west-2"
+	}
+	subregion := region + "a"
+	volResp := osc.Volume{}
+	runJSON(t, []string{"iaas", "vol", "create", "--subregion-name", subregion, "--size", "4", "--type", "standard", "-o", "json"}, nil, &volResp)
+	t.Run("ReadVolumes returns a raw output", func(t *testing.T) {
+		resp := osc.ReadVolumesResponse{}
+		runJSON(t, []string{"iaas", "api", "ReadVolumes", "--Filters.VolumeTypes", "standard"}, nil, &resp)
+		require.NotNil(t, resp.Volumes)
+		assert.NotEmpty(t, *resp.Volumes)
+		for _, vol := range *resp.Volumes {
+			assert.Equal(t, osc.VolumeTypeStandard, vol.VolumeType)
 		}
 		require.NotNil(t, resp.ResponseContext)
 		assert.NotEmpty(t, resp.ResponseContext.RequestId)
 	})
+	t.Run("ReadVolumes may return the JSON content", func(t *testing.T) {
+		resp := []osc.Volume{}
+		runJSON(t, []string{"iaas", "api", "ReadVolumes", "--Filters.VolumeTypes", "standard", "-o", "json"}, nil, &resp)
+		assert.NotEmpty(t, resp)
+		for _, vol := range resp {
+			assert.Equal(t, osc.VolumeTypeStandard, vol.VolumeType)
+		}
+	})
+	t.Run("A filter can be applied", func(t *testing.T) {
+		resp := []osc.Volume{}
+		runJSON(t, []string{"iaas", "api", "ReadVolumes", "--filter", "VolumeType:standard", "-o", "json"}, nil, &resp)
+		assert.NotEmpty(t, resp)
+		for _, vol := range resp {
+			assert.Equal(t, osc.VolumeTypeStandard, vol.VolumeType)
+		}
+	})
+	t.Run("A JQ filter may be applied", func(t *testing.T) {
+		resp := []string{}
+		runJSON(t, []string{"iaas", "api", "ReadVolumes", "--jq", ".VolumeType", "--Filters.VolumeTypes", "standard", "-o", "JSON"}, nil, &resp)
+		assert.NotEmpty(t, resp)
+		for _, vt := range resp {
+			assert.Equal(t, string(osc.VolumeTypeStandard), vt)
+		}
+	})
 	t.Run("Chaining works", func(t *testing.T) {
-		region := os.Getenv("OSC_REGION")
 		out := run(t, []string{"iaas", "api", "CreateNet", "--IpRange", "10.0.0.0/16"}, nil)
 		resp := osc.CreateSubnetResponse{}
-		runJSON(t, []string{"iaas", "api", "CreateSubnet", "--NetId", "{{.Net.NetId}}", "--IpRange", "10.0.1.0/24", "--SubregionName", region + "a"}, out, &resp)
+		runJSON(t, []string{"iaas", "api", "CreateSubnet", "--NetId", "{{.Net.NetId}}", "--IpRange", "10.0.1.0/24", "--SubregionName", subregion}, out, &resp)
 		require.NotNil(t, resp.Subnet)
 		assert.NotEmpty(t, resp.Subnet.SubnetId)
 	})
 	t.Run("JSON can be injected", func(t *testing.T) {
-		in := `{"NetId":"` + netResp.Net.NetId + `", "IpRange":"10.0.1.0/24"}`
-		resp := osc.CreateSubnetResponse{}
-		runJSON(t, []string{"iaas", "api", "CreateSubnet"}, []byte(in), &resp)
-		require.NotNil(t, resp.Subnet)
-		assert.NotEmpty(t, resp.Subnet.SubnetId)
-		assert.Equal(t, netResp.Net.NetId, resp.Subnet.NetId)
-		assert.Equal(t, "10.0.1.0/24", resp.Subnet.IpRange)
+		in := `{"VolumeType":"standard", "Size":4, "SubregionName": "` + subregion + `"}`
+		resp := osc.CreateVolumeResponse{}
+		runJSON(t, []string{"iaas", "api", "CreateVolume"}, []byte(in), &resp)
+		require.NotNil(t, resp.Volume)
+		assert.NotEmpty(t, resp.Volume.VolumeId)
+		assert.Equal(t, 4, resp.Volume.Size)
+		assert.Equal(t, osc.VolumeTypeStandard, resp.Volume.VolumeType)
 	})
 	t.Run("Templating works from stdin", func(t *testing.T) {
-		in := `{"IpRange":"10.0.2.0/24"}`
-		resp := osc.CreateSubnetResponse{}
-		runJSON(t, []string{"iaas", "api", "CreateSubnet", "--NetId", netResp.Net.NetId}, []byte(in), &resp)
-		require.NotNil(t, resp.Subnet)
-		assert.NotEmpty(t, resp.Subnet.SubnetId)
-		assert.Equal(t, netResp.Net.NetId, resp.Subnet.NetId)
-		assert.Equal(t, "10.0.2.0/24", resp.Subnet.IpRange)
+		in := `{"VolumeType":"standard","Size":4}`
+		resp := osc.CreateVolumeResponse{}
+		runJSON(t, []string{"iaas", "api", "CreateVolume", "--SubregionName", subregion}, []byte(in), &resp)
+		require.NotNil(t, resp.Volume)
+		assert.NotEmpty(t, resp.Volume.VolumeId)
+		assert.Equal(t, 4, resp.Volume.Size)
+		assert.Equal(t, osc.VolumeTypeStandard, resp.Volume.VolumeType)
 	})
 	t.Run("Templating works from a file", func(t *testing.T) {
-		in := `{"IpRange":"10.0.3.0/24"}`
+		in := `{"VolumeType":"standard","Size":4}`
 		tpl := filepath.Join(t.TempDir(), "template")
 		err := os.WriteFile(tpl, []byte(in), 0600)
 		require.NoError(t, err)
-		resp := osc.CreateSubnetResponse{}
-		runJSON(t, []string{"iaas", "api", "CreateSubnet", "--NetId", netResp.Net.NetId, "--template", tpl}, nil, &resp)
-		require.NotNil(t, resp.Subnet)
-		assert.NotEmpty(t, resp.Subnet.SubnetId)
-		assert.Equal(t, netResp.Net.NetId, resp.Subnet.NetId)
-		assert.Equal(t, "10.0.3.0/24", resp.Subnet.IpRange)
+		resp := osc.CreateVolumeResponse{}
+		runJSON(t, []string{"iaas", "api", "CreateVolume", "--SubregionName", subregion, "--template", tpl}, nil, &resp)
+		require.NotNil(t, resp.Volume)
+		assert.NotEmpty(t, resp.Volume.VolumeId)
+		assert.Equal(t, 4, resp.Volume.Size)
+		assert.Equal(t, osc.VolumeTypeStandard, resp.Volume.VolumeType)
 	})
 }
 

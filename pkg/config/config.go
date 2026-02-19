@@ -37,7 +37,7 @@ func (c *Column) Get(v any) (any, error) {
 	if c.compiled == nil {
 		err := c.compile(v)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("compile: %w", err)
 		}
 	}
 	return expr.Run(c.compiled, v)
