@@ -60,6 +60,7 @@ func ParseColumns(s string) Columns {
 
 type Entity struct {
 	Explode bool     `yaml:"explode,omitempty"`
+	Sort    bool     `yaml:"sort,omitempty"`
 	Aliases []string `yaml:"aliases,omitempty"`
 	Columns Columns  `yaml:"columns,omitempty"`
 }

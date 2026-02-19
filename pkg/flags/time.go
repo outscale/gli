@@ -9,22 +9,22 @@ import (
 	"github.com/outscale/osc-sdk-go/v3/pkg/iso8601"
 )
 
-var Now = time.Now
+var Now = iso8601.Now
 
 // TimeValue adapts time.Time for use as a flag.
 type TimeValue struct {
-	t *time.Time
+	t *iso8601.Time
 }
 
 func NewTimeValue() *TimeValue {
-	return &TimeValue{t: &time.Time{}}
+	return &TimeValue{t: &iso8601.Time{}}
 }
 
 // Set time.Time value from string (rfc3339, iso8601 or duration).
 func (d *TimeValue) Set(s string) error {
 	s = strings.TrimSpace(s)
 	// try a iso8601 time
-	v, err := iso8601.Parse([]byte(s))
+	v, err := iso8601.ParseString(s)
 	if err == nil {
 		*d.t = v
 		return nil
@@ -72,12 +72,12 @@ func (d *TimeValue) String() string {
 	if d.t == nil || d.t.IsZero() {
 		return ""
 	}
-	return d.t.Format(time.RFC3339Nano)
+	return d.t.String()
 }
 
-func (d *TimeValue) Value() (time.Time, bool) {
+func (d *TimeValue) Value() (iso8601.Time, bool) {
 	if d.t == nil {
-		return time.Time{}, false
+		return iso8601.Time{}, false
 	}
 	return *d.t, true
 }

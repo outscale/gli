@@ -5,8 +5,8 @@ import (
 	"github.com/outscale/octl/pkg/sdk"
 	"github.com/outscale/octl/pkg/version"
 	"github.com/outscale/osc-sdk-go/v3/pkg/middleware"
+	"github.com/outscale/osc-sdk-go/v3/pkg/options"
 	"github.com/outscale/osc-sdk-go/v3/pkg/profile"
-	options "github.com/outscale/osc-sdk-go/v3/pkg/utils"
 	"github.com/spf13/cobra"
 )
 

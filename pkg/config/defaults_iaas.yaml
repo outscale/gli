@@ -374,9 +374,19 @@ entities:
     - title: ID
       content: CaId
   catalog:
+    explode: true
+    sort: true
     columns:
-    - title: State
-      content: State
+    - title: Service
+      content: 'map(Entries, #?.Service)'
+    - title: Category
+      content: 'map(Entries, #?.Category)'
+    - title: Title
+      content: 'map(Entries, #?.Title)'
+    - title: UnitPrice
+      content: 'map(Entries, #?.UnitPrice)'
+    - title: Flags
+      content: 'map(Entries, #?.Flags)'
   clientgateway:
     columns:
     - title: ID

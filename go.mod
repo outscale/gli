@@ -18,7 +18,7 @@ require (
 	github.com/minio/selfupdate v0.6.0
 	github.com/oasdiff/yaml v0.0.0-20250309154309-f31be36b4037
 	github.com/outscale/goutils/sdk v0.0.0-20260127143749-d95db5597c97
-	github.com/outscale/osc-sdk-go/v3 v3.0.0-beta.4.0.20260216085323-e6fe3b5e7cfe
+	github.com/outscale/osc-sdk-go/v3 v3.0.0-beta.4.0.20260220134519-ac4f9731735f
 	github.com/samber/lo v1.52.0
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/pflag v1.0.10
