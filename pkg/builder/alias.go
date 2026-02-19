@@ -12,7 +12,9 @@ import (
 	"strings"
 
 	"github.com/outscale/octl/pkg/config"
+	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/messages"
+	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -70,8 +72,27 @@ func restoreFlags(fs *pflag.FlagSet, saved map[string][]string) {
 	})
 }
 
-func runFunc(provider string, command []string, flags config.FlagSet, cmd *cobra.Command, skipUserFlags bool) func(cmd *cobra.Command, args []string) {
+func once(fn func(cmd *cobra.Command, args []string) int) func(cmd *cobra.Command, args []string) {
 	return func(cmd *cobra.Command, args []string) {
+		_ = fn(cmd, args)
+	}
+}
+
+func iterate(fn func(cmd *cobra.Command, args []string) int) func(cmd *cobra.Command, args []string) {
+	return func(cmd *cobra.Command, args []string) {
+		for {
+			consumed := fn(cmd, args)
+			debug.Println("consumed", consumed, "len", len(args))
+			if consumed <= 0 || len(args) == consumed {
+				break
+			}
+			args = args[consumed:]
+		}
+	}
+}
+
+func runFunc(provider string, command []string, flags config.FlagSet, cmd *cobra.Command, skipUserFlags bool) func(cmd *cobra.Command, args []string) {
+	exec := func(cmd *cobra.Command, args []string) int {
 		nargs := make([]string, 2, len(command)+2)
 		nargs[0] = "octl"
 		nargs[1] = provider
@@ -92,6 +113,7 @@ func runFunc(provider string, command []string, flags config.FlagSet, cmd *cobra
 			})
 		}
 		skipnextvalue := false
+		consumed := -1
 		for _, arg := range command {
 			if !strings.HasPrefix(arg, "%") {
 				// skip flags already present in user flags
@@ -112,6 +134,11 @@ func runFunc(provider string, command []string, flags config.FlagSet, cmd *cobra
 				nargs = append(nargs, arg)
 				continue
 			}
+			if arg == "%*" {
+				nargs = append(nargs, strings.Join(args, ","))
+				consumed = len(args) - 1
+				continue
+			}
 			idx, err := strconv.Atoi(arg[1:])
 			if err != nil {
 				messages.Warn(err.Error())
@@ -119,9 +146,10 @@ func runFunc(provider string, command []string, flags config.FlagSet, cmd *cobra
 			}
 			if idx >= len(args) {
 				_ = cmd.Usage()
-				return
+				return -1
 			}
 			nargs = append(nargs, args[idx])
+			consumed = max(consumed, idx)
 		}
 		nargs = append(nargs, userArgs...)
 		messages.Info("Resolving alias to %v", nargs)
@@ -135,5 +163,11 @@ func runFunc(provider string, command []string, flags config.FlagSet, cmd *cobra
 			messages.ExitErr(err)
 		}
 		restoreFlags(cmd.Flags(), saved)
+		return consumed + 1
 	}
+
+	if lo.CountBy(command, func(arg string) bool { return strings.HasPrefix(arg, "%") }) == 1 {
+		return iterate(exec)
+	}
+	return once(exec)
 }

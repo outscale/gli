@@ -261,14 +261,14 @@ func (b *Builder) buildReadAliases() error {
 			fmt.Println("describe", b.typeName, "Filters."+fids.Name)
 			b.aliases = append(b.aliases, config.Alias{
 				Entity:  b.entityName,
-				Use:     "describe " + b.entityName + "_id",
+				Use:     "describe " + b.entityName + "_id [" + b.entityName + "_id]...",
 				Aliases: []string{"desc"},
 				Group:   b.entityName,
 				Short:   "alias for api " + b.m.Name + " --Filters." + fids.Name + " " + b.entityName + "_id",
 				Command: []string{
 					"api",
 					b.m.Name,
-					"--Filters." + fids.Name, "%0",
+					"--Filters." + fids.Name, "%*",
 					"--output", "yaml,single",
 				},
 			})
@@ -306,7 +306,7 @@ func (b *Builder) buildUpdateAlias() error {
 	fmt.Println("update", b.typeName, idField, "flags", flags.Names())
 	b.aliases = append(b.aliases, config.Alias{
 		Entity: b.entityName,
-		Use:    "update " + b.entityName + "_id",
+		Use:    "update " + b.entityName + "_id [" + b.entityName + "_id]...",
 		Group:  b.entityName,
 		Short:  "alias for api " + b.m.Name + " --" + idField + " " + b.entityName + "_id",
 		Command: []string{
@@ -348,9 +348,9 @@ func (b *Builder) buildDeleteAlias() error {
 	var displayCmd []string
 	for _, a := range b.cfg.Aliases {
 		if a.Entity == b.entityName && strings.HasPrefix(a.Use, "describe") {
-			displayCmd = lo.Map(a.Command, func(arg string, _ int) string {
-				if arg == "yaml,single" {
-					return "table,single"
+			displayCmd = lo.Map(a.Command, func(arg string, i int) string {
+				if i > 0 && (a.Command[i-1] == "-o" || a.Command[i-1] == "--output") {
+					return "table"
 				}
 				return arg
 			})
@@ -358,7 +358,7 @@ func (b *Builder) buildDeleteAlias() error {
 	}
 	b.aliases = append(b.aliases, config.Alias{
 		Entity:  b.entityName,
-		Use:     "delete " + b.entityName + "_id",
+		Use:     "delete " + b.entityName + "_id [" + b.entityName + "_id]...",
 		Aliases: []string{"del", "rm"},
 		Group:   b.entityName,
 		Short:   "alias for api " + b.m.Name + " --" + idField + " " + b.entityName + "_id",

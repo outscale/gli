@@ -19,10 +19,10 @@ import (
 
 var (
 	prompts = map[config.Action]string{
-		config.ActionDelete: "Are you sure you want to delete this resource ?",
+		config.ActionDelete: "Are you sure you want to delete these resource(s) ?",
 	}
 	success = map[config.Action]string{
-		config.ActionDelete: "The resource has been deleted",
+		config.ActionDelete: "The resource(s) has been deleted",
 	}
 )
 
@@ -30,6 +30,7 @@ func confirm(action config.Action, display, run func(cmd *cobra.Command, args []
 	return func(cmd *cobra.Command, args []string) {
 		if yes, _ := cmd.Flags().GetBool("yes"); yes {
 			run(cmd, args)
+			_, _ = fmt.Fprint(os.Stderr, style.Green.Render(success[action]))
 			return
 		}
 		if !isatty.IsTerminal(os.Stdout.Fd()) {

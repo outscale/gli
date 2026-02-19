@@ -75,12 +75,13 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 		return nil, nil, fmt.Errorf("unknown format %q", out)
 	}
 
+	if param == "single" {
+		fmter = format.Single{ForFormat: fmter}
+	}
 	switch param {
 	case "raw":
 		return fmter, &Paginated{Read: read.NewRaw(), Format: fmter, Filters: filters}, nil
-	case "single":
-		return fmter, &Single{Read: read.NewPaginated(contentField), Format: fmter, Filters: filters}, nil
-	case "":
+	case "", "single":
 		return fmter, &Paginated{Read: read.NewPaginated(contentField), Format: fmter, Filters: filters}, nil
 	default:
 		return nil, nil, fmt.Errorf("unknown format option %q", param)
