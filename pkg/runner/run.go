@@ -21,6 +21,7 @@ import (
 	"github.com/outscale/octl/pkg/output"
 	"github.com/outscale/octl/pkg/output/read"
 	"github.com/outscale/octl/pkg/style"
+	"github.com/outscale/osc-sdk-go/v3/pkg/iso8601"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -62,7 +63,7 @@ func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client,
 
 	c := cfg.Calls[cmd.Name()]
 	e := cfg.Entities[c.Entity]
-	_, out, err := output.NewFromFlags(cmd.Flags(), "", c.Content, e.Columns, e.Explode)
+	_, out, err := output.NewFromFlags(cmd.Flags(), "", c.Content, e.Columns, e.Explode, e.Sort)
 	if err != nil {
 		return err
 	}
@@ -263,11 +264,13 @@ func setValueStructTime(arg reflect.Value, fs *pflag.FlagSet, flag string) error
 	}
 	debug.Println("setValueStructTime", flag, val.String())
 	if t, ok := val.Value(); ok {
-		if arg.Type() == reflect.TypeFor[time.Time]() {
+		switch arg.Type() {
+		case reflect.TypeFor[iso8601.Time]():
 			arg.Set(reflect.ValueOf(t))
-		}
-		if f := arg.FieldByName("Time"); f.IsValid() {
-			f.Set(reflect.ValueOf(t))
+		case reflect.TypeFor[time.Time]():
+			arg.Set(reflect.ValueOf(t.Time))
+		default:
+			return fmt.Errorf("unsupported time format for %s", flag)
 		}
 	}
 	return nil

@@ -95,7 +95,7 @@ func listProfiles(cmd *cobra.Command, _ []string) {
 	if err != nil {
 		messages.ExitErr(err)
 	}
-	out, _, err := output.NewFromFlags(cmd.Flags(), "table", "", profileColumns, false)
+	out, _, err := output.NewFromFlags(cmd.Flags(), "table", "", profileColumns, false, true)
 	if err != nil {
 		messages.ExitErr(err)
 	}

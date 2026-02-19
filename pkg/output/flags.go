@@ -16,7 +16,7 @@ import (
 	"github.com/spf13/pflag"
 )
 
-func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Columns, explode bool) (format.Interface, Outputter, error) {
+func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Columns, explode, sort bool) (format.Interface, Outputter, error) {
 	fout, _ := fs.GetString("output")
 	if fout != "" {
 		out = fout
@@ -69,7 +69,7 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 		if len(cols) == 0 {
 			fmter = format.YAML{}
 		} else {
-			fmter = format.Table{Columns: cols, Explode: explode}
+			fmter = format.Table{Columns: cols, Explode: explode, Sort: sort}
 		}
 	default:
 		return nil, nil, fmt.Errorf("unknown format %q", out)

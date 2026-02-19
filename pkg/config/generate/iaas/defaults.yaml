@@ -37,6 +37,20 @@ entities:
       content: QueryPayloadRaw
     - title: Status
       content: ResponseStatusCode
+  catalog:
+    explode: true
+    sort: true
+    columns:
+    - title: Service
+      content: "map(Entries, #?.Service)"
+    - title: Category
+      content: "map(Entries, #?.Category)"
+    - title: Title
+      content: "map(Entries, #?.Title)"
+    - title: UnitPrice
+      content: "map(Entries, #?.UnitPrice)"
+    - title: Flags
+      content: "map(Entries, #?.Flags)"
   consumptionaccount:
     aliases:
     - consumption

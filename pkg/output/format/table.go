@@ -5,15 +5,18 @@ SPDX-License-Identifier: BSD-3-Clause
 package format
 
 import (
+	"cmp"
 	"context"
 	"fmt"
 	"os"
 	"reflect"
+	"slices"
 
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/lipgloss/table"
 	"github.com/charmbracelet/x/term"
 	"github.com/outscale/octl/pkg/config"
+	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/style"
 	"github.com/samber/lo"
@@ -52,8 +55,8 @@ var (
 )
 
 type Table struct {
-	Explode bool
-	Columns config.Columns
+	Explode, Sort bool
+	Columns       config.Columns
 }
 
 func validForTable(v any) bool {
@@ -86,6 +89,7 @@ func (t Table) Format(ctx context.Context, v any) error {
 	headers := lo.Map(t.Columns, func(c config.Column, _ int) string {
 		return c.Title
 	})
+	// build table
 	rows := [][]string{}
 	vv := reflect.ValueOf(v)
 	if vv.Kind() == reflect.Slice {
@@ -103,6 +107,7 @@ func (t Table) Format(ctx context.Context, v any) error {
 		}
 		rows = append(rows, add...)
 	}
+	// styling
 	for r := range rows {
 		for c := range rows[r] {
 			styles, found := colors[headers[c]]
@@ -115,6 +120,23 @@ func (t Table) Format(ctx context.Context, v any) error {
 			}
 		}
 	}
+	// sort
+	if t.Sort {
+		slices.SortFunc(rows, func(a, b []string) int {
+			for i, ai := range a {
+				var bi string
+				if len(b) >= i+1 {
+					bi = b[i]
+				}
+				c := cmp.Compare(ai, bi)
+				if c != 0 {
+					return c
+				}
+			}
+			return 0
+		})
+	}
+	// build table
 	cellStyle := lipgloss.NewStyle().Padding(0, 1)
 	headerStyle := lipgloss.NewStyle().Bold(true).Align(lipgloss.Center)
 	ot := table.New().
@@ -125,17 +147,32 @@ func (t Table) Format(ctx context.Context, v any) error {
 			}
 			return cellStyle
 		}).Headers(headers...)
-
-	width := lo.Max(
-		lo.Map(rows, func(line []string, _ int) int {
-			return lo.SumBy(line, func(cell string) int {
-				return len(cell) + 3
-			}) + 1
+	// compute table width
+	width := lo.Sum(
+		lo.Map(t.Columns, func(_ config.Column, i int) int {
+			// max is the row having the longest value for col i
+			max := lo.MaxBy(rows, func(a []string, b []string) bool {
+				if len(a) <= i {
+					return false
+				}
+				if len(b) <= i {
+					return true
+				}
+				return len(a[i]) > len(b[i])
+			})
+			if len(max) <= i {
+				return 3
+			}
+			debug.Println("col", i, "max", max[i], "len", len(max[i])+3)
+			return len(max[i]) + 3
 		}))
+	// resize if width greater than term width
 	termWidth, _, _ := term.GetSize(os.Stdout.Fd())
-	if termWidth > 40 && width > termWidth {
+	if termWidth > 40 && width > termWidth-1 {
+		debug.Println("reducing width from", width, "to", termWidth)
 		ot.Width(termWidth)
 	}
+	// render !
 	ot.Rows(rows...)
 
 	_, err := fmt.Fprintln(os.Stdout, ot)

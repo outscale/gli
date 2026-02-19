@@ -61,7 +61,7 @@ func GetRows(v any, cols config.Columns, explode bool) ([][]string, error) {
 		for j, val := range raw[i] {
 			switch val := val.(type) {
 			case iso8601.Time:
-				rows[i][j] = val.Format(time.RFC3339)
+				rows[i][j] = val.String()
 			case time.Time:
 				rows[i][j] = val.Format(time.RFC3339)
 			case float64:
