@@ -1,6 +1,7 @@
 package result
 
 type Result struct {
-	Ok    any
-	Error error
+	SingleEntry bool
+	Ok          any
+	Error       error
 }

@@ -30,6 +30,9 @@ func (o *Paginated) Output(ctx context.Context, fetch read.FetchPage) error {
 	if found {
 		return errRes.Error
 	}
+	if len(res) == 1 && res[0].SingleEntry {
+		return o.Format.Format(ctx, res[0].Ok)
+	}
 	return o.Format.Format(ctx, lo.Map(res, func(r result.Result, _ int) any { return r.Ok }))
 }
 

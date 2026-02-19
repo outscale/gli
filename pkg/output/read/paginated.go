@@ -42,7 +42,7 @@ func (p *Paginated) Read(ctx context.Context, fetch FetchPage) iter.Seq[result.R
 			}
 			if len(vres) < 2 {
 				debug.Println("not enough result")
-				_ = yield(result.Result{})
+				_ = yield(result.Result{SingleEntry: true})
 				return
 			}
 			res := reflect.Indirect(vres[0])
@@ -52,7 +52,7 @@ func (p *Paginated) Read(ctx context.Context, fetch FetchPage) iter.Seq[result.R
 			}
 			if content.Kind() != reflect.Slice {
 				debug.Println("not a slice")
-				_ = yield(result.Result{Ok: content.Interface()})
+				_ = yield(result.Result{Ok: content.Interface(), SingleEntry: true})
 				return
 			}
 			for i := range content.Len() {
