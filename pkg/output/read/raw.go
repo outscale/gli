@@ -28,11 +28,11 @@ func (p *Raw) Read(ctx context.Context, fetch FetchPage) iter.Seq[result.Result]
 			_ = yield(result.Result{Error: err})
 			return
 		}
-		if len(vres) == 0 {
-			_ = yield(result.Result{})
+		if len(vres) < 2 {
+			_ = yield(result.Result{SingleEntry: true})
 			return
 		}
-		_ = yield(result.Result{Ok: vres[0].Interface()})
+		_ = yield(result.Result{Ok: vres[0].Interface(), SingleEntry: true})
 	}
 }
 
