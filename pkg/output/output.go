@@ -7,11 +7,8 @@ package output
 
 import (
 	"context"
-	"reflect"
 	"slices"
 
-	"github.com/outscale/octl/pkg/debug"
-	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/output/filter"
 	"github.com/outscale/octl/pkg/output/format"
 	"github.com/outscale/octl/pkg/output/read"
@@ -48,32 +45,3 @@ func (p *Paginated) Error(ctx context.Context, v any) error {
 }
 
 var _ Outputter = (*Paginated)(nil)
-
-type Single struct {
-	Read    read.Interface
-	Format  format.Interface
-	Filters []filter.Interface
-}
-
-func (s *Single) Output(ctx context.Context, fetch read.FetchPage) error {
-	seq := s.Read.Read(ctx, fetch)
-	debug.Println("read", reflect.TypeOf(seq))
-	for _, f := range s.Filters {
-		seq = f.Filter(ctx, seq)
-	}
-	debug.Println("seq", reflect.TypeOf(seq))
-	for v := range seq {
-		if v.Error != nil {
-			return v.Error
-		}
-		return s.Format.Format(ctx, v.Ok)
-	}
-	messages.Info("No results found")
-	return nil
-}
-
-func (s *Single) Error(ctx context.Context, v any) error {
-	return s.Format.Error(ctx, v)
-}
-
-var _ Outputter = (*Single)(nil)

@@ -71,7 +71,7 @@ func TestIAASAPI(t *testing.T) {
 		assert.NotEmpty(t, resp.Subnet.SubnetId)
 	})
 	t.Run("JSON can be injected", func(t *testing.T) {
-		in := `{"VolumeType":"standard", "Size":4, "SubregionName": "` + subregion + `"}`
+		in := `{"VolumeType":"standard", "Size":4, "SubregionName": "` + volResp.SubregionName + `"}`
 		resp := osc.CreateVolumeResponse{}
 		runJSON(t, []string{"iaas", "api", "CreateVolume"}, []byte(in), &resp)
 		require.NotNil(t, resp.Volume)
@@ -82,7 +82,7 @@ func TestIAASAPI(t *testing.T) {
 	t.Run("Templating works from stdin", func(t *testing.T) {
 		in := `{"VolumeType":"standard","Size":4}`
 		resp := osc.CreateVolumeResponse{}
-		runJSON(t, []string{"iaas", "api", "CreateVolume", "--SubregionName", subregion}, []byte(in), &resp)
+		runJSON(t, []string{"iaas", "api", "CreateVolume", "--SubregionName", volResp.SubregionName}, []byte(in), &resp)
 		require.NotNil(t, resp.Volume)
 		assert.NotEmpty(t, resp.Volume.VolumeId)
 		assert.Equal(t, 4, resp.Volume.Size)
@@ -94,7 +94,7 @@ func TestIAASAPI(t *testing.T) {
 		err := os.WriteFile(tpl, []byte(in), 0600)
 		require.NoError(t, err)
 		resp := osc.CreateVolumeResponse{}
-		runJSON(t, []string{"iaas", "api", "CreateVolume", "--SubregionName", subregion, "--template", tpl}, nil, &resp)
+		runJSON(t, []string{"iaas", "api", "CreateVolume", "--SubregionName", volResp.SubregionName, "--template", tpl}, nil, &resp)
 		require.NotNil(t, resp.Volume)
 		assert.NotEmpty(t, resp.Volume.VolumeId)
 		assert.Equal(t, 4, resp.Volume.Size)
@@ -154,7 +154,9 @@ func TestIAASCRUD(t *testing.T) {
 		var resp osc.Volume
 		runJSON(t, []string{"iaas", "vol", "create", "--subregion-name", "eu-west-2a", "--size", "4", "-o", "json"}, nil, &resp)
 		require.NotEmpty(t, resp.VolumeId)
+
 		volID := resp.VolumeId
+
 		_ = run(t, []string{"iaas", "vol", "update", volID, "--size", "8"}, nil)
 		ctx, cancel := context.WithTimeout(t.Context(), time.Minute)
 		defer cancel()
@@ -172,6 +174,43 @@ func TestIAASCRUD(t *testing.T) {
 				}
 			}
 		}
+
 		_ = run(t, []string{"iaas", "vol", "delete", volID, "-y"}, nil)
+
+		var dresp []osc.Volume
+		runJSON(t, []string{"iaas", "vol", "desc", volID, "-o", "json"}, nil, &dresp)
+		for _, vol := range dresp {
+			assert.Equal(t, osc.VolumeStateDeleting, vol.State)
+		}
+	})
+	t.Run("Multiple IDs can be specified", func(t *testing.T) {
+		var respA, respB osc.Volume
+		runJSON(t, []string{"iaas", "vol", "create", "--subregion-name", "eu-west-2a", "--size", "4", "-o", "json"}, nil, &respA)
+		require.NotEmpty(t, respA.VolumeId)
+		runJSON(t, []string{"iaas", "vol", "create", "--subregion-name", "eu-west-2a", "--size", "4", "-o", "json"}, nil, &respB)
+		require.NotEmpty(t, respB.VolumeId)
+		_ = run(t, []string{"iaas", "vol", "update", respA.VolumeId, respB.VolumeId, "--size", "8"}, nil)
+		ctx, cancel := context.WithTimeout(t.Context(), time.Minute)
+		defer cancel()
+	LOOPWAIT:
+		for {
+			select {
+			case <-ctx.Done():
+				t.Error("timeout")
+			default:
+				var resp []osc.Volume
+				runJSON(t, []string{"iaas", "vol", "desc", respA.VolumeId, respB.VolumeId, "-o", "json"}, nil, &resp)
+				require.Len(t, resp, 2)
+				if resp[0].Size == 8 && resp[1].Size == 8 {
+					break LOOPWAIT
+				}
+			}
+		}
+		_ = run(t, []string{"iaas", "vol", "delete", respA.VolumeId, respB.VolumeId, "-y"}, nil)
+		var dresp []osc.Volume
+		runJSON(t, []string{"iaas", "vol", "desc", respA.VolumeId, respB.VolumeId, "-o", "json"}, nil, &dresp)
+		for _, vol := range dresp {
+			assert.Equal(t, osc.VolumeStateDeleting, vol.State)
+		}
 	})
 }

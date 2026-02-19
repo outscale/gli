@@ -126,6 +126,7 @@ octl <command> <command>
 | Command | Description |
 | ------- | ----------- |
 | `iaas` | Core IaaS API |
+| `oks` | OKS API |
 | `profile` | Profile management |
 | `update` | Update to the latest version |
 | `completion` | Generate completion shell script |
@@ -157,7 +158,7 @@ Please note that `raw` output returns the raw payload whereas the other formats 
 
 ### High level command
 
-High level commands are available:
+High level commands are available for the iaas provider:
 
 * `octl iaas <entity> list` lists all entities using the `table` format:
 ```shell
@@ -170,7 +171,8 @@ octl iaas volume list
 │ vol-baz      │ gp2      │ available │ eu-west-2a    │ 4    │ 100  │
 └──────────────┴──────────┴───────────┴───────────────┴──────┴──────┘
 ```
-* `octl iaas <entity> describe <id>` displays an entity using the `yaml` format:
+
+* `octl iaas <entity> describe <id> [<id>]...` displays one or multiple entities using the `yaml` format:
 ```shell
 octl iaas volume describe vol-foo
 CreationDate: '2024-12-17T11:07:58.757Z'
@@ -189,26 +191,27 @@ VolumeId: vol-foo
 VolumeType: io1
 ```
 
-Columns can be replaced:
+* `octl iaas <entity> create` creates an entity:
 ```shell
-octl iaas vm list --columns "ID:VmId|DNS:PrivateDnsName"
-┌────────────┬───────────────────────────────────────────┐
-│     ID     │                    DNS                    │
-├────────────┼───────────────────────────────────────────┤
-│ i-foo      │ ip-10-1-112-23.eu-west-2.compute.internal │
-│ i-bar      │ ip-10-9-35-211.eu-west-2.compute.internal │
-│ i-baz      │ ip-10-0-4-143.eu-west-2.compute.internal  │
-└────────────┴───────────────────────────────────────────┘
+octl iaas vol create --subregion-name eu-west-2a --size 4
+CreationDate: '2026-02-19T15:37:47.015Z'
+LinkedVolumes: []
+Size: 4
+State: creating
+SubregionName: eu-west-2a
+Tags: []
+VolumeId: vol-foo
+VolumeType: standard
 ```
 
-Columns can be added to the standard columns:
+* `octl iaas <entity> update id [id]... flags` updates one or multiple entities with the same parameters:
 ```shell
-octl iaas vm list --columns +DNS:PrivateDnsName
+octl iaas vol update vol-foo vol-bar --size 6
 ```
 
-Column content is defined with the [expr language](https://expr-lang.org/docs/language-definition). To display a tag value:
+* `octl iaas <entity> delete id [id]...` deletes one or multiple entities:
 ```shell
-octl iaas vm list --columns "+tag:find(Tags, #?.Key == \"Name\")?.Value"
+octl iaas vol delete vol-foo vol-bar
 ```
 
 ### API access
@@ -300,6 +303,30 @@ octl iaas image list --filter ImageName:kubernetes,ImageName:v1.31
 ```
 
 This is the equivalent of running the two following jq filters: `select(.ImageName | test("kubernetes"))` +  `select(.ImageName | test("v1.31"))`.
+
+### Changing table columns
+
+Columns can be replaced:
+```shell
+octl iaas vm list --columns "ID:VmId|DNS:PrivateDnsName"
+┌────────────┬───────────────────────────────────────────┐
+│     ID     │                    DNS                    │
+├────────────┼───────────────────────────────────────────┤
+│ i-foo      │ ip-10-1-112-23.eu-west-2.compute.internal │
+│ i-bar      │ ip-10-9-35-211.eu-west-2.compute.internal │
+│ i-baz      │ ip-10-0-4-143.eu-west-2.compute.internal  │
+└────────────┴───────────────────────────────────────────┘
+```
+
+Columns can be added to the standard columns:
+```shell
+octl iaas vm list --columns +DNS:PrivateDnsName
+```
+
+Column content is defined with the [expr language](https://expr-lang.org/docs/language-definition). To display a tag value:
+```shell
+octl iaas vm list --columns "+tag:find(Tags, #?.Key == \"Name\")?.Value"
+```
 
 ### Profile management
 

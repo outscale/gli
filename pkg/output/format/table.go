@@ -57,8 +57,15 @@ type Table struct {
 }
 
 func validForTable(v any) bool {
-	vv := reflect.Indirect(reflect.ValueOf(v))
-	if vv.Kind() != reflect.Slice {
+	vv := reflect.ValueOf(v)
+	for vv.Kind() == reflect.Interface || vv.Kind() == reflect.Pointer {
+		vv = vv.Elem()
+	}
+	switch vv.Kind() {
+	case reflect.Struct:
+		return true
+	case reflect.Slice:
+	default:
 		return false
 	}
 	if vv.Len() == 0 {

@@ -15,7 +15,7 @@ func (None) Format(ctx context.Context, v any) error {
 }
 
 func (None) Error(ctx context.Context, v any) error {
-	return nil
+	return YAML{}.Error(ctx, v)
 }
 
 var _ Interface = None{}
