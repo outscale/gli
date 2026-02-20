@@ -82,13 +82,13 @@ func init() {
 	rootCmd.PersistentFlags().StringSlice("filter", nil, `comma separated list of filters for results - name:value,name:value, alias for jq filter 'select(.name | test("value"))'`)
 
 	rootCmd.PersistentFlags().StringP("columns", "c", "", "columns to display - [+]title:content|title:content")
-	rootCmd.PersistentFlags().StringP("output", "o", "", "output format (raw, json, yaml, table, none)")
+	rootCmd.PersistentFlags().StringP("output", "o", "", "output format (raw, json, yaml, table, none, base64)")
 
 	rootCmd.PersistentFlags().Bool("no-upgrade", false, "do not check for new versions")
 	rootCmd.PersistentFlags().BoolP("yes", "y", false, "answer yes to all prompts")
 
 	_ = rootCmd.RegisterFlagCompletionFunc("output", func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
-		return []cobra.Completion{"raw", "json", "yaml", "table", "none"}, cobra.ShellCompDirectiveDefault
+		return []cobra.Completion{"raw", "json", "yaml", "table", "none", "base64"}, cobra.ShellCompDirectiveDefault
 	})
 
 	_ = rootCmd.RegisterFlagCompletionFunc("profile", func(cmd *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {

@@ -215,3 +215,16 @@ aliases:
   - '%*'
   - --output
   - table
+- entity: vm
+  group: vm
+  use: readconsole vm_id
+  short: alias for api ReadConsoleOutput --VmId vm_id
+  command:
+  - api
+  - ReadConsoleOutput
+  - --VmId
+  - '%0'
+  - --jq
+  - .ConsoleOutput
+  - --output
+  - base64
