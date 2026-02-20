@@ -22,7 +22,8 @@ func latestRelease(ctx context.Context) (*github.RepositoryRelease, error) {
 	client := github.NewClient(nil)
 	rel, _, err := client.Repositories.GetLatestRelease(ctx, "outscale", "octl")
 	if err != nil {
-		return nil, fmt.Errorf("github: %w", err)
+		debug.Println("github error", err)
+		return nil, nil
 	}
 	if rel == nil || rel.TagName == nil {
 		return nil, nil
