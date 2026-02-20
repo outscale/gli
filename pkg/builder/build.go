@@ -64,7 +64,6 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command) {
 		if callCmd == nil {
 			continue
 		}
-		debug.Println(a.Entity, a.Use)
 		for _, f := range a.Flags {
 			flag := callCmd.Flags().Lookup(f.AliasTo)
 			if flag != nil {
