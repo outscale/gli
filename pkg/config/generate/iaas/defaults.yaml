@@ -178,3 +178,26 @@ entities:
       content: "map(LinkedVolumes, #?.VmId)"
     - title: Device
       content: "map(LinkedVolumes, #?.DeviceName)"
+aliases:
+- entity: vm
+  group: vm
+  use: start vm_id [vm_id]...
+  short: alias for api StartVms --VmIds vm_id
+  command:
+  - api
+  - StartVms
+  - --VmIds
+  - '%*'
+  - --output
+  - table
+- entity: vm
+  group: vm
+  use: stop vm_id [vm_id]...
+  short: alias for api StopVms --VmIds vm_id
+  command:
+  - api
+  - StopVms
+  - --VmIds
+  - '%*'
+  - --output
+  - table

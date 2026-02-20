@@ -813,6 +813,28 @@ entities:
     - title: State
       content: State
 aliases:
+- entity: vm
+  group: vm
+  use: start vm_id [vm_id]...
+  short: alias for api StartVms --VmIds vm_id
+  command:
+  - api
+  - StartVms
+  - --VmIds
+  - '%*'
+  - --output
+  - table
+- entity: vm
+  group: vm
+  use: stop vm_id [vm_id]...
+  short: alias for api StopVms --VmIds vm_id
+  command:
+  - api
+  - StopVms
+  - --VmIds
+  - '%*'
+  - --output
+  - table
 - entity: accesskey
   group: accesskey
   use: list
