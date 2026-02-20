@@ -53,6 +53,8 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 		fmter = format.JSON{}
 	case "yaml":
 		fmter = format.YAML{}
+	case "base64":
+		fmter = format.Base64{}
 	case "table":
 		fcols, _ := fs.GetString("columns")
 		if fcols != "" {

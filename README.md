@@ -1,4 +1,4 @@
-## **octl, An Experimental CLI for Outscale, written in Go**
+## **octl, an experimental CLI for Outscale, written in Go**
 
 [![Project Stage](https://docs.outscale.com/fr/userguide/_images/Project-Sandbox-yellow.svg)](https://docs.outscale.com/en/userguide/Open-Source-Projects.html) [![](https://dcbadge.limes.pink/api/server/HUVtY5gT6s?style=flat&theme=default-inverted)](https://discord.gg/HUVtY5gT6s)
 
@@ -143,7 +143,7 @@ octl <command> <command>
 | `--template` | | | JSON template for query body |
 | `--config` | `~/.osc/config.json` | | config file path |
 | `--profile` | `default` | | profile name |
-| `--output` | | `raw`, `json`, `yaml`, `table` | output format |
+| `--output` | | `raw`, `json`, `yaml`, `table`, `base§4`, `none` | output format |
 | `--columns` | | | columns to display in a table |
 
 ### Output formats
@@ -152,6 +152,7 @@ octl <command> <command>
 * `json` displays the content in JSON format, without response context,
 * `yaml` displays the content in YAML format, without response context,
 * `table` displays the content in a text table, based on columns defined by the `--columns` flag,
+* `base64` decodes base64-encoded strings or lists of strings,
 * `none` disables output.
 
 Please note that `raw` output returns the raw payload whereas the other formats only output the content (e.g. a list on VMs when listing VMs instead of an object with a `Vms` attribute storing the list).
