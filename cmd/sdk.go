@@ -13,7 +13,11 @@ import (
 func loadProfile(cmd *cobra.Command) *profile.Profile {
 	path, _ := cmd.Flags().GetString("config")
 	prof, _ := cmd.Flags().GetString("profile")
-	p, err := profile.New(profile.FromFile(prof, path), profile.FromEnv())
+	var opts []profile.Option
+	if prof != "" || path != "" {
+		opts = []profile.Option{profile.FromFile(prof, path), profile.MergeWith(profile.FromEnv())}
+	}
+	p, err := profile.New(opts...)
 	if err != nil {
 		messages.ExitErr(err)
 	}

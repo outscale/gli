@@ -34,6 +34,12 @@ var profileListCmd = &cobra.Command{
 	Run:   listProfiles,
 }
 
+var profileCurrentCmd = &cobra.Command{
+	Use:   "current",
+	Short: "Display the profile used based on flags/env",
+	Run:   currentProfile,
+}
+
 var profileAddCmd = &cobra.Command{
 	Use:   "add name",
 	Short: "Add a profile to a config file",
@@ -58,6 +64,7 @@ func init() {
 	profileCmd.AddCommand(profileListCmd)
 	profileCmd.AddCommand(profileAddCmd)
 	profileCmd.AddCommand(profileUseCmd)
+	profileCmd.AddCommand(profileCurrentCmd)
 	profileCmd.AddCommand(profileDeleteCmd)
 
 	profileAddCmd.Flags().String("ak", "", "Access Key")
@@ -82,6 +89,9 @@ func configPath(cmd *cobra.Command) string {
 	path, _ := cmd.Flags().GetString("config")
 	if path == "" {
 		path = os.Getenv("OSC_CONFIG_FILE")
+	}
+	if path == "" {
+		path, _ = profile.DefaultConfigPath()
 	}
 	return path
 }
@@ -113,6 +123,15 @@ func listProfiles(cmd *cobra.Command, _ []string) {
 			return cmp.Compare(a.Name, b.Name)
 		})
 	_ = out.Format(cmd.Context(), lst)
+}
+
+func currentProfile(cmd *cobra.Command, _ []string) {
+	out, _, err := output.NewFromFlags(cmd.Flags(), "yaml", "", profileColumns, false, true)
+	if err != nil {
+		messages.ExitErr(err)
+	}
+	p := loadProfile(cmd)
+	_ = out.Format(cmd.Context(), p)
 }
 
 func addProfile(cmd *cobra.Command, args []string) {
@@ -161,13 +180,17 @@ func addProfile(cmd *cobra.Command, args []string) {
 	if region == "" {
 		messages.Exit(1, "Region is required")
 	}
+	def, _ := cmd.Flags().GetBool("default")
 	newProfile := profile.Profile{
 		AccessKey: ak,
 		SecretKey: sk,
 		Region:    region,
+		Default:   def,
 	}
-
 	cf.Profiles[name] = newProfile
+	if def {
+		_ = cf.SetDefault(name)
+	}
 	err = cf.Save()
 	if err != nil {
 		messages.ExitErr(err)

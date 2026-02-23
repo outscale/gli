@@ -158,13 +158,14 @@ func TestIAASCRUD(t *testing.T) {
 		volID := resp.VolumeId
 
 		_ = run(t, []string{"iaas", "vol", "update", volID, "--size", "8"}, nil)
-		ctx, cancel := context.WithTimeout(t.Context(), time.Minute)
+		ctx, cancel := context.WithTimeout(t.Context(), 5*time.Minute)
 		defer cancel()
 	LOOPWAIT:
 		for {
 			select {
 			case <-ctx.Done():
 				t.Error("timeout")
+				t.FailNow()
 			default:
 				var resp []osc.Volume
 				runJSON(t, []string{"iaas", "vol", "desc", volID, "-o", "json"}, nil, &resp)
@@ -172,6 +173,7 @@ func TestIAASCRUD(t *testing.T) {
 				if resp[0].Size == 8 {
 					break LOOPWAIT
 				}
+				time.Sleep(10 * time.Second)
 			}
 		}
 

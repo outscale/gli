@@ -122,3 +122,64 @@ func TestProfileSetDefault(t *testing.T) {
 		assert.False(t, lst[1].(map[string]any)["Default"].(bool))
 	})
 }
+
+func TestProfilePriority(t *testing.T) {
+	_ = run(t, []string{"profile", "add", "test_priority", "--ak", "profile_ak", "--sk", "profile_sk", "--region", "profile_region", "--default"}, nil)
+	defer func() {
+		_ = run(t, []string{"profile", "del", "test_priority"}, nil)
+	}()
+	t.Setenv("OSC_ACCESS_KEY", "env_ak")
+	t.Setenv("OSC_SECRET_KEY", "env_sk")
+	t.Setenv("OSC_REGION", "env_region")
+	cfg, err := profile.DefaultConfigPath()
+	require.NoError(t, err)
+	t.Run("By default, the env is loaded", func(t *testing.T) {
+		var p profile.Profile
+		runJSON(t, []string{"profile", "current", "-o", "json"}, nil, &p)
+		assert.Equal(t, "env_ak", p.AccessKey)
+		assert.Equal(t, "env_sk", p.SecretKey)
+		assert.Equal(t, "env_region", p.Region)
+	})
+	t.Run("If --profile is set, profile is loaded", func(t *testing.T) {
+		var p profile.Profile
+		runJSON(t, []string{"profile", "current", "-o", "json", "--profile", "test_priority"}, nil, &p)
+		assert.Equal(t, "profile_ak", p.AccessKey)
+		assert.Equal(t, "profile_sk", p.SecretKey)
+		assert.Equal(t, "profile_region", p.Region)
+	})
+	t.Run("If --config is set, profile is loaded", func(t *testing.T) {
+		var p profile.Profile
+		runJSON(t, []string{"profile", "current", "-o", "json", "--config", cfg}, nil, &p)
+		assert.Equal(t, "profile_ak", p.AccessKey)
+		assert.Equal(t, "profile_sk", p.SecretKey)
+		assert.Equal(t, "profile_region", p.Region)
+	})
+	t.Run("If --config and --profile are set, profile is loaded", func(t *testing.T) {
+		var p profile.Profile
+		runJSON(t, []string{"profile", "current", "-o", "json", "--profile", "test_priority", "--config", cfg}, nil, &p)
+		assert.Equal(t, "profile_ak", p.AccessKey)
+		assert.Equal(t, "profile_sk", p.SecretKey)
+		assert.Equal(t, "profile_region", p.Region)
+	})
+	t.Run("An alternate config file can be used", func(t *testing.T) {
+		cfg := filepath.Join(t.TempDir(), "priority.json")
+		cf := &profile.ConfigFile{
+			Path: cfg,
+			Profiles: map[string]profile.Profile{
+				"foo": {
+					AccessKey: "priority_ak",
+					SecretKey: "priority_sk",
+					Region:    "priority_region",
+					Default:   true,
+				},
+			},
+		}
+		err := cf.Save()
+		require.NoError(t, err)
+		var p profile.Profile
+		runJSON(t, []string{"profile", "current", "-o", "json", "--config", cfg}, nil, &p)
+		assert.Equal(t, "priority_ak", p.AccessKey)
+		assert.Equal(t, "priority_sk", p.SecretKey)
+		assert.Equal(t, "priority_region", p.Region)
+	})
+}
