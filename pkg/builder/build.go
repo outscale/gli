@@ -13,6 +13,7 @@ import (
 	"github.com/outscale/octl/pkg/builder/openapi"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
+	"github.com/outscale/octl/pkg/flags"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 )
@@ -69,6 +70,17 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command) {
 			if flag != nil {
 				nflag := *flag
 				nflag.Name = f.Name
+				switch f.Type {
+				case "base64File":
+					debug.Println("overriding type for flag", f.Name, "to", f.Type)
+					nflag.Value = flags.NewBase64FileValue()
+				case "file":
+					debug.Println("overriding type for flag", f.Name, "to", f.Type)
+					nflag.Value = flags.NewFileValue()
+				}
+				if f.Usage != "" {
+					nflag.Usage = f.Usage
+				}
 				cmd.Flags().AddFlag(&nflag)
 
 				completion, found := callCmd.GetFlagCompletionFunc(f.AliasTo)
@@ -77,6 +89,10 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command) {
 				}
 				if f.Required {
 					_ = cmd.MarkFlagRequired(nflag.Name)
+				}
+				switch f.Type {
+				case "base64File", "file":
+					_ = cmd.MarkFlagFilename(f.Name)
 				}
 			}
 		}

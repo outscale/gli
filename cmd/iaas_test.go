@@ -9,6 +9,7 @@ import (
 	"context"
 	"encoding/json"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"testing"
 	"time"
@@ -215,4 +216,14 @@ func TestIAASCRUD(t *testing.T) {
 			assert.Equal(t, osc.VolumeStateDeleting, vol.State)
 		}
 	})
+}
+
+func TestBase64(t *testing.T) {
+	key := filepath.Join(t.TempDir(), "test.pem")
+	err := exec.CommandContext(t.Context(), "ssh-keygen", "-t", "rsa", "-b", "4096", "-f", key).Run()
+	require.NoError(t, err)
+	var resp osc.KeypairCreated
+	runJSON(t, []string{"iaas", "keypair", "create", "--name", "test-b64", "--public-key", key + ".pub", "-o", "json", "-v"}, nil, &resp)
+	require.NotNil(t, resp.KeypairName)
+	assert.Equal(t, "test-b64", *resp.KeypairName)
 }

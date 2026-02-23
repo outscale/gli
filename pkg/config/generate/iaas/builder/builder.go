@@ -32,6 +32,25 @@ var priorityFields = []string{
 	"Email",
 }
 
+var flagOverrides = map[string]config.Flag{
+	"public-key": {
+		Type:  "base64File",
+		Usage: "The file storing the public key to import in your account, if you are importing an existing keypair.",
+	},
+	"user-data": {
+		Type:  "base64File",
+		Usage: "The file storing the data or script used to add a specific configuration to the VM (max size 500 KiB).",
+	},
+	"policy-document": {
+		Type:  "file",
+		Usage: "The file storing the policy document, corresponding to a JSON string that contains the policy.",
+	},
+	"document": {
+		Type:  "file",
+		Usage: "The file storing the policy document, corresponding to a JSON string that contains the policy.",
+	},
+}
+
 var ErrCantBuild = errors.New("cannot build")
 
 type Builder struct {
@@ -91,7 +110,10 @@ func (b *Builder) Build() error {
 	case strings.HasPrefix(b.m.Name, "Delete"):
 		err = b.buildDeleteAlias()
 	case strings.HasPrefix(b.m.Name, "Update"):
-		err = b.buildUpdateAlias()
+		err = b.buildCall()
+		if err == nil {
+			err = b.buildUpdateAlias()
+		}
 	case strings.HasPrefix(b.m.Name, "Create"):
 		err = b.buildCall()
 		if err == nil {
@@ -210,11 +232,16 @@ func (b *Builder) buildFlags(t reflect.Type, prefix string, ignore []string) con
 		if _, found := cfs.Get(stripped); !found {
 			flag = stripped
 		}
-		cfs = append(cfs, config.Flag{
+		cf := flagOverrides[f.Name]
+		err := mergo.Merge(&cf, config.Flag{
 			Name:     flag,
 			AliasTo:  f.FieldPath,
 			Required: f.Required,
 		})
+		if err != nil {
+			panic(err)
+		}
+		cfs = append(cfs, cf)
 	}
 	return cfs
 }

@@ -3378,6 +3378,8 @@ aliases:
     required: true
   - name: public-key
     alias_to: PublicKey
+    type: base64File
+    usage: The file storing the public key to import in your account, if you are importing an existing keypair.
 - entity: listenerrule
   group: listenerrule
   use: create
@@ -3603,6 +3605,8 @@ aliases:
   - name: document
     alias_to: Document
     required: true
+    type: file
+    usage: The file storing the policy document, corresponding to a JSON string that contains the policy.
   - name: path
     alias_to: Path
   - name: name
@@ -3621,6 +3625,8 @@ aliases:
   - name: document
     alias_to: Document
     required: true
+    type: file
+    usage: The file storing the policy document, corresponding to a JSON string that contains the policy.
   - name: policy-orn
     alias_to: PolicyOrn
     required: true
@@ -4041,6 +4047,8 @@ aliases:
     alias_to: TpmEnabled
   - name: user-data
     alias_to: UserData
+    type: base64File
+    usage: The file storing the data or script used to add a specific configuration to the VM (max size 500 KiB).
   - name: initiated-shutdown-behavior
     alias_to: VmInitiatedShutdownBehavior
   - name: type
@@ -5187,6 +5195,8 @@ aliases:
     alias_to: SecurityGroupIds
   - name: user-data
     alias_to: UserData
+    type: base64File
+    usage: The file storing the data or script used to add a specific configuration to the VM (max size 500 KiB).
   - name: initiated-shutdown-behavior
     alias_to: VmInitiatedShutdownBehavior
   - name: type

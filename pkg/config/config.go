@@ -87,6 +87,8 @@ type Flag struct {
 	Name     string `yaml:"name"`
 	AliasTo  string `yaml:"alias_to"`
 	Required bool   `yaml:"required,omitempty"`
+	Type     string `yaml:"type,omitempty"`
+	Usage    string `yaml:"usage,omitempty"`
 }
 
 type Prompt struct {
