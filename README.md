@@ -262,12 +262,12 @@ octl iaas api CreateSubnet --IpRange 10.0.1.0/24 --template subnet.json
 
 ### Using jq filters
 
-Based on raw payload:
+Based on raw payload (`-o raw`):
 ```shell
 octl iaas api ReadVms --jq ".Vms[].VmId"
 ```
 
-Based on content:
+Based on content (`-o json`/`-o yaml`/`-o table`):
 ```shell
 octl iaas api ReadVms --jq ".VmId" -o json
 ```
@@ -347,7 +347,7 @@ octl iaas vm list --columns "+tag:find(Tags, #?.Key == \"Name\")?.Value"
 octl update
 ```
 
-> This requires write access to the binary. If `octl update` does not work, you will need to download the binary from the [latest release](./releases/latest).
+> This requires write access to the binary. If `octl update` does not work, you will need to download the binary from the [latest release](../../releases/latest).
 
 ---
 
