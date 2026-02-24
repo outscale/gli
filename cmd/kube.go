@@ -10,7 +10,6 @@ import (
 	"strings"
 
 	"github.com/outscale/octl/pkg/builder"
-	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/runner"
@@ -30,7 +29,8 @@ func init() {
 	if err != nil {
 		messages.Warn("Unable to load OpenAPI spec: %v", err)
 	}
-	b := builder.NewBuilder[oks.Client]("kube", spec)
+	cfg := getConfig()
+	b := builder.NewBuilder[oks.Client]("kube", spec, cfg)
 	b.BuildAPI(oksCmd, func(m reflect.Method) bool {
 		return m.Type.NumIn() >= 3 && m.Type.NumOut() == 2 && !strings.HasSuffix(m.Name, "Raw") &&
 			!strings.HasSuffix(m.Name, "WithBody")
@@ -43,7 +43,8 @@ func kube(cmd *cobra.Command, args []string) {
 	p := loadProfile(cmd)
 	cl, err := oks.NewClient(p, sdkOptions(cmd)...)
 	if err == nil {
-		err = runner.Run[oks.Client, *oks.ErrorResponse](cmd, args, cl, config.For("kube"))
+		cfg := getConfig()
+		err = runner.Run[oks.Client, *oks.ErrorResponse](cmd, args, cl, cfg.For("kube"))
 	}
 	if err != nil {
 		messages.ExitErr(err)

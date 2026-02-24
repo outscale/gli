@@ -10,7 +10,6 @@ import (
 	"strings"
 
 	"github.com/outscale/octl/pkg/builder"
-	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/runner"
@@ -30,7 +29,8 @@ func init() {
 	if err != nil {
 		messages.Warn("Unable to load OpenAPI spec: %v", err)
 	}
-	b := builder.NewBuilder[osc.Client]("iaas", spec)
+	cfg := getConfig()
+	b := builder.NewBuilder[osc.Client]("iaas", spec, cfg)
 	b.BuildAPI(iaasCmd, func(m reflect.Method) bool {
 		return m.Type.NumIn() == 4 && m.Type.NumOut() == 2 && !strings.HasSuffix(m.Name, "Raw")
 	}, oapi)
@@ -42,7 +42,8 @@ func oapi(cmd *cobra.Command, args []string) {
 	p := loadProfile(cmd)
 	cl, err := osc.NewClient(p, sdkOptions(cmd)...)
 	if err == nil {
-		err = runner.Run[osc.Client, *osc.ErrorResponse](cmd, args, cl, config.For("iaas"))
+		cfg := getConfig()
+		err = runner.Run[osc.Client, *osc.ErrorResponse](cmd, args, cl, cfg.For("iaas"))
 	}
 	if err != nil {
 		messages.ExitErr(err)

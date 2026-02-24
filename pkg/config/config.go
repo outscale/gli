@@ -125,7 +125,3 @@ type Config struct {
 }
 
 type Configs map[string]Config
-
-func For(provider string) Config {
-	return Defaults()[provider]
-}

@@ -24,11 +24,11 @@ type Builder[T any] struct {
 	cfg      config.Config
 }
 
-func NewBuilder[T any](provider string, spec *openapi3.T) *Builder[T] {
+func NewBuilder[T any](provider string, spec *openapi3.T, cfg config.Configs) *Builder[T] {
 	return &Builder[T]{
 		provider: provider,
 		spec:     openapi.NewSpec(spec),
-		cfg:      config.For(provider),
+		cfg:      cfg.For(provider),
 	}
 }
 
