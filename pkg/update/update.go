@@ -16,6 +16,9 @@ import (
 	"github.com/google/go-github/v82/github"
 	"github.com/minio/selfupdate"
 	"github.com/outscale/octl/pkg/debug"
+	"github.com/outscale/octl/pkg/messages"
+	"github.com/outscale/octl/pkg/version"
+	"golang.org/x/mod/semver"
 )
 
 func latestRelease(ctx context.Context) (*github.RepositoryRelease, error) {
@@ -36,7 +39,7 @@ func LatestRelease(ctx context.Context) (string, error) {
 	if rel == nil || err != nil {
 		return "", err
 	}
-	return *rel.TagName, nil
+	return rel.GetTagName(), nil
 }
 
 func Update(ctx context.Context) error {
@@ -47,6 +50,11 @@ func Update(ctx context.Context) error {
 	if rel == nil {
 		return errors.New("no new version found")
 	}
+	if semver.Compare(version.Version, rel.GetTagName()) >= 0 {
+		messages.Warn("Already using the latest version")
+		return nil
+	}
+
 	debug.Println("OS, arch:", runtime.GOOS, runtime.GOARCH)
 	suffix := runtime.GOOS + "_"
 	switch runtime.GOARCH {
