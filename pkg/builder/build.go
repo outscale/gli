@@ -18,16 +18,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var md = MarkdownRenderer()
+
 type Builder[T any] struct {
 	provider string
 	spec     *openapi.Spec
 	cfg      config.Config
 }
 
-func NewBuilder[T any](provider string, spec *openapi3.T) *Builder[T] {
+func NewBuilder[T any](provider string, spec *openapi3.T, helpURL string) *Builder[T] {
 	return &Builder[T]{
 		provider: provider,
-		spec:     openapi.NewSpec(spec),
+		spec:     openapi.NewSpec(spec, helpURL),
 		cfg:      config.For(provider),
 	}
 }
@@ -51,10 +53,17 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command) {
 			}
 			rootCmd.AddCommand(c)
 		}
+		var help string
+		if len(a.Command) >= 2 {
+			_, help, _, _ = b.spec.SummaryForOperation(a.Command[1])
+		}
+		help = "> *" + a.Short + "*\n\n" + help
+		help, _ = md.Render(help)
 		cmd := &cobra.Command{
 			Use:     a.Use,
 			Aliases: a.Aliases,
 			Short:   a.Short,
+			Long:    help,
 			Run:     runAlias(b.provider, a, rootCmd),
 		}
 		c.AddCommand(cmd)
@@ -125,6 +134,12 @@ func (b *Builder[T]) BuildAPI(
 		short, help, group, _ := b.spec.SummaryForOperation(m.Name)
 		if !apiCmd.ContainsGroup(group) {
 			apiCmd.AddGroup(&cobra.Group{ID: group, Title: group})
+		}
+		nhelp, err := md.Render(help)
+		if err != nil {
+			debug.Println("error rendering markdown", err)
+		} else {
+			help = nhelp
 		}
 		cmd := &cobra.Command{
 			Use:     m.Name,

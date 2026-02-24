@@ -30,7 +30,7 @@ func init() {
 	if err != nil {
 		messages.Warn("Unable to load OpenAPI spec: %v", err)
 	}
-	b := builder.NewBuilder[oks.Client]("kube", spec)
+	b := builder.NewBuilder[oks.Client]("kube", spec, "https://docs.outscale.com/oks.html")
 	b.BuildAPI(oksCmd, func(m reflect.Method) bool {
 		return m.Type.NumIn() >= 3 && m.Type.NumOut() == 2 && !strings.HasSuffix(m.Name, "Raw") &&
 			!strings.HasSuffix(m.Name, "WithBody")

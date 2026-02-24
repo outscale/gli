@@ -30,7 +30,7 @@ func init() {
 	if err != nil {
 		messages.Warn("Unable to load OpenAPI spec: %v", err)
 	}
-	b := builder.NewBuilder[osc.Client]("iaas", spec)
+	b := builder.NewBuilder[osc.Client]("iaas", spec, "https://docs.outscale.com/api.html")
 	b.BuildAPI(iaasCmd, func(m reflect.Method) bool {
 		return m.Type.NumIn() == 4 && m.Type.NumOut() == 2 && !strings.HasSuffix(m.Name, "Raw")
 	}, oapi)

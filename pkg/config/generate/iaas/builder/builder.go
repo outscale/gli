@@ -84,7 +84,7 @@ func New(cfg *config.Config, m reflect.Method, prefix string) *Builder {
 	}
 	return &Builder{
 		cfg:          cfg,
-		spec:         openapi.NewSpec(spec),
+		spec:         openapi.NewSpec(spec, ""),
 		m:            m,
 		typeName:     typeName,
 		typesName:    typesName,
