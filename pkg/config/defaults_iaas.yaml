@@ -323,6 +323,69 @@ contents:
   ReadVpnConnections:
     content: VpnConnections
     entity: vpnconnection
+  UpdateAccessKey:
+    content: AccessKey
+    entity: accesskey
+  UpdateApiAccessRule:
+    content: ApiAccessRule
+    entity: apiaccessrule
+  UpdateCa:
+    content: Ca
+    entity: ca
+  UpdateDedicatedGroup:
+    content: DedicatedGroup
+    entity: dedicatedgroup
+  UpdateDirectLinkInterface:
+    content: DirectLinkInterface
+    entity: directlinkinterface
+  UpdateFlexibleGpu:
+    content: FlexibleGpu
+    entity: flexiblegpu
+  UpdateImage:
+    content: Image
+    entity: image
+  UpdateListenerRule:
+    content: ListenerRule
+    entity: listenerrule
+  UpdateLoadBalancer:
+    content: LoadBalancer
+    entity: loadbalancer
+  UpdateNet:
+    content: Net
+    entity: net
+  UpdateNetAccessPoint:
+    content: NetAccessPoint
+    entity: netaccesspoint
+  UpdateNic:
+    content: Nic
+    entity: nic
+  UpdateSnapshot:
+    content: Snapshot
+    entity: snapshot
+  UpdateSubnet:
+    content: Subnet
+    entity: subnet
+  UpdateUser:
+    content: User
+    entity: user
+  UpdateUserGroup:
+    content: UserGroup
+    entity: usergroup
+  UpdateVm:
+    content: Vm
+    entity: vm
+  UpdateVmGroup:
+    content: VmGroup
+    entity: vmgroup
+  UpdateVmTemplate:
+    content: VmTemplate
+    entity: vmtemplate
+  UpdateVolume:
+    content: Volume
+    entity: volume
+  UpdateVpnConnection:
+    content: VpnConnection
+    entity: vpnconnection
 entities:
   accesskey:
     aliases:
@@ -336,12 +399,14 @@ entities:
       content: State
     - title: ExpirationDate
       content: ExpirationDate
+    primary: AccessKeyId
   account:
     columns:
     - title: ID
       content: AccountId
     - title: Email
       content: Email
+    primary: AccountId
   apiaccesspolicy: {}
   apiaccessrule:
     columns:
@@ -355,6 +420,7 @@ entities:
       content: Cns
     - title: IP Ranges
       content: IpRanges
+    primary: ApiAccessRuleId
   apilog:
     aliases:
     - log
@@ -373,6 +439,7 @@ entities:
     columns:
     - title: ID
       content: CaId
+    primary: CaId
   catalog:
     explode: true
     sort: true
@@ -397,6 +464,7 @@ entities:
       content: State
     - title: PublicIp
       content: PublicIp
+    primary: ClientGatewayId
   co2emissionaccount: {}
   consumptionaccount:
     aliases:
@@ -428,12 +496,14 @@ entities:
       content: DedicatedGroupId
     - title: SubregionName
       content: SubregionName
+    primary: DedicatedGroupId
   dhcpoption:
     columns:
     - title: ID
       content: DhcpOptionsSetId
     - title: Name
       content: 'find(Tags, #?.Key == "Name")?.Value'
+    primary: DhcpOptionsSetId
   directlink:
     columns:
     - title: ID
@@ -442,6 +512,7 @@ entities:
       content: DirectLinkName
     - title: State
       content: State
+    primary: DirectLinkId
   directlinkinterface:
     columns:
     - title: ID
@@ -450,9 +521,12 @@ entities:
       content: DirectLinkInterfaceName
     - title: State
       content: State
+    primary: DirectLinkInterfaceId
   entitieslinkedtopolicy: {}
   exporttask: {}
   flexiblegpu:
+    aliases:
+    - fgpu
     columns:
     - title: ID
       content: FlexibleGpuId
@@ -462,7 +536,20 @@ entities:
       content: State
     - title: SubregionName
       content: SubregionName
-  flexiblegpucatalog: {}
+    primary: FlexibleGpuId
+  flexiblegpucatalog:
+    no_aliases: true
+    columns:
+    - title: Name
+      content: ModelName
+    - title: VRAM
+      content: VRam
+    - title: Max CPu
+      content: MaxCpu
+    - title: Max RAM
+      content: MaxRam
+    - title: Generations
+      content: Generations
   image:
     columns:
     - title: ID
@@ -473,6 +560,7 @@ entities:
       content: ImageType
     - title: State
       content: State
+    primary: ImageId
   imageexporttask:
     columns:
     - title: Name
@@ -489,6 +577,7 @@ entities:
       content: State
     - title: NetId
       content: NetId
+    primary: InternetServiceId
   keypair:
     columns:
     - title: ID
@@ -497,12 +586,14 @@ entities:
       content: KeypairName
     - title: Type
       content: KeypairType
+    primary: KeypairId
   listenerrule:
     columns:
     - title: ID
       content: ListenerRuleId
     - title: Name
       content: ListenerRuleName
+    primary: ListenerRuleId
   loadbalancer:
     aliases:
     - lb
@@ -518,6 +609,7 @@ entities:
       content: NetId
     - title: SubregionNames
       content: SubregionNames
+    primary: LoadBalancerName
   loadbalancerlistener: {}
   loadbalancerpolicy: {}
   loadbalancertag:
@@ -550,6 +642,7 @@ entities:
       content: NetId
     - title: SubnetId
       content: SubnetId
+    primary: NatServiceId
   net:
     columns:
     - title: ID
@@ -560,6 +653,7 @@ entities:
       content: State
     - title: IpRange
       content: IpRange
+    primary: NetId
   netaccesspoint:
     columns:
     - title: ID
@@ -570,7 +664,9 @@ entities:
       content: State
     - title: NetId
       content: NetId
+    primary: NetAccessPointId
   netaccesspointservice:
+    no_aliases: true
     columns:
     - title: ID
       content: ServiceId
@@ -578,6 +674,7 @@ entities:
       content: ServiceName
     - title: IP Ranges
       content: IpRanges
+    primary: ServiceId
   netpeering:
     columns:
     - title: ID
@@ -586,6 +683,7 @@ entities:
       content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
+    primary: NetPeeringId
   nic:
     columns:
     - title: ID
@@ -600,17 +698,20 @@ entities:
       content: SubnetId
     - title: SubregionName
       content: SubregionName
+    primary: NicId
   policy:
     columns:
     - title: ID
       content: PolicyId
     - title: Name
       content: PolicyName
+    primary: PolicyId
   policyversion: {}
   producttype:
     columns:
     - title: ID
       content: ProductTypeId
+    primary: ProductTypeId
   publiccatalog: {}
   publicip:
     columns:
@@ -622,6 +723,7 @@ entities:
       content: PublicIp
     - title: PrivateIp
       content: PrivateIp
+    primary: PublicIpId
   quota:
     explode: true
     columns:
@@ -641,6 +743,7 @@ entities:
     columns:
     - title: Name
       content: RegionName
+    primary: RegionName
   route: {}
   routetable:
     columns:
@@ -650,6 +753,7 @@ entities:
       content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: NetId
       content: NetId
+    primary: RouteTableId
   securitygroup:
     columns:
     - title: ID
@@ -658,6 +762,7 @@ entities:
       content: SecurityGroupName
     - title: NetId
       content: NetId
+    primary: SecurityGroupId
   securitygrouprule: {}
   servercertificate: {}
   snapshot:
@@ -676,6 +781,7 @@ entities:
       content: VolumeSize
     - title: CreationDate
       content: CreationDate
+    primary: SnapshotId
   snapshotexporttask:
     columns:
     - title: Name
@@ -696,12 +802,14 @@ entities:
       content: IpRange
     - title: SubregionName
       content: SubregionName
+    primary: SubnetId
   subregion:
     columns:
     - title: Name
       content: SubregionName
     - title: State
       content: State
+    primary: SubregionName
   tag:
     columns:
     - title: Resource
@@ -719,15 +827,18 @@ entities:
       content: UserId
     - title: Name
       content: UserName
+    primary: UserId
   usergroup:
     columns:
     - title: ID
       content: UserGroupId
+    primary: UserGroupId
   usergrouppolicy: {}
   usergroupsperuser:
     columns:
     - title: ID
       content: UserGroupId
+    primary: UserGroupId
   virtualgateway:
     columns:
     - title: ID
@@ -736,6 +847,7 @@ entities:
       content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
+    primary: VirtualGatewayId
   vm:
     columns:
     - title: ID
@@ -754,6 +866,7 @@ entities:
       content: NetId
     - title: SubnetId
       content: SubnetId
+    primary: VmId
   vmgroup:
     columns:
     - title: ID
@@ -764,6 +877,7 @@ entities:
       content: State
     - title: SubnetId
       content: SubnetId
+    primary: VmGroupId
   vmshealth:
     columns:
     - title: VM
@@ -784,10 +898,12 @@ entities:
       content: VmTemplateId
     - title: Name
       content: VmTemplateName
+    primary: VmTemplateId
   vmtype:
     columns:
     - title: Name
       content: VmTypeName
+    primary: VmTypeName
   volume:
     aliases:
     - vol
@@ -808,6 +924,7 @@ entities:
       content: 'map(LinkedVolumes, #?.VmId)'
     - title: Device
       content: 'map(LinkedVolumes, #?.DeviceName)'
+    primary: VolumeId
   volumeupdatetask:
     columns:
     - title: Name
@@ -822,7 +939,146 @@ entities:
       content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
+    primary: VpnConnectionId
 aliases:
+- entity: flexiblegpu
+  group: flexiblegpu
+  use: catalog
+  short: alias for api ReadFlexibleGpuCatalog
+  command:
+  - api
+  - ReadFlexibleGpuCatalog
+  - --output
+  - table
+- entity: flexiblegpu
+  group: flexiblegpu
+  use: link fgpu_id vm_id
+  short: alias for api LinkFlexibleGpu --FlexibleGpuId fgpu_id --VmId vm_id
+  command:
+  - api
+  - LinkFlexibleGpu
+  - --FlexibleGpuId
+  - '%0'
+  - --VmId
+  - '%1'
+  - --output
+  - success
+- entity: flexiblegpu
+  group: flexiblegpu
+  use: unlink fgpu_id
+  short: alias for api UnlinkFlexibleGpu --FlexibleGpuId fgpu_id
+  command:
+  - api
+  - UnlinkFlexibleGpu
+  - --FlexibleGpuId
+  - '%0'
+  - --output
+  - success
+- entity: internetservice
+  group: internetservice
+  use: link service_id net_id
+  short: alias for api LinkInternetService --InternetServiceId service_id --NetId net_id
+  command:
+  - api
+  - LinkInternetService
+  - --InternetServiceId
+  - '%0'
+  - --NetId
+  - '%1'
+  - --output
+  - success
+- entity: internetservice
+  group: internetservice
+  use: unlink service_id net_id
+  short: alias for api UnlinkInternetService --InternetServiceId service_id --NetId net_id
+  command:
+  - api
+  - UnlinkInternetService
+  - --InternetServiceId
+  - '%0'
+  - --NetId
+  - '%1'
+  - --output
+  - success
+- entity: nic
+  group: nic
+  use: link nic_id vm_id
+  short: alias for api LinkNic --NicId nic_id --VmId vm_id
+  command:
+  - api
+  - LinkNic
+  - --NicId
+  - '%0'
+  - --VmId
+  - '%1'
+  - --output
+  - yaml
+  flags:
+  - name: device_number
+    alias_to: DeviceNumber
+    required: true
+- entity: netaccesspoint
+  group: netaccesspoint
+  use: services
+  short: alias for api ReadNetAccessPointServices
+  command:
+  - api
+  - ReadNetAccessPointServices
+  - --output
+  - table
+- entity: netpeering
+  group: netpeering
+  use: accept netpeering_id
+  short: alias for api AcceptNetPeering --NetPeeringId netpeering_id
+  command:
+  - api
+  - AcceptNetPeering
+  - --NetPeeringId
+  - '%0'
+  - --output
+  - success
+- entity: netpeering
+  group: netpeering
+  use: reject netpeering_id
+  short: alias for api RejectNetPeering --NetPeeringId netpeering_id
+  command:
+  - api
+  - RejectNetPeering
+  - --NetPeeringId
+  - '%0'
+  - --output
+  - success
+- entity: volume
+  group: volume
+  use: link volume_id vm_id
+  short: alias for api LinkVolume --VolumeId volume_id --VmId vm_id
+  command:
+  - api
+  - LinkVolume
+  - --VolumeId
+  - '%0'
+  - --VmId
+  - '%1'
+  - --output
+  - success
+  flags:
+  - name: device_name
+    alias_to: DeviceName
+    required: true
+- entity: volume
+  group: volume
+  use: unlink volume_id
+  short: alias for api UnlinkVolume --VolumeId link_volume_id
+  command:
+  - api
+  - UnlinkVolume
+  - --VolumeId
+  - '%0'
+  - --output
+  - success
+  flags:
+  - name: force
+    alias_to: ForceUnlink
 - entity: vm
   group: vm
   use: start vm_id [vm_id]...
@@ -1293,17 +1549,6 @@ aliases:
   - name: policy-orn
     alias_to: PolicyOrn
     required: true
-- entity: flexiblegpucatalog
-  group: flexiblegpucatalog
-  use: list
-  aliases:
-  - ls
-  short: alias for api ReadFlexibleGpuCatalog
-  command:
-  - api
-  - ReadFlexibleGpuCatalog
-  - --output
-  - table
 - entity: flexiblegpu
   group: flexiblegpu
   use: list
@@ -1651,35 +1896,6 @@ aliases:
   - api
   - ReadNatServices
   - --Filters.NatServiceIds
-  - '%*'
-  - --output
-  - yaml,single
-- entity: netaccesspointservice
-  group: netaccesspointservice
-  use: list
-  aliases:
-  - ls
-  short: alias for api ReadNetAccessPointServices
-  command:
-  - api
-  - ReadNetAccessPointServices
-  - --output
-  - table
-  flags:
-  - name: service-ids
-    alias_to: Filters.ServiceIds
-  - name: service-names
-    alias_to: Filters.ServiceNames
-- entity: netaccesspointservice
-  group: netaccesspointservice
-  use: describe netaccesspointservice_id [netaccesspointservice_id]...
-  aliases:
-  - desc
-  short: alias for api ReadNetAccessPointServices --Filters.ServiceIds netaccesspointservice_id
-  command:
-  - api
-  - ReadNetAccessPointServices
-  - --Filters.ServiceIds
   - '%*'
   - --output
   - yaml,single
@@ -4212,6 +4428,23 @@ aliases:
     - '%*'
     - --output
     - table
+- entity: dhcpoption
+  group: dhcpoption
+  use: delete dhcpoption_id [dhcpoption_id]...
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteDhcpOptions --DhcpOptionsSetId dhcpoption_id
+  command:
+  - api
+  - DeleteDhcpOptions
+  - --DhcpOptionsSetId
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display: []
 - entity: directlink
   group: directlink
   use: delete directlink_id [directlink_id]...

@@ -17,6 +17,7 @@ import (
 type Column struct {
 	Title    string `yaml:"title"`
 	Content  string `yaml:"content"`
+	Primary  bool   `yaml:"primary,omitempty"`
 	compiled *vm.Program
 }
 
@@ -59,10 +60,13 @@ func ParseColumns(s string) Columns {
 }
 
 type Entity struct {
-	Explode bool     `yaml:"explode,omitempty"`
-	Sort    bool     `yaml:"sort,omitempty"`
-	Aliases []string `yaml:"aliases,omitempty"`
-	Columns Columns  `yaml:"columns,omitempty"`
+	Skip      bool     `yaml:"skip,omitempty"`
+	NoAliases bool     `yaml:"no_aliases,omitempty"`
+	Explode   bool     `yaml:"explode,omitempty"`
+	Sort      bool     `yaml:"sort,omitempty"`
+	Aliases   []string `yaml:"aliases,omitempty"`
+	Columns   Columns  `yaml:"columns,omitempty"`
+	Primary   string   `yaml:"primary,omitempty"`
 }
 
 type Action string

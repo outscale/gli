@@ -75,6 +75,22 @@ entities:
       content: UnitPrice
     - title: Price
       content: Price
+  flexiblegpu:
+    aliases:
+    - fgpu
+  flexiblegpucatalog:
+    no_aliases: true
+    columns:
+    - title: Name
+      content: ModelName
+    - title: VRAM
+      content: VRam
+    - title: Max CPu
+      content: MaxCpu
+    - title: Max RAM
+      content: MaxRam
+    - title: Generations
+      content: Generations
   loadbalancer:
     aliases:
     - lb
@@ -110,6 +126,7 @@ entities:
     - title: SubnetId
       content: SubnetId
   netaccesspointservice:
+    no_aliases: true
     columns:
     - title: ID
       content: ServiceId
@@ -193,6 +210,144 @@ entities:
     - title: Device
       content: "map(LinkedVolumes, #?.DeviceName)"
 aliases:
+- entity: flexiblegpu
+  group: flexiblegpu
+  use: catalog
+  short: alias for api ReadFlexibleGpuCatalog
+  command:
+  - api
+  - ReadFlexibleGpuCatalog
+  - --output
+  - table
+- entity: flexiblegpu
+  group: flexiblegpu
+  use: link fgpu_id vm_id
+  short: alias for api LinkFlexibleGpu --FlexibleGpuId fgpu_id --VmId vm_id
+  command:
+  - api
+  - LinkFlexibleGpu
+  - --FlexibleGpuId
+  - '%0'
+  - --VmId
+  - '%1'
+  - --output
+  - success
+- entity: flexiblegpu
+  group: flexiblegpu
+  use: unlink fgpu_id
+  short: alias for api UnlinkFlexibleGpu --FlexibleGpuId fgpu_id
+  command:
+  - api
+  - UnlinkFlexibleGpu
+  - --FlexibleGpuId
+  - '%0'
+  - --output
+  - success
+- entity: internetservice
+  group: internetservice
+  use: link service_id net_id
+  short: alias for api LinkInternetService --InternetServiceId service_id --NetId net_id
+  command:
+  - api
+  - LinkInternetService
+  - --InternetServiceId
+  - '%0'
+  - --NetId
+  - '%1'
+  - --output
+  - success
+- entity: internetservice
+  group: internetservice
+  use: unlink service_id net_id
+  short: alias for api UnlinkInternetService --InternetServiceId service_id --NetId net_id
+  command:
+  - api
+  - UnlinkInternetService
+  - --InternetServiceId
+  - '%0'
+  - --NetId
+  - '%1'
+  - --output
+  - success
+- entity: nic
+  group: nic
+  use: link nic_id vm_id
+  short: alias for api LinkNic --NicId nic_id --VmId vm_id
+  command:
+  - api
+  - LinkNic
+  - --NicId
+  - '%0'
+  - --VmId
+  - '%1'
+  - --output
+  - yaml
+  flags:
+  - name: device_number
+    alias_to: DeviceNumber
+    required: true
+- entity: netaccesspoint
+  group: netaccesspoint
+  use: services
+  short: alias for api ReadNetAccessPointServices
+  command:
+  - api
+  - ReadNetAccessPointServices
+  - --output
+  - table
+- entity: netpeering
+  group: netpeering
+  use: accept netpeering_id
+  short: alias for api AcceptNetPeering --NetPeeringId netpeering_id
+  command:
+  - api
+  - AcceptNetPeering
+  - --NetPeeringId
+  - '%0'
+  - --output
+  - success
+- entity: netpeering
+  group: netpeering
+  use: reject netpeering_id
+  short: alias for api RejectNetPeering --NetPeeringId netpeering_id
+  command:
+  - api
+  - RejectNetPeering
+  - --NetPeeringId
+  - '%0'
+  - --output
+  - success
+- entity: volume
+  group: volume
+  use: link volume_id vm_id
+  short: alias for api LinkVolume --VolumeId volume_id --VmId vm_id
+  command:
+  - api
+  - LinkVolume
+  - --VolumeId
+  - '%0'
+  - --VmId
+  - '%1'
+  - --output
+  - success
+  flags:
+  - name: device_name
+    alias_to: DeviceName
+    required: true
+- entity: volume
+  group: volume
+  use: unlink volume_id
+  short: alias for api UnlinkVolume --VolumeId link_volume_id
+  command:
+  - api
+  - UnlinkVolume
+  - --VolumeId
+  - '%0'
+  - --output
+  - success
+  flags:
+  - name: force
+    alias_to: ForceUnlink
 - entity: vm
   group: vm
   use: start vm_id [vm_id]...

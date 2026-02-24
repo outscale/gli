@@ -96,6 +96,10 @@ func New(cfg *config.Config, m reflect.Method, prefix string) *Builder {
 }
 
 func (b *Builder) Build() error {
+	if b.entity.Skip {
+		fmt.Println("***", b.m.Name, "(skipped)")
+		return nil
+	}
 	fmt.Println("***", b.m.Name)
 	var err error
 	switch {
@@ -167,12 +171,15 @@ func (b *Builder) buildCall() error {
 
 func (b *Builder) buildEntity() error {
 	e := config.Entity{}
+	hasPrimary := false
 	for _, typeName := range b.typeNameList {
 		if f, found := b.respContentType.FieldByName(typeName + "Id"); found {
 			e.Columns = append(e.Columns, config.Column{
 				Title:   "ID",
 				Content: f.Name,
 			})
+			e.Primary = f.Name
+			hasPrimary = true
 			break
 		}
 	}
@@ -181,6 +188,10 @@ func (b *Builder) buildEntity() error {
 			Title:   "Name",
 			Content: f.Name,
 		})
+		if !hasPrimary {
+			e.Primary = f.Name
+			hasPrimary = true //nolint
+		}
 	} else if _, found := b.respContentType.FieldByName("Tags"); found {
 		e.Columns = append(e.Columns, config.Column{
 			Title:   "Name",
@@ -247,6 +258,9 @@ func (b *Builder) buildFlags(t reflect.Type, prefix string, ignore []string) con
 }
 
 func (b *Builder) buildReadAliases() error {
+	if b.entity.NoAliases {
+		return nil
+	}
 	// list
 	req := b.m.Type.In(2)
 	flags := b.buildFlags(req, "filters-", nil)
@@ -305,6 +319,9 @@ func (b *Builder) buildReadAliases() error {
 }
 
 func (b *Builder) buildCreateAlias() error {
+	if b.entity.NoAliases {
+		return nil
+	}
 	req := b.m.Type.In(2)
 	flags := b.buildFlags(req, "", nil)
 	fmt.Println("create", b.typeName, "flags", flags.Names())
@@ -324,6 +341,9 @@ func (b *Builder) buildCreateAlias() error {
 }
 
 func (b *Builder) buildUpdateAlias() error {
+	if b.entity.NoAliases {
+		return nil
+	}
 	idField, err := b.guessIDFilter()
 	if err != nil {
 		return err
@@ -349,7 +369,11 @@ func (b *Builder) buildUpdateAlias() error {
 
 func (b *Builder) guessIDFilter() (string, error) {
 	req := b.m.Type.In(2)
-	fids, found := req.FieldByName(b.typeName + "Id")
+	primary := b.cfg.Entities[b.entityName].Primary
+	fids, found := req.FieldByName(primary)
+	if !found {
+		fids, found = req.FieldByName(b.typeName + "Id")
+	}
 	if !found {
 		fids, found = req.FieldByName(b.typeName + "Ids")
 	}
@@ -366,6 +390,9 @@ func (b *Builder) guessIDFilter() (string, error) {
 }
 
 func (b *Builder) buildDeleteAlias() error {
+	if b.entity.NoAliases {
+		return nil
+	}
 	idField, err := b.guessIDFilter()
 	if err != nil {
 		return err

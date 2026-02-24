@@ -55,10 +55,8 @@ func restoreFlags(fs *pflag.FlagSet, saved map[string][]string) {
 		case found:
 			if svalue, ok := f.Value.(pflag.SliceValue); ok {
 				_ = svalue.Replace(val)
-			} else {
-				if len(val) > 0 {
-					_ = f.Value.Set(val[0])
-				}
+			} else if len(val) > 0 {
+				_ = f.Value.Set(val[0])
 			}
 			f.Changed = true
 		case !found && f.Changed:
