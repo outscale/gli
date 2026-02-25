@@ -133,6 +133,10 @@ func runFunc(provider string, command []string, flags config.FlagSet, cmd *cobra
 				continue
 			}
 			if arg == "%*" {
+				if len(args) == 0 {
+					_ = cmd.Usage()
+					os.Exit(1)
+				}
 				nargs = append(nargs, strings.Join(args, ","))
 				consumed = len(args) - 1
 				continue
@@ -144,7 +148,7 @@ func runFunc(provider string, command []string, flags config.FlagSet, cmd *cobra
 			}
 			if idx >= len(args) {
 				_ = cmd.Usage()
-				return -1
+				os.Exit(1)
 			}
 			nargs = append(nargs, args[idx])
 			consumed = max(consumed, idx)

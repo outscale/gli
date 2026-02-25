@@ -523,7 +523,8 @@ entities:
       content: State
     primary: DirectLinkInterfaceId
   entitieslinkedtopolicy: {}
-  exporttask: {}
+  exporttask:
+    primary: ExportTaskId
   flexiblegpu:
     aliases:
     - fgpu
@@ -567,6 +568,7 @@ entities:
       content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
+    primary: TaskId
   internetservice:
     columns:
     - title: ID
@@ -593,7 +595,7 @@ entities:
       content: ListenerRuleId
     - title: Name
       content: ListenerRuleName
-    primary: ListenerRuleId
+    primary: ListenerRuleName
   loadbalancer:
     aliases:
     - lb
@@ -700,13 +702,27 @@ entities:
       content: SubregionName
     primary: NicId
   policy:
+    no_aliases: true
     columns:
-    - title: ID
-      content: PolicyId
+    - title: ORN
+      content: Orn
     - title: Name
       content: PolicyName
-    primary: PolicyId
-  policyversion: {}
+    - title: Default Version
+      content: PolicyDefaultVersionId
+    - title: Resources Count
+      content: ResourcesCount
+    primary: PolicyOrn
+  policyversion:
+    no_aliases: true
+    columns:
+    - title: Version
+      content: VersionId
+    - title: Default
+      content: DefaultVersion
+    - title: Date
+      content: CreationDate
+    primary: PolicyOrn
   producttype:
     columns:
     - title: ID
@@ -739,6 +755,7 @@ entities:
       content: 'map(Quotas, #?.MaxValue)'
     - title: Description
       content: 'map(Quotas, #?.Description)'
+    primary: QuotaName
   region:
     columns:
     - title: Name
@@ -788,6 +805,7 @@ entities:
       content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
+    primary: TaskId
   subnet:
     columns:
     - title: ID
@@ -823,16 +841,16 @@ entities:
   unitprice: {}
   user:
     columns:
-    - title: ID
-      content: UserId
     - title: Name
       content: UserName
-    primary: UserId
+    - title: Email
+      content: UserEmail
+    primary: UserName
   usergroup:
     columns:
     - title: ID
       content: UserGroupId
-    primary: UserGroupId
+    primary: UserGroupName
   usergrouppolicy: {}
   usergroupsperuser:
     columns:
@@ -931,6 +949,7 @@ entities:
       content: 'find(Tags, #?.Key == "Name")?.Value'
     - title: State
       content: State
+    primary: TaskId
   vpnconnection:
     columns:
     - title: ID
@@ -1048,6 +1067,197 @@ aliases:
   - '%0'
   - --output
   - success
+- entity: policy
+  group: policy
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadPolicies
+  command:
+  - api
+  - ReadPolicies
+  - --output
+  - table
+  flags:
+  - name: only-linked
+    alias_to: Filters.OnlyLinked
+  - name: path-prefix
+    alias_to: Filters.PathPrefix
+  - name: scope
+    alias_to: Filters.Scope
+  - name: first-item
+    alias_to: FirstItem
+- entity: policy
+  group: policy
+  use: describe policy_orn
+  aliases:
+  - desc
+  short: alias for api ReadPolicy --PolicyOrn policy_orn
+  command:
+  - api
+  - ReadPolicy
+  - --PolicyOrn
+  - '%0'
+  - --output
+  - yaml
+- entity: policy
+  group: policy
+  use: create
+  short: alias for api CreatePolicy
+  command:
+  - api
+  - CreatePolicy
+  - --output
+  - yaml
+  flags:
+  - name: description
+    alias_to: Description
+  - name: document
+    alias_to: Document
+    required: true
+    type: file
+    usage: The file storing the policy document, corresponding to a JSON string that contains the policy.
+  - name: path
+    alias_to: Path
+  - name: name
+    alias_to: PolicyName
+    required: true
+- entity: policy
+  group: policy
+  use: delete policy_orn
+  aliases:
+  - del
+  short: alias for api DeletePolicy --PolicyOrn policy_orn
+  command:
+  - api
+  - DeletePolicy
+  - --PolicyOrn
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadPolicy
+    - --PolicyOrn
+    - '%0'
+    - --output
+    - table
+- entity: policy
+  group: policy
+  use: link policy_orn user_name
+  short: alias for api LinkPolicy --PolicyOrn policy_orn --UserName user_name
+  command:
+  - api
+  - LinkPolicy
+  - --PolicyOrn
+  - '%0'
+  - --UserName
+  - '%1'
+  - --output
+  - success
+- entity: policy
+  group: policy
+  use: unlink policy_orn user_name
+  short: alias for api UnlinkPolicy --PolicyOrn policy_orn --UserName user_name
+  command:
+  - api
+  - UnlinkPolicy
+  - --PolicyOrn
+  - '%0'
+  - --UserName
+  - '%1'
+  - --output
+  - success
+- entity: policyversion
+  group: policyversion
+  use: list policy_orn
+  aliases:
+  - ls
+  short: alias for api ReadPolicyVersions --PolicyOrn policy_orn
+  command:
+  - api
+  - ReadPolicyVersions
+  - --PolicyOrn
+  - '%0'
+  - --output
+  - table
+- entity: policyversion
+  group: policyversion
+  use: describe policy_orn version
+  aliases:
+  - desc
+  short: alias for api ReadPolicyVersion --PolicyOrn policy_orn --VersionId version
+  command:
+  - api
+  - ReadPolicyVersion
+  - --PolicyOrn
+  - '%0'
+  - --VersionId
+  - '%1'
+  - --output
+  - yaml
+- entity: policyversion
+  group: policyversion
+  use: create policy_orn
+  short: alias for api CreatePolicyVersion --PolicyOrn policy_orn
+  command:
+  - api
+  - CreatePolicyVersion
+  - --PolicyOrn
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: document
+    alias_to: Document
+    required: true
+    type: file
+    usage: The file storing the policy document, corresponding to a JSON string that contains the policy.
+  - name: default
+    alias_to: SetAsDefault
+- entity: policyversion
+  group: policyversion
+  use: delete policy_orn version
+  aliases:
+  - del
+  short: alias for api DeletePolicyVersion --PolicyOrn policy_orn --VersionId version
+  command:
+  - api
+  - DeletePolicyVersion
+  - --PolicyOrn
+  - '%0'
+  - --VersionId
+  - '%1'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadPolicyVersion
+    - --PolicyOrn
+    - '%0'
+    - --VersionId
+    - '%1'
+    - --output
+    - table
+- entity: policyversion
+  group: policyversion
+  use: set-default policy_orn version
+  aliases:
+  - default
+  short: alias for api SetDefaultPolicyVersion --PolicyOrn policy_orn --VersionId version
+  command:
+  - api
+  - SetDefaultPolicyVersion
+  - --PolicyOrn
+  - '%0'
+  - --VersionId
+  - '%1'
+  - --output
+  - success
 - entity: volume
   group: volume
   use: link volume_id vm_id
@@ -1136,10 +1346,10 @@ aliases:
     alias_to: UserName
 - entity: accesskey
   group: accesskey
-  use: describe accesskey_id [accesskey_id]...
+  use: describe access_key_id [access_key_id]...
   aliases:
   - desc
-  short: alias for api ReadAccessKeys --Filters.AccessKeyIds accesskey_id
+  short: alias for api ReadAccessKeys --Filters.AccessKeyIds access_key_id
   command:
   - api
   - ReadAccessKeys
@@ -1193,10 +1403,10 @@ aliases:
     alias_to: Filters.IpRanges
 - entity: apiaccessrule
   group: apiaccessrule
-  use: describe apiaccessrule_id [apiaccessrule_id]...
+  use: describe api_access_rule_id [api_access_rule_id]...
   aliases:
   - desc
-  short: alias for api ReadApiAccessRules --Filters.ApiAccessRuleIds apiaccessrule_id
+  short: alias for api ReadApiAccessRules --Filters.ApiAccessRuleIds api_access_rule_id
   command:
   - api
   - ReadApiAccessRules
@@ -1376,10 +1586,10 @@ aliases:
     alias_to: Filters.Tags
 - entity: clientgateway
   group: clientgateway
-  use: describe clientgateway_id [clientgateway_id]...
+  use: describe client_gateway_id [client_gateway_id]...
   aliases:
   - desc
-  short: alias for api ReadClientGateways --Filters.ClientGatewayIds clientgateway_id
+  short: alias for api ReadClientGateways --Filters.ClientGatewayIds client_gateway_id
   command:
   - api
   - ReadClientGateways
@@ -1433,10 +1643,10 @@ aliases:
     alias_to: Filters.SubregionNames
 - entity: dedicatedgroup
   group: dedicatedgroup
-  use: describe dedicatedgroup_id [dedicatedgroup_id]...
+  use: describe dedicated_group_id [dedicated_group_id]...
   aliases:
   - desc
-  short: alias for api ReadDedicatedGroups --Filters.DedicatedGroupIds dedicatedgroup_id
+  short: alias for api ReadDedicatedGroups --Filters.DedicatedGroupIds dedicated_group_id
   command:
   - api
   - ReadDedicatedGroups
@@ -1474,6 +1684,19 @@ aliases:
     alias_to: Filters.TagValues
   - name: tags
     alias_to: Filters.Tags
+- entity: dhcpoption
+  group: dhcpoption
+  use: describe dhcp_options_set_id [dhcp_options_set_id]...
+  aliases:
+  - desc
+  short: alias for api ReadDhcpOptions --Filters.DhcpOptionsSetIds dhcp_options_set_id
+  command:
+  - api
+  - ReadDhcpOptions
+  - --Filters.DhcpOptionsSetIds
+  - '%*'
+  - --output
+  - yaml,single
 - entity: directlinkinterface
   group: directlinkinterface
   use: list
@@ -1492,10 +1715,10 @@ aliases:
     alias_to: Filters.DirectLinkInterfaceIds
 - entity: directlinkinterface
   group: directlinkinterface
-  use: describe directlinkinterface_id [directlinkinterface_id]...
+  use: describe direct_link_interface_id [direct_link_interface_id]...
   aliases:
   - desc
-  short: alias for api ReadDirectLinkInterfaces --Filters.DirectLinkInterfaceIds directlinkinterface_id
+  short: alias for api ReadDirectLinkInterfaces --Filters.DirectLinkInterfaceIds direct_link_interface_id
   command:
   - api
   - ReadDirectLinkInterfaces
@@ -1519,10 +1742,10 @@ aliases:
     alias_to: Filters.DirectLinkIds
 - entity: directlink
   group: directlink
-  use: describe directlink_id [directlink_id]...
+  use: describe direct_link_id [direct_link_id]...
   aliases:
   - desc
-  short: alias for api ReadDirectLinks --Filters.DirectLinkIds directlink_id
+  short: alias for api ReadDirectLinks --Filters.DirectLinkIds direct_link_id
   command:
   - api
   - ReadDirectLinks
@@ -1585,10 +1808,10 @@ aliases:
     alias_to: Filters.VmIds
 - entity: flexiblegpu
   group: flexiblegpu
-  use: describe flexiblegpu_id [flexiblegpu_id]...
+  use: describe flexible_gpu_id [flexible_gpu_id]...
   aliases:
   - desc
-  short: alias for api ReadFlexibleGpus --Filters.FlexibleGpuIds flexiblegpu_id
+  short: alias for api ReadFlexibleGpus --Filters.FlexibleGpuIds flexible_gpu_id
   command:
   - api
   - ReadFlexibleGpus
@@ -1612,10 +1835,10 @@ aliases:
     alias_to: Filters.TaskIds
 - entity: imageexporttask
   group: imageexporttask
-  use: describe imageexporttask_id [imageexporttask_id]...
+  use: describe task_id [task_id]...
   aliases:
   - desc
-  short: alias for api ReadImageExportTasks --Filters.TaskIds imageexporttask_id
+  short: alias for api ReadImageExportTasks --Filters.TaskIds task_id
   command:
   - api
   - ReadImageExportTasks
@@ -1728,10 +1951,10 @@ aliases:
     alias_to: Filters.Tags
 - entity: internetservice
   group: internetservice
-  use: describe internetservice_id [internetservice_id]...
+  use: describe internet_service_id [internet_service_id]...
   aliases:
   - desc
-  short: alias for api ReadInternetServices --Filters.InternetServiceIds internetservice_id
+  short: alias for api ReadInternetServices --Filters.InternetServiceIds internet_service_id
   command:
   - api
   - ReadInternetServices
@@ -1794,10 +2017,10 @@ aliases:
     alias_to: Filters.ListenerRuleNames
 - entity: listenerrule
   group: listenerrule
-  use: describe listenerrule_id [listenerrule_id]...
+  use: describe listener_rule_name [listener_rule_name]...
   aliases:
   - desc
-  short: alias for api ReadListenerRules --Filters.ListenerRuleNames listenerrule_id
+  short: alias for api ReadListenerRules --Filters.ListenerRuleNames listener_rule_name
   command:
   - api
   - ReadListenerRules
@@ -1836,10 +2059,10 @@ aliases:
     alias_to: Filters.LoadBalancerNames
 - entity: loadbalancer
   group: loadbalancer
-  use: describe loadbalancer_id [loadbalancer_id]...
+  use: describe load_balancer_name [load_balancer_name]...
   aliases:
   - desc
-  short: alias for api ReadLoadBalancers --Filters.LoadBalancerNames loadbalancer_id
+  short: alias for api ReadLoadBalancers --Filters.LoadBalancerNames load_balancer_name
   command:
   - api
   - ReadLoadBalancers
@@ -1888,10 +2111,10 @@ aliases:
     alias_to: Filters.Tags
 - entity: natservice
   group: natservice
-  use: describe natservice_id [natservice_id]...
+  use: describe nat_service_id [nat_service_id]...
   aliases:
   - desc
-  short: alias for api ReadNatServices --Filters.NatServiceIds natservice_id
+  short: alias for api ReadNatServices --Filters.NatServiceIds nat_service_id
   command:
   - api
   - ReadNatServices
@@ -1927,10 +2150,10 @@ aliases:
     alias_to: Filters.Tags
 - entity: netaccesspoint
   group: netaccesspoint
-  use: describe netaccesspoint_id [netaccesspoint_id]...
+  use: describe net_access_point_id [net_access_point_id]...
   aliases:
   - desc
-  short: alias for api ReadNetAccessPoints --Filters.NetAccessPointIds netaccesspoint_id
+  short: alias for api ReadNetAccessPoints --Filters.NetAccessPointIds net_access_point_id
   command:
   - api
   - ReadNetAccessPoints
@@ -1978,10 +2201,10 @@ aliases:
     alias_to: Filters.Tags
 - entity: netpeering
   group: netpeering
-  use: describe netpeering_id [netpeering_id]...
+  use: describe net_peering_id [net_peering_id]...
   aliases:
   - desc
-  short: alias for api ReadNetPeerings --Filters.NetPeeringIds netpeering_id
+  short: alias for api ReadNetPeerings --Filters.NetPeeringIds net_peering_id
   command:
   - api
   - ReadNetPeerings
@@ -2113,76 +2336,6 @@ aliases:
   - '%*'
   - --output
   - yaml,single
-- entity: policy
-  group: policy
-  use: list
-  aliases:
-  - ls
-  short: alias for api ReadPolicies
-  command:
-  - api
-  - ReadPolicies
-  - --output
-  - table
-  flags:
-  - name: only-linked
-    alias_to: Filters.OnlyLinked
-  - name: path-prefix
-    alias_to: Filters.PathPrefix
-  - name: scope
-    alias_to: Filters.Scope
-  - name: first-item
-    alias_to: FirstItem
-- entity: policy
-  group: policy
-  use: list
-  aliases:
-  - ls
-  short: alias for api ReadPolicy
-  command:
-  - api
-  - ReadPolicy
-  - --output
-  - table
-  flags:
-  - name: orn
-    alias_to: PolicyOrn
-    required: true
-- entity: policyversion
-  group: policyversion
-  use: list
-  aliases:
-  - ls
-  short: alias for api ReadPolicyVersion
-  command:
-  - api
-  - ReadPolicyVersion
-  - --output
-  - table
-  flags:
-  - name: policy-orn
-    alias_to: PolicyOrn
-    required: true
-  - name: version-id
-    alias_to: VersionId
-    required: true
-- entity: policyversion
-  group: policyversion
-  use: list
-  aliases:
-  - ls
-  short: alias for api ReadPolicyVersions
-  command:
-  - api
-  - ReadPolicyVersions
-  - --output
-  - table
-  flags:
-  - name: first-item
-    alias_to: FirstItem
-  - name: policy-orn
-    alias_to: PolicyOrn
-    required: true
 - entity: producttype
   group: producttype
   use: list
@@ -2199,10 +2352,10 @@ aliases:
     alias_to: Filters.ProductTypeIds
 - entity: producttype
   group: producttype
-  use: describe producttype_id [producttype_id]...
+  use: describe product_type_id [product_type_id]...
   aliases:
   - desc
-  short: alias for api ReadProductTypes --Filters.ProductTypeIds producttype_id
+  short: alias for api ReadProductTypes --Filters.ProductTypeIds product_type_id
   command:
   - api
   - ReadProductTypes
@@ -2257,10 +2410,10 @@ aliases:
     alias_to: Filters.VmIds
 - entity: publicip
   group: publicip
-  use: describe publicip_id [publicip_id]...
+  use: describe public_ip_id [public_ip_id]...
   aliases:
   - desc
-  short: alias for api ReadPublicIps --Filters.PublicIpIds publicip_id
+  short: alias for api ReadPublicIps --Filters.PublicIpIds public_ip_id
   command:
   - api
   - ReadPublicIps
@@ -2290,10 +2443,10 @@ aliases:
     alias_to: Filters.ShortDescriptions
 - entity: quota
   group: quota
-  use: describe quota_id [quota_id]...
+  use: describe quota_name [quota_name]...
   aliases:
   - desc
-  short: alias for api ReadQuotas --Filters.QuotaNames quota_id
+  short: alias for api ReadQuotas --Filters.QuotaNames quota_name
   command:
   - api
   - ReadQuotas
@@ -2360,10 +2513,10 @@ aliases:
     alias_to: Filters.Tags
 - entity: routetable
   group: routetable
-  use: describe routetable_id [routetable_id]...
+  use: describe route_table_id [route_table_id]...
   aliases:
   - desc
-  short: alias for api ReadRouteTables --Filters.RouteTableIds routetable_id
+  short: alias for api ReadRouteTables --Filters.RouteTableIds route_table_id
   command:
   - api
   - ReadRouteTables
@@ -2427,10 +2580,10 @@ aliases:
     alias_to: Filters.Tags
 - entity: securitygroup
   group: securitygroup
-  use: describe securitygroup_id [securitygroup_id]...
+  use: describe security_group_id [security_group_id]...
   aliases:
   - desc
-  short: alias for api ReadSecurityGroups --Filters.SecurityGroupIds securitygroup_id
+  short: alias for api ReadSecurityGroups --Filters.SecurityGroupIds security_group_id
   command:
   - api
   - ReadSecurityGroups
@@ -2468,10 +2621,10 @@ aliases:
     alias_to: Filters.TaskIds
 - entity: snapshotexporttask
   group: snapshotexporttask
-  use: describe snapshotexporttask_id [snapshotexporttask_id]...
+  use: describe task_id [task_id]...
   aliases:
   - desc
-  short: alias for api ReadSnapshotExportTasks --Filters.TaskIds snapshotexporttask_id
+  short: alias for api ReadSnapshotExportTasks --Filters.TaskIds task_id
   command:
   - api
   - ReadSnapshotExportTasks
@@ -2599,10 +2752,10 @@ aliases:
     alias_to: Filters.SubregionNames
 - entity: subregion
   group: subregion
-  use: describe subregion_id [subregion_id]...
+  use: describe subregion_name [subregion_name]...
   aliases:
   - desc
-  short: alias for api ReadSubregions --Filters.SubregionNames subregion_id
+  short: alias for api ReadSubregions --Filters.SubregionNames subregion_name
   command:
   - api
   - ReadSubregions
@@ -2706,19 +2859,6 @@ aliases:
     alias_to: Filters.UserGroupIds
   - name: first-item
     alias_to: FirstItem
-- entity: usergroup
-  group: usergroup
-  use: describe usergroup_id [usergroup_id]...
-  aliases:
-  - desc
-  short: alias for api ReadUserGroups --Filters.UserGroupIds usergroup_id
-  command:
-  - api
-  - ReadUserGroups
-  - --Filters.UserGroupIds
-  - '%*'
-  - --output
-  - yaml,single
 - entity: usergroupsperuser
   group: usergroupsperuser
   use: list
@@ -2752,19 +2892,6 @@ aliases:
     alias_to: Filters.UserIds
   - name: first-item
     alias_to: FirstItem
-- entity: user
-  group: user
-  use: describe user_id [user_id]...
-  aliases:
-  - desc
-  short: alias for api ReadUsers --Filters.UserIds user_id
-  command:
-  - api
-  - ReadUsers
-  - --Filters.UserIds
-  - '%*'
-  - --output
-  - yaml,single
 - entity: virtualgateway
   group: virtualgateway
   use: list
@@ -2795,10 +2922,10 @@ aliases:
     alias_to: Filters.VirtualGatewayIds
 - entity: virtualgateway
   group: virtualgateway
-  use: describe virtualgateway_id [virtualgateway_id]...
+  use: describe virtual_gateway_id [virtual_gateway_id]...
   aliases:
   - desc
-  short: alias for api ReadVirtualGateways --Filters.VirtualGatewayIds virtualgateway_id
+  short: alias for api ReadVirtualGateways --Filters.VirtualGatewayIds virtual_gateway_id
   command:
   - api
   - ReadVirtualGateways
@@ -2840,10 +2967,10 @@ aliases:
     alias_to: Filters.VmTemplateIds
 - entity: vmgroup
   group: vmgroup
-  use: describe vmgroup_id [vmgroup_id]...
+  use: describe vm_group_id [vm_group_id]...
   aliases:
   - desc
-  short: alias for api ReadVmGroups --Filters.VmGroupIds vmgroup_id
+  short: alias for api ReadVmGroups --Filters.VmGroupIds vm_group_id
   command:
   - api
   - ReadVmGroups
@@ -2889,10 +3016,10 @@ aliases:
     alias_to: Filters.VmTemplateNames
 - entity: vmtemplate
   group: vmtemplate
-  use: describe vmtemplate_id [vmtemplate_id]...
+  use: describe vm_template_id [vm_template_id]...
   aliases:
   - desc
-  short: alias for api ReadVmTemplates --Filters.VmTemplateIds vmtemplate_id
+  short: alias for api ReadVmTemplates --Filters.VmTemplateIds vm_template_id
   command:
   - api
   - ReadVmTemplates
@@ -2930,10 +3057,10 @@ aliases:
     alias_to: Filters.VolumeSizes
 - entity: vmtype
   group: vmtype
-  use: describe vmtype_id [vmtype_id]...
+  use: describe vm_type_name [vm_type_name]...
   aliases:
   - desc
-  short: alias for api ReadVmTypes --Filters.VmTypeNames vmtype_id
+  short: alias for api ReadVmTypes --Filters.VmTypeNames vm_type_name
   command:
   - api
   - ReadVmTypes
@@ -3159,10 +3286,10 @@ aliases:
     alias_to: Filters.TaskIds
 - entity: volumeupdatetask
   group: volumeupdatetask
-  use: describe volumeupdatetask_id [volumeupdatetask_id]...
+  use: describe task_id [task_id]...
   aliases:
   - desc
-  short: alias for api ReadVolumeUpdateTasks --Filters.TaskIds volumeupdatetask_id
+  short: alias for api ReadVolumeUpdateTasks --Filters.TaskIds task_id
   command:
   - api
   - ReadVolumeUpdateTasks
@@ -3263,10 +3390,10 @@ aliases:
     alias_to: Filters.VpnConnectionIds
 - entity: vpnconnection
   group: vpnconnection
-  use: describe vpnconnection_id [vpnconnection_id]...
+  use: describe vpn_connection_id [vpn_connection_id]...
   aliases:
   - desc
-  short: alias for api ReadVpnConnections --Filters.VpnConnectionIds vpnconnection_id
+  short: alias for api ReadVpnConnections --Filters.VpnConnectionIds vpn_connection_id
   command:
   - api
   - ReadVpnConnections
@@ -3806,48 +3933,6 @@ aliases:
   - name: subnet-id
     alias_to: SubnetId
     required: true
-- entity: policy
-  group: policy
-  use: create
-  short: alias for api CreatePolicy
-  command:
-  - api
-  - CreatePolicy
-  - --output
-  - yaml
-  flags:
-  - name: description
-    alias_to: Description
-  - name: document
-    alias_to: Document
-    required: true
-    type: file
-    usage: The file storing the policy document, corresponding to a JSON string that contains the policy.
-  - name: path
-    alias_to: Path
-  - name: name
-    alias_to: PolicyName
-    required: true
-- entity: policyversion
-  group: policyversion
-  use: create
-  short: alias for api CreatePolicyVersion
-  command:
-  - api
-  - CreatePolicyVersion
-  - --output
-  - yaml
-  flags:
-  - name: document
-    alias_to: Document
-    required: true
-    type: file
-    usage: The file storing the policy document, corresponding to a JSON string that contains the policy.
-  - name: policy-orn
-    alias_to: PolicyOrn
-    required: true
-  - name: set-as-default
-    alias_to: SetAsDefault
 - entity: producttype
   group: producttype
   use: create
@@ -4315,11 +4400,11 @@ aliases:
     required: true
 - entity: accesskey
   group: accesskey
-  use: delete accesskey_id [accesskey_id]...
+  use: delete access_key_id [access_key_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteAccessKey --AccessKeyId accesskey_id
+  short: alias for api DeleteAccessKey --AccessKeyId access_key_id
   command:
   - api
   - DeleteAccessKey
@@ -4338,11 +4423,11 @@ aliases:
     - table
 - entity: apiaccessrule
   group: apiaccessrule
-  use: delete apiaccessrule_id [apiaccessrule_id]...
+  use: delete api_access_rule_id [api_access_rule_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteApiAccessRule --ApiAccessRuleId apiaccessrule_id
+  short: alias for api DeleteApiAccessRule --ApiAccessRuleId api_access_rule_id
   command:
   - api
   - DeleteApiAccessRule
@@ -4384,11 +4469,11 @@ aliases:
     - table
 - entity: clientgateway
   group: clientgateway
-  use: delete clientgateway_id [clientgateway_id]...
+  use: delete client_gateway_id [client_gateway_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteClientGateway --ClientGatewayId clientgateway_id
+  short: alias for api DeleteClientGateway --ClientGatewayId client_gateway_id
   command:
   - api
   - DeleteClientGateway
@@ -4407,11 +4492,11 @@ aliases:
     - table
 - entity: dedicatedgroup
   group: dedicatedgroup
-  use: delete dedicatedgroup_id [dedicatedgroup_id]...
+  use: delete dedicated_group_id [dedicated_group_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteDedicatedGroup --DedicatedGroupId dedicatedgroup_id
+  short: alias for api DeleteDedicatedGroup --DedicatedGroupId dedicated_group_id
   command:
   - api
   - DeleteDedicatedGroup
@@ -4430,11 +4515,11 @@ aliases:
     - table
 - entity: dhcpoption
   group: dhcpoption
-  use: delete dhcpoption_id [dhcpoption_id]...
+  use: delete dhcp_options_set_id [dhcp_options_set_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteDhcpOptions --DhcpOptionsSetId dhcpoption_id
+  short: alias for api DeleteDhcpOptions --DhcpOptionsSetId dhcp_options_set_id
   command:
   - api
   - DeleteDhcpOptions
@@ -4444,14 +4529,20 @@ aliases:
   - none
   prompt:
     action: delete
-    display: []
+    display:
+    - api
+    - ReadDhcpOptions
+    - --Filters.DhcpOptionsSetIds
+    - '%*'
+    - --output
+    - table
 - entity: directlink
   group: directlink
-  use: delete directlink_id [directlink_id]...
+  use: delete direct_link_id [direct_link_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteDirectLink --DirectLinkId directlink_id
+  short: alias for api DeleteDirectLink --DirectLinkId direct_link_id
   command:
   - api
   - DeleteDirectLink
@@ -4470,11 +4561,11 @@ aliases:
     - table
 - entity: directlinkinterface
   group: directlinkinterface
-  use: delete directlinkinterface_id [directlinkinterface_id]...
+  use: delete direct_link_interface_id [direct_link_interface_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteDirectLinkInterface --DirectLinkInterfaceId directlinkinterface_id
+  short: alias for api DeleteDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id
   command:
   - api
   - DeleteDirectLinkInterface
@@ -4493,11 +4584,11 @@ aliases:
     - table
 - entity: exporttask
   group: exporttask
-  use: delete exporttask_id [exporttask_id]...
+  use: delete export_task_id [export_task_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteExportTask --ExportTaskId exporttask_id
+  short: alias for api DeleteExportTask --ExportTaskId export_task_id
   command:
   - api
   - DeleteExportTask
@@ -4507,14 +4598,13 @@ aliases:
   - none
   prompt:
     action: delete
-    display: []
 - entity: flexiblegpu
   group: flexiblegpu
-  use: delete flexiblegpu_id [flexiblegpu_id]...
+  use: delete flexible_gpu_id [flexible_gpu_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteFlexibleGpu --FlexibleGpuId flexiblegpu_id
+  short: alias for api DeleteFlexibleGpu --FlexibleGpuId flexible_gpu_id
   command:
   - api
   - DeleteFlexibleGpu
@@ -4556,11 +4646,11 @@ aliases:
     - table
 - entity: internetservice
   group: internetservice
-  use: delete internetservice_id [internetservice_id]...
+  use: delete internet_service_id [internet_service_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteInternetService --InternetServiceId internetservice_id
+  short: alias for api DeleteInternetService --InternetServiceId internet_service_id
   command:
   - api
   - DeleteInternetService
@@ -4602,11 +4692,11 @@ aliases:
     - table
 - entity: listenerrule
   group: listenerrule
-  use: delete listenerrule_id [listenerrule_id]...
+  use: delete listener_rule_name [listener_rule_name]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteListenerRule --ListenerRuleName listenerrule_id
+  short: alias for api DeleteListenerRule --ListenerRuleName listener_rule_name
   command:
   - api
   - DeleteListenerRule
@@ -4625,11 +4715,11 @@ aliases:
     - table
 - entity: loadbalancer
   group: loadbalancer
-  use: delete loadbalancer_id [loadbalancer_id]...
+  use: delete load_balancer_name [load_balancer_name]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteLoadBalancer --LoadBalancerName loadbalancer_id
+  short: alias for api DeleteLoadBalancer --LoadBalancerName load_balancer_name
   command:
   - api
   - DeleteLoadBalancer
@@ -4648,11 +4738,11 @@ aliases:
     - table
 - entity: natservice
   group: natservice
-  use: delete natservice_id [natservice_id]...
+  use: delete nat_service_id [nat_service_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteNatService --NatServiceId natservice_id
+  short: alias for api DeleteNatService --NatServiceId nat_service_id
   command:
   - api
   - DeleteNatService
@@ -4694,11 +4784,11 @@ aliases:
     - table
 - entity: netaccesspoint
   group: netaccesspoint
-  use: delete netaccesspoint_id [netaccesspoint_id]...
+  use: delete net_access_point_id [net_access_point_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteNetAccessPoint --NetAccessPointId netaccesspoint_id
+  short: alias for api DeleteNetAccessPoint --NetAccessPointId net_access_point_id
   command:
   - api
   - DeleteNetAccessPoint
@@ -4717,11 +4807,11 @@ aliases:
     - table
 - entity: netpeering
   group: netpeering
-  use: delete netpeering_id [netpeering_id]...
+  use: delete net_peering_id [net_peering_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteNetPeering --NetPeeringId netpeering_id
+  short: alias for api DeleteNetPeering --NetPeeringId net_peering_id
   command:
   - api
   - DeleteNetPeering
@@ -4763,11 +4853,11 @@ aliases:
     - table
 - entity: producttype
   group: producttype
-  use: delete producttype_id [producttype_id]...
+  use: delete product_type_id [product_type_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteProductType --ProductTypeId producttype_id
+  short: alias for api DeleteProductType --ProductTypeId product_type_id
   command:
   - api
   - DeleteProductType
@@ -4786,11 +4876,11 @@ aliases:
     - table
 - entity: publicip
   group: publicip
-  use: delete publicip_id [publicip_id]...
+  use: delete public_ip_id [public_ip_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeletePublicIp --PublicIpId publicip_id
+  short: alias for api DeletePublicIp --PublicIpId public_ip_id
   command:
   - api
   - DeletePublicIp
@@ -4809,11 +4899,11 @@ aliases:
     - table
 - entity: routetable
   group: routetable
-  use: delete routetable_id [routetable_id]...
+  use: delete route_table_id [route_table_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteRouteTable --RouteTableId routetable_id
+  short: alias for api DeleteRouteTable --RouteTableId route_table_id
   command:
   - api
   - DeleteRouteTable
@@ -4832,11 +4922,11 @@ aliases:
     - table
 - entity: securitygroup
   group: securitygroup
-  use: delete securitygroup_id [securitygroup_id]...
+  use: delete security_group_id [security_group_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteSecurityGroup --SecurityGroupId securitygroup_id
+  short: alias for api DeleteSecurityGroup --SecurityGroupId security_group_id
   command:
   - api
   - DeleteSecurityGroup
@@ -4901,11 +4991,11 @@ aliases:
     - table
 - entity: user
   group: user
-  use: delete user_id [user_id]...
+  use: delete user_name [user_name]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteUser --UserName user_id
+  short: alias for api DeleteUser --UserName user_name
   command:
   - api
   - DeleteUser
@@ -4915,20 +5005,13 @@ aliases:
   - none
   prompt:
     action: delete
-    display:
-    - api
-    - ReadUsers
-    - --Filters.UserIds
-    - '%*'
-    - --output
-    - table
 - entity: usergroup
   group: usergroup
-  use: delete usergroup_id [usergroup_id]...
+  use: delete user_group_name [user_group_name]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteUserGroup --UserGroupName usergroup_id
+  short: alias for api DeleteUserGroup --UserGroupName user_group_name
   command:
   - api
   - DeleteUserGroup
@@ -4938,20 +5021,13 @@ aliases:
   - none
   prompt:
     action: delete
-    display:
-    - api
-    - ReadUserGroups
-    - --Filters.UserGroupIds
-    - '%*'
-    - --output
-    - table
 - entity: virtualgateway
   group: virtualgateway
-  use: delete virtualgateway_id [virtualgateway_id]...
+  use: delete virtual_gateway_id [virtual_gateway_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteVirtualGateway --VirtualGatewayId virtualgateway_id
+  short: alias for api DeleteVirtualGateway --VirtualGatewayId virtual_gateway_id
   command:
   - api
   - DeleteVirtualGateway
@@ -4970,11 +5046,11 @@ aliases:
     - table
 - entity: vmgroup
   group: vmgroup
-  use: delete vmgroup_id [vmgroup_id]...
+  use: delete vm_group_id [vm_group_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteVmGroup --VmGroupId vmgroup_id
+  short: alias for api DeleteVmGroup --VmGroupId vm_group_id
   command:
   - api
   - DeleteVmGroup
@@ -4993,11 +5069,11 @@ aliases:
     - table
 - entity: vmtemplate
   group: vmtemplate
-  use: delete vmtemplate_id [vmtemplate_id]...
+  use: delete vm_template_id [vm_template_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteVmTemplate --VmTemplateId vmtemplate_id
+  short: alias for api DeleteVmTemplate --VmTemplateId vm_template_id
   command:
   - api
   - DeleteVmTemplate
@@ -5062,11 +5138,11 @@ aliases:
     - table
 - entity: vpnconnection
   group: vpnconnection
-  use: delete vpnconnection_id [vpnconnection_id]...
+  use: delete vpn_connection_id [vpn_connection_id]...
   aliases:
   - del
   - rm
-  short: alias for api DeleteVpnConnection --VpnConnectionId vpnconnection_id
+  short: alias for api DeleteVpnConnection --VpnConnectionId vpn_connection_id
   command:
   - api
   - DeleteVpnConnection
@@ -5085,8 +5161,8 @@ aliases:
     - table
 - entity: accesskey
   group: accesskey
-  use: update accesskey_id [accesskey_id]...
-  short: alias for api UpdateAccessKey --AccessKeyId accesskey_id
+  use: update access_key_id [access_key_id]...
+  short: alias for api UpdateAccessKey --AccessKeyId access_key_id
   command:
   - api
   - UpdateAccessKey
@@ -5104,8 +5180,8 @@ aliases:
     alias_to: UserName
 - entity: apiaccessrule
   group: apiaccessrule
-  use: update apiaccessrule_id [apiaccessrule_id]...
-  short: alias for api UpdateApiAccessRule --ApiAccessRuleId apiaccessrule_id
+  use: update api_access_rule_id [api_access_rule_id]...
+  short: alias for api UpdateApiAccessRule --ApiAccessRuleId api_access_rule_id
   command:
   - api
   - UpdateApiAccessRule
@@ -5138,8 +5214,8 @@ aliases:
     alias_to: Description
 - entity: dedicatedgroup
   group: dedicatedgroup
-  use: update dedicatedgroup_id [dedicatedgroup_id]...
-  short: alias for api UpdateDedicatedGroup --DedicatedGroupId dedicatedgroup_id
+  use: update dedicated_group_id [dedicated_group_id]...
+  short: alias for api UpdateDedicatedGroup --DedicatedGroupId dedicated_group_id
   command:
   - api
   - UpdateDedicatedGroup
@@ -5153,8 +5229,8 @@ aliases:
     required: true
 - entity: directlinkinterface
   group: directlinkinterface
-  use: update directlinkinterface_id [directlinkinterface_id]...
-  short: alias for api UpdateDirectLinkInterface --DirectLinkInterfaceId directlinkinterface_id
+  use: update direct_link_interface_id [direct_link_interface_id]...
+  short: alias for api UpdateDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id
   command:
   - api
   - UpdateDirectLinkInterface
@@ -5168,8 +5244,8 @@ aliases:
     required: true
 - entity: flexiblegpu
   group: flexiblegpu
-  use: update flexiblegpu_id [flexiblegpu_id]...
-  short: alias for api UpdateFlexibleGpu --FlexibleGpuId flexiblegpu_id
+  use: update flexible_gpu_id [flexible_gpu_id]...
+  short: alias for api UpdateFlexibleGpu --FlexibleGpuId flexible_gpu_id
   command:
   - api
   - UpdateFlexibleGpu
@@ -5206,8 +5282,8 @@ aliases:
     alias_to: ProductCodes
 - entity: listenerrule
   group: listenerrule
-  use: update listenerrule_id [listenerrule_id]...
-  short: alias for api UpdateListenerRule --ListenerRuleName listenerrule_id
+  use: update listener_rule_name [listener_rule_name]...
+  short: alias for api UpdateListenerRule --ListenerRuleName listener_rule_name
   command:
   - api
   - UpdateListenerRule
@@ -5222,8 +5298,8 @@ aliases:
     alias_to: PathPattern
 - entity: loadbalancer
   group: loadbalancer
-  use: update loadbalancer_id [loadbalancer_id]...
-  short: alias for api UpdateLoadBalancer --LoadBalancerName loadbalancer_id
+  use: update load_balancer_name [load_balancer_name]...
+  short: alias for api UpdateLoadBalancer --LoadBalancerName load_balancer_name
   command:
   - api
   - UpdateLoadBalancer
@@ -5283,8 +5359,8 @@ aliases:
     required: true
 - entity: netaccesspoint
   group: netaccesspoint
-  use: update netaccesspoint_id [netaccesspoint_id]...
-  short: alias for api UpdateNetAccessPoint --NetAccessPointId netaccesspoint_id
+  use: update net_access_point_id [net_access_point_id]...
+  short: alias for api UpdateNetAccessPoint --NetAccessPointId net_access_point_id
   command:
   - api
   - UpdateNetAccessPoint
@@ -5354,8 +5430,8 @@ aliases:
     required: true
 - entity: user
   group: user
-  use: update user_id [user_id]...
-  short: alias for api UpdateUser --UserName user_id
+  use: update user_name [user_name]...
+  short: alias for api UpdateUser --UserName user_name
   command:
   - api
   - UpdateUser
@@ -5372,8 +5448,8 @@ aliases:
     alias_to: NewUserName
 - entity: usergroup
   group: usergroup
-  use: update usergroup_id [usergroup_id]...
-  short: alias for api UpdateUserGroup --UserGroupName usergroup_id
+  use: update user_group_name [user_group_name]...
+  short: alias for api UpdateUserGroup --UserGroupName user_group_name
   command:
   - api
   - UpdateUserGroup
@@ -5436,8 +5512,8 @@ aliases:
     alias_to: VmType
 - entity: vmgroup
   group: vmgroup
-  use: update vmgroup_id [vmgroup_id]...
-  short: alias for api UpdateVmGroup --VmGroupId vmgroup_id
+  use: update vm_group_id [vm_group_id]...
+  short: alias for api UpdateVmGroup --VmGroupId vm_group_id
   command:
   - api
   - UpdateVmGroup
@@ -5458,8 +5534,8 @@ aliases:
     alias_to: VmTemplateId
 - entity: vmtemplate
   group: vmtemplate
-  use: update vmtemplate_id [vmtemplate_id]...
-  short: alias for api UpdateVmTemplate --VmTemplateId vmtemplate_id
+  use: update vm_template_id [vm_template_id]...
+  short: alias for api UpdateVmTemplate --VmTemplateId vm_template_id
   command:
   - api
   - UpdateVmTemplate
@@ -5496,8 +5572,8 @@ aliases:
     alias_to: VolumeType
 - entity: vpnconnection
   group: vpnconnection
-  use: update vpnconnection_id [vpnconnection_id]...
-  short: alias for api UpdateVpnConnection --VpnConnectionId vpnconnection_id
+  use: update vpn_connection_id [vpn_connection_id]...
+  short: alias for api UpdateVpnConnection --VpnConnectionId vpn_connection_id
   command:
   - api
   - UpdateVpnConnection

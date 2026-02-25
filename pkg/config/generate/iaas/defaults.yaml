@@ -75,6 +75,8 @@ entities:
       content: UnitPrice
     - title: Price
       content: Price
+  exporttask:
+    primary: ExportTaskId
   flexiblegpu:
     aliases:
     - fgpu
@@ -91,6 +93,10 @@ entities:
       content: MaxRam
     - title: Generations
       content: Generations
+  imageexporttask:
+    primary: TaskId
+  listenerrule:
+    primary: ListenerRuleName
   loadbalancer:
     aliases:
     - lb
@@ -134,6 +140,28 @@ entities:
       content: ServiceName
     - title: IP Ranges
       content: IpRanges
+  policy:
+    no_aliases: true
+    columns:
+    - title: ORN
+      content: Orn
+    - title: Name
+      content: PolicyName
+    - title: Default Version
+      content: PolicyDefaultVersionId
+    - title: Resources Count
+      content: ResourcesCount
+    primary: PolicyOrn
+  policyversion:
+    no_aliases: true
+    columns:
+    - title: Version
+      content: VersionId
+    - title: Default
+      content: DefaultVersion
+    - title: Date
+      content: CreationDate
+    primary: PolicyOrn
   quota:
     explode: true
     columns:
@@ -149,6 +177,7 @@ entities:
       content: "map(Quotas, #?.MaxValue)"
     - title: Description
       content: "map(Quotas, #?.Description)"
+    primary: QuotaName
   snapshot:
     aliases:
     - snap
@@ -165,6 +194,8 @@ entities:
       content: VolumeSize
     - title: CreationDate
       content: CreationDate
+  snapshotexporttask:
+    primary: TaskId
   tag:
     columns:
     - title: Resource
@@ -175,6 +206,15 @@ entities:
       content: Key
     - title: Value
       content: Value
+  user:
+    columns:
+    - title: Name
+      content: UserName
+    - title: Email
+      content: UserEmail
+    primary: UserName
+  usergroup:
+    primary: UserGroupName
   vmshealth:
     columns:
     - title: VM
@@ -209,6 +249,8 @@ entities:
       content: "map(LinkedVolumes, #?.VmId)"
     - title: Device
       content: "map(LinkedVolumes, #?.DeviceName)"
+  volumeupdatetask:
+    primary: TaskId
 aliases:
 - entity: flexiblegpu
   group: flexiblegpu
@@ -315,6 +357,197 @@ aliases:
   - RejectNetPeering
   - --NetPeeringId
   - '%0'
+  - --output
+  - success
+- entity: policy
+  group: policy
+  use: list
+  aliases:
+  - ls
+  short: alias for api ReadPolicies
+  command:
+  - api
+  - ReadPolicies
+  - --output
+  - table
+  flags:
+  - name: only-linked
+    alias_to: Filters.OnlyLinked
+  - name: path-prefix
+    alias_to: Filters.PathPrefix
+  - name: scope
+    alias_to: Filters.Scope
+  - name: first-item
+    alias_to: FirstItem
+- entity: policy
+  group: policy
+  use: describe policy_orn
+  aliases:
+  - desc
+  short: alias for api ReadPolicy --PolicyOrn policy_orn
+  command:
+  - api
+  - ReadPolicy
+  - --PolicyOrn
+  - '%0'
+  - --output
+  - yaml
+- entity: policy
+  group: policy
+  use: create
+  short: alias for api CreatePolicy
+  command:
+  - api
+  - CreatePolicy
+  - --output
+  - yaml
+  flags:
+  - name: description
+    alias_to: Description
+  - name: document
+    alias_to: Document
+    required: true
+    type: file
+    usage: The file storing the policy document, corresponding to a JSON string that contains the policy.
+  - name: path
+    alias_to: Path
+  - name: name
+    alias_to: PolicyName
+    required: true
+- entity: policy
+  group: policy
+  use: delete policy_orn
+  aliases:
+  - del
+  short: alias for api DeletePolicy --PolicyOrn policy_orn
+  command:
+  - api
+  - DeletePolicy
+  - --PolicyOrn
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadPolicy
+    - --PolicyOrn
+    - '%0'
+    - --output
+    - table
+- entity: policy
+  group: policy
+  use: link policy_orn user_name
+  short: alias for api LinkPolicy --PolicyOrn policy_orn --UserName user_name
+  command:
+  - api
+  - LinkPolicy
+  - --PolicyOrn
+  - '%0'
+  - --UserName
+  - '%1'
+  - --output
+  - success
+- entity: policy
+  group: policy
+  use: unlink policy_orn user_name
+  short: alias for api UnlinkPolicy --PolicyOrn policy_orn --UserName user_name
+  command:
+  - api
+  - UnlinkPolicy
+  - --PolicyOrn
+  - '%0'
+  - --UserName
+  - '%1'
+  - --output
+  - success
+- entity: policyversion
+  group: policyversion
+  use: list policy_orn
+  aliases:
+  - ls
+  short: alias for api ReadPolicyVersions --PolicyOrn policy_orn
+  command:
+  - api
+  - ReadPolicyVersions
+  - --PolicyOrn
+  - '%0'
+  - --output
+  - table
+- entity: policyversion
+  group: policyversion
+  use: describe policy_orn version
+  aliases:
+  - desc
+  short: alias for api ReadPolicyVersion --PolicyOrn policy_orn --VersionId version
+  command:
+  - api
+  - ReadPolicyVersion
+  - --PolicyOrn
+  - '%0'
+  - --VersionId
+  - '%1'
+  - --output
+  - yaml
+- entity: policyversion
+  group: policyversion
+  use: create policy_orn
+  short: alias for api CreatePolicyVersion --PolicyOrn policy_orn
+  command:
+  - api
+  - CreatePolicyVersion
+  - --PolicyOrn
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: document
+    alias_to: Document
+    required: true
+    type: file
+    usage: The file storing the policy document, corresponding to a JSON string that contains the policy.
+  - name: default
+    alias_to: SetAsDefault
+- entity: policyversion
+  group: policyversion
+  use: delete policy_orn version
+  aliases:
+  - del
+  short: alias for api DeletePolicyVersion --PolicyOrn policy_orn --VersionId version
+  command:
+  - api
+  - DeletePolicyVersion
+  - --PolicyOrn
+  - '%0'
+  - --VersionId
+  - '%1'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - ReadPolicyVersion
+    - --PolicyOrn
+    - '%0'
+    - --VersionId
+    - '%1'
+    - --output
+    - table
+- entity: policyversion
+  group: policyversion
+  use: set-default policy_orn version
+  aliases:
+  - default
+  short: alias for api SetDefaultPolicyVersion --PolicyOrn policy_orn --VersionId version
+  command:
+  - api
+  - SetDefaultPolicyVersion
+  - --PolicyOrn
+  - '%0'
+  - --VersionId
+  - '%1'
   - --output
   - success
 - entity: volume

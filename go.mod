@@ -13,7 +13,6 @@ require (
 	github.com/getkin/kin-openapi v0.133.0
 	github.com/goccy/go-yaml v1.19.2
 	github.com/google/go-github/v82 v82.0.0
-	github.com/iancoleman/strcase v0.3.0
 	github.com/itchyny/gojq v0.12.18
 	github.com/mattn/go-isatty v0.0.20
 	github.com/minio/selfupdate v0.6.0

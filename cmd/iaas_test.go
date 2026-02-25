@@ -7,6 +7,8 @@ package cmd_test
 
 import (
 	"context"
+	"crypto/sha1"
+	"encoding/hex"
 	"encoding/json"
 	"os"
 	"os/exec"
@@ -226,4 +228,24 @@ func TestBase64(t *testing.T) {
 	runJSON(t, []string{"iaas", "keypair", "create", "--name", "test-b64", "--public-key", key + ".pub", "-o", "json", "-v"}, nil, &resp)
 	require.NotNil(t, resp.KeypairName)
 	assert.Equal(t, "test-b64", *resp.KeypairName)
+}
+
+func TestFile(t *testing.T) {
+	policyFile := filepath.Join(t.TempDir(), "test.json")
+	policy := `{
+  "Statement": [
+    {
+      "Action": ["api:ReadVolumes"],
+      "Effect": "Allow",
+      "Resource": ["*"]
+    }
+  ]
+}`
+	sum := sha1.Sum([]byte(policyFile))
+	name := hex.EncodeToString(sum[:])
+	err := os.WriteFile(policyFile, []byte(policy), 0600)
+	require.NoError(t, err)
+	var resp osc.Policy
+	runJSON(t, []string{"iaas", "policy", "create", "--document", policyFile, "--name", name, "-o", "json"}, nil, &resp)
+	_ = run(t, []string{"iaas", "policy", "delete", "-y", *resp.Orn}, nil)
 }

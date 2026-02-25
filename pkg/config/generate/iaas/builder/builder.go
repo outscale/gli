@@ -8,7 +8,6 @@ import (
 	"strings"
 
 	"dario.cat/mergo"
-	"github.com/iancoleman/strcase"
 	"github.com/outscale/octl/pkg/builder/flags"
 	"github.com/outscale/octl/pkg/builder/openapi"
 	"github.com/outscale/octl/pkg/config"
@@ -228,7 +227,7 @@ func (b *Builder) buildFlags(t reflect.Type, prefix string, ignore []string) con
 	ignore = append(ignore, "DryRun", "NextPageToken", "ResultsPerPage")
 	fs := flags.FlagSet{}
 	norm := func(s string) string {
-		return strcase.ToKebab(strings.ReplaceAll(s, "s.0", ""))
+		return lo.KebabCase(strings.ReplaceAll(s, "s.0", ""))
 	}
 	fbs := flags.NewBuilder(b.spec, flags.WithNormalize(norm))
 	fbs.Build(&fs, t, "", true)
@@ -284,28 +283,22 @@ func (b *Builder) buildReadAliases() error {
 	if found {
 		fType := filters.Type.Elem()
 		// Guess id filter
-		fids, found := fType.FieldByName(b.typeName + "Ids")
+		fids, found := fType.FieldByName(b.entity.Primary + "s")
 		if !found {
-			fids, found = fType.FieldByName(b.typeName + "Names")
+			fids, found = fType.FieldByName(b.entity.Primary)
 		}
 		if !found {
-			for i := range fType.NumField() {
-				field := fType.Field(i)
-				if strings.HasSuffix(field.Name, "Ids") && strings.HasSuffix(b.typeName, strings.TrimSuffix(field.Name, "Ids")) {
-					fids, found = field, true
-					b.typeNameList = append(b.typeNameList, strings.TrimSuffix(field.Name, "Ids"))
-					fmt.Println("type names", b.typeNameList)
-				}
-			}
+			return nil
 		}
 		if found {
 			fmt.Println("describe", b.typeName, "Filters."+fids.Name)
+			id := lo.SnakeCase(b.entity.Primary)
 			b.aliases = append(b.aliases, config.Alias{
 				Entity:  b.entityName,
-				Use:     "describe " + b.entityName + "_id [" + b.entityName + "_id]...",
+				Use:     "describe " + id + " [" + id + "]...",
 				Aliases: []string{"desc"},
 				Group:   b.entityName,
-				Short:   "alias for api " + b.m.Name + " --Filters." + fids.Name + " " + b.entityName + "_id",
+				Short:   "alias for api " + b.m.Name + " --Filters." + fids.Name + " " + id,
 				Command: []string{
 					"api",
 					b.m.Name,
@@ -351,11 +344,12 @@ func (b *Builder) buildUpdateAlias() error {
 	req := b.m.Type.In(2)
 	flags := b.buildFlags(req, "", []string{idField})
 	fmt.Println("update", b.typeName, idField, "flags", flags.Names())
+	id := lo.SnakeCase(b.entity.Primary)
 	b.aliases = append(b.aliases, config.Alias{
 		Entity: b.entityName,
-		Use:    "update " + b.entityName + "_id [" + b.entityName + "_id]...",
+		Use:    "update " + id + " [" + id + "]...",
 		Group:  b.entityName,
-		Short:  "alias for api " + b.m.Name + " --" + idField + " " + b.entityName + "_id",
+		Short:  "alias for api " + b.m.Name + " --" + idField + " " + id,
 		Command: []string{
 			"api",
 			b.m.Name,
@@ -372,16 +366,7 @@ func (b *Builder) guessIDFilter() (string, error) {
 	primary := b.cfg.Entities[b.entityName].Primary
 	fids, found := req.FieldByName(primary)
 	if !found {
-		fids, found = req.FieldByName(b.typeName + "Id")
-	}
-	if !found {
-		fids, found = req.FieldByName(b.typeName + "Ids")
-	}
-	if !found {
-		fids, found = req.FieldByName(b.typeName + "Name")
-	}
-	if !found {
-		fids, found = req.FieldByName(b.typeName + "Names")
+		fids, found = req.FieldByName(primary + "s")
 	}
 	if !found {
 		return "", ErrCantBuild
@@ -410,12 +395,13 @@ func (b *Builder) buildDeleteAlias() error {
 			})
 		}
 	}
+	id := lo.SnakeCase(b.entity.Primary)
 	b.aliases = append(b.aliases, config.Alias{
 		Entity:  b.entityName,
-		Use:     "delete " + b.entityName + "_id [" + b.entityName + "_id]...",
+		Use:     "delete " + id + " [" + id + "]...",
 		Aliases: []string{"del", "rm"},
 		Group:   b.entityName,
-		Short:   "alias for api " + b.m.Name + " --" + idField + " " + b.entityName + "_id",
+		Short:   "alias for api " + b.m.Name + " --" + idField + " " + id,
 		Command: []string{
 			"api",
 			b.m.Name,

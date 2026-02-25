@@ -97,7 +97,7 @@ type Flag struct {
 
 type Prompt struct {
 	Action         Action   `yaml:"action"`
-	DisplayCommand []string `yaml:"display"`
+	DisplayCommand []string `yaml:"display,omitempty"`
 }
 
 type Alias struct {
