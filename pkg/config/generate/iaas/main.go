@@ -6,14 +6,11 @@ SPDX-License-Identifier: BSD-3-Clause
 package main
 
 import (
-	"errors"
 	"os"
-	"reflect"
-	"strings"
 
 	"github.com/goccy/go-yaml"
 	"github.com/outscale/octl/pkg/config"
-	"github.com/outscale/octl/pkg/config/generate/iaas/builder"
+	"github.com/outscale/octl/pkg/config/generate/builder"
 	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
 )
@@ -36,50 +33,70 @@ func main() {
 	if base.Entities == nil {
 		base.Entities = map[string]config.Entity{}
 	}
+	if base.Spec.Calls == nil {
+		base.Spec.Calls = map[string]config.SpecCall{}
+	}
+	if base.Spec.Attributes == nil {
+		base.Spec.Attributes = map[string]config.SpecAttribute{}
+	}
+
+	cfg := builder.Config{
+		InputStructSuffix: "Request",
+		ReadFlagPrefix:    "Filters.",
+		SkipFlags:         []string{"DryRun", "NextPageToken", "ResultsPerPage"},
+		PriorityFields: []string{
+			"State",
+			"PublicIp",
+			"PrivateIp",
+			"NetId",
+			"SubnetId",
+			"IpRange",
+			"SubregionName",
+			"SubregionNames",
+			"Subregion",
+			"Subregions",
+			"Size",
+			"Iops",
+			"Email",
+		},
+		FlagOverrides: map[string]config.Flag{
+			"public-key": {
+				Type:  "base64File",
+				Usage: "The file storing the public key to import in your account, if you are importing an existing keypair.",
+			},
+			"user-data": {
+				Type:  "base64File",
+				Usage: "The file storing the data or script used to add a specific configuration to the VM (max size 500 KiB).",
+			},
+			"policy-document": {
+				Type:  "file",
+				Usage: "The file storing the policy document, corresponding to a JSON string that contains the policy.",
+			},
+			"document": {
+				Type:  "file",
+				Usage: "The file storing the policy document, corresponding to a JSON string that contains the policy.",
+			},
+		},
+		FlagReplaces: []string{
+			"block-device-mapping-bsu", "volume",
+			"block-device-mapping", "volume",
+		},
+		RequiredFromFieldPointer: true,
+	}
+
+	sb := builder.NewSpecBuilder(cfg)
+	sb.BuildSpec(&base, "github.com/outscale/osc-sdk-go/v3/pkg/osc")
+
 	var client *osc.Client
-	ct := reflect.TypeOf(client)
-	for i := range ct.NumMethod() {
-		m := ct.Method(i)
-		if strings.HasSuffix(m.Name, "Raw") || strings.HasSuffix(m.Name, "WithBody") || m.Type.NumOut() != 2 {
-			continue
-		}
-		if strings.HasPrefix(m.Name, "Read") {
-			build(&base, m, "Read")
-		}
-	}
-	for i := range ct.NumMethod() {
-		m := ct.Method(i)
-		if strings.HasSuffix(m.Name, "Raw") || strings.HasSuffix(m.Name, "WithBody") || m.Type.NumOut() != 2 {
-			continue
-		}
-		if strings.HasPrefix(m.Name, "Delete") {
-			build(&base, m, "Delete")
-		}
-		if strings.HasPrefix(m.Name, "Update") {
-			build(&base, m, "Update")
-		}
-		if strings.HasPrefix(m.Name, "Create") {
-			build(&base, m, "Create")
-		}
-	}
+	b := builder.NewClientBuilder(cfg)
+	b.BuildFor(&base, client)
+
 	fd, err := os.Create(dst) //nolint:gosec
 	if err != nil {
 		messages.ExitErr(err)
 	}
-	err = yaml.NewEncoder(fd, yaml.UseSingleQuote(true)).Encode(base)
+	err = yaml.NewEncoder(fd, yaml.UseSingleQuote(true), yaml.UseLiteralStyleIfMultiline(true)).Encode(base)
 	if err != nil {
 		messages.ExitErr(err)
-	}
-}
-
-func build(cfg *config.Config, m reflect.Method, prefix string) {
-	b := builder.New(cfg, m, prefix)
-	err := b.Build()
-	switch {
-	case errors.Is(err, builder.ErrCantBuild):
-	case err != nil:
-		messages.ExitErr(err)
-	default:
-		b.Commit()
 	}
 }

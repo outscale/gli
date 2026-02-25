@@ -1,0 +1,66 @@
+contents:
+  ListBuckets:
+    content: Buckets
+    entity: bucket
+    group: Bucket
+  ListObjectsV2:
+    content: Contents
+    entity: object
+    group: Object
+  ListObjectVersions:
+    content: Versions
+    entity: objectversion
+    group: Object
+  GetObject:
+    entity: objectmetadata
+    group: Object
+entities:
+  bucket:
+    columns:
+    - title: Name
+      content: Name
+    primary: Bucket
+  object:
+    columns:
+    - title: Key
+      content: Key
+    - title: Size
+      content: Size
+    - title: LastModified
+      content: LastModified
+    primary: Key
+aliases:
+- entity: object
+  use: describe key
+  alias_to: GetObject
+  aliases:
+  - desc
+  short: Display an object metadata, alias for api GetObject --Key key
+  command:
+  - api
+  - GetObject
+  - --Key
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  use: download key
+  alias_to: GetObject
+  aliases:
+  - down
+  short: Download an object to the standard output, alias for api GetObject --Key key
+  command:
+  - api
+  - GetObject
+  - --Key
+  - '%0'
+  - --output
+  - body
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true

@@ -39,13 +39,17 @@ func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client,
 	for j := 2; j < m.Type.NumIn()-1; j++ {
 		argType := m.Type.In(j)
 		if argType.Kind() == reflect.Struct || argType.Kind() == reflect.Pointer {
-			arg := reflect.New(argType)
+			arg := reflect.New(argType).Elem()
+			if argType.Kind() == reflect.Pointer {
+				debug.Println("allocating arg")
+				arg.Set(reflect.New(argType.Elem()))
+			}
 			err := ToStruct(cmd, arg, "")
 			if err != nil {
 				return err
 			}
 
-			callArgs = append(callArgs, arg.Elem())
+			callArgs = append(callArgs, arg)
 			continue
 		}
 
@@ -62,7 +66,9 @@ func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client,
 	}
 
 	c := cfg.Calls[cmd.Name()]
+	debug.Println("call", cmd.Name())
 	e := cfg.Entities[c.Entity]
+	debug.Println("entity", c.Entity)
 	_, out, err := output.NewFromFlags(cmd.Flags(), "", c.Content, e.Columns, e.Explode, e.Sort)
 	if err != nil {
 		return err
@@ -88,16 +94,23 @@ func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client,
 
 func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string) error {
 	fs := cmd.Flags()
-	debug.Println(reflect.Indirect(arg).Type().Name())
 	var err error
 	if tpl, ferr := cmd.Flags().GetString("template"); ferr == nil && tpl != "" {
 		var content []byte
 		content, err = os.ReadFile(tpl) //nolint:gosec
 		if err == nil {
-			err = json.Unmarshal(content, arg.Interface())
+			parg := arg
+			if arg.Kind() != reflect.Pointer {
+				parg = parg.Addr()
+			}
+			err = json.Unmarshal(content, parg.Interface())
 		}
 	} else if stdin, ok := Stdin(); ok {
-		err = json.Unmarshal(stdin, arg.Interface())
+		parg := arg
+		if arg.Kind() != reflect.Pointer {
+			parg = parg.Addr()
+		}
+		err = json.Unmarshal(stdin, parg.Interface())
 	}
 	if err == nil {
 		fs.VisitAll(func(f *pflag.Flag) {
@@ -109,11 +122,16 @@ func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string) error {
 			}
 		})
 	}
+	// apply hooks
+	if hooks, _ := fs.GetStringSlice("hooks"); len(hooks) > 0 {
+		applyHooks(arg, hooks)
+	}
+	debug.Println(fmt.Sprintf("ToStruct result: %+v", reflect.Indirect(arg).Interface()))
 	return err
 }
 
 func set(arg reflect.Value, fs *pflag.FlagSet, flag, path string) error {
-	if arg.Kind() == reflect.Ptr && arg.IsNil() {
+	if arg.Kind() == reflect.Pointer && arg.IsNil() {
 		debug.Println("allocating")
 		arg.Set(reflect.New(arg.Type().Elem()))
 	}
@@ -160,12 +178,16 @@ func setValue(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
 		default:
 			debug.Println("invalid slice kind", arg.Elem().Kind())
 		}
+	case reflect.Interface:
+		return setValueInterface(arg, fs, flag)
 	case reflect.Struct:
 		return setValueStruct(arg, fs, flag)
 	case reflect.Bool:
 		return setValueBool(arg, fs, flag)
 	case reflect.Int:
 		return setValueInt(arg, fs, flag)
+	case reflect.Int32:
+		return setValueInt32(arg, fs, flag)
 	case reflect.String:
 		return setValueString(arg, fs, flag)
 	}
@@ -217,6 +239,16 @@ func setValueIntSlice(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
 		narg.Index(i).Set(reflect.ValueOf(s).Convert(arg.Type().Elem()))
 	}
 	arg.Set(narg)
+	return nil
+}
+
+func setValueInt32(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
+	ss, err := fs.GetInt32(flag)
+	if err != nil {
+		return fmt.Errorf("invalid %s value: %w", flag, err)
+	}
+	debug.Println("setValueInt32", flag, ss)
+	arg.Set(reflect.ValueOf(ss).Convert(arg.Type()))
 	return nil
 }
 
@@ -310,5 +342,17 @@ func setValueStructSlice(arg reflect.Value, fs *pflag.FlagSet, flag string) erro
 		narg.Index(i).Set(reflect.ValueOf(v).Elem())
 	}
 	arg.Set(narg)
+	return nil
+}
+
+func setValueInterface(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
+	rv, ok := fs.Lookup(flag).Value.(*flags.ReaderValue)
+	if !ok {
+		debug.Println("unable to set interface value", flag)
+		return nil
+	}
+	debug.Println("setValueInterface", flag)
+	v, _ := rv.Value()
+	arg.Set(reflect.ValueOf(v))
 	return nil
 }

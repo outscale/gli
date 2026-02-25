@@ -255,6 +255,7 @@ aliases:
 - entity: flexiblegpu
   group: flexiblegpu
   use: catalog
+  alias_to: ReadFlexibleGpuCatalog
   short: alias for api ReadFlexibleGpuCatalog
   command:
   - api
@@ -263,20 +264,24 @@ aliases:
   - table
 - entity: flexiblegpu
   group: flexiblegpu
-  use: link fgpu_id vm_id
-  short: alias for api LinkFlexibleGpu --FlexibleGpuId fgpu_id --VmId vm_id
+  use: link fgpu_id
+  alias_to: LinkFlexibleGpu
+  short: alias for api LinkFlexibleGpu --FlexibleGpuId fgpu_id
   command:
   - api
   - LinkFlexibleGpu
   - --FlexibleGpuId
   - '%0'
-  - --VmId
-  - '%1'
   - --output
   - success
+  flags:
+  - name: vm_id
+    alias_to: VmId
+    required: true
 - entity: flexiblegpu
   group: flexiblegpu
   use: unlink fgpu_id
+  alias_to: UnlinkFlexibleGpu
   short: alias for api UnlinkFlexibleGpu --FlexibleGpuId fgpu_id
   command:
   - api
@@ -287,50 +292,59 @@ aliases:
   - success
 - entity: internetservice
   group: internetservice
-  use: link service_id net_id
-  short: alias for api LinkInternetService --InternetServiceId service_id --NetId net_id
+  use: link service_id
+  alias_to: LinkInternetService
+  short: alias for api LinkInternetService --InternetServiceId service_id
   command:
   - api
   - LinkInternetService
   - --InternetServiceId
   - '%0'
-  - --NetId
-  - '%1'
   - --output
   - success
+  flags:
+  - name: net_id
+    alias_to: NetId
+    required: true
 - entity: internetservice
   group: internetservice
   use: unlink service_id net_id
-  short: alias for api UnlinkInternetService --InternetServiceId service_id --NetId net_id
+  alias_to: UnlinkInternetService
+  short: alias for api UnlinkInternetService --InternetServiceId service_id
   command:
   - api
   - UnlinkInternetService
   - --InternetServiceId
   - '%0'
-  - --NetId
-  - '%1'
   - --output
   - success
+  flags:
+  - name: net_id
+    alias_to: NetId
+    required: true
 - entity: nic
   group: nic
-  use: link nic_id vm_id
-  short: alias for api LinkNic --NicId nic_id --VmId vm_id
+  use: link nic_id
+  alias_to: LinkNic
+  short: alias for api LinkNic --NicId nic_id
   command:
   - api
   - LinkNic
   - --NicId
   - '%0'
-  - --VmId
-  - '%1'
   - --output
   - yaml
   flags:
+  - name: vm_id
+    alias_to: VmId
+    required: true
   - name: device_number
     alias_to: DeviceNumber
     required: true
 - entity: netaccesspoint
   group: netaccesspoint
   use: services
+  alias_to: ReadNetAccessPointServices
   short: alias for api ReadNetAccessPointServices
   command:
   - api
@@ -340,6 +354,7 @@ aliases:
 - entity: netpeering
   group: netpeering
   use: accept netpeering_id
+  alias_to: AcceptNetPeering
   short: alias for api AcceptNetPeering --NetPeeringId netpeering_id
   command:
   - api
@@ -350,6 +365,7 @@ aliases:
   - success
 - entity: netpeering
   group: netpeering
+  alias_to: RejectNetPeering
   use: reject netpeering_id
   short: alias for api RejectNetPeering --NetPeeringId netpeering_id
   command:
@@ -364,6 +380,7 @@ aliases:
   use: list
   aliases:
   - ls
+  alias_to: ReadPolicies
   short: alias for api ReadPolicies
   command:
   - api
@@ -384,6 +401,7 @@ aliases:
   use: describe policy_orn
   aliases:
   - desc
+  alias_to: ReadPolicy
   short: alias for api ReadPolicy --PolicyOrn policy_orn
   command:
   - api
@@ -395,6 +413,7 @@ aliases:
 - entity: policy
   group: policy
   use: create
+  alias_to: CreatePolicy
   short: alias for api CreatePolicy
   command:
   - api
@@ -419,6 +438,7 @@ aliases:
   use: delete policy_orn
   aliases:
   - del
+  alias_to: DeletePolicy
   short: alias for api DeletePolicy --PolicyOrn policy_orn
   command:
   - api
@@ -438,33 +458,40 @@ aliases:
     - table
 - entity: policy
   group: policy
-  use: link policy_orn user_name
-  short: alias for api LinkPolicy --PolicyOrn policy_orn --UserName user_name
+  use: link policy_orn 
+  short: alias for api LinkPolicy --PolicyOrn policy_orn
+  alias_to: LinkPolicy
   command:
   - api
   - LinkPolicy
   - --PolicyOrn
   - '%0'
-  - --UserName
-  - '%1'
   - --output
   - success
+  flags:
+  - name: user_name
+    alias_to: UserName
+    required: true
 - entity: policy
   group: policy
   use: unlink policy_orn user_name
-  short: alias for api UnlinkPolicy --PolicyOrn policy_orn --UserName user_name
+  short: alias for api UnlinkPolicy --PolicyOrn policy_orn
+  alias_to: UnlinkPolicy
   command:
   - api
   - UnlinkPolicy
   - --PolicyOrn
   - '%0'
-  - --UserName
-  - '%1'
   - --output
   - success
+  flags:
+  - name: user_name
+    alias_to: UserName
+    required: true
 - entity: policyversion
   group: policyversion
   use: list policy_orn
+  alias_to: ReadPolicyVersions
   aliases:
   - ls
   short: alias for api ReadPolicyVersions --PolicyOrn policy_orn
@@ -480,19 +507,23 @@ aliases:
   use: describe policy_orn version
   aliases:
   - desc
-  short: alias for api ReadPolicyVersion --PolicyOrn policy_orn --VersionId version
+  alias_to: ReadPolicyVersion
+  short: alias for api ReadPolicyVersion --PolicyOrn policy_orn
   command:
   - api
   - ReadPolicyVersion
   - --PolicyOrn
   - '%0'
-  - --VersionId
-  - '%1'
   - --output
   - yaml
+  flags:
+  - name: version
+    alias_to: VersionId
+    required: true
 - entity: policyversion
   group: policyversion
   use: create policy_orn
+  alias_to: CreatePolicyVersion
   short: alias for api CreatePolicyVersion --PolicyOrn policy_orn
   command:
   - api
@@ -511,19 +542,22 @@ aliases:
     alias_to: SetAsDefault
 - entity: policyversion
   group: policyversion
-  use: delete policy_orn version
+  use: delete policy_orn
   aliases:
   - del
-  short: alias for api DeletePolicyVersion --PolicyOrn policy_orn --VersionId version
+  alias_to: DeletePolicyVersion
+  short: alias for api DeletePolicyVersion --PolicyOrn policy_orn
   command:
   - api
   - DeletePolicyVersion
   - --PolicyOrn
   - '%0'
-  - --VersionId
-  - '%1'
   - --output
   - none
+  flags:
+  - name: version
+    alias_to: VersionId
+    required: true
   prompt:
     action: delete
     display:
@@ -537,39 +571,45 @@ aliases:
     - table
 - entity: policyversion
   group: policyversion
-  use: set-default policy_orn version
+  use: set-default policy_orn
   aliases:
   - default
-  short: alias for api SetDefaultPolicyVersion --PolicyOrn policy_orn --VersionId version
+  alias_to: SetDefaultPolicyVersion
+  short: alias for api SetDefaultPolicyVersion --PolicyOrn policy_orn
   command:
   - api
   - SetDefaultPolicyVersion
   - --PolicyOrn
   - '%0'
-  - --VersionId
-  - '%1'
   - --output
   - success
+  flags:
+  - name: version
+    alias_to: VersionId
+    required: true
 - entity: volume
   group: volume
-  use: link volume_id vm_id
-  short: alias for api LinkVolume --VolumeId volume_id --VmId vm_id
+  use: link volume_id
+  alias_to: LinkVolume
+  short: alias for api LinkVolume --VolumeId volume_id
   command:
   - api
   - LinkVolume
   - --VolumeId
   - '%0'
-  - --VmId
-  - '%1'
   - --output
   - success
   flags:
+  - name: vm_id
+    alias_to: VmId
+    required: true
   - name: device_name
     alias_to: DeviceName
     required: true
 - entity: volume
   group: volume
   use: unlink volume_id
+  alias_to: UnlinkVolume
   short: alias for api UnlinkVolume --VolumeId link_volume_id
   command:
   - api
@@ -584,6 +624,7 @@ aliases:
 - entity: vm
   group: vm
   use: start vm_id [vm_id]...
+  alias_to: StartVms
   short: alias for api StartVms --VmIds vm_id
   command:
   - api
@@ -595,6 +636,7 @@ aliases:
 - entity: vm
   group: vm
   use: stop vm_id [vm_id]...
+  alias_to: StopVms
   short: alias for api StopVms --VmIds vm_id
   command:
   - api
@@ -606,6 +648,7 @@ aliases:
 - entity: vm
   group: vm
   use: readconsole vm_id
+  alias_to: ReadConsoleOutput
   short: alias for api ReadConsoleOutput --VmId vm_id
   command:
   - api

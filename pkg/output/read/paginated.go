@@ -52,8 +52,9 @@ func (p *Paginated) Read(ctx context.Context, fetch FetchPage) iter.Seq[result.R
 			if p.contentField != "" {
 				content = reflect.Indirect(content.FieldByName(p.contentField))
 			}
+			addPreview(content)
 			if content.Kind() != reflect.Slice {
-				debug.Println("not a slice")
+				debug.Println("not a slice", content.Kind())
 				_ = yield(result.Result{Ok: content.Interface(), SingleEntry: true})
 				return
 			}

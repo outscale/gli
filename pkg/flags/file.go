@@ -4,7 +4,7 @@ import (
 	"os"
 )
 
-// FileValue adapts File.File for use as a flag.
+// FileValue sets a flag with a file content.
 type FileValue struct {
 	content []byte
 }

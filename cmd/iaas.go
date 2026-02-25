@@ -21,16 +21,12 @@ import (
 // iaasCmd represents the iaascommand
 var iaasCmd = &cobra.Command{
 	Use:   "iaas",
-	Short: "IaaS management",
+	Short: "OUTSCALE IaaS management",
 }
 
 func init() {
 	rootCmd.AddCommand(iaasCmd)
-	spec, err := osc.GetSwagger()
-	if err != nil {
-		messages.Warn("Unable to load OpenAPI spec: %v", err)
-	}
-	b := builder.NewBuilder[osc.Client]("iaas", spec, "https://docs.outscale.com/api.html")
+	b := builder.NewBuilder[osc.Client]("iaas", "https://docs.outscale.com/api.html")
 	b.BuildAPI(iaasCmd, func(m reflect.Method) bool {
 		return m.Type.NumIn() == 4 && m.Type.NumOut() == 2 && !strings.HasSuffix(m.Name, "Raw")
 	}, oapi)
