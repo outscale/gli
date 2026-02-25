@@ -6,14 +6,11 @@ SPDX-License-Identifier: BSD-3-Clause
 package messages
 
 import (
-	"fmt"
 	"os"
-
-	"github.com/outscale/octl/pkg/style"
 )
 
 func Exit(code int, format string, a ...any) {
-	_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Error, "❌ "+format, a...))
+	Err(format, a...)
 	os.Exit(code)
 }
 

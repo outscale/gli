@@ -72,6 +72,8 @@ func TestIAASAPI(t *testing.T) {
 		runJSON(t, []string{"iaas", "api", "CreateSubnet", "--NetId", "{{.Net.NetId}}", "--IpRange", "10.0.1.0/24", "--SubregionName", subregion}, out, &resp)
 		require.NotNil(t, resp.Subnet)
 		assert.NotEmpty(t, resp.Subnet.SubnetId)
+		_ = run(t, []string{"iaas", "api", "DeleteSubnet", "--SubnetId", resp.Subnet.SubnetId}, nil)
+		_ = run(t, []string{"iaas", "api", "DeleteNet", "--NetId", resp.Subnet.NetId}, nil)
 	})
 	t.Run("JSON can be injected", func(t *testing.T) {
 		in := `{"VolumeType":"standard", "Size":4, "SubregionName": "` + volResp.SubregionName + `"}`
@@ -222,7 +224,7 @@ func TestIAASCRUD(t *testing.T) {
 
 func TestBase64(t *testing.T) {
 	key := filepath.Join(t.TempDir(), "test.pem")
-	err := exec.CommandContext(t.Context(), "ssh-keygen", "-t", "rsa", "-b", "4096", "-f", key).Run()
+	err := exec.CommandContext(t.Context(), "ssh-keygen", "-t", "rsa", "-b", "4096", "-f", key, "-P", "").Run()
 	require.NoError(t, err)
 	var resp osc.KeypairCreated
 	runJSON(t, []string{"iaas", "keypair", "create", "--name", "test-b64", "--public-key", key + ".pub", "-o", "json", "-v"}, nil, &resp)

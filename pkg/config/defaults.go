@@ -12,13 +12,15 @@ import (
 	"github.com/outscale/octl/pkg/messages"
 )
 
+//go:generate go run generate/storage/main.go generate/storage/defaults.yaml defaults_storage.yaml
+//go:embed defaults_storage.yaml
 //go:generate go run generate/iaas/main.go generate/iaas/defaults.yaml defaults_iaas.yaml
 //go:embed defaults_iaas.yaml
 var f embed.FS
 
 func Defaults() Configs {
 	defaults := Configs{}
-	for _, provider := range []string{"iaas"} {
+	for _, provider := range []string{"iaas", "storage"} {
 		data, _ := f.ReadFile("defaults_" + provider + ".yaml")
 		var cfg Config
 		err := yaml.Unmarshal(data, &cfg)

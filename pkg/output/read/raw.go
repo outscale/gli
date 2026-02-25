@@ -32,7 +32,9 @@ func (p *Raw) Read(ctx context.Context, fetch FetchPage) iter.Seq[result.Result]
 			_ = yield(result.Result{SingleEntry: true})
 			return
 		}
-		_ = yield(result.Result{Ok: vres[0].Interface(), SingleEntry: true})
+		res := vres[0]
+		addPreview(res)
+		_ = yield(result.Result{Ok: res.Interface(), SingleEntry: true})
 	}
 }
 

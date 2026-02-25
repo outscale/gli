@@ -24,7 +24,7 @@ func runAlias(provider string, a config.Alias, cmd *cobra.Command) func(cmd *cob
 	if a.Prompt != nil {
 		var display func(cmd *cobra.Command, args []string)
 		if len(a.Prompt.DisplayCommand) > 0 {
-			display = runFunc(provider, a.Prompt.DisplayCommand, nil, cmd, true)
+			display = runFunc(provider, a.Prompt.DisplayCommand, a.Prompt.Flags, cmd, true)
 		}
 		return confirm(a.Prompt.Action, display, run)
 	}
@@ -95,21 +95,23 @@ func runFunc(provider string, command []string, flags config.FlagSet, cmd *cobra
 		nargs[0] = "octl"
 		nargs[1] = provider
 		var userArgs []string
-		if !skipUserFlags {
-			cmd.Flags().VisitAll(func(f *pflag.Flag) {
-				if f.Changed {
-					newFlag := f.Name
-					if nf, found := flags.Get(newFlag); found {
-						newFlag = nf.AliasTo
-					}
-					if svalue, ok := f.Value.(pflag.SliceValue); ok {
-						userArgs = append(userArgs, "--"+newFlag+"="+strings.Join(svalue.GetSlice(), ","))
-					} else {
-						userArgs = append(userArgs, "--"+newFlag+"="+f.Value.String())
-					}
+		cmd.Flags().VisitAll(func(f *pflag.Flag) {
+			if f.Changed {
+				newFlag := f.Name
+				nf, found := flags.Get(newFlag)
+				switch {
+				case !found && skipUserFlags:
+					return
+				case found:
+					newFlag = nf.AliasTo
 				}
-			})
-		}
+				if svalue, ok := f.Value.(pflag.SliceValue); ok {
+					userArgs = append(userArgs, "--"+newFlag+"="+strings.Join(svalue.GetSlice(), ","))
+				} else {
+					userArgs = append(userArgs, "--"+newFlag+"="+f.Value.String())
+				}
+			}
+		})
 		skipnextvalue := false
 		consumed := -1
 		for _, arg := range command {

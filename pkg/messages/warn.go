@@ -11,6 +11,10 @@ func Info(format string, a ...any) {
 	_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Faint, format, a...))
 }
 
+func Err(format string, a ...any) {
+	_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Error, "❌ "+format, a...))
+}
+
 func Warn(format string, a ...any) {
 	_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Yellow, "⚠️ "+format, a...))
 }

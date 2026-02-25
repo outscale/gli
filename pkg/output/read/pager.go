@@ -31,6 +31,11 @@ func PagerFor(fetch FetchPage) Pager {
 			debug.Println("paging using NextPageToken")
 			return TokenPager{}
 		}
+		marker := arg.FieldByName("ContinuationToken")
+		if marker.IsValid() {
+			debug.Println("paging using ContinuationToken")
+			return OOSPager{}
+		}
 	}
 	debug.Println("no paging")
 	return NonePager{}

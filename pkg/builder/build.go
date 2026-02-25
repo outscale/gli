@@ -8,11 +8,10 @@ package builder
 import (
 	"reflect"
 
-	"github.com/getkin/kin-openapi/openapi3"
 	flagbuilder "github.com/outscale/octl/pkg/builder/flags"
-	"github.com/outscale/octl/pkg/builder/openapi"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
+	"github.com/outscale/octl/pkg/descriptions"
 	"github.com/outscale/octl/pkg/flags"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
@@ -22,14 +21,12 @@ var md = MarkdownRenderer()
 
 type Builder[T any] struct {
 	provider string
-	spec     *openapi.Spec
 	cfg      config.Config
 }
 
-func NewBuilder[T any](provider string, spec *openapi3.T, helpURL string) *Builder[T] {
+func NewBuilder[T any](provider string, helpURL string) *Builder[T] {
 	return &Builder[T]{
 		provider: provider,
-		spec:     openapi.NewSpec(spec, helpURL),
 		cfg:      config.For(provider),
 	}
 }
@@ -53,11 +50,8 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command) {
 			}
 			rootCmd.AddCommand(c)
 		}
-		var help string
-		if len(a.Command) >= 2 {
-			_, help, _, _ = b.spec.SummaryForOperation(a.Command[1])
-		}
-		help = "> *" + a.Short + "*\n\n" + help
+		spec := b.cfg.Spec.ForCall(a.AliasTo)
+		help := "> *" + a.Short + "*\n\n" + spec.Help
 		help, _ = md.Render(help)
 		cmd := &cobra.Command{
 			Use:     a.Use,
@@ -67,10 +61,10 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command) {
 			Run:     runAlias(b.provider, a, rootCmd),
 		}
 		c.AddCommand(cmd)
-		if apiCmd == nil || len(a.Command) < 2 {
+		if apiCmd == nil {
 			continue
 		}
-		callCmd, _ := lo.Find(apiCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == a.Command[1] })
+		callCmd, _ := lo.Find(apiCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == a.AliasTo })
 		if callCmd == nil {
 			continue
 		}
@@ -131,8 +125,11 @@ func (b *Builder[T]) BuildAPI(
 		if !methodFilter(m) {
 			continue
 		}
-		short, help, group, _ := b.spec.SummaryForOperation(m.Name)
-		if !apiCmd.ContainsGroup(group) {
+		spec := b.cfg.Spec.ForCall(m.Name)
+		help := spec.Help
+		short := descriptions.Summary(help)
+		group := b.cfg.Calls[m.Name].Group
+		if group != "" && !apiCmd.ContainsGroup(group) {
 			apiCmd.AddGroup(&cobra.Group{ID: group, Title: group})
 		}
 		nhelp, err := md.Render(help)
@@ -178,7 +175,7 @@ func (b *Builder[T]) BuildArgsAndFlags(cmd *cobra.Command, arg reflect.Type) {
 }
 
 func (b *Builder[T]) buildFlags(cmd *cobra.Command, arg reflect.Type) {
-	fbuilder := flagbuilder.NewBuilder(b.spec)
+	fbuilder := flagbuilder.NewBuilder(b.cfg)
 	fbs := flagbuilder.FlagSet{}
 	fbuilder.Build(&fbs, arg, "", true)
 	fs := cmd.Flags()
@@ -195,6 +192,12 @@ func (b *Builder[T]) buildFlags(cmd *cobra.Command, arg reflect.Type) {
 				fs.IntSlice(f.Name, nil, f.Help)
 			} else {
 				fs.Int(f.Name, 0, f.Help)
+			}
+		case reflect.Int32:
+			if f.Slice {
+				fs.Int32Slice(f.Name, nil, f.Help)
+			} else {
+				fs.Int32(f.Name, 0, f.Help)
 			}
 		case reflect.String:
 			switch {

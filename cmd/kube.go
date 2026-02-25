@@ -20,17 +20,14 @@ import (
 
 // oksCmd represents the kubecommand
 var oksCmd = &cobra.Command{
-	Use:   "kube",
-	Short: "Kubernetes as a Service (OKS) management",
+	Use:     "kube",
+	Short:   "OUTSCALE Kubernetes as a Service (OKS) management",
+	Aliases: []string{"oks"},
 }
 
 func init() {
 	rootCmd.AddCommand(oksCmd)
-	spec, err := oks.GetSwagger()
-	if err != nil {
-		messages.Warn("Unable to load OpenAPI spec: %v", err)
-	}
-	b := builder.NewBuilder[oks.Client]("kube", spec, "https://docs.outscale.com/oks.html")
+	b := builder.NewBuilder[oks.Client]("kube", "https://docs.outscale.com/oks.html")
 	b.BuildAPI(oksCmd, func(m reflect.Method) bool {
 		return m.Type.NumIn() >= 3 && m.Type.NumOut() == 2 && !strings.HasSuffix(m.Name, "Raw") &&
 			!strings.HasSuffix(m.Name, "WithBody")

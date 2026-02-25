@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/outscale/octl/pkg/config"
+	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/output/filter"
 	"github.com/outscale/octl/pkg/output/format"
 	"github.com/outscale/octl/pkg/output/read"
@@ -57,6 +58,8 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 		fmter = format.Base64{}
 	case "success":
 		fmter = format.Success{}
+	case "body":
+		fmter = format.Body{}
 	case "table":
 		fcols, _ := fs.GetString("columns")
 		if fcols != "" {
@@ -71,6 +74,7 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 			cols = slices.Clone(cols)
 		}
 		if len(cols) == 0 {
+			messages.Info("No columns for table, switching to YAML...")
 			fmter = format.YAML{}
 		} else {
 			fmter = format.Table{Columns: cols, Explode: explode, Sort: sort}

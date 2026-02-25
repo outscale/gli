@@ -87,6 +87,9 @@ func init() {
 	rootCmd.PersistentFlags().Bool("no-upgrade", false, "do not check for new versions")
 	rootCmd.PersistentFlags().BoolP("yes", "y", false, "answer yes to all prompts")
 
+	rootCmd.PersistentFlags().StringSlice("hooks", nil, "")
+	_ = rootCmd.PersistentFlags().MarkHidden("hooks")
+
 	_ = rootCmd.RegisterFlagCompletionFunc("output", func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
 		return []cobra.Completion{"raw", "json", "yaml", "table", "none", "base64"}, cobra.ShellCompDirectiveDefault
 	})

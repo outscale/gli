@@ -89,7 +89,7 @@ func (fs FlagSet) Names() []string {
 
 type Flag struct {
 	Name     string `yaml:"name"`
-	AliasTo  string `yaml:"alias_to"`
+	AliasTo  string `yaml:"alias_to,omitempty"`
 	Required bool   `yaml:"required,omitempty"`
 	Type     string `yaml:"type,omitempty"`
 	Usage    string `yaml:"usage,omitempty"`
@@ -98,14 +98,15 @@ type Flag struct {
 type Prompt struct {
 	Action         Action   `yaml:"action"`
 	DisplayCommand []string `yaml:"display,omitempty"`
+	Flags          FlagSet  `yaml:"flags,omitempty"`
 }
 
 type Alias struct {
 	Entity  string   `yaml:"entity"`
-	Group   string   `yaml:"group"`
 	Use     string   `yaml:"use"`
+	AliasTo string   `yaml:"alias_to,omitempty"`
 	Aliases []string `yaml:"aliases,omitempty"`
-	Short   string   `yaml:"short"`
+	Short   string   `yaml:"short,omitempty"`
 	Command []string `yaml:"command"`
 	Flags   FlagSet  `yaml:"flags,omitempty"`
 	Prompt  *Prompt  `yaml:"prompt,omitempty"`
@@ -117,8 +118,43 @@ type FlagConfig struct {
 }
 
 type Call struct {
-	Content string `yaml:"content"`
-	Entity  string `yaml:"entity"`
+	Content string  `yaml:"content,omitempty"`
+	Entity  string  `yaml:"entity,omitempty"`
+	Group   string  `yaml:"group,omitempty"`
+	AliasTo string  `yaml:"alias_to,omitempty"`
+	Short   string  `yaml:"short,omitempty"`
+	Flags   FlagSet `yaml:"flags,omitempty"`
+}
+
+type SpecCall struct {
+	Help string `yaml:"help,omitempty"`
+}
+
+type SpecAttribute struct {
+	Help     string `yaml:"help,omitempty"`
+	Required bool   `yaml:"required,omitempty"`
+}
+type Spec struct {
+	Calls      map[string]SpecCall      `yaml:"calls,omitempty"`
+	Attributes map[string]SpecAttribute `yaml:"attributes,omitempty"`
+}
+
+func (s Spec) ForCall(name string) SpecCall {
+	if s.Calls == nil {
+		return SpecCall{}
+	}
+	return s.Calls[name]
+}
+
+func (s Spec) ForAttribute(call, name string) SpecAttribute {
+	if s.Attributes == nil {
+		return SpecAttribute{}
+	}
+	return s.Attributes[call+"."+name]
+}
+
+func (s *Spec) SetAttribute(call, name string, spec SpecAttribute) {
+	s.Attributes[call+"."+name] = spec
 }
 
 type Config struct {
@@ -126,6 +162,7 @@ type Config struct {
 	Calls          map[string]Call   `yaml:"contents,omitempty"`
 	Entities       map[string]Entity `yaml:"entities,omitempty"`
 	Aliases        []Alias           `yaml:"aliases,omitempty"`
+	Spec           Spec              `yaml:"spec,omitzero"`
 }
 
 type Configs map[string]Config
