@@ -3,6 +3,12 @@
 Download the latest binary from:
 - <https://github.com/outscale/octl/releases>
 
+## Signature Verification
+
+All release binaries are cryptographically signed using Sigstore.
+
+- For verification details, see [signature-verification.md](signature-verification.md)
+
 ## Shell completion
 
 ### Bash

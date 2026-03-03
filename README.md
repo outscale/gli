@@ -98,6 +98,7 @@ More examples:
 - Installation + completion: [docs/installation.md](./docs/installation.md)
 - Configuration: [docs/configuration.md](./docs/configuration.md)
 - Usage overview: [docs/usage/overview.md](./docs/usage/overview.md)
+- Signature verification: [docs/signature-verification.md](./docs/signature-verification.md)
 - Troubleshooting: [docs/troubleshooting.md](./docs/troubleshooting.md)
 - Command reference: [docs/reference/commands.md](./docs/reference/commands.md)
 

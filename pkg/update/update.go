@@ -6,10 +6,14 @@ SPDX-License-Identifier: BSD-3-Clause
 package update
 
 import (
+	"bufio"
+	"bytes"
 	"context"
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"regexp"
 	"runtime"
@@ -21,6 +25,10 @@ import (
 	"github.com/outscale/octl/pkg/markdown"
 	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/version"
+	"github.com/sigstore/sigstore-go/pkg/bundle"
+	"github.com/sigstore/sigstore-go/pkg/root"
+	"github.com/sigstore/sigstore-go/pkg/tuf"
+	"github.com/sigstore/sigstore-go/pkg/verify"
 	"golang.org/x/mod/semver"
 )
 
@@ -35,6 +43,7 @@ type RepositoryRelease struct {
 type ReleaseAsset struct {
 	Name               string `json:"name,omitempty"`
 	BrowserDownloadURL string `json:"browser_download_url,omitempty"`
+	Digest             string `json:"digest,omitempty"`
 }
 
 const ghURL = "https://api.github.com/repos/outscale/octl/releases/latest"
@@ -73,7 +82,44 @@ func LatestRelease(ctx context.Context) string {
 	return rel.TagName
 }
 
-func Update(ctx context.Context) error {
+type UpdatePolicy struct {
+	ignoreSignature bool
+	ignoreDigest    bool
+}
+
+type UpdateOption func(*UpdatePolicy)
+
+// WithIgnoreSignature creates an option to ignore signature verification during update.
+func WithIgnoreSignature() UpdateOption {
+	return func(p *UpdatePolicy) {
+		p.ignoreSignature = true
+	}
+}
+
+// WithIgnoreDigest creates
+func WithIgnoreDigest() UpdateOption {
+	return func(p *UpdatePolicy) {
+		p.ignoreDigest = true
+	}
+}
+
+func (up *UpdatePolicy) Check() error {
+	if !up.ignoreSignature && up.ignoreDigest {
+		return errors.New("cannot validate signature without digest")
+	}
+	return nil
+}
+
+func Update(ctx context.Context, options ...UpdateOption) error {
+	var policy UpdatePolicy
+	for _, o := range options {
+		o(&policy)
+	}
+
+	if err := policy.Check(); err != nil {
+		return err
+	}
+
 	rel := latestRelease(ctx)
 	if rel == nil {
 		return errors.New("no new version found")
@@ -94,15 +140,47 @@ func Update(ctx context.Context) error {
 	if runtime.GOOS == "windows" {
 		suffix += ".exe"
 	}
+
+	var assetToDownload, checksums, bundle *ReleaseAsset
 	for _, a := range rel.Assets {
 		if a.Name == "" || a.BrowserDownloadURL == "" {
 			continue
 		}
 		if strings.HasSuffix(strings.ToLower(a.Name), suffix) {
-			debug.Println("found", rel.TagName, a.BrowserDownloadURL)
-			return update(ctx, rel.TagName, a, changelog(version.Version, rel.TagName, rel.Body))
+			debug.Println("found asset", a.Name, a.BrowserDownloadURL)
+			assetToDownload = &a
+		} else if strings.HasSuffix(strings.ToLower(a.Name), ".sigstore.json") {
+			debug.Println("found bundle", a.Name, a.BrowserDownloadURL)
+			bundle = &a
+		} else if strings.HasSuffix(strings.ToLower(a.Name), "_checksums.txt") {
+			debug.Println("found checksums", a.Name, a.BrowserDownloadURL)
+			checksums = &a
 		}
 	}
+
+	if bundle == nil || checksums == nil || assetToDownload == nil {
+		return fmt.Errorf("could not find required assets in release %s", rel.TagName)
+	}
+
+	b, err := downloadBundle(ctx, *bundle)
+	if err != nil {
+		return err
+	}
+
+	cs, err := downloadAndVerifyChecksum(ctx, *checksums, b)
+	if err != nil {
+		return err
+	}
+
+	digest, err := findAndCheckAssetDigest(*assetToDownload, cs)
+	if err != nil {
+		return err
+	}
+
+	if err := update(ctx, rel.TagName, *assetToDownload, digest, changelog(version.Version, rel.TagName, rel.Body)); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -117,22 +195,56 @@ func changelog(from, to string, body string) string {
 	return txt + full
 }
 
-func update(ctx context.Context, v string, a ReleaseAsset, changelog string) error {
+func findAndCheckAssetDigest(a ReleaseAsset, cs map[string]string) (string, error) {
+	digest, ok := cs[a.Name]
+	if !ok {
+		return "", fmt.Errorf("could not find digest for asset %s in checksums", a.Name)
+	}
+
+	if a.Digest == "" {
+		return "", fmt.Errorf("asset %s has no digest set, cannot verify", a.Name)
+	}
+
+	if !strings.HasSuffix(a.Digest, digest) {
+		return "", fmt.Errorf("asset digest mismatch: expected %s, got %s", digest, a.Digest)
+	}
+
+	return digest, nil
+}
+
+func downloadFile(ctx context.Context, a ReleaseAsset) (io.ReadCloser, error) {
 	fmt.Println("⬇️ Downloading file", a.Name)
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, a.BrowserDownloadURL, nil)
 	if err != nil {
-		return fmt.Errorf("http get: %w", err)
+		return nil, fmt.Errorf("http get: %w", err)
 	}
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return fmt.Errorf("http get: %w", err)
+		return nil, fmt.Errorf("http get: %w", err)
 	}
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("http get: invalid status code %d", resp.StatusCode)
+		resp.Body.Close() //nolint
+		return nil, fmt.Errorf("http get: invalid status code %d", resp.StatusCode)
 	}
-	defer resp.Body.Close() //nolint
+	return resp.Body, nil
+}
+
+func update(ctx context.Context, v string, a ReleaseAsset, digest, changelog string) error {
+	resp, err := downloadFile(ctx, a)
+	if err != nil {
+		return err
+	}
+
+	h, err := hex.DecodeString(digest)
+	if err != nil {
+		return fmt.Errorf("invalid digest: %w", err)
+	}
+
+	defer resp.Close() //nolint
 	fmt.Println("📦 Updating binary to", v)
-	err = selfupdate.Apply(resp.Body, selfupdate.Options{})
+	err = selfupdate.Apply(resp, selfupdate.Options{
+		Checksum: h,
+	})
 	if err != nil {
 		return fmt.Errorf("apply update: %w", err)
 	}
@@ -147,5 +259,98 @@ func update(ctx context.Context, v string, a ReleaseAsset, changelog string) err
 			fmt.Println(changelog)
 		}
 	}
+	return nil
+}
+
+func downloadBundle(ctx context.Context, a ReleaseAsset) (*bundle.Bundle, error) {
+	resp, err := downloadFile(ctx, a)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Close() //nolint
+
+	buf, err := io.ReadAll(resp)
+	if err != nil {
+		return nil, fmt.Errorf("could not read bundle: %w", err)
+	}
+
+	var bundle bundle.Bundle
+	if err := bundle.UnmarshalJSON(buf); err != nil {
+		return nil, fmt.Errorf("could not unmarshal bundle: %w", err)
+	}
+
+	return &bundle, nil
+}
+
+func downloadAndVerifyChecksum(ctx context.Context, a ReleaseAsset, b *bundle.Bundle) (map[string]string, error) {
+	checksums := make(map[string]string)
+	resp, err := downloadFile(ctx, a)
+	if err != nil {
+		return checksums, err
+	}
+	defer resp.Close() //nolint
+
+	buf, err := io.ReadAll(resp)
+	if err != nil {
+		return checksums, fmt.Errorf("could not read checksums: %w", err)
+	}
+	if b != nil {
+		if err := checkBundle(bytes.NewBuffer(buf), b); err != nil {
+			return checksums, fmt.Errorf("could not verify singuature: %w", err)
+		}
+	}
+	scanner := bufio.NewScanner(bytes.NewBuffer(buf))
+	for scanner.Scan() {
+		line := scanner.Text()
+		hash, fileName, found := strings.Cut(line, "  ")
+		if !found {
+			continue
+		}
+
+		checksums[fileName] = hash
+	}
+	if err := scanner.Err(); err != nil {
+		return checksums, fmt.Errorf("could not scan checksums: %w", err)
+	}
+
+	return checksums, nil
+}
+
+func checkBundle(a *bytes.Buffer, b *bundle.Bundle) error {
+	opts := tuf.DefaultOptions()
+	client, err := tuf.New(opts)
+	if err != nil {
+		return err
+	}
+
+	trustedMaterial, err := root.GetTrustedRoot(client)
+	if err != nil {
+		return err
+	}
+
+	sev, err := verify.NewVerifier(trustedMaterial,
+		verify.WithSignedCertificateTimestamps(1),
+		verify.WithTransparencyLog(1),
+		verify.WithObserverTimestamps(1))
+	if err != nil {
+		return err
+	}
+
+	certID, err := verify.NewShortCertificateIdentity(
+		"https://token.actions.githubusercontent.com",
+		"",
+		"",
+		"^https://github.com/outscale/octl/",
+	)
+	if err != nil {
+		return err
+	}
+
+	_, err = sev.Verify(b, verify.NewPolicy(verify.WithArtifact(a), verify.WithCertificateIdentity(certID)))
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("🔐 Signature verified successfully")
 	return nil
 }

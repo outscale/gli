@@ -18,7 +18,16 @@ var updateCmd = &cobra.Command{
 	Use:   "update",
 	Short: "Update octl to the latest version",
 	Run: func(cmd *cobra.Command, args []string) {
-		err := update.Update(cmd.Context())
+		var opts []update.UpdateOption
+
+		if cmd.Flag("ignore-signature-verification").Value.String() == "true" {
+			opts = append(opts, update.WithIgnoreSignature())
+		}
+		if cmd.Flag("ignore-digest-verification").Value.String() == "true" {
+			opts = append(opts, update.WithIgnoreDigest())
+		}
+
+		err := update.Update(cmd.Context(), opts...)
 		if err != nil {
 			messages.ExitErr(fmt.Errorf("unable to update: %w", err))
 		}
@@ -27,4 +36,7 @@ var updateCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(updateCmd)
+
+	updateCmd.Flags().Bool("ignore-signature-verification", true, "Ignore signature verification for the update")
+	updateCmd.Flags().Bool("ignore-digest-verification", false, "Ignore digest verification for the update")
 }
