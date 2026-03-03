@@ -16,6 +16,7 @@ require (
 	github.com/expr-lang/expr v1.17.8
 	github.com/gabriel-vasile/mimetype v1.4.13
 	github.com/gobuffalo/flect v1.0.3
+	github.com/goccy/go-json v0.10.2
 	github.com/goccy/go-yaml v1.19.3-0.20260226144344-f167b933f7d0
 	github.com/google/go-github/v82 v82.0.0
 	github.com/itchyny/gojq v0.12.18

@@ -12,8 +12,8 @@ import (
 	"os"
 	"slices"
 	"strings"
-	"text/template"
 
+	"github.com/itchyny/gojq"
 	"github.com/mattn/go-isatty"
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/messages"
@@ -45,29 +45,59 @@ func CheckStdin() error {
 	}) {
 		return nil
 	}
-	debug.Println("templating args")
-	var input map[string]any
+	messages.Info("Using standard input for command-line templating")
+	var input any
 	err = json.Unmarshal(stdin, &input)
 	if err != nil {
 		return fmt.Errorf("input is not a JSON object: %w", err)
 	}
+	flag := false
 	for i, arg := range os.Args {
+		if strings.HasPrefix(arg, "--") {
+			flag = true
+			continue
+		}
 		if !strings.HasPrefix(arg, "{{") {
 			continue
 		}
-		tmpl, err := template.New("tpl").Parse(arg)
+
+		j, err := gojq.Parse(strings.TrimPrefix(strings.TrimSuffix(arg, "}}"), "{{"))
 		if err != nil {
 			messages.Warn("unable to parse argument", arg)
 			continue
 		}
-		w := &strings.Builder{}
-		err = tmpl.Execute(w, input)
-		if err != nil {
-			messages.Warn("unable to get value for argument", arg)
-			continue
+
+		var strs []string
+		iter := j.Run(input)
+		for {
+			v, ok := iter.Next()
+			if !ok {
+				break
+			}
+			if err, ok := v.(error); ok {
+				if err, ok := err.(*gojq.HaltError); ok && err.Value() == nil {
+					break
+				}
+			}
+			switch v := v.(type) {
+			case string:
+				strs = append(strs, v)
+			default:
+				strs = append(strs, fmt.Sprintf("%v", v))
+			}
 		}
-		debug.Println("replacing", arg, "with", w.String())
-		os.Args[i] = w.String()
+		newArgs := slices.Clone(os.Args[:i])
+		if flag {
+			replace := strings.Join(strs, ",")
+			newArgs = append(newArgs, replace)
+			debug.Println("replacing", arg, "with", replace)
+		} else {
+			debug.Println("replacing", arg, "with", strs)
+			newArgs = append(newArgs, strs...)
+		}
+		newArgs = append(newArgs, os.Args[i+1:]...)
+		os.Args = newArgs
+		flag = false
 	}
 	debug.Println("new args", os.Args)
 	return nil

@@ -6,18 +6,21 @@ SPDX-License-Identifier: BSD-3-Clause
 package runner
 
 import (
-	"encoding/json"
+	"bytes"
 	"errors"
 	"fmt"
+	"io"
 	"os"
 	"reflect"
 	"strconv"
 	"strings"
 	"time"
 
+	"github.com/goccy/go-json"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/flags"
+	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/output"
 	"github.com/outscale/octl/pkg/output/read"
 	"github.com/outscale/octl/pkg/style"
@@ -94,23 +97,36 @@ func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client,
 
 func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string) error {
 	fs := cmd.Flags()
-	var err error
+	var (
+		err    error
+		r      io.Reader
+		source string
+	)
 	if tpl, ferr := cmd.Flags().GetString("template"); ferr == nil && tpl != "" {
-		var content []byte
-		content, err = os.ReadFile(tpl) //nolint:gosec
+		var rc io.ReadCloser
+		rc, err = os.Open(tpl) //nolint:gosec
 		if err == nil {
-			parg := arg
-			if arg.Kind() != reflect.Pointer {
-				parg = parg.Addr()
-			}
-			err = json.Unmarshal(content, parg.Interface())
+			defer rc.Close() //nolint
 		}
+		r = rc
+		source = "template file"
 	} else if stdin, ok := Stdin(); ok {
+		r = bytes.NewReader(stdin)
+		source = "standard input"
+	}
+	if r != nil {
 		parg := arg
 		if arg.Kind() != reflect.Pointer {
 			parg = parg.Addr()
 		}
-		err = json.Unmarshal(stdin, parg.Interface())
+		dec := json.NewDecoder(r)
+		dec.DisallowUnknownFields()
+		err := dec.DecodeContext(cmd.Context(), parg.Interface())
+		if err == nil {
+			messages.Info("Using %s as request payload", source)
+		} else {
+			debug.Println("unable to inject", source, err)
+		}
 	}
 	if err == nil {
 		fs.VisitAll(func(f *pflag.Flag) {
