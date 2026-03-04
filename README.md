@@ -37,10 +37,15 @@ It supports:
 - direct flags to all request fields (no JSON required),
 - autocompletion support for all API calls, flags, and flag values,
 - jq-style output filters,
+- command chaining,
 - syntax highlighting of output,
 - auto-update to the latest version.
 
-It currently focuses on the IaaS API, but other OUTSCALE APIs are planned.
+It manages:
+- IaaS resources (nets, vms, ...),
+- OOS storage (buckets, objects).
+
+And includes a preliminary support for OKS Kubernetes clusters.
 
 ---
 
