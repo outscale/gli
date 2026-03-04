@@ -1,4 +1,4 @@
-package builder
+package markdown
 
 import (
 	"os"
@@ -13,7 +13,7 @@ type Renderer interface {
 	Render(string) (string, error)
 }
 
-func MarkdownRenderer() Renderer {
+func NewRenderer() Renderer {
 	termWidth, _, _ := term.GetSize(os.Stdout.Fd())
 	if termWidth > 0 {
 		termWidth = min(120, termWidth)

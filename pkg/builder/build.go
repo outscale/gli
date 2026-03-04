@@ -13,11 +13,12 @@ import (
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/descriptions"
 	"github.com/outscale/octl/pkg/flags"
+	"github.com/outscale/octl/pkg/markdown"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 )
 
-var md = MarkdownRenderer()
+var md = markdown.NewRenderer()
 
 type Builder[T any] struct {
 	provider string

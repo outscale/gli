@@ -10,12 +10,14 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"regexp"
 	"runtime"
 	"strings"
 
 	"github.com/google/go-github/v82/github"
 	"github.com/minio/selfupdate"
 	"github.com/outscale/octl/pkg/debug"
+	"github.com/outscale/octl/pkg/markdown"
 	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/version"
 	"golang.org/x/mod/semver"
@@ -72,13 +74,24 @@ func Update(ctx context.Context) error {
 		}
 		if strings.HasSuffix(strings.ToLower(*a.Name), suffix) {
 			debug.Println("found", a.GetName(), a.GetBrowserDownloadURL())
-			return update(ctx, rel.GetTagName(), a)
+			return update(ctx, rel.GetTagName(), a, changelog(version.Version, rel.GetTagName(), rel.Body))
 		}
 	}
 	return nil
 }
 
-func update(ctx context.Context, v string, a *github.ReleaseAsset) error {
+var reFullChangelog = regexp.MustCompile(`\**Full Changelog.*`)
+
+func changelog(from, to string, body *string) string {
+	full := fmt.Sprintf("**Full Changelog**: https://github.com/outscale/octl/compare/%s...%s", from, to)
+	if body == nil {
+		return full
+	}
+	txt := reFullChangelog.ReplaceAllString(*body, "")
+	return txt + full
+}
+
+func update(ctx context.Context, v string, a *github.ReleaseAsset, changelog string) error {
 	fmt.Println("⬇️ Downloading file", a.GetName())
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, a.GetBrowserDownloadURL(), nil)
 	if err != nil {
@@ -98,5 +111,15 @@ func update(ctx context.Context, v string, a *github.ReleaseAsset) error {
 		return fmt.Errorf("apply update: %w", err)
 	}
 	fmt.Println("✅ Done")
+	if changelog != "" {
+		fmt.Println("📝 Changes ⤵")
+		md := markdown.NewRenderer()
+		out, err := md.Render(changelog)
+		if err == nil {
+			fmt.Println(out)
+		} else {
+			fmt.Println(changelog)
+		}
+	}
 	return nil
 }
