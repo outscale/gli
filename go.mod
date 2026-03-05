@@ -16,13 +16,10 @@ require (
 	github.com/expr-lang/expr v1.17.8
 	github.com/gabriel-vasile/mimetype v1.4.13
 	github.com/gobuffalo/flect v1.0.3
-	github.com/goccy/go-json v0.10.2
 	github.com/goccy/go-yaml v1.19.3-0.20260226144344-f167b933f7d0
-	github.com/google/go-github/v82 v82.0.0
 	github.com/itchyny/gojq v0.12.18
 	github.com/mattn/go-isatty v0.0.20
 	github.com/minio/selfupdate v0.6.0
-	github.com/oasdiff/yaml v0.0.0-20250309154309-f31be36b4037
 	github.com/outscale/goutils/sdk v0.0.0-20260127143749-d95db5597c97
 	github.com/outscale/osc-sdk-go/v3 v3.0.0-beta.4.0.20260303103426-ff874bd68fce
 	github.com/samber/lo v1.52.0
@@ -78,7 +75,7 @@ require (
 	github.com/getkin/kin-openapi v0.133.0 // indirect
 	github.com/go-openapi/jsonpointer v0.21.0 // indirect
 	github.com/go-openapi/swag v0.23.0 // indirect
-	github.com/google/go-querystring v1.2.0 // indirect
+	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/css v1.0.1 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
@@ -99,6 +96,7 @@ require (
 	github.com/muesli/reflow v0.3.0 // indirect
 	github.com/muesli/termenv v0.16.0 // indirect
 	github.com/oapi-codegen/runtime v1.1.2 // indirect
+	github.com/oasdiff/yaml v0.0.0-20250309154309-f31be36b4037 // indirect
 	github.com/oasdiff/yaml3 v0.0.0-20250309153720-d2182401db90 // indirect
 	github.com/perimeterx/marshmallow v1.1.5 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect

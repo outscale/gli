@@ -7,14 +7,15 @@ package update
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
 	"regexp"
 	"runtime"
 	"strings"
+	"time"
 
-	"github.com/google/go-github/v82/github"
 	"github.com/minio/selfupdate"
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/markdown"
@@ -23,36 +24,61 @@ import (
 	"golang.org/x/mod/semver"
 )
 
-func latestRelease(ctx context.Context) (*github.RepositoryRelease, error) {
-	client := github.NewClient(nil)
-	rel, _, err := client.Repositories.GetLatestRelease(ctx, "outscale", "octl")
-	if err != nil {
-		debug.Println("github error", err)
-		return nil, nil
-	}
-	if rel == nil || rel.TagName == nil {
-		return nil, nil
-	}
-	return rel, nil
+// RepositoryRelease represents a GitHub release in a repository.
+type RepositoryRelease struct {
+	TagName string         `json:"tag_name,omitempty"`
+	Body    string         `json:"body,omitempty"`
+	Assets  []ReleaseAsset `json:"assets,omitempty"`
 }
 
-func LatestRelease(ctx context.Context) (string, error) {
-	rel, err := latestRelease(ctx)
-	if rel == nil || err != nil {
-		return "", err
+// ReleaseAsset represents a GitHub release asset in a repository.
+type ReleaseAsset struct {
+	Name               string `json:"name,omitempty"`
+	BrowserDownloadURL string `json:"browser_download_url,omitempty"`
+}
+
+const ghURL = "https://api.github.com/repos/outscale/octl/releases/latest"
+
+func latestRelease(ctx context.Context) *RepositoryRelease {
+	ctx, cancel := context.WithTimeout(ctx, 2*time.Second)
+	defer cancel()
+	req, _ := http.NewRequestWithContext(ctx, http.MethodGet, ghURL, nil)
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		debug.Println("github error", err)
+		return nil
 	}
-	return rel.GetTagName(), nil
+	defer resp.Body.Close() //nolint
+	if resp.StatusCode != http.StatusOK {
+		debug.Println("github error", resp.Status)
+		return nil
+	}
+	rel := &RepositoryRelease{}
+	err = json.NewDecoder(resp.Body).Decode(rel)
+	if err != nil {
+		debug.Println("github decoding error", err)
+		return nil
+	}
+	if rel.TagName == "" {
+		return nil
+	}
+	return rel
+}
+
+func LatestRelease(ctx context.Context) string {
+	rel := latestRelease(ctx)
+	if rel == nil {
+		return ""
+	}
+	return rel.TagName
 }
 
 func Update(ctx context.Context) error {
-	rel, err := latestRelease(ctx)
-	if err != nil {
-		return err
-	}
+	rel := latestRelease(ctx)
 	if rel == nil {
 		return errors.New("no new version found")
 	}
-	if semver.Compare(version.Version, rel.GetTagName()) >= 0 {
+	if semver.Compare(version.Version, rel.TagName) >= 0 {
 		messages.Warn("Already using the latest version")
 		return nil
 	}
@@ -69,12 +95,12 @@ func Update(ctx context.Context) error {
 		suffix += ".exe"
 	}
 	for _, a := range rel.Assets {
-		if a.Name == nil || a.BrowserDownloadURL == nil {
+		if a.Name == "" || a.BrowserDownloadURL == "" {
 			continue
 		}
-		if strings.HasSuffix(strings.ToLower(*a.Name), suffix) {
-			debug.Println("found", a.GetName(), a.GetBrowserDownloadURL())
-			return update(ctx, rel.GetTagName(), a, changelog(version.Version, rel.GetTagName(), rel.Body))
+		if strings.HasSuffix(strings.ToLower(a.Name), suffix) {
+			debug.Println("found", rel.TagName, a.BrowserDownloadURL)
+			return update(ctx, rel.TagName, a, changelog(version.Version, rel.TagName, rel.Body))
 		}
 	}
 	return nil
@@ -82,18 +108,18 @@ func Update(ctx context.Context) error {
 
 var reFullChangelog = regexp.MustCompile(`\**Full Changelog.*`)
 
-func changelog(from, to string, body *string) string {
+func changelog(from, to string, body string) string {
 	full := fmt.Sprintf("**Full Changelog**: https://github.com/outscale/octl/compare/%s...%s", from, to)
-	if body == nil {
+	if body == "" {
 		return full
 	}
-	txt := reFullChangelog.ReplaceAllString(*body, "")
+	txt := reFullChangelog.ReplaceAllString(body, "")
 	return txt + full
 }
 
-func update(ctx context.Context, v string, a *github.ReleaseAsset, changelog string) error {
-	fmt.Println("⬇️ Downloading file", a.GetName())
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, a.GetBrowserDownloadURL(), nil)
+func update(ctx context.Context, v string, a ReleaseAsset, changelog string) error {
+	fmt.Println("⬇️ Downloading file", a.Name)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, a.BrowserDownloadURL, nil)
 	if err != nil {
 		return fmt.Errorf("http get: %w", err)
 	}

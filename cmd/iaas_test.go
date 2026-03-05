@@ -16,7 +16,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/oasdiff/yaml"
+	"github.com/goccy/go-yaml"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/assert"

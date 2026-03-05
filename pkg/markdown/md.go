@@ -20,7 +20,6 @@ func NewRenderer() Renderer {
 	}
 	r, err := glamour.NewTermRenderer(
 		glamour.WithAutoStyle(),
-		glamour.WithEmoji(),
 		glamour.WithWordWrap(termWidth),
 	)
 	if err != nil {

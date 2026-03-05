@@ -7,6 +7,7 @@ package runner
 
 import (
 	"bytes"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -16,7 +17,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/goccy/go-json"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/flags"
@@ -121,7 +121,7 @@ func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string) error {
 		}
 		dec := json.NewDecoder(r)
 		dec.DisallowUnknownFields()
-		err := dec.DecodeContext(cmd.Context(), parg.Interface())
+		err := dec.Decode(parg.Interface())
 		if err == nil {
 			messages.Info("Using %s as request payload", source)
 		} else {

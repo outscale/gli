@@ -8,7 +8,6 @@ import (
 
 	"github.com/mattn/go-isatty"
 	"github.com/outscale/octl/pkg/debug"
-	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/style"
 	"github.com/outscale/octl/pkg/update"
 	"github.com/outscale/octl/pkg/version"
@@ -26,11 +25,7 @@ func CheckUpdate(cmd *cobra.Command, args []string) {
 	ctx := context.Background()
 	ghCtx, cancel := context.WithTimeout(ctx, time.Second)
 	defer cancel()
-	latest, err := update.LatestRelease(ghCtx)
-	if err != nil {
-		messages.Info("❌ Unable to fetch latest release: %v", err)
-		return
-	}
+	latest := update.LatestRelease(ghCtx)
 	debug.Println("check update", version.Version, latest, semver.Compare(version.Version, latest) < 0)
 	if latest == "" || semver.Compare(version.Version, latest) >= 0 {
 		return
