@@ -30,7 +30,7 @@ func confirm(action config.Action, display, run func(cmd *cobra.Command, args []
 	return func(cmd *cobra.Command, args []string) {
 		if yes, _ := cmd.Flags().GetBool("yes"); yes {
 			run(cmd, args)
-			_, _ = fmt.Fprint(os.Stderr, style.Green.Render(success[action]))
+			_, _ = fmt.Fprintln(os.Stderr, style.Green.Render(success[action]))
 			return
 		}
 		if !isatty.IsTerminal(os.Stdout.Fd()) {
@@ -54,7 +54,7 @@ func confirm(action config.Action, display, run func(cmd *cobra.Command, args []
 		}
 		if yes {
 			run(cmd, args)
-			_, _ = fmt.Fprint(os.Stderr, style.Green.Render(success[action]))
+			_, _ = fmt.Fprintln(os.Stderr, style.Green.Render(success[action]))
 		}
 	}
 }
