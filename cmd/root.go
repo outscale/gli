@@ -10,6 +10,7 @@ import (
 
 	"github.com/charmbracelet/lipgloss"
 	"github.com/outscale/octl/cmd/prerun"
+	"github.com/outscale/octl/pkg/markdown"
 	"github.com/outscale/octl/pkg/version"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
 	"github.com/outscale/osc-sdk-go/v3/pkg/profile"
@@ -30,8 +31,9 @@ var (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "octl",
-	Short: "An eperimental CLI for Outscale services",
-	Long: a(`                    __     __
+	Short: "A modern CLI for Outscale services",
+	Long: "```" + a(`
+                    __     __
   ____     _____   / /_   / /
  / __ \   / ___/  / __/  / / 
 / /_/ /  / /__   / /_   / /  
@@ -39,7 +41,8 @@ var rootCmd = &cobra.Command{
 ` + b(`One CLI to rule them all,`) + `
 ` + c(`one CLI to find them,`) + `
 ` + d(`one CLI to bring them all`) + `
-` + e(`and in the terminal bind them.`),
+` + e(`and in the terminal bind them.`) + `
+` + "```",
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 		prerun.CheckFalse(cmd, args)
 		prerun.CheckUpdate(cmd, args)
@@ -62,13 +65,16 @@ func Root() *cobra.Command {
 }
 
 func init() {
+	md := markdown.NewRenderer()
+	if long, err := md.Render(rootCmd.Long); err == nil {
+		rootCmd.Long = long
+	}
 	rootCmd.AddGroup(&cobra.Group{ID: "services", Title: "OUTSCALE Services Commands"})
 	rootCmd.AddGroup(&cobra.Group{ID: "config", Title: "Configuration Commands"})
 
 	rootCmd.Flags().Bool("version", false, "Display version")
 	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "Verbose output")
-	path, _ := profile.DefaultConfigPath()
-	rootCmd.PersistentFlags().String("config", "", fmt.Sprintf("Path of profile file (by default, %q)", path))
+	rootCmd.PersistentFlags().String("config", "", "Path of profile file (by default, ~/.osc/config.json)")
 	rootCmd.PersistentFlags().String("profile", "", fmt.Sprintf("Profile to use in profile file (by default, %q)", profile.DefaultProfile))
 
 	rootCmd.PersistentFlags().String("template", "", "JSON template for query body")

@@ -211,7 +211,7 @@ func TestIAASCRUD(t *testing.T) {
 		runJSON(t, []string{"iaas", "vol", "create", "--subregion", "eu-west-2a", "--size", "4", "-o", "json"}, nil, &respB)
 		require.NotEmpty(t, respB.VolumeId)
 		_ = run(t, []string{"iaas", "vol", "update", respA.VolumeId, respB.VolumeId, "--size", "8"}, nil)
-		ctx, cancel := context.WithTimeout(t.Context(), time.Minute)
+		ctx, cancel := context.WithTimeout(t.Context(), 5*time.Minute)
 		defer cancel()
 	LOOPWAIT:
 		for {
@@ -225,6 +225,7 @@ func TestIAASCRUD(t *testing.T) {
 				if resp[0].Size == 8 && resp[1].Size == 8 {
 					break LOOPWAIT
 				}
+				time.Sleep(10 * time.Second)
 			}
 		}
 		_ = run(t, []string{"iaas", "vol", "delete", respA.VolumeId, respB.VolumeId, "-y"}, nil)

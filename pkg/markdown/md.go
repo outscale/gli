@@ -7,6 +7,7 @@ import (
 
 	"github.com/charmbracelet/glamour"
 	"github.com/charmbracelet/x/term"
+	"github.com/mattn/go-isatty"
 )
 
 type Renderer interface {
@@ -14,6 +15,9 @@ type Renderer interface {
 }
 
 func NewRenderer() Renderer {
+	if !isatty.IsTerminal(os.Stdout.Fd()) {
+		return baseRenderer{}
+	}
 	termWidth, _, _ := term.GetSize(os.Stdout.Fd())
 	if termWidth > 0 {
 		termWidth = min(120, termWidth)
@@ -36,7 +40,6 @@ func (baseRenderer) Render(str string) (string, error) {
 	r := strings.NewReplacer(
 		"<br />", "\n",
 		"\\|", "|",
-		"`", "",
 		"\r\n", "\n",
 	)
 	return reEOL.ReplaceAllString(r.Replace(str), "\n\n"), nil
