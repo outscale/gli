@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - docautogen
 
     
 permissions:
@@ -84,4 +85,47 @@ jobs:
         issue-number: ${{ github.event.pull_request.number }}
         body: |
           **Binary size**: ${{ steps.size.outputs.delta }}
+        edit-mode: replace
+
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: ⬇️ Checkout repository
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      with:
+        fetch-depth: 0
+    - name: ⚖️ Diff before/after
+      id: diff
+      run: |
+        set -ex
+        git diff -U0 refs/remotes/origin/main -- docs/reference | tee diff
+        if [ -s diff ]; then
+          echo "**WARNING : Differences in reference doc** 🤔" > diffmsg.txt
+          echo '```' >> diffmsg.txt
+          head -10 diff >> diffmsg.txt
+          echo "[...]" >> diffmsg.txt
+          echo '```' >> diffmsg.txt
+          echo "<details><summary>More...</summary>" >> diffmsg.txt
+          echo >> diffmsg.txt
+          echo '```' >> diffmsg.txt
+          tail -n +10 diff | head -200 >> diffmsg.txt
+          echo "[...]" >> diffmsg.txt
+          echo '```' >> diffmsg.txt
+          echo "</details>" >> diffmsg.txt
+        else
+          echo "**No diff in reference doc** 😀" > diffmsg.txt
+        fi
+    - name: 🔎 Find Comment
+      uses: peter-evans/find-comment@v3
+      id: find
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        comment-author: 'github-actions[bot]'
+        body-includes: reference doc
+    - name: 📝 Create or update comment
+      uses: peter-evans/create-or-update-comment@v5
+      with:
+        comment-id: ${{ steps.find.outputs.comment-id }}
+        issue-number: ${{ github.event.pull_request.number }}
+        body-path: diffmsg.txt
         edit-mode: replace

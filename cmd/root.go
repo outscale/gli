@@ -56,8 +56,9 @@ var rootCmd = &cobra.Command{
 		}
 		_ = cmd.Help()
 	},
-	SilenceErrors: true, // do not display errors when an error occurred, we do it
-	SilenceUsage:  true, // do not display usage when an error occurred, the user will need to call -h
+	SilenceErrors:     true, // do not display errors when an error occurred, we do it
+	SilenceUsage:      true, // do not display usage when an error occurred, the user will need to call -h
+	DisableAutoGenTag: true,
 }
 
 func Root() *cobra.Command {
