@@ -1,0 +1,79 @@
+## octl storage api
+
+storage api calls
+
+### Options
+
+```
+  -h, --help   help for api
+```
+
+### Options inherited from parent commands
+
+```
+  -c, --columns string    columns to display - [+]<title>:<jq query for content>||<title>:<jq query for content>
+      --config string     Path of profile file (by default, ~/.osc/config.json)
+      --filter strings    comma separated list of filters for results - name:value,name:value, alias for jq filter 'select(.name | test("value"))'
+      --jq string         jq filter
+      --no-upgrade        do not check for new versions
+  -O, --out-file string   redirect output to file
+  -o, --output string     output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+      --profile string    Profile to use in profile file (by default, "default")
+      --single            convert single entry lists to a single object
+      --template string   JSON template for query body
+  -v, --verbose           Verbose output
+  -y, --yes               answer yes to all prompts
+```
+
+### SEE ALSO
+
+* [octl storage](octl_storage.md)	 - OUTSCALE Object Storage (OOS) management
+* [octl storage api AbortMultipartUpload](octl_storage_api_AbortMultipartUpload.md)	 - 
+* [octl storage api CompleteMultipartUpload](octl_storage_api_CompleteMultipartUpload.md)	 - 
+* [octl storage api CopyObject](octl_storage_api_CopyObject.md)	 - 
+* [octl storage api CreateBucket](octl_storage_api_CreateBucket.md)	 - 
+* [octl storage api CreateMultipartUpload](octl_storage_api_CreateMultipartUpload.md)	 - 
+* [octl storage api DeleteBucket](octl_storage_api_DeleteBucket.md)	 - 
+* [octl storage api DeleteBucketCors](octl_storage_api_DeleteBucketCors.md)	 - 
+* [octl storage api DeleteBucketEncryption](octl_storage_api_DeleteBucketEncryption.md)	 - 
+* [octl storage api DeleteBucketLifecycle](octl_storage_api_DeleteBucketLifecycle.md)	 - 
+* [octl storage api DeleteBucketPolicy](octl_storage_api_DeleteBucketPolicy.md)	 - 
+* [octl storage api DeleteBucketWebsite](octl_storage_api_DeleteBucketWebsite.md)	 - 
+* [octl storage api DeleteObject](octl_storage_api_DeleteObject.md)	 - 
+* [octl storage api DeleteObjectTagging](octl_storage_api_DeleteObjectTagging.md)	 - 
+* [octl storage api GetBucketAcl](octl_storage_api_GetBucketAcl.md)	 - 
+* [octl storage api GetBucketCors](octl_storage_api_GetBucketCors.md)	 - 
+* [octl storage api GetBucketEncryption](octl_storage_api_GetBucketEncryption.md)	 - 
+* [octl storage api GetBucketLifecycleConfiguration](octl_storage_api_GetBucketLifecycleConfiguration.md)	 - 
+* [octl storage api GetBucketLocation](octl_storage_api_GetBucketLocation.md)	 - 
+* [octl storage api GetBucketPolicy](octl_storage_api_GetBucketPolicy.md)	 - 
+* [octl storage api GetBucketVersioning](octl_storage_api_GetBucketVersioning.md)	 - 
+* [octl storage api GetBucketWebsite](octl_storage_api_GetBucketWebsite.md)	 - 
+* [octl storage api GetObject](octl_storage_api_GetObject.md)	 - 
+* [octl storage api GetObjectAcl](octl_storage_api_GetObjectAcl.md)	 - 
+* [octl storage api GetObjectLockConfiguration](octl_storage_api_GetObjectLockConfiguration.md)	 - 
+* [octl storage api GetObjectRetention](octl_storage_api_GetObjectRetention.md)	 - 
+* [octl storage api GetObjectTagging](octl_storage_api_GetObjectTagging.md)	 - 
+* [octl storage api HeadBucket](octl_storage_api_HeadBucket.md)	 - 
+* [octl storage api HeadObject](octl_storage_api_HeadObject.md)	 - 
+* [octl storage api ListBuckets](octl_storage_api_ListBuckets.md)	 - 
+* [octl storage api ListMultipartUploads](octl_storage_api_ListMultipartUploads.md)	 - 
+* [octl storage api ListObjectVersions](octl_storage_api_ListObjectVersions.md)	 - 
+* [octl storage api ListObjectsV2](octl_storage_api_ListObjectsV2.md)	 - 
+* [octl storage api ListParts](octl_storage_api_ListParts.md)	 - 
+* [octl storage api PutBucketAcl](octl_storage_api_PutBucketAcl.md)	 - 
+* [octl storage api PutBucketCors](octl_storage_api_PutBucketCors.md)	 - 
+* [octl storage api PutBucketEncryption](octl_storage_api_PutBucketEncryption.md)	 - 
+* [octl storage api PutBucketLifecycleConfiguration](octl_storage_api_PutBucketLifecycleConfiguration.md)	 - 
+* [octl storage api PutBucketPolicy](octl_storage_api_PutBucketPolicy.md)	 - 
+* [octl storage api PutBucketVersioning](octl_storage_api_PutBucketVersioning.md)	 - 
+* [octl storage api PutBucketWebsite](octl_storage_api_PutBucketWebsite.md)	 - 
+* [octl storage api PutObject](octl_storage_api_PutObject.md)	 - 
+* [octl storage api PutObjectAcl](octl_storage_api_PutObjectAcl.md)	 - 
+* [octl storage api PutObjectLockConfiguration](octl_storage_api_PutObjectLockConfiguration.md)	 - 
+* [octl storage api PutObjectRetention](octl_storage_api_PutObjectRetention.md)	 - 
+* [octl storage api PutObjectTagging](octl_storage_api_PutObjectTagging.md)	 - 
+* [octl storage api UploadPart](octl_storage_api_UploadPart.md)	 - 
+* [octl storage api UploadPartCopy](octl_storage_api_UploadPartCopy.md)	 - 
+
+###### Auto generated by spf13/cobra on 6-Mar-2026

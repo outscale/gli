@@ -19,7 +19,7 @@ This directory contains the documentation for **octl**.
 
 ## Reference
 
-- Command reference: [reference/commands.md](reference/commands.md)
+- Command reference: [reference/octl.md](reference/octl.md)
 
 ## Troubleshooting
 
