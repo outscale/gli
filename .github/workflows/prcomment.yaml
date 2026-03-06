@@ -1,0 +1,87 @@
+name: PR comments
+
+on:
+  pull_request:
+    branches:
+      - main
+
+    
+permissions:
+  contents: read
+#   issues: write
+  pull-requests: write
+
+jobs:
+  binarysize:
+    runs-on: ubuntu-latest
+    steps:
+    - name: ⬇️ Checkout repository
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      with:
+        ref: main
+    - name: 📦 Run GoReleaser
+      uses: goreleaser/goreleaser-action@ec59f474b9834571250b370d4735c50f8e2d1e29 # v7
+      with:
+        version: '~> v2'
+        args: build --skip validate --clean --snapshot --single-target
+    - name: ⚖️ Compute before size
+      id: before
+      run: |
+        SZ=$(stat --format "%s" dist/*/octl)
+        SZ=$(bc <<< $SZ/1024)
+        echo "before: $SZ KB"
+        echo "size=$SZ" >> "$GITHUB_OUTPUT"
+    - name: ⬇️ Checkout repository
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+    - name: 📦 Run GoReleaser
+      uses: goreleaser/goreleaser-action@ec59f474b9834571250b370d4735c50f8e2d1e29 # v7
+      with:
+        version: '~> v2'
+        args: build --skip validate --clean --snapshot --single-target
+    - name: ⚖️ Compute after size
+      id: after
+      run: |
+        SZ=$(stat --format "%s" dist/*/octl)
+        SZ=$(bc <<< $SZ/1024)
+        echo "after: $SZ KB"
+        echo "size=$SZ" >> "$GITHUB_OUTPUT"
+    - name: ⚖️ Compute diff
+      id: size
+      run: |
+        CHANGE=$(bc <<< "$AFTER - $BEFORE")
+        echo "change: $CHANGE KB"
+        PERC=$(bc <<< "scale=3; ($AFTER - $BEFORE) / $BEFORE * 100")
+        echo "delta: $PERC %"
+        BEFORE=$(bc <<< "scale=1;$BEFORE/1024")
+        AFTER=$(bc <<< "scale=1;$AFTER/1024")
+        fmt=$(printf '%.1fMB => %.1fMB (change %+dKB, %+.1f%%)' $BEFORE $AFTER $CHANGE $PERC)
+        if [ $CHANGE -gt 500 ]; then
+          fmt="$fmt 😭"
+        elif [ $CHANGE -gt 100 ]; then
+          fmt="$fmt ☹️"
+        elif [ $CHANGE -lt -250 ]; then
+          fmt="$fmt 🤩"
+        elif [ $CHANGE -lt 0 ]; then
+          fmt="$fmt 😀"
+        else
+          fmt="$fmt 😉"
+        fi
+        echo "delta=$fmt" >> "$GITHUB_OUTPUT"
+      env:
+        BEFORE: ${{ steps.before.outputs.size }}
+        AFTER: ${{ steps.after.outputs.size }}
+    - name: 🔎 Find Comment
+      uses: peter-evans/find-comment@v3
+      id: find
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        comment-author: 'github-actions[bot]'
+        body-includes: Binary size
+    - name: 📝 Create or update comment
+      uses: peter-evans/create-or-update-comment@v5
+      with:
+        comment-id: ${{ steps.find.outputs.comment-id }}
+        issue-number: ${{ github.event.pull_request.number }}
+        body: |
+          **Binary size**: ${{ steps.size.outputs.delta }}
+        edit-mode: replace
