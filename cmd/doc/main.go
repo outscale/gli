@@ -6,20 +6,16 @@ SPDX-License-Identifier: BSD-3-Clause
 package main
 
 import (
-	"context"
+	"os"
 
 	"github.com/outscale/octl/cmd"
 	"github.com/outscale/octl/pkg/messages"
-	"github.com/outscale/octl/pkg/runner"
+	"github.com/spf13/cobra/doc"
 )
 
 func main() {
-	err := runner.CheckStdin()
-	if err != nil {
-		messages.ExitErr(err)
-	}
-	ctx := context.Background()
-	err = cmd.Root().ExecuteContext(ctx)
+	path := os.Args[1]
+	err := doc.GenMarkdownTree(cmd.Root(), path)
 	if err != nil {
 		messages.ExitErr(err)
 	}
