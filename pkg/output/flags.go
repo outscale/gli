@@ -25,6 +25,7 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 	if out == "" {
 		out = "raw"
 	}
+	out = strings.ToLower(out)
 
 	var filters []filter.Interface
 	filts, _ := fs.GetStringSlice("filter")
@@ -46,7 +47,7 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 	}
 
 	var fmter format.Interface
-	switch strings.ToLower(out) {
+	switch out {
 	case "none":
 		fmter = format.None{}
 	case "json", "raw":
@@ -59,7 +60,7 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 		fmter = format.Success{}
 	case "body":
 		fmter = format.Body{}
-	case "table":
+	case "table", "csv":
 		fcols, _ := fs.GetString("columns")
 		if fcols != "" {
 			add := strings.HasPrefix(fcols, "+")
@@ -72,11 +73,14 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 		} else {
 			cols = slices.Clone(cols)
 		}
-		if len(cols) == 0 {
+		switch {
+		case len(cols) == 0:
 			messages.Info("No columns for table, switching to YAML...")
 			fmter = format.YAML{}
-		} else {
-			fmter = format.Table{Columns: cols, Explode: explode, Sort: sort}
+		case out == "csv":
+			fmter = format.Tabular{Columns: cols, Explode: explode, Sort: sort, Formatter: format.CSVFormatter{}}
+		default:
+			fmter = format.Tabular{Columns: cols, Explode: explode, Sort: sort, Formatter: format.TableFormatter{}}
 		}
 	default:
 		return nil, nil, fmt.Errorf("unknown format %q", out)

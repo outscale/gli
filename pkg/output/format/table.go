@@ -7,6 +7,7 @@ package format
 import (
 	"cmp"
 	"context"
+	"encoding/csv"
 	"fmt"
 	"io"
 	"os"
@@ -55,9 +56,15 @@ var (
 	}
 )
 
-type Table struct {
+type TabularFormatter interface {
+	Format(ctx context.Context, w io.Writer, header []string, data [][]string) error
+}
+
+type Tabular struct {
 	Explode, Sort bool
 	Columns       config.Columns
+
+	Formatter TabularFormatter
 }
 
 func validForTable(v any) bool {
@@ -82,7 +89,7 @@ func validForTable(v any) bool {
 	return vv.Kind() == reflect.Struct || vv.Kind() == reflect.Map
 }
 
-func (t Table) Format(ctx context.Context, w io.Writer, v any) error {
+func (t Tabular) Format(ctx context.Context, w io.Writer, v any) error {
 	if !validForTable(v) {
 		messages.Info("Unable to format as a table, switching to YAML...")
 		return YAML{}.Format(ctx, w, v)
@@ -137,6 +144,17 @@ func (t Table) Format(ctx context.Context, w io.Writer, v any) error {
 			return 0
 		})
 	}
+
+	return t.Formatter.Format(ctx, w, headers, rows)
+}
+
+func (Tabular) Error(ctx context.Context, v any) error {
+	return YAML{}.Error(ctx, v)
+}
+
+type TableFormatter struct{}
+
+func (f TableFormatter) Format(ctx context.Context, w io.Writer, headers []string, data [][]string) error {
 	// build table
 	cellStyle := lipgloss.NewStyle().Padding(0, 1)
 	headerStyle := lipgloss.NewStyle().Bold(true).Align(lipgloss.Center)
@@ -150,9 +168,9 @@ func (t Table) Format(ctx context.Context, w io.Writer, v any) error {
 		}).Headers(headers...)
 	// compute table width
 	width := lo.Sum(
-		lo.Map(t.Columns, func(_ config.Column, i int) int {
+		lo.Map(headers, func(_ string, i int) int {
 			// max is the row having the longest value for col i
-			max := lo.MaxBy(rows, func(a []string, b []string) bool {
+			max := lo.MaxBy(data, func(a []string, b []string) bool {
 				if len(a) <= i {
 					return false
 				}
@@ -176,12 +194,29 @@ func (t Table) Format(ctx context.Context, w io.Writer, v any) error {
 		}
 	}
 	// render !
-	ot.Rows(rows...)
+	ot.Rows(data...)
 
 	_, err := fmt.Fprintln(w, ot)
 	return err
 }
 
-func (Table) Error(ctx context.Context, v any) error {
-	return YAML{}.Error(ctx, v)
+type CSVFormatter struct{}
+
+func (f CSVFormatter) Format(ctx context.Context, w io.Writer, headers []string, data [][]string) error {
+	cw := csv.NewWriter(w)
+	defer func() {
+		cw.Flush()
+	}()
+
+	err := cw.Write(headers)
+	if err != nil {
+		return err
+	}
+	for _, row := range data {
+		err := cw.Write(row)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }

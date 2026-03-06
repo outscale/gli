@@ -6,8 +6,10 @@ SPDX-License-Identifier: BSD-3-Clause
 package cmd_test
 
 import (
+	"bytes"
 	"context"
 	"crypto/sha1"
+	"encoding/csv"
 	"encoding/hex"
 	"encoding/json"
 	"os"
@@ -105,6 +107,14 @@ func TestIAASAPI(t *testing.T) {
 		assert.Equal(t, 4, resp.Volume.Size)
 		assert.Equal(t, osc.VolumeTypeStandard, resp.Volume.VolumeType)
 	})
+	t.Run("NumEntriesInSlices is automatically computed", func(t *testing.T) {
+		out := run(t, []string{"iaas", "api", "CreateVms", "-h"}, nil)
+		assert.Contains(t, string(out), "--BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion")
+		assert.NotContains(t, string(out), "--BlockDeviceMappings.1.Bsu.DeleteOnVmDeletion")
+		out = run(t, []string{"iaas", "api", "CreateVms", "--BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion", "-h"}, nil)
+		assert.Contains(t, string(out), "--BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion")
+		assert.Contains(t, string(out), "--BlockDeviceMappings.1.Bsu.DeleteOnVmDeletion")
+	})
 }
 
 func TestIAASAliases(t *testing.T) {
@@ -113,14 +123,29 @@ func TestIAASAliases(t *testing.T) {
 		lines := lo.Count(data, '\n')
 		assert.Greater(t, lines, 5)
 	})
-	t.Run("High level list can return json", func(t *testing.T) {
+	t.Run("High level list can output json", func(t *testing.T) {
 		data := run(t, []string{"iaas", "vm", "list", "-o", "json"}, nil)
 		var vm []osc.Vm
 		err := json.Unmarshal(data, &vm)
 		require.NoError(t, err)
 		assert.NotEmpty(t, vm)
 	})
-	t.Run("High level describe returns yaml", func(t *testing.T) {
+	t.Run("High level list can output json", func(t *testing.T) {
+		data := run(t, []string{"iaas", "vm", "list", "-o", "json"}, nil)
+		var vm []osc.Vm
+		err := json.Unmarshal(data, &vm)
+		require.NoError(t, err)
+		assert.NotEmpty(t, vm)
+	})
+	t.Run("High level list can output csv", func(t *testing.T) {
+		data := run(t, []string{"iaas", "vm", "list", "-o", "csv"}, nil)
+		r := csv.NewReader(bytes.NewBuffer(data))
+		records, err := r.ReadAll()
+		require.NoError(t, err)
+		assert.NotEmpty(t, records)
+		assert.Equal(t, []string{"ID", "Name", "Type", "State", "PublicIp", "PrivateIp", "NetId", "SubnetId"}, records[0])
+	})
+	t.Run("High level describe outputs yaml", func(t *testing.T) {
 		resp := osc.ReadVmsResponse{}
 		runJSON(t, []string{"iaas", "api", "ReadVms"}, nil, &resp)
 		require.NotNil(t, resp.Vms)
@@ -143,14 +168,6 @@ func TestIAASAliases(t *testing.T) {
 		err := json.Unmarshal(data, &vm)
 		require.NoError(t, err)
 		assert.Equal(t, vmId, vm.VmId)
-	})
-	t.Run("NumEntriesInSlices is automatically computed", func(t *testing.T) {
-		out := run(t, []string{"iaas", "api", "CreateVms", "-h"}, nil)
-		assert.Contains(t, string(out), "--BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion")
-		assert.NotContains(t, string(out), "--BlockDeviceMappings.1.Bsu.DeleteOnVmDeletion")
-		out = run(t, []string{"iaas", "api", "CreateVms", "--BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion", "-h"}, nil)
-		assert.Contains(t, string(out), "--BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion")
-		assert.Contains(t, string(out), "--BlockDeviceMappings.1.Bsu.DeleteOnVmDeletion")
 	})
 }
 
@@ -219,7 +236,7 @@ func TestIAASCRUD(t *testing.T) {
 	})
 }
 
-func TestBase64(t *testing.T) {
+func TestBase64File(t *testing.T) {
 	key := filepath.Join(t.TempDir(), "test.pem")
 	err := exec.CommandContext(t.Context(), "ssh-keygen", "-t", "rsa", "-b", "4096", "-f", key, "-P", "").Run()
 	require.NoError(t, err)
