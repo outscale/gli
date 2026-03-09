@@ -77,10 +77,10 @@ The signature bundle can be verified using Cosign v2.0 or later:
 ```sh
 # Verify the checksum file against the Sigstore bundle
 cosign verify-blob \
-  --bundle <bundle-file>.sigstore.json \
+  --bundle "${VERSION}_checksums.txt.sigstore.json" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
   --certificate-identity-regexp "^https://github.com/outscale/octl/" \
-  <checksums-file>.txt
+  "${VERSION}_checksums.txt"
 ```
 
 Expected output:
@@ -95,7 +95,7 @@ tlog entry index: <number>
 After verifying the signature on the checksums file, you can validate the binary:
 
 ```sh
-sha256sum -c <checksums-file>.txt --ignore-missing
+sha256sum -c "${VERSION}_checksums.txt" --ignore-missing
 ```
 
 This ensures the binary hash matches the signed checksums file.
