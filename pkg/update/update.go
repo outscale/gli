@@ -141,7 +141,7 @@ func Update(ctx context.Context, options ...UpdateOption) error {
 		suffix += ".exe"
 	}
 
-	var assetToDownload, checksums, bundle *ReleaseAsset
+	var assetToDownload, checksums, bundleAsset *ReleaseAsset
 	for _, a := range rel.Assets {
 		if a.Name == "" || a.BrowserDownloadURL == "" {
 			continue
@@ -151,30 +151,44 @@ func Update(ctx context.Context, options ...UpdateOption) error {
 			assetToDownload = &a
 		} else if strings.HasSuffix(strings.ToLower(a.Name), ".sigstore.json") {
 			debug.Println("found bundle", a.Name, a.BrowserDownloadURL)
-			bundle = &a
+			bundleAsset = &a
 		} else if strings.HasSuffix(strings.ToLower(a.Name), "_checksums.txt") {
 			debug.Println("found checksums", a.Name, a.BrowserDownloadURL)
 			checksums = &a
 		}
 	}
 
-	if bundle == nil || checksums == nil || assetToDownload == nil {
+	if (bundleAsset == nil && !policy.ignoreSignature) || (checksums == nil && !policy.ignoreDigest) || assetToDownload == nil {
 		return fmt.Errorf("could not find required assets in release %s", rel.TagName)
 	}
 
-	b, err := downloadBundle(ctx, *bundle)
-	if err != nil {
-		return err
+	var bundle *bundle.Bundle
+	if !policy.ignoreSignature {
+
+		b, err := downloadBundle(ctx, *bundleAsset)
+		if err != nil {
+			return err
+		}
+
+		bundle = b
+	} else {
+		fmt.Println("⚠️ Skipping signature verification")
 	}
 
-	cs, err := downloadAndVerifyChecksum(ctx, *checksums, b)
-	if err != nil {
-		return err
-	}
+	var digest string
+	if !policy.ignoreDigest {
 
-	digest, err := findAndCheckAssetDigest(*assetToDownload, cs)
-	if err != nil {
-		return err
+		cs, err := downloadAndVerifyChecksum(ctx, *checksums, bundle)
+		if err != nil {
+			return err
+		}
+
+		digest, err = findAndCheckAssetDigest(*assetToDownload, cs)
+		if err != nil {
+			return err
+		}
+	} else {
+		fmt.Println("⚠️ Skipping digest verification")
 	}
 
 	if err := update(ctx, rel.TagName, *assetToDownload, digest, changelog(version.Version, rel.TagName, rel.Body)); err != nil {
@@ -235,16 +249,19 @@ func update(ctx context.Context, v string, a ReleaseAsset, digest, changelog str
 		return err
 	}
 
-	h, err := hex.DecodeString(digest)
-	if err != nil {
-		return fmt.Errorf("invalid digest: %w", err)
-	}
-
 	defer resp.Close() //nolint
 	fmt.Println("📦 Updating binary to", v)
-	err = selfupdate.Apply(resp, selfupdate.Options{
-		Checksum: h,
-	})
+
+	var opts selfupdate.Options
+	if digest != "" {
+		h, err := hex.DecodeString(digest)
+		if err != nil {
+			return fmt.Errorf("invalid digest: %w", err)
+		}
+
+		opts.Checksum = h
+	}
+	err = selfupdate.Apply(resp, opts)
 	if err != nil {
 		return fmt.Errorf("apply update: %w", err)
 	}
