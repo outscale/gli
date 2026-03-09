@@ -9,7 +9,9 @@ octl update [flags]
 ### Options
 
 ```
-  -h, --help   help for update
+  -h, --help                            help for update
+      --ignore-digest-verification      Ignore digest verification for the update
+      --ignore-signature-verification   Ignore signature verification for the update (default true)
 ```
 
 ### Options inherited from parent commands
