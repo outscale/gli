@@ -15,7 +15,7 @@ require (
 	github.com/charmbracelet/x/term v0.2.2
 	github.com/gabriel-vasile/mimetype v1.4.13
 	github.com/gobuffalo/flect v1.0.3
-	github.com/goccy/go-yaml v1.19.3-0.20260226144344-f167b933f7d0
+	github.com/goccy/go-yaml v1.19.3-0.20260310143531-d4021ff736c7
 	github.com/itchyny/gojq v0.12.18
 	github.com/mattn/go-isatty v0.0.20
 	github.com/minio/selfupdate v0.6.0
