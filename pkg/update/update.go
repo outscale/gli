@@ -46,12 +46,12 @@ type ReleaseAsset struct {
 	Digest             string `json:"digest,omitempty"`
 }
 
-const ghURL = "https://api.github.com/repos/outscale/octl/releases/latest"
+var GhURL = "https://api.github.com/repos/outscale/octl/releases/latest"
 
 func latestRelease(ctx context.Context) *RepositoryRelease {
 	ctx, cancel := context.WithTimeout(ctx, 2*time.Second)
 	defer cancel()
-	req, _ := http.NewRequestWithContext(ctx, http.MethodGet, ghURL, nil)
+	req, _ := http.NewRequestWithContext(ctx, http.MethodGet, GhURL, nil)
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		debug.Println("github error", err)
@@ -85,6 +85,7 @@ func LatestRelease(ctx context.Context) string {
 type UpdatePolicy struct {
 	ignoreSignature bool
 	ignoreDigest    bool
+	dryRun          bool
 }
 
 type UpdateOption func(*UpdatePolicy)
@@ -96,10 +97,18 @@ func WithIgnoreSignature() UpdateOption {
 	}
 }
 
-// WithIgnoreDigest creates
+// WithIgnoreDigest creates an option to ignore digest/checksum verification during update.
 func WithIgnoreDigest() UpdateOption {
 	return func(p *UpdatePolicy) {
 		p.ignoreDigest = true
+	}
+}
+
+// WithDryRun creates an option that runs the full verification pipeline (signature,
+// checksum) but skips the final binary replacement step. Useful for testing.
+func WithDryRun() UpdateOption {
+	return func(p *UpdatePolicy) {
+		p.dryRun = true
 	}
 }
 
@@ -180,12 +189,17 @@ func Update(ctx context.Context, options ...UpdateOption) error {
 			return err
 		}
 
-		digest, err = findAndCheckAssetDigest(*assetToDownload, cs)
+		digest, err = FindAndCheckAssetDigest(*assetToDownload, cs)
 		if err != nil {
 			return err
 		}
 	} else {
 		fmt.Println("⚠️ Skipping digest verification")
+	}
+
+	if policy.dryRun {
+		fmt.Println("🔍 Dry run: verification complete, skipping binary replacement")
+		return nil
 	}
 
 	if err := update(ctx, rel.TagName, *assetToDownload, digest, changelog(version.Version, rel.TagName, rel.Body)); err != nil {
@@ -206,7 +220,7 @@ func changelog(from, to string, body string) string {
 	return txt + full
 }
 
-func findAndCheckAssetDigest(a ReleaseAsset, cs map[string]string) (string, error) {
+func FindAndCheckAssetDigest(a ReleaseAsset, cs map[string]string) (string, error) {
 	digest, ok := cs[a.Name]
 	if !ok {
 		return "", fmt.Errorf("could not find digest for asset %s in checksums", a.Name)
@@ -310,7 +324,7 @@ func downloadAndVerifyChecksum(ctx context.Context, a ReleaseAsset, b *bundle.Bu
 	}
 	if b != nil {
 		if err := checkBundle(bytes.NewBuffer(buf), b); err != nil {
-			return checksums, fmt.Errorf("could not verify singuature: %w", err)
+			return checksums, fmt.Errorf("could not verify signature: %w", err)
 		}
 	}
 	scanner := bufio.NewScanner(bytes.NewBuffer(buf))
