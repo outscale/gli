@@ -13,7 +13,7 @@ import (
 func main() {
 	path := os.Args[1]
 
-	archive, err := os.Create(filepath.Join(path, "defaults.zip"))
+	archive, err := os.Create(filepath.Join(path, "defaults.zip")) //nolint:gosec
 	if err != nil {
 		messages.ExitErr(err)
 	}
@@ -31,7 +31,7 @@ func main() {
 		if err != nil {
 			messages.ExitErr(err)
 		}
-		body, err := os.ReadFile(d.Name())
+		body, err := os.ReadFile(d.Name()) //nolint:gosec
 		if err != nil {
 			messages.ExitErr(err)
 		}
@@ -46,5 +46,4 @@ func main() {
 	if err != nil {
 		messages.ExitErr(err)
 	}
-
 }

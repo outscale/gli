@@ -30,7 +30,7 @@ import (
 )
 
 func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client, cfg config.Config) error {
-	clt := reflect.TypeOf(cl)
+	clt := reflect.TypeFor[*Client]()
 	m, _ := clt.MethodByName(cmd.Name())
 
 	ctx := cmd.Context()
@@ -81,7 +81,6 @@ func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client,
 		Args:   callArgs,
 	}
 	err = out.Output(ctx, call)
-
 	if err != nil {
 		var appErr Error
 		if errors.As(err, &appErr) {

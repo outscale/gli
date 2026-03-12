@@ -8,7 +8,7 @@ import (
 )
 
 func TestSingular(t *testing.T) {
-	var tts = []struct {
+	tts := []struct {
 		plural, singular string
 	}{
 		{"Ips", "Ip"},

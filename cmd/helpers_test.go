@@ -11,7 +11,8 @@ import (
 )
 
 func run(t *testing.T, args []string, input []byte) []byte {
-	cmd := exec.CommandContext(t.Context(), "go", append([]string{"run", "../main.go"}, args...)...) //nolint
+	t.Helper()
+	cmd := exec.CommandContext(t.Context(), "go", append([]string{"run", "../main.go"}, args...)...)
 	if len(input) > 0 {
 		cmd.Stdin = bytes.NewBuffer(input)
 	}
@@ -24,6 +25,7 @@ func run(t *testing.T, args []string, input []byte) []byte {
 }
 
 func runJSON(t *testing.T, args []string, input []byte, resp any) {
+	t.Helper()
 	content := run(t, args, input)
 	err := json.Unmarshal(content, &resp)
 	require.NoError(t, err)

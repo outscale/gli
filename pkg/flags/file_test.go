@@ -12,7 +12,7 @@ import (
 
 func TestFileValue(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "filevalue.test")
-	err := os.WriteFile(path, []byte("foo"), 0600)
+	err := os.WriteFile(path, []byte("foo"), 0o600)
 	require.NoError(t, err)
 	v := flags.NewFileValue()
 	err = v.Set(path)

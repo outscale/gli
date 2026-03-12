@@ -143,16 +143,15 @@ func Update(ctx context.Context, options ...UpdateOption) error {
 
 	var assetToDownload, checksums, bundleAsset *ReleaseAsset
 	for _, a := range rel.Assets {
-		if a.Name == "" || a.BrowserDownloadURL == "" {
-			continue
-		}
-		if strings.HasSuffix(strings.ToLower(a.Name), suffix) {
+		switch {
+		case a.Name == "" || a.BrowserDownloadURL == "":
+		case strings.HasSuffix(strings.ToLower(a.Name), suffix):
 			debug.Println("found asset", a.Name, a.BrowserDownloadURL)
 			assetToDownload = &a
-		} else if strings.HasSuffix(strings.ToLower(a.Name), ".sigstore.json") {
+		case strings.HasSuffix(strings.ToLower(a.Name), ".sigstore.json"):
 			debug.Println("found bundle", a.Name, a.BrowserDownloadURL)
 			bundleAsset = &a
-		} else if strings.HasSuffix(strings.ToLower(a.Name), "_checksums.txt") {
+		case strings.HasSuffix(strings.ToLower(a.Name), "_checksums.txt"):
 			debug.Println("found checksums", a.Name, a.BrowserDownloadURL)
 			checksums = &a
 		}
@@ -164,7 +163,6 @@ func Update(ctx context.Context, options ...UpdateOption) error {
 
 	var bundle *bundle.Bundle
 	if !policy.ignoreSignature {
-
 		b, err := downloadBundle(ctx, *bundleAsset)
 		if err != nil {
 			return err
@@ -177,7 +175,6 @@ func Update(ctx context.Context, options ...UpdateOption) error {
 
 	var digest string
 	if !policy.ignoreDigest {
-
 		cs, err := downloadAndVerifyChecksum(ctx, *checksums, bundle)
 		if err != nil {
 			return err

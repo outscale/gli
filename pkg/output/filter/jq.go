@@ -51,7 +51,7 @@ func (j JQ) Filter(ctx context.Context, seq iter.Seq[result.Result]) iter.Seq[re
 					break
 				}
 				if err, ok := v.(error); ok {
-					if err, ok := err.(*gojq.HaltError); ok && err.Value() == nil {
+					if err, ok := err.(*gojq.HaltError); ok && err.Value() == nil { //nolint
 						break
 					}
 					_ = yield(result.Result{Error: fmt.Errorf("jq error: %w", err)})

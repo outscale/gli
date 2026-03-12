@@ -130,8 +130,7 @@ func (b *Builder[T]) BuildAPI(
 		Short:   rootCmd.Use + " api calls",
 	}
 	rootCmd.AddCommand(apiCmd)
-	var client *T
-	ct := reflect.TypeOf(client)
+	ct := reflect.TypeFor[*T]()
 	for i := range ct.NumMethod() {
 		m := ct.Method(i)
 		if !methodFilter(m) {

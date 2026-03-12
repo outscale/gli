@@ -60,7 +60,7 @@ func (c *Column) Get(v any) (any, error) {
 			break
 		}
 		if err, ok := v.(error); ok {
-			if err, ok := err.(*gojq.HaltError); ok && err.Value() == nil {
+			if err, ok := err.(*gojq.HaltError); ok && err.Value() == nil { //nolint
 				break
 			}
 			return nil, fmt.Errorf("jq error: %w", err)

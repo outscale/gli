@@ -15,7 +15,7 @@ func NewFileValue() *FileValue {
 
 // Set sets the value based on a file content.
 func (v *FileValue) Set(s string) error {
-	buf, err := os.ReadFile(s)
+	buf, err := os.ReadFile(s) //nolint:gosec
 	if err != nil {
 		return err
 	}

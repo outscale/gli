@@ -11,7 +11,7 @@ type Config struct {
 	SkipFlags []string
 
 	FlagOverrides map[string]config.Flag
-	FlagReplaces []string
+	FlagReplaces  []string
 
 	PriorityFields []string
 

@@ -13,7 +13,7 @@ import (
 
 func TestBase64FileValue(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "filevalue.test")
-	err := os.WriteFile(path, []byte("foo"), 0600)
+	err := os.WriteFile(path, []byte("foo"), 0o600)
 	require.NoError(t, err)
 	v := flags.NewBase64FileValue()
 	err = v.Set(path)

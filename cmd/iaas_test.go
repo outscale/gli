@@ -98,7 +98,7 @@ func TestIAASAPI(t *testing.T) {
 	t.Run("Templating works from a file", func(t *testing.T) {
 		in := `{"VolumeType":"standard","Size":4}`
 		tpl := filepath.Join(t.TempDir(), "template")
-		err := os.WriteFile(tpl, []byte(in), 0600)
+		err := os.WriteFile(tpl, []byte(in), 0o600)
 		require.NoError(t, err)
 		resp := osc.CreateVolumeResponse{}
 		runJSON(t, []string{"iaas", "api", "CreateVolume", "--SubregionName", volResp.SubregionName, "--template", tpl}, nil, &resp)
@@ -260,7 +260,7 @@ func TestFile(t *testing.T) {
 }`
 	sum := sha1.Sum([]byte(policyFile))
 	name := hex.EncodeToString(sum[:])
-	err := os.WriteFile(policyFile, []byte(policy), 0600)
+	err := os.WriteFile(policyFile, []byte(policy), 0o600)
 	require.NoError(t, err)
 	var resp osc.Policy
 	runJSON(t, []string{"iaas", "policy", "create", "--document", policyFile, "--name", name, "-o", "json"}, nil, &resp)

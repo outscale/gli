@@ -24,37 +24,35 @@ import (
 	"github.com/samber/lo"
 )
 
-var (
-	colors = map[string]map[string]lipgloss.Style{
-		"State": map[string]lipgloss.Style{
-			"running":   style.Green,
-			"available": style.Green,
-			"ACTIVE":    style.Green,
-			"InService": style.Green,
-			"attached":  style.Green,
+var colors = map[string]map[string]lipgloss.Style{
+	"State": {
+		"running":   style.Green,
+		"available": style.Green,
+		"ACTIVE":    style.Green,
+		"InService": style.Green,
+		"attached":  style.Green,
 
-			"pending":       style.Yellow,
-			"stopping":      style.Yellow,
-			"stopped":       style.Yellow,
-			"deleting":      style.Yellow,
-			"in-use":        style.Yellow,
-			"INACTIVE":      style.Yellow,
-			"disabled":      style.Yellow,
-			"confirming":    style.Yellow,
-			"allocated":     style.Yellow,
-			"attaching":     style.Yellow,
-			"detaching":     style.Yellow,
-			"shutting-down": style.Yellow,
+		"pending":       style.Yellow,
+		"stopping":      style.Yellow,
+		"stopped":       style.Yellow,
+		"deleting":      style.Yellow,
+		"in-use":        style.Yellow,
+		"INACTIVE":      style.Yellow,
+		"disabled":      style.Yellow,
+		"confirming":    style.Yellow,
+		"allocated":     style.Yellow,
+		"attaching":     style.Yellow,
+		"detaching":     style.Yellow,
+		"shutting-down": style.Yellow,
 
-			"deleted":      style.Red,
-			"OutOfService": style.Red,
-			"rejected":     style.Red,
-			"expired":      style.Red,
-			"failed":       style.Red,
-			"terminated":   style.Red,
-		},
-	}
-)
+		"deleted":      style.Red,
+		"OutOfService": style.Red,
+		"rejected":     style.Red,
+		"expired":      style.Red,
+		"failed":       style.Red,
+		"terminated":   style.Red,
+	},
+}
 
 type TabularFormatter interface {
 	Format(ctx context.Context, w io.Writer, header []string, data [][]string) error

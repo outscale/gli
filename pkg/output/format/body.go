@@ -44,8 +44,9 @@ func (Body) Format(ctx context.Context, w io.Writer, v any) (err error) {
 	buf := wbuf.Bytes()
 	debug.Println("detected mime type", mimetype.Detect(buf).String(), "from", string(buf))
 	if !mimetype.Detect(buf).Is("text/plain") && IsTerminal(w) {
+		_ = r.Close()
 		messages.Warn("not displaying binary data to terminal, you need to redirect output to a file")
-		os.Exit(1)
+		os.Exit(1) //nolint
 	}
 	// output first 100ish bytes
 	_, err = io.Copy(w, wbuf)

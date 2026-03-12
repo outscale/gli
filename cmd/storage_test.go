@@ -25,7 +25,7 @@ func TestStorageCRUD(t *testing.T) {
 
 	object := "object.txt"
 	path := filepath.Join(t.TempDir(), object)
-	err := os.WriteFile(path, []byte("Hello world !"), 0600)
+	err := os.WriteFile(path, []byte("Hello world !"), 0o600)
 	require.NoError(t, err)
 	t.Run("Create/Update/Delete works", func(t *testing.T) {
 		_ = run(t, []string{"storage", "bucket", "create", "--bucket", bucket}, nil)
@@ -63,7 +63,7 @@ func TestObjectDownload(t *testing.T) {
 		payload := hello
 		small := "small.txt"
 		smallPath := filepath.Join(t.TempDir(), small)
-		err := os.WriteFile(smallPath, []byte(hello), 0600)
+		err := os.WriteFile(smallPath, []byte(hello), 0o600)
 		require.NoError(t, err)
 		_ = run(t, []string{"storage", "object", "put", small, "--bucket", bucket, "--body", smallPath, "--output", "json"}, nil)
 		defer func() {
@@ -81,7 +81,7 @@ func TestObjectDownload(t *testing.T) {
 		payload := strings.Repeat(hello, 100)
 		large := "large.txt"
 		largePath := filepath.Join(t.TempDir(), large)
-		err := os.WriteFile(largePath, []byte(payload), 0600)
+		err := os.WriteFile(largePath, []byte(payload), 0o600)
 		require.NoError(t, err)
 
 		_ = run(t, []string{"storage", "object", "put", large, "--bucket", bucket, "--body", largePath, "--output", "json"}, nil)
@@ -135,7 +135,6 @@ func TestBucketEncryption(t *testing.T) {
 	}()
 
 	t.Run("Encryption can be enabled and disabled", func(t *testing.T) {
-
 		_ = run(t, []string{"storage", "bucket", "encryption", "enable", bucket}, nil)
 
 		var resp s3.GetBucketEncryptionOutput

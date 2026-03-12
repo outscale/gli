@@ -18,7 +18,7 @@ func NewReaderValue() *ReaderValue {
 
 // Set sets the value based on a file content.
 func (v *ReaderValue) Set(s string) error {
-	r, err := os.Open(s)
+	r, err := os.Open(s) //nolint:gosec
 	if err != nil {
 		return err
 	}

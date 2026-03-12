@@ -75,7 +75,7 @@ func CheckStdin() error {
 				break
 			}
 			if err, ok := v.(error); ok {
-				if err, ok := err.(*gojq.HaltError); ok && err.Value() == nil {
+				if err, ok := err.(*gojq.HaltError); ok && err.Value() == nil { //nolint
 					break
 				}
 			}

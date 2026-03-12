@@ -16,7 +16,7 @@ func NewBase64FileValue() *Base64FileValue {
 
 // Set sets the value based on a file content.
 func (v *Base64FileValue) Set(s string) error {
-	buf, err := os.ReadFile(s)
+	buf, err := os.ReadFile(s) //nolint:gosec
 	if err != nil {
 		return err
 	}
