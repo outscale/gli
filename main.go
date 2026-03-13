@@ -7,6 +7,7 @@ package main
 
 import (
 	"context"
+	"os"
 
 	"github.com/outscale/octl/cmd"
 	"github.com/outscale/octl/pkg/messages"
@@ -15,6 +16,10 @@ import (
 
 func main() {
 	err := runner.CheckStdin()
+	if err != nil {
+		messages.ExitErr(err)
+	}
+	os.Args, err = runner.TemplateArgs(os.Args)
 	if err != nil {
 		messages.ExitErr(err)
 	}

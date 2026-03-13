@@ -8,6 +8,7 @@ package output
 import (
 	"context"
 	"fmt"
+	"io"
 	"os"
 	"slices"
 
@@ -19,6 +20,12 @@ import (
 	"github.com/samber/lo"
 )
 
+var writeTo io.Writer = os.Stdout
+
+func InjectOutput(w io.Writer) {
+	writeTo = w
+}
+
 type Paginated struct {
 	Read    read.Interface
 	Format  format.Interface
@@ -27,7 +34,7 @@ type Paginated struct {
 }
 
 func (p *Paginated) Output(ctx context.Context, fetch read.FetchPage) (err error) {
-	writeTo := os.Stdout
+	writeTo := writeTo
 	if p.WriteTo != "" {
 		fd, err := os.Create(p.WriteTo)
 		if err != nil {
@@ -36,9 +43,11 @@ func (p *Paginated) Output(ctx context.Context, fetch read.FetchPage) (err error
 		messages.Info("Writing output to %s", p.WriteTo)
 		writeTo = fd
 		defer func() {
-			cerr := writeTo.Close()
-			if cerr != nil && err == nil {
-				err = fmt.Errorf("output error: %w", cerr)
+			if wc, ok := writeTo.(io.Closer); ok {
+				cerr := wc.Close()
+				if cerr != nil && err == nil {
+					err = fmt.Errorf("output error: %w", cerr)
+				}
 			}
 		}()
 	}

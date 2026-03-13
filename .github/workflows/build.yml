@@ -9,7 +9,7 @@ on:
       - "Makefile"
       - "go.*"
       - ".github/workflows/build.yml"
-    
+
 permissions:
   contents: read
 
@@ -52,3 +52,5 @@ jobs:
         OSC_ACCESS_KEY: ${{ secrets.OSC_ACCESS_KEY }}
         OSC_SECRET_KEY: ${{ secrets.OSC_SECRET_KEY }}
         OSC_REGION: "eu-west-2"
+        IMAGE_ID: ${{ vars.IMAGE_ID }}
+        VM_TYPE: ${{ vars.VM_TYPE }}

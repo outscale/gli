@@ -8,6 +8,7 @@ package builder
 import (
 	"reflect"
 
+	"github.com/outscale/octl/pkg/alias"
 	flagbuilder "github.com/outscale/octl/pkg/builder/flags"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
@@ -70,7 +71,7 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command) {
 			Aliases: a.Aliases,
 			Short:   a.Short,
 			Long:    help,
-			Run:     runAlias(b.provider, a, rootCmd),
+			Run:     alias.RunFunc(b.provider, a, rootCmd),
 		}
 		c.AddCommand(cmd)
 		if apiCmd == nil {

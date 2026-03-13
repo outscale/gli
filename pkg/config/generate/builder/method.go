@@ -330,6 +330,7 @@ func (b *MethodBuilder) buildCreateAlias() error {
 			"api",
 			b.m.Name,
 			"--output", "yaml",
+			"--single",
 		},
 		Flags: flags,
 	})

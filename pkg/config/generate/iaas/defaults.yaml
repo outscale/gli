@@ -355,6 +355,26 @@ aliases:
       - name: device-number
         alias_to: DeviceNumber
         required: true
+  - entity: nic
+    group: nic
+    use: unlink nic_id
+    alias_to: UnlinkNic
+    short: alias for api ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNic.LinkNicId}}
+    command:
+      - api
+      - ReadNics
+      - --Filters.NicIds
+      - "%0"
+      - --single
+      - --output
+      - json
+      - "|"
+      - api
+      - UnlinkNic
+      - --LinkNicId
+      - "{{.LinkNic.LinkNicId}}"
+      - --output
+      - success
   - entity: netaccesspoint
     group: netaccesspoint
     use: services
