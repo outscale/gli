@@ -1519,6 +1519,25 @@ aliases:
   - name: device-number
     alias_to: DeviceNumber
     required: true
+- entity: nic
+  use: unlink nic_id
+  alias_to: UnlinkNic
+  short: alias for api ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNic.LinkNicId}}
+  command:
+  - api
+  - ReadNics
+  - --Filters.NicIds
+  - '%0'
+  - --single
+  - --output
+  - json
+  - '|'
+  - api
+  - UnlinkNic
+  - --LinkNicId
+  - '{{.LinkNic.LinkNicId}}'
+  - --output
+  - success
 - entity: netaccesspoint
   use: services
   alias_to: ReadNetAccessPointServices
@@ -4004,6 +4023,7 @@ aliases:
   - CreateAccessKey
   - --output
   - yaml
+  - --single
   flags:
   - name: expiration-date
     alias_to: ExpirationDate
@@ -4022,6 +4042,7 @@ aliases:
   - CreateAccount
   - --output
   - yaml
+  - --single
   flags:
   - name: additional-email
     alias_to: AdditionalEmails
@@ -4070,6 +4091,7 @@ aliases:
   - CreateApiAccessRule
   - --output
   - yaml
+  - --single
   flags:
   - name: ca-id
     alias_to: CaIds
@@ -4090,6 +4112,7 @@ aliases:
   - CreateCa
   - --output
   - yaml
+  - --single
   flags:
   - name: pem
     alias_to: CaPem
@@ -4107,6 +4130,7 @@ aliases:
   - CreateClientGateway
   - --output
   - yaml
+  - --single
   flags:
   - name: bgp-asn
     alias_to: BgpAsn
@@ -4128,6 +4152,7 @@ aliases:
   - CreateDedicatedGroup
   - --output
   - yaml
+  - --single
   flags:
   - name: cpu-generation
     alias_to: CpuGeneration
@@ -4149,6 +4174,7 @@ aliases:
   - CreateDhcpOptions
   - --output
   - yaml
+  - --single
   flags:
   - name: domain-name
     alias_to: DomainName
@@ -4169,6 +4195,7 @@ aliases:
   - CreateDirectLink
   - --output
   - yaml
+  - --single
   flags:
   - name: bandwidth
     alias_to: Bandwidth
@@ -4190,6 +4217,7 @@ aliases:
   - CreateDirectLinkInterface
   - --output
   - yaml
+  - --single
   flags:
   - name: direct-link-id
     alias_to: DirectLinkId
@@ -4223,6 +4251,7 @@ aliases:
   - CreateFlexibleGpu
   - --output
   - yaml
+  - --single
   flags:
   - name: delete-on-vm-deletion
     alias_to: DeleteOnVmDeletion
@@ -4245,6 +4274,7 @@ aliases:
   - CreateImage
   - --output
   - yaml
+  - --single
   flags:
   - name: architecture
     alias_to: Architecture
@@ -4295,6 +4325,7 @@ aliases:
   - CreateImageExportTask
   - --output
   - yaml
+  - --single
   flags:
   - name: image-id
     alias_to: ImageId
@@ -4324,6 +4355,7 @@ aliases:
   - CreateInternetService
   - --output
   - yaml
+  - --single
 - entity: keypair
   use: create
   alias_to: CreateKeypair
@@ -4335,6 +4367,7 @@ aliases:
   - CreateKeypair
   - --output
   - yaml
+  - --single
   flags:
   - name: name
     alias_to: KeypairName
@@ -4354,6 +4387,7 @@ aliases:
   - CreateListenerRule
   - --output
   - yaml
+  - --single
   flags:
   - name: listener-load-balancer-name
     alias_to: Listener.LoadBalancerName
@@ -4386,6 +4420,7 @@ aliases:
   - CreateLoadBalancer
   - --output
   - yaml
+  - --single
   flags:
   - name: listener-backend-port
     alias_to: Listeners.0.BackendPort
@@ -4425,6 +4460,7 @@ aliases:
   - CreateLoadBalancerListeners
   - --output
   - yaml
+  - --single
   flags:
   - name: listener-backend-port
     alias_to: Listeners.0.BackendPort
@@ -4450,6 +4486,7 @@ aliases:
   - CreateLoadBalancerPolicy
   - --output
   - yaml
+  - --single
   flags:
   - name: cookie-expiration-period
     alias_to: CookieExpirationPeriod
@@ -4475,6 +4512,7 @@ aliases:
   - CreateLoadBalancerTags
   - --output
   - yaml
+  - --single
   flags:
   - name: load-balancer-name
     alias_to: LoadBalancerNames
@@ -4493,6 +4531,7 @@ aliases:
   - CreateNatService
   - --output
   - yaml
+  - --single
   flags:
   - name: client-token
     alias_to: ClientToken
@@ -4513,6 +4552,7 @@ aliases:
   - CreateNet
   - --output
   - yaml
+  - --single
   flags:
   - name: ip-range
     alias_to: IpRange
@@ -4530,6 +4570,7 @@ aliases:
   - CreateNetAccessPoint
   - --output
   - yaml
+  - --single
   flags:
   - name: net-id
     alias_to: NetId
@@ -4550,6 +4591,7 @@ aliases:
   - CreateNetPeering
   - --output
   - yaml
+  - --single
   flags:
   - name: accepter-net-id
     alias_to: AccepterNetId
@@ -4570,6 +4612,7 @@ aliases:
   - CreateNic
   - --output
   - yaml
+  - --single
   flags:
   - name: description
     alias_to: Description
@@ -4593,6 +4636,7 @@ aliases:
   - CreateProductType
   - --output
   - yaml
+  - --single
   flags:
   - name: description
     alias_to: Description
@@ -4610,6 +4654,7 @@ aliases:
   - CreatePublicIp
   - --output
   - yaml
+  - --single
 - entity: route
   use: create
   alias_to: CreateRoute
@@ -4621,6 +4666,7 @@ aliases:
   - CreateRoute
   - --output
   - yaml
+  - --single
   flags:
   - name: destination-ip-range
     alias_to: DestinationIpRange
@@ -4649,6 +4695,7 @@ aliases:
   - CreateRouteTable
   - --output
   - yaml
+  - --single
   flags:
   - name: net-id
     alias_to: NetId
@@ -4664,6 +4711,7 @@ aliases:
   - CreateSecurityGroup
   - --output
   - yaml
+  - --single
   flags:
   - name: description
     alias_to: Description
@@ -4684,6 +4732,7 @@ aliases:
   - CreateSecurityGroupRule
   - --output
   - yaml
+  - --single
   flags:
   - name: flow
     alias_to: Flow
@@ -4732,6 +4781,7 @@ aliases:
   - CreateServerCertificate
   - --output
   - yaml
+  - --single
   flags:
   - name: body
     alias_to: Body
@@ -4757,6 +4807,7 @@ aliases:
   - CreateSnapshot
   - --output
   - yaml
+  - --single
   flags:
   - name: client-token
     alias_to: ClientToken
@@ -4781,6 +4832,7 @@ aliases:
   - CreateSnapshotExportTask
   - --output
   - yaml
+  - --single
   flags:
   - name: osu-export-disk-image-format
     alias_to: OsuExport.DiskImageFormat
@@ -4810,6 +4862,7 @@ aliases:
   - CreateSubnet
   - --output
   - yaml
+  - --single
   flags:
   - name: ip-range
     alias_to: IpRange
@@ -4830,6 +4883,7 @@ aliases:
   - CreateTags
   - --output
   - yaml
+  - --single
   flags:
   - name: resource-id
     alias_to: ResourceIds
@@ -4848,6 +4902,7 @@ aliases:
   - CreateUser
   - --output
   - yaml
+  - --single
   flags:
   - name: path
     alias_to: Path
@@ -4867,6 +4922,7 @@ aliases:
   - CreateUserGroup
   - --output
   - yaml
+  - --single
   flags:
   - name: path
     alias_to: Path
@@ -4884,6 +4940,7 @@ aliases:
   - CreateVirtualGateway
   - --output
   - yaml
+  - --single
   flags:
   - name: connection-type
     alias_to: ConnectionType
@@ -4899,6 +4956,7 @@ aliases:
   - CreateVmGroup
   - --output
   - yaml
+  - --single
   flags:
   - name: description
     alias_to: Description
@@ -4933,6 +4991,7 @@ aliases:
   - CreateVmTemplate
   - --output
   - yaml
+  - --single
   flags:
   - name: cpu-core
     alias_to: CpuCores
@@ -4970,6 +5029,7 @@ aliases:
   - CreateVms
   - --output
   - yaml
+  - --single
   flags:
   - name: action-on-next-boot-secure-boot
     alias_to: ActionsOnNextBoot.SecureBoot
@@ -5063,6 +5123,7 @@ aliases:
   - CreateVolume
   - --output
   - yaml
+  - --single
   flags:
   - name: client-token
     alias_to: ClientToken
@@ -5088,6 +5149,7 @@ aliases:
   - CreateVpnConnection
   - --output
   - yaml
+  - --single
   flags:
   - name: client-gateway-id
     alias_to: ClientGatewayId
@@ -5111,6 +5173,7 @@ aliases:
   - CreateVpnConnectionRoute
   - --output
   - yaml
+  - --single
   flags:
   - name: destination-ip-range
     alias_to: DestinationIpRange

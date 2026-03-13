@@ -2,17 +2,25 @@ package cmd_test
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"os"
 	"os/exec"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/require"
 )
 
 func run(t *testing.T, args []string, input []byte) []byte {
 	t.Helper()
-	cmd := exec.CommandContext(t.Context(), "go", append([]string{"run", "../main.go"}, args...)...)
+	res, err := try(t.Context(), args, input)
+	require.NoError(t, err)
+	return res
+}
+
+func try(ctx context.Context, args []string, input []byte) ([]byte, error) {
+	cmd := exec.CommandContext(ctx, "go", append([]string{"run", "../main.go"}, args...)...)
 	if len(input) > 0 {
 		cmd.Stdin = bytes.NewBuffer(input)
 	}
@@ -20,8 +28,28 @@ func run(t *testing.T, args []string, input []byte) []byte {
 	cmd.Stdout = stdout
 	cmd.Stderr = os.Stderr
 	err := cmd.Run()
-	require.NoError(t, err)
-	return stdout.Bytes()
+	return stdout.Bytes(), err
+}
+
+func retry(t *testing.T, args []string, input []byte) {
+	t.Helper()
+	ctx, cancel := context.WithTimeout(t.Context(), 5*time.Minute)
+	defer cancel()
+LOOPRETRY:
+	for {
+		select {
+		case <-ctx.Done():
+			t.Error("timeout")
+			t.FailNow()
+		default:
+			_, err := try(t.Context(), args, input)
+			if err == nil {
+				break LOOPRETRY
+			}
+			t.Log("... error", err)
+			time.Sleep(wait)
+		}
+	}
 }
 
 func runJSON(t *testing.T, args []string, input []byte, resp any) {

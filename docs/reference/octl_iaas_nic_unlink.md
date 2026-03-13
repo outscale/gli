@@ -1,11 +1,23 @@
-## octl iaas nic
+## octl iaas nic unlink
 
-nic commands
+alias for api ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNic.LinkNicId}}
+
+### Synopsis
+
+> *alias for api ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNic.LinkNicId}}*
+
+Detaches a network interface card (NIC) from a virtual machine (VM).
+
+The primary NIC cannot be detached.
+
+```
+octl iaas nic unlink nic_id [flags]
+```
 
 ### Options
 
 ```
-  -h, --help   help for nic
+  -h, --help   help for unlink
 ```
 
 ### Options inherited from parent commands
@@ -28,12 +40,5 @@ nic commands
 
 ### SEE ALSO
 
-* [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas nic create](octl_iaas_nic_create.md)	 - alias for api CreateNic
-* [octl iaas nic delete](octl_iaas_nic_delete.md)	 - alias for api DeleteNic --NicId nic_id
-* [octl iaas nic describe](octl_iaas_nic_describe.md)	 - alias for api ReadNics --Filters.NicIds nic_id
-* [octl iaas nic link](octl_iaas_nic_link.md)	 - alias for api LinkNic --NicId nic_id
-* [octl iaas nic list](octl_iaas_nic_list.md)	 - alias for api ReadNics
-* [octl iaas nic unlink](octl_iaas_nic_unlink.md)	 - alias for api ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNic.LinkNicId}}
-* [octl iaas nic update](octl_iaas_nic_update.md)	 - alias for api UpdateNic --NicId nic_id
+* [octl iaas nic](octl_iaas_nic.md)	 - nic commands
 

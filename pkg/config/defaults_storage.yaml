@@ -430,6 +430,7 @@ aliases:
   - CreateBucket
   - --output
   - yaml
+  - --single
   flags:
   - name: bucket
     alias_to: Bucket
@@ -461,6 +462,7 @@ aliases:
   - CreateMultipartUpload
   - --output
   - yaml
+  - --single
   flags:
   - name: bucket
     alias_to: Bucket

@@ -25,6 +25,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+const wait = 20 * time.Second
+
 func TestIAASAPI(t *testing.T) {
 	region := os.Getenv("OSC_REGION")
 	if region == "" {
@@ -194,7 +196,7 @@ func TestIAASCRUD(t *testing.T) {
 				if resp.Size == 8 {
 					break LOOPWAIT
 				}
-				time.Sleep(10 * time.Second)
+				time.Sleep(wait)
 			}
 		}
 
@@ -225,7 +227,7 @@ func TestIAASCRUD(t *testing.T) {
 				if resp[0].Size == 8 && resp[1].Size == 8 {
 					break LOOPWAIT
 				}
-				time.Sleep(10 * time.Second)
+				time.Sleep(wait)
 			}
 		}
 		_ = run(t, []string{"iaas", "vol", "delete", respA.VolumeId, respB.VolumeId, "-y"}, nil)
@@ -265,4 +267,66 @@ func TestFile(t *testing.T) {
 	var resp osc.Policy
 	runJSON(t, []string{"iaas", "policy", "create", "--document", policyFile, "--name", name, "-o", "json"}, nil, &resp)
 	_ = run(t, []string{"iaas", "policy", "delete", "-y", *resp.Orn}, nil)
+}
+
+func TestIAASPipe(t *testing.T) {
+	t.Log("creating net")
+	net := osc.Net{}
+	runJSON(t, []string{"iaas", "net", "create", "--ip-range", "10.0.0.0/16", "-o", "json"}, nil, &net)
+	require.NotEmpty(t, net.NetId)
+	defer func() {
+		retry(t, []string{"iaas", "net", "delete", net.NetId, "-y"}, nil)
+	}()
+
+	t.Log("creating subnet")
+	subnet := osc.Subnet{}
+	runJSON(t, []string{"iaas", "subnet", "create", "--net-id", net.NetId, "--ip-range", "10.0.1.0/24", "-o", "json"}, nil, &subnet)
+	require.NotEmpty(t, subnet.SubnetId)
+	defer func() {
+		retry(t, []string{"iaas", "subnet", "delete", subnet.SubnetId, "-y"}, nil)
+	}()
+
+	imageId := os.Getenv("IMAGE_ID")
+	vmType := os.Getenv("VM_TYPE")
+
+	t.Log("creating vm")
+	vm := osc.Vm{}
+	runJSON(t, []string{"iaas", "vm", "create", "--image-id", imageId, "--subnet-id", subnet.SubnetId, "--type", vmType, "-o", "json"}, nil, &vm)
+	require.NotEmpty(t, vm.VmId)
+	defer func() {
+		retry(t, []string{"iaas", "vm", "delete", vm.VmId, "-y"}, nil)
+	}()
+
+	t.Log("waiting for vm")
+	ctx, cancel := context.WithTimeout(t.Context(), 5*time.Minute)
+	defer cancel()
+LOOPWAIT:
+	for {
+		select {
+		case <-ctx.Done():
+			t.Error("timeout")
+			t.FailNow()
+		default:
+			var resp osc.Vm
+			runJSON(t, []string{"iaas", "vm", "desc", vm.VmId, "-o", "json"}, nil, &resp)
+			if resp.State != osc.VmStatePending {
+				break LOOPWAIT
+			}
+			time.Sleep(wait)
+		}
+	}
+
+	t.Log("creating nic")
+	nic := osc.Nic{}
+	runJSON(t, []string{"iaas", "nic", "create", "--subnet-id", subnet.SubnetId, "-o", "json"}, nil, &nic)
+	require.NotEmpty(t, nic.NicId)
+	defer func() {
+		retry(t, []string{"iaas", "nic", "delete", nic.NicId, "-y"}, nil)
+	}()
+
+	t.Log("linking nic")
+	_ = run(t, []string{"iaas", "nic", "link", nic.NicId, "--vm-id", vm.VmId, "--device-number", "7"}, nil)
+
+	t.Log("unlinking nic")
+	_ = run(t, []string{"iaas", "nic", "unlink", nic.NicId}, nil)
 }

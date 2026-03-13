@@ -7,6 +7,7 @@ package runner
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -28,6 +29,11 @@ func Stdin() ([]byte, bool) {
 	return stdin, stdinChecked && len(stdin) > 0
 }
 
+func InjectStdin(buf []byte) {
+	stdin = buf
+	stdinChecked = true
+}
+
 func CheckStdin() error {
 	stdinChecked = true
 	if isatty.IsTerminal(os.Stdin.Fd()) {
@@ -40,19 +46,24 @@ func CheckStdin() error {
 	if err != nil {
 		return fmt.Errorf("unable to read stdin: %w", err)
 	}
-	if !slices.ContainsFunc(os.Args, func(arg string) bool {
+	return nil
+}
+
+func TemplateArgs(args []string) ([]string, error) {
+	if !slices.ContainsFunc(args, func(arg string) bool {
 		return strings.HasPrefix(arg, "{{")
 	}) {
-		return nil
+		debug.Println("no arg templating")
+		return args, nil
 	}
 	messages.Info("Using standard input for command-line templating")
 	var input any
-	err = json.Unmarshal(stdin, &input)
+	err := json.Unmarshal(stdin, &input)
 	if err != nil {
-		return fmt.Errorf("input is not a JSON object: %w", err)
+		return nil, fmt.Errorf("input is not a JSON object: %w", err)
 	}
 	flag := false
-	for i, arg := range os.Args {
+	for i, arg := range args {
 		if strings.HasPrefix(arg, "--") {
 			flag = true
 			continue
@@ -79,6 +90,9 @@ func CheckStdin() error {
 					break
 				}
 			}
+			if v == nil {
+				return nil, errors.New("no value found for flag")
+			}
 			switch v := v.(type) {
 			case string:
 				strs = append(strs, v)
@@ -86,7 +100,7 @@ func CheckStdin() error {
 				strs = append(strs, fmt.Sprintf("%v", v))
 			}
 		}
-		newArgs := slices.Clone(os.Args[:i])
+		newArgs := slices.Clone(args[:i])
 		if flag {
 			replace := strings.Join(strs, ",")
 			newArgs = append(newArgs, replace)
@@ -95,10 +109,10 @@ func CheckStdin() error {
 			debug.Println("replacing", arg, "with", strs)
 			newArgs = append(newArgs, strs...)
 		}
-		newArgs = append(newArgs, os.Args[i+1:]...)
-		os.Args = newArgs
+		newArgs = append(newArgs, args[i+1:]...)
+		args = newArgs
 		flag = false
 	}
-	debug.Println("new args", os.Args)
-	return nil
+	debug.Println("new args", args)
+	return args, nil
 }

@@ -3,9 +3,10 @@ SPDX-FileCopyrightText: 2026 Outscale SAS <opensource@outscale.com>
 
 SPDX-License-Identifier: BSD-3-Clause
 */
-package builder
+package alias
 
 import (
+	"bytes"
 	"os"
 	"slices"
 	"strconv"
@@ -14,12 +15,32 @@ import (
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/messages"
+	"github.com/outscale/octl/pkg/output"
+	"github.com/outscale/octl/pkg/runner"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
 
-func runAlias(provider string, a config.Alias, cmd *cobra.Command) func(cmd *cobra.Command, args []string) {
+func RunFunc(provider string, a config.Alias, cmd *cobra.Command) func(cmd *cobra.Command, args []string) {
+	if !slices.Contains(a.Command, "|") {
+		return runAliasWithPrompt(provider, a, cmd)
+	}
+	first, last, _ := lo.Cut(a.Command, []string{"|"})
+	runFirst := runFunc(provider, first, a.Flags, cmd, true)
+	runLast := runFunc(provider, last, a.Flags, cmd, true)
+	return func(cmd *cobra.Command, args []string) {
+		buf := &bytes.Buffer{}
+		output.InjectOutput(buf)
+		runFirst(cmd, args)
+		messages.Info("Piping output")
+		runner.InjectStdin(buf.Bytes())
+		output.InjectOutput(os.Stdout)
+		runLast(cmd, args)
+	}
+}
+
+func runAliasWithPrompt(provider string, a config.Alias, cmd *cobra.Command) func(cmd *cobra.Command, args []string) {
 	run := runFunc(provider, a.Command, a.Flags, cmd, false)
 	if a.Prompt != nil {
 		var display func(cmd *cobra.Command, args []string)
@@ -156,13 +177,17 @@ func runFunc(provider string, command []string, flags config.FlagSet, cmd *cobra
 			consumed = max(consumed, idx)
 		}
 		nargs = append(nargs, userArgs...)
+		nargs, err := runner.TemplateArgs(nargs)
+		if err != nil {
+			messages.ExitErr(err)
+		}
 		messages.Info("Resolving alias to %v", nargs)
 		// no need to check for an update a second time
 		nargs = append(nargs, "--no-upgrade")
 
 		saved := saveFlags(cmd.Flags())
 		os.Args = nargs
-		err := cmd.Execute()
+		err = cmd.Execute()
 		if err != nil {
 			messages.ExitErr(err)
 		}
