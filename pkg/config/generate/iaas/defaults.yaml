@@ -599,10 +599,11 @@ aliases:
         - ReadPolicyVersion
         - --PolicyOrn
         - "%0"
-        - --VersionId
-        - "%1"
         - --output
         - table
+      flags:
+        - name: version
+          alias_to: VersionId
   - entity: policyversion
     group: policyversion
     use: set-default policy_orn
