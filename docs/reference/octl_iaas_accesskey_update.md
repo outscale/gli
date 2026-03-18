@@ -6,7 +6,7 @@ alias for api UpdateAccessKey --AccessKeyId access_key_id
 
 > *alias for api UpdateAccessKey --AccessKeyId access_key_id*
 
-Modifies the attributes of the specified access key of either your root account or an EIM user.
+Modifies the attributes of the specified access key of either the root user or an EIM user.
 
 The parameter `ExpirationDate` is not required when updating the state of your access key. However, if you do not specify the expiration date of an access key when updating its state, it is then set to not expire.
 
@@ -17,9 +17,12 @@ octl iaas accesskey update access_key_id [access_key_id]... [flags]
 ### Options
 
 ```
+      --clear-expiration-date     If true, the current expiration date is deleted and the access key is set to not expire.
+      --clear-tag                 If true, the current tag of the access key is deleted.
       --expiration-date osctime   The date and time, or the date, at which you want the access key to expire, in ISO 8601 format (for example, 2020-06-14T00:00:00.000Z or 2020-06-14).
   -h, --help                      help for update
       --state string              The new state for the access key (ACTIVE | INACTIVE).
+      --tag string                A new tag to add to the access key.
       --user-name string          The name of the EIM user that the access key you want to modify is associated with.
 ```
 

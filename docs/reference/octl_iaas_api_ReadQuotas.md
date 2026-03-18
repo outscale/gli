@@ -6,7 +6,7 @@ Lists one or more of your quotas.
 
 Lists one or more of your quotas.
 
-For more information, see [About Your Account](https://docs.outscale.com/en/userguide/About-Your-Account.html).
+For more information, see [About Your Account](https://docs.outscale.com/en/userguide/About-Your-OUTSCALE-Account.html).
 
 ```
 octl iaas api ReadQuotas [flags]

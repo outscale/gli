@@ -10,7 +10,7 @@ Modifies the access permissions for an OUTSCALE machine image (OMI).
 
 You must specify either the `Additions` or the `Removals` parameter.
 
-After sharing an OMI with an account, the other account can create a copy of it that they own. For more information about copying OMIs, see [CreateImage](#createimage).
+After sharing an OMI with an OUTSCALE account, the other account can create a copy of it that they own. For more information about copying OMIs, see [CreateImage](#createimage).
 
 ```
 octl iaas image update image_id [image_id]... [flags]
@@ -21,9 +21,9 @@ octl iaas image update image_id [image_id]... [flags]
 ```
       --description string                                 A new description for the image.
   -h, --help                                               help for update
-      --permission-to-launch-addition-account-id strings   One or more account IDs that the permission is associated with.
+      --permission-to-launch-addition-account-id strings   One or more OUTSCALE account IDs that the permission is associated with.
       --permission-to-launch-addition-global-permission    A global permission for all accounts.
-      --permission-to-launch-removal-account-id strings    One or more account IDs that the permission is associated with.
+      --permission-to-launch-removal-account-id strings    One or more OUTSCALE account IDs that the permission is associated with.
       --permission-to-launch-removal-global-permission     A global permission for all accounts.
       --product-code strings                               The product codes associated with the OMI.
 ```

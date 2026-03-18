@@ -31,17 +31,17 @@ iaas api calls
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
 * [octl iaas api AcceptNetPeering](octl_iaas_api_AcceptNetPeering.md)	 - Accepts a Net peering request.
 * [octl iaas api AddUserToUserGroup](octl_iaas_api_AddUserToUserGroup.md)	 - Adds a user to a specified group.
-* [octl iaas api CheckAuthentication](octl_iaas_api_CheckAuthentication.md)	 - Validates the authenticity of the account.
-* [octl iaas api CreateAccessKey](octl_iaas_api_CreateAccessKey.md)	 - Creates an access key for either your root account or an EIM user.
+* [octl iaas api CheckAuthentication](octl_iaas_api_CheckAuthentication.md)	 - Validates the authenticity of the OUTSCALE account.
+* [octl iaas api CreateAccessKey](octl_iaas_api_CreateAccessKey.md)	 - Creates an access key for either the root user or an EIM user.
 * [octl iaas api CreateAccount](octl_iaas_api_CreateAccount.md)	 - Creates an OUTSCALE account.
-* [octl iaas api CreateApiAccessRule](octl_iaas_api_CreateApiAccessRule.md)	 - Creates a rule to allow access to the API from your account.
+* [octl iaas api CreateApiAccessRule](octl_iaas_api_CreateApiAccessRule.md)	 - Creates a rule to allow access to the API from your OUTSCALE account.
 * [octl iaas api CreateCa](octl_iaas_api_CreateCa.md)	 - Creates a Client Certificate Authority (CA).
 * [octl iaas api CreateClientGateway](octl_iaas_api_CreateClientGateway.md)	 - Provides information about your client gateway.
 * [octl iaas api CreateDedicatedGroup](octl_iaas_api_CreateDedicatedGroup.md)	 - Creates a dedicated group for virtual machines (VMs).
 * [octl iaas api CreateDhcpOptions](octl_iaas_api_CreateDhcpOptions.md)	 - Creates a set of DHCP options, that you can then associate with a Net using the [UpdateNet](#updatenet) method.
 * [octl iaas api CreateDirectLink](octl_iaas_api_CreateDirectLink.md)	 - Creates a DirectLink between a customer network and a specified DirectLink location.
 * [octl iaas api CreateDirectLinkInterface](octl_iaas_api_CreateDirectLinkInterface.md)	 - Creates a DirectLink interface.
-* [octl iaas api CreateFlexibleGpu](octl_iaas_api_CreateFlexibleGpu.md)	 - Allocates a flexible GPU (fGPU) to your account.
+* [octl iaas api CreateFlexibleGpu](octl_iaas_api_CreateFlexibleGpu.md)	 - Allocates a flexible GPU (fGPU) to your OUTSCALE account.
 * [octl iaas api CreateImage](octl_iaas_api_CreateImage.md)	 - Creates an OUTSCALE machine image (OMI).
 * [octl iaas api CreateImageExportTask](octl_iaas_api_CreateImageExportTask.md)	 - Exports an OUTSCALE machine image (OMI) to an OUTSCALE Object Storage (OOS) bucket.
 * [octl iaas api CreateInternetService](octl_iaas_api_CreateInternetService.md)	 - Creates an internet service you can use with a Net.
@@ -54,7 +54,7 @@ iaas api calls
 * [octl iaas api CreateNatService](octl_iaas_api_CreateNatService.md)	 - Creates a network address translation (NAT) service in the specified public Subnet of a Net.
 * [octl iaas api CreateNet](octl_iaas_api_CreateNet.md)	 - Creates a Net with a specified IP range.
 * [octl iaas api CreateNetAccessPoint](octl_iaas_api_CreateNetAccessPoint.md)	 - Creates a Net access point to access an OUTSCALE service from this Net without using the Internet and public IPs.
-* [octl iaas api CreateNetPeering](octl_iaas_api_CreateNetPeering.md)	 - Requests a Net peering between a Net you own and a peer Net that belongs to you or another account.
+* [octl iaas api CreateNetPeering](octl_iaas_api_CreateNetPeering.md)	 - Requests a Net peering between a Net you own and a peer Net that belongs to you or another OUTSCALE account.
 * [octl iaas api CreateNic](octl_iaas_api_CreateNic.md)	 - Creates a network interface card (NIC) in the specified Subnet.
 * [octl iaas api CreatePolicy](octl_iaas_api_CreatePolicy.md)	 - Creates a managed policy to apply to a user.
 * [octl iaas api CreatePolicyVersion](octl_iaas_api_CreatePolicyVersion.md)	 - Creates a version of a specified managed policy.
@@ -69,7 +69,7 @@ iaas api calls
 * [octl iaas api CreateSnapshotExportTask](octl_iaas_api_CreateSnapshotExportTask.md)	 - Exports a snapshot to an OUTSCALE Object Storage (OOS) bucket that belongs to you.
 * [octl iaas api CreateSubnet](octl_iaas_api_CreateSubnet.md)	 - Creates a Subnet in an existing Net.
 * [octl iaas api CreateTags](octl_iaas_api_CreateTags.md)	 - Adds one or more tags to the specified resources.
-* [octl iaas api CreateUser](octl_iaas_api_CreateUser.md)	 - Creates an EIM user for your account.
+* [octl iaas api CreateUser](octl_iaas_api_CreateUser.md)	 - Creates an EIM user for your OUTSCALE account.
 * [octl iaas api CreateUserGroup](octl_iaas_api_CreateUserGroup.md)	 - Creates a group to which you can add users.
 * [octl iaas api CreateVirtualGateway](octl_iaas_api_CreateVirtualGateway.md)	 - Creates a virtual gateway.
 * [octl iaas api CreateVmGroup](octl_iaas_api_CreateVmGroup.md)	 - > [WARNING] > This feature is currently under development and may not function properly.
@@ -78,7 +78,7 @@ iaas api calls
 * [octl iaas api CreateVolume](octl_iaas_api_CreateVolume.md)	 - Creates a Block Storage Unit (BSU) volume in a specified Region.
 * [octl iaas api CreateVpnConnection](octl_iaas_api_CreateVpnConnection.md)	 - Creates a VPN connection between a specified virtual gateway and a specified client gateway.
 * [octl iaas api CreateVpnConnectionRoute](octl_iaas_api_CreateVpnConnectionRoute.md)	 - Creates a static route to a VPN connection.
-* [octl iaas api DeleteAccessKey](octl_iaas_api_DeleteAccessKey.md)	 - Deletes the specified access key of either your root account or an EIM user.
+* [octl iaas api DeleteAccessKey](octl_iaas_api_DeleteAccessKey.md)	 - Deletes the specified access key of either the root user or an EIM user.
 * [octl iaas api DeleteApiAccessRule](octl_iaas_api_DeleteApiAccessRule.md)	 - Deletes a specified API access rule.
 * [octl iaas api DeleteCa](octl_iaas_api_DeleteCa.md)	 - Deletes a specified Client Certificate Authority (CA).
 * [octl iaas api DeleteClientGateway](octl_iaas_api_DeleteClientGateway.md)	 - Deletes a client gateway.
@@ -87,7 +87,7 @@ iaas api calls
 * [octl iaas api DeleteDirectLink](octl_iaas_api_DeleteDirectLink.md)	 - Deletes a specified DirectLink.
 * [octl iaas api DeleteDirectLinkInterface](octl_iaas_api_DeleteDirectLinkInterface.md)	 - Deletes a specified DirectLink interface.
 * [octl iaas api DeleteExportTask](octl_iaas_api_DeleteExportTask.md)	 - Deletes an export task.
-* [octl iaas api DeleteFlexibleGpu](octl_iaas_api_DeleteFlexibleGpu.md)	 - Releases a flexible GPU (fGPU) from your account.
+* [octl iaas api DeleteFlexibleGpu](octl_iaas_api_DeleteFlexibleGpu.md)	 - Releases a flexible GPU (fGPU) from your OUTSCALE account.
 * [octl iaas api DeleteImage](octl_iaas_api_DeleteImage.md)	 - Deletes an OUTSCALE machine image (OMI) so that you cannot use it anymore to launch virtual machines (VMs).
 * [octl iaas api DeleteInternetService](octl_iaas_api_DeleteInternetService.md)	 - Deletes an internet service.
 * [octl iaas api DeleteKeypair](octl_iaas_api_DeleteKeypair.md)	 - Deletes the specified keypair.
@@ -125,10 +125,10 @@ iaas api calls
 * [octl iaas api DeleteVpnConnection](octl_iaas_api_DeleteVpnConnection.md)	 - Deletes a specified VPN connection.
 * [octl iaas api DeleteVpnConnectionRoute](octl_iaas_api_DeleteVpnConnectionRoute.md)	 - Deletes a static route to a VPN connection previously created using the CreateVpnConnectionRoute method.
 * [octl iaas api DeregisterVmsInLoadBalancer](octl_iaas_api_DeregisterVmsInLoadBalancer.md)	 - > [WARNING] > Deprecated: This call is deprecated and will be removed.
-* [octl iaas api DisableOutscaleLogin](octl_iaas_api_DisableOutscaleLogin.md)	 - Disables the possibility of logging in using the Outscale credentials of your root account when identity federation is activated.
+* [octl iaas api DisableOutscaleLogin](octl_iaas_api_DisableOutscaleLogin.md)	 - Disables the possibility of logging in using the Outscale credentials of your root user when identity federation is activated.
 * [octl iaas api DisableOutscaleLoginForUsers](octl_iaas_api_DisableOutscaleLoginForUsers.md)	 - Disables the possibility of logging in using the Outscale credentials of your EIM users when identity federation is activated.
 * [octl iaas api DisableOutscaleLoginPerUsers](octl_iaas_api_DisableOutscaleLoginPerUsers.md)	 - Disables the possibility for one or more specific users to log in using their Outscale credentials when identity federation is activated.
-* [octl iaas api EnableOutscaleLogin](octl_iaas_api_EnableOutscaleLogin.md)	 - Enables the possibility of logging in using the Outscale credentials of your root account when identity federation is activated.
+* [octl iaas api EnableOutscaleLogin](octl_iaas_api_EnableOutscaleLogin.md)	 - Enables the possibility of logging in using the Outscale credentials of your root user when identity federation is activated.
 * [octl iaas api EnableOutscaleLoginForUsers](octl_iaas_api_EnableOutscaleLoginForUsers.md)	 - Enables the possibility for all your EIM users to log in using their Outscale credentials when identity federation is activated.
 * [octl iaas api EnableOutscaleLoginPerUsers](octl_iaas_api_EnableOutscaleLoginPerUsers.md)	 - Enables the possibility for one or more specific users to log in using their Outscale credentials when identity federation is activated.
 * [octl iaas api LinkFlexibleGpu](octl_iaas_api_LinkFlexibleGpu.md)	 - Attaches one of your allocated flexible GPUs (fGPUs) to one of your virtual machines (VMs).
@@ -144,26 +144,26 @@ iaas api calls
 * [octl iaas api LinkVolume](octl_iaas_api_LinkVolume.md)	 - Attaches a Block Storage Unit (BSU) volume to a virtual machine (VM).
 * [octl iaas api PutUserGroupPolicy](octl_iaas_api_PutUserGroupPolicy.md)	 - Creates or updates an inline policy included in a specified group.
 * [octl iaas api PutUserPolicy](octl_iaas_api_PutUserPolicy.md)	 - Creates or updates an inline policy included in a specified user.
-* [octl iaas api ReadAccessKeys](octl_iaas_api_ReadAccessKeys.md)	 - Lists the access key IDs of either your root account or an EIM user.
+* [octl iaas api ReadAccessKeys](octl_iaas_api_ReadAccessKeys.md)	 - Lists the access key IDs of either your root user or an EIM user.
 * [octl iaas api ReadAccounts](octl_iaas_api_ReadAccounts.md)	 - Gets information about the account that sent the request.
 * [octl iaas api ReadAdminPassword](octl_iaas_api_ReadAdminPassword.md)	 - Gets the administrator password for a Windows running virtual machine (VM).
-* [octl iaas api ReadApiAccessPolicy](octl_iaas_api_ReadApiAccessPolicy.md)	 - Gets information about the API access policy of your account.
+* [octl iaas api ReadApiAccessPolicy](octl_iaas_api_ReadApiAccessPolicy.md)	 - Gets information about the API access policy of your OUTSCALE account.
 * [octl iaas api ReadApiAccessRules](octl_iaas_api_ReadApiAccessRules.md)	 - Lists one or more API access rules.
-* [octl iaas api ReadApiLogs](octl_iaas_api_ReadApiLogs.md)	 - Lists the logs of the API calls you have performed with this account.
+* [octl iaas api ReadApiLogs](octl_iaas_api_ReadApiLogs.md)	 - Lists the logs of the API calls you have performed with this OUTSCALE account.
 * [octl iaas api ReadCO2EmissionAccount](octl_iaas_api_ReadCO2EmissionAccount.md)	 - Gets information about the estimated carbon footprint of your account for the current Region within the specified time period.
 * [octl iaas api ReadCas](octl_iaas_api_ReadCas.md)	 - Gets information about one or more of your Client Certificate Authorities (CAs).
 * [octl iaas api ReadCatalog](octl_iaas_api_ReadCatalog.md)	 - Returns the price list of OUTSCALE services for the current Region.
 * [octl iaas api ReadCatalogs](octl_iaas_api_ReadCatalogs.md)	 - Returns the price list of OUTSCALE services for the current Region within a specific time period.
 * [octl iaas api ReadClientGateways](octl_iaas_api_ReadClientGateways.md)	 - Lists one or more of your client gateways.
 * [octl iaas api ReadConsoleOutput](octl_iaas_api_ReadConsoleOutput.md)	 - Gets the console output for a virtual machine (VM).
-* [octl iaas api ReadConsumptionAccount](octl_iaas_api_ReadConsumptionAccount.md)	 - Gets information about the consumption of your account for each billable resource within the specified time period.
+* [octl iaas api ReadConsumptionAccount](octl_iaas_api_ReadConsumptionAccount.md)	 - Gets information about the consumption of your OUTSCALE account for each billable resource within the specified time period.
 * [octl iaas api ReadDedicatedGroups](octl_iaas_api_ReadDedicatedGroups.md)	 - List one or more dedicated groups of virtual machines (VMs).
 * [octl iaas api ReadDhcpOptions](octl_iaas_api_ReadDhcpOptions.md)	 - Gets information about the content of one or more DHCP options sets.
 * [octl iaas api ReadDirectLinkInterfaces](octl_iaas_api_ReadDirectLinkInterfaces.md)	 - Lists one or more of your DirectLink interfaces.
 * [octl iaas api ReadDirectLinks](octl_iaas_api_ReadDirectLinks.md)	 - Lists all DirectLinks in the Region.
 * [octl iaas api ReadEntitiesLinkedToPolicy](octl_iaas_api_ReadEntitiesLinkedToPolicy.md)	 - Lists all entities (account, users, or user groups) linked to a specific managed policy.
 * [octl iaas api ReadFlexibleGpuCatalog](octl_iaas_api_ReadFlexibleGpuCatalog.md)	 - Lists all flexible GPUs available in the public catalog.
-* [octl iaas api ReadFlexibleGpus](octl_iaas_api_ReadFlexibleGpus.md)	 - Lists one or more flexible GPUs (fGPUs) allocated to your account.
+* [octl iaas api ReadFlexibleGpus](octl_iaas_api_ReadFlexibleGpus.md)	 - Lists one or more flexible GPUs (fGPUs) allocated to your OUTSCALE account.
 * [octl iaas api ReadImageExportTasks](octl_iaas_api_ReadImageExportTasks.md)	 - Lists one or more image export tasks.
 * [octl iaas api ReadImages](octl_iaas_api_ReadImages.md)	 - Lists one or more OUTSCALE machine images (OMIs) you can use.
 * [octl iaas api ReadInternetServices](octl_iaas_api_ReadInternetServices.md)	 - Lists one or more of your internet services.
@@ -180,14 +180,14 @@ iaas api calls
 * [octl iaas api ReadNetPeerings](octl_iaas_api_ReadNetPeerings.md)	 - Lists one or more peering connections between two Nets.
 * [octl iaas api ReadNets](octl_iaas_api_ReadNets.md)	 - Lists one or more Nets.
 * [octl iaas api ReadNics](octl_iaas_api_ReadNics.md)	 - Lists one or more network interface cards (NICs).
-* [octl iaas api ReadPolicies](octl_iaas_api_ReadPolicies.md)	 - Lists all the managed policies available for your account.
+* [octl iaas api ReadPolicies](octl_iaas_api_ReadPolicies.md)	 - Lists all the managed policies available for your OUTSCALE account.
 * [octl iaas api ReadPolicy](octl_iaas_api_ReadPolicy.md)	 - Lists information about a specified managed policy.
 * [octl iaas api ReadPolicyVersion](octl_iaas_api_ReadPolicyVersion.md)	 - Lists information about a specified version of a managed policy.
 * [octl iaas api ReadPolicyVersions](octl_iaas_api_ReadPolicyVersions.md)	 - Lists information about all the policy versions of a specified managed policy.
 * [octl iaas api ReadProductTypes](octl_iaas_api_ReadProductTypes.md)	 - Lists one or more product types.
 * [octl iaas api ReadPublicCatalog](octl_iaas_api_ReadPublicCatalog.md)	 - Returns the price list of OUTSCALE products and services for the Region specified in the endpoint of the request.
 * [octl iaas api ReadPublicIpRanges](octl_iaas_api_ReadPublicIpRanges.md)	 - Gets the public IPv4 addresses in CIDR notation for the Region specified in the endpoint of the request.
-* [octl iaas api ReadPublicIps](octl_iaas_api_ReadPublicIps.md)	 - Lists one or more public IPs allocated to your account.
+* [octl iaas api ReadPublicIps](octl_iaas_api_ReadPublicIps.md)	 - Lists one or more public IPs allocated to your OUTSCALE account.
 * [octl iaas api ReadQuotas](octl_iaas_api_ReadQuotas.md)	 - Lists one or more of your quotas.
 * [octl iaas api ReadRegions](octl_iaas_api_ReadRegions.md)	 - Lists one or more Regions of the OUTSCALE Cloud.
 * [octl iaas api ReadRouteTables](octl_iaas_api_ReadRouteTables.md)	 - Lists one or more of your route tables.
@@ -202,11 +202,11 @@ iaas api calls
 * [octl iaas api ReadUserGroup](octl_iaas_api_ReadUserGroup.md)	 - Lists information about a specified user group, including its users.
 * [octl iaas api ReadUserGroupPolicies](octl_iaas_api_ReadUserGroupPolicies.md)	 - Lists the names of the inline policies embedded in a specific group.
 * [octl iaas api ReadUserGroupPolicy](octl_iaas_api_ReadUserGroupPolicy.md)	 - Returns information about an inline policy included in a specified group.
-* [octl iaas api ReadUserGroups](octl_iaas_api_ReadUserGroups.md)	 - Lists all the user groups of the account.
+* [octl iaas api ReadUserGroups](octl_iaas_api_ReadUserGroups.md)	 - Lists all the user groups of the OUTSCALE account.
 * [octl iaas api ReadUserGroupsPerUser](octl_iaas_api_ReadUserGroupsPerUser.md)	 - Lists the groups a specified user belongs to.
 * [octl iaas api ReadUserPolicies](octl_iaas_api_ReadUserPolicies.md)	 - Lists the names of inline policies included in a specified user.
 * [octl iaas api ReadUserPolicy](octl_iaas_api_ReadUserPolicy.md)	 - Returns information about an inline policy included in a specified user.
-* [octl iaas api ReadUsers](octl_iaas_api_ReadUsers.md)	 - Lists all EIM users in the account.
+* [octl iaas api ReadUsers](octl_iaas_api_ReadUsers.md)	 - Lists all EIM users in the OUTSCALE account.
 * [octl iaas api ReadVirtualGateways](octl_iaas_api_ReadVirtualGateways.md)	 - Lists one or more virtual gateways.
 * [octl iaas api ReadVmGroups](octl_iaas_api_ReadVmGroups.md)	 - > [WARNING] > This feature is currently under development and may not function properly.
 * [octl iaas api ReadVmTemplates](octl_iaas_api_ReadVmTemplates.md)	 - > [WARNING] > This feature is currently under development and may not function properly.
@@ -237,9 +237,9 @@ iaas api calls
 * [octl iaas api UnlinkRouteTable](octl_iaas_api_UnlinkRouteTable.md)	 - Disassociates a Subnet from a route table.
 * [octl iaas api UnlinkVirtualGateway](octl_iaas_api_UnlinkVirtualGateway.md)	 - Detaches a virtual gateway from a Net.
 * [octl iaas api UnlinkVolume](octl_iaas_api_UnlinkVolume.md)	 - Detaches a Block Storage Unit (BSU) volume from a virtual machine (VM).
-* [octl iaas api UpdateAccessKey](octl_iaas_api_UpdateAccessKey.md)	 - Modifies the attributes of the specified access key of either your root account or an EIM user.
-* [octl iaas api UpdateAccount](octl_iaas_api_UpdateAccount.md)	 - Updates the account information for the account that sends the request.
-* [octl iaas api UpdateApiAccessPolicy](octl_iaas_api_UpdateApiAccessPolicy.md)	 - Updates the API access policy of your account.
+* [octl iaas api UpdateAccessKey](octl_iaas_api_UpdateAccessKey.md)	 - Modifies the attributes of the specified access key of either the root user or an EIM user.
+* [octl iaas api UpdateAccount](octl_iaas_api_UpdateAccount.md)	 - Updates the OUTSCALE account information for the account that sends the request.
+* [octl iaas api UpdateApiAccessPolicy](octl_iaas_api_UpdateApiAccessPolicy.md)	 - Updates the API access policy of your OUTSCALE account.
 * [octl iaas api UpdateApiAccessRule](octl_iaas_api_UpdateApiAccessRule.md)	 - Modifies a specified API access rule.
 * [octl iaas api UpdateCa](octl_iaas_api_UpdateCa.md)	 - Modifies the specified attribute of a Client Certificate Authority (CA).
 * [octl iaas api UpdateDedicatedGroup](octl_iaas_api_UpdateDedicatedGroup.md)	 - Modifies the name of a specified dedicated group.

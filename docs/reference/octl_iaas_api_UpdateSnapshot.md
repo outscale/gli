@@ -8,7 +8,7 @@ Modifies the permissions for a specified snapshot.
 
 You must specify either the `Additions` or the `Removals` parameter.
 
-After sharing a snapshot with an account, the other account can create a copy of it that they own. For more information about copying snapshots, see [CreateSnapshot](#createsnapshot).
+After sharing a snapshot with an OUTSCALE account, the other account can create a copy of it that they own. For more information about copying snapshots, see [CreateSnapshot](#createsnapshot).
 
 ```
 octl iaas api UpdateSnapshot [flags]
@@ -18,9 +18,9 @@ octl iaas api UpdateSnapshot [flags]
 
 ```
       --DryRun                                                   If true, checks whether you have the required permissions to perform the action.
-      --PermissionsToCreateVolume.Additions.AccountIds strings   One or more account IDs that the permission is associated with.
+      --PermissionsToCreateVolume.Additions.AccountIds strings   One or more OUTSCALE account IDs that the permission is associated with.
       --PermissionsToCreateVolume.Additions.GlobalPermission     A global permission for all accounts.
-      --PermissionsToCreateVolume.Removals.AccountIds strings    One or more account IDs that the permission is associated with.
+      --PermissionsToCreateVolume.Removals.AccountIds strings    One or more OUTSCALE account IDs that the permission is associated with.
       --PermissionsToCreateVolume.Removals.GlobalPermission      A global permission for all accounts.
       --SnapshotId string                                        The ID of the snapshot.
   -h, --help                                                     help for UpdateSnapshot

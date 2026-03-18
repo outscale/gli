@@ -17,7 +17,7 @@ octl iaas api ReadSecurityGroups [flags]
 ```
       --DryRun                                           If true, checks whether you have the required permissions to perform the action.
       --Filters.Descriptions strings                     The descriptions of the security groups.
-      --Filters.InboundRuleAccountIds strings            The account IDs that have been granted permissions.
+      --Filters.InboundRuleAccountIds strings            The OUTSCALE account IDs that have been granted permissions.
       --Filters.InboundRuleFromPortRanges ints           The beginnings of the port ranges for the TCP and UDP protocols, or the ICMP type numbers.
       --Filters.InboundRuleIpRanges strings              The IP ranges that have been granted permissions, in CIDR notation (for example, 10.0.0.0/24).
       --Filters.InboundRuleProtocols strings             The IP protocols for the permissions (tcp | udp | icmp, or a protocol number, or -1 for all protocols).
@@ -25,7 +25,7 @@ octl iaas api ReadSecurityGroups [flags]
       --Filters.InboundRuleSecurityGroupNames strings    The names of the security groups that have been granted permissions.
       --Filters.InboundRuleToPortRanges ints             The ends of the port ranges for the TCP and UDP protocols, or the ICMP code numbers.
       --Filters.NetIds strings                           The IDs of the Nets specified when the security groups were created.
-      --Filters.OutboundRuleAccountIds strings           The account IDs that have been granted permissions.
+      --Filters.OutboundRuleAccountIds strings           The OUTSCALE account IDs that have been granted permissions.
       --Filters.OutboundRuleFromPortRanges ints          The beginnings of the port ranges for the TCP and UDP protocols, or the ICMP type numbers.
       --Filters.OutboundRuleIpRanges strings             The IP ranges that have been granted permissions, in CIDR notation (for example, 10.0.0.0/24).
       --Filters.OutboundRuleProtocols strings            The IP protocols for the permissions (tcp | udp | icmp, or a protocol number, or -1 for all protocols).

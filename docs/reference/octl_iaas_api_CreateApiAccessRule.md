@@ -1,10 +1,10 @@
 ## octl iaas api CreateApiAccessRule
 
-Creates a rule to allow access to the API from your account.
+Creates a rule to allow access to the API from your OUTSCALE account.
 
 ### Synopsis
 
-Creates a rule to allow access to the API from your account.
+Creates a rule to allow access to the API from your OUTSCALE account.
 
 You need to specify at least the `CaIds` or the `IpRanges` parameter.
 

@@ -20,7 +20,7 @@ octl iaas securitygroup list [flags]
       --description strings                         The descriptions of the security groups.
   -h, --help                                        help for list
       --id strings                                  The IDs of the security groups.
-      --inbound-rule-account-id strings             The account IDs that have been granted permissions.
+      --inbound-rule-account-id strings             The OUTSCALE account IDs that have been granted permissions.
       --inbound-rule-from-port-range ints           The beginnings of the port ranges for the TCP and UDP protocols, or the ICMP type numbers.
       --inbound-rule-ip-range strings               The IP ranges that have been granted permissions, in CIDR notation (for example, 10.0.0.0/24).
       --inbound-rule-protocol strings               The IP protocols for the permissions (tcp | udp | icmp, or a protocol number, or -1 for all protocols).
@@ -29,7 +29,7 @@ octl iaas securitygroup list [flags]
       --inbound-rule-to-port-range ints             The ends of the port ranges for the TCP and UDP protocols, or the ICMP code numbers.
       --name strings                                The names of the security groups.
       --net-id strings                              The IDs of the Nets specified when the security groups were created.
-      --outbound-rule-account-id strings            The account IDs that have been granted permissions.
+      --outbound-rule-account-id strings            The OUTSCALE account IDs that have been granted permissions.
       --outbound-rule-from-port-range ints          The beginnings of the port ranges for the TCP and UDP protocols, or the ICMP type numbers.
       --outbound-rule-ip-range strings              The IP ranges that have been granted permissions, in CIDR notation (for example, 10.0.0.0/24).
       --outbound-rule-protocol strings              The IP protocols for the permissions (tcp | udp | icmp, or a protocol number, or -1 for all protocols).

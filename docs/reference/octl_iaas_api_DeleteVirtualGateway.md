@@ -6,7 +6,9 @@ Deletes a specified virtual gateway.
 
 Deletes a specified virtual gateway.
 
-Before deleting a virtual gateway, we recommend to detach it from the Net and delete the VPN connection.
+**[IMPORTANT]**
+
+Before deleting a virtual gateway, we recommend detaching it from any associated Net, DirectLink, and DirectLink interface, and deleting the VPN connection.
 
 ```
 octl iaas api DeleteVirtualGateway [flags]

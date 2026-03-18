@@ -1,10 +1,10 @@
 ## octl iaas api ReadApiLogs
 
-Lists the logs of the API calls you have performed with this account.
+Lists the logs of the API calls you have performed with this OUTSCALE account.
 
 ### Synopsis
 
-Lists the logs of the API calls you have performed with this account.
+Lists the logs of the API calls you have performed with this OUTSCALE account.
 
 **[IMPORTANT]**
 
@@ -33,7 +33,7 @@ octl iaas api ReadApiLogs [flags]
       --Filters.ResponseStatusCodes ints   The HTTP status codes of the logged calls.
       --NextPageToken string               The token to request the next page of results.
       --ResultsPerPage int                 The maximum number of logs returned in a single response (between 1 and 1000, both included).
-      --With.AccountId                     If true, the account ID is displayed.
+      --With.AccountId                     If true, the OUTSCALE account ID is displayed.
       --With.CallDuration                  If true, the duration of the call is displayed.
       --With.QueryAccessKey                If true, the access key is displayed.
       --With.QueryApiName                  If true, the name of the API is displayed.

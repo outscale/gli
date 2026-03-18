@@ -38,16 +38,16 @@ octl iaas vm list [flags]
       --nic-link-nic-link-nic-date strings                 The dates and times (UTC) when the NICs were attached to the VMs.
       --nic-link-nic-link-nic-id strings                   The IDs of the NIC attachments.
       --nic-link-nic-state strings                         The states of the attachments.
-      --nic-link-nic-vm-account-id strings                 The account IDs of the owners of the VMs the NICs are attached to.
+      --nic-link-nic-vm-account-id strings                 The OUTSCALE account IDs of the owners of the VMs the NICs are attached to.
       --nic-link-nic-vm-id strings                         The IDs of the VMs the NICs are attached to.
       --nic-link-public-ip strings                         The public IPs associated with the NICs.
-      --nic-link-public-ip-account-id strings              The account IDs of the owners of the public IPs associated with the NICs.
+      --nic-link-public-ip-account-id strings              The OUTSCALE account IDs of the owners of the public IPs associated with the NICs.
       --nic-link-public-ip-link-public-ip-id strings       The association IDs returned when the public IPs were associated with the NICs.
       --nic-link-public-ip-public-ip-id strings            The allocation IDs returned when the public IPs were allocated to their accounts.
       --nic-mac-address strings                            The Media Access Control (MAC) addresses of the NICs.
       --nic-net-id strings                                 The IDs of the Nets where the NICs are located.
       --nic-private-ip strings                             The private IPs of the NICs.
-      --nic-private-ip-link-public-ip-account-id strings   The account IDs of the owner of the public IPs associated with the private IPs.
+      --nic-private-ip-link-public-ip-account-id strings   The OUTSCALE account IDs of the owner of the public IPs associated with the private IPs.
       --nic-private-ip-link-public-ip-id strings           The public IPs associated with the private IPs.
       --nic-private-ip-primary-ip                          Whether the private IPs are the primary IPs associated with the NICs.
       --nic-security-group-id strings                      The IDs of the security groups associated with the NICs.

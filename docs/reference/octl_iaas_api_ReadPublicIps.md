@@ -1,10 +1,10 @@
 ## octl iaas api ReadPublicIps
 
-Lists one or more public IPs allocated to your account.
+Lists one or more public IPs allocated to your OUTSCALE account.
 
 ### Synopsis
 
-Lists one or more public IPs allocated to your account.
+Lists one or more public IPs allocated to your OUTSCALE account.
 
 By default, this action returns information about all your public IPs: available or associated with a virtual machine (VM), a network interface card (NIC) or a NAT service.
 
@@ -17,7 +17,7 @@ octl iaas api ReadPublicIps [flags]
 ```
       --DryRun                            If true, checks whether you have the required permissions to perform the action.
       --Filters.LinkPublicIpIds strings   The IDs representing the associations of public IPs with VMs or NICs.
-      --Filters.NicAccountIds strings     The account IDs of the owners of the NICs.
+      --Filters.NicAccountIds strings     The OUTSCALE account IDs of the owners of the NICs.
       --Filters.NicIds strings            The IDs of the NICs.
       --Filters.Placements strings        Whether the public IPs are for use in the public Cloud or in a Net.
       --Filters.PrivateIps strings        The private IPs associated with the public IPs.

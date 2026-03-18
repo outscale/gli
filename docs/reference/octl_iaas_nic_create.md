@@ -20,7 +20,7 @@ octl iaas nic create [flags]
       --description string             A description for the NIC.
   -h, --help                           help for create
       --private-ip-is-primary          If true, the IP is the primary private IP of the NIC.
-      --private-ip-private-ip string   The private IP of the NIC.
+      --private-ip-private-ip string   A private IP for the NIC.
       --security-group-id strings      One or more IDs of security groups for the NIC.
       --subnet-id string               The ID of the Subnet in which you want to create the NIC.
 ```

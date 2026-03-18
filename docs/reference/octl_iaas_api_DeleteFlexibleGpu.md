@@ -1,10 +1,10 @@
 ## octl iaas api DeleteFlexibleGpu
 
-Releases a flexible GPU (fGPU) from your account.
+Releases a flexible GPU (fGPU) from your OUTSCALE account.
 
 ### Synopsis
 
-Releases a flexible GPU (fGPU) from your account.
+Releases a flexible GPU (fGPU) from your OUTSCALE account.
 
 The fGPU becomes free to be used by someone else.
 

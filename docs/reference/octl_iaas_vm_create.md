@@ -48,7 +48,7 @@ octl iaas vm create [flags]
       --nic-description string                   The description of the NIC, if you are creating a NIC when creating the VM.
       --nic-device-number int                    The index of the VM device for the NIC attachment (between 0 and 7, both included).
       --nic-id string                            The ID of the NIC, if you are attaching an existing NIC when creating a VM.
-      --nic-private-ip string                    The private IP of the NIC.
+      --nic-private-ip string                    A private IP for the NIC.
       --nic-private-ip-is-primary                If true, the IP is the primary private IP of the NIC.
       --nic-secondary-private-ip-count int       The number of secondary private IPs, if you create a NIC when creating a VM.
       --nic-security-group-id strings            One or more IDs of security groups for the NIC, if you create a NIC when creating a VM.

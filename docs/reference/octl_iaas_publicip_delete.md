@@ -8,7 +8,7 @@ alias for api DeletePublicIp --PublicIpId public_ip_id
 
 Releases a public IP.
 
-You can release a public IP associated with your account. This address is released in the public IP pool and can be used by someone else. Before releasing a public IP, ensure you updated all your resources communicating with this address.
+You can release a public IP associated with your OUTSCALE account. This address is released in the public IP pool and can be used by someone else. Before releasing a public IP, ensure you updated all your resources communicating with this address.
 
 ```
 octl iaas publicip delete public_ip_id [public_ip_id]... [flags]

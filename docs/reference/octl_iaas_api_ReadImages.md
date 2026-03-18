@@ -15,7 +15,7 @@ octl iaas api ReadImages [flags]
 ```
       --DryRun                                          If true, checks whether you have the required permissions to perform the action.
       --Filters.AccountAliases strings                  The account aliases of the owners of the OMIs.
-      --Filters.AccountIds strings                      The account IDs of the owners of the OMIs.
+      --Filters.AccountIds strings                      The OUTSCALE account IDs of the owners of the OMIs.
       --Filters.Architectures strings                   The architectures of the OMIs (i386 | x86_64).
       --Filters.BlockDeviceMappingDeleteOnVmDeletion    Whether the volumes are deleted or not when terminating the VM.
       --Filters.BlockDeviceMappingDeviceNames strings   The device names for the volumes.
@@ -28,7 +28,7 @@ octl iaas api ReadImages [flags]
       --Filters.Hypervisors strings                     The hypervisor type of the OMI (always xen).
       --Filters.ImageIds strings                        The IDs of the OMIs.
       --Filters.ImageNames strings                      The names of the OMIs, provided when they were created.
-      --Filters.PermissionsToLaunchAccountIds strings   The account IDs which have launch permissions for the OMIs.
+      --Filters.PermissionsToLaunchAccountIds strings   The OUTSCALE account IDs which have launch permissions for the OMIs.
       --Filters.PermissionsToLaunchGlobalPermission     If true, lists all public OMIs.
       --Filters.ProductCodeNames strings                The names of the product codes associated with the OMI.
       --Filters.ProductCodes strings                    The product codes associated with the OMI.

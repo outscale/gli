@@ -1,10 +1,10 @@
 ## octl iaas api CreateFlexibleGpu
 
-Allocates a flexible GPU (fGPU) to your account.
+Allocates a flexible GPU (fGPU) to your OUTSCALE account.
 
 ### Synopsis
 
-Allocates a flexible GPU (fGPU) to your account.
+Allocates a flexible GPU (fGPU) to your OUTSCALE account.
 
 You can then attach this fGPU to a virtual machine (VM).
 

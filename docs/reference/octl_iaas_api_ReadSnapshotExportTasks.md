@@ -13,11 +13,12 @@ octl iaas api ReadSnapshotExportTasks [flags]
 ### Options
 
 ```
-      --DryRun                    If true, checks whether you have the required permissions to perform the action.
-      --Filters.TaskIds strings   The IDs of the export tasks.
-      --NextPageToken string      The token to request the next page of results.
-      --ResultsPerPage int        The maximum number of logs returned in a single response (between 1 and 1000, both included).
-  -h, --help                      help for ReadSnapshotExportTasks
+      --DryRun                        If true, checks whether you have the required permissions to perform the action.
+      --Filters.SnapshotIds strings   The IDs of the snapshots used with the snapshot export tasks
+      --Filters.TaskIds strings       The IDs of the snapshot export tasks.
+      --NextPageToken string          The token to request the next page of results.
+      --ResultsPerPage int            The maximum number of logs returned in a single response (between 1 and 1000, both included).
+  -h, --help                          help for ReadSnapshotExportTasks
 ```
 
 ### Options inherited from parent commands

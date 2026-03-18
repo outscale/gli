@@ -12,7 +12,7 @@ alias for api CreateVmGroup
 
 Creates a group of virtual machines (VMs) containing the same characteristics as a specified VM template, and then launches them.
 
-You can create up to 100 VM groups in your account.
+You can create up to 100 VM groups in your OUTSCALE account.
 
 ```
 octl iaas vmgroup create [flags]

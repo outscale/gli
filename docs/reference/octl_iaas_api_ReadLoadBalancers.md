@@ -15,6 +15,7 @@ octl iaas api ReadLoadBalancers [flags]
 ```
       --DryRun                              If true, checks whether you have the required permissions to perform the action.
       --Filters.LoadBalancerNames strings   The names of the load balancers.
+      --Filters.States strings              The states of the load balancer (provisioning | starting | reloading | active | reconfiguring | deleting | deleted).
   -h, --help                                help for ReadLoadBalancers
 ```
 

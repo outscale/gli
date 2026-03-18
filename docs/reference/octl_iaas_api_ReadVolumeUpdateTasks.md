@@ -13,11 +13,12 @@ octl iaas api ReadVolumeUpdateTasks [flags]
 ### Options
 
 ```
-      --DryRun                    If true, checks whether you have the required permissions to perform the action.
-      --Filters.TaskIds strings   The IDs of the volume update tasks.
-      --NextPageToken string      The token to request the next page of results.
-      --ResultsPerPage int        The maximum number of logs returned in a single response (between 1 and 1000, both included).
-  -h, --help                      help for ReadVolumeUpdateTasks
+      --DryRun                      If true, checks whether you have the required permissions to perform the action.
+      --Filters.TaskIds strings     The IDs of the snapshot export tasks.
+      --Filters.VolumeIds strings   The IDs of the volumes used for the snapshot export tasks.
+      --NextPageToken string        The token to request the next page of results.
+      --ResultsPerPage int          The maximum number of logs returned in a single response (between 1 and 1000, both included).
+  -h, --help                        help for ReadVolumeUpdateTasks
 ```
 
 ### Options inherited from parent commands

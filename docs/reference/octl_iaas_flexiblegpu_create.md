@@ -6,7 +6,7 @@ alias for api CreateFlexibleGpu
 
 > *alias for api CreateFlexibleGpu*
 
-Allocates a flexible GPU (fGPU) to your account.
+Allocates a flexible GPU (fGPU) to your OUTSCALE account.
 
 You can then attach this fGPU to a virtual machine (VM).
 

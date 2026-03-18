@@ -1,10 +1,10 @@
 ## octl iaas api DisableOutscaleLogin
 
-Disables the possibility of logging in using the Outscale credentials of your root account when identity federation is activated.
+Disables the possibility of logging in using the Outscale credentials of your root user when identity federation is activated.
 
 ### Synopsis
 
-Disables the possibility of logging in using the Outscale credentials of your root account when identity federation is activated.
+Disables the possibility of logging in using the Outscale credentials of your root user when identity federation is activated.
 
 ```
 octl iaas api DisableOutscaleLogin [flags]

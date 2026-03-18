@@ -6,7 +6,7 @@ alias for api CreateAccessKey
 
 > *alias for api CreateAccessKey*
 
-Creates an access key for either your root account or an EIM user. The new key is automatically set to `ACTIVE`.
+Creates an access key for either the root user or an EIM user. The new key is automatically set to `ACTIVE`.
 
 For more information, see [About Access Keys](https://docs.outscale.com/en/userguide/About-Access-Keys.html).
 

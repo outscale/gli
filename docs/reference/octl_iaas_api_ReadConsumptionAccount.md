@@ -1,10 +1,10 @@
 ## octl iaas api ReadConsumptionAccount
 
-Gets information about the consumption of your account for each billable resource within the specified time period.
+Gets information about the consumption of your OUTSCALE account for each billable resource within the specified time period.
 
 ### Synopsis
 
-Gets information about the consumption of your account for each billable resource within the specified time period.
+Gets information about the consumption of your OUTSCALE account for each billable resource within the specified time period.
 
 ```
 octl iaas api ReadConsumptionAccount [flags]

@@ -1,10 +1,10 @@
 ## octl iaas api ReadFlexibleGpus
 
-Lists one or more flexible GPUs (fGPUs) allocated to your account.
+Lists one or more flexible GPUs (fGPUs) allocated to your OUTSCALE account.
 
 ### Synopsis
 
-Lists one or more flexible GPUs (fGPUs) allocated to your account.
+Lists one or more flexible GPUs (fGPUs) allocated to your OUTSCALE account.
 
 ```
 octl iaas api ReadFlexibleGpus [flags]

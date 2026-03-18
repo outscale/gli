@@ -15,8 +15,9 @@ octl iaas snapshotexporttask list [flags]
 ### Options
 
 ```
-  -h, --help              help for list
-      --task-id strings   The IDs of the export tasks.
+  -h, --help                  help for list
+      --snapshot-id strings   The IDs of the snapshots used with the snapshot export tasks
+      --task-id strings       The IDs of the snapshot export tasks.
 ```
 
 ### Options inherited from parent commands

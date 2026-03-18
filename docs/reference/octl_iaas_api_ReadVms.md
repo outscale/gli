@@ -39,16 +39,16 @@ octl iaas api ReadVms [flags]
       --Filters.NicLinkNicLinkNicDates strings                The dates and times (UTC) when the NICs were attached to the VMs.
       --Filters.NicLinkNicLinkNicIds strings                  The IDs of the NIC attachments.
       --Filters.NicLinkNicStates strings                      The states of the attachments.
-      --Filters.NicLinkNicVmAccountIds strings                The account IDs of the owners of the VMs the NICs are attached to.
+      --Filters.NicLinkNicVmAccountIds strings                The OUTSCALE account IDs of the owners of the VMs the NICs are attached to.
       --Filters.NicLinkNicVmIds strings                       The IDs of the VMs the NICs are attached to.
-      --Filters.NicLinkPublicIpAccountIds strings             The account IDs of the owners of the public IPs associated with the NICs.
+      --Filters.NicLinkPublicIpAccountIds strings             The OUTSCALE account IDs of the owners of the public IPs associated with the NICs.
       --Filters.NicLinkPublicIpLinkPublicIpIds strings        The association IDs returned when the public IPs were associated with the NICs.
       --Filters.NicLinkPublicIpPublicIpIds strings            The allocation IDs returned when the public IPs were allocated to their accounts.
       --Filters.NicLinkPublicIpPublicIps strings              The public IPs associated with the NICs.
       --Filters.NicMacAddresses strings                       The Media Access Control (MAC) addresses of the NICs.
       --Filters.NicNetIds strings                             The IDs of the Nets where the NICs are located.
       --Filters.NicNicIds strings                             The IDs of the NICs.
-      --Filters.NicPrivateIpsLinkPublicIpAccountIds strings   The account IDs of the owner of the public IPs associated with the private IPs.
+      --Filters.NicPrivateIpsLinkPublicIpAccountIds strings   The OUTSCALE account IDs of the owner of the public IPs associated with the private IPs.
       --Filters.NicPrivateIpsLinkPublicIpIds strings          The public IPs associated with the private IPs.
       --Filters.NicPrivateIpsPrimaryIp                        Whether the private IPs are the primary IPs associated with the NICs.
       --Filters.NicPrivateIpsPrivateIps strings               The private IPs of the NICs.

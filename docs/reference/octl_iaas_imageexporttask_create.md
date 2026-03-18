@@ -8,7 +8,7 @@ alias for api CreateImageExportTask
 
 Exports an OUTSCALE machine image (OMI) to an OUTSCALE Object Storage (OOS) bucket.
 
-This enables you to copy an OMI between accounts in different Regions.
+This enables you to copy an OMI between OUTSCALE accounts in different Regions.
 
 This action creates the necessary snapshots and manifest file in the bucket. The OMI can then be imported to another account using a pre-signed URL of its manifest file. For more information, see [Creating a Pre-Signed URL](https://docs.outscale.com/en/userguide/Creating-a-Pre-Signed-URL.html).
 
@@ -16,7 +16,9 @@ To copy an OMI in the same Region, you can also use the [CreateImage](#createima
 
 **[IMPORTANT]**
 
-You cannot export a shared or public OMI, as they do not belong to you. To do so, you must first copy it to your account. The copy then belongs to you and you can export it.
+* You cannot export a shared or public OMI, as they do not belong to you. To do so, you must first copy it to your account. The copy then belongs to you and you can export it.
+
+* Export tasks can only be canceled while in the `pending/queued` state.
 
 For more information, see [About OMIs](https://docs.outscale.com/en/userguide/About-OMIs.html).
 

@@ -1,10 +1,10 @@
 ## octl iaas api ReadUsers
 
-Lists all EIM users in the account.
+Lists all EIM users in the OUTSCALE account.
 
 ### Synopsis
 
-Lists all EIM users in the account.
+Lists all EIM users in the OUTSCALE account.
 
 The response can be filtered using the UserIds.
 

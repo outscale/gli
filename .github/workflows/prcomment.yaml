@@ -111,7 +111,11 @@ jobs:
           if [ `cat diff|wc -l` -gt 200 ]; then
             echo "[...]" >> diffmsg.txt
           fi
-          echo '```' >> diffmsg.txt
+          count=$(grep -c '```' diffmsg.txt)
+          even=$(bc <<< "$count%2")
+          if [ $even -eq 1 ]; then
+            echo '```' >> diffmsg.txt
+          fi
           echo "</details>" >> diffmsg.txt
         else
           echo "**No diff in reference doc** 😀" > diffmsg.txt

@@ -54,7 +54,7 @@ octl iaas api CreateVms [flags]
       --Nics.0.DeviceNumber int                          The index of the VM device for the NIC attachment (between 0 and 7, both included).
       --Nics.0.NicId string                              The ID of the NIC, if you are attaching an existing NIC when creating a VM.
       --Nics.0.PrivateIps.0.IsPrimary                    If true, the IP is the primary private IP of the NIC.
-      --Nics.0.PrivateIps.0.PrivateIp string             The private IP of the NIC.
+      --Nics.0.PrivateIps.0.PrivateIp string             A private IP for the NIC.
       --Nics.0.SecondaryPrivateIpCount int               The number of secondary private IPs, if you create a NIC when creating a VM.
       --Nics.0.SecurityGroupIds strings                  One or more IDs of security groups for the NIC, if you create a NIC when creating a VM.
       --Nics.0.SubnetId string                           The ID of the Subnet for the NIC, if you create a NIC when creating a VM.

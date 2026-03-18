@@ -8,7 +8,9 @@ alias for api DeleteVirtualGateway --VirtualGatewayId virtual_gateway_id
 
 Deletes a specified virtual gateway.
 
-Before deleting a virtual gateway, we recommend to detach it from the Net and delete the VPN connection.
+**[IMPORTANT]**
+
+Before deleting a virtual gateway, we recommend detaching it from any associated Net, DirectLink, and DirectLink interface, and deleting the VPN connection.
 
 ```
 octl iaas virtualgateway delete virtual_gateway_id [virtual_gateway_id]... [flags]

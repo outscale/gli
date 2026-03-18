@@ -6,7 +6,7 @@ alias for api ReadPolicies
 
 > *alias for api ReadPolicies*
 
-Lists all the managed policies available for your account.
+Lists all the managed policies available for your OUTSCALE account.
 
 ```
 octl iaas policy list [flags]
