@@ -11,6 +11,7 @@ octl storage api CreateBucket [flags]
 ```
       --ACL string                                               The canned ACL to apply to the bucket.
       --Bucket string                                            The name of the bucket to create.
+      --BucketNamespace string                                   Specifies the namespace where you want to create your general purpose bucket.
       --CreateBucketConfiguration.Bucket.DataRedundancy string   
       --CreateBucketConfiguration.Bucket.Type string             
       --CreateBucketConfiguration.Location.Name string           

@@ -23,6 +23,7 @@ octl storage bucket create [flags]
       --grant-write string               Allows grantee to create new objects in the bucket.
       --grant-write-acp string           Allows grantee to write the ACL for the applicable bucket.
   -h, --help                             help for create
+      --namespace string                 Specifies the namespace where you want to create your general purpose bucket.
       --object-lock-enabled-for-bucket   Specifies whether you want S3 Object Lock to be enabled for the new bucket.
       --object-ownership string          The container element for object ownership for a bucket's ownership controls.
 ```

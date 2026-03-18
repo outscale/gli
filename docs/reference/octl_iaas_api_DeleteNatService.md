@@ -6,7 +6,7 @@ Deletes a specified network address translation (NAT) service.
 
 Deletes a specified network address translation (NAT) service.
 
-This action disassociates the public IP from the NAT service, but does not release this public IP from your account. However, it does not delete any NAT service routes in your route tables.
+This action disassociates the public IP from the NAT service, but does not release this public IP from your OUTSCALE account. However, it does not delete any NAT service routes in your route tables.
 
 ```
 octl iaas api DeleteNatService [flags]

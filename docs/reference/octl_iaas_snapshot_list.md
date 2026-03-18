@@ -16,13 +16,13 @@ octl iaas snapshot list [flags]
 
 ```
       --account-alias strings                            The account aliases of the owners of the snapshots.
-      --account-id strings                               The account IDs of the owners of the snapshots.
+      --account-id strings                               The OUTSCALE account IDs of the owners of the snapshots.
       --client-token strings                             The idempotency tokens provided when creating the snapshots.
       --description strings                              The descriptions of the snapshots.
       --from-creation-date osctime                       The beginning of the time period, in ISO 8601 date-time format (for example, 2020-06-14T00:00:00.000Z).
   -h, --help                                             help for list
       --id strings                                       The IDs of the snapshots.
-      --permission-to-create-volume-account-id strings   The account IDs which have permissions to create volumes.
+      --permission-to-create-volume-account-id strings   The OUTSCALE account IDs which have permissions to create volumes.
       --permission-to-create-volume-global-permission    If true, lists all public volumes.
       --progress ints                                    The progresses of the snapshots, as a percentage.
       --state strings                                    The states of the snapshots (in-queue | pending | completed | error | deleting).

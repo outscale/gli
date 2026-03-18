@@ -8,7 +8,7 @@ alias for api ReadQuotas
 
 Lists one or more of your quotas.
 
-For more information, see [About Your Account](https://docs.outscale.com/en/userguide/About-Your-Account.html).
+For more information, see [About Your Account](https://docs.outscale.com/en/userguide/About-Your-OUTSCALE-Account.html).
 
 ```
 octl iaas quota list [flags]

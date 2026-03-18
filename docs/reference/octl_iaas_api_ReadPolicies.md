@@ -1,10 +1,10 @@
 ## octl iaas api ReadPolicies
 
-Lists all the managed policies available for your account.
+Lists all the managed policies available for your OUTSCALE account.
 
 ### Synopsis
 
-Lists all the managed policies available for your account.
+Lists all the managed policies available for your OUTSCALE account.
 
 ```
 octl iaas api ReadPolicies [flags]

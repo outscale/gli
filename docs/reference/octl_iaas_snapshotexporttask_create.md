@@ -8,7 +8,11 @@ alias for api CreateSnapshotExportTask
 
 Exports a snapshot to an OUTSCALE Object Storage (OOS) bucket that belongs to you. This action enables you to create a backup of your snapshot.
 
-You can share this snapshot with others accounts by granting permission to read it via pre-signed URLs. For more information, see [Creating a Pre-Signed URL](https://docs.outscale.com/en/userguide/Creating-a-Pre-Signed-URL.html).
+You can share this snapshot with others OUTSCALE accounts by granting permission to read it via pre-signed URLs. For more information, see [Creating a Pre-Signed URL](https://docs.outscale.com/en/userguide/Creating-a-Pre-Signed-URL.html).
+
+**[IMPORTANT]**
+
+Export tasks can only be canceled while in the `pending/queued` state.
 
 For more information, see [About Snapshots](https://docs.outscale.com/en/userguide/About-Snapshots.html).
 

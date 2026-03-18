@@ -6,7 +6,7 @@ alias for api CreateNetPeering
 
 > *alias for api CreateNetPeering*
 
-Requests a Net peering between a Net you own and a peer Net that belongs to you or another account.
+Requests a Net peering between a Net you own and a peer Net that belongs to you or another OUTSCALE account.
 
 This action creates a Net peering that remains in the `pending-acceptance` state until it is accepted by the owner of the peer Net. If the owner of the peer Net does not accept the request within 7 days, the state of the Net peering becomes `expired`. For more information, see [AcceptNetPeering](#acceptnetpeering).
 
@@ -26,7 +26,7 @@ octl iaas netpeering create [flags]
 
 ```
       --accepter-net-id string     The ID of the Net you want to connect with.
-      --accepter-owner-id string   The account ID of the owner of the Net you want to connect with.
+      --accepter-owner-id string   The OUTSCALE account ID of the owner of the Net you want to connect with.
   -h, --help                       help for create
       --source-net-id string       The ID of the Net you send the peering request from.
 ```

@@ -1,10 +1,10 @@
 ## octl iaas api CreateNetPeering
 
-Requests a Net peering between a Net you own and a peer Net that belongs to you or another account.
+Requests a Net peering between a Net you own and a peer Net that belongs to you or another OUTSCALE account.
 
 ### Synopsis
 
-Requests a Net peering between a Net you own and a peer Net that belongs to you or another account.
+Requests a Net peering between a Net you own and a peer Net that belongs to you or another OUTSCALE account.
 
 This action creates a Net peering that remains in the `pending-acceptance` state until it is accepted by the owner of the peer Net. If the owner of the peer Net does not accept the request within 7 days, the state of the Net peering becomes `expired`. For more information, see [AcceptNetPeering](#acceptnetpeering).
 
@@ -24,7 +24,7 @@ octl iaas api CreateNetPeering [flags]
 
 ```
       --AccepterNetId string     The ID of the Net you want to connect with.
-      --AccepterOwnerId string   The account ID of the owner of the Net you want to connect with.
+      --AccepterOwnerId string   The OUTSCALE account ID of the owner of the Net you want to connect with.
       --DryRun                   If true, checks whether you have the required permissions to perform the action.
       --SourceNetId string       The ID of the Net you send the peering request from.
   -h, --help                     help for CreateNetPeering

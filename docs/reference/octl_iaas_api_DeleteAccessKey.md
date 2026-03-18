@@ -1,10 +1,10 @@
 ## octl iaas api DeleteAccessKey
 
-Deletes the specified access key of either your root account or an EIM user.
+Deletes the specified access key of either the root user or an EIM user.
 
 ### Synopsis
 
-Deletes the specified access key of either your root account or an EIM user.
+Deletes the specified access key of either the root user or an EIM user.
 
 The access key of an EIM user must be in the `INACTIVE` state to be deleted.
 

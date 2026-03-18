@@ -1,10 +1,10 @@
 ## octl iaas api UpdateApiAccessPolicy
 
-Updates the API access policy of your account.
+Updates the API access policy of your OUTSCALE account.
 
 ### Synopsis
 
-Updates the API access policy of your account.
+Updates the API access policy of your OUTSCALE account.
 
 **[IMPORTANT]**
 

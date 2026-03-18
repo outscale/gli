@@ -6,7 +6,7 @@ alias for api ReadApiAccessPolicy
 
 > *alias for api ReadApiAccessPolicy*
 
-Gets information about the API access policy of your account.
+Gets information about the API access policy of your OUTSCALE account.
 
 For more information, see [About Your API Access Policy](https://docs.outscale.com/en/userguide/About-Your-API-Access-Policy.html).
 

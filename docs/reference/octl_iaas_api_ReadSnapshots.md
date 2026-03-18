@@ -15,11 +15,11 @@ octl iaas api ReadSnapshots [flags]
 ```
       --DryRun                                                If true, checks whether you have the required permissions to perform the action.
       --Filters.AccountAliases strings                        The account aliases of the owners of the snapshots.
-      --Filters.AccountIds strings                            The account IDs of the owners of the snapshots.
+      --Filters.AccountIds strings                            The OUTSCALE account IDs of the owners of the snapshots.
       --Filters.ClientTokens strings                          The idempotency tokens provided when creating the snapshots.
       --Filters.Descriptions strings                          The descriptions of the snapshots.
       --Filters.FromCreationDate osctime                      The beginning of the time period, in ISO 8601 date-time format (for example, 2020-06-14T00:00:00.000Z).
-      --Filters.PermissionsToCreateVolumeAccountIds strings   The account IDs which have permissions to create volumes.
+      --Filters.PermissionsToCreateVolumeAccountIds strings   The OUTSCALE account IDs which have permissions to create volumes.
       --Filters.PermissionsToCreateVolumeGlobalPermission     If true, lists all public volumes.
       --Filters.Progresses ints                               The progresses of the snapshots, as a percentage.
       --Filters.SnapshotIds strings                           The IDs of the snapshots.

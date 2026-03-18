@@ -14,12 +14,12 @@ octl iaas api ReadNetPeerings [flags]
 
 ```
       --DryRun                                  If true, checks whether you have the required permissions to perform the action.
-      --Filters.AccepterNetAccountIds strings   The account IDs of the owners of the peer Nets.
+      --Filters.AccepterNetAccountIds strings   The OUTSCALE account IDs of the owners of the peer Nets.
       --Filters.AccepterNetIpRanges strings     The IP ranges of the peer Nets, in CIDR notation (for example, 10.0.0.0/24).
       --Filters.AccepterNetNetIds strings       The IDs of the peer Nets.
       --Filters.ExpirationDates osctime         The dates and times at which the Net peerings expire, in ISO 8601 date-time format (for example, 2020-06-14T00:00:00.000Z).
       --Filters.NetPeeringIds strings           The IDs of the Net peerings.
-      --Filters.SourceNetAccountIds strings     The account IDs of the owners of the peer Nets.
+      --Filters.SourceNetAccountIds strings     The OUTSCALE account IDs of the owners of the peer Nets.
       --Filters.SourceNetIpRanges strings       The IP ranges of the peer Nets.
       --Filters.SourceNetNetIds strings         The IDs of the peer Nets.
       --Filters.StateMessages strings           Additional information about the states of the Net peerings.

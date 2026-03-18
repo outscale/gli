@@ -7,7 +7,7 @@ Creates a keypair to use with your virtual machines (VMs).
 Creates a keypair to use with your virtual machines (VMs).
 
 You can use this method in two different ways:
-* **Creating a keypair**: In that case, 3DS OUTSCALE creates a 2048-bit RSA keypair, stores its public key in your account, and returns its private key in the response of the call so that you can save it in a file.
+* **Creating a keypair**: In that case, 3DS OUTSCALE creates a 2048-bit RSA keypair, stores its public key in your OUTSCALE account, and returns its private key in the response of the call so that you can save it in a file.
 
 When you save the returned private key, make sure you replace the `\n` escape sequences with real line breaks.
 * **Importing a keypair created locally**: If you already have a keypair that you have created locally with a third-party tool, you can import its public key in your account. The following types of key can be imported: RSA (2048 bits or preferably 4096 bits), Ed25519, and ECDSA (256 bits, 384 bits, or 521 bits). The following formats can be used: PEM, PKCS8, RFC4716, and OpenSSH.

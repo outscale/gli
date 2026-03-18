@@ -437,6 +437,8 @@ aliases:
     required: true
   - name: acl
     alias_to: ACL
+  - name: namespace
+    alias_to: BucketNamespace
   - name: grant-full-control
     alias_to: GrantFullControl
   - name: grant-read
@@ -905,6 +907,8 @@ spec:
     CreateBucketInput.Bucket:
       help: The name of the bucket to create.
       required: true
+    CreateBucketInput.BucketNamespace:
+      help: Specifies the namespace where you want to create your general purpose bucket.
     CreateBucketInput.CreateBucketConfiguration:
       help: The configuration information for the bucket.
     CreateBucketInput.GrantFullControl:

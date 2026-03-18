@@ -6,7 +6,7 @@ Releases a public IP.
 
 Releases a public IP.
 
-You can release a public IP associated with your account. This address is released in the public IP pool and can be used by someone else. Before releasing a public IP, ensure you updated all your resources communicating with this address.
+You can release a public IP associated with your OUTSCALE account. This address is released in the public IP pool and can be used by someone else. Before releasing a public IP, ensure you updated all your resources communicating with this address.
 
 ```
 octl iaas api DeletePublicIp [flags]

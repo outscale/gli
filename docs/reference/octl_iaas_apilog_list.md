@@ -6,7 +6,7 @@ alias for api ReadApiLogs
 
 > *alias for api ReadApiLogs*
 
-Lists the logs of the API calls you have performed with this account.
+Lists the logs of the API calls you have performed with this OUTSCALE account.
 
 **[IMPORTANT]**
 
@@ -33,7 +33,7 @@ octl iaas apilog list [flags]
       --query-user-agent strings    The user agents of the HTTP requests of the logged calls.
       --request-id strings          The request IDs provided in the responses of the logged calls.
       --response-status-code ints   The HTTP status codes of the logged calls.
-      --with-account-id             If true, the account ID is displayed.
+      --with-account-id             If true, the OUTSCALE account ID is displayed.
       --with-call-duration          If true, the duration of the call is displayed.
       --with-query-access-key       If true, the access key is displayed.
       --with-query-api-name         If true, the name of the API is displayed.

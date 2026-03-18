@@ -1,10 +1,10 @@
 ## octl iaas api CheckAuthentication
 
-Validates the authenticity of the account.
+Validates the authenticity of the OUTSCALE account.
 
 ### Synopsis
 
-Validates the authenticity of the account.
+Validates the authenticity of the OUTSCALE account.
 
 ```
 octl iaas api CheckAuthentication [flags]

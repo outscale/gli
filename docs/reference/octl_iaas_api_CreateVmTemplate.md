@@ -10,7 +10,7 @@
 
 Creates a virtual machine (VM) template. You can then use the VM template to create VM groups.
 
-You can create up to 50 VM templates in your account.
+You can create up to 50 VM templates in your OUTSCALE account.
 
 ```
 octl iaas api CreateVmTemplate [flags]

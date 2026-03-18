@@ -6,7 +6,7 @@ alias for api ReadUserGroups
 
 > *alias for api ReadUserGroups*
 
-Lists all the user groups of the account.
+Lists all the user groups of the OUTSCALE account.
 
 The response can be filtered using either the PathPrefix or the UserGroupIds.
 

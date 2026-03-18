@@ -15,8 +15,9 @@ octl iaas volumeupdatetask list [flags]
 ### Options
 
 ```
-  -h, --help              help for list
-      --task-id strings   The IDs of the volume update tasks.
+  -h, --help                help for list
+      --task-id strings     The IDs of the snapshot export tasks.
+      --volume-id strings   The IDs of the volumes used for the snapshot export tasks.
 ```
 
 ### Options inherited from parent commands

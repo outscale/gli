@@ -196,9 +196,9 @@ func listResources(ctx context.Context, cl *osc.Client, netID string) (*Resource
 	for _, nap := range *naps.NetAccessPoints {
 		root.children = append(root.children, &Resource{
 			Type:   NetAccessPoint,
-			ID:     *nap.NetAccessPointId,
-			Name:   tags.Must(tags.GetName(*nap.Tags)),
-			delete: deleteNetAccessPoint(cl, *nap.NetAccessPointId),
+			ID:     nap.NetAccessPointId,
+			Name:   tags.Must(tags.GetName(nap.Tags)),
+			delete: deleteNetAccessPoint(cl, nap.NetAccessPointId),
 		})
 	}
 
@@ -209,24 +209,24 @@ func listResources(ctx context.Context, cl *osc.Client, netID string) (*Resource
 	for _, vgw := range *vgws.VirtualGateways {
 		root.children = append(root.children, &Resource{
 			Type:   VirtualGateway,
-			ID:     *vgw.VirtualGatewayId,
-			Name:   tags.Must(tags.GetName(*vgw.Tags)),
-			delete: deleteVirtualGateway(cl, *vgw.VirtualGatewayId, netID),
+			ID:     vgw.VirtualGatewayId,
+			Name:   tags.Must(tags.GetName(vgw.Tags)),
+			delete: deleteVirtualGateway(cl, vgw.VirtualGatewayId, netID),
 		})
 	}
 	vgwids := lo.Map(*vgws.VirtualGateways, func(vgw osc.VirtualGateway, _ int) string {
-		return *vgw.VirtualGatewayId
+		return vgw.VirtualGatewayId
 	})
 	vpns, err := cl.ReadVpnConnections(ctx, osc.ReadVpnConnectionsRequest{Filters: &osc.FiltersVpnConnection{VirtualGatewayIds: &vgwids}})
 	if err != nil {
 		return nil, false, fmt.Errorf("list net peerings: %w", err)
 	}
 	for _, vpn := range *vpns.VpnConnections {
-		root.addToChild(*vpn.VirtualGatewayId, VirtualGateway, &Resource{
+		root.addToChild(vpn.VirtualGatewayId, VirtualGateway, &Resource{
 			Type:   VPNConnection,
-			ID:     *vpn.VpnConnectionId,
-			Name:   tags.Must(tags.GetName(*vpn.Tags)),
-			delete: deleteVpnConnection(cl, *vpn.VpnConnectionId),
+			ID:     vpn.VpnConnectionId,
+			Name:   tags.Must(tags.GetName(vpn.Tags)),
+			delete: deleteVpnConnection(cl, vpn.VpnConnectionId),
 		})
 	}
 
@@ -245,9 +245,9 @@ func listResources(ctx context.Context, cl *osc.Client, netID string) (*Resource
 		for _, ip := range nat.PublicIps {
 			pip := &Resource{
 				Type:   PublicIP,
-				ID:     *ip.PublicIpId,
-				Name:   *ip.PublicIp,
-				delete: deletePublicIP(cl, *ip.PublicIpId),
+				ID:     ip.PublicIpId,
+				Name:   ip.PublicIp,
+				delete: deletePublicIP(cl, ip.PublicIpId),
 			}
 			sr.children = append(sr.children, pip)
 		}

@@ -16,7 +16,7 @@ octl iaas image list [flags]
 
 ```
       --account-alias strings                     The account aliases of the owners of the OMIs.
-      --account-id strings                        The account IDs of the owners of the OMIs.
+      --account-id strings                        The OUTSCALE account IDs of the owners of the OMIs.
       --architecture strings                      The architectures of the OMIs (i386 | x86_64).
       --boot-mode strings                         The boot modes compatible with the OMIs.
       --description strings                       The descriptions of the OMIs, provided when they were created.
@@ -25,7 +25,7 @@ octl iaas image list [flags]
       --hypervisor strings                        The hypervisor type of the OMI (always xen).
       --id strings                                The IDs of the OMIs.
       --name strings                              The names of the OMIs, provided when they were created.
-      --permission-to-launch-account-id strings   The account IDs which have launch permissions for the OMIs.
+      --permission-to-launch-account-id strings   The OUTSCALE account IDs which have launch permissions for the OMIs.
       --permission-to-launch-global-permission    If true, lists all public OMIs.
       --product-code strings                      The product codes associated with the OMI.
       --product-code-name strings                 The names of the product codes associated with the OMI.

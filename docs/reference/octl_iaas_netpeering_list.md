@@ -15,13 +15,13 @@ octl iaas netpeering list [flags]
 ### Options
 
 ```
-      --accepter-net-account-id strings   The account IDs of the owners of the peer Nets.
+      --accepter-net-account-id strings   The OUTSCALE account IDs of the owners of the peer Nets.
       --accepter-net-ip-range strings     The IP ranges of the peer Nets, in CIDR notation (for example, 10.0.0.0/24).
       --accepter-net-net-id strings       The IDs of the peer Nets.
       --expiration-date osctime           The dates and times at which the Net peerings expire, in ISO 8601 date-time format (for example, 2020-06-14T00:00:00.000Z).
   -h, --help                              help for list
       --id strings                        The IDs of the Net peerings.
-      --source-net-account-id strings     The account IDs of the owners of the peer Nets.
+      --source-net-account-id strings     The OUTSCALE account IDs of the owners of the peer Nets.
       --source-net-ip-range strings       The IP ranges of the peer Nets.
       --source-net-net-id strings         The IDs of the peer Nets.
       --state-message strings             Additional information about the states of the Net peerings.

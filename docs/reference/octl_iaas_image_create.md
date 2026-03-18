@@ -10,8 +10,8 @@ Creates an OUTSCALE machine image (OMI).
 
 You can use this method for different use cases:
 * **Creating from a VM**: You create an OMI from one of your virtual machines (VMs).<br>
-* **Copying an OMI**: You copy an existing OMI. The source OMI can be one of your own OMIs, or an OMI owned by another account that has granted you permission via the [UpdateImage](#updateimage) method.<br>
-* **Registering from a snapshot**: You register an OMI from an existing snapshot. The source snapshot can be one of your own snapshots, or a snapshot owned by another account that has granted you permission via the [UpdateSnapshot](#updatesnapshot) method.<br>
+* **Copying an OMI**: You copy an existing OMI. The source OMI can be one of your own OMIs, or an OMI owned by another OUTSCALE account that has granted you permission via the [UpdateImage](#updateimage) method.<br>
+* **Registering from a snapshot**: You register an OMI from an existing snapshot. The source snapshot can be one of your own snapshots, or a snapshot owned by another OUTSCALE account that has granted you permission via the [UpdateSnapshot](#updatesnapshot) method.<br>
 * **Registering from a bucket by using a manifest file**: You register an OMI from the manifest file of an OMI that was exported to an OUTSCALE Object Storage (OOS) bucket. First, the owner of the source OMI must export it to the bucket by using the [CreateImageExportTask](#createimageexporttask) method. Then, they must grant you permission to read the manifest file via a pre-signed URL. For more information, see [Creating a Pre-Signed URL](https://docs.outscale.com/en/userguide/Creating-a-Pre-Signed-URL.html).
 
 **[TIP]**
@@ -27,19 +27,19 @@ octl iaas image create [flags]
 ### Options
 
 ```
-      --architecture string                 **When registering from a snapshot:** The architecture of the OMI (i386 or x86_64).
+      --architecture string                 **(when registering from a snapshot)** The architecture of the OMI (i386 or x86_64).
       --boot-mode strings                   The boot modes compatible with the OMI.
       --description string                  A description for the new OMI.
-      --file-location string                **(required) When registering from a bucket by using a manifest file:** The pre-signed URL of the manifest file for the OMI you want to register.
+      --file-location string                **(required when registering from a bucket by using a manifest file)** The pre-signed URL of the manifest file for the OMI you want to register.
   -h, --help                                help for create
       --name string                         A unique name for the new OMI.
-      --no-reboot                           **When creating from a VM:** If false, the VM shuts down before creating the OMI and then reboots.
+      --no-reboot                           **(when creating from a VM)** If false, the VM shuts down before creating the OMI and then reboots.
       --product-code strings                The product codes associated with the OMI.
-      --root-device-name string             **(required) When registering from a snapshot:** The name of the root device for the new OMI.
-      --source-image-id string              **(required) When copying an OMI:** The ID of the OMI you want to copy.
-      --source-region-name string           **(required) When copying an OMI:** The name of the source Region (always the same as the Region of your account).
+      --root-device-name string             **(required when registering from a snapshot)** The name of the root device for the new OMI.
+      --source-image-id string              **(required when copying an OMI)** The ID of the OMI you want to copy.
+      --source-region-name string           **(required when copying an OMI)** The name of the source Region (always the same as the Region of your account).
       --tpm-mandatory                       By default or if set to false, a virtual Trusted Platform Module (vTPM) is not mandatory on VMs created from this OMI.
-      --vm-id string                        **(required) When creating from a VM:** The ID of the VM from which you want to create the OMI.
+      --vm-id string                        **(required when creating from a VM)** The ID of the VM from which you want to create the OMI.
       --volume-delete-on-vm-deletion        If set to true, the volume is deleted when terminating the VM.
       --volume-device-name string           The device name for the volume.
       --volume-iops int                     The number of I/O operations per second (IOPS).

@@ -6,7 +6,7 @@ alias for api DeleteAccessKey --AccessKeyId access_key_id
 
 > *alias for api DeleteAccessKey --AccessKeyId access_key_id*
 
-Deletes the specified access key of either your root account or an EIM user.
+Deletes the specified access key of either the root user or an EIM user.
 
 The access key of an EIM user must be in the `INACTIVE` state to be deleted.
 

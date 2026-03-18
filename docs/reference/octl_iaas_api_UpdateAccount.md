@@ -1,10 +1,10 @@
 ## octl iaas api UpdateAccount
 
-Updates the account information for the account that sends the request.
+Updates the OUTSCALE account information for the account that sends the request.
 
 ### Synopsis
 
-Updates the account information for the account that sends the request.
+Updates the OUTSCALE account information for the account that sends the request.
 
 ```
 octl iaas api UpdateAccount [flags]

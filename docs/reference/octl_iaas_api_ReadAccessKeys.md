@@ -1,10 +1,10 @@
 ## octl iaas api ReadAccessKeys
 
-Lists the access key IDs of either your root account or an EIM user.
+Lists the access key IDs of either your root user or an EIM user.
 
 ### Synopsis
 
-Lists the access key IDs of either your root account or an EIM user.
+Lists the access key IDs of either your root user or an EIM user.
 
 ```
 octl iaas api ReadAccessKeys [flags]

@@ -32,12 +32,12 @@ octl iaas api DeleteSecurityGroupRule [flags]
       --Rules.0.IpProtocol string                                  The IP protocol name (tcp, udp, icmp, or -1 for all protocols).
       --Rules.0.IpRanges strings                                   One or more IP ranges for the security group rules, in CIDR notation (for example, ["10.0.0.0/24" , "10.0.1.0/24"]).
       --Rules.0.SecurityGroupRuleId string                         The ID of the security group rule.
-      --Rules.0.SecurityGroupsMembers.0.AccountId string           The account ID that owns the source or destination security group.
+      --Rules.0.SecurityGroupsMembers.0.AccountId string           The OUTSCALE account ID that owns the source or destination security group.
       --Rules.0.SecurityGroupsMembers.0.SecurityGroupId string     The ID of a source or destination security group that you want to link to the security group of the rule.
       --Rules.0.SecurityGroupsMembers.0.SecurityGroupName string   The name of a source or destination security group that you want to link to the security group of the rule.
       --Rules.0.ServiceIds strings                                 One or more service IDs to allow traffic from a Net to access the corresponding OUTSCALE services.
       --Rules.0.ToPortRange int                                    The end of the port range for the TCP and UDP protocols, or an ICMP code number.
-      --SecurityGroupAccountIdToUnlink string                      The account ID of the owner of the security group you want to delete a rule from.
+      --SecurityGroupAccountIdToUnlink string                      The OUTSCALE account ID of the owner of the security group you want to delete a rule from.
       --SecurityGroupId string                                     The ID of the security group you want to delete a rule from.
       --SecurityGroupNameToUnlink string                           The ID of the source security group.
       --ToPortRange int                                            The end of the port range for the TCP and UDP protocols, or an ICMP code number.

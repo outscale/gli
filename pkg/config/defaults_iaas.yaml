@@ -1058,6 +1058,8 @@ entities:
       content: .LoadBalancerName
     - title: Type
       content: .LoadBalancerType
+    - title: State
+      content: .State
     - title: PublicIp
       content: .PublicIp
     - title: NetId
@@ -2380,6 +2382,8 @@ aliases:
   - --output
   - table
   flags:
+  - name: image-id
+    alias_to: Filters.ImageIds
   - name: task-id
     alias_to: Filters.TaskIds
 - entity: imageexporttask
@@ -2624,6 +2628,8 @@ aliases:
   flags:
   - name: name
     alias_to: Filters.LoadBalancerNames
+  - name: state
+    alias_to: Filters.States
 - entity: loadbalancer
   use: describe load_balancer_name [load_balancer_name]...
   aliases:
@@ -3216,6 +3222,8 @@ aliases:
   - --output
   - table
   flags:
+  - name: snapshot-id
+    alias_to: Filters.SnapshotIds
   - name: task-id
     alias_to: Filters.TaskIds
 - entity: snapshotexporttask
@@ -3890,6 +3898,8 @@ aliases:
   flags:
   - name: task-id
     alias_to: Filters.TaskIds
+  - name: volume-id
+    alias_to: Filters.VolumeIds
 - entity: volumeupdatetask
   use: describe task_id [task_id]...
   aliases:
@@ -6003,11 +6013,16 @@ aliases:
   - --output
   - yaml
   flags:
+  - name: clear-expiration-date
+    alias_to: ClearExpirationDate
+  - name: clear-tag
+    alias_to: ClearTag
   - name: expiration-date
     alias_to: ExpirationDate
   - name: state
     alias_to: State
-    required: true
+  - name: tag
+    alias_to: Tag
   - name: user-name
     alias_to: UserName
 - entity: apiaccessrule
@@ -6464,10 +6479,10 @@ spec:
     AddUserToUserGroup:
       help: Adds a user to a specified group.
     CheckAuthentication:
-      help: Validates the authenticity of the account.
+      help: Validates the authenticity of the OUTSCALE account.
     CreateAccessKey:
       help: |-
-        Creates an access key for either your root account or an EIM user. The new key is automatically set to `ACTIVE`.
+        Creates an access key for either the root user or an EIM user. The new key is automatically set to `ACTIVE`.
         
         
         For more information, see [About Access Keys](https://docs.outscale.com/en/userguide/About-Access-Keys.html).
@@ -6483,10 +6498,10 @@ spec:
         
         * If you want to pass a numeral value as a string instead of an integer, you must wrap your string in additional quotes (for example, `'&quot;92000&quot;'`).
         
-        For more information, see [About Your Account](https://docs.outscale.com/en/userguide/About-Your-Account.html).
+        For more information, see [About Your Account](https://docs.outscale.com/en/userguide/About-Your-OUTSCALE-Account.html).
     CreateApiAccessRule:
       help: |-
-        Creates a rule to allow access to the API from your account.
+        Creates a rule to allow access to the API from your OUTSCALE account.
         
         You need to specify at least the `CaIds` or the `IpRanges` parameter.
         
@@ -6542,7 +6557,7 @@ spec:
         For more information, see [About DirectLink](https://docs.outscale.com/en/userguide/About-DirectLink.html).
     CreateFlexibleGpu:
       help: |-
-        Allocates a flexible GPU (fGPU) to your account.
+        Allocates a flexible GPU (fGPU) to your OUTSCALE account.
         
         You can then attach this fGPU to a virtual machine (VM).
         
@@ -6554,8 +6569,8 @@ spec:
         
         You can use this method for different use cases:
         * **Creating from a VM**: You create an OMI from one of your virtual machines (VMs).<br>
-        * **Copying an OMI**: You copy an existing OMI. The source OMI can be one of your own OMIs, or an OMI owned by another account that has granted you permission via the [UpdateImage](#updateimage) method.<br>
-        * **Registering from a snapshot**: You register an OMI from an existing snapshot. The source snapshot can be one of your own snapshots, or a snapshot owned by another account that has granted you permission via the [UpdateSnapshot](#updatesnapshot) method.<br>
+        * **Copying an OMI**: You copy an existing OMI. The source OMI can be one of your own OMIs, or an OMI owned by another OUTSCALE account that has granted you permission via the [UpdateImage](#updateimage) method.<br>
+        * **Registering from a snapshot**: You register an OMI from an existing snapshot. The source snapshot can be one of your own snapshots, or a snapshot owned by another OUTSCALE account that has granted you permission via the [UpdateSnapshot](#updatesnapshot) method.<br>
         * **Registering from a bucket by using a manifest file**: You register an OMI from the manifest file of an OMI that was exported to an OUTSCALE Object Storage (OOS) bucket. First, the owner of the source OMI must export it to the bucket by using the [CreateImageExportTask](#createimageexporttask) method. Then, they must grant you permission to read the manifest file via a pre-signed URL. For more information, see [Creating a Pre-Signed URL](https://docs.outscale.com/en/userguide/Creating-a-Pre-Signed-URL.html).
         
         **[TIP]**
@@ -6567,7 +6582,7 @@ spec:
       help: |-
         Exports an OUTSCALE machine image (OMI) to an OUTSCALE Object Storage (OOS) bucket.
         
-        This enables you to copy an OMI between accounts in different Regions.
+        This enables you to copy an OMI between OUTSCALE accounts in different Regions.
         
         
         This action creates the necessary snapshots and manifest file in the bucket. The OMI can then be imported to another account using a pre-signed URL of its manifest file. For more information, see [Creating a Pre-Signed URL](https://docs.outscale.com/en/userguide/Creating-a-Pre-Signed-URL.html).
@@ -6578,8 +6593,9 @@ spec:
         
         **[IMPORTANT]**
         
-        You cannot export a shared or public OMI, as they do not belong to you. To do so, you must first copy it to your account. The copy then belongs to you and you can export it.
+        * You cannot export a shared or public OMI, as they do not belong to you. To do so, you must first copy it to your account. The copy then belongs to you and you can export it.
         
+        * Export tasks can only be canceled while in the `pending/queued` state.
         
         For more information, see [About OMIs](https://docs.outscale.com/en/userguide/About-OMIs.html).
     CreateInternetService:
@@ -6595,7 +6611,7 @@ spec:
         Creates a keypair to use with your virtual machines (VMs).
         
         You can use this method in two different ways:
-        * **Creating a keypair**: In that case, 3DS OUTSCALE creates a 2048-bit RSA keypair, stores its public key in your account, and returns its private key in the response of the call so that you can save it in a file.
+        * **Creating a keypair**: In that case, 3DS OUTSCALE creates a 2048-bit RSA keypair, stores its public key in your OUTSCALE account, and returns its private key in the response of the call so that you can save it in a file.
         
         When you save the returned private key, make sure you replace the `\n` escape sequences with real line breaks.
         * **Importing a keypair created locally**: If you already have a keypair that you have created locally with a third-party tool, you can import its public key in your account. The following types of key can be imported: RSA (2048 bits or preferably 4096 bits), Ed25519, and ECDSA (256 bits, 384 bits, or 521 bits). The following formats can be used: PEM, PKCS8, RFC4716, and OpenSSH.
@@ -6689,13 +6705,13 @@ spec:
         To control the routing of traffic between the Net and the specified service, you can specify one or more route tables. Virtual machines placed in Subnets associated with the specified route table thus use the Net access point to access the service. When you specify a route table, a route is automatically added to it with the destination set to the prefix list ID of the service, and the target set to the ID of the access point.
         
         
-        When a Net access point is created, a public IP is automatically allocated to your account and used for the Net access point. This public IP is not connected to the Internet. It is counted in your quota, but it is not billed.
+        When a Net access point is created, a public IP is automatically allocated to your OUTSCALE account and used for the Net access point. This public IP is not connected to the Internet. It is counted in your quota, but it is not billed.
          
         
         For more information, see [About Net Access Points](https://docs.outscale.com/en/userguide/About-Net-Access-Points.html).
     CreateNetPeering:
       help: |-
-        Requests a Net peering between a Net you own and a peer Net that belongs to you or another account.
+        Requests a Net peering between a Net you own and a peer Net that belongs to you or another OUTSCALE account.
         
         This action creates a Net peering that remains in the `pending-acceptance` state until it is accepted by the owner of the peer Net. If the owner of the peer Net does not accept the request within 7 days, the state of the Net peering becomes `expired`. For more information, see [AcceptNetPeering](#acceptnetpeering).
         
@@ -6845,7 +6861,7 @@ spec:
         You can use this method in three different ways:
         * **Creating from a volume**: You create a snapshot from one of your volumes.
         
-        * **Copying a snapshot**: You copy an existing snapshot. The source snapshot can be one of your own snapshots, or a snapshot owned by another account that has granted you permission via the [UpdateSnapshot](#updatesnapshot) method.
+        * **Copying a snapshot**: You copy an existing snapshot. The source snapshot can be one of your own snapshots, or a snapshot owned by another OUTSCALE account that has granted you permission via the [UpdateSnapshot](#updatesnapshot) method.
         
         * **Importing from a bucket**: You import a snapshot located in an OUTSCALE Object Storage (OOS) bucket. First, the owner of the source snapshot must export it to a bucket by using the [CreateSnapshotExportTask](#createsnapshotexporttask) method. Then, they must grant you permission to read the snapshot via a pre-signed URL. For more information, see [Creating a Pre-Signed URL](https://docs.outscale.com/en/userguide/Creating-a-Pre-Signed-URL.html).
         
@@ -6859,7 +6875,12 @@ spec:
         Exports a snapshot to an OUTSCALE Object Storage (OOS) bucket that belongs to you. This action enables you to create a backup of your snapshot.
         
         
-        You can share this snapshot with others accounts by granting permission to read it via pre-signed URLs. For more information, see [Creating a Pre-Signed URL](https://docs.outscale.com/en/userguide/Creating-a-Pre-Signed-URL.html).
+        You can share this snapshot with others OUTSCALE accounts by granting permission to read it via pre-signed URLs. For more information, see [Creating a Pre-Signed URL](https://docs.outscale.com/en/userguide/Creating-a-Pre-Signed-URL.html).
+        
+        
+        **[IMPORTANT]**
+        
+        Export tasks can only be canceled while in the `pending/queued` state.
         
         
         For more information, see [About Snapshots](https://docs.outscale.com/en/userguide/About-Snapshots.html).
@@ -6928,7 +6949,7 @@ spec:
         For more information, see [About Tags](https://docs.outscale.com/en/userguide/About-Tags.html).
     CreateUser:
       help: |-
-        Creates an EIM user for your account.
+        Creates an EIM user for your OUTSCALE account.
         
         
         For more information, see [About EIM Users](https://docs.outscale.com/en/userguide/About-EIM-Users.html).
@@ -6954,7 +6975,7 @@ spec:
         
         Creates a group of virtual machines (VMs) containing the same characteristics as a specified VM template, and then launches them.
         
-        You can create up to 100 VM groups in your account.
+        You can create up to 100 VM groups in your OUTSCALE account.
     CreateVmTemplate:
       help: |-
         > [WARNING]
@@ -6964,7 +6985,7 @@ spec:
         
         Creates a virtual machine (VM) template. You can then use the VM template to create VM groups.
         
-        You can create up to 50 VM templates in your account.
+        You can create up to 50 VM templates in your OUTSCALE account.
     CreateVms:
       help: |-
         Creates virtual machines (VMs), and then launches them.
@@ -7020,7 +7041,7 @@ spec:
         For more information, see [About Routing Configuration for VPN Connections](https://docs.outscale.com/en/userguide/About-Routing-Configuration-for-VPN-Connections.html).
     DeleteAccessKey:
       help: |-
-        Deletes the specified access key of either your root account or an EIM user.
+        Deletes the specified access key of either the root user or an EIM user.
         
         
         The access key of an EIM user must be in the `INACTIVE` state to be deleted.
@@ -7079,7 +7100,7 @@ spec:
         If the export task is not in the `active` or `pending` state, the command fails and an error is returned.
     DeleteFlexibleGpu:
       help: |-
-        Releases a flexible GPU (fGPU) from your account.
+        Releases a flexible GPU (fGPU) from your OUTSCALE account.
         
         The fGPU becomes free to be used by someone else.
     DeleteImage:
@@ -7114,7 +7135,7 @@ spec:
       help: |-
         Deletes a specified network address translation (NAT) service.
         
-        This action disassociates the public IP from the NAT service, but does not release this public IP from your account. However, it does not delete any NAT service routes in your route tables.
+        This action disassociates the public IP from the NAT service, but does not release this public IP from your OUTSCALE account. However, it does not delete any NAT service routes in your route tables.
     DeleteNet:
       help: |-
         Deletes a specified Net.
@@ -7188,7 +7209,7 @@ spec:
       help: |-
         Releases a public IP.
         
-        You can release a public IP associated with your account. This address is released in the public IP pool and can be used by someone else. Before releasing a public IP, ensure you updated all your resources communicating with this address.
+        You can release a public IP associated with your OUTSCALE account. This address is released in the public IP pool and can be used by someone else. Before releasing a public IP, ensure you updated all your resources communicating with this address.
     DeleteRoute:
       help: Deletes a route from a specified route table.
     DeleteRouteTable:
@@ -7277,7 +7298,9 @@ spec:
       help: |-
         Deletes a specified virtual gateway.
         
-        Before deleting a virtual gateway, we recommend to detach it from the Net and delete the VPN connection.
+        **[IMPORTANT]**
+        
+        Before deleting a virtual gateway, we recommend detaching it from any associated Net, DirectLink, and DirectLink interface, and deleting the VPN connection.
     DeleteVmGroup:
       help: |-
         > [WARNING]
@@ -7322,13 +7345,13 @@ spec:
         
         Deregisters a specified virtual machine (VM) from a load balancer.
     DisableOutscaleLogin:
-      help: Disables the possibility of logging in using the Outscale credentials of your root account when identity federation is activated.
+      help: Disables the possibility of logging in using the Outscale credentials of your root user when identity federation is activated.
     DisableOutscaleLoginForUsers:
       help: Disables the possibility of logging in using the Outscale credentials of your EIM users when identity federation is activated.
     DisableOutscaleLoginPerUsers:
       help: Disables the possibility for one or more specific users to log in using their Outscale credentials when identity federation is activated.
     EnableOutscaleLogin:
-      help: Enables the possibility of logging in using the Outscale credentials of your root account when identity federation is activated.
+      help: Enables the possibility of logging in using the Outscale credentials of your root user when identity federation is activated.
     EnableOutscaleLoginForUsers:
       help: Enables the possibility for all your EIM users to log in using their Outscale credentials when identity federation is activated.
     EnableOutscaleLoginPerUsers:
@@ -7436,7 +7459,7 @@ spec:
         
         A delay of up to 15 seconds can occur when creating or deleting an inline policy.
     ReadAccessKeys:
-      help: Lists the access key IDs of either your root account or an EIM user.
+      help: Lists the access key IDs of either your root user or an EIM user.
     ReadAccounts:
       help: Gets information about the account that sent the request.
     ReadAdminPassword:
@@ -7454,7 +7477,7 @@ spec:
         * The administrator password is generated only on the first boot of the Windows VM. It is not returned after the first boot.
     ReadApiAccessPolicy:
       help: |-
-        Gets information about the API access policy of your account.
+        Gets information about the API access policy of your OUTSCALE account.
         
         
         For more information, see [About Your API Access Policy](https://docs.outscale.com/en/userguide/About-Your-API-Access-Policy.html).
@@ -7462,7 +7485,7 @@ spec:
       help: Lists one or more API access rules.
     ReadApiLogs:
       help: |-
-        Lists the logs of the API calls you have performed with this account.
+        Lists the logs of the API calls you have performed with this OUTSCALE account.
         
         **[IMPORTANT]**
         
@@ -7492,7 +7515,7 @@ spec:
         
         On Windows VMs, the console is handled only on the first boot. It returns no output after the first boot.
     ReadConsumptionAccount:
-      help: Gets information about the consumption of your account for each billable resource within the specified time period.
+      help: Gets information about the consumption of your OUTSCALE account for each billable resource within the specified time period.
     ReadDedicatedGroups:
       help: List one or more dedicated groups of virtual machines (VMs).
     ReadDhcpOptions:
@@ -7506,7 +7529,7 @@ spec:
     ReadFlexibleGpuCatalog:
       help: Lists all flexible GPUs available in the public catalog.
     ReadFlexibleGpus:
-      help: Lists one or more flexible GPUs (fGPUs) allocated to your account.
+      help: Lists one or more flexible GPUs (fGPUs) allocated to your OUTSCALE account.
     ReadImageExportTasks:
       help: Lists one or more image export tasks.
     ReadImages:
@@ -7521,7 +7544,7 @@ spec:
     ReadLinkedPolicies:
       help: Lists the managed policies linked to a specified user.
     ReadListenerRules:
-      help: Lists one or more listener rules. By default, this action returns the full list of listener rules for the account.
+      help: Lists one or more listener rules. By default, this action returns the full list of listener rules for the OUTSCALE account.
     ReadLoadBalancerTags:
       help: Lists the tags associated with one or more specified load balancers.
     ReadLoadBalancers:
@@ -7553,7 +7576,7 @@ spec:
         
         A NIC is a virtual network interface that you can attach to a virtual machine (VM) in a Net.
     ReadPolicies:
-      help: Lists all the managed policies available for your account.
+      help: Lists all the managed policies available for your OUTSCALE account.
     ReadPolicy:
       help: Lists information about a specified managed policy.
     ReadPolicyVersion:
@@ -7568,7 +7591,7 @@ spec:
       help: Gets the public IPv4 addresses in CIDR notation for the Region specified in the endpoint of the request. For more information, see [About Regions and Subregions](https://docs.outscale.com/en/userguide/About-Regions-and-Subregions.html).
     ReadPublicIps:
       help: |-
-        Lists one or more public IPs allocated to your account.
+        Lists one or more public IPs allocated to your OUTSCALE account.
         
         By default, this action returns information about all your public IPs: available or associated with a virtual machine (VM), a network interface card (NIC) or a NAT service.
     ReadQuotas:
@@ -7576,7 +7599,7 @@ spec:
         Lists one or more of your quotas.
         
         
-        For more information, see [About Your Account](https://docs.outscale.com/en/userguide/About-Your-Account.html).
+        For more information, see [About Your Account](https://docs.outscale.com/en/userguide/About-Your-OUTSCALE-Account.html).
     ReadRegions:
       help: |-
         Lists one or more Regions of the OUTSCALE Cloud.
@@ -7623,7 +7646,7 @@ spec:
       help: Returns information about an inline policy included in a specified group.
     ReadUserGroups:
       help: |-
-        Lists all the user groups of the account.
+        Lists all the user groups of the OUTSCALE account.
         
         The response can be filtered using either the PathPrefix or the UserGroupIds.
     ReadUserGroupsPerUser:
@@ -7634,7 +7657,7 @@ spec:
       help: Returns information about an inline policy included in a specified user.
     ReadUsers:
       help: |-
-        Lists all EIM users in the account.
+        Lists all EIM users in the OUTSCALE account.
         
         The response can be filtered using the UserIds.
     ReadVirtualGateways:
@@ -7801,15 +7824,15 @@ spec:
         To detach the root device of a VM, this VM must be stopped.
     UpdateAccessKey:
       help: |-
-        Modifies the attributes of the specified access key of either your root account or an EIM user.
+        Modifies the attributes of the specified access key of either the root user or an EIM user.
         
         
         The parameter `ExpirationDate` is not required when updating the state of your access key. However, if you do not specify the expiration date of an access key when updating its state, it is then set to not expire.
     UpdateAccount:
-      help: Updates the account information for the account that sends the request.
+      help: Updates the OUTSCALE account information for the account that sends the request.
     UpdateApiAccessPolicy:
       help: |-
-        Updates the API access policy of your account.
+        Updates the API access policy of your OUTSCALE account.
         
         
         
@@ -7841,7 +7864,7 @@ spec:
         
         You must specify either the `Additions` or the `Removals` parameter.
         
-        After sharing an OMI with an account, the other account can create a copy of it that they own. For more information about copying OMIs, see [CreateImage](#createimage).
+        After sharing an OMI with an OUTSCALE account, the other account can create a copy of it that they own. For more information about copying OMIs, see [CreateImage](#createimage).
     UpdateListenerRule:
       help: |-
         Updates the pattern of the listener rule.
@@ -7909,7 +7932,7 @@ spec:
         
         You must specify either the `Additions` or the `Removals` parameter.
         
-        After sharing a snapshot with an account, the other account can create a copy of it that they own. For more information about copying snapshots, see [CreateSnapshot](#createsnapshot).
+        After sharing a snapshot with an OUTSCALE account, the other account can create a copy of it that they own. For more information about copying snapshots, see [CreateSnapshot](#createsnapshot).
     UpdateSubnet:
       help: Modifies the specified attribute of a Subnet.
     UpdateUser:
@@ -7965,7 +7988,7 @@ spec:
     AcceptNetPeeringRequest.NetPeeringId:
       help: The ID of the Net peering you want to accept.
     AccepterNet.AccountId:
-      help: The account ID of the owner of the accepter Net.
+      help: The OUTSCALE account ID of the owner of the accepter Net.
     AccepterNet.IpRange:
       help: The IP range for the accepter Net, in CIDR notation (for example, 10.0.0.0/16).
     AccepterNet.NetId:
@@ -8193,7 +8216,7 @@ spec:
     ClientGateway.Tags:
       help: One or more tags associated with the client gateway.
     ConsumptionEntry.AccountId:
-      help: The ID of your TINA account.
+      help: The ID of your OUTSCALE account.
     ConsumptionEntry.Category:
       help: The category of the resource (for example, network).
     ConsumptionEntry.FromDate:
@@ -8201,7 +8224,7 @@ spec:
     ConsumptionEntry.Operation:
       help: The API call that triggered the resource consumption (for example, RunInstances or CreateVolume).
     ConsumptionEntry.PayingAccountId:
-      help: The ID of the TINA account which is billed for your consumption.
+      help: The ID of the OUTSCALE account which is billed for your consumption.
     ConsumptionEntry.Price:
       help: The total price of the consumed resource during the specified time period, in the currency of the Region's catalog.
     ConsumptionEntry.ResourceId:
@@ -8331,9 +8354,9 @@ spec:
     CreateImageExportTaskRequest.OsuExport:
       help: Information about the OOS export task to create.
     CreateImageRequest.Architecture:
-      help: '**When registering from a snapshot:** The architecture of the OMI (i386 or x86_64).'
+      help: '**(when registering from a snapshot)** The architecture of the OMI (i386 or x86_64).'
     CreateImageRequest.BlockDeviceMappings:
-      help: '**(required) When registering from a snapshot:** One or more block device mappings.'
+      help: '**(required when registering from a snapshot)** One or more block device mappings.'
     CreateImageRequest.BootModes:
       help: The boot modes compatible with the OMI.
     CreateImageRequest.Description:
@@ -8341,23 +8364,23 @@ spec:
     CreateImageRequest.DryRun:
       help: If true, checks whether you have the required permissions to perform the action.
     CreateImageRequest.FileLocation:
-      help: '**(required) When registering from a bucket by using a manifest file:** The pre-signed URL of the manifest file for the OMI you want to register.'
+      help: '**(required when registering from a bucket by using a manifest file)** The pre-signed URL of the manifest file for the OMI you want to register.'
     CreateImageRequest.ImageName:
       help: A unique name for the new OMI.
     CreateImageRequest.NoReboot:
-      help: '**When creating from a VM:** If false, the VM shuts down before creating the OMI and then reboots.'
+      help: '**(when creating from a VM)** If false, the VM shuts down before creating the OMI and then reboots.'
     CreateImageRequest.ProductCodes:
       help: The product codes associated with the OMI.
     CreateImageRequest.RootDeviceName:
-      help: '**(required) When registering from a snapshot:** The name of the root device for the new OMI.'
+      help: '**(required when registering from a snapshot)** The name of the root device for the new OMI.'
     CreateImageRequest.SourceImageId:
-      help: '**(required) When copying an OMI:** The ID of the OMI you want to copy.'
+      help: '**(required when copying an OMI)** The ID of the OMI you want to copy.'
     CreateImageRequest.SourceRegionName:
-      help: '**(required) When copying an OMI:** The name of the source Region (always the same as the Region of your account).'
+      help: '**(required when copying an OMI)** The name of the source Region (always the same as the Region of your account).'
     CreateImageRequest.TpmMandatory:
       help: By default or if set to false, a virtual Trusted Platform Module (vTPM) is not mandatory on VMs created from this OMI.
     CreateImageRequest.VmId:
-      help: '**(required) When creating from a VM:** The ID of the VM from which you want to create the OMI.'
+      help: '**(required when creating from a VM)** The ID of the VM from which you want to create the OMI.'
     CreateInternetServiceRequest.DryRun:
       help: If true, checks whether you have the required permissions to perform the action.
     CreateKeypairRequest.DryRun:
@@ -8435,7 +8458,7 @@ spec:
     CreateNetPeeringRequest.AccepterNetId:
       help: The ID of the Net you want to connect with.
     CreateNetPeeringRequest.AccepterOwnerId:
-      help: The account ID of the owner of the Net you want to connect with.
+      help: The OUTSCALE account ID of the owner of the Net you want to connect with.
     CreateNetPeeringRequest.DryRun:
       help: If true, checks whether you have the required permissions to perform the action.
     CreateNetPeeringRequest.SourceNetId:
@@ -8451,7 +8474,7 @@ spec:
     CreateNicRequest.DryRun:
       help: If true, checks whether you have the required permissions to perform the action.
     CreateNicRequest.PrivateIps:
-      help: The primary private IP for the NIC.
+      help: Information about the private IP or IPs of the NIC.
     CreateNicRequest.SecurityGroupIds:
       help: One or more IDs of security groups for the NIC.
     CreateNicRequest.SubnetId:
@@ -8521,7 +8544,7 @@ spec:
     CreateSecurityGroupRuleRequest.Rules:
       help: Information about the security group rule to create.
     CreateSecurityGroupRuleRequest.SecurityGroupAccountIdToLink:
-      help: The account ID that owns the source or destination security group specified in the SecurityGroupNameToLink parameter.
+      help: The OUTSCALE account ID that owns the source or destination security group specified in the SecurityGroupNameToLink parameter.
     CreateSecurityGroupRuleRequest.SecurityGroupId:
       help: The ID of the security group for which you want to create a rule.
     CreateSecurityGroupRuleRequest.SecurityGroupNameToLink:
@@ -8711,7 +8734,7 @@ spec:
     CreateVpnConnectionRouteRequest.VpnConnectionId:
       help: The ID of the target VPN connection of the static route.
     DedicatedGroup.AccountId:
-      help: The account ID of the owners of the dedicated group.
+      help: The OUTSCALE account ID of the owners of the dedicated group.
     DedicatedGroup.CpuGeneration:
       help: The processor generation.
     DedicatedGroup.DedicatedGroupId:
@@ -8877,7 +8900,7 @@ spec:
     DeleteSecurityGroupRuleRequest.Rules:
       help: One or more rules you want to delete from the security group.
     DeleteSecurityGroupRuleRequest.SecurityGroupAccountIdToUnlink:
-      help: The account ID of the owner of the security group you want to delete a rule from.
+      help: The OUTSCALE account ID of the owner of the security group you want to delete a rule from.
     DeleteSecurityGroupRuleRequest.SecurityGroupId:
       help: The ID of the security group you want to delete a rule from.
     DeleteSecurityGroupRuleRequest.SecurityGroupNameToUnlink:
@@ -8979,7 +9002,7 @@ spec:
     DhcpOptionsSet.Tags:
       help: One or more tags associated with the DHCP options set.
     DirectLink.AccountId:
-      help: The account ID of the owner of the DirectLink.
+      help: The OUTSCALE account ID of the owner of the DirectLink.
     DirectLink.Bandwidth:
       help: The physical link bandwidth (either 1 Gbps or 10 Gbps).
     DirectLink.DirectLinkId:
@@ -8993,7 +9016,7 @@ spec:
     DirectLink.State:
       help: The state of the DirectLink.
     DirectLinkInterfaces.AccountId:
-      help: The account ID of the owner of the DirectLink interface.
+      help: The OUTSCALE account ID of the owner of the DirectLink interface.
     DirectLinkInterfaces.BgpAsn:
       help: The BGP (Border Gateway Protocol) ASN (Autonomous System Number) on the customer's side of the DirectLink interface.
     DirectLinkInterfaces.BgpKey:
@@ -9128,8 +9151,6 @@ spec:
       help: 'The key/value combination of the tags associated with the DHCP options sets, in the following format: "Filters":{"Tags":["TAGKEY=TAGVALUE"]}.'
     FiltersDirectLink.DirectLinkIds:
       help: The IDs of the DirectLinks.
-    FiltersExportTask.TaskIds:
-      help: The IDs of the export tasks.
     FiltersFlexibleGpu.DeleteOnVmDeletion:
       help: Indicates whether the fGPU is deleted when terminating the VM.
     FiltersFlexibleGpu.FlexibleGpuIds:
@@ -9149,7 +9170,7 @@ spec:
     FiltersImage.AccountAliases:
       help: The account aliases of the owners of the OMIs.
     FiltersImage.AccountIds:
-      help: The account IDs of the owners of the OMIs.
+      help: The OUTSCALE account IDs of the owners of the OMIs.
     FiltersImage.Architectures:
       help: The architectures of the OMIs (i386 | x86_64).
     FiltersImage.BlockDeviceMappingDeleteOnVmDeletion:
@@ -9175,7 +9196,7 @@ spec:
     FiltersImage.ImageNames:
       help: The names of the OMIs, provided when they were created.
     FiltersImage.PermissionsToLaunchAccountIds:
-      help: The account IDs which have launch permissions for the OMIs.
+      help: The OUTSCALE account IDs which have launch permissions for the OMIs.
     FiltersImage.PermissionsToLaunchGlobalPermission:
       help: If true, lists all public OMIs.
     FiltersImage.ProductCodeNames:
@@ -9230,6 +9251,8 @@ spec:
       help: The names of the listener rules.
     FiltersLoadBalancer.LoadBalancerNames:
       help: The names of the load balancers.
+    FiltersLoadBalancer.States:
+      help: The states of the load balancer (provisioning | starting | reloading | active | reconfiguring | deleting | deleted).
     FiltersNatService.ClientTokens:
       help: The idempotency tokens provided when creating the NAT services.
     FiltersNatService.NatServiceIds:
@@ -9277,7 +9300,7 @@ spec:
     FiltersNetAccessPoint.Tags:
       help: 'The key/value combination of the tags associated with the Net access points, in the following format: "Filters":{"Tags":["TAGKEY=TAGVALUE"]}.'
     FiltersNetPeering.AccepterNetAccountIds:
-      help: The account IDs of the owners of the peer Nets.
+      help: The OUTSCALE account IDs of the owners of the peer Nets.
     FiltersNetPeering.AccepterNetIpRanges:
       help: The IP ranges of the peer Nets, in CIDR notation (for example, 10.0.0.0/24).
     FiltersNetPeering.AccepterNetNetIds:
@@ -9287,7 +9310,7 @@ spec:
     FiltersNetPeering.NetPeeringIds:
       help: The IDs of the Net peerings.
     FiltersNetPeering.SourceNetAccountIds:
-      help: The account IDs of the owners of the peer Nets.
+      help: The OUTSCALE account IDs of the owners of the peer Nets.
     FiltersNetPeering.SourceNetIpRanges:
       help: The IP ranges of the peer Nets.
     FiltersNetPeering.SourceNetNetIds:
@@ -9315,11 +9338,11 @@ spec:
     FiltersNic.LinkNicStates:
       help: The states of the attachments.
     FiltersNic.LinkNicVmAccountIds:
-      help: The account IDs of the owners of the VMs the NICs are attached to.
+      help: The OUTSCALE account IDs of the owners of the VMs the NICs are attached to.
     FiltersNic.LinkNicVmIds:
       help: The IDs of the VMs the NICs are attached to.
     FiltersNic.LinkPublicIpAccountIds:
-      help: The account IDs of the owners of the public IPs associated with the NICs.
+      help: The OUTSCALE account IDs of the owners of the public IPs associated with the NICs.
     FiltersNic.LinkPublicIpLinkPublicIpIds:
       help: The association IDs returned when the public IPs were associated with the NICs.
     FiltersNic.LinkPublicIpPublicDnsNames:
@@ -9337,7 +9360,7 @@ spec:
     FiltersNic.PrivateDnsNames:
       help: The private DNS names associated with the primary private IPs.
     FiltersNic.PrivateIpsLinkPublicIpAccountIds:
-      help: The account IDs of the owner of the public IPs associated with the private IPs.
+      help: The OUTSCALE account IDs of the owner of the public IPs associated with the private IPs.
     FiltersNic.PrivateIpsLinkPublicIpPublicIps:
       help: The public IPs associated with the private IPs.
     FiltersNic.PrivateIpsPrimaryIp:
@@ -9365,7 +9388,7 @@ spec:
     FiltersPublicIp.LinkPublicIpIds:
       help: The IDs representing the associations of public IPs with VMs or NICs.
     FiltersPublicIp.NicAccountIds:
-      help: The account IDs of the owners of the NICs.
+      help: The OUTSCALE account IDs of the owners of the NICs.
     FiltersPublicIp.NicIds:
       help: The IDs of the NICs.
     FiltersPublicIp.Placements:
@@ -9392,6 +9415,14 @@ spec:
       help: The resource IDs if these are resource-specific quotas, global if they are not.
     FiltersQuota.ShortDescriptions:
       help: The description of the quotas.
+    FiltersReadImageExportTask.ImageIds:
+      help: The IDs of the OMIs used for the snapshot export tasks.
+    FiltersReadImageExportTask.TaskIds:
+      help: The IDs of the snapshot export tasks.
+    FiltersReadVolumeUpdateTask.TaskIds:
+      help: The IDs of the snapshot export tasks.
+    FiltersReadVolumeUpdateTask.VolumeIds:
+      help: The IDs of the volumes used for the snapshot export tasks.
     FiltersRouteTable.LinkRouteTableIds:
       help: The IDs of the route tables involved in the associations.
     FiltersRouteTable.LinkRouteTableLinkRouteTableIds:
@@ -9429,7 +9460,7 @@ spec:
     FiltersSecurityGroup.Descriptions:
       help: The descriptions of the security groups.
     FiltersSecurityGroup.InboundRuleAccountIds:
-      help: The account IDs that have been granted permissions.
+      help: The OUTSCALE account IDs that have been granted permissions.
     FiltersSecurityGroup.InboundRuleFromPortRanges:
       help: The beginnings of the port ranges for the TCP and UDP protocols, or the ICMP type numbers.
     FiltersSecurityGroup.InboundRuleIpRanges:
@@ -9445,7 +9476,7 @@ spec:
     FiltersSecurityGroup.NetIds:
       help: The IDs of the Nets specified when the security groups were created.
     FiltersSecurityGroup.OutboundRuleAccountIds:
-      help: The account IDs that have been granted permissions.
+      help: The OUTSCALE account IDs that have been granted permissions.
     FiltersSecurityGroup.OutboundRuleFromPortRanges:
       help: The beginnings of the port ranges for the TCP and UDP protocols, or the ICMP type numbers.
     FiltersSecurityGroup.OutboundRuleIpRanges:
@@ -9477,7 +9508,7 @@ spec:
     FiltersSnapshot.AccountAliases:
       help: The account aliases of the owners of the snapshots.
     FiltersSnapshot.AccountIds:
-      help: The account IDs of the owners of the snapshots.
+      help: The OUTSCALE account IDs of the owners of the snapshots.
     FiltersSnapshot.ClientTokens:
       help: The idempotency tokens provided when creating the snapshots.
     FiltersSnapshot.Descriptions:
@@ -9485,7 +9516,7 @@ spec:
     FiltersSnapshot.FromCreationDate:
       help: The beginning of the time period, in ISO 8601 date-time format (for example, 2020-06-14T00:00:00.000Z).
     FiltersSnapshot.PermissionsToCreateVolumeAccountIds:
-      help: The account IDs which have permissions to create volumes.
+      help: The OUTSCALE account IDs which have permissions to create volumes.
     FiltersSnapshot.PermissionsToCreateVolumeGlobalPermission:
       help: If true, lists all public volumes.
     FiltersSnapshot.Progresses:
@@ -9506,6 +9537,10 @@ spec:
       help: The IDs of the volumes used to create the snapshots.
     FiltersSnapshot.VolumeSizes:
       help: The sizes of the volumes used to create the snapshots, in gibibytes (GiB).
+    FiltersSnapshotExportTask.SnapshotIds:
+      help: The IDs of the snapshots used with the snapshot export tasks
+    FiltersSnapshotExportTask.TaskIds:
+      help: The IDs of the snapshot export tasks.
     FiltersSubnet.AvailableIpsCounts:
       help: The number of available IPs.
     FiltersSubnet.IpRanges:
@@ -9538,8 +9573,6 @@ spec:
       help: The resource type (customer-gateway | dhcpoptions | flexible-gpu | image | instance | keypair | natgateway | network-interface | public-ip | route-table | security-group | snapshot | subnet | task | virtual-private-gateway | volume | vpc | vpc-endpoint | vpc-peering-connection| vpn-connection).
     FiltersTag.Values:
       help: The values of the tags that are assigned to the resources.
-    FiltersUpdateVolumeTask.TaskIds:
-      help: The IDs of the volume update tasks.
     FiltersUserGroup.PathPrefix:
       help: The path prefix of the groups.
     FiltersUserGroup.UserGroupIds:
@@ -9609,11 +9642,11 @@ spec:
     FiltersVm.NicLinkNicStates:
       help: The states of the attachments.
     FiltersVm.NicLinkNicVmAccountIds:
-      help: The account IDs of the owners of the VMs the NICs are attached to.
+      help: The OUTSCALE account IDs of the owners of the VMs the NICs are attached to.
     FiltersVm.NicLinkNicVmIds:
       help: The IDs of the VMs the NICs are attached to.
     FiltersVm.NicLinkPublicIpAccountIds:
-      help: The account IDs of the owners of the public IPs associated with the NICs.
+      help: The OUTSCALE account IDs of the owners of the public IPs associated with the NICs.
     FiltersVm.NicLinkPublicIpLinkPublicIpIds:
       help: The association IDs returned when the public IPs were associated with the NICs.
     FiltersVm.NicLinkPublicIpPublicIpIds:
@@ -9627,7 +9660,7 @@ spec:
     FiltersVm.NicNicIds:
       help: The IDs of the NICs.
     FiltersVm.NicPrivateIpsLinkPublicIpAccountIds:
-      help: The account IDs of the owner of the public IPs associated with the private IPs.
+      help: The OUTSCALE account IDs of the owner of the public IPs associated with the private IPs.
     FiltersVm.NicPrivateIpsLinkPublicIpIds:
       help: The public IPs associated with the private IPs.
     FiltersVm.NicPrivateIpsPrimaryIp:
@@ -9987,7 +10020,7 @@ spec:
     LinkNic.State:
       help: The state of the attachment (attaching | attached | detaching | detached).
     LinkNic.VmAccountId:
-      help: The account ID of the owner of the VM.
+      help: The OUTSCALE account ID of the owner of the VM.
     LinkNic.VmId:
       help: The ID of the VM.
     LinkNicLight.DeleteOnVmDeletion:
@@ -10033,7 +10066,7 @@ spec:
     LinkPublicIp.PublicIp:
       help: The public IP associated with the NIC.
     LinkPublicIp.PublicIpAccountId:
-      help: The account ID of the owner of the public IP.
+      help: The OUTSCALE account ID of the owner of the public IP.
     LinkPublicIp.PublicIpId:
       help: The allocation ID of the public IP.
     LinkPublicIpLightForVm.PublicDnsName:
@@ -10041,7 +10074,7 @@ spec:
     LinkPublicIpLightForVm.PublicIp:
       help: The public IP associated with the NIC.
     LinkPublicIpLightForVm.PublicIpAccountId:
-      help: The account ID of the owner of the public IP.
+      help: The OUTSCALE account ID of the owner of the public IP.
     LinkPublicIpRequest.AllowRelink:
       help: If true, allows the public IP to be associated with the VM or NIC that you specify even if it is already associated with another VM or NIC.
     LinkPublicIpRequest.DryRun:
@@ -10184,6 +10217,8 @@ spec:
       help: One or more IDs of security groups for the load balancers.
     LoadBalancer.SourceSecurityGroup:
       help: Information about the source security group of the load balancer, which you can use as part of your inbound rules for your registered VMs.
+    LoadBalancer.State:
+      help: The state of the load balancer (provisioning | starting | reloading | active | reconfiguring | deleting | deleted).
     LoadBalancer.Subnets:
       help: The ID of the Subnet in which the load balancer was created.
     LoadBalancer.SubregionNames:
@@ -10209,7 +10244,7 @@ spec:
     Location.Name:
       help: The name and description of the location, corresponding to a datacenter.
     Log.AccountId:
-      help: The account ID of the logged call.
+      help: The OUTSCALE account ID of the logged call.
     Log.CallDuration:
       help: The duration of the logged call, in microseconds.
     Log.QueryAccessKey:
@@ -10313,7 +10348,7 @@ spec:
     NetToVirtualGatewayLink.State:
       help: The state of the attachment (attaching | attached | detaching | detached).
     Nic.AccountId:
-      help: The account ID of the owner of the NIC.
+      help: The OUTSCALE account ID of the owner of the NIC.
     Nic.Description:
       help: The description of the NIC.
     Nic.IsSourceDestChecked:
@@ -10359,7 +10394,7 @@ spec:
     NicForVmCreation.SubnetId:
       help: The ID of the Subnet for the NIC, if you create a NIC when creating a VM.
     NicLight.AccountId:
-      help: The account ID of the owner of the NIC.
+      help: The OUTSCALE account ID of the owner of the NIC.
     NicLight.Description:
       help: The description of the NIC.
     NicLight.IsSourceDestChecked:
@@ -10413,7 +10448,7 @@ spec:
     OsuExportToCreate.OsuPrefix:
       help: The prefix for the key of the OOS object.
     PermissionsOnResource.AccountIds:
-      help: One or more account IDs that the permission is associated with.
+      help: One or more OUTSCALE account IDs that the permission is associated with.
     PermissionsOnResource.GlobalPermission:
       help: A global permission for all accounts.
     PermissionsOnResourceCreation.Additions:
@@ -10501,11 +10536,11 @@ spec:
     PrivateIp.PrivateDnsName:
       help: The name of the private DNS.
     PrivateIp.PrivateIp:
-      help: The private IP of the NIC.
+      help: A private IP for the NIC.
     PrivateIpLight.IsPrimary:
       help: If true, the IP is the primary private IP of the NIC.
     PrivateIpLight.PrivateIp:
-      help: The private IP of the NIC.
+      help: A private IP for the NIC.
     PrivateIpLightForVm.IsPrimary:
       help: If true, the IP is the primary private IP of the NIC.
     PrivateIpLightForVm.LinkPublicIp:
@@ -10513,7 +10548,7 @@ spec:
     PrivateIpLightForVm.PrivateDnsName:
       help: The name of the private DNS.
     PrivateIpLightForVm.PrivateIp:
-      help: The private IP.
+      help: A private IP for the NIC.
     ProductType.Description:
       help: The description of the product type.
     ProductType.ProductTypeId:
@@ -10523,7 +10558,7 @@ spec:
     PublicIp.LinkPublicIpId:
       help: (Required in a Net) The ID representing the association of the public IP with the VM or the NIC.
     PublicIp.NicAccountId:
-      help: The account ID of the owner of the NIC.
+      help: The OUTSCALE account ID of the owner of the NIC.
     PublicIp.NicId:
       help: The ID of the NIC the public IP is associated with (if any).
     PublicIp.PrivateIp:
@@ -10559,7 +10594,7 @@ spec:
     PutUserPolicyRequest.UserName:
       help: The name of the user.
     Quota.AccountId:
-      help: The account ID of the owner of the quotas.
+      help: The OUTSCALE account ID of the owner of the quotas.
     Quota.Description:
       help: The description of the quota.
     Quota.MaxValue:
@@ -11121,7 +11156,7 @@ spec:
     Route.State:
       help: The state of a route in the route table (always active).
     Route.VmAccountId:
-      help: The account ID of the owner of the VM.
+      help: The OUTSCALE account ID of the owner of the VM.
     Route.VmId:
       help: The ID of a VM specified in a route in the table.
     RouteLight.DestinationIpRange:
@@ -11157,7 +11192,7 @@ spec:
     ScaleUpVmGroupRequest.VmGroupId:
       help: The ID of the VM group you want to scale up.
     SecurityGroup.AccountId:
-      help: The account ID that has been granted permission.
+      help: The OUTSCALE account ID that has been granted permission.
     SecurityGroup.Description:
       help: The description of the security group.
     SecurityGroup.InboundRules:
@@ -11191,7 +11226,7 @@ spec:
     SecurityGroupRule.ToPortRange:
       help: The end of the port range for the TCP and UDP protocols, or an ICMP code number.
     SecurityGroupsMember.AccountId:
-      help: The account ID that owns the source or destination security group.
+      help: The OUTSCALE account ID that owns the source or destination security group.
     SecurityGroupsMember.SecurityGroupId:
       help: The ID of a source or destination security group that you want to link to the security group of the rule.
     SecurityGroupsMember.SecurityGroupName:
@@ -11221,7 +11256,7 @@ spec:
     Snapshot.AccountAlias:
       help: The account alias of the owner of the snapshot.
     Snapshot.AccountId:
-      help: The account ID of the owner of the snapshot.
+      help: The OUTSCALE account ID of the owner of the snapshot.
     Snapshot.ClientToken:
       help: The idempotency token provided when creating the snapshot.
     Snapshot.CreationDate:
@@ -11257,13 +11292,13 @@ spec:
     SnapshotExportTask.TaskId:
       help: The ID of the snapshot export task.
     SourceNet.AccountId:
-      help: The account ID of the owner of the source Net.
+      help: The OUTSCALE account ID of the owner of the source Net.
     SourceNet.IpRange:
       help: The IP range for the source Net, in CIDR notation (for example, 10.0.0.0/16).
     SourceNet.NetId:
       help: The ID of the source Net.
     SourceSecurityGroup.SecurityGroupAccountId:
-      help: The account ID of the owner of the security group.
+      help: The OUTSCALE account ID of the owner of the security group.
     SourceSecurityGroup.SecurityGroupName:
       help: The name of the security group.
     StartVmsRequest.DryRun:
@@ -11388,12 +11423,18 @@ spec:
       help: The ID of the volume you want to detach.
     UpdateAccessKeyRequest.AccessKeyId:
       help: The ID of the access key.
+    UpdateAccessKeyRequest.ClearExpirationDate:
+      help: If true, the current expiration date is deleted and the access key is set to not expire.
+    UpdateAccessKeyRequest.ClearTag:
+      help: If true, the current tag of the access key is deleted.
     UpdateAccessKeyRequest.DryRun:
       help: If true, checks whether you have the required permissions to perform the action.
     UpdateAccessKeyRequest.ExpirationDate:
       help: The date and time, or the date, at which you want the access key to expire, in ISO 8601 format (for example, 2020-06-14T00:00:00.000Z or 2020-06-14).
     UpdateAccessKeyRequest.State:
       help: The new state for the access key (ACTIVE | INACTIVE).
+    UpdateAccessKeyRequest.Tag:
+      help: A new tag to add to the access key.
     UpdateAccessKeyRequest.UserName:
       help: The name of the EIM user that the access key you want to modify is associated with.
     UpdateAccountRequest.AdditionalEmails:
@@ -11949,7 +11990,7 @@ spec:
     VpnOptions.TunnelInsideIpRange:
       help: The range of inside IPs for the tunnel.
     With.AccountId:
-      help: If true, the account ID is displayed.
+      help: If true, the OUTSCALE account ID is displayed.
     With.CallDuration:
       help: If true, the duration of the call is displayed.
     With.QueryAccessKey:

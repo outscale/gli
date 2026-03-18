@@ -6,7 +6,7 @@ alias for api ReadPublicIps
 
 > *alias for api ReadPublicIps*
 
-Lists one or more public IPs allocated to your account.
+Lists one or more public IPs allocated to your OUTSCALE account.
 
 By default, this action returns information about all your public IPs: available or associated with a virtual machine (VM), a network interface card (NIC) or a NAT service.
 
@@ -20,7 +20,7 @@ octl iaas publicip list [flags]
   -h, --help                        help for list
       --id strings                  The IDs of the public IPs.
       --link-public-ip-id strings   The IDs representing the associations of public IPs with VMs or NICs.
-      --nic-account-id strings      The account IDs of the owners of the NICs.
+      --nic-account-id strings      The OUTSCALE account IDs of the owners of the NICs.
       --nic-id strings              The IDs of the NICs.
       --placement strings           Whether the public IPs are for use in the public Cloud or in a Net.
       --private-ip strings          The private IPs associated with the public IPs.

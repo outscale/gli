@@ -1,10 +1,10 @@
 ## octl iaas api EnableOutscaleLogin
 
-Enables the possibility of logging in using the Outscale credentials of your root account when identity federation is activated.
+Enables the possibility of logging in using the Outscale credentials of your root user when identity federation is activated.
 
 ### Synopsis
 
-Enables the possibility of logging in using the Outscale credentials of your root account when identity federation is activated.
+Enables the possibility of logging in using the Outscale credentials of your root user when identity federation is activated.
 
 ```
 octl iaas api EnableOutscaleLogin [flags]

@@ -18,7 +18,7 @@ octl iaas api CreateNic [flags]
       --Description string              A description for the NIC.
       --DryRun                          If true, checks whether you have the required permissions to perform the action.
       --PrivateIps.0.IsPrimary          If true, the IP is the primary private IP of the NIC.
-      --PrivateIps.0.PrivateIp string   The private IP of the NIC.
+      --PrivateIps.0.PrivateIp string   A private IP for the NIC.
       --SecurityGroupIds strings        One or more IDs of security groups for the NIC.
       --SubnetId string                 The ID of the Subnet in which you want to create the NIC.
   -h, --help                            help for CreateNic
