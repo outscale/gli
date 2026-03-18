@@ -1107,8 +1107,6 @@ entities:
       content: .Tags[] | select(.Key == "Name").Value
     - title: State
       content: .State
-    - title: NetId
-      content: .NetId
     - title: IpRange
       content: .IpRange
     primary: NetId
@@ -1273,8 +1271,6 @@ entities:
       content: .State
     - title: NetId
       content: .NetId
-    - title: SubnetId
-      content: .SubnetId
     - title: IpRange
       content: .IpRange
     - title: SubregionName
@@ -1286,8 +1282,6 @@ entities:
       content: .SubregionName
     - title: State
       content: .State
-    - title: SubregionName
-      content: .SubregionName
     primary: SubregionName
   tag:
     columns:

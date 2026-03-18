@@ -178,7 +178,7 @@ func (b *MethodBuilder) buildEntity() error {
 		})
 	}
 	for _, name := range b.cfg.PriorityFields {
-		if slices.ContainsFunc(e.Columns, func(c config.Column) bool { return c.Content == name }) {
+		if slices.ContainsFunc(e.Columns, func(c config.Column) bool { return c.Content == "."+name }) {
 			continue
 		}
 		if f, found := b.respContentType.FieldByName(name); found {
