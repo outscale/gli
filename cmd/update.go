@@ -37,6 +37,6 @@ var updateCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(updateCmd)
 
-	updateCmd.Flags().Bool("ignore-signature-verification", true, "Ignore signature verification for the update")
+	updateCmd.Flags().Bool("ignore-signature-verification", false, "Ignore signature verification for the update")
 	updateCmd.Flags().Bool("ignore-digest-verification", false, "Ignore digest verification for the update")
 }
