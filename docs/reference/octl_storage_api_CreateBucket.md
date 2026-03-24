@@ -11,14 +11,11 @@ octl storage api CreateBucket [flags]
 ```
       --ACL string                                               The canned ACL to apply to the bucket.
       --Bucket string                                            The name of the bucket to create.
-      --BucketNamespace string                                   Specifies the namespace where you want to create your general purpose bucket.
       --CreateBucketConfiguration.Bucket.DataRedundancy string   
       --CreateBucketConfiguration.Bucket.Type string             
       --CreateBucketConfiguration.Location.Name string           
       --CreateBucketConfiguration.Location.Type string           
       --CreateBucketConfiguration.LocationConstraint string      
-      --CreateBucketConfiguration.Tags.0.Key string              
-      --CreateBucketConfiguration.Tags.0.Value string            
       --GrantFullControl string                                  Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.
       --GrantRead string                                         Allows grantee to list the objects in the bucket.
       --GrantReadACP string                                      Allows grantee to read the bucket ACL.
@@ -38,7 +35,7 @@ octl storage api CreateBucket [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object

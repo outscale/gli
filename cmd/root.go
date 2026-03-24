@@ -80,6 +80,8 @@ func init() {
 	rootCmd.PersistentFlags().String("profile", "", fmt.Sprintf("Profile to use in profile file (by default, %q)", profile.DefaultProfile))
 
 	rootCmd.PersistentFlags().String("template", "", "JSON template file for query body")
+	rootCmd.PersistentFlags().String("template-root", "", "the root attribute for the template")
+	_ = rootCmd.PersistentFlags().MarkHidden("template-root")
 	rootCmd.PersistentFlags().String("payload", "", "JSON content for query body")
 
 	rootCmd.PersistentFlags().String("jq", "", "jq filter")
@@ -90,7 +92,7 @@ func init() {
 	rootCmd.PersistentFlags().Duration("waitfor-timeout", 10*time.Minute, `maximum duration of a wait`)
 
 	rootCmd.PersistentFlags().StringP("columns", "c", "", "columns to display - [+]<title>:<jq query for content>||<title>:<jq query for content>")
-	rootCmd.PersistentFlags().StringP("output", "o", "raw", "output format (raw, json, yaml, table, csv, none, base64)")
+	rootCmd.PersistentFlags().StringP("output", "o", "raw", "output format (raw, json, yaml, table, csv, none, base64, text)")
 	rootCmd.PersistentFlags().StringP("out-file", "O", "", "redirect output to file")
 	rootCmd.PersistentFlags().Bool("single", false, "convert single entry lists to a single object")
 
@@ -101,7 +103,7 @@ func init() {
 	_ = rootCmd.PersistentFlags().MarkHidden("hooks")
 
 	_ = rootCmd.RegisterFlagCompletionFunc("output", func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
-		return []cobra.Completion{"raw", "json", "yaml", "table", "csv", "none", "base64"}, cobra.ShellCompDirectiveDefault
+		return []cobra.Completion{"raw", "json", "yaml", "table", "csv", "none", "base64", "text"}, cobra.ShellCompDirectiveDefault
 	})
 
 	_ = rootCmd.RegisterFlagCompletionFunc("profile", func(cmd *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {

@@ -14,6 +14,49 @@ contents:
   GetObject:
     entity: objectmetadata
     group: Object
+  GetBucketAcl:
+    content: .
+    entity: acl
+    group: Bucket
+  GetBucketCors:
+    entity: cors
+    group: Bucket
+  GetBucketEncryption:
+    entity: encryption
+    group: Bucket
+  GetBucketVersioning:
+    entity: versioning
+    group: Bucket
+  GetBucketLocation:
+    entity: location
+    group: Bucket
+  GetBucketPolicy:
+    entity: policy
+    group: Bucket
+    content: Policy
+  GetBucketLifecycleConfiguration:
+    entity: lifecycle
+    group: Bucket
+  GetBucketWebsite:
+    entity: website
+    group: Bucket
+  PutBucketWebsite:
+    content: .
+    entity: website
+    group: Bucket
+  GetObjectAcl:
+    content: .
+    entity: acl
+    group: Object
+  GetObjectRetention:
+    entity: retention
+    group: Object
+  GetObjectLockConfiguration:
+    entity: lockconfiguration
+    group: Object
+  GetObjectTagging:
+    entity: tagging
+    group: Object
 entities:
   bucket:
     columns:
@@ -29,6 +72,32 @@ entities:
     - title: LastModified
       content: .LastModified
     primary: Key
+  acl:
+    no_aliases: true
+  cors:
+    no_aliases: true
+  encryption:
+    no_aliases: true
+  versioning:
+    no_aliases: true
+  location:
+    no_aliases: true
+  policy:
+    no_aliases: true
+  lifecycle:
+    no_aliases: true
+  website:
+    no_aliases: true
+  objectversion:
+    no_aliases: true
+  objectmetadata:
+    no_aliases: true
+  retention:
+    no_aliases: true
+  lockconfiguration:
+    no_aliases: true
+  tagging:
+    no_aliases: true
 aliases:
 - entity: object
   use: describe key
@@ -41,6 +110,21 @@ aliases:
   - GetObject
   - --Key
   - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  use: versions
+  alias_to: ListObjectVersions
+  aliases:
+  - desc
+  short: Display an object metadata, alias for api ListObjectVersions
+  command:
+  - api
+  - ListObjectVersions
   - --output
   - yaml
   flags:
@@ -95,6 +179,9 @@ aliases:
 - entity: bucket
   sub_command: versioning
   use: disable bucket
+  aliases:
+    - del
+    - rm
   alias_to: PutBucketVersioning
   short: Disable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Suspended
   command:
@@ -137,6 +224,9 @@ aliases:
 - entity: bucket
   sub_command: encryption
   use: disable bucket
+  aliases:
+    - del
+    - rm
   alias_to: DeleteBucketEncryption
   short: Disable encryption, alias for api DeleteBucketEncryption --Bucket bucket
   command:
@@ -146,3 +236,290 @@ aliases:
   - '%0'
   - --output
   - success
+- entity: bucket
+  sub_command: acl
+  use: describe bucket
+  alias_to: GetBucketAcl
+  aliases:
+  - desc
+  short: Display ACL configuration, alias for api GetBucketAcl --Bucket bucket
+  command:
+  - api
+  - GetBucketAcl
+  - --Bucket
+  - '%0'
+  - --output
+  - yaml
+- entity: bucket
+  sub_command: acl
+  use: configure bucket
+  aliases:
+    - config
+    - cfg
+  alias_to: PutBucketAcl
+  short: Update ACL configuration, alias for api PutBucketAcl --Bucket bucket
+  command:
+  - api
+  - PutBucketAcl
+  - --Bucket
+  - '%0'
+  - --template-root
+  - AccessControlPolicy
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: template
+    usage: 'the file storing the ACL config in JSON format (i.e. {"Grants":[...]})'
+  - name: acl
+    alias_to: ACL
+  - name: grant-full-control
+    alias_to: GrantFullControl
+  - name: grant-read
+    alias_to: GrantRead
+  - name: GrantReadACP
+    alias_to: grant-read-acp
+  - name: grant-write
+    alias_to: GrantWrite
+  - name: grant-write-acp
+    alias_to: GrantWriteACP
+- entity: bucket
+  sub_command: cors
+  use: describe bucket
+  alias_to: GetBucketCors
+  aliases:
+  - desc
+  short: Display CORS configuration, alias for api GetBucketCors --Bucket bucket
+  command:
+  - api
+  - GetBucketCors
+  - --Bucket
+  - '%0'
+  - --output
+  - yaml
+- entity: bucket
+  sub_command: cors
+  use: configure bucket
+  aliases:
+    - config
+    - cfg
+  alias_to: PutBucketCors
+  short: Update CORS configuration, alias for api PutBucketCors --Bucket bucket
+  command:
+  - api
+  - PutBucketCors
+  - --Bucket
+  - '%0'
+  - --template-root
+  - CORSConfiguration
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: template
+    required: true
+    usage: 'the file storing the CORS config in JSON format (i.e. {"CORSRules":[...]})'
+- entity: bucket
+  sub_command: cors
+  use: disable bucket
+  aliases:
+    - del
+    - rm
+  alias_to: DeleteBucketCors
+  short: Delete CORS configuration, alias for api DeleteBucketCors --Bucket bucket
+  command:
+  - api
+  - DeleteBucketCors
+  - --Bucket
+  - '%0'
+  - --output
+  - success
+- entity: bucket
+  sub_command: lifecycle
+  use: describe bucket
+  alias_to: GetBucketLifecycleConfiguration
+  aliases:
+  - desc
+  short: Display lifecycle configuration, alias for api GetBucketLifecycleConfiguration --Bucket bucket
+  command:
+  - api
+  - GetBucketLifecycleConfiguration
+  - --Bucket
+  - '%0'
+  - --output
+  - yaml
+- entity: bucket
+  sub_command: lifecycle
+  use: configure bucket
+  aliases:
+    - config
+    - cfg
+  alias_to: PutBucketLifecycleConfiguration
+  short: Update Lifecycle configuration, alias for api PutBucketLifecycleConfiguration --Bucket bucket
+  command:
+  - api
+  - PutBucketLifecycleConfiguration
+  - --Bucket
+  - '%0'
+  - --template-root
+  - LifecycleConfiguration
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: template
+    required: true
+    usage: 'the file storing the Lifecycle config in JSON format (i.e. {"Rules":[...]})'
+- entity: bucket
+  sub_command: lifecycle
+  use: disable bucket
+  aliases:
+    - del
+    - rm
+  alias_to: DeleteBucketLifecycle
+  short: Delete Lifecycle configuration, alias for api DeleteBucketLifecycle --Bucket bucket
+  command:
+  - api
+  - DeleteBucketLifecycle
+  - --Bucket
+  - '%0'
+  - --output
+  - success
+- entity: bucket
+  sub_command: website
+  use: describe bucket
+  alias_to: GetBucketWebsite
+  aliases:
+  - desc
+  short: Display website configuration, alias for api GetBucketWebsite --Bucket bucket
+  command:
+  - api
+  - GetBucketWebsite
+  - --Bucket
+  - '%0'
+  - --output
+  - yaml
+- entity: bucket
+  sub_command: website
+  use: configure bucket
+  aliases:
+    - config
+    - cfg
+  alias_to: PutBucketWebsite
+  short: Update Website configuration, alias for api PutBucketWebsite --Bucket bucket
+  command:
+  - api
+  - PutBucketWebsite
+  - --Bucket
+  - '%0'
+  - --template-root
+  - WebsiteConfiguration
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: template
+    required: true
+    usage: 'the file storing the website config in JSON format (e.g. {"ErrorDocument":{...},"IndexDocument":{...},"RoutingRules":[...]})'
+- entity: bucket
+  sub_command: website
+  use: disable bucket
+  aliases:
+    - del
+    - rm
+  alias_to: DeleteBucketWebsite
+  short: Delete Website configuration, alias for api DeleteBucketWebsite --Bucket bucket
+  command:
+  - api
+  - DeleteBucketWebsite
+  - --Bucket
+  - '%0'
+  - --output
+  - success
+- entity: bucket
+  sub_command: policy
+  use: describe bucket
+  alias_to: GetBucketPolicy
+  aliases:
+  - desc
+  short: Display Policy configuration, alias for api GetBucketPolicy --Bucket bucket
+  command:
+  - api
+  - GetBucketPolicy
+  - --Bucket
+  - '%0'
+  - --output
+  - text
+- entity: bucket
+  sub_command: policy
+  use: configure bucket
+  aliases:
+    - config
+    - cfg
+  alias_to: PutBucketPolicy
+  short: Update Policy configuration, alias for api PutBucketPolicy --Bucket bucket
+  command:
+  - api
+  - PutBucketPolicy
+  - --Bucket
+  - '%0'
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: Policy
+    type: file
+    required: true
+    usage: 'the file storing the policy config in JSON format (i.e. {"Version":"...","Statement":[...]})'
+  - name: remove-access
+    alias_to: ConfirmRemoveSelfBucketAccess
+- entity: bucket
+  sub_command: policy
+  use: disable bucket
+  aliases:
+    - del
+    - rm
+  alias_to: DeleteBucketPolicy
+  short: Delete Policy configuration, alias for api DeleteBucketPolicy --Bucket bucket
+  command:
+  - api
+  - DeleteBucketPolicy
+  - --Bucket
+  - '%0'
+  - --output
+  - success
+- entity: object
+  sub_command: acl
+  use: describe key
+  alias_to: GetObjectAcl
+  aliases:
+  - desc
+  short: Display ACL configuration, alias for api GetObjectAcl --Key key
+  command:
+  - api
+  - GetObjectAcl
+  - --Key
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  use: retention key
+  alias_to: GetObjectRetention
+  aliases:
+  - desc
+  short: Display retention configuration, alias for api GetObjectRetention --Key key
+  command:
+  - api
+  - GetObjectRetention
+  - --Key
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true

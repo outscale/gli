@@ -8,13 +8,16 @@ import (
 )
 
 func main() {
-	cfg := config.For("iaas")
-	for call := range cfg.Calls {
-		if lo.ContainsBy(cfg.Aliases, func(a config.Alias) bool {
-			return a.AliasTo == call
-		}) {
-			continue
+	for _, provider := range []string{"iaas", "storage"} {
+		fmt.Println("***", provider, "***")
+		cfg := config.For(provider)
+		for call := range cfg.Calls {
+			if lo.ContainsBy(cfg.Aliases, func(a config.Alias) bool {
+				return a.AliasTo == call
+			}) {
+				continue
+			}
+			fmt.Println(call, "is missing")
 		}
-		fmt.Println(call, "is missing")
 	}
 }

@@ -1,0 +1,23 @@
+{
+    "CORSRules": [
+        {
+            "AllowedHeaders": ["xxx", "yyy"],
+            "AllowedMethods": ["PUT", "POST", "DELETE"],
+            "AllowedOrigins": [
+                "https://www.example.com",
+                "https://www.foobar.example"
+            ],
+            "ExposeHeaders": ["Content-Type"],
+            "MaxAgeSeconds": 3000
+        },
+        {
+            "AllowedHeaders": ["Authorization"],
+            "AllowedMethods": ["GET"],
+            "AllowedOrigins": [
+                "https://yourdomain.tld",
+                "https://www.your_domain.com"
+            ],
+            "MaxAgeSeconds": 3000
+        }
+    ]
+}

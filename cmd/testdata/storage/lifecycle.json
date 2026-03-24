@@ -1,0 +1,25 @@
+{
+    "Rules": [
+        {
+            "ID": "string",
+            "Status": "Enabled",
+            "Expiration": {
+                "Days": 2
+            },
+            "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 1
+            },
+            "Filter": {
+                "And": {
+                    "Prefix": "string",
+                    "Tags": [
+                        {
+                            "Key": "test",
+                            "Value": "test"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

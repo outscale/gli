@@ -10,8 +10,8 @@ octl storage api PutBucketVersioning [flags]
 
 ```
       --Bucket string                              The bucket name.
-      --ChecksumAlgorithm string                   Indicates the algorithm used to create the checksum for the request when you use the SDK.
-      --ContentMD5 string                          >The Base64 encoded 128-bit MD5 digest of the data.
+      --ChecksumAlgorithm string                   Indicates the algorithm used to create the checksum for the object when you use the SDK.
+      --ContentMD5 string                          >The base64-encoded 128-bit MD5 digest of the data.
       --ExpectedBucketOwner string                 The account ID of the expected bucket owner.
       --MFA string                                 The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device.
       --VersioningConfiguration.MFADelete string   
@@ -28,7 +28,7 @@ octl storage api PutBucketVersioning [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object

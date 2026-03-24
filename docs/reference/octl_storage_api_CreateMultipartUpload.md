@@ -14,7 +14,6 @@ octl storage api CreateMultipartUpload [flags]
       --BucketKeyEnabled                    Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using Key Management Service (KMS) keys (SSE-KMS).
       --CacheControl string                 Specifies caching behavior along the request/reply chain.
       --ChecksumAlgorithm string            Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object.
-      --ChecksumType string                 Indicates the checksum type that you want Amazon S3 to use to calculate the object’s checksum value.
       --ContentDisposition string           Specifies presentational information for the object.
       --ContentEncoding string              Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
       --ContentLanguage string              The language that the content is in.
@@ -35,7 +34,7 @@ octl storage api CreateMultipartUpload [flags]
       --SSECustomerKeyMD5 string            Specifies the 128-bit MD5 digest of the customer-provided encryption key according to RFC 1321.
       --SSEKMSEncryptionContext string      Specifies the Amazon Web Services KMS Encryption Context to use for object encryption.
       --SSEKMSKeyId string                  Specifies the KMS key ID (Key ID, Key ARN, or Key Alias) to use for object encryption.
-      --ServerSideEncryption string         The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.
+      --ServerSideEncryption string         The server-side encryption algorithm used when you store this object in Amazon S3 (for example, AES256 , aws:kms ).
       --StorageClass string                 By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects.
       --Tagging string                      The tag-set for the object.
       --WebsiteRedirectLocation string      If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL.
@@ -51,7 +50,7 @@ octl storage api CreateMultipartUpload [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object

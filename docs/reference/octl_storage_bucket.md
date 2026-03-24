@@ -17,7 +17,7 @@ bucket commands
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object
@@ -32,9 +32,14 @@ bucket commands
 ### SEE ALSO
 
 * [octl storage](octl_storage.md)	 - OUTSCALE Object Storage (OOS) management
+* [octl storage bucket acl](octl_storage_bucket_acl.md)	 - acl commands
+* [octl storage bucket cors](octl_storage_bucket_cors.md)	 - cors commands
 * [octl storage bucket create](octl_storage_bucket_create.md)	 - alias for api CreateBucket
 * [octl storage bucket delete](octl_storage_bucket_delete.md)	 - alias for api DeleteBucket --Bucket bucket
 * [octl storage bucket encryption](octl_storage_bucket_encryption.md)	 - encryption commands
+* [octl storage bucket lifecycle](octl_storage_bucket_lifecycle.md)	 - lifecycle commands
 * [octl storage bucket list](octl_storage_bucket_list.md)	 - alias for api ListBuckets
+* [octl storage bucket policy](octl_storage_bucket_policy.md)	 - policy commands
 * [octl storage bucket versioning](octl_storage_bucket_versioning.md)	 - versioning commands
+* [octl storage bucket website](octl_storage_bucket_website.md)	 - website commands
 

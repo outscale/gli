@@ -1,29 +1,21 @@
-## octl storage objectversion list
+## octl storage bucket lifecycle describe
 
-alias for api ListObjectVersions
+Display lifecycle configuration, alias for api GetBucketLifecycleConfiguration --Bucket bucket
 
 ### Synopsis
 
-> *alias for api ListObjectVersions*
+> *Display lifecycle configuration, alias for api GetBucketLifecycleConfiguration --Bucket bucket*
 
 
 
 ```
-octl storage objectversion list [flags]
+octl storage bucket lifecycle describe bucket [flags]
 ```
 
 ### Options
 
 ```
-      --bucket string                       The bucket name that contains the objects.
-      --delimiter string                    A delimiter is a character that you specify to group keys.
-      --encoding-type string                Encoding type used by Amazon S3 to encode the [object keys] in the response.
-      --expected-bucket-owner string        The account ID of the expected bucket owner.
-  -h, --help                                help for list
-      --id-marker string                    Specifies the object version you want to start listing from.
-      --key-marker string                   Specifies the key to start with when listing objects in a bucket.
-      --optional-object-attribute strings   Specifies the optional fields that you want returned in the response.
-      --prefix string                       Use this parameter to select only those keys that begin with the specified prefix.
+  -h, --help   help for describe
 ```
 
 ### Options inherited from parent commands
@@ -35,7 +27,7 @@ octl storage objectversion list [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object
@@ -49,5 +41,5 @@ octl storage objectversion list [flags]
 
 ### SEE ALSO
 
-* [octl storage objectversion](octl_storage_objectversion.md)	 - objectversion commands
+* [octl storage bucket lifecycle](octl_storage_bucket_lifecycle.md)	 - lifecycle commands
 

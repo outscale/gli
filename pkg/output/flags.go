@@ -60,6 +60,8 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 		fmter = format.Success{}
 	case "body":
 		fmter = format.Body{}
+	case "text":
+		fmter = format.Text{}
 	case "table", "csv":
 		fcols, _ := fs.GetString("columns")
 		if fcols != "" {

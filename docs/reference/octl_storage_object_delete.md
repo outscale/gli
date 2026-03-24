@@ -19,7 +19,7 @@ octl storage object delete key [key]... [flags]
       --bypass-governance-retention           Indicates whether S3 Object Lock should bypass Governance-mode restrictions to process this operation.
       --expected-bucket-owner string          The account ID of the expected bucket owner.
   -h, --help                                  help for delete
-      --if-match string                       Deletes the object if the ETag (entity tag) value provided during the delete operation matches the ETag of the object in S3.
+      --if-match string                       The If-Match header field makes the request method conditional on ETags.
       --if-match-last-modified-time osctime   If present, the object is deleted only if its modification times matches the provided Timestamp .
       --if-match-size int                     If present, the object is deleted only if its size matches the provided size in bytes.
       --mfa string                            The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device.
@@ -35,7 +35,7 @@ octl storage object delete key [key]... [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object

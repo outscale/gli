@@ -10,7 +10,7 @@ octl storage api PutBucketLifecycleConfiguration [flags]
 
 ```
       --Bucket string                                                                                 The name of the bucket for which to set the configuration.
-      --ChecksumAlgorithm string                                                                      Indicates the algorithm used to create the checksum for the request when you use the SDK.
+      --ChecksumAlgorithm string                                                                      Indicates the algorithm used to create the checksum for the object when you use the SDK.
       --ExpectedBucketOwner string                                                                    The account ID of the expected bucket owner.
       --LifecycleConfiguration.Rules.0.AbortIncompleteMultipartUpload.DaysAfterInitiation int32       
       --LifecycleConfiguration.Rules.0.Expiration.Date osctime                                        
@@ -50,7 +50,7 @@ octl storage api PutBucketLifecycleConfiguration [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object

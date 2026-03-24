@@ -1,11 +1,11 @@
-## octl storage objectversion
+## octl storage bucket lifecycle
 
-objectversion commands
+lifecycle commands
 
 ### Options
 
 ```
-  -h, --help   help for objectversion
+  -h, --help   help for lifecycle
 ```
 
 ### Options inherited from parent commands
@@ -17,7 +17,7 @@ objectversion commands
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object
@@ -31,6 +31,8 @@ objectversion commands
 
 ### SEE ALSO
 
-* [octl storage](octl_storage.md)	 - OUTSCALE Object Storage (OOS) management
-* [octl storage objectversion list](octl_storage_objectversion_list.md)	 - alias for api ListObjectVersions
+* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
+* [octl storage bucket lifecycle configure](octl_storage_bucket_lifecycle_configure.md)	 - Update Lifecycle configuration, alias for api PutBucketLifecycleConfiguration --Bucket bucket
+* [octl storage bucket lifecycle describe](octl_storage_bucket_lifecycle_describe.md)	 - Display lifecycle configuration, alias for api GetBucketLifecycleConfiguration --Bucket bucket
+* [octl storage bucket lifecycle disable](octl_storage_bucket_lifecycle_disable.md)	 - Delete Lifecycle configuration, alias for api DeleteBucketLifecycle --Bucket bucket
 

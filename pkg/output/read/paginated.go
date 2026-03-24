@@ -49,7 +49,7 @@ func (p *Paginated) Read(ctx context.Context, fetch FetchPage) iter.Seq[result.R
 			}
 			res := reflect.Indirect(vres[0])
 			content := res
-			if p.contentField != "" {
+			if p.contentField != "" && p.contentField != "." {
 				content = reflect.Indirect(content.FieldByName(p.contentField))
 			}
 			addPreview(content)
