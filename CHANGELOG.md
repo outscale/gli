@@ -1,5 +1,83 @@
 # 📜 Changelog
 
+## [v0.0.20] - 2026-03-24
+
+### ✨ Added
+* ✨ feat(waitfor): run query until jq condition by @jfbus in https://github.com/outscale/octl/pull/139
+### 🐛 Fixed
+* 🐛 fix: missing int64 flags by @jfbus in https://github.com/outscale/octl/pull/138
+
+## [v0.0.19] - 2026-03-19
+
+### 🐛 Fixed
+* 🐛 fix(iaas): fix iaas vm ls by @jfbus in https://github.com/outscale/octl/pull/133
+### 🌱 Others
+* 🔒️ security: check signature during updates by @jfbus in https://github.com/outscale/octl/pull/135
+
+## [v0.0.18] - 2026-03-18
+
+### ✨ Added
+* ✨ feat(iaas): add nic unlink by @jfbus in https://github.com/outscale/octl/pull/124
+* ✨ feat(iaas): add net teardown by @jfbus in https://github.com/outscale/octl/pull/129
+### 🛠️ Changed / Refactoring
+* 🚸 ux(vm/lbu): migrate vmshealth/vmsstate to lbu/vm subcommands by @jfbus in https://github.com/outscale/octl/pull/120
+* 🚨 lint: linter fixes by @jfbus in https://github.com/outscale/octl/pull/119
+### 🗑️ Removed
+* 🔥 cleanup: remove useless config by @jfbus in https://github.com/outscale/octl/pull/125
+### 🐛 Fixed
+* 🐛 fix(iaas): fix policyversion delete by @jfbus in https://github.com/outscale/octl/pull/130
+* 🐛 fix(iaas): remove duplicate column in net/subnet/subregion by @jfbus in https://github.com/outscale/octl/pull/131
+### 📦 Dependency updates
+* ⬆️ deps(gomod): update module golang.org/x/tools to v0.43.0 by @Open-Source-Bot in https://github.com/outscale/octl/pull/126
+* ⬆️ deps: upgrade Go SDK to v3.0.0-rc.1 by @jfbus in https://github.com/outscale/octl/pull/132
+
+## [v0.0.17] - 2026-03-10
+
+### ✨ Added
+* 🍻 feat: Add signature verification to update process by @jobs62 in https://github.com/outscale/octl/pull/86
+* ✨ feat(storage): add bucket versioning/encyption aliases by @jfbus in https://github.com/outscale/octl/pull/112
+
+## [v0.0.16] - 2026-03-09
+
+### 📝 Documentation
+* 📝 doc: autogenerate reference doc by @jfbus in https://github.com/outscale/octl/pull/107
+### 📦 Dependency updates
+* ⬆️ deps(gomod): update module github.com/aws/smithy-go to v1.24.2 by @Open-Source-Bot in https://github.com/outscale/octl/pull/91
+* ⬆️ deps(gomod): update module github.com/aws/aws-sdk-go-v2/service/s3 to v1.96.2 by @Open-Source-Bot in https://github.com/outscale/octl/pull/90
+* ⬆️ deps(gomod): update module github.com/samber/lo to v1.53.0 by @Open-Source-Bot in https://github.com/outscale/octl/pull/102
+* ⬆️ deps(gomod): update aws-sdk-go-v2 monorepo by @Open-Source-Bot in https://github.com/outscale/octl/pull/111
+### 🌱 Others
+* ✨ feat(output): CSV format by @jfbus in https://github.com/outscale/octl/pull/103
+
+## [v0.0.15] - 2026-03-05
+
+### ✨ Added
+* 🚸 ux: group top level commands by @jfbus in https://github.com/outscale/octl/pull/96
+### 🛠️ Changed / Refactoring
+* ♻️ refactor(columns): fetch column content using jq, not expr by @jfbus in https://github.com/outscale/octl/pull/99
+* 💄 ui(delete): newline after success message by @jfbus in https://github.com/outscale/octl/pull/100
+### 🗑️ Removed
+* ⚡️ reduce binary size by @jfbus in https://github.com/outscale/octl/pull/98
+
+## [v0.0.14] - 2026-03-04
+
+### ✨ Added
+* ⚗️ feat(oos): experimental oos client by @jfbus in https://github.com/outscale/octl/pull/81
+* 🚸 ux(update): display changelog after update by @jfbus in https://github.com/outscale/octl/pull/93
+* ✨ feat(output): output to a file by @jfbus in https://github.com/outscale/octl/pull/92
+* ✨ feat(chaining): allow chaining with arbitrary json by @jfbus in https://github.com/outscale/octl/pull/87
+* 🚸 ux(single): replace single format option with --single flag by @jfbus in https://github.com/outscale/octl/pull/94
+* 🚸 ux(flags): fix case on some aliases, replace --subregion-name with --subregion by @jfbus in https://github.com/outscale/octl/pull/89
+
+## [v0.0.13] - 2026-02-25
+
+### 📝 Documentation
+* 📝 doc : fixes, improvements & doc tree by @outscale-rce in https://github.com/outscale/octl/pull/76
+### 🗑️ Removed
+* ♻️ refacto(iaas): reworked policy/user aliases by @jfbus in https://github.com/outscale/octl/pull/79
+### 🐛 Fixed
+* 🐛 fix(update): no update if already the latest version by @jfbus in https://github.com/outscale/octl/pull/78
+
 ## [v0.0.12] - 2026-02-24
 
 ### ✨ Added
