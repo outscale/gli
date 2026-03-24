@@ -330,3 +330,16 @@ LOOPWAIT:
 	t.Log("unlinking nic")
 	_ = run(t, []string{"iaas", "nic", "unlink", nic.NicId}, nil)
 }
+
+func TestWaitFor(t *testing.T) {
+	imageId := os.Getenv("IMAGE_ID")
+	vmType := os.Getenv("VM_TYPE")
+
+	t.Log("creating vm")
+	vm := osc.Vm{}
+	runJSON(t, []string{"iaas", "vm", "create", "--image-id", imageId, "--type", vmType, "-o", "json"}, nil, &vm)
+	_ = run(t, []string{"iaas", "vm", "describe", vm.VmId, "--waitfor", `.State=="running"`}, nil)
+	runJSON(t, []string{"iaas", "vm", "describe", vm.VmId, "-o", "json"}, nil, &vm)
+	assert.Equal(t, osc.VmStateRunning, vm.State)
+	runWithError(t, []string{"iaas", "vm", "describe", vm.VmId, "--waitfor", `.State=="invalid state"`, "--waitfor-timeout", "10s", "--waitfor-interval", "5s"}, nil)
+}

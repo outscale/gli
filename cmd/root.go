@@ -7,6 +7,7 @@ package cmd
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/charmbracelet/lipgloss"
 	"github.com/outscale/octl/cmd/prerun"
@@ -35,9 +36,9 @@ var rootCmd = &cobra.Command{
 	Long: "```" + a(`
                     __     __
   ____     _____   / /_   / /
- / __ \   / ___/  / __/  / / 
-/ /_/ /  / /__   / /_   / /  
-\____/   \___/   \__/  /_/`) + `   
+ / __ \   / ___/  / __/  / /
+/ /_/ /  / /__   / /_   / /
+\____/   \___/   \__/  /_/`) + `
 ` + b(`One CLI to rule them all,`) + `
 ` + c(`one CLI to find them,`) + `
 ` + d(`one CLI to bring them all`) + `
@@ -83,6 +84,10 @@ func init() {
 
 	rootCmd.PersistentFlags().String("jq", "", "jq filter")
 	rootCmd.PersistentFlags().StringSlice("filter", nil, `comma separated list of filters for results - name:value,name:value, alias for jq filter 'select(.name | test("value"))'`)
+
+	rootCmd.PersistentFlags().String("waitfor", "", `jq expression to wait for - octl will query every waitfor-interval until the expression returns 1/true or a non empty result`)
+	rootCmd.PersistentFlags().Duration("waitfor-interval", 5*time.Second, `interval between two waitfor iterations`)
+	rootCmd.PersistentFlags().Duration("waitfor-timeout", 10*time.Minute, `maximum duration of a wait`)
 
 	rootCmd.PersistentFlags().StringP("columns", "c", "", "columns to display - [+]<title>:<jq query for content>||<title>:<jq query for content>")
 	rootCmd.PersistentFlags().StringP("output", "o", "raw", "output format (raw, json, yaml, table, csv, none, base64)")

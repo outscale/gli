@@ -19,6 +19,12 @@ func run(t *testing.T, args []string, input []byte) []byte {
 	return res
 }
 
+func runWithError(t *testing.T, args []string, input []byte) {
+	t.Helper()
+	_, err := try(t.Context(), args, input)
+	require.Error(t, err)
+}
+
 func try(ctx context.Context, args []string, input []byte) ([]byte, error) {
 	cmd := exec.CommandContext(ctx, "go", append([]string{"run", "../main.go"}, args...)...)
 	if len(input) > 0 {

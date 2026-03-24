@@ -30,6 +30,13 @@ import (
 )
 
 func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client, cfg config.Config) error {
+	if cmd.Flags().Lookup("waitfor").Changed {
+		return waitfor[Client, Error](cmd, args, cl, cfg)
+	}
+	return doRun[Client, Error](cmd, args, cl, cfg)
+}
+
+func doRun[Client any, Error error](cmd *cobra.Command, args []string, cl *Client, cfg config.Config) error {
 	clt := reflect.TypeFor[*Client]()
 	m, _ := clt.MethodByName(cmd.Name())
 

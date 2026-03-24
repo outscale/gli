@@ -13,6 +13,7 @@ This directory contains the documentation for **octl**.
 - IaaS commands: [usage/iaas.md](usage/iaas.md)
 - Output formats: [usage/outputs.md](usage/outputs.md)
 - Filters and jq: [usage/jq-and-filters.md](usage/jq-and-filters.md)
+- Waiting for a condition: [usage/waitfor.md](usage/waitfor.md)
 - Templating: [usage/templating.md](usage/templating.md)
 - Chaining commands: [usage/chaining.md](usage/chaining.md)
 - Table columns: [usage/columns.md](usage/columns.md)

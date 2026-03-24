@@ -17,12 +17,14 @@ import (
 )
 
 func newTestdataServer(t *testing.T) *httptest.Server {
+	t.Helper()
 	srv := httptest.NewServer(http.FileServer(http.Dir("testdata/")))
 	t.Cleanup(srv.Close)
 	return srv
 }
 
 func installGHRedirect(t *testing.T, rel update.RepositoryRelease) {
+	t.Helper()
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		_ = json.NewEncoder(w).Encode(rel)
 	}))
@@ -261,7 +263,7 @@ func TestUpdateRealReleaseMutation(t *testing.T) {
 
 			err := update.Update(t.Context(), tc.options...)
 			if tc.wantErr == "" {
-				assert.Equal(t, nil, err)
+				require.NoError(t, err)
 			} else {
 				require.Error(t, err)
 				assert.Contains(t, err.Error(), tc.wantErr)
