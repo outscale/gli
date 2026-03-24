@@ -33,8 +33,6 @@ octl storage api CopyObject [flags]
       --GrantRead string                        Allows grantee to read the object data and its metadata.
       --GrantReadACP string                     Allows grantee to read the object ACL.
       --GrantWriteACP string                    Allows grantee to write the ACL for the applicable object.
-      --IfMatch string                          Copies the object if the entity tag (ETag) of the destination object matches the specified tag.
-      --IfNoneMatch string                      Copies the object only if the object key name at the destination does not already exist in the bucket specified.
       --Key string                              The key of the destination object.
       --MetadataDirective string                Specifies whether the metadata is copied from the source object or replaced with metadata that's provided in the request.
       --ObjectLockLegalHoldStatus string        Specifies whether you want to apply a legal hold to the object copy.
@@ -63,7 +61,7 @@ octl storage api CopyObject [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object

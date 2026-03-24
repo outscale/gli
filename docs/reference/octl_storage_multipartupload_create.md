@@ -20,7 +20,6 @@ octl storage multipartupload create [flags]
       --bucket-key-enabled                      Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using Key Management Service (KMS) keys (SSE-KMS).
       --cache-control string                    Specifies caching behavior along the request/reply chain.
       --checksum-algorithm string               Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object.
-      --checksum-type string                    Indicates the checksum type that you want Amazon S3 to use to calculate the object’s checksum value.
       --content-disposition string              Specifies presentational information for the object.
       --content-encoding string                 Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
       --content-language string                 The language that the content is in.
@@ -36,7 +35,7 @@ octl storage multipartupload create [flags]
       --object-lock-legal-hold-status string    Specifies whether you want to apply a legal hold to the uploaded object.
       --object-lock-mode string                 Specifies the Object Lock mode that you want to apply to the uploaded object.
       --object-lock-retain-until-date osctime   Specifies the date and time when you want the Object Lock to expire.
-      --server-side-encryption string           The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.
+      --server-side-encryption string           The server-side encryption algorithm used when you store this object in Amazon S3 (for example, AES256 , aws:kms ).
       --sse-customer-algorithm string           Specifies the algorithm to use when encrypting the object (for example, AES256).
       --sse-customer-key string                 Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data.
       --sse-customer-key-md-5 string            Specifies the 128-bit MD5 digest of the customer-provided encryption key according to RFC 1321.
@@ -56,7 +55,7 @@ octl storage multipartupload create [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object

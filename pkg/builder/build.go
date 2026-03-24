@@ -82,7 +82,11 @@ func (b *Builder[T]) Build(rootCmd *cobra.Command) {
 			continue
 		}
 		for _, f := range a.Flags {
+			// Flags does not return inherited flag during configuration
 			flag := callCmd.Flags().Lookup(f.AliasTo)
+			if flag == nil {
+				flag = callCmd.InheritedFlags().Lookup(f.AliasTo)
+			}
 			if flag != nil {
 				nflag := *flag
 				nflag.Name = f.Name

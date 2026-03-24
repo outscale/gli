@@ -12,7 +12,7 @@ octl storage api DeleteObject [flags]
       --Bucket string                     The bucket name of the bucket containing the object.
       --BypassGovernanceRetention         Indicates whether S3 Object Lock should bypass Governance-mode restrictions to process this operation.
       --ExpectedBucketOwner string        The account ID of the expected bucket owner.
-      --IfMatch string                    Deletes the object if the ETag (entity tag) value provided during the delete operation matches the ETag of the object in S3.
+      --IfMatch string                    The If-Match header field makes the request method conditional on ETags.
       --IfMatchLastModifiedTime osctime   If present, the object is deleted only if its modification times matches the provided Timestamp .
       --IfMatchSize int                   If present, the object is deleted only if its size matches the provided size in bytes.
       --Key string                        name of the object to delete.
@@ -31,7 +31,7 @@ octl storage api DeleteObject [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object

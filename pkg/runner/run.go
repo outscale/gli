@@ -118,6 +118,13 @@ func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string) error {
 			defer rc.Close() //nolint
 		}
 		r = rc
+		if root, ferr := cmd.Flags().GetString("template-root"); ferr == nil && root != "" {
+			buf, err := io.ReadAll(r)
+			if err != nil {
+				return err
+			}
+			r = bytes.NewBufferString(`{"` + root + `":` + string(buf) + `}`)
+		}
 		source = "template file"
 	} else if stdin, ok := Stdin(); ok {
 		r = bytes.NewReader(stdin)

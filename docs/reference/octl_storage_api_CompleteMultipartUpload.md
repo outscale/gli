@@ -9,31 +9,27 @@ octl storage api CompleteMultipartUpload [flags]
 ### Options
 
 ```
-      --Bucket string                                      Name of the bucket to which the multipart upload was initiated.
-      --ChecksumCRC32 string                               This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ChecksumCRC32C string                              This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ChecksumCRC64NVME string                           This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ChecksumSHA1 string                                This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ChecksumSHA256 string                              This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ChecksumType string                                This header specifies the checksum type of the object, which determines how part-level checksums are combined to create an object-level checksum for multipart objects.
-      --ExpectedBucketOwner string                         The account ID of the expected bucket owner.
-      --IfMatch string                                     Uploads the object only if the ETag (entity tag) value provided during the WRITE operation matches the ETag of the object in S3.
-      --IfNoneMatch string                                 Uploads the object only if the object key name does not already exist in the bucket specified.
-      --Key string                                         Object key for which the multipart upload was initiated.
-      --MpuObjectSize int                                  The expected total object size of the multipart upload request.
-      --MultipartUpload.Parts.0.ChecksumCRC32 string       
-      --MultipartUpload.Parts.0.ChecksumCRC32C string      
-      --MultipartUpload.Parts.0.ChecksumCRC64NVME string   
-      --MultipartUpload.Parts.0.ChecksumSHA1 string        
-      --MultipartUpload.Parts.0.ChecksumSHA256 string      
-      --MultipartUpload.Parts.0.ETag string                
-      --MultipartUpload.Parts.0.PartNumber int32           
-      --RequestPayer string                                Confirms that the requester knows that they will be charged for the request.
-      --SSECustomerAlgorithm string                        The server-side encryption (SSE) algorithm used to encrypt the object.
-      --SSECustomerKey string                              The server-side encryption (SSE) customer managed key.
-      --SSECustomerKeyMD5 string                           The MD5 server-side encryption (SSE) customer managed key.
-      --UploadId string                                    ID for the initiated multipart upload.
-  -h, --help                                               help for CompleteMultipartUpload
+      --Bucket string                                   Name of the bucket to which the multipart upload was initiated.
+      --ChecksumCRC32 string                            This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
+      --ChecksumCRC32C string                           This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
+      --ChecksumSHA1 string                             This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
+      --ChecksumSHA256 string                           This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
+      --ExpectedBucketOwner string                      The account ID of the expected bucket owner.
+      --IfMatch string                                  Uploads the object only if the ETag (entity tag) value provided during the WRITE operation matches the ETag of the object in S3.
+      --IfNoneMatch string                              Uploads the object only if the object key name does not already exist in the bucket specified.
+      --Key string                                      Object key for which the multipart upload was initiated.
+      --MultipartUpload.Parts.0.ChecksumCRC32 string    
+      --MultipartUpload.Parts.0.ChecksumCRC32C string   
+      --MultipartUpload.Parts.0.ChecksumSHA1 string     
+      --MultipartUpload.Parts.0.ChecksumSHA256 string   
+      --MultipartUpload.Parts.0.ETag string             
+      --MultipartUpload.Parts.0.PartNumber int32        
+      --RequestPayer string                             Confirms that the requester knows that they will be charged for the request.
+      --SSECustomerAlgorithm string                     The server-side encryption (SSE) algorithm used to encrypt the object.
+      --SSECustomerKey string                           The server-side encryption (SSE) customer managed key.
+      --SSECustomerKeyMD5 string                        The MD5 server-side encryption (SSE) customer managed key.
+      --UploadId string                                 ID for the initiated multipart upload.
+  -h, --help                                            help for CompleteMultipartUpload
 ```
 
 ### Options inherited from parent commands
@@ -45,7 +41,7 @@ octl storage api CompleteMultipartUpload [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object

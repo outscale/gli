@@ -17,14 +17,13 @@ octl storage api PutObject [flags]
       --ChecksumAlgorithm string            Indicates the algorithm used to create the checksum for the object when you use the SDK.
       --ChecksumCRC32 string                This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --ChecksumCRC32C string               This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ChecksumCRC64NVME string            This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --ChecksumSHA1 string                 This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --ChecksumSHA256 string               This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --ContentDisposition string           Specifies presentational information for the object.
       --ContentEncoding string              Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
       --ContentLanguage string              The language the content is in.
       --ContentLength int                   Size of the body in bytes.
-      --ContentMD5 string                   The Base64 encoded 128-bit MD5 digest of the message (without the headers) according to RFC 1864.
+      --ContentMD5 string                   The base64-encoded 128-bit MD5 digest of the message (without the headers) according to RFC 1864.
       --ContentType string                  A standard MIME type describing the format of the contents.
       --ExpectedBucketOwner string          The account ID of the expected bucket owner.
       --Expires osctime                     The date and time at which the object is no longer cacheable.
@@ -44,7 +43,7 @@ octl storage api PutObject [flags]
       --SSECustomerKeyMD5 string            Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
       --SSEKMSEncryptionContext string      Specifies the Amazon Web Services KMS Encryption Context as an additional encryption context to use for object encryption.
       --SSEKMSKeyId string                  Specifies the KMS key ID (Key ID, Key ARN, or Key Alias) to use for object encryption.
-      --ServerSideEncryption string         The server-side encryption algorithm that was used when you store this object in Amazon S3 or Amazon FSx.
+      --ServerSideEncryption string         The server-side encryption algorithm that was used when you store this object in Amazon S3 (for example, AES256 , aws:kms , aws:kms:dsse ).
       --StorageClass string                 By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects.
       --Tagging string                      The tag-set for the object.
       --WebsiteRedirectLocation string      If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL.
@@ -61,7 +60,7 @@ octl storage api PutObject [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object

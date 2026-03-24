@@ -17,7 +17,7 @@ object commands
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object
@@ -32,9 +32,12 @@ object commands
 ### SEE ALSO
 
 * [octl storage](octl_storage.md)	 - OUTSCALE Object Storage (OOS) management
+* [octl storage object acl](octl_storage_object_acl.md)	 - acl commands
 * [octl storage object delete](octl_storage_object_delete.md)	 - alias for api DeleteObject --Key key
 * [octl storage object describe](octl_storage_object_describe.md)	 - Display an object metadata, alias for api GetObject --Key key
 * [octl storage object download](octl_storage_object_download.md)	 - Download an object to the standard output, alias for api GetObject --Key key
 * [octl storage object list](octl_storage_object_list.md)	 - alias for api ListObjectsV2
 * [octl storage object put](octl_storage_object_put.md)	 - alias for api PutObject --Key key
+* [octl storage object retention](octl_storage_object_retention.md)	 - Display retention configuration, alias for api GetObjectRetention --Key key
+* [octl storage object versions](octl_storage_object_versions.md)	 - Display an object metadata, alias for api ListObjectVersions
 

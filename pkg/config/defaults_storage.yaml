@@ -40,43 +40,46 @@ contents:
     entity: objecttagging
     group: Object
   GetBucketAcl:
-    entity: bucketacl
+    content: .
+    entity: acl
     group: Bucket
   GetBucketCors:
-    entity: bucketcor
+    entity: cors
     group: Bucket
   GetBucketEncryption:
-    entity: bucketencryption
+    entity: encryption
     group: Bucket
   GetBucketLifecycleConfiguration:
-    entity: bucketlifecycleconfiguration
+    entity: lifecycle
     group: Bucket
   GetBucketLocation:
-    entity: bucketlocation
+    entity: location
     group: Bucket
   GetBucketPolicy:
-    entity: bucketpolicy
+    content: Policy
+    entity: policy
     group: Bucket
   GetBucketVersioning:
-    entity: bucketversioning
+    entity: versioning
     group: Bucket
   GetBucketWebsite:
-    entity: bucketwebsite
+    entity: website
     group: Bucket
   GetObject:
     entity: objectmetadata
     group: Object
   GetObjectAcl:
-    entity: objectacl
+    content: .
+    entity: acl
     group: Object
   GetObjectLockConfiguration:
-    entity: objectlockconfiguration
+    entity: lockconfiguration
     group: Object
   GetObjectRetention:
-    entity: objectretention
+    entity: retention
     group: Object
   GetObjectTagging:
-    entity: objecttagging
+    entity: tagging
     group: Object
   HandleBuild:
     entity: build
@@ -125,7 +128,8 @@ contents:
     entity: bucketversioning
     group: Bucket
   PutBucketWebsite:
-    entity: bucketwebsite
+    content: .
+    entity: website
     group: Bucket
   PutObject:
     entity: object
@@ -149,11 +153,23 @@ contents:
     entity: partcopy
     group: MultipartUpload
 entities:
+  acl:
+    no_aliases: true
   bucket:
     columns:
     - title: Name
       content: .Name
     primary: Bucket
+  cors:
+    no_aliases: true
+  encryption:
+    no_aliases: true
+  lifecycle:
+    no_aliases: true
+  location:
+    no_aliases: true
+  lockconfiguration:
+    no_aliases: true
   multipartupload: {}
   object:
     columns:
@@ -164,8 +180,21 @@ entities:
     - title: LastModified
       content: .LastModified
     primary: Key
-  objectversion: {}
+  objectmetadata:
+    no_aliases: true
+  objectversion:
+    no_aliases: true
   part: {}
+  policy:
+    no_aliases: true
+  retention:
+    no_aliases: true
+  tagging:
+    no_aliases: true
+  versioning:
+    no_aliases: true
+  website:
+    no_aliases: true
 aliases:
 - entity: object
   use: describe key
@@ -178,6 +207,21 @@ aliases:
   - GetObject
   - --Key
   - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  use: versions
+  alias_to: ListObjectVersions
+  aliases:
+  - desc
+  short: Display an object metadata, alias for api ListObjectVersions
+  command:
+  - api
+  - ListObjectVersions
   - --output
   - yaml
   flags:
@@ -233,6 +277,9 @@ aliases:
   sub_command: versioning
   use: disable bucket
   alias_to: PutBucketVersioning
+  aliases:
+  - del
+  - rm
   short: Disable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Suspended
   command:
   - api
@@ -275,6 +322,9 @@ aliases:
   sub_command: encryption
   use: disable bucket
   alias_to: DeleteBucketEncryption
+  aliases:
+  - del
+  - rm
   short: Disable encryption, alias for api DeleteBucketEncryption --Bucket bucket
   command:
   - api
@@ -283,6 +333,293 @@ aliases:
   - '%0'
   - --output
   - success
+- entity: bucket
+  sub_command: acl
+  use: describe bucket
+  alias_to: GetBucketAcl
+  aliases:
+  - desc
+  short: Display ACL configuration, alias for api GetBucketAcl --Bucket bucket
+  command:
+  - api
+  - GetBucketAcl
+  - --Bucket
+  - '%0'
+  - --output
+  - yaml
+- entity: bucket
+  sub_command: acl
+  use: configure bucket
+  alias_to: PutBucketAcl
+  aliases:
+  - config
+  - cfg
+  short: Update ACL configuration, alias for api PutBucketAcl --Bucket bucket
+  command:
+  - api
+  - PutBucketAcl
+  - --Bucket
+  - '%0'
+  - --template-root
+  - AccessControlPolicy
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: template
+    usage: the file storing the ACL config in JSON format (i.e. {"Grants":[...]})
+  - name: acl
+    alias_to: ACL
+  - name: grant-full-control
+    alias_to: GrantFullControl
+  - name: grant-read
+    alias_to: GrantRead
+  - name: GrantReadACP
+    alias_to: grant-read-acp
+  - name: grant-write
+    alias_to: GrantWrite
+  - name: grant-write-acp
+    alias_to: GrantWriteACP
+- entity: bucket
+  sub_command: cors
+  use: describe bucket
+  alias_to: GetBucketCors
+  aliases:
+  - desc
+  short: Display CORS configuration, alias for api GetBucketCors --Bucket bucket
+  command:
+  - api
+  - GetBucketCors
+  - --Bucket
+  - '%0'
+  - --output
+  - yaml
+- entity: bucket
+  sub_command: cors
+  use: configure bucket
+  alias_to: PutBucketCors
+  aliases:
+  - config
+  - cfg
+  short: Update CORS configuration, alias for api PutBucketCors --Bucket bucket
+  command:
+  - api
+  - PutBucketCors
+  - --Bucket
+  - '%0'
+  - --template-root
+  - CORSConfiguration
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: template
+    required: true
+    usage: the file storing the CORS config in JSON format (i.e. {"CORSRules":[...]})
+- entity: bucket
+  sub_command: cors
+  use: disable bucket
+  alias_to: DeleteBucketCors
+  aliases:
+  - del
+  - rm
+  short: Delete CORS configuration, alias for api DeleteBucketCors --Bucket bucket
+  command:
+  - api
+  - DeleteBucketCors
+  - --Bucket
+  - '%0'
+  - --output
+  - success
+- entity: bucket
+  sub_command: lifecycle
+  use: describe bucket
+  alias_to: GetBucketLifecycleConfiguration
+  aliases:
+  - desc
+  short: Display lifecycle configuration, alias for api GetBucketLifecycleConfiguration --Bucket bucket
+  command:
+  - api
+  - GetBucketLifecycleConfiguration
+  - --Bucket
+  - '%0'
+  - --output
+  - yaml
+- entity: bucket
+  sub_command: lifecycle
+  use: configure bucket
+  alias_to: PutBucketLifecycleConfiguration
+  aliases:
+  - config
+  - cfg
+  short: Update Lifecycle configuration, alias for api PutBucketLifecycleConfiguration --Bucket bucket
+  command:
+  - api
+  - PutBucketLifecycleConfiguration
+  - --Bucket
+  - '%0'
+  - --template-root
+  - LifecycleConfiguration
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: template
+    required: true
+    usage: the file storing the Lifecycle config in JSON format (i.e. {"Rules":[...]})
+- entity: bucket
+  sub_command: lifecycle
+  use: disable bucket
+  alias_to: DeleteBucketLifecycle
+  aliases:
+  - del
+  - rm
+  short: Delete Lifecycle configuration, alias for api DeleteBucketLifecycle --Bucket bucket
+  command:
+  - api
+  - DeleteBucketLifecycle
+  - --Bucket
+  - '%0'
+  - --output
+  - success
+- entity: bucket
+  sub_command: website
+  use: describe bucket
+  alias_to: GetBucketWebsite
+  aliases:
+  - desc
+  short: Display website configuration, alias for api GetBucketWebsite --Bucket bucket
+  command:
+  - api
+  - GetBucketWebsite
+  - --Bucket
+  - '%0'
+  - --output
+  - yaml
+- entity: bucket
+  sub_command: website
+  use: configure bucket
+  alias_to: PutBucketWebsite
+  aliases:
+  - config
+  - cfg
+  short: Update Website configuration, alias for api PutBucketWebsite --Bucket bucket
+  command:
+  - api
+  - PutBucketWebsite
+  - --Bucket
+  - '%0'
+  - --template-root
+  - WebsiteConfiguration
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: template
+    required: true
+    usage: the file storing the website config in JSON format (e.g. {"ErrorDocument":{...},"IndexDocument":{...},"RoutingRules":[...]})
+- entity: bucket
+  sub_command: website
+  use: disable bucket
+  alias_to: DeleteBucketWebsite
+  aliases:
+  - del
+  - rm
+  short: Delete Website configuration, alias for api DeleteBucketWebsite --Bucket bucket
+  command:
+  - api
+  - DeleteBucketWebsite
+  - --Bucket
+  - '%0'
+  - --output
+  - success
+- entity: bucket
+  sub_command: policy
+  use: describe bucket
+  alias_to: GetBucketPolicy
+  aliases:
+  - desc
+  short: Display Policy configuration, alias for api GetBucketPolicy --Bucket bucket
+  command:
+  - api
+  - GetBucketPolicy
+  - --Bucket
+  - '%0'
+  - --output
+  - text
+- entity: bucket
+  sub_command: policy
+  use: configure bucket
+  alias_to: PutBucketPolicy
+  aliases:
+  - config
+  - cfg
+  short: Update Policy configuration, alias for api PutBucketPolicy --Bucket bucket
+  command:
+  - api
+  - PutBucketPolicy
+  - --Bucket
+  - '%0'
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: Policy
+    required: true
+    type: file
+    usage: the file storing the policy config in JSON format (i.e. {"Version":"...","Statement":[...]})
+  - name: remove-access
+    alias_to: ConfirmRemoveSelfBucketAccess
+- entity: bucket
+  sub_command: policy
+  use: disable bucket
+  alias_to: DeleteBucketPolicy
+  aliases:
+  - del
+  - rm
+  short: Delete Policy configuration, alias for api DeleteBucketPolicy --Bucket bucket
+  command:
+  - api
+  - DeleteBucketPolicy
+  - --Bucket
+  - '%0'
+  - --output
+  - success
+- entity: object
+  sub_command: acl
+  use: describe key
+  alias_to: GetObjectAcl
+  aliases:
+  - desc
+  short: Display ACL configuration, alias for api GetObjectAcl --Key key
+  command:
+  - api
+  - GetObjectAcl
+  - --Key
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  use: retention key
+  alias_to: GetObjectRetention
+  aliases:
+  - desc
+  short: Display retention configuration, alias for api GetObjectRetention --Key key
+  command:
+  - api
+  - GetObjectRetention
+  - --Key
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true
 - entity: bucket
   use: list
   alias_to: ListBuckets
@@ -328,35 +665,6 @@ aliases:
     alias_to: Prefix
   - name: upload-id-marker
     alias_to: UploadIdMarker
-- entity: objectversion
-  use: list
-  alias_to: ListObjectVersions
-  aliases:
-  - ls
-  short: alias for api ListObjectVersions
-  command:
-  - api
-  - ListObjectVersions
-  - --output
-  - table
-  flags:
-  - name: bucket
-    alias_to: Bucket
-    required: true
-  - name: delimiter
-    alias_to: Delimiter
-  - name: encoding-type
-    alias_to: EncodingType
-  - name: expected-bucket-owner
-    alias_to: ExpectedBucketOwner
-  - name: key-marker
-    alias_to: KeyMarker
-  - name: optional-object-attribute
-    alias_to: OptionalObjectAttributes
-  - name: prefix
-    alias_to: Prefix
-  - name: id-marker
-    alias_to: VersionIdMarker
 - entity: object
   use: list
   alias_to: ListObjectsV2
@@ -437,8 +745,6 @@ aliases:
     required: true
   - name: acl
     alias_to: ACL
-  - name: namespace
-    alias_to: BucketNamespace
   - name: grant-full-control
     alias_to: GrantFullControl
   - name: grant-read
@@ -480,8 +786,6 @@ aliases:
     alias_to: CacheControl
   - name: checksum-algorithm
     alias_to: ChecksumAlgorithm
-  - name: checksum-type
-    alias_to: ChecksumType
   - name: content-disposition
     alias_to: ContentDisposition
   - name: content-encoding
@@ -547,7 +851,7 @@ aliases:
     action: delete
     display:
     - api
-    - GetBucketEncryption
+    - GetBucketPolicy
     - --Bucket
     - '%0'
     - --output
@@ -588,7 +892,7 @@ aliases:
     action: delete
     display:
     - api
-    - GetObject
+    - GetObjectAcl
     - --Key
     - '%0'
     - --output
@@ -626,8 +930,6 @@ aliases:
     alias_to: ChecksumCRC32
   - name: checksum-crc-32-c
     alias_to: ChecksumCRC32C
-  - name: checksum-crc-64-nvme
-    alias_to: ChecksumCRC64NVME
   - name: checksum-sha-1
     alias_to: ChecksumSHA1
   - name: checksum-sha-256
@@ -701,18 +1003,6 @@ spec:
     DeleteBucketWebsite: {}
     DeleteObject: {}
     DeleteObjectTagging: {}
-    GetBucketAcl: {}
-    GetBucketCors: {}
-    GetBucketEncryption: {}
-    GetBucketLifecycleConfiguration: {}
-    GetBucketLocation: {}
-    GetBucketPolicy: {}
-    GetBucketVersioning: {}
-    GetBucketWebsite: {}
-    GetObjectAcl: {}
-    GetObjectLockConfiguration: {}
-    GetObjectRetention: {}
-    GetObjectTagging: {}
     HandleBuild: {}
     HeadBucket: {}
     HeadObject: {}
@@ -724,7 +1014,6 @@ spec:
     PutBucketLifecycleConfiguration: {}
     PutBucketPolicy: {}
     PutBucketVersioning: {}
-    PutBucketWebsite: {}
     PutObject: {}
     PutObjectAcl: {}
     PutObjectLockConfiguration: {}
@@ -785,14 +1074,10 @@ spec:
       help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
     CompleteMultipartUploadInput.ChecksumCRC32C:
       help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-    CompleteMultipartUploadInput.ChecksumCRC64NVME:
-      help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
     CompleteMultipartUploadInput.ChecksumSHA1:
       help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
     CompleteMultipartUploadInput.ChecksumSHA256:
       help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-    CompleteMultipartUploadInput.ChecksumType:
-      help: This header specifies the checksum type of the object, which determines how part-level checksums are combined to create an object-level checksum for multipart objects.
     CompleteMultipartUploadInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     CompleteMultipartUploadInput.IfMatch:
@@ -802,8 +1087,6 @@ spec:
     CompleteMultipartUploadInput.Key:
       help: Object key for which the multipart upload was initiated.
       required: true
-    CompleteMultipartUploadInput.MpuObjectSize:
-      help: The expected total object size of the multipart upload request.
     CompleteMultipartUploadInput.MultipartUpload:
       help: The container for the multipart upload request information.
     CompleteMultipartUploadInput.RequestPayer:
@@ -869,10 +1152,6 @@ spec:
       help: Allows grantee to read the object ACL.
     CopyObjectInput.GrantWriteACP:
       help: Allows grantee to write the ACL for the applicable object.
-    CopyObjectInput.IfMatch:
-      help: Copies the object if the entity tag (ETag) of the destination object matches the specified tag.
-    CopyObjectInput.IfNoneMatch:
-      help: Copies the object only if the object key name at the destination does not already exist in the bucket specified.
     CopyObjectInput.Key:
       help: The key of the destination object.
       required: true
@@ -913,8 +1192,6 @@ spec:
     CreateBucketInput.Bucket:
       help: The name of the bucket to create.
       required: true
-    CreateBucketInput.BucketNamespace:
-      help: Specifies the namespace where you want to create your general purpose bucket.
     CreateBucketInput.CreateBucketConfiguration:
       help: The configuration information for the bucket.
     CreateBucketInput.GrantFullControl:
@@ -931,27 +1208,15 @@ spec:
       help: Specifies whether you want S3 Object Lock to be enabled for the new bucket.
     CreateBucketInput.ObjectOwnership:
       help: The container element for object ownership for a bucket's ownership controls.
-    CreateBucketMetadataConfigurationInput.Bucket:
-      help: The general purpose bucket that you want to create the metadata configuration for.
-      required: true
-    CreateBucketMetadataConfigurationInput.ChecksumAlgorithm:
-      help: The checksum algorithm to use with your metadata configuration.
-    CreateBucketMetadataConfigurationInput.ContentMD5:
-      help: The Content-MD5 header for the metadata configuration.
-    CreateBucketMetadataConfigurationInput.ExpectedBucketOwner:
-      help: The expected owner of the general purpose bucket that corresponds to your metadata configuration.
-    CreateBucketMetadataConfigurationInput.MetadataConfiguration:
-      help: The contents of your metadata configuration.
-      required: true
     CreateBucketMetadataTableConfigurationInput.Bucket:
-      help: The general purpose bucket that you want to create the metadata table configuration for.
+      help: The general purpose bucket that you want to create the metadata table configuration in.
       required: true
     CreateBucketMetadataTableConfigurationInput.ChecksumAlgorithm:
       help: The checksum algorithm to use with your metadata table configuration.
     CreateBucketMetadataTableConfigurationInput.ContentMD5:
       help: The Content-MD5 header for the metadata table configuration.
     CreateBucketMetadataTableConfigurationInput.ExpectedBucketOwner:
-      help: The expected owner of the general purpose bucket that corresponds to your metadata table configuration.
+      help: The expected owner of the general purpose bucket that contains your metadata table configuration.
     CreateBucketMetadataTableConfigurationInput.MetadataTableConfiguration:
       help: The contents of your metadata table configuration.
       required: true
@@ -966,8 +1231,6 @@ spec:
       help: Specifies caching behavior along the request/reply chain.
     CreateMultipartUploadInput.ChecksumAlgorithm:
       help: Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object.
-    CreateMultipartUploadInput.ChecksumType:
-      help: Indicates the checksum type that you want Amazon S3 to use to calculate the object’s checksum value.
     CreateMultipartUploadInput.ContentDisposition:
       help: Specifies presentational information for the object.
     CreateMultipartUploadInput.ContentEncoding:
@@ -1012,7 +1275,7 @@ spec:
     CreateMultipartUploadInput.SSEKMSKeyId:
       help: Specifies the KMS key ID (Key ID, Key ARN, or Key Alias) to use for object encryption.
     CreateMultipartUploadInput.ServerSideEncryption:
-      help: The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.
+      help: The server-side encryption algorithm used when you store this object in Amazon S3 (for example, AES256 , aws:kms ).
     CreateMultipartUploadInput.StorageClass:
       help: By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects.
     CreateMultipartUploadInput.Tagging:
@@ -1058,8 +1321,6 @@ spec:
     DeleteBucketIntelligentTieringConfigurationInput.Bucket:
       help: The name of the Amazon S3 bucket whose configuration you want to modify or retrieve.
       required: true
-    DeleteBucketIntelligentTieringConfigurationInput.ExpectedBucketOwner:
-      help: The account ID of the expected bucket owner.
     DeleteBucketIntelligentTieringConfigurationInput.Id:
       help: The ID used to identify the S3 Intelligent-Tiering configuration.
       required: true
@@ -1076,11 +1337,6 @@ spec:
       required: true
     DeleteBucketLifecycleInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
-    DeleteBucketMetadataConfigurationInput.Bucket:
-      help: The general purpose bucket that you want to remove the metadata configuration from.
-      required: true
-    DeleteBucketMetadataConfigurationInput.ExpectedBucketOwner:
-      help: The expected bucket owner of the general purpose bucket that you want to remove the metadata table configuration from.
     DeleteBucketMetadataTableConfigurationInput.Bucket:
       help: The general purpose bucket that you want to remove the metadata table configuration from.
       required: true
@@ -1127,7 +1383,7 @@ spec:
     DeleteObjectInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     DeleteObjectInput.IfMatch:
-      help: Deletes the object if the ETag (entity tag) value provided during the delete operation matches the ETag of the object in S3.
+      help: The If-Match header field makes the request method conditional on ETags.
     DeleteObjectInput.IfMatchLastModifiedTime:
       help: If present, the object is deleted only if its modification times matches the provided Timestamp .
     DeleteObjectInput.IfMatchSize:
@@ -1208,11 +1464,6 @@ spec:
       help: Internal parameter to indicate whether S3Express operation should use control plane, (ex.
     EndpointResolverV2.ResolveEndpoint:
       help: attempts to resolve the endpoint with the provided options, returning the endpoint if found.
-    GetBucketAbacInput.Bucket:
-      help: The name of the general purpose bucket.
-      required: true
-    GetBucketAbacInput.ExpectedBucketOwner:
-      help: The Amazon Web Services account ID of the general purpose bucket's owner.
     GetBucketAccelerateConfigurationInput.Bucket:
       help: The name of the bucket for which the accelerate configuration is retrieved.
       required: true
@@ -1246,8 +1497,6 @@ spec:
     GetBucketIntelligentTieringConfigurationInput.Bucket:
       help: The name of the Amazon S3 bucket whose configuration you want to modify or retrieve.
       required: true
-    GetBucketIntelligentTieringConfigurationInput.ExpectedBucketOwner:
-      help: The account ID of the expected bucket owner.
     GetBucketIntelligentTieringConfigurationInput.Id:
       help: The ID used to identify the S3 Intelligent-Tiering configuration.
       required: true
@@ -1274,16 +1523,11 @@ spec:
       required: true
     GetBucketLoggingInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
-    GetBucketMetadataConfigurationInput.Bucket:
-      help: The general purpose bucket that corresponds to the metadata configuration that you want to retrieve.
-      required: true
-    GetBucketMetadataConfigurationInput.ExpectedBucketOwner:
-      help: The expected owner of the general purpose bucket that you want to retrieve the metadata table configuration for.
     GetBucketMetadataTableConfigurationInput.Bucket:
-      help: The general purpose bucket that corresponds to the metadata table configuration that you want to retrieve.
+      help: The general purpose bucket that contains the metadata table configuration that you want to retrieve.
       required: true
     GetBucketMetadataTableConfigurationInput.ExpectedBucketOwner:
-      help: The expected owner of the general purpose bucket that you want to retrieve the metadata table configuration for.
+      help: The expected owner of the general purpose bucket that you want to retrieve the metadata table configuration from.
     GetBucketMetricsConfigurationInput.Bucket:
       help: The name of the bucket containing the metrics configuration to retrieve.
       required: true
@@ -1535,8 +1779,6 @@ spec:
       required: true
     ListBucketIntelligentTieringConfigurationsInput.ContinuationToken:
       help: The ContinuationToken that represents a placeholder from where this request should begin.
-    ListBucketIntelligentTieringConfigurationsInput.ExpectedBucketOwner:
-      help: The account ID of the expected bucket owner.
     ListBucketInventoryConfigurationsInput.Bucket:
       help: The name of the bucket containing the inventory configurations to retrieve.
       required: true
@@ -1720,8 +1962,6 @@ spec:
       help: Set of options to modify how an operation is invoked.
     Options.AppID:
       help: The optional application specific identifier appended to the User-Agent header.
-    Options.AuthSchemePreference:
-      help: Priority list of preferred auth scheme names (e.g.
     Options.AuthSchemeResolver:
       help: The auth scheme resolver which determines how to authenticate for each operation.
     Options.AuthSchemes:
@@ -1736,8 +1976,6 @@ spec:
       help: The credentials object to use when signing requests.
     Options.DefaultsMode:
       help: The configuration DefaultsMode that the SDK should use when constructing the clients initial default settings.
-    Options.DisableLogOutputChecksumValidationSkipped:
-      help: Disables logging when the client skips output checksum validation due to lack of algorithm support.
     Options.DisableMultiRegionAccessPoints:
       help: Allows you to disable S3 Multi-Region access points feature.
     Options.DisableS3ExpressSessionAuth:
@@ -1754,20 +1992,12 @@ spec:
       help: The HTTP client to invoke API calls with.
     Options.HTTPSignerV4:
       help: Signature Version 4 (SigV4) Signer
-    Options.IdempotencyTokenProvider:
-      help: Provides idempotency tokens values that will be automatically populated into idempotent API operations.
-    Options.Interceptors:
-      help: Client registry of operation interceptors.
     Options.Logger:
       help: The logger writer interface to write logging messages to.
     Options.MeterProvider:
       help: The client meter provider.
     Options.Region:
       help: The region to send requests to.
-    Options.RequestChecksumCalculation:
-      help: Indicates how user opt-in/out request checksum calculation
-    Options.ResponseChecksumValidation:
-      help: Indicates how user opt-in/out response checksum validation
     Options.RetryMaxAttempts:
       help: specifies the maximum number attempts an API client will call an operation that fails with a retryable error.
     Options.RetryMode:
@@ -1804,18 +2034,6 @@ spec:
       help: Represents the Base URL to make a request to
     PresignedPostRequest.Values:
       help: is a key-value map of values to be sent as FormData these values are not encoded
-    PutBucketAbacInput.AbacStatus:
-      help: The ABAC status of the general purpose bucket.
-      required: true
-    PutBucketAbacInput.Bucket:
-      help: The name of the general purpose bucket.
-      required: true
-    PutBucketAbacInput.ChecksumAlgorithm:
-      help: Indicates the algorithm that you want Amazon S3 to use to create the checksum.
-    PutBucketAbacInput.ContentMD5:
-      help: The MD5 hash of the PutBucketAbac request body.
-    PutBucketAbacInput.ExpectedBucketOwner:
-      help: The Amazon Web Services account ID of the general purpose bucket's owner.
     PutBucketAccelerateConfigurationInput.AccelerateConfiguration:
       help: Container for setting the transfer acceleration state.
       required: true
@@ -1823,7 +2041,7 @@ spec:
       help: The name of the bucket for which the accelerate configuration is set.
       required: true
     PutBucketAccelerateConfigurationInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the request when you use the SDK.
+      help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutBucketAccelerateConfigurationInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     PutBucketAclInput.ACL:
@@ -1834,9 +2052,9 @@ spec:
       help: The bucket to which to apply the ACL.
       required: true
     PutBucketAclInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the request when you use the SDK.
+      help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutBucketAclInput.ContentMD5:
-      help: The Base64 encoded 128-bit MD5 digest of the data.
+      help: The base64-encoded 128-bit MD5 digest of the data.
     PutBucketAclInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     PutBucketAclInput.GrantFullControl:
@@ -1867,18 +2085,18 @@ spec:
       help: Describes the cross-origin access configuration for objects in an Amazon S3 bucket.
       required: true
     PutBucketCorsInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the request when you use the SDK.
+      help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutBucketCorsInput.ContentMD5:
-      help: The Base64 encoded 128-bit MD5 digest of the data.
+      help: The base64-encoded 128-bit MD5 digest of the data.
     PutBucketCorsInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     PutBucketEncryptionInput.Bucket:
       help: Specifies default encryption for a bucket using server-side encryption with different key options.
       required: true
     PutBucketEncryptionInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the request when you use the SDK.
+      help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutBucketEncryptionInput.ContentMD5:
-      help: The Base64 encoded 128-bit MD5 digest of the server-side encryption configuration.
+      help: The base64-encoded 128-bit MD5 digest of the server-side encryption configuration.
     PutBucketEncryptionInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     PutBucketEncryptionInput.ServerSideEncryptionConfiguration:
@@ -1887,8 +2105,6 @@ spec:
     PutBucketIntelligentTieringConfigurationInput.Bucket:
       help: The name of the Amazon S3 bucket whose configuration you want to modify or retrieve.
       required: true
-    PutBucketIntelligentTieringConfigurationInput.ExpectedBucketOwner:
-      help: The account ID of the expected bucket owner.
     PutBucketIntelligentTieringConfigurationInput.Id:
       help: The ID used to identify the S3 Intelligent-Tiering configuration.
       required: true
@@ -1910,7 +2126,7 @@ spec:
       help: The name of the bucket for which to set the configuration.
       required: true
     PutBucketLifecycleConfigurationInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the request when you use the SDK.
+      help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutBucketLifecycleConfigurationInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     PutBucketLifecycleConfigurationInput.LifecycleConfiguration:
@@ -1924,7 +2140,7 @@ spec:
       help: Container for logging status information.
       required: true
     PutBucketLoggingInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the request when you use the SDK.
+      help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutBucketLoggingInput.ContentMD5:
       help: The MD5 hash of the PutBucketLogging request body.
     PutBucketLoggingInput.ExpectedBucketOwner:
@@ -1953,8 +2169,6 @@ spec:
     PutBucketOwnershipControlsInput.Bucket:
       help: The name of the Amazon S3 bucket whose OwnershipControls you want to set.
       required: true
-    PutBucketOwnershipControlsInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutBucketOwnershipControlsInput.ContentMD5:
       help: The MD5 hash of the OwnershipControls request body.
     PutBucketOwnershipControlsInput.ExpectedBucketOwner:
@@ -1966,7 +2180,7 @@ spec:
       help: The name of the bucket.
       required: true
     PutBucketPolicyInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the request when you use the SDK.
+      help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutBucketPolicyInput.ConfirmRemoveSelfBucketAccess:
       help: Set this parameter to true to confirm that you want to remove your permissions to change this bucket policy in the future.
     PutBucketPolicyInput.ContentMD5:
@@ -1980,9 +2194,9 @@ spec:
       help: The name of the bucket This member is required.
       required: true
     PutBucketReplicationInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the request when you use the SDK.
+      help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutBucketReplicationInput.ContentMD5:
-      help: The Base64 encoded 128-bit MD5 digest of the data.
+      help: The base64-encoded 128-bit MD5 digest of the data.
     PutBucketReplicationInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     PutBucketReplicationInput.ReplicationConfiguration:
@@ -1994,9 +2208,9 @@ spec:
       help: The bucket name.
       required: true
     PutBucketRequestPaymentInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the request when you use the SDK.
+      help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutBucketRequestPaymentInput.ContentMD5:
-      help: The Base64 encoded 128-bit MD5 digest of the data.
+      help: The base64-encoded 128-bit MD5 digest of the data.
     PutBucketRequestPaymentInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     PutBucketRequestPaymentInput.RequestPaymentConfiguration:
@@ -2006,9 +2220,9 @@ spec:
       help: The bucket name.
       required: true
     PutBucketTaggingInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the request when you use the SDK.
+      help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutBucketTaggingInput.ContentMD5:
-      help: The Base64 encoded 128-bit MD5 digest of the data.
+      help: The base64-encoded 128-bit MD5 digest of the data.
     PutBucketTaggingInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     PutBucketTaggingInput.Tagging:
@@ -2018,9 +2232,9 @@ spec:
       help: The bucket name.
       required: true
     PutBucketVersioningInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the request when you use the SDK.
+      help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutBucketVersioningInput.ContentMD5:
-      help: '>The Base64 encoded 128-bit MD5 digest of the data.'
+      help: '>The base64-encoded 128-bit MD5 digest of the data.'
     PutBucketVersioningInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     PutBucketVersioningInput.MFA:
@@ -2032,9 +2246,9 @@ spec:
       help: The bucket name.
       required: true
     PutBucketWebsiteInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the request when you use the SDK.
+      help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutBucketWebsiteInput.ContentMD5:
-      help: The Base64 encoded 128-bit MD5 digest of the data.
+      help: The base64-encoded 128-bit MD5 digest of the data.
     PutBucketWebsiteInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     PutBucketWebsiteInput.WebsiteConfiguration:
@@ -2050,7 +2264,7 @@ spec:
     PutObjectAclInput.ChecksumAlgorithm:
       help: Indicates the algorithm used to create the checksum for the object when you use the SDK.
     PutObjectAclInput.ContentMD5:
-      help: The Base64 encoded 128-bit MD5 digest of the data.
+      help: The base64-encoded 128-bit MD5 digest of the data.
     PutObjectAclInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     PutObjectAclInput.GrantFullControl:
@@ -2087,8 +2301,6 @@ spec:
       help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
     PutObjectInput.ChecksumCRC32C:
       help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-    PutObjectInput.ChecksumCRC64NVME:
-      help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
     PutObjectInput.ChecksumSHA1:
       help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
     PutObjectInput.ChecksumSHA256:
@@ -2102,7 +2314,7 @@ spec:
     PutObjectInput.ContentLength:
       help: Size of the body in bytes.
     PutObjectInput.ContentMD5:
-      help: The Base64 encoded 128-bit MD5 digest of the message (without the headers) according to RFC 1864.
+      help: The base64-encoded 128-bit MD5 digest of the message (without the headers) according to RFC 1864.
     PutObjectInput.ContentType:
       help: A standard MIME type describing the format of the contents.
     PutObjectInput.ExpectedBucketOwner:
@@ -2145,7 +2357,7 @@ spec:
     PutObjectInput.SSEKMSKeyId:
       help: Specifies the KMS key ID (Key ID, Key ARN, or Key Alias) to use for object encryption.
     PutObjectInput.ServerSideEncryption:
-      help: The server-side encryption algorithm that was used when you store this object in Amazon S3 or Amazon FSx.
+      help: The server-side encryption algorithm that was used when you store this object in Amazon S3 (for example, AES256 , aws:kms , aws:kms:dsse ).
     PutObjectInput.StorageClass:
       help: By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects.
     PutObjectInput.Tagging:
@@ -2220,7 +2432,7 @@ spec:
       help: Name of the object key.
       required: true
     PutObjectTaggingInput.RequestPayer:
-      help: Confirms that the requester knows that she or he will be charged for the tagging object request.
+      help: Confirms that the requester knows that they will be charged for the request.
     PutObjectTaggingInput.Tagging:
       help: Container for the TagSet and Tag elements This member is required.
       required: true
@@ -2238,33 +2450,6 @@ spec:
     PutPublicAccessBlockInput.PublicAccessBlockConfiguration:
       help: The PublicAccessBlock configuration that you want to apply to this Amazon S3 bucket.
       required: true
-    RenameObjectInput.Bucket:
-      help: The bucket name of the directory bucket containing the object.
-      required: true
-    RenameObjectInput.ClientToken:
-      help: 'A unique string with a max of 64 ASCII characters in the ASCII range of 33 - 126.'
-    RenameObjectInput.DestinationIfMatch:
-      help: Renames the object only if the ETag (entity tag) value provided during the operation matches the ETag of the object in S3.
-    RenameObjectInput.DestinationIfModifiedSince:
-      help: Renames the object if the destination exists and if it has been modified since the specified time.
-    RenameObjectInput.DestinationIfNoneMatch:
-      help: Renames the object only if the destination does not already exist in the specified directory bucket.
-    RenameObjectInput.DestinationIfUnmodifiedSince:
-      help: Renames the object if it hasn't been modified since the specified time.
-    RenameObjectInput.Key:
-      help: name of the object to rename.
-      required: true
-    RenameObjectInput.RenameSource:
-      help: Specifies the source for the rename operation.
-      required: true
-    RenameObjectInput.SourceIfMatch:
-      help: Renames the object if the source exists and if its entity tag (ETag) matches the specified ETag.
-    RenameObjectInput.SourceIfModifiedSince:
-      help: Renames the object if the source exists and if it has been modified since the specified time.
-    RenameObjectInput.SourceIfNoneMatch:
-      help: Renames the object if the source exists and if its entity tag (ETag) is different than the specified ETag.
-    RenameObjectInput.SourceIfUnmodifiedSince:
-      help: Renames the object if the source exists and hasn't been modified since the specified time.
     RestoreObjectInput.Bucket:
       help: The bucket name containing the object to restore.
       required: true
@@ -2313,49 +2498,6 @@ spec:
       help: The MD5 server-side encryption (SSE) customer managed key.
     SelectObjectContentInput.ScanRange:
       help: Specifies the byte range of the object to get the records from.
-    UpdateBucketMetadataInventoryTableConfigurationInput.Bucket:
-      help: The general purpose bucket that corresponds to the metadata configuration that you want to enable or disable an inventory table for.
-      required: true
-    UpdateBucketMetadataInventoryTableConfigurationInput.ChecksumAlgorithm:
-      help: The checksum algorithm to use with your inventory table configuration.
-    UpdateBucketMetadataInventoryTableConfigurationInput.ContentMD5:
-      help: The Content-MD5 header for the inventory table configuration.
-    UpdateBucketMetadataInventoryTableConfigurationInput.ExpectedBucketOwner:
-      help: The expected owner of the general purpose bucket that corresponds to the metadata table configuration that you want to enable or disable an inventory table for.
-    UpdateBucketMetadataInventoryTableConfigurationInput.InventoryTableConfiguration:
-      help: The contents of your inventory table configuration.
-      required: true
-    UpdateBucketMetadataJournalTableConfigurationInput.Bucket:
-      help: The general purpose bucket that corresponds to the metadata configuration that you want to enable or disable journal table record expiration for.
-      required: true
-    UpdateBucketMetadataJournalTableConfigurationInput.ChecksumAlgorithm:
-      help: The checksum algorithm to use with your journal table configuration.
-    UpdateBucketMetadataJournalTableConfigurationInput.ContentMD5:
-      help: The Content-MD5 header for the journal table configuration.
-    UpdateBucketMetadataJournalTableConfigurationInput.ExpectedBucketOwner:
-      help: The expected owner of the general purpose bucket that corresponds to the metadata table configuration that you want to enable or disable journal table record expiration for.
-    UpdateBucketMetadataJournalTableConfigurationInput.JournalTableConfiguration:
-      help: The contents of your journal table configuration.
-      required: true
-    UpdateObjectEncryptionInput.Bucket:
-      help: The name of the general purpose bucket that contains the specified object key name.
-      required: true
-    UpdateObjectEncryptionInput.ChecksumAlgorithm:
-      help: Indicates the algorithm used to create the checksum for the object when you use an Amazon Web Services SDK.
-    UpdateObjectEncryptionInput.ContentMD5:
-      help: The MD5 hash for the request body.
-    UpdateObjectEncryptionInput.ExpectedBucketOwner:
-      help: The account ID of the expected bucket owner.
-    UpdateObjectEncryptionInput.Key:
-      help: The key name of the object that you want to update the server-side encryption type for.
-      required: true
-    UpdateObjectEncryptionInput.ObjectEncryption:
-      help: The updated server-side encryption type for this object.
-      required: true
-    UpdateObjectEncryptionInput.RequestPayer:
-      help: Confirms that the requester knows that they will be charged for the request.
-    UpdateObjectEncryptionInput.VersionId:
-      help: The version ID of the object that you want to update the server-side encryption type for.
     UploadPartCopyInput.Bucket:
       help: The bucket name.
       required: true
@@ -2410,8 +2552,6 @@ spec:
       help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
     UploadPartInput.ChecksumCRC32C:
       help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-    UploadPartInput.ChecksumCRC64NVME:
-      help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
     UploadPartInput.ChecksumSHA1:
       help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
     UploadPartInput.ChecksumSHA256:
@@ -2419,7 +2559,7 @@ spec:
     UploadPartInput.ContentLength:
       help: Size of the body in bytes.
     UploadPartInput.ContentMD5:
-      help: The Base64 encoded 128-bit MD5 digest of the part data.
+      help: The base64-encoded 128-bit MD5 digest of the part data.
     UploadPartInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
     UploadPartInput.Key:
@@ -2450,8 +2590,6 @@ spec:
     WriteGetObjectResponseInput.ChecksumCRC32:
       help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
     WriteGetObjectResponseInput.ChecksumCRC32C:
-      help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-    WriteGetObjectResponseInput.ChecksumCRC64NVME:
       help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
     WriteGetObjectResponseInput.ChecksumSHA1:
       help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
@@ -2514,7 +2652,7 @@ spec:
     WriteGetObjectResponseInput.SSEKMSKeyId:
       help: If present, specifies the ID (Key ID, Key ARN, or Key Alias) of the Amazon Web Services Key Management Service (Amazon Web Services KMS) symmetric encryption customer managed key that was used for stored in Amazon S3 object.
     WriteGetObjectResponseInput.ServerSideEncryption:
-      help: The server-side encryption algorithm used when storing requested object in Amazon S3 or Amazon FSx.
+      help: The server-side encryption algorithm used when storing requested object in Amazon S3 (for example, AES256, aws:kms ).
     WriteGetObjectResponseInput.StatusCode:
       help: The integer status code for an HTTP response of a corresponding GetObject request.
     WriteGetObjectResponseInput.StorageClass:

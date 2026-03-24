@@ -14,11 +14,10 @@ octl storage api UploadPart [flags]
       --ChecksumAlgorithm string      Indicates the algorithm used to create the checksum for the object when you use the SDK.
       --ChecksumCRC32 string          This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --ChecksumCRC32C string         This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ChecksumCRC64NVME string      This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --ChecksumSHA1 string           This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --ChecksumSHA256 string         This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --ContentLength int             Size of the body in bytes.
-      --ContentMD5 string             The Base64 encoded 128-bit MD5 digest of the part data.
+      --ContentMD5 string             The base64-encoded 128-bit MD5 digest of the part data.
       --ExpectedBucketOwner string    The account ID of the expected bucket owner.
       --Key string                    Object key for which the multipart upload was initiated.
       --PartNumber int32              Part number of part being uploaded.
@@ -39,7 +38,7 @@ octl storage api UploadPart [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object

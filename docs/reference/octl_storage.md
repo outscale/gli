@@ -17,7 +17,7 @@ OUTSCALE Object Storage (OOS) management
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object
@@ -36,6 +36,5 @@ OUTSCALE Object Storage (OOS) management
 * [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
 * [octl storage multipartupload](octl_storage_multipartupload.md)	 - multipartupload commands
 * [octl storage object](octl_storage_object.md)	 - object commands
-* [octl storage objectversion](octl_storage_objectversion.md)	 - objectversion commands
 * [octl storage part](octl_storage_part.md)	 - part commands
 

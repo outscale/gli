@@ -14,7 +14,7 @@ octl storage api PutObjectTagging [flags]
       --ContentMD5 string               The MD5 hash for the request body.
       --ExpectedBucketOwner string      The account ID of the expected bucket owner.
       --Key string                      Name of the object key.
-      --RequestPayer string             Confirms that the requester knows that she or he will be charged for the tagging object request.
+      --RequestPayer string             Confirms that the requester knows that they will be charged for the request.
       --Tagging.TagSet.0.Key string     
       --Tagging.TagSet.0.Value string   
       --VersionId string                The versionId of the object that the tag-set will be added to.
@@ -30,7 +30,7 @@ octl storage api PutObjectTagging [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object

@@ -23,14 +23,13 @@ octl storage object put key [key]... [flags]
       --checksum-algorithm string          Indicates the algorithm used to create the checksum for the object when you use the SDK.
       --checksum-crc-32 string             This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --checksum-crc-32-c string           This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --checksum-crc-64-nvme string        This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --checksum-sha-1 string              This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --checksum-sha-256 string            This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --content-disposition string         Specifies presentational information for the object.
       --content-encoding string            Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
       --content-language string            The language the content is in.
       --content-length int                 Size of the body in bytes.
-      --content-md-5 string                The Base64 encoded 128-bit MD5 digest of the message (without the headers) according to RFC 1864.
+      --content-md-5 string                The base64-encoded 128-bit MD5 digest of the message (without the headers) according to RFC 1864.
       --content-type string                A standard MIME type describing the format of the contents.
       --expected-bucket-owner string       The account ID of the expected bucket owner.
       --expire osctime                     The date and time at which the object is no longer cacheable.
@@ -44,7 +43,7 @@ octl storage object put key [key]... [flags]
       --lock-legal-hold-status string      Specifies whether a legal hold will be applied to this object.
       --lock-mode string                   The Object Lock mode that you want to apply to this object.
       --lock-retain-until-date osctime     The date and time when you want this object's Object Lock to expire.
-      --server-side-encryption string      The server-side encryption algorithm that was used when you store this object in Amazon S3 or Amazon FSx.
+      --server-side-encryption string      The server-side encryption algorithm that was used when you store this object in Amazon S3 (for example, AES256 , aws:kms , aws:kms:dsse ).
       --sse-customer-algorithm string      Specifies the algorithm to use when encrypting the object (for example, AES256 ).
       --sse-customer-key string            Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data.
       --sse-customer-key-md-5 string       Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
@@ -65,7 +64,7 @@ octl storage object put key [key]... [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object
