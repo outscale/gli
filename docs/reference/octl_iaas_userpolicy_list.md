@@ -1,12 +1,12 @@
 ## octl iaas userpolicy list
 
-alias for api ReadUserPolicy
+alias for api ReadUserPolicies
 
 ### Synopsis
 
-> *alias for api ReadUserPolicy*
+> *alias for api ReadUserPolicies*
 
-Returns information about an inline policy included in a specified user.
+Lists the names of inline policies included in a specified user.
 
 ```
 octl iaas userpolicy list [flags]
@@ -15,9 +15,8 @@ octl iaas userpolicy list [flags]
 ### Options
 
 ```
-  -h, --help                 help for list
-      --policy-name string   The name of the policy.
-      --user-name string     The name of the user.
+  -h, --help               help for list
+      --user-name string   The name of the user.
 ```
 
 ### Options inherited from parent commands

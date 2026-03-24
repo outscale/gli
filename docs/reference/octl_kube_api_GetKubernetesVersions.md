@@ -1,6 +1,10 @@
 ## octl kube api GetKubernetesVersions
 
+request returning *KubernetesVersionsResponse
 
+### Synopsis
+
+request returning *KubernetesVersionsResponse
 
 ```
 octl kube api GetKubernetesVersions [flags]

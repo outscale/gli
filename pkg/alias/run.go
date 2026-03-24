@@ -22,13 +22,19 @@ import (
 	"github.com/spf13/pflag"
 )
 
-func RunFunc(provider string, a config.Alias, cmd *cobra.Command) func(cmd *cobra.Command, args []string) {
+func RunFunc(rootPath string, a config.Alias) func(cmd *cobra.Command, args []string) {
 	if !slices.Contains(a.Command, "|") {
-		return runAliasWithPrompt(provider, a, cmd)
+		return runAliasWithPrompt(rootPath, a)
 	}
 	first, last, _ := lo.Cut(a.Command, []string{"|"})
-	runFirst := runFunc(provider, first, a.Flags, cmd, true)
-	runLast := runFunc(provider, last, a.Flags, cmd, true)
+	var firstFlags, lastFlags config.FlagSet
+	if slices.Contains(first, a.AliasTo) {
+		firstFlags = a.Flags
+	} else {
+		lastFlags = a.Flags
+	}
+	runFirst := runFunc(rootPath, first, firstFlags, true)
+	runLast := runFunc(rootPath, last, lastFlags, true)
 	return func(cmd *cobra.Command, args []string) {
 		buf := &bytes.Buffer{}
 		output.InjectOutput(buf)
@@ -40,12 +46,12 @@ func RunFunc(provider string, a config.Alias, cmd *cobra.Command) func(cmd *cobr
 	}
 }
 
-func runAliasWithPrompt(provider string, a config.Alias, cmd *cobra.Command) func(cmd *cobra.Command, args []string) {
-	run := runFunc(provider, a.Command, a.Flags, cmd, false)
+func runAliasWithPrompt(rootPath string, a config.Alias) func(cmd *cobra.Command, args []string) {
+	run := runFunc(rootPath, a.Command, a.Flags, false)
 	if a.Prompt != nil {
 		var display func(cmd *cobra.Command, args []string)
 		if len(a.Prompt.DisplayCommand) > 0 {
-			display = runFunc(provider, a.Prompt.DisplayCommand, a.Prompt.Flags, cmd, true)
+			display = runFunc(rootPath, a.Prompt.DisplayCommand, a.Prompt.Flags, true)
 		}
 		return Confirm(a.Prompt.Action, display, run)
 	}
@@ -110,11 +116,11 @@ func iterate(fn func(cmd *cobra.Command, args []string) int) func(cmd *cobra.Com
 	}
 }
 
-func runFunc(provider string, command []string, flags config.FlagSet, cmd *cobra.Command, skipUserFlags bool) func(cmd *cobra.Command, args []string) {
+func runFunc(rootPath string, command []string, flags config.FlagSet, skipUserFlags bool) func(cmd *cobra.Command, args []string) {
 	exec := func(cmd *cobra.Command, args []string) int {
 		nargs := make([]string, 2, len(command)+2)
 		nargs[0] = "octl"
-		nargs[1] = provider
+		nargs[1] = rootPath
 		var userArgs []string
 		cmd.Flags().VisitAll(func(f *pflag.Flag) {
 			if f.Changed {

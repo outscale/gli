@@ -1,6 +1,10 @@
 ## octl kube api ListProjects
 
+request returning *ProjectResponseList
 
+### Synopsis
+
+request returning *ProjectResponseList
 
 ```
 octl kube api ListProjects [flags]

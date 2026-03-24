@@ -43,6 +43,9 @@ func (o PreviewReader) MarshalText() ([]byte, error) {
 var _ encoding.TextMarshaler = PreviewReader{}
 
 func addPreview(v reflect.Value) {
+	if v.Kind() != reflect.Struct {
+		return
+	}
 	v, found := structs.FindFieldByType[io.ReadCloser](v)
 	if found && v.CanSet() && v.CanInterface() {
 		if r, ok := v.Interface().(io.ReadCloser); ok {

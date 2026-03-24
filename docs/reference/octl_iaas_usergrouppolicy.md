@@ -33,5 +33,4 @@ usergrouppolicy commands
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
 * [octl iaas usergrouppolicy list](octl_iaas_usergrouppolicy_list.md)	 - alias for api ReadUserGroupPolicies
-* [octl iaas usergrouppolicy list](octl_iaas_usergrouppolicy_list.md)	 - alias for api ReadUserGroupPolicy
 

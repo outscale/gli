@@ -36,7 +36,7 @@ func init() {
 	b.BuildAPI(storageCmd, func(m reflect.Method) bool {
 		return true
 	}, callOOS)
-	b.Build(storageCmd)
+	b.Build(storageCmd, nil)
 
 	runner.RegisterHook("auto-content-type", guessContentType)
 }
@@ -46,7 +46,7 @@ func callOOS(cmd *cobra.Command, args []string) {
 	p := loadProfile(cmd)
 	cl, err := oos.NewClient(cmd.Context(), p, awsOptions(cmd)...)
 	if err == nil {
-		err = runner.Run[oos.Client, oos.Error](cmd, args, cl, config.For("storage"))
+		err = runner.Run[*oos.Client, oos.Error](cmd, args, cl, config.For("storage"))
 	}
 	if err != nil {
 		_ = flags.CloseAll(cmd.Flags())

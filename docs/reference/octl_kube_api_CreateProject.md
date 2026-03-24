@@ -1,6 +1,10 @@
 ## octl kube api CreateProject
 
+Creates a new project with the provided details.
 
+### Synopsis
+
+Creates a new project with the provided details. The request must include the project data in the request body. Returns the details of the created project.
 
 ```
 octl kube api CreateProject [flags]
@@ -9,12 +13,12 @@ octl kube api CreateProject [flags]
 ### Options
 
 ```
-      --Cidr string             
-      --Description string      
-      --DisableApiTermination   
-      --Name string             
+      --Cidr string             CIDR block associated with the project's VPC
+      --Description string      Optional description of the project
+      --DisableApiTermination   Flag to prevent accidental project deletion
+      --Name string             Unique name for the project, must start with a letter and contain only lowercase letters, numbers, or hyphens
       --Quirks strings          
-      --Region string           
+      --Region string           Region where the project is deployed
   -h, --help                    help for CreateProject
 ```
 

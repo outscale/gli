@@ -1,6 +1,10 @@
 ## octl kube api GetClusterTemplate
 
+request returning *TemplateResponseClusterInputTemplate
 
+### Synopsis
+
+request returning *TemplateResponseClusterInputTemplate
 
 ```
 octl kube api GetClusterTemplate [flags]

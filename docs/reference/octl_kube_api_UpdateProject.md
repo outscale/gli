@@ -1,6 +1,10 @@
 ## octl kube api UpdateProject
 
+Updates the details of an existing project by its ID.
 
+### Synopsis
+
+Updates the details of an existing project by its ID. The request must include the updated project data in the request body. Returns the updated project information.
 
 ```
 octl kube api UpdateProject id [flags]

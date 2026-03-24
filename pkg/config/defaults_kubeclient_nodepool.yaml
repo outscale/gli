@@ -1,0 +1,186 @@
+contents:
+  Create:
+    content: .
+    entity: nodepool
+  Get:
+    content: .
+    entity: nodepool
+  List:
+    content: Items
+    entity: nodepool
+  Patch:
+    entity: nodepool
+  Update:
+    entity: nodepool
+  UpdateStatus:
+    entity: nodepool
+entities:
+  nodepool:
+    columns:
+    - title: Name
+      content: .metadata.name
+    - title: NodeType
+      content: .spec.nodeType
+    - title: Min nodes
+      content: .spec.minNodes
+    - title: Max nodes
+      content: .spec.maxNodes
+    - title: Desired
+      content: .spec.desiredNodes
+    - title: Attached
+      content: .status.progress.attached
+    - title: Ready
+      content: .status.progress.ready
+    - title: Running
+      content: .status.progress.running
+    - title: Pending
+      content: .status.progress.pending
+    - title: Stopping
+      content: .status.progress.stopping
+    - title: Stopped
+      content: .status.progress.stopped
+    - title: Shutting down
+      content: .status.progress.shutting_down
+    - title: Processing state
+      content: .status.state.name
+    - title: Last error
+      content: .status.last_error.message
+    primary: Name
+aliases:
+- entity: nodepool
+  use: list
+  alias_to: List
+  aliases:
+  - ls
+  short: alias for api List
+  command:
+  - nodepool
+  - api
+  - List
+  - --output
+  - table
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+- entity: nodepool
+  use: describe name [name]...
+  alias_to: Get
+  aliases:
+  - desc
+  short: alias for api Get name
+  command:
+  - nodepool
+  - api
+  - Get
+  - '%0'
+  - --output
+  - yaml
+  - --single
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+- entity: nodepool
+  use: create
+  alias_to: Create
+  aliases:
+  - add
+  short: alias for api Create
+  command:
+  - api
+  - GetNodepoolTemplate
+  - --jq
+  - .Template | .spec.desiredNodes=0
+  - '|'
+  - nodepool
+  - api
+  - Create
+  - --output
+  - yaml
+  - --single
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+  - name: name
+    alias_to: ObjectMeta.Name
+    required: true
+  - name: auto-healing
+    alias_to: Spec.AutoHealing
+  - name: autoscaling
+    alias_to: Spec.Autoscaling
+  - name: desired-nodes
+    alias_to: Spec.DesiredNodes
+    required: true
+  - name: fgpu-operator
+    alias_to: Spec.Fgpu.K8sOperator
+  - name: fgpu-model
+    alias_to: Spec.Fgpu.Model
+  - name: flavour
+    alias_to: Spec.Flavour
+  - name: helms
+    alias_to: Spec.Helms
+  - name: ip-pool
+    alias_to: Spec.IpPoolName
+  - name: max-nodes
+    alias_to: Spec.MaxNodes
+  - name: min-nodes
+    alias_to: Spec.MinNodes
+  - name: node-type
+    alias_to: Spec.NodeType
+    required: true
+  - name: placement-attract-cluster
+    alias_to: Spec.PhysicalPlacement.NodeAttractCluster
+  - name: placement-attract-server
+    alias_to: Spec.PhysicalPlacement.NodeAttractServer
+  - name: placement-repulse-cluster
+    alias_to: Spec.PhysicalPlacement.NodeRepulseCluster
+  - name: placement-repulse-server
+    alias_to: Spec.PhysicalPlacement.NodeRepulseServer
+  - name: taint
+    alias_to: Spec.Taint
+  - name: auto-upgrade-enabled
+    alias_to: Spec.UpgradeStrategy.AutoUpgradeEnabled
+  - name: upgrade-duration-hour
+    alias_to: Spec.UpgradeStrategy.AutoUpgradeMaintenance.DurationHours
+  - name: upgrade-rrule
+    alias_to: Spec.UpgradeStrategy.AutoUpgradeMaintenance.Rrule
+  - name: upgrade-start-hour
+    alias_to: Spec.UpgradeStrategy.AutoUpgradeMaintenance.StartHour
+  - name: upgrade-week-day
+    alias_to: Spec.UpgradeStrategy.AutoUpgradeMaintenance.WeekDay
+  - name: upgrade-max-surge
+    alias_to: Spec.UpgradeStrategy.MaxSurge
+  - name: upgrade-max-unavailable
+    alias_to: Spec.UpgradeStrategy.MaxUnavailable
+  - name: volume-iops
+    alias_to: Spec.Volumes.0.Iops
+  - name: volume-size
+    alias_to: Spec.Volumes.0.Size
+  - name: volume-snapshot
+    alias_to: Spec.Volumes.0.Snapshot
+  - name: volume-type
+    alias_to: Spec.Volumes.0.Type
+  - name: zones
+    alias_to: Spec.Zones
+    required: true
+- entity: nodepool
+  use: delete name [name]...
+  alias_to: Delete
+  aliases:
+  - del
+  - rm
+  short: alias for api Delete name
+  command:
+  - nodepool
+  - api
+  - Delete
+  - '%0'
+  - --output
+  - success
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+spec: {}

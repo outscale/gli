@@ -36,6 +36,10 @@ type MethodBuilder struct {
 func NewMethodBuilder(cfg Config, build *config.Config, m reflect.Method) *MethodBuilder {
 	typeName, typesName, entity := names(m.Name)
 	typeNameList := []string{typeName}
+	call := build.Calls[m.Name]
+	if call.Entity != "" {
+		entity = call.Entity
+	}
 	return &MethodBuilder{
 		cfg:          cfg,
 		build:        build,
@@ -46,7 +50,7 @@ func NewMethodBuilder(cfg Config, build *config.Config, m reflect.Method) *Metho
 		entityName:   entity,
 
 		entity: build.Entities[entity],
-		call:   build.Calls[m.Name],
+		call:   call,
 	}
 }
 
@@ -58,7 +62,7 @@ func (b *MethodBuilder) Build() error {
 	fmt.Println("***", b.m.Name)
 	var err error
 	switch {
-	case strings.HasPrefix(b.m.Name, "Read") || strings.HasPrefix(b.m.Name, "List"):
+	case strings.HasPrefix(b.m.Name, "Read") || strings.HasPrefix(b.m.Name, "List") || strings.HasPrefix(b.m.Name, "Get"):
 		err = b.buildCall()
 		if err == nil {
 			err = b.buildEntity()
@@ -90,6 +94,9 @@ func (b *MethodBuilder) Build() error {
 }
 
 func (b *MethodBuilder) buildCall() error {
+	if b.call.Content != "" && b.call.Entity != "" {
+		return nil
+	}
 	resp := b.m.Type.Out(0)
 	if resp.Kind() == reflect.Pointer {
 		resp = resp.Elem()
@@ -102,7 +109,7 @@ func (b *MethodBuilder) buildCall() error {
 		respContentType = respContent.Type
 	} else {
 		for field := range resp.Fields() {
-			if field.Anonymous || strings.HasSuffix(field.Name, "Context") || strings.HasSuffix(field.Name, "Metadata") {
+			if field.Anonymous || strings.HasSuffix(field.Name, "Context") || strings.HasSuffix(field.Name, "Metadata") || strings.HasSuffix(field.Name, "Pagination") {
 				continue
 			}
 			t := field.Type
@@ -125,17 +132,18 @@ func (b *MethodBuilder) buildCall() error {
 			break
 		}
 	}
-	b.call.Entity = b.entityName
+	call := config.Call{}
+	call.Entity = b.entityName
 	if !found {
-		fmt.Println("*** no response found")
+		fmt.Println("-> no response found")
 		return nil
 	}
 	fmt.Println("guessed response", b.m.Name, respContent.Name)
 	b.typeNameList = append(b.typeNameList, strings.TrimSuffix(respContent.Name, "s"))
 	fmt.Println("type names", b.typeNameList)
 	b.respContentType = respContentType
-	b.call.Content = respContent.Name
-	return nil
+	call.Content = respContent.Name
+	return mergo.Merge(&b.call, call)
 }
 
 func (b *MethodBuilder) buildEntity() error {
@@ -196,37 +204,40 @@ func (b *MethodBuilder) buildEntity() error {
 	return nil
 }
 
-func normalizeFlag(cfg Config, prefix string) func(s string) string {
+func normalizeFlag(cfg Config, prefixes []string) func(s string) string {
 	return func(s string) string {
-		items := lo.Words(strings.TrimPrefix(s, prefix))
-		items = lo.FilterMap(items, func(s string, i int) (string, bool) {
+		for _, prefix := range prefixes {
+			s = strings.TrimPrefix(s, prefix)
+		}
+		words := lo.Words(s)
+		words = lo.FilterMap(words, func(s string, i int) (string, bool) {
 			if s == "0" {
 				return "", false
 			}
 			return Singular(strings.ToLower(s)), true
 		})
-		s = strings.Join(items, "-")
+		s = strings.Join(words, "-")
 		if len(cfg.FlagReplaces) > 0 {
 			rep := strings.NewReplacer(cfg.FlagReplaces...)
 			s = rep.Replace(s)
 		}
-		items = strings.Split(s, "-")
-		if len(items) > 4 && lo.HasSuffix(items[:len(items)-2], items[len(items)-2:]) {
-			fmt.Println("normalize reduce stutter", items, "=>", items[:len(items)-2])
-			items = items[:len(items)-2]
+		words = strings.Split(s, "-")
+		if len(words) > 4 && lo.HasSuffix(words[:len(words)-2], words[len(words)-2:]) {
+			fmt.Println("normalize reduce stutter", words, "=>", words[:len(words)-2])
+			words = words[:len(words)-2]
 		}
-		if len(items) > 2 && lo.HasPrefix(items[1:], items[:1]) {
-			fmt.Println("normalize reduce stutter", items, "=>", items[1:])
-			items = items[1:]
+		if len(words) > 2 && lo.HasPrefix(words[1:], words[:1]) {
+			fmt.Println("normalize reduce stutter", words, "=>", words[1:])
+			words = words[1:]
 		}
-		return strings.Join(items, "-")
+		return strings.Join(words, "-")
 	}
 }
 
-func (b *MethodBuilder) buildFlags(t reflect.Type, prefix string, ignore []string) config.FlagSet {
-	ignore = append(ignore, b.cfg.SkipFlags...)
+func (b *MethodBuilder) buildFlags(t reflect.Type, prefixes []string, ignore []string) config.FlagSet {
+	ignore = append(ignore, b.cfg.SkipFlagsPrefixes...)
 	fs := flags.FlagSet{}
-	fbs := flags.NewBuilder(*b.build, flags.WithNormalize(normalizeFlag(b.cfg, prefix)), flags.RequiredFromPointer(b.cfg.RequiredFromFieldPointer))
+	fbs := flags.NewBuilder(*b.build, flags.WithNormalize(normalizeFlag(b.cfg, prefixes)), flags.RequiredFromPointer(b.cfg.RequiredFromFieldPointer))
 	fbs.Build(&fs, t, "", true)
 
 	cfs := config.FlagSet{}
@@ -259,65 +270,113 @@ func (b *MethodBuilder) buildFlags(t reflect.Type, prefix string, ignore []strin
 	return cfs
 }
 
+func (b *MethodBuilder) requestIndex() int {
+	reqIdx := 2
+	if b.m.Type.In(0).Name() == "Context" {
+		reqIdx = 1
+	}
+	return reqIdx
+}
+
+func (b *MethodBuilder) command(cmd ...string) []string {
+	ncmd := slices.Clone(b.cfg.AliasRootPath)
+	return append(ncmd, cmd...)
+}
+
 func (b *MethodBuilder) buildReadAliases() error {
 	if b.entity.NoAliases {
+		fmt.Println("-> no alias")
+		return nil
+	}
+
+	reqIdx := b.requestIndex()
+	if b.m.Type.NumIn() <= reqIdx {
 		return nil
 	}
 	// list
-	req := b.m.Type.In(2)
-	flags := b.buildFlags(req, b.cfg.ReadFlagPrefix, nil)
-	fmt.Println("list", b.typeName, "flags", flags.Names())
-	b.aliases = append(b.aliases, config.Alias{
-		Entity:  b.entityName,
-		Use:     "list",
-		Aliases: []string{"ls"},
-		AliasTo: b.m.Name,
-		Short:   "alias for api " + b.m.Name,
-		Command: []string{
-			"api",
-			b.m.Name,
-			"--output", "table",
-		},
-		Flags: flags,
-	})
-
-	if b.entity.Primary == "" {
-		return nil
+	req := b.m.Type.In(reqIdx)
+	if req.Kind() == reflect.Pointer {
+		req = req.Elem()
 	}
-	// describe
-	// Guess id filter
-	fids, found := lo.Find(flags, func(f config.Flag) bool {
-		return strings.HasPrefix(f.AliasTo, b.cfg.ReadFlagPrefix+b.entity.Primary)
-	})
-	if !found {
-		return nil
-	}
-	if found {
-		fmt.Println("describe", b.typeName, fids.AliasTo)
-		id := lo.SnakeCase(b.entity.Primary)
+	var flags config.FlagSet
+	if req.Kind() == reflect.Struct {
+		flags = b.buildFlags(req, b.cfg.ReadFlagPrefixes, nil)
+		fmt.Println("list", b.typeName, "flags", flags.Names())
 		b.aliases = append(b.aliases, config.Alias{
 			Entity:  b.entityName,
-			Use:     "describe " + id + " [" + id + "]...",
-			Aliases: []string{"desc"},
-			Short:   "alias for api " + b.m.Name + " --" + fids.AliasTo + " " + id,
-			Command: []string{
+			Use:     "list",
+			Aliases: []string{"ls"},
+			AliasTo: b.m.Name,
+			Short:   "alias for api " + b.m.Name,
+			Command: b.command(
 				"api",
 				b.m.Name,
-				"--" + fids.AliasTo, "%*",
-				"--output", "yaml",
-				"--single",
-			},
+				"--output", "table",
+			),
+			Flags: flags,
 		})
 	}
+	// describe
+	var idFilter string
+	desc := false
+	switch {
+	case req.Kind() != reflect.Struct:
+		desc = true
+	case len(flags) > 0:
+		// Guess id filter
+		if b.entity.Primary == "" {
+			return nil
+		}
+		fids, found := lo.Find(flags, func(f config.Flag) bool {
+			return slices.ContainsFunc(b.cfg.ReadFlagPrefixes, func(prefix string) bool { return strings.HasPrefix(f.AliasTo, prefix+b.entity.Primary) })
+		})
+		if found {
+			idFilter = fids.AliasTo
+			desc = true
+		}
+	}
+	if !desc {
+		fmt.Println("no describe", b.typeName)
+		return nil
+	}
+	fmt.Println("describe", b.typeName, "idFilter", idFilter)
+	id := lo.SnakeCase(b.entity.Primary)
+	if id == "" {
+		id = "id"
+	}
+	cmd := []string{
+		"api",
+		b.m.Name,
+	}
+	if idFilter != "" {
+		idFilter = "--" + idFilter
+		cmd = append(cmd, idFilter)
+	}
+	cmd = append(cmd, "%*",
+		"--output", "yaml",
+		"--single",
+	)
+	b.aliases = append(b.aliases, config.Alias{
+		Entity:  b.entityName,
+		Use:     "describe " + id + " [" + id + "]...",
+		Aliases: []string{"desc"},
+		Short:   "alias for api " + b.m.Name + " " + idFilter + " " + id,
+		Command: b.command(cmd...),
+	})
 	return nil
 }
 
 func (b *MethodBuilder) buildCreateAlias() error {
 	if b.entity.NoAliases {
+		fmt.Println("-> no alias")
 		return nil
 	}
-	req := b.m.Type.In(2)
-	flags := b.buildFlags(req, "", nil)
+	reqIdx := b.requestIndex()
+	if b.m.Type.NumIn() <= reqIdx {
+		return nil
+	}
+	req := b.m.Type.In(reqIdx)
+	flags := b.buildFlags(req, b.cfg.CreateFlagPrefixes, nil)
 	fmt.Println("create", b.typeName, "flags", flags.Names())
 	b.aliases = append(b.aliases, config.Alias{
 		Entity:  b.entityName,
@@ -325,12 +384,12 @@ func (b *MethodBuilder) buildCreateAlias() error {
 		Aliases: []string{"add"},
 		AliasTo: b.m.Name,
 		Short:   "alias for api " + b.m.Name,
-		Command: []string{
+		Command: b.command(
 			"api",
 			b.m.Name,
 			"--output", "yaml",
 			"--single",
-		},
+		),
 		Flags: flags,
 	})
 	return nil
@@ -338,6 +397,7 @@ func (b *MethodBuilder) buildCreateAlias() error {
 
 func (b *MethodBuilder) buildUpdateAlias(verb string) error {
 	if b.entity.NoAliases {
+		fmt.Println("-> no alias")
 		return nil
 	}
 	idField, err := b.guessIDFilter()
@@ -345,22 +405,40 @@ func (b *MethodBuilder) buildUpdateAlias(verb string) error {
 		return err
 	}
 	verb = strings.ToLower(verb)
-	req := b.m.Type.In(2)
-	flags := b.buildFlags(req, "", []string{idField})
-	fmt.Println(verb, b.typeName, idField, "flags", flags.Names())
+	reqIdx := b.requestIndex()
+	if b.m.Type.NumIn() <= reqIdx {
+		return nil
+	}
+	req := b.m.Type.In(reqIdx)
+	if req.Kind() == reflect.Pointer {
+		req = req.Elem()
+	}
+	if req.Kind() != reflect.Struct && b.m.Type.NumIn() >= reqIdx+2 {
+		req = b.m.Type.In(reqIdx + 1)
+	}
+	var flags config.FlagSet
+	if req.Kind() == reflect.Struct {
+		flags = b.buildFlags(req, b.cfg.UpdateFlagPrefixes, []string{idField})
+	}
+	fmt.Println(verb, b.typeName, "idField", idField, "flags", flags.Names())
 	id := lo.SnakeCase(b.entity.Primary)
+	cmd := []string{
+		"api",
+		b.m.Name,
+	}
+	if idField != "" {
+		idField = "--" + idField
+		cmd = append(cmd, idField)
+	}
+	cmd = append(cmd, "%0", "--output", "yaml")
+
 	b.aliases = append(b.aliases, config.Alias{
 		Entity:  b.entityName,
 		Use:     verb + " " + id + " [" + id + "]...",
 		AliasTo: b.m.Name,
-		Short:   "alias for api " + b.m.Name + " --" + idField + " " + id,
-		Command: []string{
-			"api",
-			b.m.Name,
-			"--" + idField, "%0",
-			"--output", "yaml",
-		},
-		Flags: flags,
+		Short:   "alias for api " + b.m.Name + " " + idField + " " + id,
+		Command: b.command(cmd...),
+		Flags:   flags,
 	})
 	return nil
 }
@@ -369,6 +447,9 @@ func (b *MethodBuilder) guessIDFilter() (string, error) {
 	req := b.m.Type.In(2)
 	if req.Kind() == reflect.Pointer {
 		req = req.Elem()
+	}
+	if req.Kind() != reflect.Struct {
+		return "", nil
 	}
 	primary := b.build.Entities[b.entityName].Primary
 	fids, found := req.FieldByName(primary)
@@ -383,15 +464,29 @@ func (b *MethodBuilder) guessIDFilter() (string, error) {
 
 func (b *MethodBuilder) buildDeleteAlias() error {
 	if b.entity.NoAliases {
+		fmt.Println("-> no alias")
 		return nil
 	}
 	idField, err := b.guessIDFilter()
 	if err != nil {
 		return err
 	}
-	req := b.m.Type.In(2)
-	flags := b.buildFlags(req, "", []string{idField})
-	fmt.Println("delete", b.typeName, idField, "flags", flags.Names())
+	reqIdx := b.requestIndex()
+	if b.m.Type.NumIn() <= reqIdx {
+		return nil
+	}
+	req := b.m.Type.In(reqIdx)
+	if req.Kind() == reflect.Pointer {
+		req = req.Elem()
+	}
+	if req.Kind() != reflect.Struct && b.m.Type.NumIn() >= reqIdx+2 {
+		req = b.m.Type.In(reqIdx + 1)
+	}
+	var flags config.FlagSet
+	if req.Kind() == reflect.Struct {
+		flags = b.buildFlags(req, b.cfg.DeleteFlagPrefixes, []string{idField})
+	}
+	fmt.Println("delete", b.typeName, "idField", idField, "flags", flags.Names())
 	var displayCmd []string
 	var displayFlags config.FlagSet
 	for _, a := range b.build.Aliases {
@@ -409,19 +504,24 @@ func (b *MethodBuilder) buildDeleteAlias() error {
 		}
 	}
 	id := lo.SnakeCase(b.entity.Primary)
+	cmd := []string{
+		"api",
+		b.m.Name,
+	}
+	if idField != "" {
+		idField = "--" + idField
+		cmd = append(cmd, idField)
+	}
+	cmd = append(cmd, "%0", "--output", "none")
+
 	b.aliases = append(b.aliases, config.Alias{
 		Entity:  b.entityName,
 		Use:     "delete " + id + " [" + id + "]...",
 		Aliases: []string{"del", "rm"},
 		AliasTo: b.m.Name,
-		Short:   "alias for api " + b.m.Name + " --" + idField + " " + id,
-		Command: []string{
-			"api",
-			b.m.Name,
-			"--" + idField, "%0",
-			"--output", "none",
-		},
-		Flags: flags,
+		Short:   "alias for api " + b.m.Name + " " + idField + " " + id,
+		Command: b.command(cmd...),
+		Flags:   flags,
 		Prompt: &config.Prompt{
 			Action:         config.ActionDelete,
 			DisplayCommand: displayCmd,
@@ -434,5 +534,29 @@ func (b *MethodBuilder) buildDeleteAlias() error {
 func (b *MethodBuilder) Commit() {
 	b.build.Calls[b.m.Name] = b.call
 	b.build.Entities[b.entityName] = b.entity
-	b.build.Aliases = append(b.build.Aliases, b.aliases...)
+	newAliases := make([]config.Alias, 0, len(b.build.Aliases)+len(b.aliases))
+	for _, a := range b.build.Aliases {
+		// dropping existing aliases with a required flag where the new alias has no required flag
+		if slices.ContainsFunc(b.aliases, func(aa config.Alias) bool {
+			if a.Entity == aa.Entity && a.Use == aa.Use && a.HasRequiredFlag() && !aa.HasRequiredFlag() {
+				fmt.Println("### duplicate", a, aa)
+			}
+			return a.Entity == aa.Entity && a.Use == aa.Use && a.HasRequiredFlag() && !aa.HasRequiredFlag()
+		}) {
+			continue
+		}
+		newAliases = append(newAliases, a)
+	}
+	for _, a := range b.aliases {
+		if slices.ContainsFunc(newAliases, func(aa config.Alias) bool {
+			if a.Entity == aa.Entity && a.Use == aa.Use {
+				fmt.Println("### duplicate", a, aa)
+			}
+			return a.Entity == aa.Entity && a.Use == aa.Use
+		}) {
+			continue
+		}
+		newAliases = append(newAliases, a)
+	}
+	b.build.Aliases = newAliases
 }

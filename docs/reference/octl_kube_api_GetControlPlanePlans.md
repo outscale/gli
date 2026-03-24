@@ -1,6 +1,10 @@
 ## octl kube api GetControlPlanePlans
 
+request returning *ControlPlanesResponse
 
+### Synopsis
+
+request returning *ControlPlanesResponse
 
 ```
 octl kube api GetControlPlanePlans [flags]

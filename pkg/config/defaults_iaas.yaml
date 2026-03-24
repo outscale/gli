@@ -2072,24 +2072,6 @@ aliases:
   - ReadCatalog
   - --output
   - table
-- entity: catalog
-  use: list
-  alias_to: ReadCatalogs
-  aliases:
-  - ls
-  short: alias for api ReadCatalogs
-  command:
-  - api
-  - ReadCatalogs
-  - --output
-  - table
-  flags:
-  - name: current-catalog-only
-    alias_to: Filters.CurrentCatalogOnly
-  - name: from-date
-    alias_to: Filters.FromDate
-  - name: to-date
-    alias_to: Filters.ToDate
 - entity: clientgateway
   use: list
   alias_to: ReadClientGateways
@@ -3409,23 +3391,6 @@ aliases:
   - name: type
     alias_to: Type
     required: true
-- entity: usergroup
-  use: list
-  alias_to: ReadUserGroup
-  aliases:
-  - ls
-  short: alias for api ReadUserGroup
-  command:
-  - api
-  - ReadUserGroup
-  - --output
-  - table
-  flags:
-  - name: path
-    alias_to: Path
-  - name: name
-    alias_to: UserGroupName
-    required: true
 - entity: usergrouppolicy
   use: list
   alias_to: ReadUserGroupPolicies
@@ -3440,26 +3405,6 @@ aliases:
   flags:
   - name: first-item
     alias_to: FirstItem
-  - name: user-group-name
-    alias_to: UserGroupName
-    required: true
-  - name: user-group-path
-    alias_to: UserGroupPath
-- entity: usergrouppolicy
-  use: list
-  alias_to: ReadUserGroupPolicy
-  aliases:
-  - ls
-  short: alias for api ReadUserGroupPolicy
-  command:
-  - api
-  - ReadUserGroupPolicy
-  - --output
-  - table
-  flags:
-  - name: name
-    alias_to: PolicyName
-    required: true
   - name: user-group-name
     alias_to: UserGroupName
     required: true
@@ -3512,24 +3457,6 @@ aliases:
   - --output
   - table
   flags:
-  - name: user-name
-    alias_to: UserName
-    required: true
-- entity: userpolicy
-  use: list
-  alias_to: ReadUserPolicy
-  aliases:
-  - ls
-  short: alias for api ReadUserPolicy
-  command:
-  - api
-  - ReadUserPolicy
-  - --output
-  - table
-  flags:
-  - name: policy-name
-    alias_to: PolicyName
-    required: true
   - name: user-name
     alias_to: UserName
     required: true

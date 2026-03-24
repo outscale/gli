@@ -9,23 +9,23 @@ import (
 	"github.com/outscale/octl/pkg/messages"
 )
 
-type ClientBuilder struct {
+type ClientBuilder[T any] struct {
 	cfg Config
 }
 
-func NewClientBuilder(cfg Config) *ClientBuilder {
-	return &ClientBuilder{
+func NewClientBuilder[T any](cfg Config) *ClientBuilder[T] {
+	return &ClientBuilder[T]{
 		cfg: cfg,
 	}
 }
 
-func (b *ClientBuilder) BuildFor(build *config.Config, client any) {
-	ct := reflect.TypeOf(client)
+func (b *ClientBuilder[T]) BuildFor(build *config.Config) {
+	ct := reflect.TypeFor[T]()
 	for m := range ct.Methods() {
 		if strings.HasSuffix(m.Name, "Raw") || strings.HasSuffix(m.Name, "WithBody") || m.Type.NumOut() != 2 {
 			continue
 		}
-		if strings.HasPrefix(m.Name, "Read") || strings.HasPrefix(m.Name, "List") {
+		if strings.HasPrefix(m.Name, "Read") || strings.HasPrefix(m.Name, "List") || strings.HasPrefix(m.Name, "Get") {
 			b.BuildMethod(build, m)
 		}
 	}
@@ -41,7 +41,7 @@ func (b *ClientBuilder) BuildFor(build *config.Config, client any) {
 	}
 }
 
-func (b *ClientBuilder) BuildMethod(build *config.Config, m reflect.Method) {
+func (b *ClientBuilder[T]) BuildMethod(build *config.Config, m reflect.Method) {
 	mb := NewMethodBuilder(b.cfg, build, m)
 	err := mb.Build()
 	switch {

@@ -1,6 +1,10 @@
 ## octl kube api DeleteCluster
 
+request returning *DetailResponse
 
+### Synopsis
+
+request returning *DetailResponse
 
 ```
 octl kube api DeleteCluster id [flags]

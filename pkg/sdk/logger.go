@@ -19,7 +19,12 @@ type VerboseLogger struct{}
 
 func (VerboseLogger) RequestHttp(ctx context.Context, req *http.Request) {
 	fmt.Fprintf(os.Stderr, "- REQUEST -------------------\n\n%s %s\n\n", req.Method, req.URL)
-	_ = req.Header.Write(os.Stderr)
+	h := req.Header
+	if h.Get("Secretkey") != "" {
+		h = req.Header.Clone()
+		h.Set("Secretkey", "[REDACTED]")
+	}
+	_ = h.Write(os.Stderr)
 	fmt.Fprintln(os.Stderr)
 	if req.GetBody != nil {
 		bodyReader, err := req.GetBody()

@@ -1,6 +1,10 @@
 ## octl kube api UpgradeCluster
 
+request returning *ClusterResponse
 
+### Synopsis
+
+request returning *ClusterResponse
 
 ```
 octl kube api UpgradeCluster id [flags]

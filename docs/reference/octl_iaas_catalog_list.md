@@ -1,12 +1,12 @@
 ## octl iaas catalog list
 
-alias for api ReadCatalogs
+alias for api ReadCatalog
 
 ### Synopsis
 
-> *alias for api ReadCatalogs*
+> *alias for api ReadCatalog*
 
-Returns the price list of OUTSCALE services for the current Region within a specific time period.
+Returns the price list of OUTSCALE services for the current Region.
 
 ```
 octl iaas catalog list [flags]
@@ -15,10 +15,7 @@ octl iaas catalog list [flags]
 ### Options
 
 ```
-      --current-catalog-only   By default or if set to true, only returns the current catalog.
-      --from-date osctime      The beginning of the time period, in ISO 8601 date format (for example, 2020-06-14).
-  -h, --help                   help for list
-      --to-date osctime        The end of the time period, in ISO 8601 date format (for example, 2020-06-30).
+  -h, --help   help for list
 ```
 
 ### Options inherited from parent commands

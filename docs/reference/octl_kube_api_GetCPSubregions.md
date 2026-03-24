@@ -1,6 +1,10 @@
 ## octl kube api GetCPSubregions
 
+request returning *CPSubregionsResponse
 
+### Synopsis
+
+request returning *CPSubregionsResponse
 
 ```
 octl kube api GetCPSubregions [flags]

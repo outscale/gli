@@ -32,31 +32,31 @@ kube api calls
 ### SEE ALSO
 
 * [octl kube](octl_kube.md)	 - OUTSCALE Kubernetes as a Service (OKS) management
-* [octl kube api CreateCluster](octl_kube_api_CreateCluster.md)	 - 
-* [octl kube api CreateProject](octl_kube_api_CreateProject.md)	 - 
-* [octl kube api DeleteCluster](octl_kube_api_DeleteCluster.md)	 - 
-* [octl kube api DeleteProject](octl_kube_api_DeleteProject.md)	 - 
-* [octl kube api GetCPSubregions](octl_kube_api_GetCPSubregions.md)	 - 
-* [octl kube api GetCluster](octl_kube_api_GetCluster.md)	 - 
-* [octl kube api GetClusterTemplate](octl_kube_api_GetClusterTemplate.md)	 - 
-* [octl kube api GetControlPlanePlans](octl_kube_api_GetControlPlanePlans.md)	 - 
+* [octl kube api CreateCluster](octl_kube_api_CreateCluster.md)	 - Creates a new cluster with the provided configuration.
+* [octl kube api CreateProject](octl_kube_api_CreateProject.md)	 - Creates a new project with the provided details.
+* [octl kube api DeleteCluster](octl_kube_api_DeleteCluster.md)	 - request returning *DetailResponse
+* [octl kube api DeleteProject](octl_kube_api_DeleteProject.md)	 - request returning *DetailResponse
+* [octl kube api GetCPSubregions](octl_kube_api_GetCPSubregions.md)	 - request returning *CPSubregionsResponse
+* [octl kube api GetCluster](octl_kube_api_GetCluster.md)	 - request returning *ClusterResponse
+* [octl kube api GetClusterTemplate](octl_kube_api_GetClusterTemplate.md)	 - request returning *TemplateResponseClusterInputTemplate
+* [octl kube api GetControlPlanePlans](octl_kube_api_GetControlPlanePlans.md)	 - request returning *ControlPlanesResponse
 * [octl kube api GetKubeconfig](octl_kube_api_GetKubeconfig.md)	 - 
-* [octl kube api GetKubeconfigWithPubkeyNACL](octl_kube_api_GetKubeconfigWithPubkeyNACL.md)	 - 
-* [octl kube api GetKubernetesVersions](octl_kube_api_GetKubernetesVersions.md)	 - 
-* [octl kube api GetNetPeeringAcceptanceTemplate](octl_kube_api_GetNetPeeringAcceptanceTemplate.md)	 - 
-* [octl kube api GetNetPeeringRequestTemplate](octl_kube_api_GetNetPeeringRequestTemplate.md)	 - 
-* [octl kube api GetNodepoolTemplate](octl_kube_api_GetNodepoolTemplate.md)	 - 
-* [octl kube api GetProject](octl_kube_api_GetProject.md)	 - 
+* [octl kube api GetKubeconfigWithPubkeyNACL](octl_kube_api_GetKubeconfigWithPubkeyNACL.md)	 - request returning *KubeconfigResponse
+* [octl kube api GetKubernetesVersions](octl_kube_api_GetKubernetesVersions.md)	 - request returning *KubernetesVersionsResponse
+* [octl kube api GetNetPeeringAcceptanceTemplate](octl_kube_api_GetNetPeeringAcceptanceTemplate.md)	 - request returning *TemplateResponseNetPeeringAcceptance
+* [octl kube api GetNetPeeringRequestTemplate](octl_kube_api_GetNetPeeringRequestTemplate.md)	 - request returning *TemplateResponseNetPeeringRequest
+* [octl kube api GetNodepoolTemplate](octl_kube_api_GetNodepoolTemplate.md)	 - request returning *TemplateResponseNodepool
+* [octl kube api GetProject](octl_kube_api_GetProject.md)	 - request returning *ProjectResponse
 * [octl kube api GetProjectNets](octl_kube_api_GetProjectNets.md)	 - 
 * [octl kube api GetProjectPublicIps](octl_kube_api_GetProjectPublicIps.md)	 - 
 * [octl kube api GetProjectQuotas](octl_kube_api_GetProjectQuotas.md)	 - 
 * [octl kube api GetProjectSnapshots](octl_kube_api_GetProjectSnapshots.md)	 - 
-* [octl kube api GetProjectTemplate](octl_kube_api_GetProjectTemplate.md)	 - 
+* [octl kube api GetProjectTemplate](octl_kube_api_GetProjectTemplate.md)	 - request returning *TemplateResponseProjectInput
 * [octl kube api GetQuotas](octl_kube_api_GetQuotas.md)	 - 
 * [octl kube api ListAllClusters](octl_kube_api_ListAllClusters.md)	 - 
 * [octl kube api ListClustersByProjectID](octl_kube_api_ListClustersByProjectID.md)	 - 
-* [octl kube api ListProjects](octl_kube_api_ListProjects.md)	 - 
-* [octl kube api UpdateCluster](octl_kube_api_UpdateCluster.md)	 - 
-* [octl kube api UpdateProject](octl_kube_api_UpdateProject.md)	 - 
-* [octl kube api UpgradeCluster](octl_kube_api_UpgradeCluster.md)	 - 
+* [octl kube api ListProjects](octl_kube_api_ListProjects.md)	 - request returning *ProjectResponseList
+* [octl kube api UpdateCluster](octl_kube_api_UpdateCluster.md)	 - Updates the configuration of an existing cluster by its ID.
+* [octl kube api UpdateProject](octl_kube_api_UpdateProject.md)	 - Updates the details of an existing project by its ID.
+* [octl kube api UpgradeCluster](octl_kube_api_UpgradeCluster.md)	 - request returning *ClusterResponse
 

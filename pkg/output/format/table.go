@@ -52,6 +52,15 @@ var colors = map[string]map[string]lipgloss.Style{
 		"failed":       style.Red,
 		"terminated":   style.Red,
 	},
+	"Status": {
+		"ready": style.Green,
+
+		"pending":   style.Yellow,
+		"deleting":  style.Yellow,
+		"deploying": style.Yellow,
+
+		"failed": style.Red,
+	},
 }
 
 type TabularFormatter interface {

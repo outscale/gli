@@ -33,5 +33,4 @@ catalog commands
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
 * [octl iaas catalog list](octl_iaas_catalog_list.md)	 - alias for api ReadCatalog
-* [octl iaas catalog list](octl_iaas_catalog_list.md)	 - alias for api ReadCatalogs
 

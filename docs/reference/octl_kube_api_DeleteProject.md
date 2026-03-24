@@ -1,6 +1,10 @@
 ## octl kube api DeleteProject
 
+request returning *DetailResponse
 
+### Synopsis
+
+request returning *DetailResponse
 
 ```
 octl kube api DeleteProject id [flags]

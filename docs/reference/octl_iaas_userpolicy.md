@@ -33,5 +33,4 @@ userpolicy commands
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
 * [octl iaas userpolicy list](octl_iaas_userpolicy_list.md)	 - alias for api ReadUserPolicies
-* [octl iaas userpolicy list](octl_iaas_userpolicy_list.md)	 - alias for api ReadUserPolicy
 

@@ -1,0 +1,895 @@
+contents:
+  CreateCluster:
+    content: Cluster
+    entity: cluster
+    group: Clusters
+  CreateProject:
+    content: Project
+    entity: project
+    group: Projects
+  DeleteCluster:
+    entity: cluster
+  DeleteProject:
+    entity: project
+  GetCPSubregions:
+    entity: cpsubregion
+  GetCluster:
+    content: Cluster
+    entity: cluster
+  GetClusterTemplate:
+    content: Template
+    entity: clustertemplate
+  GetControlPlanePlans:
+    entity: controlplaneplan
+  GetKubeconfig:
+    content: Cluster.Data.Kubeconfig
+    entity: kubeconfig
+  GetKubeconfigWithPubkeyNACL:
+    content: Cluster
+    entity: kubeconfigwithpubkeynacl
+  GetKubernetesVersions:
+    entity: kubernetesversion
+  GetNetPeeringAcceptanceTemplate:
+    content: Template
+    entity: netpeeringacceptancetemplate
+  GetNetPeeringRequestTemplate:
+    content: Template
+    entity: netpeeringrequesttemplate
+  GetNodepoolTemplate:
+    content: Template
+    entity: nodepooltemplate
+  GetProject:
+    content: Project
+    entity: project
+  GetProjectNets:
+    content: Nets
+    entity: net
+  GetProjectPublicIps:
+    content: PublicIps
+    entity: publicip
+  GetProjectQuotas:
+    content: Project
+    entity: quota
+  GetProjectSnapshots:
+    content: Snapshots
+    entity: publicip
+  GetProjectTemplate:
+    content: Template
+    entity: projecttemplate
+  GetQuotas:
+    content: Quotas
+    entity: quota
+  ListAllClusters:
+    content: Clusters
+    entity: cluster
+  ListClustersByProjectID:
+    content: Clusters
+    entity: cluster
+  ListProjects:
+    content: Projects
+    entity: project
+  UpdateCluster:
+    content: Cluster
+    entity: cluster
+    group: Clusters
+  UpdateProject:
+    content: Project
+    entity: project
+    group: Projects
+  UpgradeCluster:
+    entity: cluster
+entities:
+  cluster:
+    columns:
+    - title: ID
+      content: .id
+    - title: Name
+      content: .name
+    - title: Version
+      content: .version
+    - title: Control Plane
+      content: .control_planes
+    - title: Status
+      content: .statuses.status
+    primary: Id
+  clustertemplate:
+    no_aliases: true
+    columns:
+    - title: Name
+      content: .Tags[] | select(.Key == "Name").Value
+  controlplaneplan:
+    no_aliases: true
+  cpsubregion:
+    no_aliases: true
+  kubeconfig: {}
+  kubeconfigwithpubkeynacl:
+    no_aliases: true
+  kubernetesversion:
+    no_aliases: true
+  net:
+    no_aliases: true
+    columns:
+    - title: ID
+      content: .NetId
+    primary: NetId
+  netpeeringacceptancetemplate:
+    no_aliases: true
+  netpeeringrequesttemplate:
+    no_aliases: true
+  nodepooltemplate:
+    no_aliases: true
+  project:
+    columns:
+    - title: ID
+      content: .id
+    - title: Name
+      content: .name
+    - title: Status
+      content: .status
+    primary: Id
+  projecttemplate:
+    no_aliases: true
+    columns:
+    - title: Name
+      content: .Tags[] | select(.Key == "Name").Value
+  publicip:
+    columns:
+    - title: ID
+      content: .PublicIpId
+    - title: Name
+      content: .Tags[] | select(.Key == "Name").Value
+    primary: PublicIpId
+  quota:
+    no_aliases: true
+aliases:
+- entity: project
+  use: clusters project_id
+  alias_to: ListClustersByProjectID
+  short: alias for api ListClustersByProjectID
+  command:
+  - api
+  - ListClustersByProjectID
+  - --ProjectId
+  - '%0'
+  - --output
+  - table
+  flags:
+  - name: name
+    alias_to: Name
+  - name: status
+    alias_to: Status
+  - name: version
+    alias_to: Version
+  - name: deleted
+    alias_to: Deleted
+  - name: cursor
+    alias_to: Cursor
+  - name: page
+    alias_to: Page
+  - name: limit
+    alias_to: Limit
+- entity: project
+  use: create
+  alias_to: CreateProject
+  aliases:
+  - add
+  short: alias for api CreateProject
+  command:
+  - api
+  - GetProjectTemplate
+  - --output
+  - json
+  - --single
+  - '|'
+  - api
+  - CreateProject
+  - --output
+  - yaml
+  - --single
+  flags:
+  - name: cidr
+    alias_to: Cidr
+  - name: description
+    alias_to: Description
+  - name: disable-api-termination
+    alias_to: DisableApiTermination
+  - name: name
+    alias_to: Name
+    required: true
+  - name: quirk
+    alias_to: Quirks
+  - name: region
+    alias_to: Region
+- entity: project
+  use: nets id
+  alias_to: GetProjectNets
+  aliases:
+  - net
+  short: alias for api GetProjectNets id
+  command:
+  - api
+  - GetProjectNets
+  - '%0'
+  - --output
+  - yaml
+- entity: project
+  use: quotas id
+  short: alias for api GetProjectQuotas id
+  command:
+  - api
+  - GetProjectQuotas
+  - '%0'
+  - --output
+  - yaml
+- entity: project
+  use: public-ips id
+  alias_to: GetProjectPublicIps
+  aliases:
+  - ip
+  short: alias for api GetProjectPublicIps id
+  command:
+  - api
+  - GetProjectPublicIps
+  - '%0'
+  - --output
+  - yaml
+- entity: project
+  use: snapshots id
+  alias_to: GetProjectSnapshots
+  aliases:
+  - snap
+  - snapshot
+  short: alias for api GetProjectSnapshots id
+  command:
+  - api
+  - GetProjectSnapshots
+  - '%0'
+  - --output
+  - yaml
+- entity: cluster
+  use: create
+  alias_to: CreateCluster
+  aliases:
+  - add
+  short: alias for api CreateCluster
+  command:
+  - api
+  - GetClusterTemplate
+  - --output
+  - json
+  - --single
+  - '|'
+  - api
+  - CreateCluster
+  - --output
+  - yaml
+  - --single
+  flags:
+  - name: allow-from
+    alias_to: AdminWhitelist
+  - name: disable-admission-plugins
+    alias_to: AdmissionFlags.DisableAdmissionPlugins
+  - name: enable-admission-plugins
+    alias_to: AdmissionFlags.EnableAdmissionPlugins
+  - name: oidc-client-id
+    alias_to: Auth.Oidc.ClientId
+  - name: oidc-group-claim
+    alias_to: Auth.Oidc.GroupsClaim
+  - name: oidc-group-prefix
+    alias_to: Auth.Oidc.GroupsPrefix
+  - name: oidc-issuer-url
+    alias_to: Auth.Oidc.IssuerUrl
+  - name: oidc-username-claim
+    alias_to: Auth.Oidc.UsernameClaim
+  - name: oidc-username-prefix
+    alias_to: Auth.Oidc.UsernamePrefix
+  - name: upgrade-minor-duration-hour
+    alias_to: AutoMaintenances.MinorUpgradeMaintenance.DurationHours
+  - name: upgrade-minor-enabled
+    alias_to: AutoMaintenances.MinorUpgradeMaintenance.Enabled
+  - name: upgrade-minor-start-hour
+    alias_to: AutoMaintenances.MinorUpgradeMaintenance.StartHour
+  - name: upgrade-minor-tz
+    alias_to: AutoMaintenances.MinorUpgradeMaintenance.Tz
+  - name: upgrade-minor-week-day
+    alias_to: AutoMaintenances.MinorUpgradeMaintenance.WeekDay
+  - name: upgrade-patch-duration-hour
+    alias_to: AutoMaintenances.PatchUpgradeMaintenance.DurationHours
+  - name: upgrade-patch-enabled
+    alias_to: AutoMaintenances.PatchUpgradeMaintenance.Enabled
+  - name: upgrade-patch-start-hour
+    alias_to: AutoMaintenances.PatchUpgradeMaintenance.StartHour
+  - name: upgrade-patch-tz
+    alias_to: AutoMaintenances.PatchUpgradeMaintenance.Tz
+  - name: upgrade-patch-week-day
+    alias_to: AutoMaintenances.PatchUpgradeMaintenance.WeekDay
+  - name: cidr-pods
+    alias_to: CidrPods
+  - name: cidr-services
+    alias_to: CidrService
+  - name: control-plane
+    alias_to: ControlPlanes
+  - name: multi-az
+    alias_to: CpMultiAz
+  - name: subregions
+    alias_to: CpSubregions
+  - name: description
+    alias_to: Description
+  - name: disable-api-termination
+    alias_to: DisableApiTermination
+  - name: maintenance-duration-hour
+    alias_to: MaintenanceWindow.DurationHours
+  - name: maintenance-start-hour
+    alias_to: MaintenanceWindow.StartHour
+  - name: maintenance-tz
+    alias_to: MaintenanceWindow.Tz
+  - name: maintenance-week-day
+    alias_to: MaintenanceWindow.WeekDay
+  - name: name
+    alias_to: Name
+    required: true
+  - name: project
+    alias_to: ProjectId
+    required: true
+  - name: quirk
+    alias_to: Quirks
+  - name: version
+    alias_to: Version
+- entity: cluster
+  use: kubeconfig cluster_name_or_id
+  alias_to: GetKubeconfig
+  short: alias for api GetKubeconfig cluster_name_or_id
+  command:
+  - api
+  - GetKubeconfig
+  - '%0'
+  - --output
+  - text
+- entity: quota
+  use: describe
+  aliases:
+  - desc
+  short: alias for api GetQuotas
+  command:
+  - api
+  - GetQuotas
+  - --output
+  - yaml
+  - --single
+- entity: cluster
+  use: describe id [id]...
+  aliases:
+  - desc
+  short: alias for api GetCluster  id
+  command:
+  - api
+  - GetCluster
+  - '%*'
+  - --output
+  - yaml
+  - --single
+- entity: kubeconfig
+  use: describe id [id]...
+  aliases:
+  - desc
+  short: alias for api GetKubeconfig  id
+  command:
+  - api
+  - GetKubeconfig
+  - '%*'
+  - --output
+  - yaml
+  - --single
+- entity: project
+  use: describe id [id]...
+  aliases:
+  - desc
+  short: alias for api GetProject  id
+  command:
+  - api
+  - GetProject
+  - '%*'
+  - --output
+  - yaml
+  - --single
+- entity: publicip
+  use: describe public_ip_id [public_ip_id]...
+  aliases:
+  - desc
+  short: alias for api GetProjectPublicIps  public_ip_id
+  command:
+  - api
+  - GetProjectPublicIps
+  - '%*'
+  - --output
+  - yaml
+  - --single
+- entity: cluster
+  use: list
+  alias_to: ListAllClusters
+  aliases:
+  - ls
+  short: alias for api ListAllClusters
+  command:
+  - api
+  - ListAllClusters
+  - --output
+  - table
+  flags:
+  - name: name
+    alias_to: Name
+  - name: status
+    alias_to: Status
+  - name: version
+    alias_to: Version
+  - name: deleted
+    alias_to: Deleted
+  - name: cursor
+    alias_to: Cursor
+  - name: page
+    alias_to: Page
+  - name: limit
+    alias_to: Limit
+- entity: project
+  use: list
+  alias_to: ListProjects
+  aliases:
+  - ls
+  short: alias for api ListProjects
+  command:
+  - api
+  - ListProjects
+  - --output
+  - table
+  flags:
+  - name: name
+    alias_to: Name
+  - name: status
+    alias_to: Status
+  - name: cidr
+    alias_to: Cidr
+  - name: deleted
+    alias_to: Deleted
+  - name: cursor
+    alias_to: Cursor
+  - name: page
+    alias_to: Page
+  - name: limit
+    alias_to: Limit
+- entity: cluster
+  use: delete id [id]...
+  alias_to: DeleteCluster
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteCluster  id
+  command:
+  - api
+  - DeleteCluster
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - GetCluster
+    - '%*'
+    - --output
+    - table
+    - --single
+- entity: project
+  use: delete id [id]...
+  alias_to: DeleteProject
+  aliases:
+  - del
+  - rm
+  short: alias for api DeleteProject  id
+  command:
+  - api
+  - DeleteProject
+  - '%0'
+  - --output
+  - none
+  prompt:
+    action: delete
+    display:
+    - api
+    - GetProject
+    - '%*'
+    - --output
+    - table
+    - --single
+- entity: cluster
+  use: update id [id]...
+  alias_to: UpdateCluster
+  short: alias for api UpdateCluster  id
+  command:
+  - api
+  - UpdateCluster
+  - '%0'
+  - --output
+  - yaml
+- entity: project
+  use: update id [id]...
+  alias_to: UpdateProject
+  short: alias for api UpdateProject  id
+  command:
+  - api
+  - UpdateProject
+  - '%0'
+  - --output
+  - yaml
+spec:
+  calls:
+    CreateCluster:
+      help: Creates a new cluster with the provided configuration. The request must include the cluster details in the request body. all clusters are associated to a project
+    CreateProject:
+      help: Creates a new project with the provided details. The request must include the project data in the request body. Returns the details of the created project.
+    DeleteCluster:
+      help: request returning *DetailResponse
+    DeleteProject:
+      help: request returning *DetailResponse
+    GetCPSubregions:
+      help: request returning *CPSubregionsResponse
+    GetCluster:
+      help: request returning *ClusterResponse
+    GetClusterTemplate:
+      help: request returning *TemplateResponseClusterInputTemplate
+    GetControlPlanePlans:
+      help: request returning *ControlPlanesResponse
+    GetKubeconfigWithPubkeyNACL:
+      help: request returning *KubeconfigResponse
+    GetKubernetesVersions:
+      help: request returning *KubernetesVersionsResponse
+    GetNetPeeringAcceptanceTemplate:
+      help: request returning *TemplateResponseNetPeeringAcceptance
+    GetNetPeeringRequestTemplate:
+      help: request returning *TemplateResponseNetPeeringRequest
+    GetNodepoolTemplate:
+      help: request returning *TemplateResponseNodepool
+    GetProject:
+      help: request returning *ProjectResponse
+    GetProjectTemplate:
+      help: request returning *TemplateResponseProjectInput
+    ListProjects:
+      help: request returning *ProjectResponseList
+    UpdateCluster:
+      help: Updates the configuration of an existing cluster by its ID. The request must include the updated cluster details in the request body. Returns the updated cluster information
+    UpdateProject:
+      help: Updates the details of an existing project by its ID. The request must include the updated project data in the request body. Returns the updated project information.
+    UpgradeCluster:
+      help: request returning *ClusterResponse
+  attributes:
+    AdmissionFlags.AppliedAdmissionPlugins:
+      help: List of admission plugins currently applied to the cluster
+    AdmissionFlags.DisableAdmissionPlugins:
+      help: List of Kubernetes admission plugins that are disabled
+    AdmissionFlags.EnableAdmissionPlugins:
+      help: List of Kubernetes admission plugins that are enabled
+    AdmissionFlagsInput.DisableAdmissionPlugins:
+      help: List of Kubernetes admission plugins to disable
+    AdmissionFlagsInput.EnableAdmissionPlugins:
+      help: List of Kubernetes admission plugins to enable
+    AuthStrategy.Oidc:
+      help: Configuration for authenticating to the cluster using OpenID Connect (OIDC).
+    AutoMaintenances.MinorUpgradeMaintenance:
+      help: Maintenance window configuration for minor Kubernetes upgrades
+    AutoMaintenances.PatchUpgradeMaintenance:
+      help: Maintenance window configuration for patch Kubernetes upgrades
+    AutoUpgradeMaintenance.DurationHours:
+      help: Duration of the maintenance window in hours
+    AutoUpgradeMaintenance.StartHour:
+      help: Hour of the day when maintenance window starts (0-23)
+    AutoUpgradeMaintenance.WeekDay:
+      help: Day of the week for the maintenance window (e.g., Mon, Tue)
+    Cluster.AdminLbu:
+      help: Flag indicating if admin load balancer is enabled for cluster management
+    Cluster.AdminWhitelist:
+      help: List of CIDR blocks or IP addresses allowed to access the Kubernetes API
+    Cluster.AdmissionFlags:
+      help: Configuration for Kubernetes admission controllers
+    Cluster.CidrPods:
+      help: CIDR block for Kubernetes pods network
+    Cluster.CidrService:
+      help: CIDR block for Kubernetes services network
+    Cluster.ClusterDns:
+      help: IP address for cluster DNS service
+    Cluster.Cni:
+      help: Container Network Interface used in the cluster
+    Cluster.ControlPlanes:
+      help: Type of control plane deployment for the cluster
+    Cluster.CpMultiAz:
+      help: Flag indicating if multi-availability zone is enabled for the control plane
+    Cluster.CpSubregions:
+      help: Subregions where control plane components are deployed
+    Cluster.Description:
+      help: Optional description of the cluster
+    Cluster.DisableApiTermination:
+      help: Flag to prevent accidental cluster deletion
+    Cluster.Id:
+      help: Unique UUID of the cluster
+    Cluster.Name:
+      help: Unique cluster name per project
+    Cluster.ProjectId:
+      help: Unique identifier of the project this cluster belongs to
+    Cluster.Statuses:
+      help: Current status information about the cluster
+    Cluster.Tags:
+      help: Key-value pairs for cluster metadata
+    Cluster.Version:
+      help: Version of Kubernetes deployed in the cluster
+    ClusterInput.AdminLbu:
+      help: Flag to enable admin load balancer for cluster management
+    ClusterInput.AdminWhitelist:
+      help: List of CIDR blocks or IP addresses allowed to access the Kubernetes API
+    ClusterInput.AdmissionFlags:
+      help: Configuration for Kubernetes admission controllers
+    ClusterInput.AutoMaintenances:
+      help: 'Use ''maintenance_window'' instead Deprecated: this property has been marked as deprecated upstream, but no x-deprecated-reason was set'
+    ClusterInput.CidrPods:
+      help: CIDR block for Kubernetes pods network
+    ClusterInput.CidrService:
+      help: CIDR block for Kubernetes services network
+    ClusterInput.ClusterDns:
+      help: IP address for cluster DNS service
+    ClusterInput.ControlPlanes:
+      help: Size of control plane deployment for the cluster
+    ClusterInput.CpMultiAz:
+      help: Flag to enable multi-availability zone for the control plane
+    ClusterInput.CpSubregions:
+      help: List of subregions where control plane components are deployed
+    ClusterInput.DisableApiTermination:
+      help: Flag to prevent accidental cluster deletion
+    ClusterInput.MaintenanceWindow:
+      help: Configuration for automated maintenance windows
+    ClusterInput.Name:
+      help: Unique cluster name per project, must start with a letter and contain only lowercase letters, numbers, or hyphens
+    ClusterInput.ProjectId:
+      help: Unique identifier of the project this cluster belongs to
+    ClusterInput.Version:
+      help: Version of Kubernetes to be deployed
+    ClusterInputTemplate.AdminLbu:
+      help: Flag to enable admin load balancer for cluster management
+    ClusterInputTemplate.AdminWhitelist:
+      help: List of CIDR blocks or IP addresses allowed to access the Kubernetes API
+    ClusterInputTemplate.AdmissionFlags:
+      help: Configuration for Kubernetes admission controllers
+    ClusterInputTemplate.CidrPods:
+      help: CIDR block for Kubernetes pods network
+    ClusterInputTemplate.CidrService:
+      help: CIDR block for Kubernetes services network
+    ClusterInputTemplate.ClusterDns:
+      help: IP address for cluster DNS service
+    ClusterInputTemplate.ControlPlanes:
+      help: Size of control plane deployment for the cluster
+    ClusterInputTemplate.DisableApiTermination:
+      help: Flag to prevent accidental cluster deletion
+    ClusterInputTemplate.ProjectId:
+      help: Unique identifier of the project this cluster belongs to
+    ClusterInputTemplate.Tags:
+      help: Key-value pairs for cluster metadata
+    ClusterInputTemplate.Version:
+      help: Version of Kubernetes to be deployed
+    ClusterResponseList.Clusters:
+      help: List of clusters retrieved from the API
+    ClusterResponseList.ResponseContext:
+      help: Information about the context of the response.
+    ClusterUpdate.ControlPlanes:
+      help: Size of control plane deployment for the cluster
+    KubeconfigData.Kubeconfig:
+      help: Kubernetes configuration file content for cluster access
+    Maintenance.DurationHours:
+      help: Duration of the maintenance window in hours
+    Maintenance.StartHour:
+      help: Hour of the day when maintenance window starts (0-23)
+    Maintenance.Tz:
+      help: Timezone for the maintenance window
+    Maintenance.WeekDay:
+      help: Day of the week for the maintenance window
+    MaintenanceWindow.DurationHours:
+      help: Duration of the maintenance window in hours
+    MaintenanceWindow.Enabled:
+      help: Flag to enable or disable the maintenance window
+    MaintenanceWindow.StartHour:
+      help: Hour of the day when maintenance window starts (0-23)
+    MaintenanceWindow.Tz:
+      help: Timezone for the maintenance window
+    MaintenanceWindow.WeekDay:
+      help: Day of the week for the maintenance window
+    Net.DhcpOptionsSetId:
+      help: The ID of the DHCP options set (or default if you want to associate the default one).
+    Net.IpRange:
+      help: The IP range for the Net, in CIDR notation (for example, 10.0.0.0/16).
+    Net.NetId:
+      help: The ID of the Net.
+    Net.State:
+      help: The state of the Net (pending | available | deleting).
+    Net.Tenancy:
+      help: The VM tenancy in a Net.
+    NetPeeringAcceptance.ApiVersion:
+      help: Version of the NetPeeringAcceptance API being used
+    NetPeeringAcceptance.Kind:
+      help: Resource type, always 'NetPeeringAcceptance' for netpeering acceptance resources
+    NetPeeringAcceptance.Metadata:
+      help: Metadata information for the netpeering acceptance
+    NetPeeringAcceptance.Spec:
+      help: Specification of the netpeering acceptance configuration
+    NetPeeringRequest.ApiVersion:
+      help: Version of the NetPeeringRequest API being used
+    NetPeeringRequest.Kind:
+      help: Resource type, always 'NetPeeringRequest' for netpeering request resources
+    NetPeeringRequest.Metadata:
+      help: Metadata information for the netpeering request
+    NetPeeringRequest.Spec:
+      help: Specification of the netpeering request configuration
+    NetpeeringsNetpeeringSchemaMetadata.Name:
+      help: Unique name identifier for the netpeering
+    Nodepool.ApiVersion:
+      help: Version of the Nodepool API being used
+    Nodepool.Kind:
+      help: Resource type, always 'Nodepool' for nodepool resources
+    Nodepool.Metadata:
+      help: Metadata information for the nodepool
+    Nodepool.Spec:
+      help: Specification of the nodepool configuration
+    NodepoolsNodepoolSchemaMetadata.Name:
+      help: Unique name identifier for the nodepool
+    OKSQuotas.KubeVersions:
+      help: Maximum allowed value for this quota
+    OpenIdConnectConfig.ClientId:
+      help: The client id that all tokens must be issued for.
+    OpenIdConnectConfig.IssuerUrl:
+      help: The URL of the provider that allows the API server to discover public signing keys.
+    PermissionsOnResource.AccountIds:
+      help: One or more account IDs that the permission is associated with.
+    PermissionsOnResource.GlobalPermission:
+      help: A global permission for all accounts.
+    Project.Cidr:
+      help: CIDR block associated with the project's VPC
+    Project.CreatedAt:
+      help: Timestamp when the project was created
+    Project.Description:
+      help: Optional description of the project
+    Project.DisableApiTermination:
+      help: Flag to prevent accidental project deletion
+    Project.Id:
+      help: Unique UUID of the project
+    Project.Name:
+      help: Unique project name per account
+    Project.Region:
+      help: Region where the project is deployed
+    Project.Tags:
+      help: Key-value pairs tags
+    Project.UpdatedAt:
+      help: Timestamp when the project was last updated
+    ProjectInput.Cidr:
+      help: CIDR block associated with the project's VPC
+    ProjectInput.Description:
+      help: Optional description of the project
+    ProjectInput.DisableApiTermination:
+      help: Flag to prevent accidental project deletion
+    ProjectInput.Name:
+      help: Unique name for the project, must start with a letter and contain only lowercase letters, numbers, or hyphens
+    ProjectInput.Region:
+      help: Region where the project is deployed
+    ProjectResponseList.Projects:
+      help: List of projects retrieved from the API
+    ProjectResponseList.ResponseContext:
+      help: Information about the context of the response.
+    PublicIp.PublicIp:
+      help: The public IP.
+    PublicIp.PublicIpId:
+      help: The allocation ID of the public IP.
+    PublicIp.Tags:
+      help: One or more tags associated with the public IP.
+    Quotas.AccountId:
+      help: Unique identifier for the account
+    Quotas.Description:
+      help: Detailed description of the quota
+    Quotas.MaxValue:
+      help: Maximum allowed value for this quota
+    Quotas.Name:
+      help: Quota name
+    Quotas.QuotaCollection:
+      help: Category or group to which the quota belongs
+    Quotas.ShortDescription:
+      help: Brief summary of the quota
+    Quotas.UsedValue:
+      help: Current usage value for this quota
+    QuotasData.Quotas:
+      help: List of quota details
+    QuotasData.Subregions:
+      help: List of subregion details
+    ResourceTag.Key:
+      help: The key of the tag, with a minimum of 1 character.
+    ResourceTag.Value:
+      help: The value of the tag, between 0 and 255 characters.
+    ResponseContext.RequestId:
+      help: The ID of the request.
+    Snapshot.AccountId:
+      help: The account ID of the owner of the snapshot.
+    Snapshot.CreationDate:
+      help: The date and time (UTC) at which the snapshot was created.
+    Snapshot.Description:
+      help: The description of the snapshot.
+    Snapshot.PermissionsToCreateVolume:
+      help: Permissions for the resource.
+    Snapshot.Progress:
+      help: The progress of the snapshot, as a percentage.
+    Snapshot.SnapshotId:
+      help: The ID of the snapshot.
+    Snapshot.State:
+      help: The state of the snapshot (in-queue | pending | completed | error | deleting).
+    Snapshot.Tags:
+      help: One or more tags associated with the snapshot.
+    Snapshot.VolumeId:
+      help: The ID of the volume used to create the snapshot.
+    Snapshot.VolumeSize:
+      help: The size of the volume used to create the snapshot, in gibibytes (GiB).
+    Spec.AutoHealing:
+      help: Flag to enable automatic healing of failed nodes
+    Spec.DesiredNodes:
+      help: Number of nodes desired in the nodepool
+    Spec.NodeType:
+      help: Instance type for the nodes
+    Spec.UpgradeStrategy:
+      help: Configuration for managing nodepool upgrades
+    Spec.Volumes:
+      help: List of volume configurations for the nodes
+    Spec.Zones:
+      help: List of availability zones where nodes should be deployed
+    SpecNetPeeringAcceptance.NetPeeringId:
+      help: Net Peering ID
+    SpecNetPeeringRequest.AccepterNetId:
+      help: NetID (VPC ID) of the target
+    SpecNetPeeringRequest.AccepterOwnerId:
+      help: Owner ID (Account ID) of the target
+    Statuses.AvailableUpgrade:
+      help: Available Kubernetes version for upgrade if any
+    Statuses.CreatedAt:
+      help: Timestamp when the cluster was created
+    Subregion.LocationCode:
+      help: The location code (physical zone) of the Subregion
+    Subregion.RegionName:
+      help: The name of the Region containing the Subregion
+    Subregion.State:
+      help: The state of the Subregion
+    Subregion.SubregionName:
+      help: The name of the Subregion
+    TemplateResponseClusterInputTemplate.ResponseContext:
+      help: Information about the context of the response.
+    TemplateResponseClusterInputTemplate.Template:
+      help: Template resource returned by the API
+    TemplateResponseNetPeeringAcceptance.ResponseContext:
+      help: Information about the context of the response.
+    TemplateResponseNetPeeringAcceptance.Template:
+      help: Template resource returned by the API
+    TemplateResponseNetPeeringRequest.ResponseContext:
+      help: Information about the context of the response.
+    TemplateResponseNetPeeringRequest.Template:
+      help: Template resource returned by the API
+    TemplateResponseNodepool.ResponseContext:
+      help: Information about the context of the response.
+    TemplateResponseNodepool.Template:
+      help: Template resource returned by the API
+    TemplateResponseProjectInput.ResponseContext:
+      help: Information about the context of the response.
+    TemplateResponseProjectInput.Template:
+      help: Template resource returned by the API
+    UpgradeStrategy.AutoUpgradeEnabled:
+      help: Flag to enable automatic upgrades for the nodepool
+    UpgradeStrategy.AutoUpgradeMaintenance:
+      help: Configuration for the automated upgrade maintenance window
+    UpgradeStrategy.MaxSurge:
+      help: Maximum number of extra nodes that can be created during an upgrade
+    UpgradeStrategy.MaxUnavailable:
+      help: Maximum number of nodes that can be unavailable during an upgrade
+    Volume.Device:
+      help: Device name for the volume
+    Volume.Dir:
+      help: Mount point directory path for the volume
+    Volume.Size:
+      help: Size of the volume
+    Volume.Type:
+      help: Type of the volume (gp2, io1, standard)

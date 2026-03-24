@@ -1,0 +1,280 @@
+entities:
+  project:
+    columns:
+      - title: ID
+        content: .id
+      - title: Name
+        content: .name
+      - title: Status
+        content: .status
+    primary: Id
+  cluster:
+    columns:
+      - title: ID
+        content: .id
+      - title: Name
+        content: .name
+      - title: Version
+        content: .version
+      - title: Control Plane
+        content: .control_planes
+      - title: Status
+        content: .statuses.status
+    primary: Id
+  net:
+    no_aliases: true
+  quota:
+    no_aliases: true
+  projecttemplate:
+    no_aliases: true
+  clustertemplate:
+    no_aliases: true
+  netpeeringrequesttemplate:
+    no_aliases: true
+  netpeeringacceptancetemplate:
+    no_aliases: true
+  nodepooltemplate:
+    no_aliases: true
+  controlplaneplan:
+    no_aliases: true
+  kubernetesversion:
+    no_aliases: true
+  kubeconfigwithpubkeynacl:
+    no_aliases: true
+  cpsubregion:
+    no_aliases: true
+contents:
+  ListAllClusters:
+    entity: cluster
+    content: Clusters
+  ListClustersByProjectID:
+    entity: cluster
+    content: Clusters
+  GetProjectNets:
+    entity: net
+  GetProjectQuotas:
+    entity: quota
+  GetQuotas:
+    entity: quota
+  GetProjectPublicIps:
+    entity: publicip
+  GetProjectSnapshots:
+    entity: publicip
+  GetKubeconfig:
+    content: Cluster.Data.Kubeconfig
+    entity: kubeconfig
+aliases:
+- entity: project
+  use: clusters project_id
+  alias_to: ListClustersByProjectID
+  short: alias for api ListClustersByProjectID
+  command:
+  - api
+  - ListClustersByProjectID
+  - --ProjectId
+  - '%0'
+  - --output
+  - table
+  flags:
+  - name: name
+    alias_to: Name
+  - name: status
+    alias_to: Status
+  - name: version
+    alias_to: Version
+  - name: deleted
+    alias_to: Deleted
+  - name: cursor
+    alias_to: Cursor
+  - name: page
+    alias_to: Page
+  - name: limit
+    alias_to: Limit
+- entity: project
+  use: create
+  alias_to: CreateProject
+  aliases:
+  - add
+  short: alias for api CreateProject
+  command:
+  - api
+  - GetProjectTemplate
+  - --output
+  - json
+  - --single
+  - '|'
+  - api
+  - CreateProject
+  - --output
+  - yaml
+  - --single
+  flags:
+  - name: cidr
+    alias_to: Cidr
+  - name: description
+    alias_to: Description
+  - name: disable-api-termination
+    alias_to: DisableApiTermination
+  - name: name
+    alias_to: Name
+    required: true
+  - name: quirk
+    alias_to: Quirks
+  - name: region
+    alias_to: Region
+- entity: project
+  use: nets id
+  aliases:
+    - net
+  short: alias for api GetProjectNets id
+  alias_to: GetProjectNets
+  command:
+  - api
+  - GetProjectNets
+  - '%0'
+  - --output
+  - yaml
+- entity: project
+  use: quotas id
+  short: alias for api GetProjectQuotas id
+  command:
+  - api
+  - GetProjectQuotas
+  - '%0'
+  - --output
+  - yaml
+- entity: project
+  use: public-ips id
+  aliases:
+    - ip
+  short: alias for api GetProjectPublicIps id
+  alias_to: GetProjectPublicIps
+  command:
+  - api
+  - GetProjectPublicIps
+  - '%0'
+  - --output
+  - yaml
+- entity: project
+  use: snapshots id
+  aliases:
+    - snap
+    - snapshot
+  short: alias for api GetProjectSnapshots id
+  alias_to: GetProjectSnapshots
+  command:
+  - api
+  - GetProjectSnapshots
+  - '%0'
+  - --output
+  - yaml
+- entity: cluster
+  use: create
+  alias_to: CreateCluster
+  aliases:
+  - add
+  short: alias for api CreateCluster
+  command:
+  - api
+  - GetClusterTemplate
+  - --output
+  - json
+  - --single
+  - '|'
+  - api
+  - CreateCluster
+  - --output
+  - yaml
+  - --single
+  flags:
+  - name: allow-from
+    alias_to: AdminWhitelist
+  - name: disable-admission-plugins
+    alias_to: AdmissionFlags.DisableAdmissionPlugins
+  - name: enable-admission-plugins
+    alias_to: AdmissionFlags.EnableAdmissionPlugins
+  - name: oidc-client-id
+    alias_to: Auth.Oidc.ClientId
+  - name: oidc-group-claim
+    alias_to: Auth.Oidc.GroupsClaim
+  - name: oidc-group-prefix
+    alias_to: Auth.Oidc.GroupsPrefix
+  - name: oidc-issuer-url
+    alias_to: Auth.Oidc.IssuerUrl
+  - name: oidc-username-claim
+    alias_to: Auth.Oidc.UsernameClaim
+  - name: oidc-username-prefix
+    alias_to: Auth.Oidc.UsernamePrefix
+  - name: upgrade-minor-duration-hour
+    alias_to: AutoMaintenances.MinorUpgradeMaintenance.DurationHours
+  - name: upgrade-minor-enabled
+    alias_to: AutoMaintenances.MinorUpgradeMaintenance.Enabled
+  - name: upgrade-minor-start-hour
+    alias_to: AutoMaintenances.MinorUpgradeMaintenance.StartHour
+  - name: upgrade-minor-tz
+    alias_to: AutoMaintenances.MinorUpgradeMaintenance.Tz
+  - name: upgrade-minor-week-day
+    alias_to: AutoMaintenances.MinorUpgradeMaintenance.WeekDay
+  - name: upgrade-patch-duration-hour
+    alias_to: AutoMaintenances.PatchUpgradeMaintenance.DurationHours
+  - name: upgrade-patch-enabled
+    alias_to: AutoMaintenances.PatchUpgradeMaintenance.Enabled
+  - name: upgrade-patch-start-hour
+    alias_to: AutoMaintenances.PatchUpgradeMaintenance.StartHour
+  - name: upgrade-patch-tz
+    alias_to: AutoMaintenances.PatchUpgradeMaintenance.Tz
+  - name: upgrade-patch-week-day
+    alias_to: AutoMaintenances.PatchUpgradeMaintenance.WeekDay
+  - name: cidr-pods
+    alias_to: CidrPods
+  - name: cidr-services
+    alias_to: CidrService
+  - name: control-plane
+    alias_to: ControlPlanes
+  - name: multi-az
+    alias_to: CpMultiAz
+  - name: subregions
+    alias_to: CpSubregions
+  - name: description
+    alias_to: Description
+  - name: disable-api-termination
+    alias_to: DisableApiTermination
+  - name: maintenance-duration-hour
+    alias_to: MaintenanceWindow.DurationHours
+  - name: maintenance-start-hour
+    alias_to: MaintenanceWindow.StartHour
+  - name: maintenance-tz
+    alias_to: MaintenanceWindow.Tz
+  - name: maintenance-week-day
+    alias_to: MaintenanceWindow.WeekDay
+  - name: name
+    alias_to: Name
+    required: true
+  - name: project
+    alias_to: ProjectId
+    required: true
+  - name: quirk
+    alias_to: Quirks
+  - name: version
+    alias_to: Version
+- entity: cluster
+  use: kubeconfig cluster_name_or_id
+  short: alias for api GetKubeconfig cluster_name_or_id
+  alias_to: GetKubeconfig
+  command:
+  - api
+  - GetKubeconfig
+  - '%0'
+  - --output
+  - text
+- entity: quota
+  use: describe
+  aliases:
+  - desc
+  short: alias for api GetQuotas
+  command:
+  - api
+  - GetQuotas
+  - --output
+  - yaml
+  - --single

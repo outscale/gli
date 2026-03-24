@@ -1,6 +1,10 @@
 ## octl kube api GetKubeconfigWithPubkeyNACL
 
+request returning *KubeconfigResponse
 
+### Synopsis
+
+request returning *KubeconfigResponse
 
 ```
 octl kube api GetKubeconfigWithPubkeyNACL id [flags]

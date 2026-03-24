@@ -42,8 +42,8 @@ func main() {
 
 	cfg := builder.Config{
 		InputStructSuffix: "Request",
-		ReadFlagPrefix:    "Filters.",
-		SkipFlags:         []string{"DryRun", "NextPageToken", "ResultsPerPage"},
+		ReadFlagPrefixes:  []string{"Filters."},
+		SkipFlagsPrefixes: []string{"DryRun", "NextPageToken", "ResultsPerPage"},
 		PriorityFields: []string{
 			"State",
 			"PublicIp",
@@ -88,15 +88,18 @@ func main() {
 	sb := builder.NewSpecBuilder(cfg)
 	sb.BuildSpec(&base, "github.com/outscale/osc-sdk-go/v3/pkg/osc")
 
-	var client *osc.Client
-	b := builder.NewClientBuilder(cfg)
-	b.BuildFor(&base, client)
+	b := builder.NewClientBuilder[*osc.Client](cfg)
+	b.BuildFor(&base)
 
 	fd, err := os.Create(dst) //nolint:gosec
 	if err != nil {
 		messages.ExitErr(err)
 	}
 	err = yaml.NewEncoder(fd, yaml.UseSingleQuote(true), yaml.UseLiteralStyleIfMultiline(true)).Encode(base)
+	if err != nil {
+		messages.ExitErr(err)
+	}
+	err = fd.Close()
 	if err != nil {
 		messages.ExitErr(err)
 	}

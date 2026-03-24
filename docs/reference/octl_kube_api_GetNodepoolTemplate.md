@@ -1,6 +1,10 @@
 ## octl kube api GetNodepoolTemplate
 
+request returning *TemplateResponseNodepool
 
+### Synopsis
+
+request returning *TemplateResponseNodepool
 
 ```
 octl kube api GetNodepoolTemplate [flags]

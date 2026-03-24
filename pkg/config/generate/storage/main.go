@@ -38,8 +38,7 @@ func main() {
 
 	cfg := builder.Config{
 		InputStructSuffix: "Input",
-		ReadFlagPrefix:    "",
-		SkipFlags:         []string{"ContinuationToken", "BucketRegion", "Marker", "RequestPayer", "MaxKeys", "CreateBucketConfiguration.", "SSE", "StorageClass", "ContentMD5", "Checksum"},
+		SkipFlagsPrefixes: []string{"ContinuationToken", "BucketRegion", "Marker", "RequestPayer", "MaxKeys", "CreateBucketConfiguration.", "SSE", "StorageClass", "ContentMD5", "Checksum"},
 		PriorityFields:    []string{},
 		FlagOverrides:     map[string]config.Flag{},
 		RequiredFromComment: func(s string) bool {
@@ -50,15 +49,18 @@ func main() {
 	sb := builder.NewSpecBuilder(cfg)
 	sb.BuildSpec(&base, "github.com/outscale/osc-sdk-go/v3/pkg/oos", "github.com/aws/aws-sdk-go-v2/service/s3", "github.com/aws/aws-sdk-go-v2/service/s3/types")
 
-	var client *oos.Client
-	b := builder.NewClientBuilder(cfg)
-	b.BuildFor(&base, client)
+	b := builder.NewClientBuilder[*oos.Client](cfg)
+	b.BuildFor(&base)
 
 	fd, err := os.Create(dst) //nolint:gosec
 	if err != nil {
 		messages.ExitErr(err)
 	}
 	err = yaml.NewEncoder(fd, yaml.UseSingleQuote(true), yaml.UseLiteralStyleIfMultiline(true)).Encode(base)
+	if err != nil {
+		messages.ExitErr(err)
+	}
+	err = fd.Close()
 	if err != nil {
 		messages.ExitErr(err)
 	}

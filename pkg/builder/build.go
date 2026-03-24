@@ -7,6 +7,7 @@ package builder
 
 import (
 	"reflect"
+	"strings"
 
 	"github.com/outscale/octl/pkg/alias"
 	flagbuilder "github.com/outscale/octl/pkg/builder/flags"
@@ -34,46 +35,49 @@ func NewBuilder[T any](provider string, helpURL string) *Builder[T] {
 }
 
 // Build builds the high-level API, must be run after BuildAPI as aliases might use API flags.
-func (b *Builder[T]) Build(rootCmd *cobra.Command) {
+func (b *Builder[T]) Build(rootCmd, apiCmd *cobra.Command) {
 	rootCmd.AddGroup(&cobra.Group{
 		ID:    "service",
 		Title: "service",
 	})
-	apiCmd, _ := lo.Find(rootCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == "api" })
+	if apiCmd == nil {
+		apiCmd, _ = lo.Find(rootCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == "api" })
+	}
 	for _, a := range b.cfg.Aliases {
-		c, found := lo.Find(rootCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == a.Entity })
+		serviceCmd, found := lo.Find(rootCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == a.Entity })
 		if !found {
 			e := b.cfg.Entities[a.Entity]
-			c = &cobra.Command{
+			serviceCmd = &cobra.Command{
 				GroupID: "service",
 				Use:     a.Entity,
 				Short:   a.Entity + " commands",
 				Aliases: e.Aliases,
 			}
-			rootCmd.AddCommand(c)
+			rootCmd.AddCommand(serviceCmd)
 		}
 		if a.SubCommand != "" {
-			subc, found := lo.Find(c.Commands(), func(c *cobra.Command) bool { return c.Name() == a.SubCommand })
+			subc, found := lo.Find(serviceCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == a.SubCommand })
 			if !found {
 				subc = &cobra.Command{
 					Use:   a.SubCommand,
 					Short: a.SubCommand + " commands",
 				}
-				c.AddCommand(subc)
+				serviceCmd.AddCommand(subc)
 			}
-			c = subc
+			serviceCmd = subc
 		}
 		spec := b.cfg.Spec.ForCall(a.AliasTo)
 		help := "> *" + a.Short + "*\n\n" + spec.Help
 		help, _ = md.Render(help)
+		rootPath := strings.Split(serviceCmd.CommandPath(), " ")[1]
 		cmd := &cobra.Command{
 			Use:     a.Use,
 			Aliases: a.Aliases,
 			Short:   a.Short,
 			Long:    help,
-			Run:     alias.RunFunc(b.provider, a, rootCmd),
+			Run:     alias.RunFunc(rootPath, a),
 		}
-		c.AddCommand(cmd)
+		serviceCmd.AddCommand(cmd)
 		if apiCmd == nil {
 			continue
 		}
@@ -136,6 +140,17 @@ func (b *Builder[T]) BuildAPI(
 	}
 	rootCmd.AddCommand(apiCmd)
 	ct := reflect.TypeFor[*T]()
+	b.buildAPIFor(apiCmd, ct, methodFilter, run)
+	ct = reflect.TypeFor[T]()
+	b.buildAPIFor(apiCmd, ct, methodFilter, run)
+}
+
+func (b *Builder[T]) buildAPIFor(
+	apiCmd *cobra.Command,
+	ct reflect.Type,
+	methodFilter func(m reflect.Method) bool,
+	run func(cmd *cobra.Command, args []string),
+) {
 	for m := range ct.Methods() {
 		if !methodFilter(m) {
 			continue
@@ -161,7 +176,14 @@ func (b *Builder[T]) BuildAPI(
 			Run:     run,
 		}
 
-		for j := 2; j < m.Type.NumIn()-1; j++ {
+		// for methods, the first parameter is the receiver, we need to start at 2 (after context)
+		firstIdx := 2
+		// for interfaces, the method has no receiver, we need to start at 1 (after context)
+		if ct.Kind() == reflect.Interface {
+			firstIdx = 1
+		}
+
+		for j := firstIdx; j < m.Type.NumIn()-1; j++ {
 			arg := m.Type.In(j)
 			b.BuildArgsAndFlags(cmd, arg)
 		}
@@ -180,12 +202,12 @@ func (b *Builder[T]) BuildArgsAndFlags(cmd *cobra.Command, arg reflect.Type) {
 		case reflect.Struct:
 			b.buildFlags(cmd, arg)
 		default:
-			debug.Println("unsupported type for command flags: *%v", arg.Kind())
+			debug.Println("unsupported type for command flags", arg.Kind())
 		}
 	case reflect.String:
 		cmd.Use += " id"
 	default:
-		debug.Println("unsupported type for command flags: %v", arg.Kind())
+		debug.Println("unsupported type for command flags", arg.Kind())
 	}
 }
 

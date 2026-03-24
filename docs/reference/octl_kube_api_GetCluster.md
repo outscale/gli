@@ -1,6 +1,10 @@
 ## octl kube api GetCluster
 
+request returning *ClusterResponse
 
+### Synopsis
+
+request returning *ClusterResponse
 
 ```
 octl kube api GetCluster id [flags]

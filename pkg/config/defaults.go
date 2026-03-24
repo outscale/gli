@@ -18,6 +18,8 @@ import (
 
 //go:generate go run generate/storage/main.go generate/storage/defaults.yaml defaults_storage.yaml
 //go:generate go run generate/iaas/main.go generate/iaas/defaults.yaml defaults_iaas.yaml
+//go:generate go run generate/kube/main.go generate/kube/defaults.yaml defaults_kube.yaml
+//go:generate go run generate/kubeclient/main.go generate/kubeclient/defaults_nodepool.yaml defaults_kubeclient_nodepool.yaml
 //go:generate go run generate/archive/main.go .
 //go:embed defaults.zip
 var defaults []byte

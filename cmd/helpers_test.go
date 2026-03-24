@@ -12,6 +12,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+const tmout = 15 * time.Minute
+
 func run(t *testing.T, args []string, input []byte) []byte {
 	t.Helper()
 	res, err := try(t.Context(), args, input)
@@ -39,7 +41,7 @@ func try(ctx context.Context, args []string, input []byte) ([]byte, error) {
 
 func retry(t *testing.T, args []string, input []byte) {
 	t.Helper()
-	ctx, cancel := context.WithTimeout(t.Context(), 5*time.Minute)
+	ctx, cancel := context.WithTimeout(t.Context(), tmout)
 	defer cancel()
 LOOPRETRY:
 	for {
@@ -53,6 +55,39 @@ LOOPRETRY:
 				break LOOPRETRY
 			}
 			t.Log("... error", err)
+			time.Sleep(wait)
+		}
+	}
+}
+
+func retryUntil(t *testing.T, args []string, input []byte, expectKey, expectValue string) {
+	t.Helper()
+	ctx, cancel := context.WithTimeout(t.Context(), tmout)
+	defer cancel()
+LOOPRETRY:
+	for {
+		select {
+		case <-ctx.Done():
+			t.Error("timeout")
+			t.FailNow()
+		default:
+			content, err := try(t.Context(), args, input)
+			if err != nil {
+				t.Log("... error", err)
+				time.Sleep(wait)
+				continue
+			}
+			var resp map[string]any
+			err = json.Unmarshal(content, &resp)
+			if err != nil {
+				t.Log("... error", err)
+				time.Sleep(wait)
+				continue
+			}
+			if val, ok := resp[expectKey].(string); ok && val == expectValue {
+				break LOOPRETRY
+			}
+			t.Log("...", expectKey, resp[expectKey], "!=", expectValue)
 			time.Sleep(wait)
 		}
 	}

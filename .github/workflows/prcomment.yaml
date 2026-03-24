@@ -25,6 +25,8 @@ jobs:
       with:
         version: '~> v2'
         args: build --skip validate --clean --snapshot --single-target
+      env:
+        KUBECTL_VERSION: 1.2.3
     - name: ⚖️ Compute before size
       id: before
       run: |
@@ -39,6 +41,8 @@ jobs:
       with:
         version: '~> v2'
         args: build --skip validate --clean --snapshot --single-target
+      env:
+        KUBECTL_VERSION: 1.2.3
     - name: ⚖️ Compute after size
       id: after
       run: |

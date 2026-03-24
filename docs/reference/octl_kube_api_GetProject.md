@@ -1,6 +1,10 @@
 ## octl kube api GetProject
 
+request returning *ProjectResponse
 
+### Synopsis
+
+request returning *ProjectResponse
 
 ```
 octl kube api GetProject id [flags]

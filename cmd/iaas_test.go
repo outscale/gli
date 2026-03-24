@@ -35,6 +35,14 @@ func TestIAASAPI(t *testing.T) {
 	subregion := region + "a"
 	volResp := osc.Volume{}
 	runJSON(t, []string{"iaas", "vol", "create", "--subregion", subregion, "--size", "4", "--type", "standard", "-o", "json"}, nil, &volResp)
+	defer func(id string) {
+		_ = run(t, []string{"iaas", "vol", "del", id, "-y"}, nil)
+	}(volResp.VolumeId)
+	runJSON(t, []string{"iaas", "vol", "create", "--subregion", subregion, "--size", "4", "--type", "standard", "-o", "json"}, nil, &volResp)
+	defer func(id string) {
+		_ = run(t, []string{"iaas", "vol", "del", id, "-y"}, nil)
+	}(volResp.VolumeId)
+
 	t.Run("ReadVolumes returns a raw output", func(t *testing.T) {
 		resp := osc.ReadVolumesResponse{}
 		runJSON(t, []string{"iaas", "api", "ReadVolumes", "--Filters.VolumeTypes", "standard"}, nil, &resp)
@@ -64,7 +72,7 @@ func TestIAASAPI(t *testing.T) {
 	})
 	t.Run("A JQ filter may be applied", func(t *testing.T) {
 		resp := []string{}
-		runJSON(t, []string{"iaas", "api", "ReadVolumes", "--jq", ".VolumeType", "--Filters.VolumeTypes", "standard", "-o", "JSON"}, nil, &resp)
+		runJSON(t, []string{"iaas", "api", "ReadVolumes", "--jq", ".VolumeType", "--Filters.VolumeTypes", "standard", "-o", "json"}, nil, &resp)
 		assert.NotEmpty(t, resp)
 		for _, vt := range resp {
 			assert.Equal(t, string(osc.VolumeTypeStandard), vt)

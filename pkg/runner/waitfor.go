@@ -15,7 +15,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func waitfor[Client any, Error error](cmd *cobra.Command, args []string, cl *Client, cfg config.Config) error {
+func waitfor[Client any, Error error](cmd *cobra.Command, args []string, cl Client, cfg config.Config) error {
 	expr, _ := cmd.Flags().GetString("waitfor")
 
 	// force JSON output

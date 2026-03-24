@@ -1,6 +1,10 @@
 ## octl kube api GetProjectTemplate
 
+request returning *TemplateResponseProjectInput
 
+### Synopsis
+
+request returning *TemplateResponseProjectInput
 
 ```
 octl kube api GetProjectTemplate [flags]

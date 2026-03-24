@@ -23,7 +23,7 @@ builds:
       - windows
       - darwin
     ldflags:
-        - "-s -w -X {{ .ModulePath }}/pkg/version.Version=v{{.Version}}"
+        - "-s -w -X {{ .ModulePath }}/pkg/version.Version=v{{.Version}} -X k8s.io/component-base/version.gitVersion=v{{.Env.KUBECTL_VERSION}}+octl -X k8s.io/component-base/version.gitCommit={{.FullCommit}} -X k8s.io/component-base/version.buildDate={{.Date}}"
 
 archives:
   - formats: [binary]

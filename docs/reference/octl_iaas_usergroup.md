@@ -34,7 +34,6 @@ usergroup commands
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
 * [octl iaas usergroup create](octl_iaas_usergroup_create.md)	 - alias for api CreateUserGroup
 * [octl iaas usergroup delete](octl_iaas_usergroup_delete.md)	 - alias for api DeleteUserGroup --UserGroupName user_group_name
-* [octl iaas usergroup list](octl_iaas_usergroup_list.md)	 - alias for api ReadUserGroup
 * [octl iaas usergroup list](octl_iaas_usergroup_list.md)	 - alias for api ReadUserGroups
 * [octl iaas usergroup update](octl_iaas_usergroup_update.md)	 - alias for api UpdateUserGroup --UserGroupName user_group_name
 

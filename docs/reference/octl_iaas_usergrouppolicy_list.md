@@ -1,12 +1,12 @@
 ## octl iaas usergrouppolicy list
 
-alias for api ReadUserGroupPolicy
+alias for api ReadUserGroupPolicies
 
 ### Synopsis
 
-> *alias for api ReadUserGroupPolicy*
+> *alias for api ReadUserGroupPolicies*
 
-Returns information about an inline policy included in a specified group.
+Lists the names of the inline policies embedded in a specific group.
 
 ```
 octl iaas usergrouppolicy list [flags]
@@ -15,8 +15,8 @@ octl iaas usergrouppolicy list [flags]
 ### Options
 
 ```
+      --first-item int           The item starting the list of policies requested.
   -h, --help                     help for list
-      --name string              The name of the policy.
       --user-group-name string   The name of the group.
       --user-group-path string   The path to the group.
 ```

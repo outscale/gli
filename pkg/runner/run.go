@@ -29,15 +29,15 @@ import (
 	"github.com/spf13/pflag"
 )
 
-func Run[Client any, Error error](cmd *cobra.Command, args []string, cl *Client, cfg config.Config) error {
+func Run[Client any, Error error](cmd *cobra.Command, args []string, cl Client, cfg config.Config) error {
 	if cmd.Flags().Lookup("waitfor").Changed {
 		return waitfor[Client, Error](cmd, args, cl, cfg)
 	}
 	return doRun[Client, Error](cmd, args, cl, cfg)
 }
 
-func doRun[Client any, Error error](cmd *cobra.Command, args []string, cl *Client, cfg config.Config) error {
-	clt := reflect.TypeFor[*Client]()
+func doRun[Client any, Error error](cmd *cobra.Command, args []string, cl Client, cfg config.Config) error {
+	clt := reflect.TypeFor[Client]()
 	m, _ := clt.MethodByName(cmd.Name())
 
 	ctx := cmd.Context()
@@ -46,19 +46,33 @@ func doRun[Client any, Error error](cmd *cobra.Command, args []string, cl *Clien
 	}
 
 	argsIndex := 0
-	for j := 2; j < m.Type.NumIn()-1; j++ {
+	// for methods, the first parameter is the receiver, we need to start at 2 (after context)
+	firstIdx := 2
+	// for interfaces, the method has no receiver, we need to start at 1 (after context)
+	if clt.Kind() == reflect.Interface {
+		firstIdx = 1
+	}
+	injected := false
+	for j := firstIdx; j < m.Type.NumIn(); j++ {
 		argType := m.Type.In(j)
+		if m.Type.IsVariadic() && j == m.Type.NumIn()-1 {
+			continue
+		}
 		if argType.Kind() == reflect.Struct || argType.Kind() == reflect.Pointer {
 			arg := reflect.New(argType).Elem()
 			if argType.Kind() == reflect.Pointer {
 				debug.Println("allocating arg")
 				arg.Set(reflect.New(argType.Elem()))
 			}
-			err := ToStruct(cmd, arg, "")
-			if err != nil {
-				return err
+			if !injected {
+				err := ToStruct(cmd, arg, "")
+				switch {
+				case err != nil:
+					return err
+				default:
+					injected = true
+				}
 			}
-
 			callArgs = append(callArgs, arg)
 			continue
 		}
@@ -141,7 +155,7 @@ func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string) error {
 		if err == nil {
 			messages.Info("Using %s as request payload", source)
 		} else {
-			debug.Println("unable to inject", source, err)
+			debug.Println("unable to inject", source, "into", arg.Type().Name(), err)
 		}
 	}
 	if err == nil {

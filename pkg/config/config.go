@@ -8,6 +8,7 @@ package config
 import (
 	"encoding/json"
 	"fmt"
+	"slices"
 	"strings"
 
 	"github.com/itchyny/gojq"
@@ -144,6 +145,10 @@ type Alias struct {
 	Command    []string `yaml:"command"`
 	Flags      FlagSet  `yaml:"flags,omitempty"`
 	Prompt     *Prompt  `yaml:"prompt,omitempty"`
+}
+
+func (a *Alias) HasRequiredFlag() bool {
+	return slices.ContainsFunc(a.Flags, func(f Flag) bool { return f.Required })
 }
 
 type FlagConfig struct {

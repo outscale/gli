@@ -10,6 +10,7 @@ import (
 	"errors"
 	"iter"
 	"reflect"
+	"strings"
 
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/output/result"
@@ -50,9 +51,14 @@ func (p *Paginated) Read(ctx context.Context, fetch FetchPage) iter.Seq[result.R
 			res := reflect.Indirect(vres[0])
 			content := res
 			if p.contentField != "" && p.contentField != "." {
-				content = reflect.Indirect(content.FieldByName(p.contentField))
+				content = contentField(content, p.contentField)
 			}
 			addPreview(content)
+			if !content.IsValid() || !content.CanInterface() {
+				debug.Println("no content ?")
+				_ = yield(result.Result{SingleEntry: true})
+				return
+			}
 			if content.Kind() != reflect.Slice {
 				debug.Println("not a slice", content.Kind())
 				_ = yield(result.Result{Ok: content.Interface(), SingleEntry: true})
@@ -77,6 +83,16 @@ func (p *Paginated) Read(ctx context.Context, fetch FetchPage) iter.Seq[result.R
 			}
 		}
 	}
+}
+
+func contentField(v reflect.Value, path string) reflect.Value {
+	before, after, found := strings.Cut(path, ".")
+	content := reflect.Indirect(v.FieldByName(before))
+	debug.Println("contentField", before, after, content.IsValid())
+	if !found {
+		return content
+	}
+	return contentField(content, after)
 }
 
 var _ Interface = (*Paginated)(nil)

@@ -32,7 +32,7 @@ func init() {
 	b.BuildAPI(iaasCmd, func(m reflect.Method) bool {
 		return m.Type.NumIn() == 4 && m.Type.NumOut() == 2 && !strings.HasSuffix(m.Name, "Raw")
 	}, oapi)
-	b.Build(iaasCmd)
+	b.Build(iaasCmd, nil)
 
 	cmd, _, err := iaasCmd.Find([]string{"net"})
 	if err != nil {
@@ -49,7 +49,7 @@ func oapi(cmd *cobra.Command, args []string) {
 	p := loadProfile(cmd)
 	cl, err := osc.NewClient(p, sdkOptions(cmd)...)
 	if err == nil {
-		err = runner.Run[osc.Client, *osc.ErrorResponse](cmd, args, cl, config.For("iaas"))
+		err = runner.Run[*osc.Client, *osc.ErrorResponse](cmd, args, cl, config.For("iaas"))
 	}
 	if err != nil {
 		messages.ExitErr(err)

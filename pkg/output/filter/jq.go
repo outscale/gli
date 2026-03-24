@@ -44,6 +44,7 @@ func (j JQ) Filter(ctx context.Context, seq iter.Seq[result.Result]) iter.Seq[re
 				_ = yield(result.Result{Error: fmt.Errorf("jq from JSON: %w", err)})
 				return
 			}
+			var filtered []any
 			iter := j.query.RunWithContext(ctx, raw)
 			for {
 				v, ok := iter.Next()
@@ -57,7 +58,10 @@ func (j JQ) Filter(ctx context.Context, seq iter.Seq[result.Result]) iter.Seq[re
 					_ = yield(result.Result{Error: fmt.Errorf("jq error: %w", err)})
 					return
 				}
-				if !yield(result.Result{Ok: v}) {
+				filtered = append(filtered, v)
+			}
+			for _, v := range filtered {
+				if !yield(result.Result{Ok: v, SingleEntry: len(filtered) == 1}) {
 					return
 				}
 			}

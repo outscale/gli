@@ -1,6 +1,10 @@
 ## octl kube api UpdateCluster
 
+Updates the configuration of an existing cluster by its ID.
 
+### Synopsis
+
+Updates the configuration of an existing cluster by its ID. The request must include the updated cluster details in the request body. Returns the updated cluster information
 
 ```
 octl kube api UpdateCluster id [flags]
@@ -10,31 +14,31 @@ octl kube api UpdateCluster id [flags]
 
 ```
       --AdminWhitelist strings                                       
-      --AdmissionFlags.DisableAdmissionPlugins strings               
-      --AdmissionFlags.EnableAdmissionPlugins strings                
-      --Auth.Oidc.ClientId string                                    
+      --AdmissionFlags.DisableAdmissionPlugins strings               List of Kubernetes admission plugins to disable
+      --AdmissionFlags.EnableAdmissionPlugins strings                List of Kubernetes admission plugins to enable
+      --Auth.Oidc.ClientId string                                    The client id that all tokens must be issued for.
       --Auth.Oidc.GroupsClaim strings                                
       --Auth.Oidc.GroupsPrefix string                                
-      --Auth.Oidc.IssuerUrl string                                   
+      --Auth.Oidc.IssuerUrl string                                   The URL of the provider that allows the API server to discover public signing keys.
       --Auth.Oidc.UsernameClaim string                               
       --Auth.Oidc.UsernamePrefix string                              
-      --AutoMaintenances.MinorUpgradeMaintenance.DurationHours int   
-      --AutoMaintenances.MinorUpgradeMaintenance.Enabled             
-      --AutoMaintenances.MinorUpgradeMaintenance.StartHour int       
-      --AutoMaintenances.MinorUpgradeMaintenance.Tz string           
-      --AutoMaintenances.MinorUpgradeMaintenance.WeekDay string      
-      --AutoMaintenances.PatchUpgradeMaintenance.DurationHours int   
-      --AutoMaintenances.PatchUpgradeMaintenance.Enabled             
-      --AutoMaintenances.PatchUpgradeMaintenance.StartHour int       
-      --AutoMaintenances.PatchUpgradeMaintenance.Tz string           
-      --AutoMaintenances.PatchUpgradeMaintenance.WeekDay string      
-      --ControlPlanes string                                         
+      --AutoMaintenances.MinorUpgradeMaintenance.DurationHours int   Duration of the maintenance window in hours
+      --AutoMaintenances.MinorUpgradeMaintenance.Enabled             Flag to enable or disable the maintenance window
+      --AutoMaintenances.MinorUpgradeMaintenance.StartHour int       Hour of the day when maintenance window starts (0-23)
+      --AutoMaintenances.MinorUpgradeMaintenance.Tz string           Timezone for the maintenance window
+      --AutoMaintenances.MinorUpgradeMaintenance.WeekDay string      Day of the week for the maintenance window
+      --AutoMaintenances.PatchUpgradeMaintenance.DurationHours int   Duration of the maintenance window in hours
+      --AutoMaintenances.PatchUpgradeMaintenance.Enabled             Flag to enable or disable the maintenance window
+      --AutoMaintenances.PatchUpgradeMaintenance.StartHour int       Hour of the day when maintenance window starts (0-23)
+      --AutoMaintenances.PatchUpgradeMaintenance.Tz string           Timezone for the maintenance window
+      --AutoMaintenances.PatchUpgradeMaintenance.WeekDay string      Day of the week for the maintenance window
+      --ControlPlanes string                                         Size of control plane deployment for the cluster
       --Description string                                           
       --DisableApiTermination                                        
-      --MaintenanceWindow.DurationHours int                          
-      --MaintenanceWindow.StartHour int                              
-      --MaintenanceWindow.Tz string                                  
-      --MaintenanceWindow.WeekDay string                             
+      --MaintenanceWindow.DurationHours int                          Duration of the maintenance window in hours
+      --MaintenanceWindow.StartHour int                              Hour of the day when maintenance window starts (0-23)
+      --MaintenanceWindow.Tz string                                  Timezone for the maintenance window
+      --MaintenanceWindow.WeekDay string                             Day of the week for the maintenance window
       --Quirks strings                                               
       --Version string                                               
   -h, --help                                                         help for UpdateCluster
