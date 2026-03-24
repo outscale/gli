@@ -20,6 +20,7 @@ octl storage api CompleteMultipartUpload [flags]
       --IfMatch string                                     Uploads the object only if the ETag (entity tag) value provided during the WRITE operation matches the ETag of the object in S3.
       --IfNoneMatch string                                 Uploads the object only if the object key name does not already exist in the bucket specified.
       --Key string                                         Object key for which the multipart upload was initiated.
+      --MpuObjectSize int                                  The expected total object size of the multipart upload request.
       --MultipartUpload.Parts.0.ChecksumCRC32 string       
       --MultipartUpload.Parts.0.ChecksumCRC32C string      
       --MultipartUpload.Parts.0.ChecksumCRC64NVME string   

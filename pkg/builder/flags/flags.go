@@ -98,7 +98,7 @@ func (b *Builder) Build(fs *FlagSet, arg reflect.Type, prefix string, allowRequi
 			required = spec.Required
 		}
 		switch t.Kind() {
-		case reflect.Bool, reflect.String, reflect.Int, reflect.Int32:
+		case reflect.Bool, reflect.String, reflect.Int, reflect.Int32, reflect.Int64:
 			f := Flag{
 				Name:      b.normalize(flagName),
 				FieldPath: flagName,

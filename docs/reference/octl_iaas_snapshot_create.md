@@ -32,6 +32,7 @@ octl iaas snapshot create [flags]
       --description string          A description for the snapshot.
       --file-location string        **(when importing from a bucket)** The pre-signed URL of the snapshot you want to import.
   -h, --help                        help for create
+      --size int                    **(when importing from a bucket)** The size of the snapshot you want to create in your account, in bytes.
       --source-region-name string   **(when copying a snapshot)** The name of the source Region, which must be the same as the Region of your account.
       --source-snapshot-id string   **(when copying a snapshot)** The ID of the snapshot you want to copy.
       --volume-id string            **(when creating from a volume)** The ID of the volume you want to create a snapshot of.

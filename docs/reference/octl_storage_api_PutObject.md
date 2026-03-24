@@ -23,6 +23,7 @@ octl storage api PutObject [flags]
       --ContentDisposition string           Specifies presentational information for the object.
       --ContentEncoding string              Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
       --ContentLanguage string              The language the content is in.
+      --ContentLength int                   Size of the body in bytes.
       --ContentMD5 string                   The Base64 encoded 128-bit MD5 digest of the message (without the headers) according to RFC 1864.
       --ContentType string                  A standard MIME type describing the format of the contents.
       --ExpectedBucketOwner string          The account ID of the expected bucket owner.
@@ -47,6 +48,7 @@ octl storage api PutObject [flags]
       --StorageClass string                 By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects.
       --Tagging string                      The tag-set for the object.
       --WebsiteRedirectLocation string      If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL.
+      --WriteOffsetBytes int                Specifies the offset for appending data to existing objects in bytes.
   -h, --help                                help for PutObject
 ```
 

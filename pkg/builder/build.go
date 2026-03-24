@@ -211,6 +211,12 @@ func (b *Builder[T]) buildFlags(cmd *cobra.Command, arg reflect.Type) {
 			} else {
 				fs.Int32(f.Name, 0, f.Help)
 			}
+		case reflect.Int64:
+			if f.Slice {
+				fs.Int64Slice(f.Name, nil, f.Help)
+			} else {
+				fs.Int64(f.Name, 0, f.Help)
+			}
 		case reflect.String:
 			switch {
 			case f.FlagValue != nil:

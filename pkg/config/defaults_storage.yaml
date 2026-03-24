@@ -578,6 +578,8 @@ aliases:
     alias_to: IfMatch
   - name: if-match-last-modified-time
     alias_to: IfMatchLastModifiedTime
+  - name: if-match-size
+    alias_to: IfMatchSize
   - name: mfa
     alias_to: MFA
   - name: version-id
@@ -636,6 +638,8 @@ aliases:
     alias_to: ContentEncoding
   - name: content-language
     alias_to: ContentLanguage
+  - name: content-length
+    alias_to: ContentLength
   - name: content-md-5
     alias_to: ContentMD5
   - name: content-type
@@ -680,6 +684,8 @@ aliases:
     alias_to: Tagging
   - name: website-redirect-location
     alias_to: WebsiteRedirectLocation
+  - name: write-offset-byte
+    alias_to: WriteOffsetBytes
 spec:
   calls:
     AbortMultipartUpload: {}

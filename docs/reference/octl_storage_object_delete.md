@@ -21,6 +21,7 @@ octl storage object delete key [key]... [flags]
   -h, --help                                  help for delete
       --if-match string                       Deletes the object if the ETag (entity tag) value provided during the delete operation matches the ETag of the object in S3.
       --if-match-last-modified-time osctime   If present, the object is deleted only if its modification times matches the provided Timestamp .
+      --if-match-size int                     If present, the object is deleted only if its size matches the provided size in bytes.
       --mfa string                            The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device.
       --version-id string                     Version ID used to reference a specific version of the object.
 ```

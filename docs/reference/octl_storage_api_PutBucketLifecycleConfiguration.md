@@ -16,9 +16,13 @@ octl storage api PutBucketLifecycleConfiguration [flags]
       --LifecycleConfiguration.Rules.0.Expiration.Date osctime                                        
       --LifecycleConfiguration.Rules.0.Expiration.Days int32                                          
       --LifecycleConfiguration.Rules.0.Expiration.ExpiredObjectDeleteMarker                           
+      --LifecycleConfiguration.Rules.0.Filter.And.ObjectSizeGreaterThan int                           
+      --LifecycleConfiguration.Rules.0.Filter.And.ObjectSizeLessThan int                              
       --LifecycleConfiguration.Rules.0.Filter.And.Prefix string                                       
       --LifecycleConfiguration.Rules.0.Filter.And.Tags.0.Key string                                   
       --LifecycleConfiguration.Rules.0.Filter.And.Tags.0.Value string                                 
+      --LifecycleConfiguration.Rules.0.Filter.ObjectSizeGreaterThan int                               
+      --LifecycleConfiguration.Rules.0.Filter.ObjectSizeLessThan int                                  
       --LifecycleConfiguration.Rules.0.Filter.Prefix string                                           
       --LifecycleConfiguration.Rules.0.Filter.Tag.Key string                                          
       --LifecycleConfiguration.Rules.0.Filter.Tag.Value string                                        

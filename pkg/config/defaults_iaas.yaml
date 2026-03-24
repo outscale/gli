@@ -4818,6 +4818,8 @@ aliases:
     alias_to: Description
   - name: file-location
     alias_to: FileLocation
+  - name: size
+    alias_to: SnapshotSize
   - name: source-region-name
     alias_to: SourceRegionName
   - name: source-snapshot-id

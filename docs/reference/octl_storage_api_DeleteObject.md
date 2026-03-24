@@ -14,6 +14,7 @@ octl storage api DeleteObject [flags]
       --ExpectedBucketOwner string        The account ID of the expected bucket owner.
       --IfMatch string                    Deletes the object if the ETag (entity tag) value provided during the delete operation matches the ETag of the object in S3.
       --IfMatchLastModifiedTime osctime   If present, the object is deleted only if its modification times matches the provided Timestamp .
+      --IfMatchSize int                   If present, the object is deleted only if its size matches the provided size in bytes.
       --Key string                        name of the object to delete.
       --MFA string                        The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device.
       --RequestPayer string               Confirms that the requester knows that they will be charged for the request.

@@ -206,6 +206,8 @@ func setValue(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
 		return setValueInt(arg, fs, flag)
 	case reflect.Int32:
 		return setValueInt32(arg, fs, flag)
+	case reflect.Int64:
+		return setValueInt64(arg, fs, flag)
 	case reflect.String:
 		return setValueString(arg, fs, flag)
 	}
@@ -266,6 +268,16 @@ func setValueInt32(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
 		return fmt.Errorf("invalid %s value: %w", flag, err)
 	}
 	debug.Println("setValueInt32", flag, ss)
+	arg.Set(reflect.ValueOf(ss).Convert(arg.Type()))
+	return nil
+}
+
+func setValueInt64(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
+	ss, err := fs.GetInt64(flag)
+	if err != nil {
+		return fmt.Errorf("invalid %s value: %w", flag, err)
+	}
+	debug.Println("setValueInt64", flag, ss)
 	arg.Set(reflect.ValueOf(ss).Convert(arg.Type()))
 	return nil
 }

@@ -17,9 +17,10 @@ octl iaas api UpdateApiAccessPolicy [flags]
 ### Options
 
 ```
-      --DryRun              If true, checks whether you have the required permissions to perform the action.
-      --RequireTrustedEnv   If true, a trusted session is activated, provided that you specify the MaxAccessKeyExpirationSeconds parameter with a value greater than 0.
-  -h, --help                help for UpdateApiAccessPolicy
+      --DryRun                              If true, checks whether you have the required permissions to perform the action.
+      --MaxAccessKeyExpirationSeconds int   The maximum possible lifetime for your access keys, in seconds (between 0 and 3153600000, both included).
+      --RequireTrustedEnv                   If true, a trusted session is activated, provided that you specify the MaxAccessKeyExpirationSeconds parameter with a value greater than 0.
+  -h, --help                                help for UpdateApiAccessPolicy
 ```
 
 ### Options inherited from parent commands

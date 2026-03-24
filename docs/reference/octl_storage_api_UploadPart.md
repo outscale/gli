@@ -17,6 +17,7 @@ octl storage api UploadPart [flags]
       --ChecksumCRC64NVME string      This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --ChecksumSHA1 string           This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --ChecksumSHA256 string         This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
+      --ContentLength int             Size of the body in bytes.
       --ContentMD5 string             The Base64 encoded 128-bit MD5 digest of the part data.
       --ExpectedBucketOwner string    The account ID of the expected bucket owner.
       --Key string                    Object key for which the multipart upload was initiated.

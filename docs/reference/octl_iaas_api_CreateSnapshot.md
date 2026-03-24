@@ -30,6 +30,7 @@ octl iaas api CreateSnapshot [flags]
       --Description string        A description for the snapshot.
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
       --FileLocation string       **(when importing from a bucket)** The pre-signed URL of the snapshot you want to import.
+      --SnapshotSize int          **(when importing from a bucket)** The size of the snapshot you want to create in your account, in bytes.
       --SourceRegionName string   **(when copying a snapshot)** The name of the source Region, which must be the same as the Region of your account.
       --SourceSnapshotId string   **(when copying a snapshot)** The ID of the snapshot you want to copy.
       --VolumeId string           **(when creating from a volume)** The ID of the volume you want to create a snapshot of.

@@ -29,6 +29,7 @@ octl storage object put key [key]... [flags]
       --content-disposition string         Specifies presentational information for the object.
       --content-encoding string            Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
       --content-language string            The language the content is in.
+      --content-length int                 Size of the body in bytes.
       --content-md-5 string                The Base64 encoded 128-bit MD5 digest of the message (without the headers) according to RFC 1864.
       --content-type string                A standard MIME type describing the format of the contents.
       --expected-bucket-owner string       The account ID of the expected bucket owner.
@@ -52,6 +53,7 @@ octl storage object put key [key]... [flags]
       --storage-class string               By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects.
       --tagging string                     The tag-set for the object.
       --website-redirect-location string   If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL.
+      --write-offset-byte int              Specifies the offset for appending data to existing objects in bytes.
 ```
 
 ### Options inherited from parent commands
