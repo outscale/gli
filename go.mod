@@ -1,6 +1,6 @@
 module github.com/outscale/octl
 
-go 1.25.3
+go 1.26.0
 
 require (
 	dario.cat/mergo v1.0.2

@@ -13,10 +13,10 @@ octl storage api PutObjectLockConfiguration [flags]
       --ChecksumAlgorithm string                                    Indicates the algorithm used to create the checksum for the object when you use the SDK.
       --ContentMD5 string                                           The MD5 hash for the request body.
       --ExpectedBucketOwner string                                  The account ID of the expected bucket owner.
-      --ObjectLockConfiguration.ObjectLockEnabled string            
-      --ObjectLockConfiguration.Rule.DefaultRetention.Days int32    
-      --ObjectLockConfiguration.Rule.DefaultRetention.Mode string   
-      --ObjectLockConfiguration.Rule.DefaultRetention.Years int32   
+      --ObjectLockConfiguration.ObjectLockEnabled string            Indicates whether this bucket has an Object Lock configuration enabled.
+      --ObjectLockConfiguration.Rule.DefaultRetention.Days int32    The number of days that you want to specify for the default retention period.
+      --ObjectLockConfiguration.Rule.DefaultRetention.Mode string   The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+      --ObjectLockConfiguration.Rule.DefaultRetention.Years int32   The number of years that you want to specify for the default retention period.
       --RequestPayer string                                         Confirms that the requester knows that they will be charged for the request.
       --Token string                                                A token to allow Object Lock to be enabled for an existing bucket.
   -h, --help                                                        help for PutObjectLockConfiguration

@@ -1,22 +1,23 @@
-## octl storage api PutBucketVersioning
+## octl storage object retention configure
+
+Configure object retention, alias for api PutObjectRetention --Key key --Retention.Mode
+
+### Synopsis
+
+> *Configure object retention, alias for api PutObjectRetention --Key key --Retention.Mode*
 
 
 
 ```
-octl storage api PutBucketVersioning [flags]
+octl storage object retention configure key [flags]
 ```
 
 ### Options
 
 ```
-      --Bucket string                              The bucket name.
-      --ChecksumAlgorithm string                   Indicates the algorithm used to create the checksum for the object when you use the SDK.
-      --ContentMD5 string                          >The base64-encoded 128-bit MD5 digest of the data.
-      --ExpectedBucketOwner string                 The account ID of the expected bucket owner.
-      --MFA string                                 The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device.
-      --VersioningConfiguration.MFADelete string   Specifies whether MFA delete is enabled in the bucket versioning configuration.
-      --VersioningConfiguration.Status string      The versioning state of the bucket.
-  -h, --help                                       help for PutBucketVersioning
+      --bucket string          The bucket name that contains the object you want to apply this Object Retention configuration to.
+  -h, --help                   help for configure
+      --retain-until osctime   The date on which this Object Lock Retention will expire.
 ```
 
 ### Options inherited from parent commands
@@ -42,5 +43,5 @@ octl storage api PutBucketVersioning [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage object retention](octl_storage_object_retention.md)	 - retention commands
 

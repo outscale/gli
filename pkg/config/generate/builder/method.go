@@ -396,7 +396,7 @@ func (b *MethodBuilder) buildDeleteAlias() error {
 	var displayCmd []string
 	var displayFlags config.FlagSet
 	for _, a := range b.build.Aliases {
-		if a.Entity == b.entityName && strings.HasPrefix(a.Use, "describe") {
+		if a.Entity == b.entityName && strings.HasPrefix(a.Use, "describe") && a.SubCommand == "" {
 			displayCmd = lo.Map(a.Command, func(arg string, i int) string {
 				if i > 0 && (a.Command[i-1] == "-o" || a.Command[i-1] == "--output") {
 					return "table"

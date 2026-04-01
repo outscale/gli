@@ -1,22 +1,22 @@
-## octl storage api PutBucketVersioning
+## octl storage object tagging describe
+
+List object tags, alias for api GetObjectTagging --Key key
+
+### Synopsis
+
+> *List object tags, alias for api GetObjectTagging --Key key*
 
 
 
 ```
-octl storage api PutBucketVersioning [flags]
+octl storage object tagging describe key [flags]
 ```
 
 ### Options
 
 ```
-      --Bucket string                              The bucket name.
-      --ChecksumAlgorithm string                   Indicates the algorithm used to create the checksum for the object when you use the SDK.
-      --ContentMD5 string                          >The base64-encoded 128-bit MD5 digest of the data.
-      --ExpectedBucketOwner string                 The account ID of the expected bucket owner.
-      --MFA string                                 The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device.
-      --VersioningConfiguration.MFADelete string   Specifies whether MFA delete is enabled in the bucket versioning configuration.
-      --VersioningConfiguration.Status string      The versioning state of the bucket.
-  -h, --help                                       help for PutBucketVersioning
+      --bucket string   The bucket name containing the object for which to get the tagging information.
+  -h, --help            help for describe
 ```
 
 ### Options inherited from parent commands
@@ -42,5 +42,5 @@ octl storage api PutBucketVersioning [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage object tagging](octl_storage_object_tagging.md)	 - tagging commands
 

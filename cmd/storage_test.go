@@ -13,22 +13,31 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
-	"github.com/outscale/goutils/sdk/ptr"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
+
+const hello = "Hello world !"
+
+func file(t *testing.T, name, content string) (path string) {
+	t.Helper()
+	path = filepath.Join(t.TempDir(), name)
+	err := os.WriteFile(path, []byte(content), 0o600)
+	require.NoError(t, err)
+	return
+}
 
 func TestStorageCRUD(t *testing.T) {
 	sum := sha1.Sum([]byte(t.TempDir()))
 	bucket := hex.EncodeToString(sum[:])
 
 	object := "object.txt"
-	path := filepath.Join(t.TempDir(), object)
-	err := os.WriteFile(path, []byte("Hello world !"), 0o600)
-	require.NoError(t, err)
+	path := file(t, object, hello)
+
 	t.Run("Create/Update/Delete works", func(t *testing.T) {
 		_ = run(t, []string{"storage", "bucket", "create", "--bucket", bucket}, nil)
 		defer func() {
@@ -50,8 +59,6 @@ func TestStorageCRUD(t *testing.T) {
 	})
 }
 
-const hello = "Hello world !"
-
 func TestObjectDownload(t *testing.T) {
 	sum := sha1.Sum([]byte(t.TempDir()))
 	bucket := hex.EncodeToString(sum[:])
@@ -64,9 +71,7 @@ func TestObjectDownload(t *testing.T) {
 	t.Run("An small object can be downloaded", func(t *testing.T) {
 		payload := hello
 		small := "small.txt"
-		smallPath := filepath.Join(t.TempDir(), small)
-		err := os.WriteFile(smallPath, []byte(hello), 0o600)
-		require.NoError(t, err)
+		smallPath := file(t, small, payload)
 		_ = run(t, []string{"storage", "object", "put", small, "--bucket", bucket, "--body", smallPath, "--output", "json"}, nil)
 		defer func() {
 			_ = run(t, []string{"storage", "object", "del", small, "--bucket", bucket, "-y"}, nil)
@@ -75,16 +80,14 @@ func TestObjectDownload(t *testing.T) {
 		content := run(t, []string{"storage", "object", "download", small, "--bucket", bucket}, nil)
 		assert.Equal(t, payload, string(content))
 		_ = run(t, []string{"storage", "object", "download", small, "--bucket", bucket, "-O", smallPath}, nil)
-		content, err = os.ReadFile(smallPath)
+		content, err := os.ReadFile(smallPath)
 		require.NoError(t, err)
 		assert.Equal(t, payload, string(content))
 	})
 	t.Run("An large object can be downloaded", func(t *testing.T) {
 		payload := strings.Repeat(hello, 100)
 		large := "large.txt"
-		largePath := filepath.Join(t.TempDir(), large)
-		err := os.WriteFile(largePath, []byte(payload), 0o600)
-		require.NoError(t, err)
+		largePath := file(t, large, payload)
 
 		_ = run(t, []string{"storage", "object", "put", large, "--bucket", bucket, "--body", largePath, "--output", "json"}, nil)
 		defer func() {
@@ -94,7 +97,7 @@ func TestObjectDownload(t *testing.T) {
 		content := run(t, []string{"storage", "object", "download", large, "--bucket", bucket}, nil)
 		assert.Equal(t, payload, string(content))
 		_ = run(t, []string{"storage", "object", "download", large, "--bucket", bucket, "-O", largePath}, nil)
-		content, err = os.ReadFile(largePath)
+		content, err := os.ReadFile(largePath)
 		require.NoError(t, err)
 		assert.Equal(t, payload, string(content))
 	})
@@ -139,10 +142,10 @@ func TestBucketEncryption(t *testing.T) {
 	t.Run("Encryption can be enabled and disabled", func(t *testing.T) {
 		_ = run(t, []string{"storage", "bucket", "encryption", "enable", bucket}, nil)
 
-		var resp s3.GetBucketEncryptionOutput
+		var resp types.ServerSideEncryptionConfiguration
 		runJSON(t, []string{"storage", "bucket", "encryption", "describe", bucket, "-o", "json"}, nil, &resp)
-		require.Len(t, resp.ServerSideEncryptionConfiguration.Rules, 1)
-		assert.Equal(t, types.ServerSideEncryptionAes256, resp.ServerSideEncryptionConfiguration.Rules[0].ApplyServerSideEncryptionByDefault.SSEAlgorithm)
+		require.Len(t, resp.Rules, 1)
+		assert.Equal(t, types.ServerSideEncryptionAes256, resp.Rules[0].ApplyServerSideEncryptionByDefault.SSEAlgorithm)
 
 		_ = run(t, []string{"storage", "bucket", "encryption", "disable", bucket}, nil)
 	})
@@ -162,9 +165,9 @@ func TestBucketCORS(t *testing.T) {
 
 		_ = run(t, []string{"storage", "bucket", "cors", "configure", bucket, "--from-file", "testdata/storage/cors.json"}, nil)
 
-		var resp s3.GetBucketCorsOutput
+		var resp []types.CORSRule
 		runJSON(t, []string{"storage", "bucket", "cors", "describe", bucket, "-o", "json"}, nil, &resp)
-		assert.NotEmpty(t, resp.CORSRules)
+		assert.NotEmpty(t, resp)
 
 		_ = run(t, []string{"storage", "bucket", "cors", "disable", bucket}, nil)
 
@@ -261,6 +264,34 @@ func TestBucketLifecycle(t *testing.T) {
 	})
 }
 
+func TestBucketObjectLock(t *testing.T) {
+	t.Skip("This test creates non deletable buckets, it is disabled but kept to be runned manually")
+
+	sum := sha1.Sum([]byte(t.TempDir()))
+	bucket := hex.EncodeToString(sum[:])
+
+	_ = run(t, []string{"storage", "bucket", "create", "--bucket", bucket, "--object-lock-enabled-for-bucket"}, nil)
+
+	t.Run("Object lock can be configured", func(t *testing.T) {
+		_ = run(t, []string{"storage", "bucket", "objectlock", "configure", bucket, "--from-file", "testdata/storage/objectlock.json"}, nil)
+
+		var resp types.ObjectLockConfiguration
+		runJSON(t, []string{"storage", "bucket", "objectlock", "describe", bucket, "-o", "json"}, nil, &resp)
+		assert.Equal(t, types.ObjectLockEnabledEnabled, resp.ObjectLockEnabled)
+	})
+
+	t.Run("Retention can be configured on objects", func(t *testing.T) {
+		object := "object.txt"
+		path := file(t, object, hello)
+		_ = run(t, []string{"storage", "object", "put", object, "--body", path, "--bucket", bucket}, nil)
+		defer func() {
+			_ = run(t, []string{"storage", "object", "del", object, "--bucket", bucket, "-y"}, nil)
+		}()
+
+		_ = run(t, []string{"storage", "object", "retention", "configure", object, "--retain-until", time.Now().AddDate(0, 0, 2).Format(time.RFC3339), "--bucket", bucket}, nil)
+	})
+}
+
 func TestBucketACL(t *testing.T) {
 	sum := sha1.Sum([]byte(t.TempDir()))
 	bucket := hex.EncodeToString(sum[:])
@@ -279,7 +310,7 @@ func TestBucketACL(t *testing.T) {
 		resp.Grants = append(resp.Grants, types.Grant{
 			Grantee: &types.Grantee{
 				Type: types.TypeGroup,
-				URI:  ptr.To("http://acs.amazonaws.com/groups/global/AllUsers"),
+				URI:  new("http://acs.amazonaws.com/groups/global/AllUsers"),
 			},
 			Permission: types.PermissionRead,
 		})
@@ -293,5 +324,80 @@ func TestBucketACL(t *testing.T) {
 
 		runJSON(t, []string{"storage", "bucket", "acl", "describe", bucket, "-o", "json"}, nil, &resp)
 		assert.Len(t, resp.Grants, before+1)
+	})
+}
+
+func TestObjectACL(t *testing.T) {
+	sum := sha1.Sum([]byte(t.TempDir()))
+	bucket := hex.EncodeToString(sum[:])
+
+	_ = run(t, []string{"storage", "bucket", "create", "--bucket", bucket}, nil)
+	defer func() {
+		_ = run(t, []string{"storage", "bucket", "del", bucket, "-y"}, nil)
+	}()
+
+	object := "object.txt"
+	path := file(t, object, hello)
+	_ = run(t, []string{"storage", "object", "put", object, "--body", path, "--bucket", bucket}, nil)
+	defer func() {
+		_ = run(t, []string{"storage", "object", "del", object, "--bucket", bucket, "-y"}, nil)
+	}()
+
+	t.Run("ACL can be added", func(t *testing.T) {
+		var resp s3.GetObjectAclOutput
+		runJSON(t, []string{"storage", "object", "acl", "describe", object, "--bucket", bucket, "-o", "json"}, nil, &resp)
+		assert.NotEmpty(t, resp.Grants)
+		before := len(resp.Grants)
+
+		resp.Grants = append(resp.Grants, types.Grant{
+			Grantee: &types.Grantee{
+				Type: types.TypeGroup,
+				URI:  new("http://acs.amazonaws.com/groups/global/AllUsers"),
+			},
+			Permission: types.PermissionRead,
+		})
+		file := filepath.Join(t.TempDir(), "acl.json")
+		fd, err := os.Create(file)
+		require.NoError(t, err)
+		err = json.NewEncoder(fd).Encode(resp)
+		require.NoError(t, err)
+
+		_ = run(t, []string{"storage", "object", "acl", "configure", object, "--bucket", bucket, "--from-file", file}, nil)
+
+		runJSON(t, []string{"storage", "object", "acl", "describe", object, "--bucket", bucket, "-o", "json"}, nil, &resp)
+		assert.Len(t, resp.Grants, before+1)
+	})
+}
+
+func TestObjectTagging(t *testing.T) {
+	sum := sha1.Sum([]byte(t.TempDir()))
+	bucket := hex.EncodeToString(sum[:])
+
+	_ = run(t, []string{"storage", "bucket", "create", "--bucket", bucket}, nil)
+	defer func() {
+		_ = run(t, []string{"storage", "bucket", "del", bucket, "-y"}, nil)
+	}()
+
+	object := "object.txt"
+	path := file(t, object, hello)
+	_ = run(t, []string{"storage", "object", "put", object, "--body", path, "--bucket", bucket}, nil)
+	defer func() {
+		_ = run(t, []string{"storage", "object", "del", object, "--bucket", bucket, "-y"}, nil)
+	}()
+
+	t.Run("Tags can be added and removed", func(t *testing.T) {
+		var resp s3.GetObjectTaggingOutput
+		runJSON(t, []string{"storage", "object", "tagging", "describe", object, "--bucket", bucket, "-o", "json"}, nil, &resp)
+		assert.Empty(t, resp.TagSet)
+
+		_ = run(t, []string{"storage", "object", "tagging", "configure", object, "--bucket", bucket, "--from-file", "testdata/storage/tagging.json"}, nil)
+
+		runJSON(t, []string{"storage", "object", "tagging", "describe", object, "--bucket", bucket, "-o", "json"}, nil, &resp)
+		assert.Equal(t, []types.Tag{{Key: new("key1"), Value: new("value1")}, {Key: new("key2"), Value: new("value2")}}, resp.TagSet)
+
+		_ = run(t, []string{"storage", "object", "tagging", "delete", object, "--bucket", bucket}, nil)
+
+		runJSON(t, []string{"storage", "object", "tagging", "describe", object, "--bucket", bucket, "-o", "json"}, nil, &resp)
+		assert.Empty(t, resp.TagSet)
 	})
 }

@@ -39,7 +39,7 @@ func main() {
 	cfg := builder.Config{
 		InputStructSuffix: "Input",
 		ReadFlagPrefix:    "",
-		SkipFlags:         []string{"ContinuationToken", "BucketRegion", "Marker", "RequestPayer", "MaxKeys", "CreateBucketConfiguration."},
+		SkipFlags:         []string{"ContinuationToken", "BucketRegion", "Marker", "RequestPayer", "MaxKeys", "CreateBucketConfiguration.", "SSE", "StorageClass", "ContentMD5", "Checksum"},
 		PriorityFields:    []string{},
 		FlagOverrides:     map[string]config.Flag{},
 		RequiredFromComment: func(s string) bool {
@@ -48,7 +48,7 @@ func main() {
 	}
 
 	sb := builder.NewSpecBuilder(cfg)
-	sb.BuildSpec(&base, "github.com/outscale/osc-sdk-go/v3/pkg/oos", "github.com/aws/aws-sdk-go-v2/service/s3")
+	sb.BuildSpec(&base, "github.com/outscale/osc-sdk-go/v3/pkg/oos", "github.com/aws/aws-sdk-go-v2/service/s3", "github.com/aws/aws-sdk-go-v2/service/s3/types")
 
 	var client *oos.Client
 	b := builder.NewClientBuilder(cfg)

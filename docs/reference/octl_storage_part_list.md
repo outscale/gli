@@ -15,16 +15,13 @@ octl storage part list [flags]
 ### Options
 
 ```
-      --bucket string                   The name of the bucket to which the parts are being uploaded.
-      --expected-bucket-owner string    The account ID of the expected bucket owner.
-  -h, --help                            help for list
-      --key string                      Object key for which the multipart upload was initiated.
-      --max-part int32                  Sets the maximum number of parts to return.
-      --number-marker string            Specifies the part after which listing should begin.
-      --sse-customer-algorithm string   The server-side encryption (SSE) algorithm used to encrypt the object.
-      --sse-customer-key string         The server-side encryption (SSE) customer managed key.
-      --sse-customer-key-md-5 string    The MD5 server-side encryption (SSE) customer managed key.
-      --upload-id string                Upload ID identifying the multipart upload whose parts are being listed.
+      --bucket string                  The name of the bucket to which the parts are being uploaded.
+      --expected-bucket-owner string   The account ID of the expected bucket owner.
+  -h, --help                           help for list
+      --key string                     Object key for which the multipart upload was initiated.
+      --max-part int32                 Sets the maximum number of parts to return.
+      --number-marker string           Specifies the part after which listing should begin.
+      --upload-id string               Upload ID identifying the multipart upload whose parts are being listed.
 ```
 
 ### Options inherited from parent commands

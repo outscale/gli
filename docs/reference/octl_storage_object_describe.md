@@ -1,10 +1,10 @@
 ## octl storage object describe
 
-Display an object metadata, alias for api GetObject --Key key
+Display an object metadata, alias for api HeadObject --Key key
 
 ### Synopsis
 
-> *Display an object metadata, alias for api GetObject --Key key*
+> *Display an object metadata, alias for api HeadObject --Key key*
 
 
 
@@ -15,7 +15,7 @@ octl storage object describe key [flags]
 ### Options
 
 ```
-      --bucket string   The bucket name containing the object.
+      --bucket string   The name of the bucket that contains the object.
   -h, --help            help for describe
 ```
 

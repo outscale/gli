@@ -15,8 +15,8 @@ octl storage api PutObjectTagging [flags]
       --ExpectedBucketOwner string      The account ID of the expected bucket owner.
       --Key string                      Name of the object key.
       --RequestPayer string             Confirms that the requester knows that they will be charged for the request.
-      --Tagging.TagSet.0.Key string     
-      --Tagging.TagSet.0.Value string   
+      --Tagging.TagSet.0.Key string     Name of the object key.
+      --Tagging.TagSet.0.Value string   of the tag.
       --VersionId string                The versionId of the object that the tag-set will be added to.
   -h, --help                            help for PutObjectTagging
 ```

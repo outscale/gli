@@ -44,15 +44,19 @@ contents:
     entity: acl
     group: Bucket
   GetBucketCors:
+    content: CORSRules
     entity: cors
     group: Bucket
   GetBucketEncryption:
+    content: ServerSideEncryptionConfiguration
     entity: encryption
     group: Bucket
   GetBucketLifecycleConfiguration:
+    content: .
     entity: lifecycle
     group: Bucket
   GetBucketLocation:
+    content: .
     entity: location
     group: Bucket
   GetBucketPolicy:
@@ -63,9 +67,11 @@ contents:
     entity: versioning
     group: Bucket
   GetBucketWebsite:
+    content: .
     entity: website
     group: Bucket
   GetObject:
+    content: .
     entity: objectmetadata
     group: Object
   GetObjectAcl:
@@ -73,21 +79,26 @@ contents:
     entity: acl
     group: Object
   GetObjectLockConfiguration:
+    content: ObjectLockConfiguration
     entity: lockconfiguration
     group: Object
   GetObjectRetention:
+    content: Retention
     entity: retention
     group: Object
   GetObjectTagging:
+    content: .
     entity: tagging
     group: Object
   HandleBuild:
     entity: build
   HeadBucket:
+    content: .
     entity: bucket
     group: Bucket
   HeadObject:
-    entity: object
+    content: .
+    entity: objectmetadata
     group: Object
   ListBuckets:
     content: Buckets
@@ -196,15 +207,28 @@ entities:
   website:
     no_aliases: true
 aliases:
-- entity: object
-  use: describe key
-  alias_to: GetObject
+- entity: bucket
+  use: describe bucket
+  alias_to: HeadBucket
   aliases:
   - desc
-  short: Display an object metadata, alias for api GetObject --Key key
+  short: Display a bucket, alias for api HeadBucket --Bucket bucket
   command:
   - api
-  - GetObject
+  - HeadBucket
+  - --Bucket
+  - '%0'
+  - --output
+  - yaml
+- entity: object
+  use: describe key
+  alias_to: HeadObject
+  aliases:
+  - desc
+  short: Display an object metadata, alias for api HeadObject --Key key
+  command:
+  - api
+  - HeadObject
   - --Key
   - '%0'
   - --output
@@ -245,6 +269,59 @@ aliases:
   - name: bucket
     alias_to: Bucket
     required: true
+- entity: object
+  use: copy bucket_src/key_src key_dst
+  alias_to: CopyObject
+  aliases:
+  - cp
+  short: Copy an object, alias for api CopyObject --CopySource bucket_src/key_src --Key key_dst
+  command:
+  - api
+  - CopyObject
+  - --CopySource
+  - '%0'
+  - --Key
+  - '%1'
+  - --output
+  - success
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true
+  - name: expires
+    alias_to: Expires
+  - name: grant-full-control
+    alias_to: GrantFullControl
+  - name: grant-read
+    alias_to: GrantRead
+  - name: grant-read-acp
+    alias_to: GrantReadACP
+  - name: grant-write-acp
+    alias_to: GrantWriteACP
+  - name: tagging
+    alias_to: Tagging
+  - name: tagging-directive
+    alias_to: TaggingDirective
+  - name: cache-control
+    alias_to: CacheControl
+  - name: content-disposition
+    alias_to: ContentDisposition
+  - name: content-encoding
+    alias_to: ContentEncoding
+  - name: content-language
+    alias_to: ContentLanguage
+  - name: content-length
+    alias_to: ContentLength
+  - name: content-type
+    alias_to: ContentType
+  - name: server-side-encryption
+    alias_to: ServerSideEncryption
+  - name: object-lock-mode
+    alias_to: ObjectLockMode
+  - name: object-lock-retain-until-date
+    alias_to: ObjectLockRetainUntilDate
+  - name: website-redirect-location
+    alias_to: WebsiteRedirectLocation
 - entity: bucket
   sub_command: versioning
   use: describe bucket
@@ -483,6 +560,42 @@ aliases:
   - --output
   - success
 - entity: bucket
+  sub_command: objectlock
+  use: describe bucket
+  alias_to: GetObjectLockConfiguration
+  aliases:
+  - desc
+  short: Display ObjectLock configuration, alias for api GetObjectLockConfiguration --Bucket bucket
+  command:
+  - api
+  - GetObjectLockConfiguration
+  - --Bucket
+  - '%0'
+  - --output
+  - yaml
+- entity: bucket
+  sub_command: objectlock
+  use: configure bucket
+  alias_to: PutObjectLockConfiguration
+  aliases:
+  - config
+  - cfg
+  short: Update ObjectLock configuration, alias for api PutObjectLockConfiguration --Bucket bucket
+  command:
+  - api
+  - PutObjectLockConfiguration
+  - --Bucket
+  - '%0'
+  - --template-root
+  - ObjectLockConfiguration
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: template
+    required: true
+    usage: the file storing the ObjectLock config in JSON format (i.e. {"ObjectLockEnabled":"Enabled", "Rule":{...}})
+- entity: bucket
   sub_command: website
   use: describe bucket
   alias_to: GetBucketWebsite
@@ -604,7 +717,33 @@ aliases:
     alias_to: Bucket
     required: true
 - entity: object
-  use: retention key
+  sub_command: acl
+  use: configure key
+  alias_to: PutObjectAcl
+  aliases:
+  - config
+  - cfg
+  short: Configure ACL, alias for api PutObjectAcl --Key key
+  command:
+  - api
+  - PutObjectAcl
+  - --Key
+  - '%0'
+  - --template-root
+  - AccessControlPolicy
+  - --output
+  - yaml
+  flags:
+  - name: from-file
+    alias_to: template
+    required: true
+    usage: the file storing the ACL config in JSON format (i.e. {"Grants":[...]})
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  sub_command: retention
+  use: desc key
   alias_to: GetObjectRetention
   aliases:
   - desc
@@ -616,6 +755,92 @@ aliases:
   - '%0'
   - --output
   - yaml
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  sub_command: retention
+  use: configure key
+  alias_to: PutObjectRetention
+  aliases:
+  - config
+  - cfg
+  short: Configure object retention, alias for api PutObjectRetention --Key key --Retention.Mode
+  command:
+  - api
+  - PutObjectRetention
+  - --Key
+  - '%0'
+  - --Retention.Mode
+  - COMPLIANCE
+  - --output
+  - success
+  flags:
+  - name: retain-until
+    alias_to: Retention.RetainUntilDate
+    required: true
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  sub_command: tagging
+  use: describe key
+  alias_to: GetObjectTagging
+  aliases:
+  - desc
+  short: List object tags, alias for api GetObjectTagging --Key key
+  command:
+  - api
+  - GetObjectTagging
+  - --Key
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  sub_command: tagging
+  use: configure key
+  alias_to: PutObjectTagging
+  aliases:
+  - config
+  - cfg
+  short: Add tags to an object, alias for api PutObjectTagging --Key key
+  command:
+  - api
+  - PutObjectTagging
+  - --Key
+  - '%0'
+  - --template-root
+  - Tagging
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: template
+    required: true
+    usage: the file storing the tagging config in JSON format (i.e. {"TagSet":[{"Key":"...", "Value":"..."}]})
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  sub_command: tagging
+  use: delete key
+  alias_to: DeleteObjectTagging
+  aliases:
+  - del
+  - rm
+  short: Delete all tags from an object, alias for api DeleteObjectTagging --Key key
+  command:
+  - api
+  - DeleteObjectTagging
+  - --Key
+  - '%0'
+  - --output
+  - success
   flags:
   - name: bucket
     alias_to: Bucket
@@ -721,12 +946,6 @@ aliases:
     alias_to: MaxParts
   - name: number-marker
     alias_to: PartNumberMarker
-  - name: sse-customer-algorithm
-    alias_to: SSECustomerAlgorithm
-  - name: sse-customer-key
-    alias_to: SSECustomerKey
-  - name: sse-customer-key-md-5
-    alias_to: SSECustomerKeyMD5
 - entity: bucket
   use: create
   alias_to: CreateBucket
@@ -784,8 +1003,6 @@ aliases:
     alias_to: BucketKeyEnabled
   - name: cache-control
     alias_to: CacheControl
-  - name: checksum-algorithm
-    alias_to: ChecksumAlgorithm
   - name: content-disposition
     alias_to: ContentDisposition
   - name: content-encoding
@@ -812,20 +1029,8 @@ aliases:
     alias_to: ObjectLockMode
   - name: object-lock-retain-until-date
     alias_to: ObjectLockRetainUntilDate
-  - name: sse-customer-algorithm
-    alias_to: SSECustomerAlgorithm
-  - name: sse-customer-key
-    alias_to: SSECustomerKey
-  - name: sse-customer-key-md-5
-    alias_to: SSECustomerKeyMD5
-  - name: ssekm-encryption-context
-    alias_to: SSEKMSEncryptionContext
-  - name: ssekm-key-id
-    alias_to: SSEKMSKeyId
   - name: server-side-encryption
     alias_to: ServerSideEncryption
-  - name: storage-class
-    alias_to: StorageClass
   - name: tagging
     alias_to: Tagging
   - name: website-redirect-location
@@ -851,7 +1056,7 @@ aliases:
     action: delete
     display:
     - api
-    - GetBucketPolicy
+    - HeadBucket
     - --Bucket
     - '%0'
     - --output
@@ -892,7 +1097,7 @@ aliases:
     action: delete
     display:
     - api
-    - GetObjectAcl
+    - HeadObject
     - --Key
     - '%0'
     - --output
@@ -924,16 +1129,6 @@ aliases:
     alias_to: BucketKeyEnabled
   - name: cache-control
     alias_to: CacheControl
-  - name: checksum-algorithm
-    alias_to: ChecksumAlgorithm
-  - name: checksum-crc-32
-    alias_to: ChecksumCRC32
-  - name: checksum-crc-32-c
-    alias_to: ChecksumCRC32C
-  - name: checksum-sha-1
-    alias_to: ChecksumSHA1
-  - name: checksum-sha-256
-    alias_to: ChecksumSHA256
   - name: content-disposition
     alias_to: ContentDisposition
   - name: content-encoding
@@ -942,8 +1137,6 @@ aliases:
     alias_to: ContentLanguage
   - name: content-length
     alias_to: ContentLength
-  - name: content-md-5
-    alias_to: ContentMD5
   - name: content-type
     alias_to: ContentType
   - name: expected-bucket-owner
@@ -968,20 +1161,8 @@ aliases:
     alias_to: ObjectLockMode
   - name: lock-retain-until-date
     alias_to: ObjectLockRetainUntilDate
-  - name: sse-customer-algorithm
-    alias_to: SSECustomerAlgorithm
-  - name: sse-customer-key
-    alias_to: SSECustomerKey
-  - name: sse-customer-key-md-5
-    alias_to: SSECustomerKeyMD5
-  - name: ssekm-encryption-context
-    alias_to: SSEKMSEncryptionContext
-  - name: ssekm-key-id
-    alias_to: SSEKMSKeyId
   - name: server-side-encryption
     alias_to: ServerSideEncryption
-  - name: storage-class
-    alias_to: StorageClass
   - name: tagging
     alias_to: Tagging
   - name: website-redirect-location
@@ -1004,8 +1185,6 @@ spec:
     DeleteObject: {}
     DeleteObjectTagging: {}
     HandleBuild: {}
-    HeadBucket: {}
-    HeadObject: {}
     ListMultipartUploads: {}
     ListParts: {}
     PutBucketAcl: {}
@@ -1022,6 +1201,8 @@ spec:
     UploadPart: {}
     UploadPartCopy: {}
   attributes:
+    AbortIncompleteMultipartUpload.DaysAfterInitiation:
+      help: Specifies the number of days after which Amazon S3 aborts an incomplete multipart upload.
     AbortMultipartUploadInput.Bucket:
       help: The bucket name to which the upload was taking place.
       required: true
@@ -1037,10 +1218,50 @@ spec:
     AbortMultipartUploadInput.UploadId:
       help: Upload ID that identifies the multipart upload.
       required: true
+    AccelerateConfiguration.Status:
+      help: Specifies the transfer acceleration status of the bucket.
+    AccessControlPolicy.Grants:
+      help: A list of grants.
+    AccessControlPolicy.Owner:
+      help: Container for the bucket owner's display name and ID.
+    AccessControlTranslation.Owner:
+      help: Specifies the replica ownership.
+      required: true
+    AnalyticsAndOperator.Prefix:
+      help: 'The prefix to use when evaluating an AND predicate: The prefix that an object must have to be included in the metrics results.'
+    AnalyticsAndOperator.Tags:
+      help: The list of tags to use when evaluating an AND predicate.
+    AnalyticsConfiguration.Filter:
+      help: The filter used to describe a set of objects for analyses.
+    AnalyticsConfiguration.Id:
+      help: The ID that identifies the analytics configuration.
+      required: true
+    AnalyticsConfiguration.StorageClassAnalysis:
+      help: Contains data related to access patterns to be collected and made available to analyze the tradeoffs between different storage classes.
+      required: true
+    AnalyticsExportDestination.S3BucketDestination:
+      help: A destination signifying output to an S3 bucket.
+      required: true
+    AnalyticsS3BucketDestination.Bucket:
+      help: The Amazon Resource Name (ARN) of the bucket to which data is exported.
+      required: true
+    AnalyticsS3BucketDestination.BucketAccountId:
+      help: The account ID that owns the destination S3 bucket.
+    AnalyticsS3BucketDestination.Format:
+      help: Specifies the file format used when exporting data to Amazon S3.
+      required: true
+    AnalyticsS3BucketDestination.Prefix:
+      help: The prefix to use when exporting data.
     AuthResolverParameters.Operation:
       help: The name of the operation being invoked.
     AuthResolverParameters.Region:
       help: The region in which the operation is being invoked.
+    Bucket.BucketRegion:
+      help: indicates the Amazon Web Services region where the bucket is located.
+    Bucket.CreationDate:
+      help: Date the bucket was created.
+    Bucket.Name:
+      help: The name of the bucket.
     BucketExistsWaiterOptions.APIOptions:
       help: Set of options to modify how an operation is invoked.
     BucketExistsWaiterOptions.ClientOptions:
@@ -1053,6 +1274,15 @@ spec:
       help: is the minimum amount of time to delay between retries.
     BucketExistsWaiterOptions.Retryable:
       help: is function that can be used to override the service defined waiter-behavior based on operation output, or returned error.
+    BucketInfo.DataRedundancy:
+      help: The number of Zone (Availability Zone or Local Zone) that's used for redundancy for the bucket.
+    BucketInfo.Type:
+      help: The type of bucket.
+    BucketLifecycleConfiguration.Rules:
+      help: A lifecycle rule for individual objects in an Amazon S3 bucket.
+      required: true
+    BucketLoggingStatus.LoggingEnabled:
+      help: Describes where logs are stored and the prefix that Amazon S3 assigns to all log object keys for a bucket.
     BucketNotExistsWaiterOptions.APIOptions:
       help: Set of options to modify how an operation is invoked.
     BucketNotExistsWaiterOptions.ClientOptions:
@@ -1065,8 +1295,49 @@ spec:
       help: is the minimum amount of time to delay between retries.
     BucketNotExistsWaiterOptions.Retryable:
       help: is function that can be used to override the service defined waiter-behavior based on operation output, or returned error.
+    CORSConfiguration.CORSRules:
+      help: A set of origins and methods (cross-origin access that you want to allow).
+      required: true
+    CORSRule.AllowedHeaders:
+      help: Headers that are specified in the Access-Control-Request-Headers header.
+    CORSRule.AllowedMethods:
+      help: An HTTP method that you allow the origin to execute.
+      required: true
+    CORSRule.AllowedOrigins:
+      help: One or more origins you want customers to be able to access the bucket from.
+      required: true
+    CORSRule.ExposeHeaders:
+      help: One or more headers in the response that you want customers to be able to access from their applications (for example, from a JavaScript XMLHttpRequest object).
+    CORSRule.ID:
+      help: Unique identifier for the rule.
+    CORSRule.MaxAgeSeconds:
+      help: The time in seconds that your browser is to cache the preflight response for the specified resource.
+    CSVInput.AllowQuotedRecordDelimiter:
+      help: Specifies that CSV field values may contain quoted record delimiters and such records should be allowed.
+    CSVInput.Comments:
+      help: A single character used to indicate that a row should be ignored when the character is present at the start of that row.
+    CSVInput.FieldDelimiter:
+      help: A single character used to separate individual fields in a record.
+    CSVInput.FileHeaderInfo:
+      help: Describes the first line of input.
+    CSVInput.QuoteCharacter:
+      help: A single character used for escaping when the field delimiter is part of the value.
+    CSVInput.QuoteEscapeCharacter:
+      help: A single character used for escaping the quotation mark character inside an already escaped value.
+    CSVInput.RecordDelimiter:
+      help: A single character used to separate individual records in the input.
+    Checksum.ChecksumCRC32:
+      help: The base64-encoded, 32-bit CRC-32 checksum of the object.
+    Checksum.ChecksumCRC32C:
+      help: The base64-encoded, 32-bit CRC-32C checksum of the object.
+    Checksum.ChecksumSHA1:
+      help: The base64-encoded, 160-bit SHA-1 digest of the object.
+    Checksum.ChecksumSHA256:
+      help: The base64-encoded, 256-bit SHA-256 digest of the object.
     ChecksumValidationMetadata.AlgorithmsUsed:
       help: is the set of the checksum algorithms used to validate the response payload.
+    CommonPrefix.Prefix:
+      help: Container for the specified common prefix.
     CompleteMultipartUploadInput.Bucket:
       help: Name of the bucket to which the multipart upload was initiated.
       required: true
@@ -1100,8 +1371,26 @@ spec:
     CompleteMultipartUploadInput.UploadId:
       help: ID for the initiated multipart upload.
       required: true
+    CompletedMultipartUpload.Parts:
+      help: Array of CompletedPart data types.
+    CompletedPart.ChecksumCRC32:
+      help: The base64-encoded, 32-bit CRC-32 checksum of the object.
+    CompletedPart.ChecksumCRC32C:
+      help: The base64-encoded, 32-bit CRC-32C checksum of the object.
+    CompletedPart.ChecksumSHA1:
+      help: The base64-encoded, 160-bit SHA-1 digest of the object.
+    CompletedPart.ChecksumSHA256:
+      help: The base64-encoded, 256-bit SHA-256 digest of the object.
+    CompletedPart.ETag:
+      help: Entity tag returned when the part was uploaded.
+    CompletedPart.PartNumber:
+      help: Part number that identifies the part.
     ComputedInputChecksumsMetadata.ComputedChecksums:
       help: is a map of algorithm name to checksum value of the computed input payload's checksums.
+    Condition.HttpErrorCodeReturnedEquals:
+      help: The HTTP error code when the redirect is applied.
+    Condition.KeyPrefixEquals:
+      help: The object key name prefix when the redirect is applied.
     CopyObjectInput.ACL:
       help: The canned access control list (ACL) to apply to the object.
     CopyObjectInput.Bucket:
@@ -1187,6 +1476,36 @@ spec:
       help: Specifies whether the object tag-set is copied from the source object or replaced with the tag-set that's provided in the request.
     CopyObjectInput.WebsiteRedirectLocation:
       help: If the destination bucket is configured as a website, redirects requests for this object copy to another object in the same bucket or to an external URL.
+    CopyObjectResult.ChecksumCRC32:
+      help: The base64-encoded, 32-bit CRC-32 checksum of the object.
+    CopyObjectResult.ChecksumCRC32C:
+      help: The base64-encoded, 32-bit CRC-32C checksum of the object.
+    CopyObjectResult.ChecksumSHA1:
+      help: The base64-encoded, 160-bit SHA-1 digest of the object.
+    CopyObjectResult.ChecksumSHA256:
+      help: The base64-encoded, 256-bit SHA-256 digest of the object.
+    CopyObjectResult.ETag:
+      help: Returns the ETag of the new object.
+    CopyObjectResult.LastModified:
+      help: Creation date of the object.
+    CopyPartResult.ChecksumCRC32:
+      help: The base64-encoded, 32-bit CRC-32 checksum of the object.
+    CopyPartResult.ChecksumCRC32C:
+      help: The base64-encoded, 32-bit CRC-32C checksum of the object.
+    CopyPartResult.ChecksumSHA1:
+      help: The base64-encoded, 160-bit SHA-1 digest of the object.
+    CopyPartResult.ChecksumSHA256:
+      help: The base64-encoded, 256-bit SHA-256 digest of the object.
+    CopyPartResult.ETag:
+      help: Entity tag of the object.
+    CopyPartResult.LastModified:
+      help: Date and time at which the object was uploaded.
+    CreateBucketConfiguration.Bucket:
+      help: Specifies the information about the bucket that will be created.
+    CreateBucketConfiguration.Location:
+      help: Specifies the location where the bucket will be created.
+    CreateBucketConfiguration.LocationConstraint:
+      help: Specifies the Region where the bucket will be created.
     CreateBucketInput.ACL:
       help: The canned ACL to apply to the bucket.
     CreateBucketInput.Bucket:
@@ -1295,6 +1614,17 @@ spec:
       help: The server-side encryption algorithm to use when you store objects in the directory bucket.
     CreateSessionInput.SessionMode:
       help: Specifies the mode of the session that will be created, either ReadWrite or ReadOnly .
+    DefaultRetention.Days:
+      help: The number of days that you want to specify for the default retention period.
+    DefaultRetention.Mode:
+      help: The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+    DefaultRetention.Years:
+      help: The number of years that you want to specify for the default retention period.
+    Delete.Objects:
+      help: The object to delete.
+      required: true
+    Delete.Quiet:
+      help: Element to enable quiet mode for the request.
     DeleteBucketAnalyticsConfigurationInput.Bucket:
       help: The name of the bucket from which an analytics configuration is deleted.
       required: true
@@ -1375,6 +1705,18 @@ spec:
       required: true
     DeleteBucketWebsiteInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
+    DeleteMarkerEntry.IsLatest:
+      help: Specifies whether the object is (true) or is not (false) the latest version of an object.
+    DeleteMarkerEntry.Key:
+      help: The object key.
+    DeleteMarkerEntry.LastModified:
+      help: Date and time when the object was last modified.
+    DeleteMarkerEntry.Owner:
+      help: The account that created the delete marker.>
+    DeleteMarkerEntry.VersionId:
+      help: Version ID of an object.
+    DeleteMarkerReplication.Status:
+      help: Indicates whether to replicate delete markers.
     DeleteObjectInput.Bucket:
       help: The bucket name of the bucket containing the object.
       required: true
@@ -1428,6 +1770,38 @@ spec:
       required: true
     DeletePublicAccessBlockInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
+    DeletedObject.DeleteMarker:
+      help: Indicates whether the specified object version that was permanently deleted was (true) or was not (false) a delete marker before deletion.
+    DeletedObject.DeleteMarkerVersionId:
+      help: The version ID of the delete marker created as a result of the DELETE operation.
+    DeletedObject.Key:
+      help: The name of the deleted object.
+    DeletedObject.VersionId:
+      help: The version ID of the deleted object.
+    Destination.AccessControlTranslation:
+      help: Specify this only in a cross-account scenario (where source and destination bucket owners are not the same), and you want to change replica ownership to the Amazon Web Services account that owns the destination bucket.
+    Destination.Account:
+      help: Destination bucket owner account ID.
+    Destination.Bucket:
+      help: The Amazon Resource Name (ARN) of the bucket where you want Amazon S3 to store the results.
+      required: true
+    Destination.EncryptionConfiguration:
+      help: A container that provides information about encryption.
+    Destination.Metrics:
+      help: A container specifying replication metrics-related settings enabling replication metrics and events.
+    Destination.ReplicationTime:
+      help: A container specifying S3 Replication Time Control (S3 RTC), including whether S3 RTC is enabled and the time when all objects and operations on objects must be replicated.
+    Destination.StorageClass:
+      help: The storage class to use when replicating objects, such as S3 Standard or reduced redundancy.
+    Encryption.EncryptionType:
+      help: The server-side encryption algorithm used when storing job results in Amazon S3 (for example, AES256, aws:kms ).
+      required: true
+    Encryption.KMSContext:
+      help: If the encryption type is aws:kms , this optional value can be used to specify the encryption context for the restore results.
+    Encryption.KMSKeyId:
+      help: If the encryption type is aws:kms , this optional value specifies the ID of the symmetric encryption customer managed key to use for encryption of job results.
+    EncryptionConfiguration.ReplicaKmsKeyID:
+      help: Specifies the ID (Key ARN or Alias ARN) of the customer managed Amazon Web Services KMS key stored in Amazon Web Services Key Management Service (KMS) for the destination bucket.
     EndpointParameters.Accelerate:
       help: When true, use S3 Accelerate.
     EndpointParameters.Bucket:
@@ -1464,6 +1838,28 @@ spec:
       help: Internal parameter to indicate whether S3Express operation should use control plane, (ex.
     EndpointResolverV2.ResolveEndpoint:
       help: attempts to resolve the endpoint with the provided options, returning the endpoint if found.
+    Error.Code:
+      help: The error code is a string that uniquely identifies an error condition.
+    Error.Key:
+      help: The error key.
+    Error.Message:
+      help: The error message contains a generic description of the error condition in English.
+    Error.VersionId:
+      help: The version ID of the error.
+    ErrorDetails.ErrorCode:
+      help: If the CreateBucketMetadataTableConfiguration request succeeds, but S3 Metadata was unable to create the table, this structure contains the error code.
+    ErrorDetails.ErrorMessage:
+      help: If the CreateBucketMetadataTableConfiguration request succeeds, but S3 Metadata was unable to create the table, this structure contains the error message.
+    ErrorDocument.Key:
+      help: The object key name to use when a 4XX class error occurs.
+      required: true
+    ExistingObjectReplication.Status:
+      help: Specifies whether Amazon S3 replicates existing source bucket objects.
+      required: true
+    FilterRule.Name:
+      help: The object key name prefix or suffix identifying one or more objects to which the filtering rule applies.
+    FilterRule.Value:
+      help: The value that the filter searches for in object key names.
     GetBucketAccelerateConfigurationInput.Bucket:
       help: The name of the bucket for which the accelerate configuration is retrieved.
       required: true
@@ -1528,6 +1924,14 @@ spec:
       required: true
     GetBucketMetadataTableConfigurationInput.ExpectedBucketOwner:
       help: The expected owner of the general purpose bucket that you want to retrieve the metadata table configuration from.
+    GetBucketMetadataTableConfigurationResult.Error:
+      help: If the CreateBucketMetadataTableConfiguration request succeeds, but S3 Metadata was unable to create the table, this structure contains the error code and error message.
+    GetBucketMetadataTableConfigurationResult.MetadataTableConfigurationResult:
+      help: The metadata table configuration for a general purpose bucket.
+      required: true
+    GetBucketMetadataTableConfigurationResult.Status:
+      help: The status of the metadata table.
+      required: true
     GetBucketMetricsConfigurationInput.Bucket:
       help: The name of the bucket containing the metrics configuration to retrieve.
       required: true
@@ -1618,6 +2022,18 @@ spec:
       help: Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
     GetObjectAttributesInput.VersionId:
       help: The version ID used to reference a specific version of the object.
+    GetObjectAttributesParts.IsTruncated:
+      help: Indicates whether the returned list of parts is truncated.
+    GetObjectAttributesParts.MaxParts:
+      help: The maximum number of parts allowed in the response.
+    GetObjectAttributesParts.NextPartNumberMarker:
+      help: When a list is truncated, this element specifies the last part in the list, as well as the value to use for the PartNumberMarker request parameter in a subsequent request.
+    GetObjectAttributesParts.PartNumberMarker:
+      help: The marker for the current part.
+    GetObjectAttributesParts.Parts:
+      help: A container for elements related to a particular part.
+    GetObjectAttributesParts.TotalPartsCount:
+      help: The total number of parts.
     GetObjectInput.Bucket:
       help: The bucket name containing the object.
       required: true
@@ -1718,6 +2134,24 @@ spec:
       required: true
     GetPublicAccessBlockInput.ExpectedBucketOwner:
       help: The account ID of the expected bucket owner.
+    GlacierJobParameters.Tier:
+      help: Retrieval tier at which the restore will be processed.
+      required: true
+    Grant.Grantee:
+      help: The person being granted permissions.
+    Grant.Permission:
+      help: Specifies the permission given to the grantee.
+    Grantee.DisplayName:
+      help: Screen name of the grantee.
+    Grantee.EmailAddress:
+      help: Email address of the grantee.
+    Grantee.ID:
+      help: The canonical user ID of the grantee.
+    Grantee.Type:
+      help: of grantee This member is required.
+      required: true
+    Grantee.URI:
+      help: of the grantee group.
     HeadBucketInput.Bucket:
       help: The bucket name.
       required: true
@@ -1767,6 +2201,141 @@ spec:
       help: Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
     HeadObjectInput.VersionId:
       help: Version ID used to reference a specific version of the object.
+    IndexDocument.Suffix:
+      help: A suffix that is appended to a request that is for a directory on the website endpoint.
+      required: true
+    Initiator.DisplayName:
+      help: Name of the Principal.
+    Initiator.ID:
+      help: If the principal is an Amazon Web Services account, it provides the Canonical User ID.
+    InputSerialization.CSV:
+      help: Describes the serialization of a CSV-encoded object.
+    InputSerialization.CompressionType:
+      help: Specifies object's compression format.
+    InputSerialization.JSON:
+      help: Specifies JSON as object's input serialization format.
+    InputSerialization.Parquet:
+      help: Specifies Parquet as object's input serialization format.
+    IntelligentTieringAndOperator.Prefix:
+      help: An object key name prefix that identifies the subset of objects to which the configuration applies.
+    IntelligentTieringAndOperator.Tags:
+      help: All of these tags must exist in the object's tag set in order for the configuration to apply.
+    IntelligentTieringConfiguration.Filter:
+      help: Specifies a bucket filter.
+    IntelligentTieringConfiguration.Id:
+      help: The ID used to identify the S3 Intelligent-Tiering configuration.
+      required: true
+    IntelligentTieringConfiguration.Status:
+      help: Specifies the status of the configuration.
+      required: true
+    IntelligentTieringConfiguration.Tierings:
+      help: Specifies the S3 Intelligent-Tiering storage class tier of the configuration.
+      required: true
+    IntelligentTieringFilter.And:
+      help: A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter.
+    IntelligentTieringFilter.Prefix:
+      help: An object key name prefix that identifies the subset of objects to which the rule applies.
+    IntelligentTieringFilter.Tag:
+      help: A container of a key value name pair.
+    InventoryConfiguration.Destination:
+      help: Contains information about where to publish the inventory results.
+      required: true
+    InventoryConfiguration.Filter:
+      help: Specifies an inventory filter.
+    InventoryConfiguration.Id:
+      help: The ID used to identify the inventory configuration.
+      required: true
+    InventoryConfiguration.IncludedObjectVersions:
+      help: Object versions to include in the inventory list.
+      required: true
+    InventoryConfiguration.IsEnabled:
+      help: Specifies whether the inventory is enabled or disabled.
+      required: true
+    InventoryConfiguration.OptionalFields:
+      help: Contains the optional fields that are included in the inventory results.
+    InventoryConfiguration.Schedule:
+      help: Specifies the schedule for generating inventory results.
+      required: true
+    InventoryDestination.S3BucketDestination:
+      help: Contains the bucket name, file format, bucket owner (optional), and prefix (optional) where inventory results are published.
+      required: true
+    InventoryEncryption.SSEKMS:
+      help: Specifies the use of SSE-KMS to encrypt delivered inventory reports.
+    InventoryEncryption.SSES3:
+      help: Specifies the use of SSE-S3 to encrypt delivered inventory reports.
+    InventoryFilter.Prefix:
+      help: The prefix that an object must have to be included in the inventory results.
+      required: true
+    InventoryS3BucketDestination.AccountId:
+      help: The account ID that owns the destination S3 bucket.
+    InventoryS3BucketDestination.Bucket:
+      help: The Amazon Resource Name (ARN) of the bucket where inventory results will be published.
+      required: true
+    InventoryS3BucketDestination.Encryption:
+      help: Contains the type of server-side encryption used to encrypt the inventory results.
+    InventoryS3BucketDestination.Format:
+      help: Specifies the output format of the inventory results.
+      required: true
+    InventoryS3BucketDestination.Prefix:
+      help: The prefix that is prepended to all inventory results.
+    InventorySchedule.Frequency:
+      help: Specifies how frequently inventory results are produced.
+      required: true
+    JSONInput.Type:
+      help: The type of JSON.
+    LambdaFunctionConfiguration.Events:
+      help: The Amazon S3 bucket event for which to invoke the Lambda function.
+      required: true
+    LambdaFunctionConfiguration.Filter:
+      help: Specifies object key name filtering rules.
+    LambdaFunctionConfiguration.Id:
+      help: An optional unique identifier for configurations in a notification configuration.
+    LambdaFunctionConfiguration.LambdaFunctionArn:
+      help: The Amazon Resource Name (ARN) of the Lambda function that Amazon S3 invokes when the specified event type occurs.
+      required: true
+    LifecycleExpiration.Date:
+      help: Indicates at what date the object is to be moved or deleted.
+    LifecycleExpiration.Days:
+      help: Indicates the lifetime, in days, of the objects that are subject to the rule.
+    LifecycleExpiration.ExpiredObjectDeleteMarker:
+      help: Indicates whether Amazon S3 will remove a delete marker with no noncurrent versions.
+    LifecycleRule.AbortIncompleteMultipartUpload:
+      help: Specifies the days since the initiation of an incomplete multipart upload that Amazon S3 will wait before permanently removing all parts of the upload.
+    LifecycleRule.Expiration:
+      help: Specifies the expiration for the lifecycle of the object in the form of date, days and, whether the object has a delete marker.
+    LifecycleRule.Filter:
+      help: The Filter is used to identify objects that a Lifecycle Rule applies to.
+    LifecycleRule.ID:
+      help: Unique identifier for the rule.
+    LifecycleRule.NoncurrentVersionExpiration:
+      help: Specifies when noncurrent object versions expire.
+    LifecycleRule.NoncurrentVersionTransitions:
+      help: Specifies the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class.
+    LifecycleRule.Prefix:
+      help: identifying one or more objects to which the rule applies.
+    LifecycleRule.Status:
+      help: If 'Enabled', the rule is currently being applied.
+      required: true
+    LifecycleRule.Transitions:
+      help: Specifies when an Amazon S3 object transitions to a specified storage class.
+    LifecycleRuleAndOperator.ObjectSizeGreaterThan:
+      help: Minimum object size to which the rule applies.
+    LifecycleRuleAndOperator.ObjectSizeLessThan:
+      help: Maximum object size to which the rule applies.
+    LifecycleRuleAndOperator.Prefix:
+      help: identifying one or more objects to which the rule applies.
+    LifecycleRuleAndOperator.Tags:
+      help: All of these tags must exist in the object's tag set in order for the rule to apply.
+    LifecycleRuleFilter.And:
+      help: This is used in a Lifecycle Rule Filter to apply a logical AND to two or more predicates.
+    LifecycleRuleFilter.ObjectSizeGreaterThan:
+      help: Minimum object size to which the rule applies.
+    LifecycleRuleFilter.ObjectSizeLessThan:
+      help: Maximum object size to which the rule applies.
+    LifecycleRuleFilter.Prefix:
+      help: identifying one or more objects to which the rule applies.
+    LifecycleRuleFilter.Tag:
+      help: This tag must exist in the object's tag set in order for the rule to apply.
     ListBucketAnalyticsConfigurationsInput.Bucket:
       help: The name of the bucket from which analytics configurations are retrieved.
       required: true
@@ -1934,6 +2503,96 @@ spec:
       help: Sets the maximum number of parts to return.
     ListPartsPaginatorOptions.StopOnDuplicateToken:
       help: Set to true if pagination should stop if the service returns a pagination token that matches the most recent token provided to the service.
+    LocationInfo.Name:
+      help: The name of the location where the bucket will be created.
+    LocationInfo.Type:
+      help: The type of location where the bucket will be created.
+    LoggingEnabled.TargetBucket:
+      help: Specifies the bucket where you want Amazon S3 to store server access logs.
+      required: true
+    LoggingEnabled.TargetGrants:
+      help: Container for granting information.
+    LoggingEnabled.TargetObjectKeyFormat:
+      help: Amazon S3 key format for log objects.
+    LoggingEnabled.TargetPrefix:
+      help: A prefix for all log object keys.
+      required: true
+    MetadataEntry.Name:
+      help: of the object.
+    MetadataEntry.Value:
+      help: of the object.
+    MetadataTableConfiguration.S3TablesDestination:
+      help: The destination information for the metadata table configuration.
+      required: true
+    MetadataTableConfigurationResult.S3TablesDestinationResult:
+      help: The destination information for the metadata table configuration.
+      required: true
+    Metrics.EventThreshold:
+      help: A container specifying the time threshold for emitting the s3:Replication:OperationMissedThreshold event.
+    Metrics.Status:
+      help: Specifies whether the replication metrics are enabled.
+      required: true
+    MetricsAndOperator.AccessPointArn:
+      help: The access point ARN used when evaluating an AND predicate.
+    MetricsAndOperator.Prefix:
+      help: The prefix used when evaluating an AND predicate.
+    MetricsAndOperator.Tags:
+      help: The list of tags used when evaluating an AND predicate.
+    MetricsConfiguration.Filter:
+      help: Specifies a metrics configuration filter.
+    MetricsConfiguration.Id:
+      help: The ID used to identify the metrics configuration.
+      required: true
+    MultipartUpload.ChecksumAlgorithm:
+      help: The algorithm that was used to create a checksum of the object.
+    MultipartUpload.Initiated:
+      help: Date and time at which the multipart upload was initiated.
+    MultipartUpload.Initiator:
+      help: Identifies who initiated the multipart upload.
+    MultipartUpload.Key:
+      help: of the object for which the multipart upload was initiated.
+    MultipartUpload.Owner:
+      help: Specifies the owner of the object that is part of the multipart upload.
+    MultipartUpload.StorageClass:
+      help: The class of storage used to store the object.
+    MultipartUpload.UploadId:
+      help: Upload ID that identifies the multipart upload.
+    NoncurrentVersionExpiration.NewerNoncurrentVersions:
+      help: Specifies how many noncurrent versions Amazon S3 will retain.
+    NoncurrentVersionExpiration.NoncurrentDays:
+      help: Specifies the number of days an object is noncurrent before Amazon S3 can perform the associated action.
+    NoncurrentVersionTransition.NewerNoncurrentVersions:
+      help: Specifies how many noncurrent versions Amazon S3 will retain in the same storage class before transitioning objects.
+    NoncurrentVersionTransition.NoncurrentDays:
+      help: Specifies the number of days an object is noncurrent before Amazon S3 can perform the associated action.
+    NoncurrentVersionTransition.StorageClass:
+      help: The class of storage used to store the object.
+    NotificationConfiguration.EventBridgeConfiguration:
+      help: Enables delivery of events to Amazon EventBridge.
+    NotificationConfiguration.LambdaFunctionConfigurations:
+      help: Describes the Lambda functions to invoke and the events for which to invoke them.
+    NotificationConfiguration.QueueConfigurations:
+      help: The Amazon Simple Queue Service queues to publish messages to and the events for which to publish messages.
+    NotificationConfiguration.TopicConfigurations:
+      help: The topic to which notifications are sent and the events for which notifications are generated.
+    NotificationConfigurationFilter.Key:
+      help: A container for object key name prefix and suffix filtering rules.
+    Object.ChecksumAlgorithm:
+      help: The algorithm that was used to create a checksum of the object.
+    Object.ETag:
+      help: The entity tag is a hash of the object.
+    Object.Key:
+      help: The name that you assign to an object.
+    Object.LastModified:
+      help: Creation date of the object.
+    Object.Owner:
+      help: 'The owner of the object Directory buckets - The bucket owner is returned as the object owner.'
+    Object.RestoreStatus:
+      help: Specifies the restoration status of an object.
+    Object.Size:
+      help: in bytes of the object
+    Object.StorageClass:
+      help: The class of storage used to store the object.
     ObjectExistsWaiterOptions.APIOptions:
       help: Set of options to modify how an operation is invoked.
     ObjectExistsWaiterOptions.ClientOptions:
@@ -1946,6 +2605,29 @@ spec:
       help: is the minimum amount of time to delay between retries.
     ObjectExistsWaiterOptions.Retryable:
       help: is function that can be used to override the service defined waiter-behavior based on operation output, or returned error.
+    ObjectIdentifier.ETag:
+      help: An entity tag (ETag) is an identifier assigned by a web server to a specific version of a resource found at a URL.
+    ObjectIdentifier.Key:
+      help: name of the object.
+      required: true
+    ObjectIdentifier.LastModifiedTime:
+      help: If present, the objects are deleted only if its modification times matches the provided Timestamp .
+    ObjectIdentifier.Size:
+      help: If present, the objects are deleted only if its size matches the provided size in bytes.
+    ObjectIdentifier.VersionId:
+      help: Version ID for the specific version of the object to delete.
+    ObjectLockConfiguration.ObjectLockEnabled:
+      help: Indicates whether this bucket has an Object Lock configuration enabled.
+    ObjectLockConfiguration.Rule:
+      help: Specifies the Object Lock rule for the specified object.
+    ObjectLockLegalHold.Status:
+      help: Indicates whether the specified object has a legal hold in place.
+    ObjectLockRetention.Mode:
+      help: Indicates the Retention mode for the specified object.
+    ObjectLockRetention.RetainUntilDate:
+      help: The date on which this Object Lock Retention will expire.
+    ObjectLockRule.DefaultRetention:
+      help: The default Object Lock retention mode and period that you want to apply to new objects placed in the specified bucket.
     ObjectNotExistsWaiterOptions.APIOptions:
       help: Set of options to modify how an operation is invoked.
     ObjectNotExistsWaiterOptions.ClientOptions:
@@ -1958,6 +2640,38 @@ spec:
       help: is the minimum amount of time to delay between retries.
     ObjectNotExistsWaiterOptions.Retryable:
       help: is function that can be used to override the service defined waiter-behavior based on operation output, or returned error.
+    ObjectPart.ChecksumCRC32:
+      help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
+    ObjectPart.ChecksumCRC32C:
+      help: The base64-encoded, 32-bit CRC-32C checksum of the object.
+    ObjectPart.ChecksumSHA1:
+      help: The base64-encoded, 160-bit SHA-1 digest of the object.
+    ObjectPart.ChecksumSHA256:
+      help: The base64-encoded, 256-bit SHA-256 digest of the object.
+    ObjectPart.PartNumber:
+      help: The part number identifying the part.
+    ObjectPart.Size:
+      help: The size of the uploaded part in bytes.
+    ObjectVersion.ChecksumAlgorithm:
+      help: The algorithm that was used to create a checksum of the object.
+    ObjectVersion.ETag:
+      help: The entity tag is an MD5 hash of that version of the object.
+    ObjectVersion.IsLatest:
+      help: Specifies whether the object is (true) or is not (false) the latest version of an object.
+    ObjectVersion.Key:
+      help: The object key.
+    ObjectVersion.LastModified:
+      help: Date and time when the object was last modified.
+    ObjectVersion.Owner:
+      help: Specifies the owner of the object.
+    ObjectVersion.RestoreStatus:
+      help: Specifies the restoration status of an object.
+    ObjectVersion.Size:
+      help: in bytes of the object.
+    ObjectVersion.StorageClass:
+      help: The class of storage used to store the object.
+    ObjectVersion.VersionId:
+      help: Version ID of an object.
     Options.APIOptions:
       help: Set of options to modify how an operation is invoked.
     Options.AppID:
@@ -2016,6 +2730,42 @@ spec:
       help: Allows you to enable dual-stack endpoint support for the service.
     Options.UsePathStyle:
       help: Allows you to enable the client to use path-style addressing, i.e., https://s3.amazonaws.com/BUCKET/KEY .
+    OutputLocation.S3:
+      help: Describes an S3 location that will receive the results of the restore request.
+    OutputSerialization.CSV:
+      help: Describes the serialization of CSV-encoded Select results.
+    OutputSerialization.JSON:
+      help: Specifies JSON as request's output serialization format.
+    Owner.DisplayName:
+      help: Container for the display name of the owner.
+    Owner.ID:
+      help: Container for the ID of the owner.
+    OwnershipControls.Rules:
+      help: The container element for an ownership control rule.
+      required: true
+    OwnershipControlsRule.ObjectOwnership:
+      help: The container element for object ownership for a bucket's ownership controls.
+      required: true
+    Part.ChecksumCRC32:
+      help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
+    Part.ChecksumCRC32C:
+      help: The base64-encoded, 32-bit CRC-32C checksum of the object.
+    Part.ChecksumSHA1:
+      help: The base64-encoded, 160-bit SHA-1 digest of the object.
+    Part.ChecksumSHA256:
+      help: This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
+    Part.ETag:
+      help: Entity tag returned when the part was uploaded.
+    Part.LastModified:
+      help: Date and time at which the part was uploaded.
+    Part.PartNumber:
+      help: Part number identifying the part.
+    Part.Size:
+      help: in bytes of the uploaded part data.
+    PartitionedPrefix.PartitionDateSource:
+      help: Specifies the partition date source for the partitioned prefix.
+    PolicyStatus.IsPublic:
+      help: The policy status for this bucket.
     PresignOptions.ClientOptions:
       help: are list of functional options to mutate client options used by the presign client.
     PresignOptions.Expires:
@@ -2034,6 +2784,22 @@ spec:
       help: Represents the Base URL to make a request to
     PresignedPostRequest.Values:
       help: is a key-value map of values to be sent as FormData these values are not encoded
+    Progress.BytesProcessed:
+      help: The current number of uncompressed object bytes processed.
+    Progress.BytesReturned:
+      help: The current number of bytes of records payload data returned.
+    Progress.BytesScanned:
+      help: The current number of object bytes scanned.
+    ProgressEvent.Details:
+      help: The Progress event details.
+    PublicAccessBlockConfiguration.BlockPublicAcls:
+      help: Specifies whether Amazon S3 should block public access control lists (ACLs) for this bucket and objects in this bucket.
+    PublicAccessBlockConfiguration.BlockPublicPolicy:
+      help: Specifies whether Amazon S3 should block public bucket policies for this bucket.
+    PublicAccessBlockConfiguration.IgnorePublicAcls:
+      help: Specifies whether Amazon S3 should ignore public ACLs for this bucket and objects in this bucket.
+    PublicAccessBlockConfiguration.RestrictPublicBuckets:
+      help: Specifies whether Amazon S3 should restrict public bucket policies for this bucket.
     PutBucketAccelerateConfigurationInput.AccelerateConfiguration:
       help: Container for setting the transfer acceleration state.
       required: true
@@ -2450,6 +3216,85 @@ spec:
     PutPublicAccessBlockInput.PublicAccessBlockConfiguration:
       help: The PublicAccessBlock configuration that you want to apply to this Amazon S3 bucket.
       required: true
+    QueueConfiguration.Events:
+      help: A collection of bucket events for which to send notifications This member is required.
+      required: true
+    QueueConfiguration.Filter:
+      help: Specifies object key name filtering rules.
+    QueueConfiguration.Id:
+      help: An optional unique identifier for configurations in a notification configuration.
+    QueueConfiguration.QueueArn:
+      help: The Amazon Resource Name (ARN) of the Amazon SQS queue to which Amazon S3 publishes a message when it detects events of the specified type.
+      required: true
+    RecordsEvent.Payload:
+      help: The byte array of partial, one or more result records.
+    Redirect.HostName:
+      help: The host name to use in the redirect request.
+    Redirect.HttpRedirectCode:
+      help: The HTTP redirect code to use on the response.
+    Redirect.Protocol:
+      help: to use when redirecting requests.
+    Redirect.ReplaceKeyPrefixWith:
+      help: The object key prefix to use in the redirect request.
+    Redirect.ReplaceKeyWith:
+      help: The specific object key to use in the redirect request.
+    RedirectAllRequestsTo.HostName:
+      help: Name of the host where requests are redirected.
+      required: true
+    RedirectAllRequestsTo.Protocol:
+      help: to use when redirecting requests.
+    ReplicaModifications.Status:
+      help: Specifies whether Amazon S3 replicates modifications on replicas.
+      required: true
+    ReplicationConfiguration.Role:
+      help: The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that Amazon S3 assumes when replicating objects.
+      required: true
+    ReplicationConfiguration.Rules:
+      help: A container for one or more replication rules.
+      required: true
+    ReplicationRule.DeleteMarkerReplication:
+      help: Specifies whether Amazon S3 replicates delete markers.
+    ReplicationRule.Destination:
+      help: A container for information about the replication destination and its configurations including enabling the S3 Replication Time Control (S3 RTC).
+      required: true
+    ReplicationRule.ExistingObjectReplication:
+      help: Optional configuration to replicate existing source bucket objects.
+    ReplicationRule.Filter:
+      help: A filter that identifies the subset of objects to which the replication rule applies.
+    ReplicationRule.ID:
+      help: A unique identifier for the rule.
+    ReplicationRule.Prefix:
+      help: An object key name prefix that identifies the object or objects to which the rule applies.
+    ReplicationRule.Priority:
+      help: The priority indicates which rule has precedence whenever two or more replication rules conflict.
+    ReplicationRule.SourceSelectionCriteria:
+      help: A container that describes additional filters for identifying the source objects that you want to replicate.
+    ReplicationRule.Status:
+      help: Specifies whether the rule is enabled.
+      required: true
+    ReplicationRuleAndOperator.Prefix:
+      help: An object key name prefix that identifies the subset of objects to which the rule applies.
+    ReplicationRuleAndOperator.Tags:
+      help: An array of tags containing key and value pairs.
+    ReplicationRuleFilter.And:
+      help: A container for specifying rule filters.
+    ReplicationRuleFilter.Prefix:
+      help: An object key name prefix that identifies the subset of objects to which the rule applies.
+    ReplicationRuleFilter.Tag:
+      help: A container for specifying a tag key and value.
+    ReplicationTime.Status:
+      help: Specifies whether the replication time is enabled.
+      required: true
+    ReplicationTime.Time:
+      help: A container specifying the time by which replication should be complete for all objects and operations on objects.
+      required: true
+    ReplicationTimeValue.Minutes:
+      help: Contains an integer specifying time in minutes.
+    RequestPaymentConfiguration.Payer:
+      help: Specifies who pays for the download and request fees.
+      required: true
+    RequestProgress.Enabled:
+      help: Specifies whether periodic QueryProgress frames should be sent.
     RestoreObjectInput.Bucket:
       help: The bucket name containing the object to restore.
       required: true
@@ -2466,6 +3311,74 @@ spec:
       help: Container for restore job parameters.
     RestoreObjectInput.VersionId:
       help: used to reference a specific version of the object.
+    RestoreRequest.Days:
+      help: Lifetime of the active copy in days.
+    RestoreRequest.Description:
+      help: The optional description for the job.
+    RestoreRequest.GlacierJobParameters:
+      help: S3 Glacier related parameters pertaining to this job.
+    RestoreRequest.OutputLocation:
+      help: Describes the location where the restore job's output is stored.
+    RestoreRequest.SelectParameters:
+      help: Amazon S3 Select is no longer available to new customers.
+    RestoreRequest.Tier:
+      help: Retrieval tier at which the restore will be processed.
+    RestoreRequest.Type:
+      help: Amazon S3 Select is no longer available to new customers.
+    RestoreStatus.IsRestoreInProgress:
+      help: Specifies whether the object is currently being restored.
+    RestoreStatus.RestoreExpiryDate:
+      help: Indicates when the restored copy will expire.
+    RoutingRule.Condition:
+      help: A container for describing a condition that must be met for the specified redirect to apply.
+    RoutingRule.Redirect:
+      help: Container for redirect information.
+      required: true
+    S3KeyFilter.FilterRules:
+      help: A list of containers for the key-value pair that defines the criteria for the filter rule.
+    S3Location.AccessControlList:
+      help: A list of grants that control access to the staged results.
+    S3Location.BucketName:
+      help: The name of the bucket where the restore results will be placed.
+      required: true
+    S3Location.CannedACL:
+      help: The canned ACL to apply to the restore results.
+    S3Location.Encryption:
+      help: Contains the type of server-side encryption used.
+    S3Location.Prefix:
+      help: The prefix that is prepended to the restore results for this request.
+      required: true
+    S3Location.StorageClass:
+      help: The class of storage used to store the restore results.
+    S3Location.Tagging:
+      help: The tag-set that is applied to the restore results.
+    S3Location.UserMetadata:
+      help: A list of metadata to store with the restore results in S3.
+    S3TablesDestination.TableBucketArn:
+      help: The Amazon Resource Name (ARN) for the table bucket that's specified as the destination in the metadata table configuration.
+      required: true
+    S3TablesDestination.TableName:
+      help: The name for the metadata table in your metadata table configuration.
+      required: true
+    S3TablesDestinationResult.TableArn:
+      help: The Amazon Resource Name (ARN) for the metadata table in the metadata table configuration.
+      required: true
+    S3TablesDestinationResult.TableBucketArn:
+      help: The Amazon Resource Name (ARN) for the table bucket that's specified as the destination in the metadata table configuration.
+      required: true
+    S3TablesDestinationResult.TableName:
+      help: The name for the metadata table in your metadata table configuration.
+      required: true
+    S3TablesDestinationResult.TableNamespace:
+      help: The table bucket namespace for the metadata table in your metadata table configuration.
+      required: true
+    SSEKMS.KeyId:
+      help: Specifies the ID of the Key Management Service (KMS) symmetric encryption customer managed key to use for encrypting inventory reports.
+      required: true
+    ScanRange.End:
+      help: Specifies the end of the byte range.
+    ScanRange.Start:
+      help: Specifies the start of the byte range.
     SelectObjectContentEventStream.Reader:
       help: SelectObjectContentEventStreamReader is the EventStream reader for the SelectObjectContentEventStream events.
     SelectObjectContentInput.Bucket:
@@ -2498,6 +3411,104 @@ spec:
       help: The MD5 server-side encryption (SSE) customer managed key.
     SelectObjectContentInput.ScanRange:
       help: Specifies the byte range of the object to get the records from.
+    SelectParameters.Expression:
+      help: Amazon S3 Select is no longer available to new customers.
+      required: true
+    SelectParameters.ExpressionType:
+      help: The type of the provided expression (for example, SQL).
+      required: true
+    SelectParameters.InputSerialization:
+      help: Describes the serialization format of the object.
+      required: true
+    SelectParameters.OutputSerialization:
+      help: Describes how the results of the Select job are serialized.
+      required: true
+    ServerSideEncryptionByDefault.KMSMasterKeyID:
+      help: Amazon Web Services Key Management Service (KMS) customer managed key ID to use for the default encryption.
+    ServerSideEncryptionByDefault.SSEAlgorithm:
+      help: Server-side encryption algorithm to use for the default encryption.
+      required: true
+    ServerSideEncryptionConfiguration.Rules:
+      help: Container for information about a particular server-side encryption configuration rule.
+      required: true
+    ServerSideEncryptionRule.ApplyServerSideEncryptionByDefault:
+      help: Specifies the default server-side encryption to apply to new objects in the bucket.
+    ServerSideEncryptionRule.BucketKeyEnabled:
+      help: Specifies whether Amazon S3 should use an S3 Bucket Key with server-side encryption using KMS (SSE-KMS) for new objects in the bucket.
+    SessionCredentials.AccessKeyId:
+      help: A unique identifier that's associated with a secret access key.
+      required: true
+    SessionCredentials.Expiration:
+      help: Temporary security credentials expire after a specified interval.
+      required: true
+    SessionCredentials.SecretAccessKey:
+      help: A key that's used with the access key ID to cryptographically sign programmatic Amazon Web Services requests.
+      required: true
+    SessionCredentials.SessionToken:
+      help: A part of the temporary security credentials.
+      required: true
+    SourceSelectionCriteria.ReplicaModifications:
+      help: A filter that you can specify for selections for modifications on replicas.
+    SourceSelectionCriteria.SseKmsEncryptedObjects:
+      help: A container for filter information for the selection of Amazon S3 objects encrypted with Amazon Web Services KMS.
+    SseKmsEncryptedObjects.Status:
+      help: Specifies whether Amazon S3 replicates objects created with server-side encryption using an Amazon Web Services KMS key stored in Amazon Web Services Key Management Service.
+      required: true
+    Stats.BytesProcessed:
+      help: The total number of uncompressed object bytes processed.
+    Stats.BytesReturned:
+      help: The total number of bytes of records payload data returned.
+    Stats.BytesScanned:
+      help: The total number of object bytes scanned.
+    StatsEvent.Details:
+      help: The Stats event details.
+    StorageClassAnalysis.DataExport:
+      help: Specifies how data related to the storage class analysis for an Amazon S3 bucket should be exported.
+    StorageClassAnalysisDataExport.Destination:
+      help: The place to store the data for an analysis.
+      required: true
+    StorageClassAnalysisDataExport.OutputSchemaVersion:
+      help: The version of the output schema to use when exporting data.
+      required: true
+    Tag.Key:
+      help: Name of the object key.
+      required: true
+    Tag.Value:
+      help: of the tag.
+      required: true
+    Tagging.TagSet:
+      help: A collection for a set of tags This member is required.
+      required: true
+    TargetGrant.Grantee:
+      help: Container for the person being granted permissions.
+    TargetGrant.Permission:
+      help: Logging permissions assigned to the grantee for the bucket.
+    TargetObjectKeyFormat.PartitionedPrefix:
+      help: Partitioned S3 key for log objects.
+    TargetObjectKeyFormat.SimplePrefix:
+      help: To use the simple format for S3 keys for log objects.
+    Tiering.AccessTier:
+      help: S3 Intelligent-Tiering access tier.
+      required: true
+    Tiering.Days:
+      help: The number of consecutive days of no access after which an object will be eligible to be transitioned to the corresponding tier.
+      required: true
+    TopicConfiguration.Events:
+      help: The Amazon S3 bucket event about which to send notifications.
+      required: true
+    TopicConfiguration.Filter:
+      help: Specifies object key name filtering rules.
+    TopicConfiguration.Id:
+      help: An optional unique identifier for configurations in a notification configuration.
+    TopicConfiguration.TopicArn:
+      help: The Amazon Resource Name (ARN) of the Amazon SNS topic to which Amazon S3 publishes a message when it detects events of the specified type.
+      required: true
+    Transition.Date:
+      help: Indicates when objects are transitioned to the specified storage class.
+    Transition.Days:
+      help: Indicates the number of days after creation when objects are transitioned to the specified storage class.
+    Transition.StorageClass:
+      help: The storage class to which you want the object to transition.
     UploadPartCopyInput.Bucket:
       help: The bucket name.
       required: true
@@ -2579,6 +3590,18 @@ spec:
     UploadPartInput.UploadId:
       help: Upload ID identifying the multipart upload whose part is being uploaded.
       required: true
+    VersioningConfiguration.MFADelete:
+      help: Specifies whether MFA delete is enabled in the bucket versioning configuration.
+    VersioningConfiguration.Status:
+      help: The versioning state of the bucket.
+    WebsiteConfiguration.ErrorDocument:
+      help: The name of the error document for the website.
+    WebsiteConfiguration.IndexDocument:
+      help: The name of the index document for the website.
+    WebsiteConfiguration.RedirectAllRequestsTo:
+      help: The redirect behavior for every request to this bucket's website endpoint.
+    WebsiteConfiguration.RoutingRules:
+      help: Rules that define when a redirect is applied and the redirect behavior.
     WriteGetObjectResponseInput.AcceptRanges:
       help: Indicates that a range of bytes was specified.
     WriteGetObjectResponseInput.Body:

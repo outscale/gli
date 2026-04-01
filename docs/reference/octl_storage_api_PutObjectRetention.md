@@ -16,8 +16,8 @@ octl storage api PutObjectRetention [flags]
       --ExpectedBucketOwner string          The account ID of the expected bucket owner.
       --Key string                          The key name for the object that you want to apply this Object Retention configuration to.
       --RequestPayer string                 Confirms that the requester knows that they will be charged for the request.
-      --Retention.Mode string               
-      --Retention.RetainUntilDate osctime   
+      --Retention.Mode string               Indicates the Retention mode for the specified object.
+      --Retention.RetainUntilDate osctime   The date on which this Object Lock Retention will expire.
       --VersionId string                    The version ID for the object that you want to apply this Object Retention configuration to.
   -h, --help                                help for PutObjectRetention
 ```

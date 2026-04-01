@@ -32,5 +32,6 @@ acl commands
 ### SEE ALSO
 
 * [octl storage object](octl_storage_object.md)	 - object commands
+* [octl storage object acl configure](octl_storage_object_acl_configure.md)	 - Configure ACL, alias for api PutObjectAcl --Key key
 * [octl storage object acl describe](octl_storage_object_acl_describe.md)	 - Display ACL configuration, alias for api GetObjectAcl --Key key
 

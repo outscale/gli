@@ -1,22 +1,11 @@
 ## octl storage object retention
 
-Display retention configuration, alias for api GetObjectRetention --Key key
-
-### Synopsis
-
-> *Display retention configuration, alias for api GetObjectRetention --Key key*
-
-
-
-```
-octl storage object retention key [flags]
-```
+retention commands
 
 ### Options
 
 ```
-      --bucket string   The bucket name containing the object whose retention settings you want to retrieve.
-  -h, --help            help for retention
+  -h, --help   help for retention
 ```
 
 ### Options inherited from parent commands
@@ -43,4 +32,6 @@ octl storage object retention key [flags]
 ### SEE ALSO
 
 * [octl storage object](octl_storage_object.md)	 - object commands
+* [octl storage object retention configure](octl_storage_object_retention_configure.md)	 - Configure object retention, alias for api PutObjectRetention --Key key --Retention.Mode
+* [octl storage object retention desc](octl_storage_object_retention_desc.md)	 - Display retention configuration, alias for api GetObjectRetention --Key key
 

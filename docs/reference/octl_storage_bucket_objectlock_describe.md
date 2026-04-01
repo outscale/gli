@@ -1,22 +1,21 @@
-## octl storage bucket cors set
+## octl storage bucket objectlock describe
 
-Update CORS configuration, alias for api PutBucketCors --Bucket bucket
+Display ObjectLock configuration, alias for api GetObjectLockConfiguration --Bucket bucket
 
 ### Synopsis
 
-> *Update CORS configuration, alias for api PutBucketCors --Bucket bucket*
+> *Display ObjectLock configuration, alias for api GetObjectLockConfiguration --Bucket bucket*
 
 
 
 ```
-octl storage bucket cors set bucket [flags]
+octl storage bucket objectlock describe bucket [flags]
 ```
 
 ### Options
 
 ```
-      --cors-configuration string   JSON template file for query body
-  -h, --help                        help for set
+  -h, --help   help for describe
 ```
 
 ### Options inherited from parent commands
@@ -28,7 +27,7 @@ octl storage bucket cors set bucket [flags]
       --jq string                   jq filter
       --no-upgrade                  do not check for new versions
   -O, --out-file string             redirect output to file
-  -o, --output string               output format (raw, json, yaml, table, csv, none, base64) (default "raw")
+  -o, --output string               output format (raw, json, yaml, table, csv, none, base64, text) (default "raw")
       --payload string              JSON content for query body
       --profile string              Profile to use in profile file (by default, "default")
       --single                      convert single entry lists to a single object
@@ -42,5 +41,5 @@ octl storage bucket cors set bucket [flags]
 
 ### SEE ALSO
 
-* [octl storage bucket cors](octl_storage_bucket_cors.md)	 - cors commands
+* [octl storage bucket objectlock](octl_storage_bucket_objectlock.md)	 - objectlock commands
 

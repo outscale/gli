@@ -11,11 +11,11 @@ octl storage api CreateBucket [flags]
 ```
       --ACL string                                               The canned ACL to apply to the bucket.
       --Bucket string                                            The name of the bucket to create.
-      --CreateBucketConfiguration.Bucket.DataRedundancy string   
-      --CreateBucketConfiguration.Bucket.Type string             
-      --CreateBucketConfiguration.Location.Name string           
-      --CreateBucketConfiguration.Location.Type string           
-      --CreateBucketConfiguration.LocationConstraint string      
+      --CreateBucketConfiguration.Bucket.DataRedundancy string   The number of Zone (Availability Zone or Local Zone) that's used for redundancy for the bucket.
+      --CreateBucketConfiguration.Bucket.Type string             The type of bucket.
+      --CreateBucketConfiguration.Location.Name string           The name of the location where the bucket will be created.
+      --CreateBucketConfiguration.Location.Type string           The type of location where the bucket will be created.
+      --CreateBucketConfiguration.LocationConstraint string      Specifies the Region where the bucket will be created.
       --GrantFullControl string                                  Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.
       --GrantRead string                                         Allows grantee to list the objects in the bucket.
       --GrantReadACP string                                      Allows grantee to read the bucket ACL.

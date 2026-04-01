@@ -1,0 +1,9 @@
+{
+    "ObjectLockEnabled": "Enabled",
+    "Rule": {
+        "DefaultRetention": {
+            "Mode": "COMPLIANCE",
+            "Days": 1
+        }
+    }
+}

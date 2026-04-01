@@ -18,12 +18,12 @@ octl storage api CompleteMultipartUpload [flags]
       --IfMatch string                                  Uploads the object only if the ETag (entity tag) value provided during the WRITE operation matches the ETag of the object in S3.
       --IfNoneMatch string                              Uploads the object only if the object key name does not already exist in the bucket specified.
       --Key string                                      Object key for which the multipart upload was initiated.
-      --MultipartUpload.Parts.0.ChecksumCRC32 string    
-      --MultipartUpload.Parts.0.ChecksumCRC32C string   
-      --MultipartUpload.Parts.0.ChecksumSHA1 string     
-      --MultipartUpload.Parts.0.ChecksumSHA256 string   
-      --MultipartUpload.Parts.0.ETag string             
-      --MultipartUpload.Parts.0.PartNumber int32        
+      --MultipartUpload.Parts.0.ChecksumCRC32 string    The base64-encoded, 32-bit CRC-32 checksum of the object.
+      --MultipartUpload.Parts.0.ChecksumCRC32C string   The base64-encoded, 32-bit CRC-32C checksum of the object.
+      --MultipartUpload.Parts.0.ChecksumSHA1 string     The base64-encoded, 160-bit SHA-1 digest of the object.
+      --MultipartUpload.Parts.0.ChecksumSHA256 string   The base64-encoded, 256-bit SHA-256 digest of the object.
+      --MultipartUpload.Parts.0.ETag string             Entity tag returned when the part was uploaded.
+      --MultipartUpload.Parts.0.PartNumber int32        Part number that identifies the part.
       --RequestPayer string                             Confirms that the requester knows that they will be charged for the request.
       --SSECustomerAlgorithm string                     The server-side encryption (SSE) algorithm used to encrypt the object.
       --SSECustomerKey string                           The server-side encryption (SSE) customer managed key.

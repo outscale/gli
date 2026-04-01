@@ -36,9 +36,11 @@ bucket commands
 * [octl storage bucket cors](octl_storage_bucket_cors.md)	 - cors commands
 * [octl storage bucket create](octl_storage_bucket_create.md)	 - alias for api CreateBucket
 * [octl storage bucket delete](octl_storage_bucket_delete.md)	 - alias for api DeleteBucket --Bucket bucket
+* [octl storage bucket describe](octl_storage_bucket_describe.md)	 - Display a bucket, alias for api HeadBucket --Bucket bucket
 * [octl storage bucket encryption](octl_storage_bucket_encryption.md)	 - encryption commands
 * [octl storage bucket lifecycle](octl_storage_bucket_lifecycle.md)	 - lifecycle commands
 * [octl storage bucket list](octl_storage_bucket_list.md)	 - alias for api ListBuckets
+* [octl storage bucket objectlock](octl_storage_bucket_objectlock.md)	 - objectlock commands
 * [octl storage bucket policy](octl_storage_bucket_policy.md)	 - policy commands
 * [octl storage bucket versioning](octl_storage_bucket_versioning.md)	 - versioning commands
 * [octl storage bucket website](octl_storage_bucket_website.md)	 - website commands

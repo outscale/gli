@@ -3,6 +3,10 @@ contents:
     content: Buckets
     entity: bucket
     group: Bucket
+  HeadBucket:
+    content: .
+    entity: bucket
+    group: Bucket
   ListObjectsV2:
     content: Contents
     entity: object
@@ -12,6 +16,11 @@ contents:
     entity: objectversion
     group: Object
   GetObject:
+    content: .
+    entity: objectmetadata
+    group: Object
+  HeadObject:
+    content: .
     entity: objectmetadata
     group: Object
   GetBucketAcl:
@@ -19,25 +28,30 @@ contents:
     entity: acl
     group: Bucket
   GetBucketCors:
+    content: CORSRules
     entity: cors
     group: Bucket
   GetBucketEncryption:
+    content: ServerSideEncryptionConfiguration
     entity: encryption
     group: Bucket
   GetBucketVersioning:
     entity: versioning
     group: Bucket
   GetBucketLocation:
+    content: .
     entity: location
     group: Bucket
   GetBucketPolicy:
+    content: Policy
     entity: policy
     group: Bucket
-    content: Policy
   GetBucketLifecycleConfiguration:
+    content: .
     entity: lifecycle
     group: Bucket
   GetBucketWebsite:
+    content: .
     entity: website
     group: Bucket
   PutBucketWebsite:
@@ -49,12 +63,15 @@ contents:
     entity: acl
     group: Object
   GetObjectRetention:
+    content: Retention
     entity: retention
     group: Object
   GetObjectLockConfiguration:
+    content: ObjectLockConfiguration
     entity: lockconfiguration
     group: Object
   GetObjectTagging:
+    content: .
     entity: tagging
     group: Object
 entities:
@@ -99,15 +116,28 @@ entities:
   tagging:
     no_aliases: true
 aliases:
-- entity: object
-  use: describe key
-  alias_to: GetObject
+- entity: bucket
+  use: describe bucket
+  alias_to: HeadBucket
   aliases:
   - desc
-  short: Display an object metadata, alias for api GetObject --Key key
+  short: Display a bucket, alias for api HeadBucket --Bucket bucket
   command:
   - api
-  - GetObject
+  - HeadBucket
+  - --Bucket
+  - '%0'
+  - --output
+  - yaml
+- entity: object
+  use: describe key
+  alias_to: HeadObject
+  aliases:
+  - desc
+  short: Display an object metadata, alias for api HeadObject --Key key
+  command:
+  - api
+  - HeadObject
   - --Key
   - '%0'
   - --output
@@ -148,6 +178,59 @@ aliases:
   - name: bucket
     alias_to: Bucket
     required: true
+- entity: object
+  use: copy bucket_src/key_src key_dst
+  alias_to: CopyObject
+  aliases:
+  - cp
+  short: Copy an object, alias for api CopyObject --CopySource bucket_src/key_src --Key key_dst
+  command:
+  - api
+  - CopyObject
+  - --CopySource
+  - '%0'
+  - --Key
+  - '%1'
+  - --output
+  - success
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true
+  - name: expires
+    alias_to: Expires
+  - name: grant-full-control
+    alias_to: GrantFullControl
+  - name: grant-read
+    alias_to: GrantRead
+  - name: grant-read-acp
+    alias_to: GrantReadACP
+  - name: grant-write-acp
+    alias_to: GrantWriteACP
+  - name: tagging
+    alias_to: Tagging
+  - name: tagging-directive
+    alias_to: TaggingDirective
+  - name: cache-control
+    alias_to: CacheControl
+  - name: content-disposition
+    alias_to: ContentDisposition
+  - name: content-encoding
+    alias_to: ContentEncoding
+  - name: content-language
+    alias_to: ContentLanguage
+  - name: content-length
+    alias_to: ContentLength
+  - name: content-type
+    alias_to: ContentType
+  - name: server-side-encryption
+    alias_to: ServerSideEncryption
+  - name: object-lock-mode
+    alias_to: ObjectLockMode
+  - name: object-lock-retain-until-date
+    alias_to: ObjectLockRetainUntilDate
+  - name: website-redirect-location
+    alias_to: WebsiteRedirectLocation
 - entity: bucket
   sub_command: versioning
   use: describe bucket
@@ -386,6 +469,42 @@ aliases:
   - --output
   - success
 - entity: bucket
+  sub_command: objectlock
+  use: describe bucket
+  alias_to: GetObjectLockConfiguration
+  aliases:
+  - desc
+  short: Display ObjectLock configuration, alias for api GetObjectLockConfiguration --Bucket bucket
+  command:
+  - api
+  - GetObjectLockConfiguration
+  - --Bucket
+  - '%0'
+  - --output
+  - yaml
+- entity: bucket
+  sub_command: objectlock
+  use: configure bucket
+  aliases:
+    - config
+    - cfg
+  alias_to: PutObjectLockConfiguration
+  short: Update ObjectLock configuration, alias for api PutObjectLockConfiguration --Bucket bucket
+  command:
+  - api
+  - PutObjectLockConfiguration
+  - --Bucket
+  - '%0'
+  - --template-root
+  - ObjectLockConfiguration
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: template
+    required: true
+    usage: 'the file storing the ObjectLock config in JSON format (i.e. {"ObjectLockEnabled":"Enabled", "Rule":{...}})'
+- entity: bucket
   sub_command: website
   use: describe bucket
   alias_to: GetBucketWebsite
@@ -507,7 +626,33 @@ aliases:
     alias_to: Bucket
     required: true
 - entity: object
-  use: retention key
+  sub_command: acl
+  use: configure key
+  alias_to: PutObjectAcl
+  aliases:
+  - config
+  - cfg
+  short: Configure ACL, alias for api PutObjectAcl --Key key
+  command:
+  - api
+  - PutObjectAcl
+  - --Key
+  - '%0'
+  - --template-root
+  - AccessControlPolicy
+  - --output
+  - yaml
+  flags:
+  - name: from-file
+    alias_to: template
+    required: true
+    usage: 'the file storing the ACL config in JSON format (i.e. {"Grants":[...]})'
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  sub_command: retention
+  use: desc key
   alias_to: GetObjectRetention
   aliases:
   - desc
@@ -519,6 +664,92 @@ aliases:
   - '%0'
   - --output
   - yaml
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  sub_command: retention
+  use: configure key
+  alias_to: PutObjectRetention
+  aliases:
+  - config
+  - cfg
+  short: Configure object retention, alias for api PutObjectRetention --Key key --Retention.Mode
+  command:
+  - api
+  - PutObjectRetention
+  - --Key
+  - '%0'
+  - --Retention.Mode
+  - COMPLIANCE
+  - --output
+  - success
+  flags:
+  - name: retain-until
+    alias_to: Retention.RetainUntilDate
+    required: true
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  sub_command: tagging
+  use: describe key
+  alias_to: GetObjectTagging
+  aliases:
+  - desc
+  short: List object tags, alias for api GetObjectTagging --Key key
+  command:
+  - api
+  - GetObjectTagging
+  - --Key
+  - '%0'
+  - --output
+  - yaml
+  flags:
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  sub_command: tagging
+  use: configure key
+  aliases:
+    - config
+    - cfg
+  alias_to: PutObjectTagging
+  short: Add tags to an object, alias for api PutObjectTagging --Key key
+  command:
+  - api
+  - PutObjectTagging
+  - --Key
+  - '%0'
+  - --template-root
+  - Tagging
+  - --output
+  - success
+  flags:
+  - name: from-file
+    alias_to: template
+    required: true
+    usage: 'the file storing the tagging config in JSON format (i.e. {"TagSet":[{"Key":"...", "Value":"..."}]})'
+  - name: bucket
+    alias_to: Bucket
+    required: true
+- entity: object
+  sub_command: tagging
+  use: delete key
+  aliases:
+    - del
+    - rm
+  alias_to: DeleteObjectTagging
+  short: Delete all tags from an object, alias for api DeleteObjectTagging --Key key
+  command:
+  - api
+  - DeleteObjectTagging
+  - --Key
+  - '%0'
+  - --output
+  - success
   flags:
   - name: bucket
     alias_to: Bucket
