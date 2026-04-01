@@ -343,3 +343,10 @@ func TestWaitFor(t *testing.T) {
 	assert.Equal(t, osc.VmStateRunning, vm.State)
 	runWithError(t, []string{"iaas", "vm", "describe", vm.VmId, "--waitfor", `.State=="invalid state"`, "--waitfor-timeout", "10s", "--waitfor-interval", "5s"}, nil)
 }
+
+func TestReadCatalog(t *testing.T) {
+	t.Log("catalog ls should be mapped to ReadCatalog, not ReadCatalogs")
+	var resp osc.Catalog
+	runJSON(t, []string{"iaas", "catalog", "ls", "-o", "json"}, nil, &resp)
+	assert.NotEmpty(t, *resp.Entries)
+}
