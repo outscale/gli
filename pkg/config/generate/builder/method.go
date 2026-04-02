@@ -101,8 +101,7 @@ func (b *MethodBuilder) buildCall() error {
 		respContent, found = resp.FieldByName(b.call.Content)
 		respContentType = respContent.Type
 	} else {
-		for i := range resp.NumField() {
-			field := resp.Field(i)
+		for field := range resp.Fields() {
 			if field.Anonymous || strings.HasSuffix(field.Name, "Context") || strings.HasSuffix(field.Name, "Metadata") {
 				continue
 			}

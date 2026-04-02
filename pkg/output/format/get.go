@@ -93,7 +93,7 @@ func deref(val any) any {
 	switch {
 	case val == nil || rval.IsZero():
 		return ""
-	case tval.Kind() == reflect.Ptr || tval.Kind() == reflect.Interface:
+	case tval.Kind() == reflect.Pointer || tval.Kind() == reflect.Interface:
 		return deref(rval.Elem().Interface())
 	case tval.Kind() == reflect.Slice && rval.Len() == 0:
 		return ""

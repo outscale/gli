@@ -21,8 +21,7 @@ func NewClientBuilder(cfg Config) *ClientBuilder {
 
 func (b *ClientBuilder) BuildFor(build *config.Config, client any) {
 	ct := reflect.TypeOf(client)
-	for i := range ct.NumMethod() {
-		m := ct.Method(i)
+	for m := range ct.Methods() {
 		if strings.HasSuffix(m.Name, "Raw") || strings.HasSuffix(m.Name, "WithBody") || m.Type.NumOut() != 2 {
 			continue
 		}
@@ -30,8 +29,7 @@ func (b *ClientBuilder) BuildFor(build *config.Config, client any) {
 			b.BuildMethod(build, m)
 		}
 	}
-	for i := range ct.NumMethod() {
-		m := ct.Method(i)
+	for m := range ct.Methods() {
 		if strings.HasSuffix(m.Name, "Raw") || strings.HasSuffix(m.Name, "WithBody") || m.Type.NumOut() != 2 {
 			continue
 		}

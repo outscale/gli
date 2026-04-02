@@ -19,7 +19,7 @@ func TestGetRow(t *testing.T) {
 	t.Run("Working with non exploded content", func(t *testing.T) {
 		vm := &osc.Vm{
 			VmId:         "i-foo",
-			BsuOptimized: ptr.To(true),
+			BsuOptimized: new(true),
 			Nics: []osc.NicLight{{
 				MacAddress: "01:02:03:04",
 				LinkPublicIp: &osc.LinkPublicIpLightForVm{
@@ -44,10 +44,10 @@ func TestGetRow(t *testing.T) {
 	})
 	t.Run("Working with exploded content", func(t *testing.T) {
 		vm := &osc.QuotaTypes{
-			QuotaType: ptr.To("global"),
+			QuotaType: new("global"),
 			Quotas: &[]osc.Quota{
-				{Name: ptr.To("foo"), UsedValue: ptr.To(10)},
-				{Name: ptr.To("bar"), UsedValue: ptr.To(20)},
+				{Name: new("foo"), UsedValue: new(10)},
+				{Name: new("bar"), UsedValue: new(20)},
 			},
 		}
 		rows, err := format.GetRows(vm, config.Columns{
@@ -62,7 +62,7 @@ func TestGetRow(t *testing.T) {
 	})
 	t.Run("Displaying rounded float64s", func(t *testing.T) {
 		types := &osc.UnitPriceEntry{
-			UnitPrice: ptr.To(1.),
+			UnitPrice: new(1.),
 		}
 		rows, err := format.GetRows(types, config.Columns{
 			{Content: ".UnitPrice"},
@@ -73,7 +73,7 @@ func TestGetRow(t *testing.T) {
 	})
 	t.Run("Displaying rounded float32", func(t *testing.T) {
 		types := &osc.UnitPriceEntry{
-			UnitPrice: ptr.To(1.2345),
+			UnitPrice: new(1.2345),
 		}
 		rows, err := format.GetRows(types, config.Columns{
 			{Content: ".UnitPrice"},
@@ -84,7 +84,7 @@ func TestGetRow(t *testing.T) {
 	})
 	t.Run("Displaying rounded float64s", func(t *testing.T) {
 		types := &osc.VmType{
-			Eth: ptr.To(1), MemorySize: ptr.To[float32](1.),
+			Eth: new(1), MemorySize: ptr.To[float32](1.),
 		}
 		rows, err := format.GetRows(types, config.Columns{
 			{Content: ".Eth"},
@@ -96,7 +96,7 @@ func TestGetRow(t *testing.T) {
 	})
 	t.Run("Displaying rounded float32", func(t *testing.T) {
 		types := &osc.VmType{
-			Eth: ptr.To(1), MemorySize: ptr.To[float32](1.2345),
+			Eth: new(1), MemorySize: ptr.To[float32](1.2345),
 		}
 		rows, err := format.GetRows(types, config.Columns{
 			{Content: ".Eth"},

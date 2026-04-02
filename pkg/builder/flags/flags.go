@@ -68,8 +68,7 @@ func (b *Builder) Build(fs *FlagSet, arg reflect.Type, prefix string, allowRequi
 		arg = arg.Elem()
 	}
 	typeName := arg.Name()
-	for i := range arg.NumField() {
-		f := arg.Field(i)
+	for f := range arg.Fields() {
 		ot := f.Type
 		t := ot
 

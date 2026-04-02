@@ -136,8 +136,7 @@ func (b *Builder[T]) BuildAPI(
 	}
 	rootCmd.AddCommand(apiCmd)
 	ct := reflect.TypeFor[*T]()
-	for i := range ct.NumMethod() {
-		m := ct.Method(i)
+	for m := range ct.Methods() {
 		if !methodFilter(m) {
 			continue
 		}

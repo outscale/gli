@@ -12,7 +12,6 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/gabriel-vasile/mimetype"
-	"github.com/outscale/goutils/sdk/ptr"
 	"github.com/outscale/octl/pkg/builder"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
@@ -85,6 +84,6 @@ func guessContentType(arg reflect.Value) {
 		}
 		mime := mimetype.Detect(body)
 		messages.Info("detected mime-type: %s", mime.String())
-		po.ContentType = ptr.To(mime.String())
+		po.ContentType = new(mime.String())
 	}
 }

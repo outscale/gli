@@ -14,8 +14,8 @@ func FindFieldByType[T any](v reflect.Value) (reflect.Value, bool) {
 	}
 	switch v.Kind() {
 	case reflect.Struct:
-		for i := range v.NumField() {
-			res, found := FindFieldByType[T](v.Field(i))
+		for _, field := range v.Fields() {
+			res, found := FindFieldByType[T](field)
 			if found {
 				return res, true
 			}
