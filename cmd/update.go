@@ -1,3 +1,5 @@
+//go:build !homebrew
+
 /*
 SPDX-FileCopyrightText: 2026 Outscale SAS <opensource@outscale.com>
 

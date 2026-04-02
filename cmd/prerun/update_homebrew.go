@@ -1,4 +1,4 @@
-//go:build !homebrew
+//go:build homebrew
 
 package prerun
 
@@ -31,5 +31,5 @@ func CheckUpdate(cmd *cobra.Command, args []string) {
 	if latest == "" || semver.Compare(version.Version, latest) >= 0 {
 		return
 	}
-	_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Yellow, "⬆️ New version %s detected - call octl update to update", latest))
+	_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Yellow, `⬆️ New version %s detected - call "brew install octl" to update`, latest))
 }
