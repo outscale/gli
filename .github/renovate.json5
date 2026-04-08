@@ -3,4 +3,12 @@
   "extends": [
     "github>outscale/oks-tools-team//renovate/default.json5#initial"
   ]
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "github.com/aws/aws-sdk-go-v2"
+      ],
+      "allowedVersions": "<=1.39.6"
+    }
+  ]
 }
