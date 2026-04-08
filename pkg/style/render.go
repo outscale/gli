@@ -7,7 +7,7 @@ package style
 import (
 	"fmt"
 
-	"github.com/charmbracelet/lipgloss"
+	"charm.land/lipgloss/v2"
 )
 
 func Renderf(style lipgloss.Style, format string, args ...any) string {

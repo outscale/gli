@@ -48,7 +48,7 @@ func Confirm(action config.Action, display, run func(cmd *cobra.Command, args []
 					Negative("❌ No").
 					Value(&yes),
 			),
-		).WithTheme(style.Theme()).Run()
+		).Run()
 		if err != nil {
 			messages.ExitErr(err)
 		}

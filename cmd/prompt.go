@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"github.com/charmbracelet/huh"
-	"github.com/outscale/octl/pkg/style"
 )
 
 func Prompt(question string, mode ...huh.EchoMode) (string, error) {
@@ -16,7 +15,6 @@ func Prompt(question string, mode ...huh.EchoMode) (string, error) {
 		Prompt(">").
 		EchoMode(echo).
 		Value(&resp).
-		WithTheme(style.Theme()).
 		Run()
 	return resp, err
 }

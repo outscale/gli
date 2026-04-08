@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/charmbracelet/lipgloss"
+	"charm.land/lipgloss/v2"
 	"github.com/outscale/octl/cmd/prerun"
 	"github.com/outscale/octl/pkg/markdown"
 	"github.com/outscale/octl/pkg/version"

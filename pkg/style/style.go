@@ -5,8 +5,11 @@ SPDX-License-Identifier: BSD-3-Clause
 package style
 
 import (
-	"github.com/charmbracelet/huh"
-	"github.com/charmbracelet/lipgloss"
+	"os"
+
+	"charm.land/huh/v2"
+	"charm.land/lipgloss/v2"
+	"charm.land/lipgloss/v2/compat"
 )
 
 var (
@@ -18,18 +21,18 @@ var (
 	Error = lipgloss.NewStyle().Foreground(lipgloss.Color("202")).Bold(true)
 )
 
-func Theme() *huh.Theme {
-	t := huh.ThemeBase()
+func Theme() *huh.Styles {
+	t := huh.ThemeBase(lipgloss.HasDarkBackground(os.Stdin, os.Stdout))
 	t.Focused.Title = t.Focused.Title.Foreground(lipgloss.Color("184"))
 	t.Focused.FocusedButton = t.Focused.FocusedButton.
 		Border(lipgloss.NormalBorder()).
-		BorderForeground(lipgloss.AdaptiveColor{Light: "236", Dark: "254"}).
-		Foreground(lipgloss.AdaptiveColor{Light: "0", Dark: "15"}).
+		BorderForeground(compat.AdaptiveColor{Light: lipgloss.Color("236"), Dark: lipgloss.Color("254")}).
+		Foreground(compat.AdaptiveColor{Light: lipgloss.Color("0"), Dark: lipgloss.Color("15")}).
 		Background(lipgloss.NoColor{})
 	t.Focused.BlurredButton = t.Focused.BlurredButton.
 		Border(lipgloss.NormalBorder()).
-		BorderForeground(lipgloss.AdaptiveColor{Light: "254", Dark: "236"}).
-		Foreground(lipgloss.AdaptiveColor{Light: "239", Dark: "248"}).
+		BorderForeground(compat.AdaptiveColor{Light: lipgloss.Color("254"), Dark: lipgloss.Color("236")}).
+		Foreground(compat.AdaptiveColor{Light: lipgloss.Color("239"), Dark: lipgloss.Color("248")}).
 		Background(lipgloss.NoColor{})
 	t.Focused.TextInput.Prompt = t.Focused.TextInput.Prompt.PaddingRight(1)
 	return t

@@ -3,7 +3,6 @@ package notty
 import (
 	"os"
 
-	"github.com/charmbracelet/lipgloss"
 	"github.com/outscale/octl/pkg/messages"
 )
 
@@ -16,5 +15,5 @@ func init() {
 	}
 	os.Stdout = fd
 
-	lipgloss.SetDefaultRenderer(lipgloss.NewRenderer(fd))
+	// lipgloss.SetDefaultRenderer(lipgloss.NewRenderer(fd))
 }
