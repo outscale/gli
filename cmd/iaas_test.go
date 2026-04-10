@@ -78,6 +78,17 @@ func TestIAASAPI(t *testing.T) {
 			assert.Equal(t, string(osc.VolumeTypeStandard), vt)
 		}
 	})
+	t.Run("JQ returns a list even with a single entry", func(t *testing.T) {
+		resp := []string{}
+		runJSON(t, []string{"iaas", "api", "ReadVolumes", "--jq", ".VolumeType", "--Filters.VolumeIds", volResp.VolumeId, "-o", "json"}, nil, &resp)
+		assert.NotEmpty(t, resp)
+		assert.Len(t, resp, 1)
+	})
+	t.Run("JQ + --single return a single entry", func(t *testing.T) {
+		var resp string
+		runJSON(t, []string{"iaas", "api", "ReadVolumes", "--jq", ".VolumeType", "--Filters.VolumeIds", volResp.VolumeId, "-o", "json", "--single"}, nil, &resp)
+		assert.NotEmpty(t, resp)
+	})
 	t.Run("Chaining works", func(t *testing.T) {
 		out := run(t, []string{"iaas", "api", "CreateNet", "--IpRange", "10.0.0.0/16"}, nil)
 		resp := osc.CreateSubnetResponse{}

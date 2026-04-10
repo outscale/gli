@@ -92,6 +92,7 @@ aliases:
   - GetNodepoolTemplate
   - --jq
   - '.Template | .spec.desiredNodes=0'
+  - --single
   - '|'
   - nodepool
   - api
