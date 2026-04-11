@@ -18,7 +18,7 @@ require (
 	github.com/goccy/go-yaml v1.19.3-0.20260226144344-f167b933f7d0
 	github.com/google/uuid v1.6.0
 	github.com/itchyny/gojq v0.12.19
-	github.com/mattn/go-isatty v0.0.20
+	github.com/mattn/go-isatty v0.0.21
 	github.com/minio/selfupdate v0.6.0
 	github.com/outscale/goutils/oks v0.0.1
 	github.com/outscale/goutils/sdk v0.0.3
