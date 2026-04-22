@@ -1,0 +1,45 @@
+name: Build
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/actions/setup_octl/**"
+      - ".github/workflows/testaction.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  latest:
+    runs-on: [self-hosted, linux, eu-west-2]
+    steps:
+    - name: ⬇️ Checkout repository
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+    - name: ⬇️ Install octl
+      uses: ./.github/actions/setup_octl
+      with:
+        OSC_ACCESS_KEY: ${{ secrets.OSC_ACCESS_KEY }}
+        OSC_SECRET_KEY: ${{ secrets.OSC_SECRET_KEY }}
+        OSC_REGION: "eu-west-2"
+    - name: 🔎 Test octl
+      shell: bash
+      run: |
+        octl iaas vm ls
+  version:
+    runs-on: [self-hosted, linux, eu-west-2]
+    steps:
+    - name: ⬇️ Checkout repository
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+    - name: ⬇️ Install octl
+      uses: ./.github/actions/setup_octl
+      with:
+        OSC_ACCESS_KEY: ${{ secrets.OSC_ACCESS_KEY }}
+        OSC_SECRET_KEY: ${{ secrets.OSC_SECRET_KEY }}
+        OSC_REGION: "eu-west-2"
+        version: "v0.0.21"
+    - name: 🔎 Test octl
+      shell: bash
+      run: |
+        octl iaas vm ls

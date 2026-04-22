@@ -1,0 +1,33 @@
+name: ⬇️ Install octl
+description: Install & configure octl
+inputs:
+  version:
+    description: 'octl version to install'
+    default: latest
+  OSC_ACCESS_KEY:
+    description: 'access key'
+  OSC_SECRET_KEY:
+    description: 'secret key'
+  OSC_REGiON:
+    description: 'region'
+
+runs:
+  using: "composite"
+  steps:
+    - name: install octl
+      shell: bash
+      run: |
+        if [ "${{inputs.version}}" == "latest" ]; then
+          curl --retry 5 --retry-max-time 120 --retry-connrefused -L -o octl https://github.com/outscale/octl/releases/latest/download/octl_Linux_x86_64
+        else
+          curl --retry 5 --retry-max-time 120 --retry-connrefused -L -o octl https://github.com/outscale/octl/releases/download/${{inputs.version}}/octl_Linux_x86_64
+        fi
+        install octl /usr/local/bin
+    - name: configure default profile
+      shell: bash
+      run: |
+        octl profile add default --ak $OSC_ACCESS_KEY --sk $OSC_SECRET_KEY --region $OSC_REGION
+      env:
+        OSC_ACCESS_KEY: ${{inputs.OSC_ACCESS_KEY}}
+        OSC_SECRET_KEY: ${{inputs.OSC_SECRET_KEY}}
+        OSC_REGION: ${{inputs.OSC_REGION}}
