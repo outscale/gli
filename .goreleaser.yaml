@@ -52,3 +52,19 @@ changelog:
 
 release:
   draft: true
+
+dockers_v2:
+  - images:
+      - "outscale/octl"
+    tags:
+      - "v{{ .Version }}"
+      - "{{ if not .IsNightly }}latest{{ end }}"
+    platforms:
+      - linux/amd64
+    labels:
+      "org.opencontainers.image.description": "octl"
+      "org.opencontainers.image.created": "{{.Date}}"
+      "org.opencontainers.image.name": "{{.ProjectName}}"
+      "org.opencontainers.image.revision": "{{.FullCommit}}"
+      "org.opencontainers.image.version": "{{.Version}}"
+      "org.opencontainers.image.source": "{{.GitURL}}"

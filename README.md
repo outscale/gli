@@ -43,7 +43,8 @@ It supports:
 
 It manages:
 - IaaS resources (nets, vms, ...),
-- OOS storage (buckets, objects).
+- OOS storage (buckets, objects),
+- local metadata (when running on a VM).
 
 And includes a preliminary support for OKS Kubernetes clusters.
 
@@ -59,8 +60,16 @@ And includes a preliminary support for OKS Kubernetes clusters.
 
 Download the latest binary from the [Releases page](https://github.com/outscale/octl/releases).
 
+On a Debian-based amd64 Linux:
+```shell
+curl -L -o octl https://github.com/outscale/octl/releases/latest/download/octl_Linux_x86_64
+install octl /usr/local/bin
+```
+
 Autocompletion setup is documented here:
 - [docs/installation.md](docs/installation.md)
+
+A `outscale/octl` Docker image is also available.
 
 ---
 
@@ -80,17 +89,34 @@ export OSC_REGION="eu-west-2"
 ## 🚀 Quickstart
 
 List volumes using the high-level command:
-```bash
+```shell
 octl iaas volume list
 ```
+Many shortcuts are also available, the following also works:
+```shell
+octl iaas vol ls
+```
+
 Call an API operation directly:
-```bash
+```shell
 octl iaas api ReadVms --Filters.VmStateNames running
 ```
 More examples:
 
 - [docs/usage/overview.md](./docs/usage/overview.md)
 - [docs/usage/iaas.md](./docs/usage/iaas.md)
+
+## 🐳 Quickstart (Docker)
+
+With environment variables:
+```shell
+docker run --env OSC_ACCESS_KEY=$OSC_ACCESS_KEY --env OSC_SECRET_KEY=$OSC_SECRET_KEY --env OSC_REGION=$OSC_REGION -ti outscale/octl:latest iaas volume list
+```
+
+With a profile file:
+```shell
+docker run --mount type=bind,src=$HOME/.osc,dst=/root/.osc -ti outscale/octl:latest iaas volume list
+```
 
 ## 📚 Documentation
 
