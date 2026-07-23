@@ -48,6 +48,7 @@ var rootCmd = &cobra.Command{
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 		prerun.CheckFalse(cmd, args)
 		prerun.CheckUpdate(cmd, args)
+		prerun.LoadPreferences(cmd)
 	},
 	Run:               root,
 	SilenceErrors:     true, // do not display errors when an error occurred, we do it

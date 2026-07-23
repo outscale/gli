@@ -9,7 +9,6 @@ import (
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/flags"
 	"github.com/outscale/octl/pkg/messages"
-	"github.com/outscale/octl/pkg/preferences"
 	"github.com/outscale/octl/pkg/runner"
 	"github.com/outscale/osc-sdk-go/v3/pkg/oks"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
@@ -34,7 +33,7 @@ func buildKubeAPI[Client any](provider string, cmd, parent *cobra.Command, getcl
 			_ = child.MarkPersistentFlagRequired("cluster")
 		} else {
 			child.Flags().String("cluster", "", "[REQUIRED] Name or ID of cluster")
-			child.Flags().String("project", preferences.Preferences.Kube.DefaultProject, "Name or ID of project")
+			child.Flags().String("project", "", "Name or ID of project")
 			_ = child.MarkFlagRequired("cluster")
 			_ = flags.MarkAsNoForward(child.Flags(), "project")
 		}

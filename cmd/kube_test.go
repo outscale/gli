@@ -90,4 +90,27 @@ func TestKube(t *testing.T) {
 	t.Run("Kubectl fails with an invalid --project", func(t *testing.T) {
 		runWithError(t, []string{"kube", "kubectl", "--cluster", cluster, "--project", "foobarbaz", "--", "get", "nodes"}, nil)
 	})
+
+	t.Run("A default project can be set", func(t *testing.T) {
+		_ = run(t, []string{"kube", "project", "use", emptyProject}, nil)
+		defer func() {
+			_ = run(t, []string{"kube", "project", "use"}, nil)
+		}()
+		runWithError(t, []string{"kube", "kubectl", "--cluster", cluster, "--", "get", "nodes"}, nil)
+	})
+	t.Run("A default project is ignored if flag si set", func(t *testing.T) {
+		_ = run(t, []string{"kube", "project", "use", emptyProject}, nil)
+		defer func() {
+			_ = run(t, []string{"kube", "project", "use"}, nil)
+		}()
+		_ = run(t, []string{"kube", "kubectl", "--cluster", cluster, "--project", project, "--", "get", "nodes"}, nil)
+	})
+	t.Run("A default project is ignored when set on another profile", func(t *testing.T) {
+		_, _ = try(t.Context(), []string{"profile", "add", "foo", "--ak", "foo", "--sk", "foo"}, nil)
+		_ = run(t, []string{"kube", "project", "use", emptyProject, "--profile", "foo"}, nil)
+		defer func() {
+			_ = run(t, []string{"kube", "project", "use", "--profile", "foo"}, nil)
+		}()
+		_ = run(t, []string{"kube", "kubectl", "--cluster", cluster, "--", "get", "nodes"}, nil)
+	})
 }

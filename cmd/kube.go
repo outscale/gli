@@ -12,6 +12,7 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+	"github.com/outscale/octl/cmd/prerun"
 	"github.com/outscale/octl/pkg/builder"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
@@ -20,6 +21,7 @@ import (
 	"github.com/outscale/octl/pkg/preferences"
 	"github.com/outscale/octl/pkg/runner"
 	"github.com/outscale/osc-sdk-go/v3/pkg/oks"
+	"github.com/outscale/osc-sdk-go/v3/pkg/profile"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 )
@@ -51,11 +53,11 @@ func init() {
 
 	// Add --project flag to kube cluster commands
 	clusterCmd, _ := lo.Find(oksCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == "cluster" })
-	clusterCmd.PersistentFlags().String("project", preferences.Preferences.Kube.DefaultProject, "Name or ID of project")
+	clusterCmd.PersistentFlags().String("project", "", "Name or ID of project")
 	_ = flags.MarkAsNoForward(clusterCmd.PersistentFlags(), "project")
 	clusterCmd.PersistentPreRunE = clusterArgToID
 	clusterCreateCmd, _ := lo.Find(clusterCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == "create" })
-	_ = flags.SetDefault(clusterCreateCmd.Flags(), "project", preferences.Preferences.Kube.DefaultProject)
+	_ = flags.SetDefault(clusterCreateCmd.Flags(), "project", "")
 
 	// Remap <cluster ls --project name> to <project clusters name>
 	projectCmd, _ := lo.Find(oksCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == "project" })
@@ -116,6 +118,7 @@ func projectArgToID(cmd *cobra.Command, args []string) error {
 	if cmd.Name() == "use" {
 		return nil
 	}
+
 	debug.Println("projectArgToID")
 	p := loadProfile(cmd)
 	cl, err := oks.NewClient(p, sdkOptions(cmd)...)
@@ -168,6 +171,9 @@ func flagNamesToID(cmd *cobra.Command, args []string) error {
 }
 
 func projectNameToID(ctx context.Context, name string, cl *oks.Client) (string, error) {
+	if name == "" {
+		name = prerun.PreferencesFrom(ctx).Kube.DefaultProject
+	}
 	if name == "" {
 		return "", nil
 	}
@@ -222,19 +228,24 @@ func clusterNameToID(ctx context.Context, name, project string, cl *oks.Client) 
 	}
 }
 
-func useProject(c *cobra.Command, args []string) {
+func useProject(cmd *cobra.Command, args []string) {
 	var def string
 	if len(args) > 0 {
 		def = args[0]
 	}
-	preferences.Preferences.Kube.DefaultProject = def
-	err := preferences.Preferences.Save()
+	prof, _ := cmd.Flags().GetString("profile")
+	if prof == "" {
+		prof = profile.DefaultProfile
+	}
+	// retro compatibility
+	_ = preferences.SetGlobal(func(prefs *preferences.Preferences) { prefs.Kube.DefaultProject = "" })
+	err := preferences.Set(prof, func(prefs *preferences.Preferences) { prefs.Kube.DefaultProject = def })
 	if err != nil {
 		messages.ExitErr(err)
 	}
 	if def == "" {
-		messages.Success("The default project has been reset")
+		messages.Success("The default project has been reset for profile %q", prof)
 	} else {
-		messages.Success("%q is now the default project for all octl kube commands", def)
+		messages.Success("%q is now the default project for profile %q", def, prof)
 	}
 }

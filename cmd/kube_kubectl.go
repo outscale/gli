@@ -14,7 +14,6 @@ import (
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/flags"
 	"github.com/outscale/octl/pkg/messages"
-	"github.com/outscale/octl/pkg/preferences"
 	"github.com/outscale/osc-sdk-go/v3/pkg/oks"
 	"github.com/spf13/cobra"
 	"k8s.io/client-go/tools/clientcmd"
@@ -120,6 +119,6 @@ func init() {
 	oksCmd.AddCommand(kubectlCmd)
 	kubectlCmd.Flags().String("cluster", "", "Name or ID of cluster")
 	_ = kubectlCmd.MarkFlagRequired("cluster")
-	kubectlCmd.Flags().String("project", preferences.Preferences.Kube.DefaultProject, "Name or ID of project")
+	kubectlCmd.Flags().String("project", "", "Name or ID of project")
 	_ = flags.MarkAsNoForward(kubectlCmd.Flags(), "project")
 }
