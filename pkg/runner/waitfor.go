@@ -15,7 +15,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func waitfor[Client any, Error error](cmd *cobra.Command, args []string, cl Client, cfg config.Config) error {
+func waitfor[Client any, Error error](cmd *cobra.Command, args []string, cl Client, cfg config.Config, hooks ...Hook) error {
 	expr, _ := cmd.Flags().GetString("waitfor")
 
 	// force JSON output
@@ -39,7 +39,7 @@ func waitfor[Client any, Error error](cmd *cobra.Command, args []string, cl Clie
 		}
 		buf := &bytes.Buffer{}
 		output.InjectOutput(buf)
-		err := doRun[Client, Error](cmd, args, cl, cfg)
+		err := doRun[Client, Error](cmd, args, cl, cfg, hooks...)
 		if err != nil {
 			return err
 		}

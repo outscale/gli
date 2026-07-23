@@ -5,7 +5,8 @@ OUTSCALE Object Storage (OOS) management
 ### Options
 
 ```
-  -h, --help   help for storage
+  -h, --help                   help for storage
+      --no-auto-content-type   Disable automatic content-type detection
 ```
 
 ### Options inherited from parent commands

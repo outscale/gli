@@ -37,6 +37,7 @@ octl storage object delete key [key]... [flags]
       --interval duration          interval between two watch/waitfor iterations (default 5s)
       --jq string                  jq filter
       --max-pages int              maximum number of pages a command can fetch (default 20)
+      --no-auto-content-type       Disable automatic content-type detection
       --no-upgrade                 do not check for new versions
   -O, --out-file string            redirect output to file
   -o, --output string              output format (raw, json, yaml, table, csv, none, base64, text)

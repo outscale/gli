@@ -22,14 +22,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func Run[Client any, Error error](cmd *cobra.Command, args []string, cl Client, cfg config.Config) error {
+func Run[Client any, Error error](cmd *cobra.Command, args []string, cl Client, cfg config.Config, hooks ...Hook) error {
 	if cmd.Flags().Lookup("waitfor").Changed {
-		return waitfor[Client, Error](cmd, args, cl, cfg)
+		return waitfor[Client, Error](cmd, args, cl, cfg, hooks...)
 	}
-	return doRun[Client, Error](cmd, args, cl, cfg)
+	return doRun[Client, Error](cmd, args, cl, cfg, hooks...)
 }
 
-func doRun[Client any, Error error](cmd *cobra.Command, args []string, cl Client, cfg config.Config) error {
+func doRun[Client any, Error error](cmd *cobra.Command, args []string, cl Client, cfg config.Config, hooks ...Hook) error {
 	clt := reflect.TypeFor[Client]()
 	m, _ := clt.MethodByName(cmd.Name())
 
@@ -58,7 +58,7 @@ func doRun[Client any, Error error](cmd *cobra.Command, args []string, cl Client
 				arg.Set(reflect.New(argType.Elem()))
 			}
 			if !injected {
-				err := ToStruct(cmd, arg, "")
+				err := ToStruct(cmd, arg, "", hooks...)
 				switch {
 				case err != nil:
 					return err

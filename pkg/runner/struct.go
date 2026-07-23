@@ -19,7 +19,7 @@ import (
 	"github.com/spf13/pflag"
 )
 
-func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string) error {
+func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string, hooks ...Hook) error {
 	fs := cmd.Flags()
 	var (
 		err    error
@@ -77,9 +77,7 @@ func ToStruct(cmd *cobra.Command, arg reflect.Value, prefix string) error {
 		})
 	}
 	// apply hooks
-	if hooks, _ := fs.GetStringSlice("hooks"); len(hooks) > 0 {
-		applyHooks(arg, hooks)
-	}
+	applyHooks(arg, hooks...)
 	debug.Println(fmt.Sprintf("ToStruct result: %+v", reflect.Indirect(arg).Interface()))
 	return err
 }

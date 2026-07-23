@@ -60,7 +60,7 @@ func init() {
 		return []cobra.Completion{http.MethodGet, http.MethodPut, http.MethodDelete}, cobra.ShellCompDirectiveDefault
 	})
 
-	runner.RegisterHook("auto-content-type", guessContentType)
+	storageCmd.PersistentFlags().Bool("no-auto-content-type", false, "Disable automatic content-type detection")
 }
 
 func callOOS(cmd *cobra.Command, args []string) {
@@ -68,7 +68,11 @@ func callOOS(cmd *cobra.Command, args []string) {
 	p := loadProfile(cmd)
 	cl, err := oos.NewClient(cmd.Context(), p, awsOptions(cmd)...)
 	if err == nil {
-		err = runner.Run[*oos.Client, oos.Error](cmd, args, cl, config.For("storage"))
+		var hooks []runner.Hook
+		if noAuto, _ := cmd.Flags().GetBool("no-auto-content-type"); !noAuto {
+			hooks = []runner.Hook{guessContentType}
+		}
+		err = runner.Run[*oos.Client, oos.Error](cmd, args, cl, config.For("storage"), hooks...)
 	}
 	if err != nil {
 		_ = flags.CloseAll(cmd.Flags())
@@ -123,6 +127,8 @@ func presign(cmd *cobra.Command, args []string) {
 	_, _ = fmt.Fprint(os.Stdout, req.URL)
 }
 
+const detectionBufferSize = 32 * 1024
+
 func guessContentType(arg reflect.Value) {
 	if !arg.CanInterface() {
 		return
@@ -136,7 +142,7 @@ func guessContentType(arg reflect.Value) {
 			messages.Info("cannot compute content-type")
 			return
 		}
-		body, err := io.ReadAll(io.LimitReader(seeker, 200))
+		body, err := io.ReadAll(io.LimitReader(seeker, detectionBufferSize))
 		if err != nil {
 			_, _ = seeker.Seek(0, io.SeekStart) // in case something was read...
 			messages.Info("cannot compute content-type: %v", err)
@@ -147,8 +153,9 @@ func guessContentType(arg reflect.Value) {
 			messages.ExitErr(fmt.Errorf("cannot compute content-type: %w", err))
 			return
 		}
+		mimetype.SetLimit(detectionBufferSize)
 		mime := mimetype.Detect(body)
-		messages.Info("detected mime-type: %s", mime.String())
+		messages.Info("Detected mime-type: %s", mime.String())
 		po.ContentType = new(mime.String())
 	}
 }
