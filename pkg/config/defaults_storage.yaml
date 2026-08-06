@@ -39,6 +39,9 @@ contents:
   DeleteObjectTagging:
     entity: objecttagging
     group: Object
+  DeleteObjects:
+    entity: object
+    group: Object
   GetBucketAcl:
     content: .
     entity: acl
@@ -92,6 +95,8 @@ contents:
     group: Object
   HandleBuild:
     entity: build
+  HandleInitialize:
+    entity: initialize
   HeadBucket:
     content: .
     entity: bucket
@@ -1205,7 +1210,9 @@ spec:
     DeleteBucketWebsite: {}
     DeleteObject: {}
     DeleteObjectTagging: {}
+    DeleteObjects: {}
     HandleBuild: {}
+    HandleInitialize: {}
     ListMultipartUploads: {}
     ListParts: {}
     PutBucketAcl: {}

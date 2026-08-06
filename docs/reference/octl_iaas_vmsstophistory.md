@@ -1,27 +1,11 @@
-## octl kube project create
+## octl iaas vmsstophistory
 
-alias for api CreateProject
-
-### Synopsis
-
-> *alias for api CreateProject*
-
-Creates a new project with the provided details. The request must include the project data in the request body. Returns the details of the created project.
-
-```
-octl kube project create [flags]
-```
+vmsstophistory commands
 
 ### Options
 
 ```
-      --cidr string               CIDR block associated with the project's VPC
-      --description string        Optional description of the project
-      --disable-api-termination   Flag to prevent accidental project deletion Example: false
-  -h, --help                      help for create
-      --name string               [REQUIRED] Unique name for the project, must start with a letter and contain only lowercase letters, numbers, or hyphens Example: awesome-project
-      --quirk strings             
-      --region string             Region where the project is deployed
+  -h, --help   help for vmsstophistory
 ```
 
 ### Options inherited from parent commands
@@ -51,5 +35,6 @@ octl kube project create [flags]
 
 ### SEE ALSO
 
-* [octl kube project](octl_kube_project.md)	 - project commands
+* [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
+* [octl iaas vmsstophistory list](octl_iaas_vmsstophistory_list.md)	 - alias for api ReadVmsStopHistory
 

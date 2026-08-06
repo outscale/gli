@@ -221,6 +221,7 @@ iaas api calls
 * [octl iaas api ReadVms](octl_iaas_api_ReadVms.md)	 - Lists one or more of your virtual machines (VMs).
 * [octl iaas api ReadVmsHealth](octl_iaas_api_ReadVmsHealth.md)	 - Lists the state of one or more backend virtual machines (VMs) registered with a specified load balancer.
 * [octl iaas api ReadVmsState](octl_iaas_api_ReadVmsState.md)	 - Lists the status of one or more virtual machines (VMs).
+* [octl iaas api ReadVmsStopHistory](octl_iaas_api_ReadVmsStopHistory.md)	 - Lists the stop history of one or more VMs.
 * [octl iaas api ReadVolumeUpdateTasks](octl_iaas_api_ReadVolumeUpdateTasks.md)	 - Lists one or more specified tasks of volume update.
 * [octl iaas api ReadVolumes](octl_iaas_api_ReadVolumes.md)	 - Lists one or more specified Block Storage Unit (BSU) volumes.
 * [octl iaas api ReadVpnConnections](octl_iaas_api_ReadVpnConnections.md)	 - Lists one or more VPN connections.

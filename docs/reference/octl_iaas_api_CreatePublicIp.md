@@ -6,7 +6,7 @@ Acquires a public IP for your account.
 
 Acquires a public IP for your account.
 
-A public IP is a static IP designed for dynamic Cloud computing. It can be associated with a virtual machine (VM) in the public Cloud or in a Net, a network interface card (NIC), a NAT service.
+A public IP is a static IP designed for dynamic Cloud computing. It can be associated with a virtual machine (VM) in the public Cloud, a VM in a Net, a network interface card (NIC), or a NAT service.
 
 For more information, see [About Public IPs](https://docs.outscale.com/en/userguide/About-Public-IPs.html).
 

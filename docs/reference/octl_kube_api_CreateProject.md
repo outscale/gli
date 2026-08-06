@@ -15,8 +15,8 @@ octl kube api CreateProject [flags]
 ```
       --Cidr string             CIDR block associated with the project's VPC
       --Description string      Optional description of the project
-      --DisableApiTermination   Flag to prevent accidental project deletion
-      --Name string             Unique name for the project, must start with a letter and contain only lowercase letters, numbers, or hyphens
+      --DisableApiTermination   Flag to prevent accidental project deletion Example: false
+      --Name string             Unique name for the project, must start with a letter and contain only lowercase letters, numbers, or hyphens Example: awesome-project
       --Quirks strings          
       --Region string           Region where the project is deployed
       --Tags stringToString      (default [])

@@ -34,19 +34,19 @@ octl kube api CreateCluster [flags]
       --AutoMaintenances.PatchUpgradeMaintenance.StartHour int       Hour of the day when maintenance window starts (0-23)
       --AutoMaintenances.PatchUpgradeMaintenance.Tz string           Timezone for the maintenance window
       --AutoMaintenances.PatchUpgradeMaintenance.WeekDay string      Day of the week for the maintenance window
-      --CidrPods string                                              CIDR block for Kubernetes pods network
-      --CidrService string                                           CIDR block for Kubernetes services network
-      --ClusterDns string                                            IP address for cluster DNS service
+      --CidrPods string                                              CIDR block for Kubernetes pods network Example: 10.91.0.0/16
+      --CidrService string                                           CIDR block for Kubernetes services network Example: 10.92.0.0/16
+      --ClusterDns string                                            IP address for cluster DNS service Example: 10.92.0.10
       --ControlPlanes string                                         Size of control plane deployment for the cluster
       --CpMultiAz                                                    Flag to enable multi-availability zone for the control plane
       --CpSubregions strings                                         List of subregions where control plane components are deployed
       --Description string                                           
-      --DisableApiTermination                                        Flag to prevent accidental cluster deletion
+      --DisableApiTermination                                        Flag to prevent accidental cluster deletion Example: false
       --MaintenanceWindow.DurationHours int                          Duration of the maintenance window in hours
       --MaintenanceWindow.StartHour int                              Hour of the day when maintenance window starts (0-23)
       --MaintenanceWindow.Tz string                                  Timezone for the maintenance window
       --MaintenanceWindow.WeekDay string                             Day of the week for the maintenance window
-      --Name string                                                  Unique cluster name per project, must start with a letter and contain only lowercase letters, numbers, or hyphens
+      --Name string                                                  Unique cluster name per project, must start with a letter and contain only lowercase letters, numbers, or hyphens Example: awesome-cluster
       --ProjectId string                                             Unique identifier of the project this cluster belongs to
       --Quirks strings                                               
       --Tags stringToString                                           (default [])

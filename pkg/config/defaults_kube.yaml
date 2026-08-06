@@ -700,7 +700,7 @@ spec:
     Cluster.Description:
       help: Optional description of the cluster
     Cluster.DisableApiTermination:
-      help: Flag to prevent accidental cluster deletion
+      help: 'Flag to prevent accidental cluster deletion Example: false'
     Cluster.Id:
       help: Unique UUID of the cluster
     Cluster.Name:
@@ -710,7 +710,7 @@ spec:
     Cluster.Statuses:
       help: Current status information about the cluster
     Cluster.Tags:
-      help: Key-value pairs for cluster metadata
+      help: 'Key-value pairs for cluster metadata Example: {"key":"value"}'
     Cluster.Version:
       help: Version of Kubernetes deployed in the cluster
     ClusterInput.AdminLbu:
@@ -722,11 +722,11 @@ spec:
     ClusterInput.AutoMaintenances:
       help: 'Use ''maintenance_window'' instead Deprecated: this property has been marked as deprecated upstream, but no x-deprecated-reason was set'
     ClusterInput.CidrPods:
-      help: CIDR block for Kubernetes pods network
+      help: 'CIDR block for Kubernetes pods network Example: 10.91.0.0/16'
     ClusterInput.CidrService:
-      help: CIDR block for Kubernetes services network
+      help: 'CIDR block for Kubernetes services network Example: 10.92.0.0/16'
     ClusterInput.ClusterDns:
-      help: IP address for cluster DNS service
+      help: 'IP address for cluster DNS service Example: 10.92.0.10'
     ClusterInput.ControlPlanes:
       help: Size of control plane deployment for the cluster
     ClusterInput.CpMultiAz:
@@ -734,11 +734,11 @@ spec:
     ClusterInput.CpSubregions:
       help: List of subregions where control plane components are deployed
     ClusterInput.DisableApiTermination:
-      help: Flag to prevent accidental cluster deletion
+      help: 'Flag to prevent accidental cluster deletion Example: false'
     ClusterInput.MaintenanceWindow:
       help: Configuration for automated maintenance windows
     ClusterInput.Name:
-      help: Unique cluster name per project, must start with a letter and contain only lowercase letters, numbers, or hyphens
+      help: 'Unique cluster name per project, must start with a letter and contain only lowercase letters, numbers, or hyphens Example: awesome-cluster'
     ClusterInput.ProjectId:
       help: Unique identifier of the project this cluster belongs to
     ClusterInput.Version:
@@ -750,19 +750,19 @@ spec:
     ClusterInputTemplate.AdmissionFlags:
       help: Configuration for Kubernetes admission controllers
     ClusterInputTemplate.CidrPods:
-      help: CIDR block for Kubernetes pods network
+      help: 'CIDR block for Kubernetes pods network Example: 10.91.0.0/16'
     ClusterInputTemplate.CidrService:
-      help: CIDR block for Kubernetes services network
+      help: 'CIDR block for Kubernetes services network Example: 10.92.0.0/16'
     ClusterInputTemplate.ClusterDns:
-      help: IP address for cluster DNS service
+      help: 'IP address for cluster DNS service Example: 10.92.0.10'
     ClusterInputTemplate.ControlPlanes:
       help: Size of control plane deployment for the cluster
     ClusterInputTemplate.DisableApiTermination:
-      help: Flag to prevent accidental cluster deletion
+      help: 'Flag to prevent accidental cluster deletion Example: false'
     ClusterInputTemplate.ProjectId:
       help: Unique identifier of the project this cluster belongs to
     ClusterInputTemplate.Tags:
-      help: Key-value pairs for cluster metadata
+      help: 'Key-value pairs for cluster metadata Example: {"key":"value"}'
     ClusterInputTemplate.Version:
       help: Version of Kubernetes to be deployed
     ClusterResponseList.Clusters:
@@ -846,7 +846,7 @@ spec:
     Project.Description:
       help: Optional description of the project
     Project.DisableApiTermination:
-      help: Flag to prevent accidental project deletion
+      help: 'Flag to prevent accidental project deletion Example: false'
     Project.Id:
       help: Unique UUID of the project
     Project.Name:
@@ -862,9 +862,9 @@ spec:
     ProjectInput.Description:
       help: Optional description of the project
     ProjectInput.DisableApiTermination:
-      help: Flag to prevent accidental project deletion
+      help: 'Flag to prevent accidental project deletion Example: false'
     ProjectInput.Name:
-      help: Unique name for the project, must start with a letter and contain only lowercase letters, numbers, or hyphens
+      help: 'Unique name for the project, must start with a letter and contain only lowercase letters, numbers, or hyphens Example: awesome-project'
     ProjectInput.Region:
       help: Region where the project is deployed
     ProjectResponseList.Projects:

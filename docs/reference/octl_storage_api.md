@@ -50,6 +50,7 @@ storage api calls
 * [octl storage api DeleteBucketWebsite](octl_storage_api_DeleteBucketWebsite.md)	 - 
 * [octl storage api DeleteObject](octl_storage_api_DeleteObject.md)	 - 
 * [octl storage api DeleteObjectTagging](octl_storage_api_DeleteObjectTagging.md)	 - 
+* [octl storage api DeleteObjects](octl_storage_api_DeleteObjects.md)	 - 
 * [octl storage api GetBucketAcl](octl_storage_api_GetBucketAcl.md)	 - 
 * [octl storage api GetBucketCors](octl_storage_api_GetBucketCors.md)	 - 
 * [octl storage api GetBucketEncryption](octl_storage_api_GetBucketEncryption.md)	 - 

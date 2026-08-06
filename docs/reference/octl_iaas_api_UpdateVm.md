@@ -25,25 +25,27 @@ octl iaas api UpdateVm [flags]
 ### Options
 
 ```
-      --ActionsOnNextBoot.SecureBoot string              One action to perform on the next boot of the VM (enable | disable | setup-mode | none).
-      --BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion     If set to true, the volume is deleted when terminating the VM.
-      --BlockDeviceMappings.0.Bsu.VolumeId string        The ID of the volume.
-      --BlockDeviceMappings.0.DeviceName string          The device name for the volume.
-      --BlockDeviceMappings.0.NoDevice string            Removes the device which is included in the block device mapping of the OMI.
-      --BlockDeviceMappings.0.VirtualDeviceName string   The name of the virtual device (ephemeralN).
-      --BsuOptimized                                     This parameter is not available.
-      --DeletionProtection                               If true, you cannot delete the VM unless you change this parameter back to false.
-      --DryRun                                           If true, checks whether you have the required permissions to perform the action.
-      --IsSourceDestChecked                              (Net only) If true, the source/destination check is enabled.
-      --KeypairName string                               The name of a keypair you want to associate with the VM.
-      --NestedVirtualization                             (dedicated tenancy only) If true, nested virtualization is enabled.
-      --Performance string                               The performance of the VM.
-      --SecurityGroupIds strings                         One or more IDs of security groups for the VM.
-      --UserData string                                  The Base64-encoded MIME user data, limited to 500 kibibytes (KiB).
-      --VmId string                                      The ID of the VM.
-      --VmInitiatedShutdownBehavior string               The VM behavior when you stop it.
-      --VmType string                                    The type of VM.
-  -h, --help                                             help for UpdateVm
+      --ActionsOnNextBoot.SecureBoot string                One action to perform on the next boot of the VM (enable | disable | setup-mode | none).
+      --BlockDeviceMappings.0.Bsu.DeleteOnVmDeletion       If set to true, the volume is deleted when terminating the VM.
+      --BlockDeviceMappings.0.Bsu.VolumeId string          The ID of the volume.
+      --BlockDeviceMappings.0.DeviceName string            The device name for the volume.
+      --BlockDeviceMappings.0.NoDevice string              Removes the device which is included in the block device mapping of the OMI.
+      --BlockDeviceMappings.0.VirtualDeviceName string     The name of the virtual device (ephemeralN).
+      --BsuOptimized                                       This parameter is not available.
+      --DeletionProtection                                 If true, you cannot delete the VM unless you change this parameter back to false.
+      --DryRun                                             If true, checks whether you have the required permissions to perform the action.
+      --IsSourceDestChecked                                (Net only) If true, the source/destination check is enabled.
+      --KeypairName string                                 The name of a keypair you want to associate with the VM.
+      --NestedVirtualization                               (dedicated tenancy only) If true, nested virtualization is enabled.
+      --Performance string                                 The performance of the VM.
+      --SecurityGroupIds strings                           One or more IDs of security groups for the VM.
+      --ShutdownBehaviorConfiguration.GuestAction string   The action performed by the orchestrator when the VM is shut down from the guest operating system.
+      --ShutdownBehaviorConfiguration.HostAction string    The action performed by the orchestrator when the VM is shut down due to a host infrastructure failure.
+      --UserData string                                    The Base64-encoded MIME user data, limited to 500 kibibytes (KiB).
+      --VmId string                                        The ID of the VM.
+      --VmInitiatedShutdownBehavior string                 The VM behavior when you stop it.
+      --VmType string                                      The type of VM.
+  -h, --help                                               help for UpdateVm
 ```
 
 ### Options inherited from parent commands

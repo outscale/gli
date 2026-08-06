@@ -25,7 +25,7 @@ require (
 	github.com/minio/selfupdate v0.6.0
 	github.com/outscale/goutils/oks v0.0.2
 	github.com/outscale/goutils/sdk v0.0.5
-	github.com/outscale/osc-sdk-go/v3 v3.0.0-rc.3.0.20260709150001-abf6e77bc1d0
+	github.com/outscale/osc-sdk-go/v3 v3.0.0-rc.3.0.20260806130645-86e9d7e35857
 	github.com/samber/lo v1.53.0
 	github.com/sigstore/sigstore-go v1.1.4
 	github.com/spf13/cobra v1.10.2
@@ -157,7 +157,7 @@ require (
 	github.com/muesli/termenv v0.16.0 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f // indirect
-	github.com/oapi-codegen/runtime v1.3.1 // indirect
+	github.com/oapi-codegen/runtime v1.6.0 // indirect
 	github.com/oklog/ulid v1.3.1 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
 	github.com/peterbourgon/diskv v2.0.1+incompatible // indirect
@@ -219,3 +219,5 @@ require (
 	sigs.k8s.io/structured-merge-diff/v6 v6.3.2 // indirect
 	sigs.k8s.io/yaml v1.6.0 // indirect
 )
+
+exclude github.com/go-openapi/testify/enable/yaml/v2 v2.0.2

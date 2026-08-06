@@ -23,7 +23,7 @@ octl iaas api CreateNetPeering [flags]
 ### Options
 
 ```
-      --AccepterNetId string     The ID of the Net you want to connect with.
+      --AccepterNetId string     The ID of the Net you want to connect with.<br/ > If the Net does not belong to you, you must also specify the AccepterOwnerId parameter with the OUTSCALE account ID owning the Net you want to connect with.
       --AccepterOwnerId string   The OUTSCALE account ID of the owner of the Net you want to connect with.
       --DryRun                   If true, checks whether you have the required permissions to perform the action.
       --SourceNetId string       The ID of the Net you send the peering request from.

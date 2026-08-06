@@ -1,27 +1,25 @@
-## octl kube project create
+## octl iaas vmsstophistory list
 
-alias for api CreateProject
+alias for api ReadVmsStopHistory
 
 ### Synopsis
 
-> *alias for api CreateProject*
+> *alias for api ReadVmsStopHistory*
 
-Creates a new project with the provided details. The request must include the project data in the request body. Returns the details of the created project.
+Lists the stop history of one or more VMs.
 
 ```
-octl kube project create [flags]
+octl iaas vmsstophistory list [flags]
 ```
 
 ### Options
 
 ```
-      --cidr string               CIDR block associated with the project's VPC
-      --description string        Optional description of the project
-      --disable-api-termination   Flag to prevent accidental project deletion Example: false
-  -h, --help                      help for create
-      --name string               [REQUIRED] Unique name for the project, must start with a letter and contain only lowercase letters, numbers, or hyphens Example: awesome-project
-      --quirk strings             
-      --region string             Region where the project is deployed
+  -h, --help                       help for list
+      --state-reason strings       The reason explaining why the VM stopped.
+      --stop-date-after osctime    The date and time (UTC), or the date, after which you want to retrieve VM stops, in ISO 8601 format (for example, 2026-06-14T00:00:00.000Z or 2026-06-14).
+      --stop-date-before osctime   The date and time (UTC), or the date, before which you want to retrieve VM stops, in ISO 8601 format (for example, 2026-06-14T00:00:00.000Z or 2026-06-14).
+      --vm-id strings              The IDs of the stopped VM(s).
 ```
 
 ### Options inherited from parent commands
@@ -51,5 +49,5 @@ octl kube project create [flags]
 
 ### SEE ALSO
 
-* [octl kube project](octl_kube_project.md)	 - project commands
+* [octl iaas vmsstophistory](octl_iaas_vmsstophistory.md)	 - vmsstophistory commands
 

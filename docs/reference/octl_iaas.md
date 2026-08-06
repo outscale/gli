@@ -100,6 +100,7 @@ OUTSCALE IaaS management
 * [octl iaas virtualgateway](octl_iaas_virtualgateway.md)	 - virtualgateway commands
 * [octl iaas vm](octl_iaas_vm.md)	 - vm commands
 * [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - vmgroup commands
+* [octl iaas vmsstophistory](octl_iaas_vmsstophistory.md)	 - vmsstophistory commands
 * [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - vmtemplate commands
 * [octl iaas vmtype](octl_iaas_vmtype.md)	 - vmtype commands
 * [octl iaas volume](octl_iaas_volume.md)	 - volume commands

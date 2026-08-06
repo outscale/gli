@@ -662,6 +662,10 @@ contents:
     content: VmStates
     entity: vmsstate
     group: Vm
+  ReadVmsStopHistory:
+    content: VmsStopHistory
+    entity: vmsstophistory
+    group: Vm
   ReadVolumeUpdateTasks:
     content: VolumeUpdateTasks
     entity: volumeupdatetask
@@ -1378,6 +1382,7 @@ entities:
       content: .SubregionName
     - title: State
       content: .VmState
+  vmsstophistory: {}
   vmtemplate:
     columns:
     - title: ID
@@ -3901,6 +3906,26 @@ aliases:
   - --output
   - yaml
   - --single
+- entity: vmsstophistory
+  use: list
+  alias_to: ReadVmsStopHistory
+  aliases:
+  - ls
+  short: alias for api ReadVmsStopHistory
+  command:
+  - api
+  - ReadVmsStopHistory
+  - --output
+  - table
+  flags:
+  - name: state-reason
+    alias_to: Filters.StateReasons
+  - name: stop-date-after
+    alias_to: Filters.StopDateAfter
+  - name: stop-date-before
+    alias_to: Filters.StopDateBefore
+  - name: vm-id
+    alias_to: Filters.VmIds
 - entity: volumeupdatetask
   use: list
   alias_to: ReadVolumeUpdateTasks
@@ -5124,6 +5149,10 @@ aliases:
     alias_to: SecurityGroupIds
   - name: security-group
     alias_to: SecurityGroups
+  - name: shutdown-behavior-configuration-guest-action
+    alias_to: ShutdownBehaviorConfiguration.GuestAction
+  - name: shutdown-behavior-configuration-host-action
+    alias_to: ShutdownBehaviorConfiguration.HostAction
   - name: subnet-id
     alias_to: SubnetId
   - name: tpm-enabled
@@ -6368,6 +6397,10 @@ aliases:
     alias_to: Performance
   - name: security-group-id
     alias_to: SecurityGroupIds
+  - name: shutdown-behavior-configuration-guest-action
+    alias_to: ShutdownBehaviorConfiguration.GuestAction
+  - name: shutdown-behavior-configuration-host-action
+    alias_to: ShutdownBehaviorConfiguration.HostAction
   - name: user-data
     alias_to: UserData
     type: base64File
@@ -6515,7 +6548,6 @@ spec:
         
         * You need OUTSCALE credentials and the appropriate quotas to create an account via API. To get quotas, you can send an email to sales@outscale.com.
         
-        * If you want to pass a numeral value as a string instead of an integer, you must wrap your string in additional quotes (for example, `'&quot;92000&quot;'`).
         
         For more information, see [About Your Account](https://docs.outscale.com/en/userguide/About-Your-OUTSCALE-Account.html).
     CreateApiAccessRule:
@@ -6772,7 +6804,7 @@ spec:
       help: |-
         Acquires a public IP for your account.
         
-        A public IP is a static IP designed for dynamic Cloud computing. It can be associated with a virtual machine (VM) in the public Cloud or in a Net, a network interface card (NIC), a NAT service.
+        A public IP is a static IP designed for dynamic Cloud computing. It can be associated with a virtual machine (VM) in the public Cloud, a VM in a Net, a network interface card (NIC), or a NAT service.
         
         
         For more information, see [About Public IPs](https://docs.outscale.com/en/userguide/About-Public-IPs.html).
@@ -7708,6 +7740,8 @@ spec:
       help: Lists the state of one or more backend virtual machines (VMs) registered with a specified load balancer.
     ReadVmsState:
       help: Lists the status of one or more virtual machines (VMs).
+    ReadVmsStopHistory:
+      help: Lists the stop history of one or more VMs.
     ReadVolumeUpdateTasks:
       help: Lists one or more specified tasks of volume update.
     ReadVolumes:
@@ -8111,9 +8145,9 @@ spec:
     BackendVmHealth.Description:
       help: The description of the state of the backend VM.
     BackendVmHealth.State:
-      help: The state of the backend VM (InService | OutOfService | Unknown).
+      help: The state of the backend VM (UP | DOWN | UNKNOWN).
     BackendVmHealth.StateReason:
-      help: Information about the cause of OutOfService VMs.
+      help: Information about the cause of DOWN VMs.
     BackendVmHealth.VmId:
       help: The ID of the backend VM.
     BlockDeviceMappingCreated.Bsu:
@@ -8475,7 +8509,7 @@ spec:
     CreateNetAccessPointRequest.ServiceName:
       help: The name of the service (in the format com.outscale.region.service).
     CreateNetPeeringRequest.AccepterNetId:
-      help: The ID of the Net you want to connect with.
+      help: The ID of the Net you want to connect with.<br/ > If the Net does not belong to you, you must also specify the AccepterOwnerId parameter with the OUTSCALE account ID owning the Net you want to connect with.
     CreateNetPeeringRequest.AccepterOwnerId:
       help: The OUTSCALE account ID of the owner of the Net you want to connect with.
     CreateNetPeeringRequest.DryRun:
@@ -8712,6 +8746,8 @@ spec:
       help: One or more IDs of security group for the VMs.
     CreateVmsRequest.SecurityGroups:
       help: One or more names of security groups for the VMs.
+    CreateVmsRequest.ShutdownBehaviorConfiguration:
+      help: Information about the actions performed by the orchestrator when the VM shuts down.
     CreateVmsRequest.SubnetId:
       help: The ID of the Subnet in which you want to create the VM.
     CreateVmsRequest.TpmEnabled:
@@ -9822,6 +9858,14 @@ spec:
       help: One or more IDs of VMs.
     FiltersVmsState.VmStates:
       help: The states of the VMs (pending | running | stopping | stopped | shutting-down | terminated | quarantine).
+    FiltersVmsStopHistory.StateReasons:
+      help: The reason explaining why the VM stopped.
+    FiltersVmsStopHistory.StopDateAfter:
+      help: The date and time (UTC), or the date, after which you want to retrieve VM stops, in ISO 8601 format (for example, 2026-06-14T00:00:00.000Z or 2026-06-14).
+    FiltersVmsStopHistory.StopDateBefore:
+      help: The date and time (UTC), or the date, before which you want to retrieve VM stops, in ISO 8601 format (for example, 2026-06-14T00:00:00.000Z or 2026-06-14).
+    FiltersVmsStopHistory.VmIds:
+      help: The IDs of the stopped VM(s).
     FiltersVolume.ClientTokens:
       help: The idempotency tokens provided when creating the volumes.
     FiltersVolume.CreationDates:
@@ -10033,7 +10077,7 @@ spec:
     LinkNic.DeleteOnVmDeletion:
       help: If true, the NIC is deleted when the VM is terminated.
     LinkNic.DeviceNumber:
-      help: The device index for the NIC attachment (between 1 and 7, both included).
+      help: The device index for the NIC attachment (between 0 and 7, both included).
     LinkNic.LinkNicId:
       help: The ID of the NIC to attach.
     LinkNic.State:
@@ -10045,7 +10089,7 @@ spec:
     LinkNicLight.DeleteOnVmDeletion:
       help: If true, the NIC is deleted when the VM is terminated.
     LinkNicLight.DeviceNumber:
-      help: The device index for the NIC attachment (between 1 and 7, both included).
+      help: The device index for the NIC attachment (between 0 and 7, both included).
     LinkNicLight.LinkNicId:
       help: The ID of the NIC to attach.
     LinkNicLight.State:
@@ -11102,6 +11146,12 @@ spec:
       help: The token to request the next page of results.
     ReadVmsStateRequest.ResultsPerPage:
       help: The maximum number of logs returned in a single response (between 1 and 1000, both included).
+    ReadVmsStopHistoryRequest.Filters:
+      help: One or more filters.
+    ReadVmsStopHistoryRequest.NextPageToken:
+      help: The token to request the next page of results.
+    ReadVmsStopHistoryRequest.ResultsPerPage:
+      help: The maximum number of logs returned in a single response (between 1 and 1000, both included).
     ReadVolumeUpdateTasksRequest.DryRun:
       help: If true, checks whether you have the required permissions to perform the action.
     ReadVolumeUpdateTasksRequest.Filters:
@@ -11278,6 +11328,10 @@ spec:
       help: The OUTSCALE Resource Name (ORN) of the policy.
     SetDefaultPolicyVersionRequest.VersionId:
       help: The ID of the version.
+    ShutdownBehaviorConfiguration.GuestAction:
+      help: The action performed by the orchestrator when the VM is shut down from the guest operating system.
+    ShutdownBehaviorConfiguration.HostAction:
+      help: The action performed by the orchestrator when the VM is shut down due to a host infrastructure failure.
     Snapshot.AccountAlias:
       help: The account alias of the owner of the snapshot.
     Snapshot.AccountId:
@@ -11311,7 +11365,7 @@ spec:
     SnapshotExportTask.SnapshotId:
       help: The ID of the snapshot to be exported.
     SnapshotExportTask.State:
-      help: The state of the snapshot export task (pending | active | completed | cancelled | failed).
+      help: The state of the snapshot export task (pending | initializing | preparing | uploading | completed | cancelled | failed).
     SnapshotExportTask.Tags:
       help: One or more tags associated with the snapshot export task.
     SnapshotExportTask.TaskId:
@@ -11696,6 +11750,8 @@ spec:
       help: The performance of the VM.
     UpdateVmRequest.SecurityGroupIds:
       help: One or more IDs of security groups for the VM.
+    UpdateVmRequest.ShutdownBehaviorConfiguration:
+      help: Information about the actions performed by the orchestrator when the VM shuts down.
     UpdateVmRequest.UserData:
       help: The Base64-encoded MIME user data, limited to 500 kibibytes (KiB).
     UpdateVmRequest.VmId:
@@ -11836,6 +11892,8 @@ spec:
       help: The type of root device used by the VM (always bsu).
     Vm.SecurityGroups:
       help: One or more security groups associated with the VM.
+    Vm.ShutdownBehaviorConfiguration:
+      help: Information about the actions performed by the orchestrator when the VM shuts down.
     Vm.State:
       help: The state of the VM (pending | running | stopping | stopped | shutting-down | terminated | quarantine).
     Vm.StateReason:
@@ -11934,6 +11992,12 @@ spec:
       help: The maximum number of ephemeral storage disks.
     VmType.VolumeSize:
       help: The size of one ephemeral storage disk, in gibibytes (GiB).
+    VmsStopHistory.StateReason:
+      help: The reason explaining why the VM stopped.
+    VmsStopHistory.StopDate:
+      help: The date and time (UTC) of the stop event.
+    VmsStopHistory.VmId:
+      help: The ID of the VM.
     Volume.ClientToken:
       help: The idempotency token provided when creating the volume.
     Volume.CreationDate:

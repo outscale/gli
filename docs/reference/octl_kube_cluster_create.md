@@ -16,12 +16,12 @@ octl kube cluster create [flags]
 
 ```
       --allow-from strings                  List of CIDR blocks or IP addresses allowed to access the Kubernetes API
-      --cidr-pods string                    CIDR block for Kubernetes pods network
-      --cidr-services string                CIDR block for Kubernetes services network
+      --cidr-pods string                    CIDR block for Kubernetes pods network Example: 10.91.0.0/16
+      --cidr-services string                CIDR block for Kubernetes services network Example: 10.92.0.0/16
       --control-plane string                Size of control plane deployment for the cluster
       --description string                  
       --disable-admission-plugins strings   List of Kubernetes admission plugins to disable
-      --disable-api-termination             Flag to prevent accidental cluster deletion
+      --disable-api-termination             Flag to prevent accidental cluster deletion Example: false
       --enable-admission-plugins strings    List of Kubernetes admission plugins to enable
   -h, --help                                help for create
       --maintenance-duration-hour int       Duration of the maintenance window in hours
@@ -29,7 +29,7 @@ octl kube cluster create [flags]
       --maintenance-tz string               Timezone for the maintenance window
       --maintenance-week-day string         Day of the week for the maintenance window
       --multi-az                            Flag to enable multi-availability zone for the control plane
-      --name string                         [REQUIRED] Unique cluster name per project, must start with a letter and contain only lowercase letters, numbers, or hyphens
+      --name string                         [REQUIRED] Unique cluster name per project, must start with a letter and contain only lowercase letters, numbers, or hyphens Example: awesome-cluster
       --oidc-client-id string               The client id that all tokens must be issued for.
       --oidc-group-claim strings            
       --oidc-group-prefix string            
