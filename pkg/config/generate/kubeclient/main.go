@@ -17,6 +17,7 @@ import (
 func main() {
 	src := os.Args[1]
 	dst := os.Args[2]
+	version := os.Args[3]
 	var base config.Config
 	data, err := os.ReadFile(src) //nolint:gosec
 	if err != nil {
@@ -45,7 +46,7 @@ func main() {
 	}
 
 	sb := builder.NewSpecBuilder(cfg)
-	sb.BuildSpec(&base, "github.com/outscale/goutils/oks/apis/oks.dev/v1beta2")
+	sb.BuildSpec(&base, "github.com/outscale/goutils/oks/apis/oks.dev/"+version)
 
 	// Aliases are too specific, we do not generate them automatically
 	// b := builder.NewClientBuilder[oksv1beta2.NodePoolInterface](cfg)

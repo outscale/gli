@@ -1,0 +1,61 @@
+entities:
+  oosaccess:
+    columns:
+      - title: Name
+        content: .metadata.name
+      - title: Audit
+        content: .spec.audit.readers
+      - title: IaaS
+        content: .spec.iaas.readers
+    primary: Name
+contents:
+  List:
+    content: Items
+    entity: oosaccess
+  Get:
+    content: .
+    entity: oosaccess
+  Create:
+    content: .
+    entity: oosaccess
+  Patch:
+    entity: oosaccess
+  Update:
+    entity: oosaccess
+  UpdateStatus:
+    entity: oosaccess
+aliases:
+- entity: oosaccess
+  use: list
+  alias_to: List
+  aliases:
+  - ls
+  short: alias for api List
+  command:
+  - oosaccess
+  - api
+  - List
+  - --output
+  - table
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+- entity: oosaccess
+  use: describe
+  alias_to: Get
+  aliases:
+  - desc
+  short: alias for api Get
+  command:
+  - oosaccess
+  - api
+  - Get
+  - oks-oos-configuration
+  - --output
+  - yaml
+  - --single
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true

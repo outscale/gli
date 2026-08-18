@@ -1,11 +1,11 @@
-## octl kube
+## octl kube ippool
 
-OUTSCALE Kubernetes as a Service (OKS) management
+ippool commands
 
 ### Options
 
 ```
-  -h, --help   help for kube
+  -h, --help   help for ippool
 ```
 
 ### Options inherited from parent commands
@@ -35,17 +35,10 @@ OUTSCALE Kubernetes as a Service (OKS) management
 
 ### SEE ALSO
 
-* [octl](octl.md)	 - A modern CLI for Outscale services
-* [octl kube api](octl_kube_api.md)	 - kube api calls
-* [octl kube cluster](octl_kube_cluster.md)	 - cluster commands
-* [octl kube ippool](octl_kube_ippool.md)	 - ippool commands
-* [octl kube kubectl](octl_kube_kubectl.md)	 - 
-* [octl kube netpeering](octl_kube_netpeering.md)	 - netpeering commands
-* [octl kube nodepool](octl_kube_nodepool.md)	 - nodepool commands
-* [octl kube oosaccess](octl_kube_oosaccess.md)	 - oosaccess commands
-* [octl kube project](octl_kube_project.md)	 - project commands
-* [octl kube publicip](octl_kube_publicip.md)	 - publicip commands
-* [octl kube quota](octl_kube_quota.md)	 - quota commands
-* [octl kube secret](octl_kube_secret.md)	 - Create secret for CCM or CSI driver deployment
-* [octl kube vpnconnection](octl_kube_vpnconnection.md)	 - vpnconnection commands
+* [octl kube](octl_kube.md)	 - OUTSCALE Kubernetes as a Service (OKS) management
+* [octl kube ippool api](octl_kube_ippool_api.md)	 - ippool api calls
+* [octl kube ippool create](octl_kube_ippool_create.md)	 - alias for request api Create
+* [octl kube ippool delete](octl_kube_ippool_delete.md)	 - alias for api Delete id
+* [octl kube ippool describe](octl_kube_ippool_describe.md)	 - alias for api Get
+* [octl kube ippool list](octl_kube_ippool_list.md)	 - alias for api List
 

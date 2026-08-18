@@ -1,11 +1,12 @@
-## octl kube
+## octl kube netpeering acceptance api
 
-OUTSCALE Kubernetes as a Service (OKS) management
+acceptance api calls
 
 ### Options
 
 ```
-  -h, --help   help for kube
+      --cluster string   [REQUIRED] ID of cluster
+  -h, --help             help for api
 ```
 
 ### Options inherited from parent commands
@@ -35,17 +36,10 @@ OUTSCALE Kubernetes as a Service (OKS) management
 
 ### SEE ALSO
 
-* [octl](octl.md)	 - A modern CLI for Outscale services
-* [octl kube api](octl_kube_api.md)	 - kube api calls
-* [octl kube cluster](octl_kube_cluster.md)	 - cluster commands
-* [octl kube ippool](octl_kube_ippool.md)	 - ippool commands
-* [octl kube kubectl](octl_kube_kubectl.md)	 - 
-* [octl kube netpeering](octl_kube_netpeering.md)	 - netpeering commands
-* [octl kube nodepool](octl_kube_nodepool.md)	 - nodepool commands
-* [octl kube oosaccess](octl_kube_oosaccess.md)	 - oosaccess commands
-* [octl kube project](octl_kube_project.md)	 - project commands
-* [octl kube publicip](octl_kube_publicip.md)	 - publicip commands
-* [octl kube quota](octl_kube_quota.md)	 - quota commands
-* [octl kube secret](octl_kube_secret.md)	 - Create secret for CCM or CSI driver deployment
-* [octl kube vpnconnection](octl_kube_vpnconnection.md)	 - vpnconnection commands
+* [octl kube netpeering acceptance](octl_kube_netpeering_acceptance.md)	 - netpeering acceptance commands
+* [octl kube netpeering acceptance api Create](octl_kube_netpeering_acceptance_api_Create.md)	 - 
+* [octl kube netpeering acceptance api Delete](octl_kube_netpeering_acceptance_api_Delete.md)	 - 
+* [octl kube netpeering acceptance api Get](octl_kube_netpeering_acceptance_api_Get.md)	 - 
+* [octl kube netpeering acceptance api List](octl_kube_netpeering_acceptance_api_List.md)	 - 
+* [octl kube netpeering acceptance api Update](octl_kube_netpeering_acceptance_api_Update.md)	 - 
 

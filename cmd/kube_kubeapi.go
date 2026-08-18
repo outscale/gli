@@ -1,18 +1,47 @@
 package cmd
 
 import (
+	"reflect"
+	"slices"
+
 	"github.com/outscale/goutils/oks/clientset"
-	oksv1beta2 "github.com/outscale/goutils/oks/clientset/typed/oks.dev/v1beta2"
+	"github.com/outscale/octl/pkg/builder"
 	"github.com/outscale/octl/pkg/config"
+	"github.com/outscale/octl/pkg/flags"
 	"github.com/outscale/octl/pkg/messages"
+	"github.com/outscale/octl/pkg/preferences"
 	"github.com/outscale/octl/pkg/runner"
 	"github.com/outscale/osc-sdk-go/v3/pkg/oks"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
+	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 	"k8s.io/client-go/tools/clientcmd"
 )
 
-func kubeapi(provider string) func(cmd *cobra.Command, args []string) {
+func buildKubeAPI[Client any](provider string, cmd, parent *cobra.Command, getclient func(client *clientset.Clientset) Client) {
+	parent.AddCommand(cmd)
+	b := builder.NewBuilder[Client](provider, "https://docs.outscale.com/api.html")
+	b.BuildAPI(cmd, func(m reflect.Method) bool {
+		return slices.Contains([]string{"List", "Get", "Create", "Update", "Delete"}, m.Name)
+	}, runKubeAPI(func(cmd *cobra.Command, args []string, client *clientset.Clientset) error {
+		return runner.Run[Client, *osc.ErrorResponse](cmd, args, getclient(client), config.For(provider))
+	}))
+	apiCmd, _ := lo.Find(cmd.Commands(), func(c *cobra.Command) bool { return c.Name() == "api" })
+	b.Build(parent, apiCmd)
+	for _, child := range cmd.Commands() {
+		if child.Name() == "api" {
+			child.PersistentFlags().String("cluster", "", "[REQUIRED] ID of cluster")
+			_ = child.MarkPersistentFlagRequired("cluster")
+		} else {
+			child.Flags().String("cluster", "", "[REQUIRED] Name or ID of cluster")
+			child.Flags().String("project", preferences.Preferences.Kube.DefaultProject, "Name or ID of project")
+			_ = child.MarkFlagRequired("cluster")
+			_ = flags.MarkAsNoForward(child.Flags(), "project")
+		}
+	}
+}
+
+func runKubeAPI(fn func(cmd *cobra.Command, args []string, client *clientset.Clientset) error) func(cmd *cobra.Command, args []string) {
 	return func(cmd *cobra.Command, args []string) {
 		p := loadProfile(cmd)
 		cl, err := oks.NewClient(p, sdkOptions(cmd)...)
@@ -34,7 +63,7 @@ func kubeapi(provider string) func(cmd *cobra.Command, args []string) {
 			messages.ExitErr(err)
 		}
 
-		err = runner.Run[oksv1beta2.NodePoolInterface, *osc.ErrorResponse](cmd, args, client.OksV1beta2().NodePools(), config.For(provider))
+		err = fn(cmd, args, client)
 		if err != nil {
 			messages.ExitErr(err)
 		}

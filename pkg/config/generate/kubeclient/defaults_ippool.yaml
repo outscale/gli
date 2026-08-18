@@ -1,0 +1,104 @@
+entities:
+  ippool:
+    columns:
+      - title: Name
+        content: .metadata.name
+      - title: Allocated
+        content: .status.progress.allocatedAddresses
+      - title: Linked
+        content: .status.progress.linkedAddresses
+      - title: Unlinked
+        content: .status.progress.unlinkedAddresses
+    primary: Name
+contents:
+  List:
+    content: Items
+    entity: ippool
+  Get:
+    content: .
+    entity: ippool
+  Create:
+    content: .
+    entity: ippool
+  Patch:
+    entity: ippool
+  Update:
+    entity: ippool
+  UpdateStatus:
+    entity: ippool
+aliases:
+- entity: ippool
+  use: list
+  alias_to: List
+  aliases:
+  - ls
+  short: alias for api List
+  command:
+  - ippool
+  - api
+  - List
+  - --output
+  - table
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+- entity: ippool
+  use: describe name
+  alias_to: Get
+  aliases:
+  - desc
+  short: alias for api Get
+  command:
+  - ippool
+  - api
+  - Get
+  - '%0'
+  - --output
+  - yaml
+  - --single
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+- entity: ippool
+  use: delete name [name]...
+  alias_to: Delete
+  aliases:
+  - del
+  - rm
+  short: alias for api Delete id
+  command:
+  - ippool
+  - api
+  - Delete
+  - '%0'
+  - --output
+  - success
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+- entity: ippool
+  use: create
+  alias_to: Create
+  aliases:
+  - add
+  short: alias for request api Create
+  command:
+  - ippool
+  - api
+  - Create
+  - --output
+  - yaml
+  - --single
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+  - name: name
+    alias_to: ObjectMeta.Name
+    required: true
+  - name: num-addresses
+    alias_to: Spec.NumAddresses
+    required: true

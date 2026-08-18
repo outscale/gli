@@ -1,0 +1,136 @@
+contents:
+  Create:
+    content: .
+    entity: netpeering
+  Get:
+    content: .
+    entity: netpeering
+  List:
+    content: Items
+    entity: netpeering
+  Patch:
+    entity: netpeering
+  Update:
+    entity: netpeering
+  UpdateStatus:
+    entity: netpeering
+entities:
+  netpeering:
+    columns:
+    - title: Name
+      content: .metadata.name
+    - title: State
+      content: .status.netPeeringState
+    - title: Source Net
+      content: .status.sourceNetId
+    - title: Source Range
+      content: .status.sourceIpRange
+    - title: Source Account
+      content: .status.sourceOwnerId
+    - title: Accepter Net
+      content: .status.accepterNetId
+    - title: Accepter Range
+      content: .status.accepterIpRange
+    - title: Accepter Account
+      content: .status.accepterOwnerId
+    primary: Name
+aliases:
+- entity: netpeering
+  use: list
+  alias_to: List
+  aliases:
+  - ls
+  short: alias for api List
+  command:
+  - netpeering
+  - api
+  - List
+  - --output
+  - table
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+- entity: netpeering
+  use: describe id
+  alias_to: Get
+  aliases:
+  - desc
+  short: alias for api Get id
+  command:
+  - netpeering
+  - api
+  - Get
+  - '%0'
+  - --output
+  - yaml
+  - --single
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+- entity: netpeering
+  use: create
+  alias_to: Create
+  aliases:
+  - add
+  short: alias for request api Create
+  command:
+  - netpeering
+  - request
+  - api
+  - Create
+  - --output
+  - yaml
+  - --single
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+  - name: name
+    alias_to: ObjectMeta.Name
+    default: netpeering-request
+  - name: accepter-net-id
+    alias_to: Spec.AccepterNetId
+  - name: accepter-owner-id
+    alias_to: Spec.AccepterOwnerId
+- entity: netpeering
+  use: accept id
+  alias_to: Create
+  short: alias for acceptance api Create
+  command:
+  - netpeering
+  - acceptance
+  - api
+  - Create
+  - --Spec.NetPeeringId
+  - '%0'
+  - --output
+  - yaml
+  - --single
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+  - name: name
+    alias_to: ObjectMeta.Name
+    default: netpeering-acceptance
+- entity: netpeering
+  use: delete id [name]...
+  alias_to: Delete
+  aliases:
+  - del
+  - rm
+  short: alias for api Delete id
+  command:
+  - netpeering
+  - api
+  - Delete
+  - '%0'
+  - --output
+  - success
+  flags:
+  - name: cluster
+    alias_to: cluster
+    required: true
+spec: {}
