@@ -49,6 +49,7 @@ var rootCmd = &cobra.Command{
 		prerun.CheckFalse(cmd, args)
 		prerun.CheckUpdate(cmd, args)
 		prerun.LoadPreferences(cmd)
+		prerun.Silence(cmd)
 	},
 	Run:               root,
 	SilenceErrors:     true, // do not display errors when an error occurred, we do it
@@ -72,6 +73,8 @@ func init() {
 
 	rootCmd.Flags().Bool("version", false, "Display version")
 	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "Verbose output")
+	rootCmd.PersistentFlags().BoolP("silent", "s", false, "Hides all information messages")
+
 	rootCmd.PersistentFlags().String("config", "", "Path of profile file (by default, ~/.osc/config.json)")
 	rootCmd.PersistentFlags().String("profile", "", fmt.Sprintf("Profile to use in profile file (by default, %q)", profile.DefaultProfile))
 

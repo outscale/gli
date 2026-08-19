@@ -35,6 +35,7 @@ octl kube cluster describe id_or_name [id_or_name]... [flags]
       --payload string             JSON content for query body
       --profile string             Profile to use in profile file (by default, "default")
       --project string             Name or ID of project
+  -s, --silent                     Hides all information messages
       --single                     convert single entry lists to a single object
       --template string            JSON template file for query body
   -v, --verbose                    Verbose output

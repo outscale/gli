@@ -24,6 +24,9 @@ func CheckUpdate(cmd *cobra.Command, args []string) {
 	if no, _ := cmd.Flags().GetBool("no-upgrade"); no {
 		return
 	}
+	if no, _ := cmd.Flags().GetBool("silent"); no {
+		return
+	}
 	ghCtx, cancel := context.WithTimeout(cmd.Context(), time.Second)
 	defer cancel()
 	latest := update.LatestRelease(ghCtx)

@@ -34,6 +34,7 @@ octl iaas vpnconnection describe vpn_connection_id [vpn_connection_id]... [flags
   -o, --output string              output format (raw, json, yaml, table, csv, none, base64, text)
       --payload string             JSON content for query body
       --profile string             Profile to use in profile file (by default, "default")
+  -s, --silent                     Hides all information messages
       --single                     convert single entry lists to a single object
       --template string            JSON template file for query body
   -v, --verbose                    Verbose output
