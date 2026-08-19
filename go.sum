@@ -445,8 +445,12 @@ github.com/outscale/goutils/oks v0.0.2 h1:ZtOMqCMrzujMrz1TdzjLSc8bGhd6s9x2NupP/P
 github.com/outscale/goutils/oks v0.0.2/go.mod h1:9tnmUkYjekJMHHnvGidXDv90Mt8JIFn7d5QRP5J+Rmg=
 github.com/outscale/goutils/sdk v0.0.5 h1:UVu7uC38VOSCPqeCORsw1rKWaoHrsv+TTp6TGUHenjo=
 github.com/outscale/goutils/sdk v0.0.5/go.mod h1:LiXmAIA3CAXCdanEARKQ3Q/Lb8n8dKeGSbPRxIe43kc=
+github.com/outscale/goutils/sdk v0.0.6 h1:XxN2cVKxuqftD5jjnNDcYZZOwoHlvBBFKAw+JpxZOSs=
+github.com/outscale/goutils/sdk v0.0.6/go.mod h1:xybTmkur3i2UWb6POGrjUssyZICKZHDjfgsSdrwsXe8=
 github.com/outscale/osc-sdk-go/v3 v3.0.0-rc.3.0.20260806130645-86e9d7e35857 h1:FyHuQVRAshqipJbCWtPY42Sf4XPiGdkRr+SHRLKivHY=
 github.com/outscale/osc-sdk-go/v3 v3.0.0-rc.3.0.20260806130645-86e9d7e35857/go.mod h1:3lfuRe10qyX65byo8dmnnGAUhsThw8H14enH8d34yiI=
+github.com/outscale/osc-sdk-go/v3 v3.0.0-rc.4 h1:A/tYGv1FDtscUyGKjo9+ZMjSMLx2D8z6uatklJtzot4=
+github.com/outscale/osc-sdk-go/v3 v3.0.0-rc.4/go.mod h1:3lfuRe10qyX65byo8dmnnGAUhsThw8H14enH8d34yiI=
 github.com/peterbourgon/diskv v2.0.1+incompatible h1:UBdAOUP5p4RWqPBg048CAvpKN+vxiaj6gdUUzhl4XmI=
 github.com/peterbourgon/diskv v2.0.1+incompatible/go.mod h1:uqqh8zWWbv1HBMNONnaR/tNboyR3/BZd58JJSHlUSCU=
 github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c h1:+mdjkGKdHQG3305AYmdv1U2eRNDiU2ErMBj1gwrq8eQ=
