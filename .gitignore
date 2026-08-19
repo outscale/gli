@@ -1,5 +1,8 @@
-# Added by goreleaser init:
+# goreleaser build dir:
 dist/
+
+# generated config ZIP file
+pkg/config/defaults.zip
 
 .terraform
 .terraform.lock.hcl

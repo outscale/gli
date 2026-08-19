@@ -25,10 +25,15 @@ jobs:
       uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
       with:
         go-version-file: 'go.mod'
-    - name: 🔎 golangci-lint
-      uses: outscale/goutils/.github/actions/lint@ba9b0e7bcc1ab4b8fd2c69d8b4de17d86218f5b5 # v1.0.0
     - name: 📦 Build
-      run: go build -o octl main.go
+      uses: goreleaser/goreleaser-action@f06c13b6b1a9625abc9e6e439d9c05a8f2190e94 # v7.2.3
+      with:
+        version: 'v2.15.4'
+        args: build --snapshot --clean
+      env:
+        KUBECTL_VERSION: dev
+    - name: 🔎 golangci-lint # needs to run after build, requires the config ZIP file
+      uses: outscale/goutils/.github/actions/lint@ba9b0e7bcc1ab4b8fd2c69d8b4de17d86218f5b5 # v1.0.0
   unit:
     runs-on: [self-hosted, linux, eu-west-2]
     steps:
@@ -47,6 +52,8 @@ jobs:
         secret_key: ${{ secrets.OSC_SECRET_KEY }}
         region: "eu-west-2"
         providers: "outscale_oapi,outscale_oos,outscale_oks"
+    - name: 📦 Build config
+      run: go generate ./...
     - name: 🧪 Test
       run: go test -v ./... -timeout 60m
       env:
