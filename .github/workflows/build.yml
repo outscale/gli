@@ -41,7 +41,7 @@ jobs:
       with:
         go-version-file: 'go.mod'
     - name: 🧹 Frieza
-      uses: outscale/frieza-github-actions/frieza-clean@1d8b83bc64d2230a0c3bc9f018ba6c0c67df98e8 # v0.15.0+hotfix.0
+      uses: outscale/frieza-github-actions/frieza-clean@1a8eba5199913da60ae6d92d6050e17410186a38 # v0.16.1+hotfix.0
       with:
         access_key: ${{ secrets.OSC_ACCESS_KEY }}
         secret_key: ${{ secrets.OSC_SECRET_KEY }}
