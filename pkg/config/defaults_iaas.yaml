@@ -8247,6 +8247,13 @@ entities:
       content: .VmState
   vmsstophistory:
     title: VmsStopHistory
+    columns:
+    - title: Date
+      content: .StopDate
+    - title: VM
+      content: .VmId
+    - title: Reason
+      content: .StateReason
   vmtemplate:
     title: VmTemplate
     columns:
@@ -8728,7 +8735,7 @@ aliases:
   - api
   - ReadVmsState
   - --output
-  - yaml
+  - table
 - entity: consumptionaccount
   use: list
   alias_to: ReadConsumptionAccount
@@ -8904,6 +8911,24 @@ aliases:
     alias_to: Filters.QueryUserAgents
   - name: status
     alias_to: Filters.ResponseStatusCodes
+- entity: vm
+  use: stophistory
+  alias_to: ReadVmsStopHistory
+  alias_help: ReadVmsStopHistory
+  command:
+  - api
+  - ReadVmsStopHistory
+  - --output
+  - table
+  flags:
+  - name: reason
+    alias_to: Filters.StateReasons
+  - name: after
+    alias_to: Filters.StopDateAfter
+  - name: before
+    alias_to: Filters.StopDateBefore
+  - name: vm-id
+    alias_to: Filters.VmIds
 - entity: accesskey
   use: list
   alias_to: ReadAccessKeys
@@ -10804,26 +10829,6 @@ aliases:
   - --output
   - yaml
   - --single
-- entity: vmsstophistory
-  use: list
-  alias_to: ReadVmsStopHistory
-  aliases:
-  - ls
-  alias_help: ReadVmsStopHistory
-  command:
-  - api
-  - ReadVmsStopHistory
-  - --output
-  - table
-  flags:
-  - name: state-reason
-    alias_to: Filters.StateReasons
-  - name: stop-date-after
-    alias_to: Filters.StopDateAfter
-  - name: stop-date-before
-    alias_to: Filters.StopDateBefore
-  - name: vm-id
-    alias_to: Filters.VmIds
 - entity: volumeupdatetask
   use: list
   alias_to: ReadVolumeUpdateTasks
