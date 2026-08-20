@@ -1,5 +1,27 @@
 # 📜 Changelog
 
+## [v0.0.31](https://github.com/outscale/octl/releases/tag/v0.0.31) - 2026-08-20
+
+### ✨ Added
+* 🚸 ux(iaas): improve netpeering state in table output by @jfbus in https://github.com/outscale/octl/pull/280
+* ✨ feat(oks): add apis for all CRDs, add netpeering/ippool/oosaccess aliases by @jfbus in https://github.com/outscale/octl/pull/281
+* ✨ feat(preferences): profile-based preferences by @jfbus in https://github.com/outscale/octl/pull/285
+* ✨ feat(storage): automatic content-type detection in object put by @jfbus in https://github.com/outscale/octl/pull/286
+* ✨ feat: add --silent/-s to silence messages by @jfbus in https://github.com/outscale/octl/pull/302
+### 🛠️ Changed / Refactoring
+* ♻️ refacto(kube): refactoring of project/cluster name handling by @jfbus in https://github.com/outscale/octl/pull/283
+### 📝 Documentation
+* 📝 doc(README): Update instructions for Homebrew + a tiny edit by @chrisfinazzo in https://github.com/outscale/octl/pull/279
+### 🐛 Fixed
+* 🚸 ux(storage): fix bucket delete prompt by @jfbus in https://github.com/outscale/octl/pull/282
+### 📦 Dependency updates
+* ⬆️ deps(gomod): update module github.com/gabriel-vasile/mimetype to v1.4.14 by @Open-Source-Bot in https://github.com/outscale/octl/pull/284
+* ⬆️ deps(gomod): update go toolchain directive to v1.26.6 by @Open-Source-Bot in https://github.com/outscale/octl/pull/297
+* ⬆️ bump: bump oapi to 1.42 by @jobs62 in https://github.com/outscale/octl/pull/295
+* ⬆️ deps(gomod): update module github.com/outscale/goutils/sdk to v0.0.6 by @Open-Source-Bot in https://github.com/outscale/octl/pull/299
+* ⬆️ deps(gomod): update module golang.org/x/mod to v0.40.0 by @Open-Source-Bot in https://github.com/outscale/octl/pull/306
+
+
 ## [v0.0.30](https://github.com/outscale/octl/releases/tag/v0.0.30) - 2026-07-17
 
 ### ✨ Added
