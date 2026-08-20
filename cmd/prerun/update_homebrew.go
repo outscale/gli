@@ -10,6 +10,7 @@ import (
 
 	"github.com/mattn/go-isatty"
 	"github.com/outscale/octl/pkg/debug"
+	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/style"
 	"github.com/outscale/octl/pkg/update"
 	"github.com/outscale/octl/pkg/version"
@@ -24,9 +25,6 @@ func CheckUpdate(cmd *cobra.Command, args []string) {
 	if no, _ := cmd.Flags().GetBool("no-upgrade"); no {
 		return
 	}
-	if no, _ := cmd.Flags().GetBool("silent"); no {
-		return
-	}
 	ghCtx, cancel := context.WithTimeout(cmd.Context(), time.Second)
 	defer cancel()
 	latest := update.LatestRelease(ghCtx)
@@ -34,5 +32,5 @@ func CheckUpdate(cmd *cobra.Command, args []string) {
 	if latest == "" || semver.Compare(version.Version, latest) >= 0 {
 		return
 	}
-	_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Yellow, `⬆️ New version %s detected - call "brew install octl" to update`, latest))
+	_, _ = fmt.Fprintln(messages.MsgOut, style.Renderf(style.Yellow, `⬆️ New version %s detected - call "brew install octl" to update`, latest))
 }

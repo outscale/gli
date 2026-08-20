@@ -2,17 +2,16 @@ package messages
 
 import (
 	"fmt"
+	"io"
 	"os"
 
 	"github.com/outscale/octl/pkg/style"
 )
 
-var Silent bool
+var MsgOut io.Writer = os.Stderr
 
 func Info(format string, a ...any) {
-	if !Silent {
-		_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Faint, format, a...))
-	}
+	_, _ = fmt.Fprintln(MsgOut, style.Renderf(style.Faint, format, a...))
 }
 
 func Err(format string, a ...any) {
@@ -20,13 +19,9 @@ func Err(format string, a ...any) {
 }
 
 func Warn(format string, a ...any) {
-	if !Silent {
-		_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Yellow, "⚠️ "+format, a...))
-	}
+	_, _ = fmt.Fprintln(MsgOut, style.Renderf(style.Yellow, "⚠️ "+format, a...))
 }
 
 func Success(format string, a ...any) {
-	if !Silent {
-		_, _ = fmt.Fprintln(os.Stderr, style.Renderf(style.Green, "✅ "+format, a...))
-	}
+	_, _ = fmt.Fprintln(MsgOut, style.Renderf(style.Green, "✅ "+format, a...))
 }

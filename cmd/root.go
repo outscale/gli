@@ -46,10 +46,10 @@ var rootCmd = &cobra.Command{
 ` + e(`and in the terminal bind them.`) + `
 ` + "```",
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
+		prerun.Silence(cmd)
 		prerun.CheckFalse(cmd, args)
 		prerun.CheckUpdate(cmd, args)
 		prerun.LoadPreferences(cmd)
-		prerun.Silence(cmd)
 	},
 	Run:               root,
 	SilenceErrors:     true, // do not display errors when an error occurred, we do it
