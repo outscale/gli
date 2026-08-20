@@ -49,6 +49,7 @@ func main() {
 			"ReadPolicyVersion",
 			"ReadPolicyVersions",
 			"ReadUserGroup",
+			"ReadVmsStopHistory",
 		},
 		AllowedNumOut: []int{1, 2},
 		TypeName: map[string]string{

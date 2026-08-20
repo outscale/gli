@@ -45,5 +45,6 @@ Manage Vm resources
 * [octl iaas vm start](octl_iaas_vm_start.md)	 - Start one or more virtual machines (VMs).
 * [octl iaas vm states](octl_iaas_vm_states.md)	 - Lists the status of one or more virtual machines (VMs).
 * [octl iaas vm stop](octl_iaas_vm_stop.md)	 - Stops one or more running virtual machines (VMs).
+* [octl iaas vm stophistory](octl_iaas_vm_stophistory.md)	 - Lists the stop history of one or more VMs.
 * [octl iaas vm update](octl_iaas_vm_update.md)	 - Modifies the specified attributes of a virtual machine (VM).
 

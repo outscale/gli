@@ -100,7 +100,6 @@ OUTSCALE IaaS management
 * [octl iaas virtualgateway](octl_iaas_virtualgateway.md)	 - Manage VirtualGateway resources
 * [octl iaas vm](octl_iaas_vm.md)	 - Manage Vm resources
 * [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - Manage VmGroup resources
-* [octl iaas vmsstophistory](octl_iaas_vmsstophistory.md)	 - Manage VmsStopHistory resources
 * [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - Manage VmTemplate resources
 * [octl iaas vmtype](octl_iaas_vmtype.md)	 - Manage VmType resources
 * [octl iaas volume](octl_iaas_volume.md)	 - Manage Volume resources
