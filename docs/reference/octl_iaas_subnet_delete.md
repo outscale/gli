@@ -4,11 +4,13 @@ alias for api DeleteSubnet --SubnetId subnet_id
 
 ### Synopsis
 
-> *alias for api DeleteSubnet --SubnetId subnet_id*
+> alias for api DeleteSubnet --SubnetId subnet_id
 
 Deletes a specified Subnet.
 
 Before deleting the Subnet, you need to delete all resources associated with the Subnet:
+
+
 
 * Virtual machines (VMs)
 

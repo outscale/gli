@@ -4,7 +4,7 @@ alias for api ReadUnitPrice
 
 ### Synopsis
 
-> *alias for api ReadUnitPrice*
+> alias for api ReadUnitPrice
 
 Gets unit price information for the specified parameters.
 

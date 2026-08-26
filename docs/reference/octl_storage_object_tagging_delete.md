@@ -4,7 +4,7 @@ Delete all tags from an object, alias for api DeleteObjectTagging --Key key
 
 ### Synopsis
 
-> *Delete all tags from an object, alias for api DeleteObjectTagging --Key key*
+> Delete all tags from an object, alias for api DeleteObjectTagging --Key key
 
 
 

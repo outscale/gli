@@ -4,7 +4,7 @@ alias for api UpdateNic --NicId nic_id
 
 ### Synopsis
 
-> *alias for api UpdateNic --NicId nic_id*
+> alias for api UpdateNic --NicId nic_id
 
 Modifies the specified network interface card (NIC). You can specify only one attribute at a time.
 

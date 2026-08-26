@@ -4,7 +4,7 @@ alias for api GetProjectSnapshots id_or_name
 
 ### Synopsis
 
-> *alias for api GetProjectSnapshots id_or_name*
+> alias for api GetProjectSnapshots id_or_name
 
 
 

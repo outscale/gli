@@ -4,7 +4,7 @@ alias for api ReadVolumes --Filters.VolumeIds volume_id
 
 ### Synopsis
 
-> *alias for api ReadVolumes --Filters.VolumeIds volume_id*
+> alias for api ReadVolumes --Filters.VolumeIds volume_id
 
 
 

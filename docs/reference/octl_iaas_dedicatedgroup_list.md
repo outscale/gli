@@ -4,7 +4,7 @@ alias for api ReadDedicatedGroups
 
 ### Synopsis
 
-> *alias for api ReadDedicatedGroups*
+> alias for api ReadDedicatedGroups
 
 List one or more dedicated groups of virtual machines (VMs).
 

@@ -4,11 +4,14 @@ alias for api CreatePolicyVersion --PolicyOrn policy_orn
 
 ### Synopsis
 
-> *alias for api CreatePolicyVersion --PolicyOrn policy_orn*
+> alias for api CreatePolicyVersion --PolicyOrn policy_orn
 
 Creates a version of a specified managed policy.
 
 A managed policy can have up to five versions.
+
+
+
 
 **[IMPORTANT]**
 

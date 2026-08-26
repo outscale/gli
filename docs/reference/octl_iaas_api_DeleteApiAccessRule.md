@@ -6,6 +6,8 @@ Deletes a specified API access rule.
 
 Deletes a specified API access rule.
 
+
+
 **[IMPORTANT]**
 
 You cannot delete the last remaining API access rule. However, if you delete all the API access rules that allow you to access the APIs, you need to contact the Support team to regain access. For more information, see [Technical Support](https://docs.outscale.com/en/userguide/Technical-Support.html).

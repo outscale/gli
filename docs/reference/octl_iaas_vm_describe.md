@@ -4,7 +4,7 @@ alias for api ReadVms --Filters.VmIds vm_id
 
 ### Synopsis
 
-> *alias for api ReadVms --Filters.VmIds vm_id*
+> alias for api ReadVms --Filters.VmIds vm_id
 
 
 

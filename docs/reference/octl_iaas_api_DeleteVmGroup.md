@@ -8,6 +8,7 @@
 
 > This feature is currently under development and may not function properly.
 
+
 Deletes a specified VM group.
 
 ```

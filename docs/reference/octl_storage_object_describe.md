@@ -4,7 +4,7 @@ Display an object metadata, alias for api HeadObject --Key key
 
 ### Synopsis
 
-> *Display an object metadata, alias for api HeadObject --Key key*
+> Display an object metadata, alias for api HeadObject --Key key
 
 
 

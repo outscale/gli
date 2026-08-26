@@ -8,6 +8,8 @@ Creates a route in a specified route table within a specified Net.
 
 You must specify one of the following elements as the target:
 
+
+
 * Net peering
 
 * NAT VM
@@ -20,7 +22,10 @@ You must specify one of the following elements as the target:
 
 * Network interface card (NIC)
 
+
+
 The routing algorithm is based on the most specific match.
+
 
 For more information, see [About Route Tables](https://docs.outscale.com/en/userguide/About-Route-Tables.html).
 

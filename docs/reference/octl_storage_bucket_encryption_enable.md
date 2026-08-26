@@ -4,7 +4,7 @@ Enable encryption, alias for api PutBucketEncryption --Bucket bucket --ServerSid
 
 ### Synopsis
 
-> *Enable encryption, alias for api PutBucketEncryption --Bucket bucket --ServerSideEncryptionConfiguration.Rules.0.ApplyServerSideEncryptionByDefault.SSEAlgorithm AES256*
+> Enable encryption, alias for api PutBucketEncryption --Bucket bucket --ServerSideEncryptionConfiguration.Rules.0.ApplyServerSideEncryptionByDefault.SSEAlgorithm AES256
 
 
 

@@ -4,7 +4,7 @@ alias for api StopVms --VmIds vm_id
 
 ### Synopsis
 
-> *alias for api StopVms --VmIds vm_id*
+> alias for api StopVms --VmIds vm_id
 
 Stops one or more running virtual machines (VMs).
 

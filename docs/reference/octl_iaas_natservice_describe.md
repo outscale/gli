@@ -4,7 +4,7 @@ alias for api ReadNatServices --Filters.NatServiceIds nat_service_id
 
 ### Synopsis
 
-> *alias for api ReadNatServices --Filters.NatServiceIds nat_service_id*
+> alias for api ReadNatServices --Filters.NatServiceIds nat_service_id
 
 
 

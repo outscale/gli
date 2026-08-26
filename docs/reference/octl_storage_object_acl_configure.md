@@ -4,7 +4,7 @@ Configure ACL, alias for api PutObjectAcl --Key key
 
 ### Synopsis
 
-> *Configure ACL, alias for api PutObjectAcl --Key key*
+> Configure ACL, alias for api PutObjectAcl --Key key
 
 
 

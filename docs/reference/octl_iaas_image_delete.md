@@ -4,7 +4,7 @@ alias for api DeleteImage --ImageId image_id
 
 ### Synopsis
 
-> *alias for api DeleteImage --ImageId image_id*
+> alias for api DeleteImage --ImageId image_id
 
 Deletes an OUTSCALE machine image (OMI) so that you cannot use it anymore to launch virtual machines (VMs). However, you can still use VMs already launched from this OMI.
 

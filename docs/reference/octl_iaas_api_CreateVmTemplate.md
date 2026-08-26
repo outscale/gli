@@ -8,6 +8,7 @@
 
 > This feature is currently under development and may not function properly.
 
+
 Creates a virtual machine (VM) template. You can then use the VM template to create VM groups.
 
 You can create up to 50 VM templates in your OUTSCALE account.

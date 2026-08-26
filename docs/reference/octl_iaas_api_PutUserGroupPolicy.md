@@ -8,6 +8,9 @@ Creates or updates an inline policy included in a specified group.
 
 The policy is automatically applied to all the users of the group after its creation.
 
+
+
+
 **[IMPORTANT]**
 
 A delay of up to 15 seconds can occur when creating or deleting an inline policy.

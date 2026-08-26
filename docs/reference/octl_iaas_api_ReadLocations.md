@@ -6,6 +6,7 @@ Lists the locations, corresponding to datacenters, where you can set up a Direct
 
 Lists the locations, corresponding to datacenters, where you can set up a DirectLink.
 
+
 For more information, see [About DirectLink](https://docs.outscale.com/en/userguide/About-DirectLink.html).
 
 ```

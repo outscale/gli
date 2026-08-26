@@ -12,9 +12,12 @@ When creating a NAT service, you specify the allocation ID of the public IP you 
 
 This action also enables you to create multiple NAT services in the same Net (one per public Subnet).
 
+
+
 **[IMPORTANT]**
 
 You cannot modify the public IP associated with a NAT service after its creation. To do so, you need to delete the NAT service and create a new one with another public IP.
+
 
 For more information, see [About NAT Services](https://docs.outscale.com/en/userguide/About-NAT-Services.html).
 

@@ -4,7 +4,7 @@ Update CORS configuration, alias for api PutBucketCors --Bucket bucket
 
 ### Synopsis
 
-> *Update CORS configuration, alias for api PutBucketCors --Bucket bucket*
+> Update CORS configuration, alias for api PutBucketCors --Bucket bucket
 
 
 

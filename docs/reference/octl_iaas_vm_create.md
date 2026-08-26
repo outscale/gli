@@ -4,7 +4,7 @@ alias for api CreateVms
 
 ### Synopsis
 
-> *alias for api CreateVms*
+> alias for api CreateVms
 
 Creates virtual machines (VMs), and then launches them.
 
@@ -18,9 +18,11 @@ The metadata server enables you to get the public key provided when the VM is la
 
 If not specified, the security group used by the service is the default one.
 
+
 **[NOTE]**
 
 When you attach a security group to a VM, it is actually attached to the primary network interface of the VM.
+
 
 For more information, see [About VMs](https://docs.outscale.com/en/userguide/About-VMs.html).
 

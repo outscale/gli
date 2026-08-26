@@ -4,11 +4,12 @@ alias for api CreateSubnet
 
 ### Synopsis
 
-> *alias for api CreateSubnet*
+> alias for api CreateSubnet
 
 Creates a Subnet in an existing Net.
 
 To create a Subnet in a Net, you have to provide the ID of the Net and the IP range for the Subnet (its network range). Once the Subnet is created, you cannot modify its IP range.
+
 
 For more information, see [About Nets](https://docs.outscale.com/en/userguide/About-Nets.html).
 

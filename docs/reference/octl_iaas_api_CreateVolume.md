@@ -10,6 +10,7 @@ BSU volumes can be attached to a virtual machine (VM) in the same Subregion. You
 
 You can create the following volume types: Enterprise (`io1`) for provisioned IOPS SSD volumes, Performance (`gp2`) for general purpose SSD volumes, or Magnetic (`standard`) volumes.
 
+
 For more information, see [About Volumes](https://docs.outscale.com/en/userguide/About-Volumes.html).
 
 ```

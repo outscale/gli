@@ -4,7 +4,7 @@ alias for api ReadCO2EmissionAccount
 
 ### Synopsis
 
-> *alias for api ReadCO2EmissionAccount*
+> alias for api ReadCO2EmissionAccount
 
 Gets information about the estimated carbon footprint of your account for the current Region within the specified time period.
 

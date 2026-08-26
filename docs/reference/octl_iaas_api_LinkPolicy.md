@@ -6,6 +6,9 @@ Links a managed policy to a specific user.
 
 Links a managed policy to a specific user.
 
+
+
+
 **[IMPORTANT]**
 
 A delay of up to 15 seconds can occur when attaching, detaching, or updating a managed policy.

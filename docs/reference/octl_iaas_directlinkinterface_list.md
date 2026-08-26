@@ -4,7 +4,7 @@ alias for api ReadDirectLinkInterfaces
 
 ### Synopsis
 
-> *alias for api ReadDirectLinkInterfaces*
+> alias for api ReadDirectLinkInterfaces
 
 Lists one or more of your DirectLink interfaces.
 

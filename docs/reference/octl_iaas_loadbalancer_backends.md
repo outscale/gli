@@ -4,7 +4,7 @@ alias for api ReadVmsHealth --LoadBalancerName load_balancer_name
 
 ### Synopsis
 
-> *alias for api ReadVmsHealth --LoadBalancerName load_balancer_name*
+> alias for api ReadVmsHealth --LoadBalancerName load_balancer_name
 
 Lists the state of one or more backend virtual machines (VMs) registered with a specified load balancer.
 

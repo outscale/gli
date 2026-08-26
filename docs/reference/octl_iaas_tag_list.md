@@ -4,7 +4,7 @@ alias for api ReadTags
 
 ### Synopsis
 
-> *alias for api ReadTags*
+> alias for api ReadTags
 
 Lists one or more tags for your resources.
 

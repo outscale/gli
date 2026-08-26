@@ -4,7 +4,7 @@ alias for api ReadKeypairs --Filters.KeypairIds keypair_id
 
 ### Synopsis
 
-> *alias for api ReadKeypairs --Filters.KeypairIds keypair_id*
+> alias for api ReadKeypairs --Filters.KeypairIds keypair_id
 
 
 

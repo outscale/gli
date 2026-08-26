@@ -4,7 +4,7 @@ alias for api CreateCluster
 
 ### Synopsis
 
-> *alias for api CreateCluster*
+> alias for api CreateCluster
 
 Creates a new cluster with the provided configuration. The request must include the cluster details in the request body. all clusters are associated to a project
 

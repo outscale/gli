@@ -4,13 +4,14 @@ alias for api CreateClientGateway
 
 ### Synopsis
 
-> *alias for api CreateClientGateway*
+> alias for api CreateClientGateway
 
 Provides information about your client gateway.
 
 This action registers information to identify the client gateway that you deployed in your network.
 
 To open a tunnel to the client gateway, you must provide the communication protocol type, the fixed public IP of the gateway, and an Autonomous System Number (ASN).
+
 
 For more information, see [About Client Gateways](https://docs.outscale.com/en/userguide/About-Client-Gateways.html).
 

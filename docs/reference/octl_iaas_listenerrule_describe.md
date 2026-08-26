@@ -4,7 +4,7 @@ alias for api ReadListenerRules --Filters.ListenerRuleNames listener_rule_name
 
 ### Synopsis
 
-> *alias for api ReadListenerRules --Filters.ListenerRuleNames listener_rule_name*
+> alias for api ReadListenerRules --Filters.ListenerRuleNames listener_rule_name
 
 
 

@@ -4,7 +4,7 @@ alias for api CreateSecurityGroupRule
 
 ### Synopsis
 
-> *alias for api CreateSecurityGroupRule*
+> alias for api CreateSecurityGroupRule
 
 Adds one or more rules to a security group.
 
@@ -12,11 +12,14 @@ Use the `SecurityGroupId` parameter to specify the security group for which you 
 
 Use the `Flow` parameter to specify if you want an inbound rule or an outbound rule.
 
+
 An inbound rule allows the security group to receive traffic:
 * Either from a specific IP range (`IpRange` parameter) on a specific port range (`FromPortRange` and `ToPortRange` parameters) and specific protocol (`IpProtocol` parameter).
 * Or from another specific security group (`SecurityGroupAccountIdToLink` and `SecurityGroupNameToLink` parameters).
 
+
 (Net only) An outbound rule works similarly but allows the security group to send traffic rather than receive traffic.
+
 
 Alternatively, you can use the `Rules` parameter to add several rules at the same time. Note that the `SecurityGroupName` subparameter can only be used for security groups in the public Cloud.
 

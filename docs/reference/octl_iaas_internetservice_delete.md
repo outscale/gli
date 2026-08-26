@@ -4,7 +4,7 @@ alias for api DeleteInternetService --InternetServiceId internet_service_id
 
 ### Synopsis
 
-> *alias for api DeleteInternetService --InternetServiceId internet_service_id*
+> alias for api DeleteInternetService --InternetServiceId internet_service_id
 
 Deletes an internet service.
 

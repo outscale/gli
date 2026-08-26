@@ -4,7 +4,7 @@ alias for api UpdateImage --ImageId image_id
 
 ### Synopsis
 
-> *alias for api UpdateImage --ImageId image_id*
+> alias for api UpdateImage --ImageId image_id
 
 Modifies the access permissions for an OUTSCALE machine image (OMI).
 

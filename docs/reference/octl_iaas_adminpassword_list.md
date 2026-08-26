@@ -4,11 +4,13 @@ alias for api ReadAdminPassword
 
 ### Synopsis
 
-> *alias for api ReadAdminPassword*
+> alias for api ReadAdminPassword
 
 Gets the administrator password for a Windows running virtual machine (VM).
 
 The administrator password is encrypted using the keypair you specified when launching the VM.
+
+
 
 **[IMPORTANT]**
 

@@ -4,7 +4,7 @@ alias for api DeleteSecurityGroup --SecurityGroupId security_group_id
 
 ### Synopsis
 
-> *alias for api DeleteSecurityGroup --SecurityGroupId security_group_id*
+> alias for api DeleteSecurityGroup --SecurityGroupId security_group_id
 
 Deletes a specified security group.
 

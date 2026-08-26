@@ -4,7 +4,7 @@ alias for api ListProjects
 
 ### Synopsis
 
-> *alias for api ListProjects*
+> alias for api ListProjects
 
 Retrieves a list of all projects with optional filters for name, status, CIDR, and deletion status. Returns a list of matching projects based on the specified filters.
 

@@ -8,6 +8,9 @@ Sets a specified version of a managed policy as the default (operative) one.
 
 You can modify the default version of a policy at any time.
 
+
+
+
 **[IMPORTANT]**
 
 A delay of up to 15 seconds can occur when attaching, detaching, or updating a managed policy.

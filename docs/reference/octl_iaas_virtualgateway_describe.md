@@ -4,7 +4,7 @@ alias for api ReadVirtualGateways --Filters.VirtualGatewayIds virtual_gateway_id
 
 ### Synopsis
 
-> *alias for api ReadVirtualGateways --Filters.VirtualGatewayIds virtual_gateway_id*
+> alias for api ReadVirtualGateways --Filters.VirtualGatewayIds virtual_gateway_id
 
 
 

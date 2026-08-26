@@ -4,7 +4,7 @@ alias for api CreateLoadBalancer
 
 ### Synopsis
 
-> *alias for api CreateLoadBalancer*
+> alias for api CreateLoadBalancer
 
 Creates a load balancer.
 
@@ -13,6 +13,7 @@ The load balancer is created with a unique Domain Name Service (DNS) name. It re
 By default, this action creates an Internet-facing load balancer, resolving to public IPs. To create an internal load balancer in a Net, resolving to private IPs, use the `LoadBalancerType` parameter.
 
 You must specify either the `Subnets` or the `SubregionNames` parameters.
+
 
 For more information, see [About Load Balancers](https://docs.outscale.com/en/userguide/About-Load-Balancers.html).
 

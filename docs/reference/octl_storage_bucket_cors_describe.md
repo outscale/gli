@@ -4,7 +4,7 @@ Display CORS configuration, alias for api GetBucketCors --Bucket bucket
 
 ### Synopsis
 
-> *Display CORS configuration, alias for api GetBucketCors --Bucket bucket*
+> Display CORS configuration, alias for api GetBucketCors --Bucket bucket
 
 
 

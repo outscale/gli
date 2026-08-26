@@ -4,7 +4,7 @@ alias for api ReadVolumeUpdateTasks
 
 ### Synopsis
 
-> *alias for api ReadVolumeUpdateTasks*
+> alias for api ReadVolumeUpdateTasks
 
 Lists one or more specified tasks of volume update.
 

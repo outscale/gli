@@ -4,7 +4,7 @@ alias for api ReadCatalog
 
 ### Synopsis
 
-> *alias for api ReadCatalog*
+> alias for api ReadCatalog
 
 Returns the price list of OUTSCALE services for the current Region.
 

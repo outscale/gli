@@ -15,12 +15,11 @@ import (
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/descriptions"
 	"github.com/outscale/octl/pkg/flags"
-	"github.com/outscale/octl/pkg/markdown"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 )
 
-var md = markdown.NewRenderer()
+// var md = markdown.NewRenderer()
 
 type Builder[T any] struct {
 	provider string
@@ -71,8 +70,8 @@ func (b *Builder[T]) Build(rootCmd, apiCmd *cobra.Command) {
 			serviceCmd = subc
 		}
 		spec := b.cfg.Spec.ForCall(a.AliasTo)
-		help := "> *" + a.Short + "*\n\n" + spec.Help
-		help, _ = md.Render(help)
+		help := "> " + a.Short + "\n\n" + spec.Help
+		// help, _ = md.Render(help)
 		rootPath := strings.Split(serviceCmd.CommandPath(), " ")[1]
 		cmd := &cobra.Command{
 			Use:     a.Use,
@@ -172,12 +171,12 @@ func (b *Builder[T]) buildAPIFor(
 		if group != "" && !apiCmd.ContainsGroup(group) {
 			apiCmd.AddGroup(&cobra.Group{ID: group, Title: group})
 		}
-		nhelp, err := md.Render(help)
-		if err != nil {
-			debug.Println("error rendering markdown", err)
-		} else {
-			help = nhelp
-		}
+		// nhelp, err := md.Render(help)
+		// if err != nil {
+		// 	debug.Println("error rendering markdown", err)
+		// } else {
+		// 	help = nhelp
+		// }
 		cmd := &cobra.Command{
 			Use:     m.Name,
 			Short:   short,

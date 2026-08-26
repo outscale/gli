@@ -6,6 +6,9 @@ Deletes a specified version of a managed policy, if it is not set as the default
 
 Deletes a specified version of a managed policy, if it is not set as the default one.
 
+
+
+
 **[IMPORTANT]**
 
 A delay of up to 15 seconds can occur when attaching, detaching, or updating a managed policy.

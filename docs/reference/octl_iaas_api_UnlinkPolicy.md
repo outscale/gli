@@ -6,6 +6,9 @@ Removes a managed policy from a specific user.
 
 Removes a managed policy from a specific user.
 
+
+
+
 **[IMPORTANT]**
 
 A delay of up to 15 seconds can occur when attaching, detaching, or updating a managed policy.

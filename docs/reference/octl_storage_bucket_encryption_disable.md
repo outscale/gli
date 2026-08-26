@@ -4,7 +4,7 @@ Disable encryption, alias for api DeleteBucketEncryption --Bucket bucket
 
 ### Synopsis
 
-> *Disable encryption, alias for api DeleteBucketEncryption --Bucket bucket*
+> Disable encryption, alias for api DeleteBucketEncryption --Bucket bucket
 
 
 

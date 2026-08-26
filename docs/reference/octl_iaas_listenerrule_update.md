@@ -4,7 +4,7 @@ alias for api UpdateListenerRule --ListenerRuleName listener_rule_name
 
 ### Synopsis
 
-> *alias for api UpdateListenerRule --ListenerRuleName listener_rule_name*
+> alias for api UpdateListenerRule --ListenerRuleName listener_rule_name
 
 Updates the pattern of the listener rule.
 

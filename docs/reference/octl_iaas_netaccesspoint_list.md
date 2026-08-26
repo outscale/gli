@@ -4,7 +4,7 @@ alias for api ReadNetAccessPoints
 
 ### Synopsis
 
-> *alias for api ReadNetAccessPoints*
+> alias for api ReadNetAccessPoints
 
 Lists one or more Net access points.
 

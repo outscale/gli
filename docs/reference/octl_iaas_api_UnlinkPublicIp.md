@@ -6,6 +6,8 @@ Disassociates a public IP from the virtual machine (VM) or network interface car
 
 Disassociates a public IP from the virtual machine (VM) or network interface card (NIC) it is associated with.
 
+
+
 **[IMPORTANT]**
 
 To disassociate the public IP from a NAT service, you need to delete the NAT service. For more information, see the [DeleteNatService](#deletenatservice) method.

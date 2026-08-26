@@ -4,9 +4,10 @@ alias for api DeleteDedicatedGroup --DedicatedGroupId dedicated_group_id
 
 ### Synopsis
 
-> *alias for api DeleteDedicatedGroup --DedicatedGroupId dedicated_group_id*
+> alias for api DeleteDedicatedGroup --DedicatedGroupId dedicated_group_id
 
 Deletes a specified dedicated group of virtual machines (VMs).
+
 
 **[WARNING]**
 

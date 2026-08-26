@@ -4,7 +4,7 @@ alias for api DeleteNetPeering --NetPeeringId net_peering_id
 
 ### Synopsis
 
-> *alias for api DeleteNetPeering --NetPeeringId net_peering_id*
+> alias for api DeleteNetPeering --NetPeeringId net_peering_id
 
 Deletes a Net peering.
 

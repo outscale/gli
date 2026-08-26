@@ -4,7 +4,7 @@ alias for api ReadInternetServices --Filters.InternetServiceIds internet_service
 
 ### Synopsis
 
-> *alias for api ReadInternetServices --Filters.InternetServiceIds internet_service_id*
+> alias for api ReadInternetServices --Filters.InternetServiceIds internet_service_id
 
 
 

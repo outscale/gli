@@ -4,9 +4,10 @@ alias for api DeleteUserGroup --UserGroupName user_group_name
 
 ### Synopsis
 
-> *alias for api DeleteUserGroup --UserGroupName user_group_name*
+> alias for api DeleteUserGroup --UserGroupName user_group_name
 
 Deletes a specified user group.
+
 
 **[WARNING]**
 

@@ -4,7 +4,7 @@ alias for api ReadDirectLinkInterfaces --Filters.DirectLinkInterfaceIds direct_l
 
 ### Synopsis
 
-> *alias for api ReadDirectLinkInterfaces --Filters.DirectLinkInterfaceIds direct_link_interface_id*
+> alias for api ReadDirectLinkInterfaces --Filters.DirectLinkInterfaceIds direct_link_interface_id
 
 
 

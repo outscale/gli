@@ -4,7 +4,7 @@ alias for api ReadDhcpOptions
 
 ### Synopsis
 
-> *alias for api ReadDhcpOptions*
+> alias for api ReadDhcpOptions
 
 Gets information about the content of one or more DHCP options sets.
 

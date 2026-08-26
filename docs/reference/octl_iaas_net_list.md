@@ -4,7 +4,7 @@ alias for api ReadNets
 
 ### Synopsis
 
-> *alias for api ReadNets*
+> alias for api ReadNets
 
 Lists one or more Nets.
 

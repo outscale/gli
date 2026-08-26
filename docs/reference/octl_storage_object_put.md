@@ -4,7 +4,7 @@ alias for api PutObject --Key key
 
 ### Synopsis
 
-> *alias for api PutObject --Key key*
+> alias for api PutObject --Key key
 
 
 

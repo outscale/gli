@@ -4,11 +4,12 @@ alias for api DeleteVmTemplate --VmTemplateId vm_template_id
 
 ### Synopsis
 
-> *alias for api DeleteVmTemplate --VmTemplateId vm_template_id*
+> alias for api DeleteVmTemplate --VmTemplateId vm_template_id
 
 > [WARNING]
 
 > This feature is currently under development and may not function properly.
+
 
 Deletes a virtual machine (VM) template.
 

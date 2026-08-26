@@ -4,7 +4,7 @@ alias for api CreateProductType
 
 ### Synopsis
 
-> *alias for api CreateProductType*
+> alias for api CreateProductType
 
 Creates a product type you can associate with an OMI for consumption monitoring and billing purposes.
 

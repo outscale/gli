@@ -4,7 +4,7 @@ alias for api ReadAccessKeys
 
 ### Synopsis
 
-> *alias for api ReadAccessKeys*
+> alias for api ReadAccessKeys
 
 Lists the access key IDs of either your root user or an EIM user.
 

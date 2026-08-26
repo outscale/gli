@@ -4,7 +4,7 @@ alias for api ReadFlexibleGpus --Filters.FlexibleGpuIds flexible_gpu_id
 
 ### Synopsis
 
-> *alias for api ReadFlexibleGpus --Filters.FlexibleGpuIds flexible_gpu_id*
+> alias for api ReadFlexibleGpus --Filters.FlexibleGpuIds flexible_gpu_id
 
 
 

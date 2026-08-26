@@ -4,7 +4,7 @@ Display an object metadata, alias for api ListObjectVersions
 
 ### Synopsis
 
-> *Display an object metadata, alias for api ListObjectVersions*
+> Display an object metadata, alias for api ListObjectVersions
 
 
 

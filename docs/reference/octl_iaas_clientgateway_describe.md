@@ -4,7 +4,7 @@ alias for api ReadClientGateways --Filters.ClientGatewayIds client_gateway_id
 
 ### Synopsis
 
-> *alias for api ReadClientGateways --Filters.ClientGatewayIds client_gateway_id*
+> alias for api ReadClientGateways --Filters.ClientGatewayIds client_gateway_id
 
 
 

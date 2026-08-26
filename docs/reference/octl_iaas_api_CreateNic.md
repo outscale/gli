@@ -6,6 +6,7 @@ Creates a network interface card (NIC) in the specified Subnet.
 
 Creates a network interface card (NIC) in the specified Subnet.
 
+
 For more information, see [About NICs](https://docs.outscale.com/en/userguide/About-NICs.html).
 
 ```

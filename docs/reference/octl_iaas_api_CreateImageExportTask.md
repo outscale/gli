@@ -8,9 +8,12 @@ Exports an OUTSCALE machine image (OMI) to an OUTSCALE Object Storage (OOS) buck
 
 This enables you to copy an OMI between OUTSCALE accounts in different Regions.
 
+
 This action creates the necessary snapshots and manifest file in the bucket. The OMI can then be imported to another account using a pre-signed URL of its manifest file. For more information, see [Creating a Pre-Signed URL](https://docs.outscale.com/en/userguide/Creating-a-Pre-Signed-URL.html).
 
+
 To copy an OMI in the same Region, you can also use the [CreateImage](#createimage) method.
+
 
 **[IMPORTANT]**
 

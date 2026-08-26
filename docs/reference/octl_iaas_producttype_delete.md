@@ -4,9 +4,10 @@ alias for api DeleteProductType --ProductTypeId product_type_id
 
 ### Synopsis
 
-> *alias for api DeleteProductType --ProductTypeId product_type_id*
+> alias for api DeleteProductType --ProductTypeId product_type_id
 
 Deletes a specified product type that belongs to you.
+
 
 **[WARNING]**
 

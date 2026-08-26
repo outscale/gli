@@ -4,7 +4,7 @@ alias for api CreateUserGroup
 
 ### Synopsis
 
-> *alias for api CreateUserGroup*
+> alias for api CreateUserGroup
 
 Creates a group to which you can add users.
 

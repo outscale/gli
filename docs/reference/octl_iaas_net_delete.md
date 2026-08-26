@@ -4,11 +4,13 @@ alias for api DeleteNet --NetId net_id
 
 ### Synopsis
 
-> *alias for api DeleteNet --NetId net_id*
+> alias for api DeleteNet --NetId net_id
 
 Deletes a specified Net.
 
 Before deleting the Net, you need to delete or detach all the resources associated with the Net:
+
+
 
 * Virtual machines (VMs)
 

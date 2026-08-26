@@ -4,7 +4,7 @@ alias for api ReadManagedPoliciesLinkedToUserGroup
 
 ### Synopsis
 
-> *alias for api ReadManagedPoliciesLinkedToUserGroup*
+> alias for api ReadManagedPoliciesLinkedToUserGroup
 
 Lists the managed policies linked to a specified group.
 

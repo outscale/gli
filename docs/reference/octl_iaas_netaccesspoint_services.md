@@ -4,7 +4,7 @@ alias for api ReadNetAccessPointServices
 
 ### Synopsis
 
-> *alias for api ReadNetAccessPointServices*
+> alias for api ReadNetAccessPointServices
 
 Lists OUTSCALE services available to create Net access points.
 

@@ -4,7 +4,7 @@ Display versioning configuration, alias for api GetBucketVersioning --Bucket buc
 
 ### Synopsis
 
-> *Display versioning configuration, alias for api GetBucketVersioning --Bucket bucket*
+> Display versioning configuration, alias for api GetBucketVersioning --Bucket bucket
 
 
 

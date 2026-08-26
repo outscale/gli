@@ -4,7 +4,7 @@ alias for api ReadQuotas --Filters.QuotaNames quota_name
 
 ### Synopsis
 
-> *alias for api ReadQuotas --Filters.QuotaNames quota_name*
+> alias for api ReadQuotas --Filters.QuotaNames quota_name
 
 
 

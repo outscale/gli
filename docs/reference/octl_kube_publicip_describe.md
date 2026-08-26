@@ -4,7 +4,7 @@ alias for api GetProjectPublicIps  id_or_name
 
 ### Synopsis
 
-> *alias for api GetProjectPublicIps  id_or_name*
+> alias for api GetProjectPublicIps  id_or_name
 
 
 

@@ -8,6 +8,7 @@
 
 > This feature is currently under development and may not function properly.
 
+
 Deletes virtual machines (VMs) from a VM group.
 
 The oldest VMs are the first to be deleted.

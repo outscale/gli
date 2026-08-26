@@ -6,6 +6,7 @@ Deletes a specified user group.
 
 Deletes a specified user group.
 
+
 **[WARNING]**
 
 The user group must be empty of any user and must not have any linked policy. Otherwise, you need to force the deletion.

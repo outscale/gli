@@ -4,7 +4,7 @@ Display Policy configuration, alias for api GetBucketPolicy --Bucket bucket
 
 ### Synopsis
 
-> *Display Policy configuration, alias for api GetBucketPolicy --Bucket bucket*
+> Display Policy configuration, alias for api GetBucketPolicy --Bucket bucket
 
 
 

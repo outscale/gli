@@ -4,7 +4,7 @@ alias for api ReadSnapshotExportTasks
 
 ### Synopsis
 
-> *alias for api ReadSnapshotExportTasks*
+> alias for api ReadSnapshotExportTasks
 
 Lists one or more snapshot export tasks.
 

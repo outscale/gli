@@ -4,9 +4,12 @@ alias for api UnlinkPolicy --PolicyOrn policy_orn
 
 ### Synopsis
 
-> *alias for api UnlinkPolicy --PolicyOrn policy_orn*
+> alias for api UnlinkPolicy --PolicyOrn policy_orn
 
 Removes a managed policy from a specific user.
+
+
+
 
 **[IMPORTANT]**
 

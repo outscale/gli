@@ -4,7 +4,7 @@ alias for api ReadClientGateways
 
 ### Synopsis
 
-> *alias for api ReadClientGateways*
+> alias for api ReadClientGateways
 
 Lists one or more of your client gateways.
 

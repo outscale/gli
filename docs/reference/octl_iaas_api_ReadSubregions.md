@@ -6,6 +6,8 @@ Lists one or more of the enabled Subregions that you can access in the current R
 
 Lists one or more of the enabled Subregions that you can access in the current Region.
 
+
+
 For more information, see [About Regions and Subregions](https://docs.outscale.com/en/userguide/About-Regions-and-Subregions.html).
 
 ```

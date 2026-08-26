@@ -4,7 +4,7 @@ alias for api ReadApiLogs
 
 ### Synopsis
 
-> *alias for api ReadApiLogs*
+> alias for api ReadApiLogs
 
 Lists the logs of the API calls you have performed with this OUTSCALE account.
 
@@ -13,6 +13,7 @@ Lists the logs of the API calls you have performed with this OUTSCALE account.
 Past logs are accessible for up to 32 days.
 
 By default, the retrieved interval is 48 hours. If neither of the `QueryDateBefore` nor `QueryDateAfter` parameters are specified, logs from the past 48 hours are retrieved. If you only specify one of two, logs are retrieved from a 2-day interval based on the date you provided. To retrieve logs beyond a 2-day interval, specify both parameters.
+
 
 For more information, see [About OMS](https://docs.outscale.com/en/userguide/About-OMS.html).
 

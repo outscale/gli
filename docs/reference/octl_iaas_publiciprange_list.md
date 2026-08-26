@@ -4,7 +4,7 @@ alias for api ReadPublicIpRanges
 
 ### Synopsis
 
-> *alias for api ReadPublicIpRanges*
+> alias for api ReadPublicIpRanges
 
 Gets the public IPv4 addresses in CIDR notation for the Region specified in the endpoint of the request. For more information, see [About Regions and Subregions](https://docs.outscale.com/en/userguide/About-Regions-and-Subregions.html).
 

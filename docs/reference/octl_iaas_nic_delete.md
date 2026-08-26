@@ -4,7 +4,7 @@ alias for api DeleteNic --NicId nic_id
 
 ### Synopsis
 
-> *alias for api DeleteNic --NicId nic_id*
+> alias for api DeleteNic --NicId nic_id
 
 Deletes the specified network interface card (NIC).
 

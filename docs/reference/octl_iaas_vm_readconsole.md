@@ -4,9 +4,11 @@ alias for api ReadConsoleOutput --VmId vm_id
 
 ### Synopsis
 
-> *alias for api ReadConsoleOutput --VmId vm_id*
+> alias for api ReadConsoleOutput --VmId vm_id
 
 Gets the console output for a virtual machine (VM). This console is not in real-time. It is refreshed every two seconds and provides the most recent 64 KiB output.
+
+
 
 **[IMPORTANT]**
 

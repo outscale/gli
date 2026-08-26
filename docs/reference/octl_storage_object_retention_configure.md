@@ -4,7 +4,7 @@ Configure object retention, alias for api PutObjectRetention --Key key --Retenti
 
 ### Synopsis
 
-> *Configure object retention, alias for api PutObjectRetention --Key key --Retention.Mode*
+> Configure object retention, alias for api PutObjectRetention --Key key --Retention.Mode
 
 
 

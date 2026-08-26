@@ -4,11 +4,12 @@ alias for api DeleteVmGroup --VmGroupId vm_group_id
 
 ### Synopsis
 
-> *alias for api DeleteVmGroup --VmGroupId vm_group_id*
+> alias for api DeleteVmGroup --VmGroupId vm_group_id
 
 > [WARNING]
 
 > This feature is currently under development and may not function properly.
+
 
 Deletes a specified VM group.
 

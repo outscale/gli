@@ -4,7 +4,7 @@ Display ACL configuration, alias for api GetObjectAcl --Key key
 
 ### Synopsis
 
-> *Display ACL configuration, alias for api GetObjectAcl --Key key*
+> Display ACL configuration, alias for api GetObjectAcl --Key key
 
 
 

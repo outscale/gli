@@ -4,11 +4,12 @@ alias for api CreateVpnConnectionRoute
 
 ### Synopsis
 
-> *alias for api CreateVpnConnectionRoute*
+> alias for api CreateVpnConnectionRoute
 
 Creates a static route to a VPN connection.
 
 This enables you to select the network flows sent by the virtual gateway to the target VPN connection.
+
 
 For more information, see [About Routing Configuration for VPN Connections](https://docs.outscale.com/en/userguide/About-Routing-Configuration-for-VPN-Connections.html).
 

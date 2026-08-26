@@ -8,6 +8,7 @@ Allocates a flexible GPU (fGPU) to your OUTSCALE account.
 
 You can then attach this fGPU to a virtual machine (VM).
 
+
 For more information, see [About Flexible GPUs](https://docs.outscale.com/en/userguide/About-Flexible-GPUs.html).
 
 ```

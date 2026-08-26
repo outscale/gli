@@ -4,9 +4,10 @@ alias for api CreateCa
 
 ### Synopsis
 
-> *alias for api CreateCa*
+> alias for api CreateCa
 
 Creates a Client Certificate Authority (CA).
+
 
 For more information, see [About API Access Rules](https://docs.outscale.com/en/userguide/About-API-Access-Rules.html).
 

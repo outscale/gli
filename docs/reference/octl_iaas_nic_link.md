@@ -4,7 +4,7 @@ alias for api LinkNic --NicId nic_id
 
 ### Synopsis
 
-> *alias for api LinkNic --NicId nic_id*
+> alias for api LinkNic --NicId nic_id
 
 Attaches a network interface card (NIC) to a virtual machine (VM).
 

@@ -4,7 +4,7 @@ alias for api ListParts
 
 ### Synopsis
 
-> *alias for api ListParts*
+> alias for api ListParts
 
 
 

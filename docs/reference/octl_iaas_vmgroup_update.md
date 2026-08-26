@@ -4,11 +4,12 @@ alias for api UpdateVmGroup --VmGroupId vm_group_id
 
 ### Synopsis
 
-> *alias for api UpdateVmGroup --VmGroupId vm_group_id*
+> alias for api UpdateVmGroup --VmGroupId vm_group_id
 
 > [WARNING]
 
 > This feature is currently under development and may not function properly.
+
 
 Modifies the specified attributes of a group of virtual machines (VMs).
 

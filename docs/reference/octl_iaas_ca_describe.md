@@ -4,7 +4,7 @@ alias for api ReadCas --Filters.CaIds ca_id
 
 ### Synopsis
 
-> *alias for api ReadCas --Filters.CaIds ca_id*
+> alias for api ReadCas --Filters.CaIds ca_id
 
 
 

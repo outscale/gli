@@ -4,7 +4,7 @@ alias for api ReadLoadBalancers --Filters.LoadBalancerNames load_balancer_name
 
 ### Synopsis
 
-> *alias for api ReadLoadBalancers --Filters.LoadBalancerNames load_balancer_name*
+> alias for api ReadLoadBalancers --Filters.LoadBalancerNames load_balancer_name
 
 
 

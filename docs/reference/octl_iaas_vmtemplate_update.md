@@ -4,11 +4,12 @@ alias for api UpdateVmTemplate --VmTemplateId vm_template_id
 
 ### Synopsis
 
-> *alias for api UpdateVmTemplate --VmTemplateId vm_template_id*
+> alias for api UpdateVmTemplate --VmTemplateId vm_template_id
 
 > [WARNING]
 
 > This feature is currently under development and may not function properly.
+
 
 Modifies the specified attributes of a template of virtual machines (VMs).
 

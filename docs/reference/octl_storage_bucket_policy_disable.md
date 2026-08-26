@@ -4,7 +4,7 @@ Delete Policy configuration, alias for api DeleteBucketPolicy --Bucket bucket
 
 ### Synopsis
 
-> *Delete Policy configuration, alias for api DeleteBucketPolicy --Bucket bucket*
+> Delete Policy configuration, alias for api DeleteBucketPolicy --Bucket bucket
 
 
 

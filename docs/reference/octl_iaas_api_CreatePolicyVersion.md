@@ -8,6 +8,9 @@ Creates a version of a specified managed policy.
 
 A managed policy can have up to five versions.
 
+
+
+
 **[IMPORTANT]**
 
 A delay of up to 15 seconds can occur when attaching, detaching, or updating a managed policy.

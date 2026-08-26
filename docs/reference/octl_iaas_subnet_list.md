@@ -4,7 +4,7 @@ alias for api ReadSubnets
 
 ### Synopsis
 
-> *alias for api ReadSubnets*
+> alias for api ReadSubnets
 
 Lists one or more of your Subnets.
 

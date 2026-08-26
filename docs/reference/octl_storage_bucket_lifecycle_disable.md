@@ -4,7 +4,7 @@ Delete Lifecycle configuration, alias for api DeleteBucketLifecycle --Bucket buc
 
 ### Synopsis
 
-> *Delete Lifecycle configuration, alias for api DeleteBucketLifecycle --Bucket bucket*
+> Delete Lifecycle configuration, alias for api DeleteBucketLifecycle --Bucket bucket
 
 
 

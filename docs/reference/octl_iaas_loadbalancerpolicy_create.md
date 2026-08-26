@@ -4,7 +4,7 @@ alias for api CreateLoadBalancerPolicy
 
 ### Synopsis
 
-> *alias for api CreateLoadBalancerPolicy*
+> alias for api CreateLoadBalancerPolicy
 
 Creates a stickiness policy with sticky session lifetimes defined by the browser lifetime.
 
@@ -12,11 +12,14 @@ The created policy can be used with HTTP or HTTPS listeners only.
 
 If this policy is implemented by a load balancer, this load balancer uses this cookie in all incoming requests to direct them to the specified backend server virtual machine (VM). If this cookie is not present, the load balancer sends the request to any other server according to its load-balancing algorithm.
 
+
+
 You can also create a stickiness policy with sticky session lifetimes following the lifetime of an application-generated cookie.
 
 Unlike the other type of stickiness policy, the lifetime of the special Load Balancer Unit (LBU) cookie follows the lifetime of the application-generated cookie specified in the policy configuration. The load balancer inserts a new stickiness cookie only when the application response includes a new application cookie.
 
 The session stops being sticky if the application cookie is removed or expires, until a new application cookie is issued.
+
 
 For more information, see [About Load Balancers](https://docs.outscale.com/en/userguide/About-Load-Balancers.html).
 

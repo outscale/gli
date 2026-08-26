@@ -4,7 +4,7 @@ Copy an object, alias for api CopyObject --CopySource bucket_src/key_src --Key k
 
 ### Synopsis
 
-> *Copy an object, alias for api CopyObject --CopySource bucket_src/key_src --Key key_dst*
+> Copy an object, alias for api CopyObject --CopySource bucket_src/key_src --Key key_dst
 
 
 

@@ -4,7 +4,7 @@ Display a bucket, alias for api HeadBucket --Bucket bucket
 
 ### Synopsis
 
-> *Display a bucket, alias for api HeadBucket --Bucket bucket*
+> Display a bucket, alias for api HeadBucket --Bucket bucket
 
 
 

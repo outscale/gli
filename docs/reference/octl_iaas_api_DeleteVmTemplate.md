@@ -8,6 +8,7 @@
 
 > This feature is currently under development and may not function properly.
 
+
 Deletes a virtual machine (VM) template.
 
 You cannot delete a template currently used by a VM group.

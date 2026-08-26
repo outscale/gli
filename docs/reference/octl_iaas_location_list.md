@@ -4,9 +4,10 @@ alias for api ReadLocations
 
 ### Synopsis
 
-> *alias for api ReadLocations*
+> alias for api ReadLocations
 
 Lists the locations, corresponding to datacenters, where you can set up a DirectLink.
+
 
 For more information, see [About DirectLink](https://docs.outscale.com/en/userguide/About-DirectLink.html).
 

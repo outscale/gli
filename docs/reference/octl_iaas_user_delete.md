@@ -4,7 +4,7 @@ alias for api DeleteUser --UserName user_name
 
 ### Synopsis
 
-> *alias for api DeleteUser --UserName user_name*
+> alias for api DeleteUser --UserName user_name
 
 Deletes a specified EIM user. The EIM user must not belong to any group, nor have any key or linked policy.
 

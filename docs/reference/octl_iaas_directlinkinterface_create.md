@@ -4,11 +4,12 @@ alias for api CreateDirectLinkInterface
 
 ### Synopsis
 
-> *alias for api CreateDirectLinkInterface*
+> alias for api CreateDirectLinkInterface
 
 Creates a DirectLink interface.
 
 DirectLink interfaces enable you to reach one of your Nets through a virtual gateway.
+
 
 For more information, see [About DirectLink](https://docs.outscale.com/en/userguide/About-DirectLink.html).
 

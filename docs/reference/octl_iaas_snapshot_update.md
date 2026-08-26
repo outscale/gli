@@ -4,7 +4,7 @@ alias for api UpdateSnapshot --SnapshotId snapshot_id
 
 ### Synopsis
 
-> *alias for api UpdateSnapshot --SnapshotId snapshot_id*
+> alias for api UpdateSnapshot --SnapshotId snapshot_id
 
 Modifies the permissions for a specified snapshot.
 

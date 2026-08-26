@@ -4,9 +4,10 @@ alias for api ReadQuotas
 
 ### Synopsis
 
-> *alias for api ReadQuotas*
+> alias for api ReadQuotas
 
 Lists one or more of your quotas.
+
 
 For more information, see [About Your Account](https://docs.outscale.com/en/userguide/About-Your-OUTSCALE-Account.html).
 

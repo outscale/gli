@@ -4,7 +4,7 @@ Display encryption configuration, alias for api GetBucketEncryption --Bucket buc
 
 ### Synopsis
 
-> *Display encryption configuration, alias for api GetBucketEncryption --Bucket bucket*
+> Display encryption configuration, alias for api GetBucketEncryption --Bucket bucket
 
 
 

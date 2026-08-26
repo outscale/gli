@@ -4,7 +4,7 @@ Display ACL configuration, alias for api GetBucketAcl --Bucket bucket
 
 ### Synopsis
 
-> *Display ACL configuration, alias for api GetBucketAcl --Bucket bucket*
+> Display ACL configuration, alias for api GetBucketAcl --Bucket bucket
 
 
 

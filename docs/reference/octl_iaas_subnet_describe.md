@@ -4,7 +4,7 @@ alias for api ReadSubnets --Filters.SubnetIds subnet_id
 
 ### Synopsis
 
-> *alias for api ReadSubnets --Filters.SubnetIds subnet_id*
+> alias for api ReadSubnets --Filters.SubnetIds subnet_id
 
 
 

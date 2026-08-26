@@ -4,7 +4,7 @@ alias for api DeleteNatService --NatServiceId nat_service_id
 
 ### Synopsis
 
-> *alias for api DeleteNatService --NatServiceId nat_service_id*
+> alias for api DeleteNatService --NatServiceId nat_service_id
 
 Deletes a specified network address translation (NAT) service.
 

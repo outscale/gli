@@ -4,7 +4,7 @@ alias for api UpdateNet --NetId net_id
 
 ### Synopsis
 
-> *alias for api UpdateNet --NetId net_id*
+> alias for api UpdateNet --NetId net_id
 
 Associates a DHCP options set with a specified Net.
 

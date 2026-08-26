@@ -4,7 +4,7 @@ Display website configuration, alias for api GetBucketWebsite --Bucket bucket
 
 ### Synopsis
 
-> *Display website configuration, alias for api GetBucketWebsite --Bucket bucket*
+> Display website configuration, alias for api GetBucketWebsite --Bucket bucket
 
 
 

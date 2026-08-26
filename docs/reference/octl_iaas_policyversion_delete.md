@@ -4,9 +4,12 @@ alias for api DeletePolicyVersion --PolicyOrn policy_orn
 
 ### Synopsis
 
-> *alias for api DeletePolicyVersion --PolicyOrn policy_orn*
+> alias for api DeletePolicyVersion --PolicyOrn policy_orn
 
 Deletes a specified version of a managed policy, if it is not set as the default one.
+
+
+
 
 **[IMPORTANT]**
 

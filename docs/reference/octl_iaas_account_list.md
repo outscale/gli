@@ -4,7 +4,7 @@ alias for api ReadAccounts
 
 ### Synopsis
 
-> *alias for api ReadAccounts*
+> alias for api ReadAccounts
 
 Gets information about the account that sent the request.
 

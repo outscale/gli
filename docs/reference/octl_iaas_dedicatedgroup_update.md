@@ -4,7 +4,7 @@ alias for api UpdateDedicatedGroup --DedicatedGroupId dedicated_group_id
 
 ### Synopsis
 
-> *alias for api UpdateDedicatedGroup --DedicatedGroupId dedicated_group_id*
+> alias for api UpdateDedicatedGroup --DedicatedGroupId dedicated_group_id
 
 Modifies the name of a specified dedicated group.
 

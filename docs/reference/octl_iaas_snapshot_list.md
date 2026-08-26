@@ -4,7 +4,7 @@ alias for api ReadSnapshots
 
 ### Synopsis
 
-> *alias for api ReadSnapshots*
+> alias for api ReadSnapshots
 
 Lists one or more snapshots that are available to you and the permissions to create volumes from them.
 

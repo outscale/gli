@@ -4,7 +4,7 @@ alias for api ReadUsers
 
 ### Synopsis
 
-> *alias for api ReadUsers*
+> alias for api ReadUsers
 
 Lists all EIM users in the OUTSCALE account.
 

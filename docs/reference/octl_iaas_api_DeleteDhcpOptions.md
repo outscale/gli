@@ -8,6 +8,8 @@ Deletes a specified DHCP options set.
 
 Before deleting a DHCP options set, you must disassociate it from the Nets you associated it with. To do so, you need to associate with each Net a new set of DHCP options, or the `default` one if you do not want to associate any DHCP options with the Net.
 
+
+
 **[IMPORTANT]**
 
 You cannot delete the `default` set.

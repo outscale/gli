@@ -4,7 +4,7 @@ alias for api UpdateUser --UserName user_name
 
 ### Synopsis
 
-> *alias for api UpdateUser --UserName user_name*
+> alias for api UpdateUser --UserName user_name
 
 Modifies the name and/or the path of a specified EIM user.
 

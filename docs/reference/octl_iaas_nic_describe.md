@@ -4,7 +4,7 @@ alias for api ReadNics --Filters.NicIds nic_id
 
 ### Synopsis
 
-> *alias for api ReadNics --Filters.NicIds nic_id*
+> alias for api ReadNics --Filters.NicIds nic_id
 
 
 

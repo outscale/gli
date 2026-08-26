@@ -4,7 +4,7 @@ alias for api ReadVpnConnections --Filters.VpnConnectionIds vpn_connection_id
 
 ### Synopsis
 
-> *alias for api ReadVpnConnections --Filters.VpnConnectionIds vpn_connection_id*
+> alias for api ReadVpnConnections --Filters.VpnConnectionIds vpn_connection_id
 
 
 

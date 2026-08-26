@@ -4,7 +4,7 @@ alias for api ReadPolicies
 
 ### Synopsis
 
-> *alias for api ReadPolicies*
+> alias for api ReadPolicies
 
 Lists all the managed policies available for your OUTSCALE account.
 

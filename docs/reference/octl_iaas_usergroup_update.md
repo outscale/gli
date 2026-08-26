@@ -4,7 +4,7 @@ alias for api UpdateUserGroup --UserGroupName user_group_name
 
 ### Synopsis
 
-> *alias for api UpdateUserGroup --UserGroupName user_group_name*
+> alias for api UpdateUserGroup --UserGroupName user_group_name
 
 Modifies the name and/or the path of a specified group.
 

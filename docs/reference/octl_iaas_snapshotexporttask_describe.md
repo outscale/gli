@@ -4,7 +4,7 @@ alias for api ReadSnapshotExportTasks --Filters.TaskIds task_id
 
 ### Synopsis
 
-> *alias for api ReadSnapshotExportTasks --Filters.TaskIds task_id*
+> alias for api ReadSnapshotExportTasks --Filters.TaskIds task_id
 
 
 

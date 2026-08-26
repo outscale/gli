@@ -4,7 +4,7 @@ alias for api CreateSnapshot
 
 ### Synopsis
 
-> *alias for api CreateSnapshot*
+> alias for api CreateSnapshot
 
 Creates a snapshot. Snapshots are point-in-time images of a volume that you can use to back up your data or to create replicas of this volume.
 

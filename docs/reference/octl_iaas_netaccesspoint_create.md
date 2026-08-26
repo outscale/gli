@@ -4,7 +4,7 @@ alias for api CreateNetAccessPoint
 
 ### Synopsis
 
-> *alias for api CreateNetAccessPoint*
+> alias for api CreateNetAccessPoint
 
 Creates a Net access point to access an OUTSCALE service from this Net without using the Internet or public IPs.
 
@@ -12,6 +12,7 @@ You specify the service using its name. For more information about the available
  
 
 To control the routing of traffic between the Net and the specified service, you can specify one or more route tables. Virtual machines placed in Subnets associated with the specified route table thus use the Net access point to access the service. When you specify a route table, a route is automatically added to it with the destination set to the prefix list ID of the service, and the target set to the ID of the access point.
+
 
 When a Net access point is created, a public IP is automatically allocated to your OUTSCALE account and used for the Net access point. This public IP is not connected to the Internet. It is counted in your quota, but it is not billed.
  

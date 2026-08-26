@@ -6,6 +6,8 @@ Gets the console output for a virtual machine (VM).
 
 Gets the console output for a virtual machine (VM). This console is not in real-time. It is refreshed every two seconds and provides the most recent 64 KiB output.
 
+
+
 **[IMPORTANT]**
 
 On Windows VMs, the console is handled only on the first boot. It returns no output after the first boot.

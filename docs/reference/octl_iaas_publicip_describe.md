@@ -4,7 +4,7 @@ alias for api ReadPublicIps --Filters.PublicIpIds public_ip_id
 
 ### Synopsis
 
-> *alias for api ReadPublicIps --Filters.PublicIpIds public_ip_id*
+> alias for api ReadPublicIps --Filters.PublicIpIds public_ip_id
 
 
 

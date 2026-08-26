@@ -4,7 +4,7 @@ Aggregate all GPU costs using ReadConsumptionAccount
 
 ### Synopsis
 
-> *Aggregate all GPU costs using ReadConsumptionAccount*
+> Aggregate all GPU costs using ReadConsumptionAccount
 
 Gets information about the consumption of your OUTSCALE account for each billable resource within the specified time period.
 

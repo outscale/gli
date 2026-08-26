@@ -4,7 +4,7 @@ alias for api DeleteLoadBalancer --LoadBalancerName load_balancer_name
 
 ### Synopsis
 
-> *alias for api DeleteLoadBalancer --LoadBalancerName load_balancer_name*
+> alias for api DeleteLoadBalancer --LoadBalancerName load_balancer_name
 
 Deletes a specified load balancer.
 

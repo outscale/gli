@@ -4,7 +4,7 @@ alias for api CreateProject
 
 ### Synopsis
 
-> *alias for api CreateProject*
+> alias for api CreateProject
 
 Creates a new project with the provided details. The request must include the project data in the request body. Returns the details of the created project.
 

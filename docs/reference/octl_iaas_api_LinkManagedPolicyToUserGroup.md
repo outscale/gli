@@ -6,6 +6,9 @@ Links a managed policy to a specific group.
 
 Links a managed policy to a specific group. This policy applies to all the users contained in this group.
 
+
+
+
 **[IMPORTANT]**
 
 A delay of up to 15 seconds can occur when attaching, detaching, or updating a managed policy.

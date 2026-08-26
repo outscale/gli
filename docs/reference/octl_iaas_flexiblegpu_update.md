@@ -4,7 +4,7 @@ alias for api UpdateFlexibleGpu --FlexibleGpuId flexible_gpu_id
 
 ### Synopsis
 
-> *alias for api UpdateFlexibleGpu --FlexibleGpuId flexible_gpu_id*
+> alias for api UpdateFlexibleGpu --FlexibleGpuId flexible_gpu_id
 
 Modifies a flexible GPU (fGPU) behavior.
 

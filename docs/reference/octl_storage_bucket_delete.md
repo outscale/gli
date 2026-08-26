@@ -4,7 +4,7 @@ alias for api DeleteBucket --Bucket bucket
 
 ### Synopsis
 
-> *alias for api DeleteBucket --Bucket bucket*
+> alias for api DeleteBucket --Bucket bucket
 
 
 

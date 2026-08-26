@@ -4,7 +4,7 @@ Delete Website configuration, alias for api DeleteBucketWebsite --Bucket bucket
 
 ### Synopsis
 
-> *Delete Website configuration, alias for api DeleteBucketWebsite --Bucket bucket*
+> Delete Website configuration, alias for api DeleteBucketWebsite --Bucket bucket
 
 
 

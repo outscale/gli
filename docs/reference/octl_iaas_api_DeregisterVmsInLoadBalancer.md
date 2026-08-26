@@ -8,6 +8,7 @@
 
 > Deprecated: This call is deprecated and will be removed.
 
+
 Deregisters a specified virtual machine (VM) from a load balancer.
 
 ```

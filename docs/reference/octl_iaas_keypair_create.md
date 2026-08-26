@@ -4,7 +4,7 @@ alias for api CreateKeypair
 
 ### Synopsis
 
-> *alias for api CreateKeypair*
+> alias for api CreateKeypair
 
 Creates a keypair to use with your virtual machines (VMs).
 

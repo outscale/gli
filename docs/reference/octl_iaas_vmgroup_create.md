@@ -4,11 +4,12 @@ alias for api CreateVmGroup
 
 ### Synopsis
 
-> *alias for api CreateVmGroup*
+> alias for api CreateVmGroup
 
 > [WARNING]
 
 > This feature is currently under development and may not function properly.
+
 
 Creates a group of virtual machines (VMs) containing the same characteristics as a specified VM template, and then launches them.
 

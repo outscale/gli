@@ -4,7 +4,7 @@ Display retention configuration, alias for api GetObjectRetention --Key key
 
 ### Synopsis
 
-> *Display retention configuration, alias for api GetObjectRetention --Key key*
+> Display retention configuration, alias for api GetObjectRetention --Key key
 
 
 

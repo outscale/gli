@@ -4,7 +4,7 @@ alias for api Get name
 
 ### Synopsis
 
-> *alias for api Get name*
+> alias for api Get name
 
 
 

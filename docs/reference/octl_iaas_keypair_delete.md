@@ -4,7 +4,7 @@ alias for api DeleteKeypair --KeypairId keypair_id
 
 ### Synopsis
 
-> *alias for api DeleteKeypair --KeypairId keypair_id*
+> alias for api DeleteKeypair --KeypairId keypair_id
 
 Deletes the specified keypair.
 

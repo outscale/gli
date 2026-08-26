@@ -4,7 +4,7 @@ alias for api CreateImage
 
 ### Synopsis
 
-> *alias for api CreateImage*
+> alias for api CreateImage
 
 Creates an OUTSCALE machine image (OMI).
 

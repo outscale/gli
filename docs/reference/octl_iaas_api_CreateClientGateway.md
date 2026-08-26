@@ -10,6 +10,7 @@ This action registers information to identify the client gateway that you deploy
 
 To open a tunnel to the client gateway, you must provide the communication protocol type, the fixed public IP of the gateway, and an Autonomous System Number (ASN).
 
+
 For more information, see [About Client Gateways](https://docs.outscale.com/en/userguide/About-Client-Gateways.html).
 
 ```

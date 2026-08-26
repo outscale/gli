@@ -4,7 +4,7 @@ alias for api ReadDirectLinks
 
 ### Synopsis
 
-> *alias for api ReadDirectLinks*
+> alias for api ReadDirectLinks
 
 Lists all DirectLinks in the Region.
 

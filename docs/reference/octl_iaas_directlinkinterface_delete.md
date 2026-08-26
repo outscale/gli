@@ -4,7 +4,7 @@ alias for api DeleteDirectLinkInterface --DirectLinkInterfaceId direct_link_inte
 
 ### Synopsis
 
-> *alias for api DeleteDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id*
+> alias for api DeleteDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id
 
 Deletes a specified DirectLink interface.
 

@@ -4,7 +4,7 @@ alias for api ReadImageExportTasks
 
 ### Synopsis
 
-> *alias for api ReadImageExportTasks*
+> alias for api ReadImageExportTasks
 
 Lists one or more image export tasks.
 

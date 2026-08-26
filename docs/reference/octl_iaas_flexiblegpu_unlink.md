@@ -4,7 +4,7 @@ alias for api UnlinkFlexibleGpu --FlexibleGpuId fgpu_id
 
 ### Synopsis
 
-> *alias for api UnlinkFlexibleGpu --FlexibleGpuId fgpu_id*
+> alias for api UnlinkFlexibleGpu --FlexibleGpuId fgpu_id
 
 Detaches a flexible GPU (fGPU) from a virtual machine (VM).
 

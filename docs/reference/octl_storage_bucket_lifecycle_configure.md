@@ -4,7 +4,7 @@ Update Lifecycle configuration, alias for api PutBucketLifecycleConfiguration --
 
 ### Synopsis
 
-> *Update Lifecycle configuration, alias for api PutBucketLifecycleConfiguration --Bucket bucket*
+> Update Lifecycle configuration, alias for api PutBucketLifecycleConfiguration --Bucket bucket
 
 
 

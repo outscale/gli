@@ -4,11 +4,12 @@ alias for api ReadVmTemplates
 
 ### Synopsis
 
-> *alias for api ReadVmTemplates*
+> alias for api ReadVmTemplates
 
 > [WARNING]
 
 > This feature is currently under development and may not function properly.
+
 
 Lists one or more virtual machine (VM) templates.
 

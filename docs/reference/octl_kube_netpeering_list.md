@@ -4,7 +4,7 @@ alias for api List
 
 ### Synopsis
 
-> *alias for api List*
+> alias for api List
 
 
 

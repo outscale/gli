@@ -4,7 +4,7 @@ alias for api ReadSubregions --Filters.SubregionNames subregion_name
 
 ### Synopsis
 
-> *alias for api ReadSubregions --Filters.SubregionNames subregion_name*
+> alias for api ReadSubregions --Filters.SubregionNames subregion_name
 
 
 

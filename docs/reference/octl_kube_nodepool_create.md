@@ -4,7 +4,7 @@ alias for api Create
 
 ### Synopsis
 
-> *alias for api Create*
+> alias for api Create
 
 
 

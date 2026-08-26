@@ -8,6 +8,8 @@ Attaches one of your allocated flexible GPUs (fGPUs) to one of your virtual mach
 
 To complete the linking of the fGPU, you need to do a stop/start of the VM. A simple restart is not sufficient, as the linking of the fGPU is done when the VM goes through the `stopped` state. For the difference between stop/start and restart, see [About VM Lifecycle](https://docs.outscale.com/en/userguide/About-VM-Lifecycle.html).
 
+
+
 **[NOTE]**
 
 You can attach fGPUs only to VMs with the `highest` (1) performance flag. For more information see [About Flexible GPUs](https://docs.outscale.com/en/userguide/About-Flexible-GPUs.html) and [VM Types](https://docs.outscale.com/en/userguide/VM-Types.html).

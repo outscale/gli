@@ -4,13 +4,14 @@ alias for api CreateVolume
 
 ### Synopsis
 
-> *alias for api CreateVolume*
+> alias for api CreateVolume
 
 Creates a Block Storage Unit (BSU) volume in a specified Region.
 
 BSU volumes can be attached to a virtual machine (VM) in the same Subregion. You can create an empty volume or restore a volume from an existing snapshot.
 
 You can create the following volume types: Enterprise (`io1`) for provisioned IOPS SSD volumes, Performance (`gp2`) for general purpose SSD volumes, or Magnetic (`standard`) volumes.
+
 
 For more information, see [About Volumes](https://docs.outscale.com/en/userguide/About-Volumes.html).
 

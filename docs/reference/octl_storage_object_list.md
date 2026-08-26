@@ -4,7 +4,7 @@ alias for api ListObjectsV2
 
 ### Synopsis
 
-> *alias for api ListObjectsV2*
+> alias for api ListObjectsV2
 
 
 

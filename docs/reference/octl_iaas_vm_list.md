@@ -4,7 +4,7 @@ alias for api ReadVms
 
 ### Synopsis
 
-> *alias for api ReadVms*
+> alias for api ReadVms
 
 Lists one or more of your virtual machines (VMs).
 

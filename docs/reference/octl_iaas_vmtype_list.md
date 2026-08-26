@@ -4,7 +4,7 @@ alias for api ReadVmTypes
 
 ### Synopsis
 
-> *alias for api ReadVmTypes*
+> alias for api ReadVmTypes
 
 Lists one or more predefined VM types.
 

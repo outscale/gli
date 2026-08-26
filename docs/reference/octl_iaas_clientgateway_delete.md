@@ -4,7 +4,7 @@ alias for api DeleteClientGateway --ClientGatewayId client_gateway_id
 
 ### Synopsis
 
-> *alias for api DeleteClientGateway --ClientGatewayId client_gateway_id*
+> alias for api DeleteClientGateway --ClientGatewayId client_gateway_id
 
 Deletes a client gateway.
 

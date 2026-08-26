@@ -4,7 +4,7 @@ alias for api ReadNetAccessPoints --Filters.NetAccessPointIds net_access_point_i
 
 ### Synopsis
 
-> *alias for api ReadNetAccessPoints --Filters.NetAccessPointIds net_access_point_id*
+> alias for api ReadNetAccessPoints --Filters.NetAccessPointIds net_access_point_id
 
 
 

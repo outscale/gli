@@ -4,7 +4,7 @@ alias for api ReadNics
 
 ### Synopsis
 
-> *alias for api ReadNics*
+> alias for api ReadNics
 
 Lists one or more network interface cards (NICs).
 

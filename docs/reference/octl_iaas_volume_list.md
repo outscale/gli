@@ -4,7 +4,7 @@ alias for api ReadVolumes
 
 ### Synopsis
 
-> *alias for api ReadVolumes*
+> alias for api ReadVolumes
 
 Lists one or more specified Block Storage Unit (BSU) volumes.
 

@@ -4,7 +4,7 @@ alias for api RejectNetPeering --NetPeeringId netpeering_id
 
 ### Synopsis
 
-> *alias for api RejectNetPeering --NetPeeringId netpeering_id*
+> alias for api RejectNetPeering --NetPeeringId netpeering_id
 
 Rejects a Net peering request.
 

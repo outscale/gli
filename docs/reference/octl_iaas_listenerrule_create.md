@@ -4,11 +4,12 @@ alias for api CreateListenerRule
 
 ### Synopsis
 
-> *alias for api CreateListenerRule*
+> alias for api CreateListenerRule
 
 Creates a rule for traffic redirection for the specified listener. Each rule must have either the `HostNamePattern` or `PathPattern` parameter specified. Rules are treated in priority order, from the highest value to the lowest value.
 
 Once the rule is created, you need to register backend VMs with it. For more information, see the [RegisterVmsInLoadBalancer](#registervmsinloadbalancer) method.
+
 
 For more information, see [About Load Balancers](https://docs.outscale.com/en/userguide/About-Load-Balancers.html).
 

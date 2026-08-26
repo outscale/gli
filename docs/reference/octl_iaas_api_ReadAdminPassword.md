@@ -8,6 +8,8 @@ Gets the administrator password for a Windows running virtual machine (VM).
 
 The administrator password is encrypted using the keypair you specified when launching the VM.
 
+
+
 **[IMPORTANT]**
 
 * Only RSA keypairs can decrypt the password of a Windows VM.

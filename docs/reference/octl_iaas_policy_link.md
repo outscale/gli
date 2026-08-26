@@ -4,9 +4,12 @@ alias for api LinkPolicy --PolicyOrn policy_orn
 
 ### Synopsis
 
-> *alias for api LinkPolicy --PolicyOrn policy_orn*
+> alias for api LinkPolicy --PolicyOrn policy_orn
 
 Links a managed policy to a specific user.
+
+
+
 
 **[IMPORTANT]**
 

@@ -4,7 +4,7 @@ alias for api UpdateVm --VmId vm_id
 
 ### Synopsis
 
-> *alias for api UpdateVm --VmId vm_id*
+> alias for api UpdateVm --VmId vm_id
 
 Modifies the specified attributes of a virtual machine (VM).
 

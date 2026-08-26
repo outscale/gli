@@ -4,7 +4,7 @@ alias for api ReadVmsStopHistory
 
 ### Synopsis
 
-> *alias for api ReadVmsStopHistory*
+> alias for api ReadVmsStopHistory
 
 Lists the stop history of one or more VMs.
 

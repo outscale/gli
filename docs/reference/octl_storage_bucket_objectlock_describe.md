@@ -4,7 +4,7 @@ Display ObjectLock configuration, alias for api GetObjectLockConfiguration --Buc
 
 ### Synopsis
 
-> *Display ObjectLock configuration, alias for api GetObjectLockConfiguration --Bucket bucket*
+> Display ObjectLock configuration, alias for api GetObjectLockConfiguration --Bucket bucket
 
 
 

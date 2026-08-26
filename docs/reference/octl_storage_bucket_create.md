@@ -4,7 +4,7 @@ alias for api CreateBucket
 
 ### Synopsis
 
-> *alias for api CreateBucket*
+> alias for api CreateBucket
 
 
 

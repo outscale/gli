@@ -4,7 +4,7 @@ alias for api ReadSecurityGroups --Filters.SecurityGroupIds security_group_id
 
 ### Synopsis
 
-> *alias for api ReadSecurityGroups --Filters.SecurityGroupIds security_group_id*
+> alias for api ReadSecurityGroups --Filters.SecurityGroupIds security_group_id
 
 
 

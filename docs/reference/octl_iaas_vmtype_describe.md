@@ -4,7 +4,7 @@ alias for api ReadVmTypes --Filters.VmTypeNames vm_type_name
 
 ### Synopsis
 
-> *alias for api ReadVmTypes --Filters.VmTypeNames vm_type_name*
+> alias for api ReadVmTypes --Filters.VmTypeNames vm_type_name
 
 
 

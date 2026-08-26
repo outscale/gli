@@ -4,7 +4,7 @@ alias for api ReadNetPeerings --Filters.NetPeeringIds net_peering_id
 
 ### Synopsis
 
-> *alias for api ReadNetPeerings --Filters.NetPeeringIds net_peering_id*
+> alias for api ReadNetPeerings --Filters.NetPeeringIds net_peering_id
 
 
 

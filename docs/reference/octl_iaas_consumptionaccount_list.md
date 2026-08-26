@@ -4,7 +4,7 @@ alias for api ReadConsumptionAccount
 
 ### Synopsis
 
-> *alias for api ReadConsumptionAccount*
+> alias for api ReadConsumptionAccount
 
 Gets information about the consumption of your OUTSCALE account for each billable resource within the specified time period.
 

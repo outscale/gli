@@ -6,6 +6,9 @@ Deletes a specified inline policy from a specific group.
 
 Deletes a specified inline policy from a specific group.
 
+
+
+
 **[IMPORTANT]**
 
 A delay of up to 15 seconds can occur when creating or deleting an inline policy.

@@ -4,7 +4,7 @@ alias for api ReadProductTypes --Filters.ProductTypeIds product_type_id
 
 ### Synopsis
 
-> *alias for api ReadProductTypes --Filters.ProductTypeIds product_type_id*
+> alias for api ReadProductTypes --Filters.ProductTypeIds product_type_id
 
 
 

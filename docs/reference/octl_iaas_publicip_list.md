@@ -4,7 +4,7 @@ alias for api ReadPublicIps
 
 ### Synopsis
 
-> *alias for api ReadPublicIps*
+> alias for api ReadPublicIps
 
 Lists one or more public IPs allocated to your OUTSCALE account.
 

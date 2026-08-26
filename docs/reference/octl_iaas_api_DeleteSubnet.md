@@ -8,6 +8,8 @@ Deletes a specified Subnet.
 
 Before deleting the Subnet, you need to delete all resources associated with the Subnet:
 
+
+
 * Virtual machines (VMs)
 
 * Network Interface Cards (NICs)

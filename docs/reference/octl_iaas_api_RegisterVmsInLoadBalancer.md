@@ -8,6 +8,7 @@
 
 > Deprecated: This call is deprecated and will be removed.
 
+
 Registers one or more virtual machines (VMs) with a specified load balancer.
 
 The VMs can be in different Subnets and different Subregions than the load balancer, as long as the VMs and load balancers are all in the public Cloud or all in the same Net. It may take a little time for a VM to be registered with the load balancer. Once the VM is registered with a load balancer, it receives traffic and requests from this load balancer and is called a backend VM.

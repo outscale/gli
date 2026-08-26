@@ -4,7 +4,7 @@ alias for api ReadRouteTables --Filters.RouteTableIds route_table_id
 
 ### Synopsis
 
-> *alias for api ReadRouteTables --Filters.RouteTableIds route_table_id*
+> alias for api ReadRouteTables --Filters.RouteTableIds route_table_id
 
 
 

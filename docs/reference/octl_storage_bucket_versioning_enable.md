@@ -4,7 +4,7 @@ Enable versioning, alias for api PutBucketVersioning --Bucket bucket --Versionin
 
 ### Synopsis
 
-> *Enable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Enabled*
+> Enable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Enabled
 
 
 

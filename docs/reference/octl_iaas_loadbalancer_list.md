@@ -4,7 +4,7 @@ alias for api ReadLoadBalancers
 
 ### Synopsis
 
-> *alias for api ReadLoadBalancers*
+> alias for api ReadLoadBalancers
 
 Lists one or more load balancers and their attributes.
 

@@ -4,7 +4,7 @@ alias for api ReadVirtualGateways
 
 ### Synopsis
 
-> *alias for api ReadVirtualGateways*
+> alias for api ReadVirtualGateways
 
 Lists one or more virtual gateways.
 

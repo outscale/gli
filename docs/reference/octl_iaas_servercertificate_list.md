@@ -4,7 +4,7 @@ alias for api ReadServerCertificates
 
 ### Synopsis
 
-> *alias for api ReadServerCertificates*
+> alias for api ReadServerCertificates
 
 Lists your server certificates.
 

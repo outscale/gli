@@ -4,7 +4,7 @@ Update Website configuration, alias for api PutBucketWebsite --Bucket bucket
 
 ### Synopsis
 
-> *Update Website configuration, alias for api PutBucketWebsite --Bucket bucket*
+> Update Website configuration, alias for api PutBucketWebsite --Bucket bucket
 
 
 

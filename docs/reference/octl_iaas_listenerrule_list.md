@@ -4,7 +4,7 @@ alias for api ReadListenerRules
 
 ### Synopsis
 
-> *alias for api ReadListenerRules*
+> alias for api ReadListenerRules
 
 Lists one or more listener rules. By default, this action returns the full list of listener rules for the OUTSCALE account.
 

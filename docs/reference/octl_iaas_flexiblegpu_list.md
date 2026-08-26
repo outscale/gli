@@ -4,7 +4,7 @@ alias for api ReadFlexibleGpus
 
 ### Synopsis
 
-> *alias for api ReadFlexibleGpus*
+> alias for api ReadFlexibleGpus
 
 Lists one or more flexible GPUs (fGPUs) allocated to your OUTSCALE account.
 

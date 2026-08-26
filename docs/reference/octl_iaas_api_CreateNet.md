@@ -8,6 +8,7 @@ Creates a Net with a specified IP range.
 
 The IP range (network range) of your Net must be between a /28 netmask (16 IPs) and a /16 netmask (65536 IPs).
 
+
 For more information, see [About Nets](https://docs.outscale.com/en/userguide/About-Nets.html).
 
 ```

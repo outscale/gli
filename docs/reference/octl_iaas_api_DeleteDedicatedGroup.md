@@ -6,6 +6,7 @@ Deletes a specified dedicated group of virtual machines (VMs).
 
 Deletes a specified dedicated group of virtual machines (VMs).
 
+
 **[WARNING]**
 
 A dedicated group can be deleted only if no VM or Net is in the dedicated group. Otherwise, you need to force the deletion.

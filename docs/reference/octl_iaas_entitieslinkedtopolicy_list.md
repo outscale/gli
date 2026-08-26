@@ -4,7 +4,7 @@ alias for api ReadEntitiesLinkedToPolicy
 
 ### Synopsis
 
-> *alias for api ReadEntitiesLinkedToPolicy*
+> alias for api ReadEntitiesLinkedToPolicy
 
 Lists all entities (account, users, or user groups) linked to a specific managed policy.
 

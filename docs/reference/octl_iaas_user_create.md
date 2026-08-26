@@ -4,9 +4,10 @@ alias for api CreateUser
 
 ### Synopsis
 
-> *alias for api CreateUser*
+> alias for api CreateUser
 
 Creates an EIM user for your OUTSCALE account.
+
 
 For more information, see [About EIM Users](https://docs.outscale.com/en/userguide/About-EIM-Users.html).
 

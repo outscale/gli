@@ -4,9 +4,10 @@ alias for api UpdateAccessKey --AccessKeyId access_key_id
 
 ### Synopsis
 
-> *alias for api UpdateAccessKey --AccessKeyId access_key_id*
+> alias for api UpdateAccessKey --AccessKeyId access_key_id
 
 Modifies the attributes of the specified access key of either the root user or an EIM user.
+
 
 The parameter `ExpirationDate` is not required when updating the state of your access key. However, if you do not specify the expiration date of an access key when updating its state, it is then set to not expire.
 

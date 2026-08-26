@@ -4,13 +4,15 @@ alias for api CreateTags
 
 ### Synopsis
 
-> *alias for api CreateTags*
+> alias for api CreateTags
 
 Adds one or more tags to the specified resources.
 
 If a tag with the same key already exists for the resource, the tag value is replaced.
 
 You can tag the following resources using their IDs:
+
+
 
 * Client gateways (cgw-xxxxxxxx)
 
@@ -54,6 +56,7 @@ You can tag the following resources using their IDs:
 * Volumes (vol-xxxxxxxx)
 
 * VPN connections (vpn-xxxxxxxx)
+
 
 For more information, see [About Tags](https://docs.outscale.com/en/userguide/About-Tags.html).
 

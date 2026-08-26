@@ -4,7 +4,7 @@ alias for api UpdateSubnet --SubnetId subnet_id
 
 ### Synopsis
 
-> *alias for api UpdateSubnet --SubnetId subnet_id*
+> alias for api UpdateSubnet --SubnetId subnet_id
 
 Modifies the specified attribute of a Subnet.
 

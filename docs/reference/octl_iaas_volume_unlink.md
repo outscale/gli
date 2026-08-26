@@ -4,7 +4,7 @@ alias for api UnlinkVolume --VolumeId link_volume_id
 
 ### Synopsis
 
-> *alias for api UnlinkVolume --VolumeId link_volume_id*
+> alias for api UnlinkVolume --VolumeId link_volume_id
 
 Detaches a Block Storage Unit (BSU) volume from a virtual machine (VM).
 

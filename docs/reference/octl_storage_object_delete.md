@@ -4,7 +4,7 @@ alias for api DeleteObject --Key key
 
 ### Synopsis
 
-> *alias for api DeleteObject --Key key*
+> alias for api DeleteObject --Key key
 
 
 

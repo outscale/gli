@@ -4,7 +4,7 @@ alias for api ReadDedicatedGroups --Filters.DedicatedGroupIds dedicated_group_id
 
 ### Synopsis
 
-> *alias for api ReadDedicatedGroups --Filters.DedicatedGroupIds dedicated_group_id*
+> alias for api ReadDedicatedGroups --Filters.DedicatedGroupIds dedicated_group_id
 
 
 

@@ -4,7 +4,7 @@ alias for api DeleteCluster  id_or_name
 
 ### Synopsis
 
-> *alias for api DeleteCluster  id_or_name*
+> alias for api DeleteCluster  id_or_name
 
 Deletes a specific cluster by its ID. Returns confirmation of the deletion.
 

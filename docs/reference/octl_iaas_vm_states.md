@@ -4,7 +4,7 @@ alias for api ReadVmsState
 
 ### Synopsis
 
-> *alias for api ReadVmsState*
+> alias for api ReadVmsState
 
 Lists the status of one or more virtual machines (VMs).
 

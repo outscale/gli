@@ -4,7 +4,7 @@ alias for api DeleteFlexibleGpu --FlexibleGpuId flexible_gpu_id
 
 ### Synopsis
 
-> *alias for api DeleteFlexibleGpu --FlexibleGpuId flexible_gpu_id*
+> alias for api DeleteFlexibleGpu --FlexibleGpuId flexible_gpu_id
 
 Releases a flexible GPU (fGPU) from your OUTSCALE account.
 

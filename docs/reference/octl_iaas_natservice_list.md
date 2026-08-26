@@ -4,7 +4,7 @@ alias for api ReadNatServices
 
 ### Synopsis
 
-> *alias for api ReadNatServices*
+> alias for api ReadNatServices
 
 Lists one or more network address translation (NAT) services.
 

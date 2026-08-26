@@ -4,7 +4,7 @@ alias for api ReadInternetServices
 
 ### Synopsis
 
-> *alias for api ReadInternetServices*
+> alias for api ReadInternetServices
 
 Lists one or more of your internet services.
 

@@ -4,7 +4,7 @@ Delete CORS configuration, alias for api DeleteBucketCors --Bucket bucket
 
 ### Synopsis
 
-> *Delete CORS configuration, alias for api DeleteBucketCors --Bucket bucket*
+> Delete CORS configuration, alias for api DeleteBucketCors --Bucket bucket
 
 
 

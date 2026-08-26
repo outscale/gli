@@ -4,7 +4,7 @@ alias for api DeleteProject  id_or_name
 
 ### Synopsis
 
-> *alias for api DeleteProject  id_or_name*
+> alias for api DeleteProject  id_or_name
 
 Deletes a specific project by its ID. Returns a confirmation of the project deletion.
 

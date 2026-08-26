@@ -4,7 +4,7 @@ alias for api ReadLinkedPolicies
 
 ### Synopsis
 
-> *alias for api ReadLinkedPolicies*
+> alias for api ReadLinkedPolicies
 
 Lists the managed policies linked to a specified user.
 

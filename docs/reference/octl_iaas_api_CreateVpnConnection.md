@@ -8,9 +8,12 @@ Creates a VPN connection between a specified virtual gateway and a specified cli
 
 You can create only one VPN connection between a virtual gateway and a client gateway.
 
+
+
 **[IMPORTANT]**
 
 This action can be done only if the virtual gateway is in the `available` state.
+
 
 For more information, see [About VPN Connections](https://docs.outscale.com/en/userguide/About-VPN-Connections.html).
 

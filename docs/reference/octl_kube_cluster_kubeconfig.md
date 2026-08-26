@@ -4,7 +4,7 @@ alias for api GetKubeconfig id_or_name
 
 ### Synopsis
 
-> *alias for api GetKubeconfig id_or_name*
+> alias for api GetKubeconfig id_or_name
 
 
 

@@ -4,7 +4,7 @@ alias for api ReadProductTypes
 
 ### Synopsis
 
-> *alias for api ReadProductTypes*
+> alias for api ReadProductTypes
 
 Lists one or more product types.
 

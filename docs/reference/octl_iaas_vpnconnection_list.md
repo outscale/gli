@@ -4,7 +4,7 @@ alias for api ReadVpnConnections
 
 ### Synopsis
 
-> *alias for api ReadVpnConnections*
+> alias for api ReadVpnConnections
 
 Lists one or more VPN connections.
 

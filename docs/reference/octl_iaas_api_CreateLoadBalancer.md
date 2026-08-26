@@ -12,6 +12,7 @@ By default, this action creates an Internet-facing load balancer, resolving to p
 
 You must specify either the `Subnets` or the `SubregionNames` parameters.
 
+
 For more information, see [About Load Balancers](https://docs.outscale.com/en/userguide/About-Load-Balancers.html).
 
 ```

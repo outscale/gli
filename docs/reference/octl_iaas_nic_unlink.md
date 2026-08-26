@@ -4,7 +4,7 @@ alias for api ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNi
 
 ### Synopsis
 
-> *alias for api ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNic.LinkNicId}}*
+> alias for api ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNic.LinkNicId}}
 
 Detaches a network interface card (NIC) from a virtual machine (VM).
 

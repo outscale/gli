@@ -4,7 +4,7 @@ alias for api ReadUserGroupsPerUser
 
 ### Synopsis
 
-> *alias for api ReadUserGroupsPerUser*
+> alias for api ReadUserGroupsPerUser
 
 Lists the groups a specified user belongs to.
 

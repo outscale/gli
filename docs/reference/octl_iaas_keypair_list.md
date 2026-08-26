@@ -4,7 +4,7 @@ alias for api ReadKeypairs
 
 ### Synopsis
 
-> *alias for api ReadKeypairs*
+> alias for api ReadKeypairs
 
 Lists one or more of your keypairs.
 

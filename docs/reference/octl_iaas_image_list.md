@@ -4,7 +4,7 @@ alias for api ReadImages
 
 ### Synopsis
 
-> *alias for api ReadImages*
+> alias for api ReadImages
 
 Lists one or more OUTSCALE machine images (OMIs) you can use.
 

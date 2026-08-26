@@ -4,9 +4,10 @@ alias for api CreateDedicatedGroup
 
 ### Synopsis
 
-> *alias for api CreateDedicatedGroup*
+> alias for api CreateDedicatedGroup
 
 Creates a dedicated group for virtual machines (VMs).
+
 
 For more information, see [About Dedicated Groups](https://docs.outscale.com/en/userguide/About-Dedicated-Groups.html).
 

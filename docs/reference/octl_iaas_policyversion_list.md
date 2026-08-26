@@ -4,7 +4,7 @@ alias for api ReadPolicyVersions --PolicyOrn policy_orn
 
 ### Synopsis
 
-> *alias for api ReadPolicyVersions --PolicyOrn policy_orn*
+> alias for api ReadPolicyVersions --PolicyOrn policy_orn
 
 Lists information about all the policy versions of a specified managed policy.
 

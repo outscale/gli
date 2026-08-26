@@ -6,6 +6,7 @@ Creates a set of DHCP options, that you can then associate with a Net using the 
 
 Creates a set of DHCP options, that you can then associate with a Net using the [UpdateNet](#updatenet) method.
 
+
 For more information, see [About DHCP Options](https://docs.outscale.com/en/userguide/About-DHCP-Options.html).
 
 ```

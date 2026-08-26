@@ -6,6 +6,7 @@ Creates a Client Certificate Authority (CA).
 
 Creates a Client Certificate Authority (CA).
 
+
 For more information, see [About API Access Rules](https://docs.outscale.com/en/userguide/About-API-Access-Rules.html).
 
 ```

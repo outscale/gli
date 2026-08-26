@@ -4,7 +4,7 @@ alias for api CreatePolicy
 
 ### Synopsis
 
-> *alias for api CreatePolicy*
+> alias for api CreatePolicy
 
 Creates a managed policy to apply to a user.
 

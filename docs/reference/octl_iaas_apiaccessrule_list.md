@@ -4,7 +4,7 @@ alias for api ReadApiAccessRules
 
 ### Synopsis
 
-> *alias for api ReadApiAccessRules*
+> alias for api ReadApiAccessRules
 
 Lists one or more API access rules.
 

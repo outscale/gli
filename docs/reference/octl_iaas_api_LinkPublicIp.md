@@ -10,6 +10,8 @@ To associate a public IP in a Net, ensure that the Net has an internet service a
 
 By default, the public IP is disassociated every time you stop and start the VM. For a persistent association, you can add the `osc.fcu.eip.auto-attach` tag to the VM with the public IP as value. For more information, see the [CreateTags](#createtags) method.
 
+
+
 **[IMPORTANT]**
 
 You can associate a public IP with a network address translation (NAT) service only when creating the NAT service. To modify its public IP, you need to delete the NAT service and re-create it with the new public IP. For more information, see the [CreateNatService](#createnatservice) method.

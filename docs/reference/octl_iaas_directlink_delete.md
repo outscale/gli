@@ -4,7 +4,7 @@ alias for api DeleteDirectLink --DirectLinkId direct_link_id
 
 ### Synopsis
 
-> *alias for api DeleteDirectLink --DirectLinkId direct_link_id*
+> alias for api DeleteDirectLink --DirectLinkId direct_link_id
 
 Deletes a specified DirectLink.
 

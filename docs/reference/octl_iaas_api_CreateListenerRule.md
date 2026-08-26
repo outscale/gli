@@ -8,6 +8,7 @@ Creates a rule for traffic redirection for the specified listener. Each rule mus
 
 Once the rule is created, you need to register backend VMs with it. For more information, see the [RegisterVmsInLoadBalancer](#registervmsinloadbalancer) method.
 
+
 For more information, see [About Load Balancers](https://docs.outscale.com/en/userguide/About-Load-Balancers.html).
 
 ```

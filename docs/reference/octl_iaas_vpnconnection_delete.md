@@ -4,7 +4,7 @@ alias for api DeleteVpnConnection --VpnConnectionId vpn_connection_id
 
 ### Synopsis
 
-> *alias for api DeleteVpnConnection --VpnConnectionId vpn_connection_id*
+> alias for api DeleteVpnConnection --VpnConnectionId vpn_connection_id
 
 Deletes a specified VPN connection.
 

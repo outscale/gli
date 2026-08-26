@@ -6,6 +6,7 @@ Creates a DirectLink between a customer network and a specified DirectLink locat
 
 Creates a DirectLink between a customer network and a specified DirectLink location.
 
+
 For more information, see [About DirectLink](https://docs.outscale.com/en/userguide/About-DirectLink.html).
 
 ```

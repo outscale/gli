@@ -4,7 +4,7 @@ Download an object to the standard output, alias for api GetObject --Key key
 
 ### Synopsis
 
-> *Download an object to the standard output, alias for api GetObject --Key key*
+> Download an object to the standard output, alias for api GetObject --Key key
 
 
 

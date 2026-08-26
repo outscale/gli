@@ -4,7 +4,7 @@ alias for api LinkInternetService --InternetServiceId service_id
 
 ### Synopsis
 
-> *alias for api LinkInternetService --InternetServiceId service_id*
+> alias for api LinkInternetService --InternetServiceId service_id
 
 Attaches an internet service to a Net.
 

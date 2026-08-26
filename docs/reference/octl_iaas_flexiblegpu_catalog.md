@@ -4,7 +4,7 @@ alias for api ReadFlexibleGpuCatalog
 
 ### Synopsis
 
-> *alias for api ReadFlexibleGpuCatalog*
+> alias for api ReadFlexibleGpuCatalog
 
 Lists all flexible GPUs available in the public catalog.
 

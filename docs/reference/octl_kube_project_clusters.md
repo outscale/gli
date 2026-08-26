@@ -4,7 +4,7 @@ alias for api ListClustersByProjectID
 
 ### Synopsis
 
-> *alias for api ListClustersByProjectID*
+> alias for api ListClustersByProjectID
 
 
 

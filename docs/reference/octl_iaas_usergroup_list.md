@@ -4,7 +4,7 @@ alias for api ReadUserGroups
 
 ### Synopsis
 
-> *alias for api ReadUserGroups*
+> alias for api ReadUserGroups
 
 Lists all the user groups of the OUTSCALE account.
 

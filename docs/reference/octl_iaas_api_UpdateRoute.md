@@ -8,6 +8,8 @@ Replaces an existing route within a route table in a Net.
 
 You must specify one of the following elements as the target:
 
+
+
 * Net peering
 
 * NAT virtual machine (VM)
@@ -19,6 +21,8 @@ You must specify one of the following elements as the target:
 * NAT service
 
 * Network interface card (NIC)
+
+
 
 The routing algorithm is based on the most specific match.
 

@@ -4,7 +4,7 @@ Add tags to an object, alias for api PutObjectTagging --Key key
 
 ### Synopsis
 
-> *Add tags to an object, alias for api PutObjectTagging --Key key*
+> Add tags to an object, alias for api PutObjectTagging --Key key
 
 
 

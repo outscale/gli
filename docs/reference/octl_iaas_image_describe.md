@@ -4,7 +4,7 @@ alias for api ReadImages --Filters.ImageIds image_id
 
 ### Synopsis
 
-> *alias for api ReadImages --Filters.ImageIds image_id*
+> alias for api ReadImages --Filters.ImageIds image_id
 
 
 

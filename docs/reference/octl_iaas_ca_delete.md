@@ -4,7 +4,7 @@ alias for api DeleteCa --CaId ca_id
 
 ### Synopsis
 
-> *alias for api DeleteCa --CaId ca_id*
+> alias for api DeleteCa --CaId ca_id
 
 Deletes a specified Client Certificate Authority (CA).
 

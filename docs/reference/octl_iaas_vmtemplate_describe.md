@@ -4,7 +4,7 @@ alias for api ReadVmTemplates --Filters.VmTemplateIds vm_template_id
 
 ### Synopsis
 
-> *alias for api ReadVmTemplates --Filters.VmTemplateIds vm_template_id*
+> alias for api ReadVmTemplates --Filters.VmTemplateIds vm_template_id
 
 
 

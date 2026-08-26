@@ -6,6 +6,7 @@ Deletes a specified product type that belongs to you.
 
 Deletes a specified product type that belongs to you.
 
+
 **[WARNING]**
 
 The product type must not be associated with one or more OMIs to be deleted. Otherwise, you need to force the deletion.

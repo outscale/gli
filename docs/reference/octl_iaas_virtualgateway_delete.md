@@ -4,7 +4,7 @@ alias for api DeleteVirtualGateway --VirtualGatewayId virtual_gateway_id
 
 ### Synopsis
 
-> *alias for api DeleteVirtualGateway --VirtualGatewayId virtual_gateway_id*
+> alias for api DeleteVirtualGateway --VirtualGatewayId virtual_gateway_id
 
 Deletes a specified virtual gateway.
 

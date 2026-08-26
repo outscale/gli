@@ -4,7 +4,7 @@ alias for acceptance api Create
 
 ### Synopsis
 
-> *alias for acceptance api Create*
+> alias for acceptance api Create
 
 
 

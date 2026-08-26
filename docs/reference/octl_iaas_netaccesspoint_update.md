@@ -4,7 +4,7 @@ alias for api UpdateNetAccessPoint --NetAccessPointId net_access_point_id
 
 ### Synopsis
 
-> *alias for api UpdateNetAccessPoint --NetAccessPointId net_access_point_id*
+> alias for api UpdateNetAccessPoint --NetAccessPointId net_access_point_id
 
 Modifies the attributes of a Net access point.
 

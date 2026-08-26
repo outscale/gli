@@ -4,7 +4,7 @@ Update ACL configuration, alias for api PutBucketAcl --Bucket bucket
 
 ### Synopsis
 
-> *Update ACL configuration, alias for api PutBucketAcl --Bucket bucket*
+> Update ACL configuration, alias for api PutBucketAcl --Bucket bucket
 
 
 

@@ -8,6 +8,7 @@
 
 > This feature is currently under development and may not function properly.
 
+
 Creates additional virtual machines (VMs) in a VM group.
 
 The new VMs use the current version of the VM template.

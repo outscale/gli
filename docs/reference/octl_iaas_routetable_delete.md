@@ -4,7 +4,7 @@ alias for api DeleteRouteTable --RouteTableId route_table_id
 
 ### Synopsis
 
-> *alias for api DeleteRouteTable --RouteTableId route_table_id*
+> alias for api DeleteRouteTable --RouteTableId route_table_id
 
 Deletes a specified route table.
 

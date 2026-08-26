@@ -4,7 +4,7 @@ alias for api DeleteVms --VmIds vm_id
 
 ### Synopsis
 
-> *alias for api DeleteVms --VmIds vm_id*
+> alias for api DeleteVms --VmIds vm_id
 
 Terminates one or more virtual machines (VMs).
 

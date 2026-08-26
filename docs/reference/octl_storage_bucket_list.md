@@ -4,7 +4,7 @@ alias for api ListBuckets
 
 ### Synopsis
 
-> *alias for api ListBuckets*
+> alias for api ListBuckets
 
 
 

@@ -4,7 +4,7 @@ alias for api ReadDhcpOptions --Filters.DhcpOptionsSetIds dhcp_options_set_id
 
 ### Synopsis
 
-> *alias for api ReadDhcpOptions --Filters.DhcpOptionsSetIds dhcp_options_set_id*
+> alias for api ReadDhcpOptions --Filters.DhcpOptionsSetIds dhcp_options_set_id
 
 
 

@@ -4,7 +4,7 @@ alias for api ReadLoadBalancerTags
 
 ### Synopsis
 
-> *alias for api ReadLoadBalancerTags*
+> alias for api ReadLoadBalancerTags
 
 Lists the tags associated with one or more specified load balancers.
 

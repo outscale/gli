@@ -4,7 +4,7 @@ alias for api DeleteListenerRule --ListenerRuleName listener_rule_name
 
 ### Synopsis
 
-> *alias for api DeleteListenerRule --ListenerRuleName listener_rule_name*
+> alias for api DeleteListenerRule --ListenerRuleName listener_rule_name
 
 Deletes a listener rule.
 

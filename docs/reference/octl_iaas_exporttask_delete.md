@@ -4,7 +4,7 @@ alias for api DeleteExportTask --ExportTaskId export_task_id
 
 ### Synopsis
 
-> *alias for api DeleteExportTask --ExportTaskId export_task_id*
+> alias for api DeleteExportTask --ExportTaskId export_task_id
 
 Deletes an export task.
 

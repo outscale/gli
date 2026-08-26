@@ -4,7 +4,7 @@ alias for api ReadSecurityGroups
 
 ### Synopsis
 
-> *alias for api ReadSecurityGroups*
+> alias for api ReadSecurityGroups
 
 Lists one or more security groups.
 

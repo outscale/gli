@@ -4,7 +4,7 @@ alias for api UpdateProject  id_or_name
 
 ### Synopsis
 
-> *alias for api UpdateProject  id_or_name*
+> alias for api UpdateProject  id_or_name
 
 Updates the details of an existing project by its ID. The request must include the updated project data in the request body. Returns the updated project information.
 

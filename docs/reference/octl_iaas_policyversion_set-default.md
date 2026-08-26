@@ -4,11 +4,14 @@ alias for api SetDefaultPolicyVersion --PolicyOrn policy_orn
 
 ### Synopsis
 
-> *alias for api SetDefaultPolicyVersion --PolicyOrn policy_orn*
+> alias for api SetDefaultPolicyVersion --PolicyOrn policy_orn
 
 Sets a specified version of a managed policy as the default (operative) one.
 
 You can modify the default version of a policy at any time.
+
+
+
 
 **[IMPORTANT]**
 

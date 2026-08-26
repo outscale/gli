@@ -8,6 +8,8 @@ Accepts a Net peering request.
 
 To accept this request, you must be the owner of the peer Net. If you do not accept the request within 7 days, the state of the Net peering becomes `expired`.
 
+
+
 **[NOTE]**
 
 A peering connection between two Nets works both ways. Therefore, when an A-to-B peering connection is accepted, any pending B-to-A peering connection is automatically rejected as redundant.

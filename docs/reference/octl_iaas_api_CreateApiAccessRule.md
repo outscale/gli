@@ -8,9 +8,12 @@ Creates a rule to allow access to the API from your OUTSCALE account.
 
 You need to specify at least the `CaIds` or the `IpRanges` parameter.
 
+
+
 **[NOTE]**
 
 By default, your account has a set of rules allowing global access, that you can delete.
+
 
 For more information, see [About API Access Rules](https://docs.outscale.com/en/userguide/About-API-Access-Rules.html).
 

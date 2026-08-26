@@ -4,7 +4,7 @@ alias for api DeleteNetAccessPoint --NetAccessPointId net_access_point_id
 
 ### Synopsis
 
-> *alias for api DeleteNetAccessPoint --NetAccessPointId net_access_point_id*
+> alias for api DeleteNetAccessPoint --NetAccessPointId net_access_point_id
 
 Deletes a specified Net access point.
 

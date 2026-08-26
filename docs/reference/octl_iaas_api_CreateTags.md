@@ -10,6 +10,8 @@ If a tag with the same key already exists for the resource, the tag value is rep
 
 You can tag the following resources using their IDs:
 
+
+
 * Client gateways (cgw-xxxxxxxx)
 
 * DHCP options (dopt-xxxxxxxx)
@@ -52,6 +54,7 @@ You can tag the following resources using their IDs:
 * Volumes (vol-xxxxxxxx)
 
 * VPN connections (vpn-xxxxxxxx)
+
 
 For more information, see [About Tags](https://docs.outscale.com/en/userguide/About-Tags.html).
 

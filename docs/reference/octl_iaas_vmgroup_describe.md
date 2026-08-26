@@ -4,7 +4,7 @@ alias for api ReadVmGroups --Filters.VmGroupIds vm_group_id
 
 ### Synopsis
 
-> *alias for api ReadVmGroups --Filters.VmGroupIds vm_group_id*
+> alias for api ReadVmGroups --Filters.VmGroupIds vm_group_id
 
 
 

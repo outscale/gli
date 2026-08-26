@@ -4,7 +4,7 @@ List object tags, alias for api GetObjectTagging --Key key
 
 ### Synopsis
 
-> *List object tags, alias for api GetObjectTagging --Key key*
+> List object tags, alias for api GetObjectTagging --Key key
 
 
 

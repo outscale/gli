@@ -4,7 +4,7 @@ alias for api StartVms --VmIds vm_id
 
 ### Synopsis
 
-> *alias for api StartVms --VmIds vm_id*
+> alias for api StartVms --VmIds vm_id
 
 Start one or more virtual machines (VMs).
 

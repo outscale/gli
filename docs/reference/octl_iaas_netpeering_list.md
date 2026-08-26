@@ -4,7 +4,7 @@ alias for api ReadNetPeerings
 
 ### Synopsis
 
-> *alias for api ReadNetPeerings*
+> alias for api ReadNetPeerings
 
 Lists one or more peering connections between two Nets.
 

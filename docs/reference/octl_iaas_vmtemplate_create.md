@@ -4,11 +4,12 @@ alias for api CreateVmTemplate
 
 ### Synopsis
 
-> *alias for api CreateVmTemplate*
+> alias for api CreateVmTemplate
 
 > [WARNING]
 
 > This feature is currently under development and may not function properly.
+
 
 Creates a virtual machine (VM) template. You can then use the VM template to create VM groups.
 

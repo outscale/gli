@@ -4,7 +4,7 @@ alias for api ReadRouteTables
 
 ### Synopsis
 
-> *alias for api ReadRouteTables*
+> alias for api ReadRouteTables
 
 Lists one or more of your route tables.
 

@@ -4,7 +4,7 @@ alias for api ReadCas
 
 ### Synopsis
 
-> *alias for api ReadCas*
+> alias for api ReadCas
 
 Gets information about one or more of your Client Certificate Authorities (CAs).
 

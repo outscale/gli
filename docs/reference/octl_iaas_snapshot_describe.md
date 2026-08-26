@@ -4,7 +4,7 @@ alias for api ReadSnapshots --Filters.SnapshotIds snapshot_id
 
 ### Synopsis
 
-> *alias for api ReadSnapshots --Filters.SnapshotIds snapshot_id*
+> alias for api ReadSnapshots --Filters.SnapshotIds snapshot_id
 
 
 

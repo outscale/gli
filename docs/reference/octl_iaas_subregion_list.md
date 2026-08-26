@@ -4,9 +4,11 @@ alias for api ReadSubregions
 
 ### Synopsis
 
-> *alias for api ReadSubregions*
+> alias for api ReadSubregions
 
 Lists one or more of the enabled Subregions that you can access in the current Region.
+
+
 
 For more information, see [About Regions and Subregions](https://docs.outscale.com/en/userguide/About-Regions-and-Subregions.html).
 

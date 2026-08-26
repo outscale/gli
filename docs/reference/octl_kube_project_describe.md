@@ -4,7 +4,7 @@ alias for api GetProject  id_or_name
 
 ### Synopsis
 
-> *alias for api GetProject  id_or_name*
+> alias for api GetProject  id_or_name
 
 
 

@@ -4,7 +4,7 @@ alias for api DeleteVolume --VolumeId volume_id
 
 ### Synopsis
 
-> *alias for api DeleteVolume --VolumeId volume_id*
+> alias for api DeleteVolume --VolumeId volume_id
 
 Deletes a specified Block Storage Unit (BSU) volume.
 

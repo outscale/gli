@@ -4,7 +4,7 @@ alias for api DeleteSnapshot --SnapshotId snapshot_id
 
 ### Synopsis
 
-> *alias for api DeleteSnapshot --SnapshotId snapshot_id*
+> alias for api DeleteSnapshot --SnapshotId snapshot_id
 
 Deletes a specified snapshot.
 

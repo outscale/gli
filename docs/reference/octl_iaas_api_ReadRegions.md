@@ -6,6 +6,7 @@ Lists one or more Regions of the OUTSCALE Cloud.
 
 Lists one or more Regions of the OUTSCALE Cloud.
 
+
 For more information, see [About Regions and Subregions](https://docs.outscale.com/en/userguide/About-Regions-and-Subregions.html).
 
 ```

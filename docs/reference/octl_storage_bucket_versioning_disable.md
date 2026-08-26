@@ -4,7 +4,7 @@ Disable versioning, alias for api PutBucketVersioning --Bucket bucket --Versioni
 
 ### Synopsis
 
-> *Disable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Suspended*
+> Disable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Suspended
 
 
 

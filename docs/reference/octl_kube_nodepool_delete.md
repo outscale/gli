@@ -4,7 +4,7 @@ alias for api Delete name
 
 ### Synopsis
 
-> *alias for api Delete name*
+> alias for api Delete name
 
 
 

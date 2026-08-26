@@ -4,9 +4,10 @@ alias for api CreateNic
 
 ### Synopsis
 
-> *alias for api CreateNic*
+> alias for api CreateNic
 
 Creates a network interface card (NIC) in the specified Subnet.
+
 
 For more information, see [About NICs](https://docs.outscale.com/en/userguide/About-NICs.html).
 

@@ -4,7 +4,7 @@ alias for api UpdateCa --CaId ca_id
 
 ### Synopsis
 
-> *alias for api UpdateCa --CaId ca_id*
+> alias for api UpdateCa --CaId ca_id
 
 Modifies the specified attribute of a Client Certificate Authority (CA).
 

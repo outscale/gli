@@ -14,6 +14,7 @@ Rules (IP permissions) consist of the protocol, IP range or source security grou
 
 To remove outbound access to a destination security group, we recommend to use a set of IP permissions. We also recommend to specify the protocol in a set of IP permissions.
 
+
 Alternatively, you can use the `Rules` parameter to delete several rules at the same time.
 
 ```

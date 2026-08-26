@@ -4,7 +4,7 @@ alias for api ReadUserGroupPolicies
 
 ### Synopsis
 
-> *alias for api ReadUserGroupPolicies*
+> alias for api ReadUserGroupPolicies
 
 Lists the names of the inline policies embedded in a specific group.
 

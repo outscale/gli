@@ -4,7 +4,7 @@ alias for api DeletePolicy --PolicyOrn policy_orn
 
 ### Synopsis
 
-> *alias for api DeletePolicy --PolicyOrn policy_orn*
+> alias for api DeletePolicy --PolicyOrn policy_orn
 
 Deletes a managed policy.
 

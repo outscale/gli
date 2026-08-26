@@ -4,7 +4,7 @@ alias for api GetQuotas
 
 ### Synopsis
 
-> *alias for api GetQuotas*
+> alias for api GetQuotas
 
 
 

@@ -4,7 +4,7 @@ alias for api DeletePublicIp --PublicIpId public_ip_id
 
 ### Synopsis
 
-> *alias for api DeletePublicIp --PublicIpId public_ip_id*
+> alias for api DeletePublicIp --PublicIpId public_ip_id
 
 Releases a public IP.
 

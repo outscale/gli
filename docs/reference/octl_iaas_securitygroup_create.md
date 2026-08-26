@@ -4,7 +4,7 @@ alias for api CreateSecurityGroup
 
 ### Synopsis
 
-> *alias for api CreateSecurityGroup*
+> alias for api CreateSecurityGroup
 
 Creates a security group.
 
@@ -17,6 +17,7 @@ When creating a security group, you specify a name. Two security groups for use 
 You can have up to 500 security groups in the public Cloud. You can create up to 500 security groups per Net.
 
 To add or remove rules, use the [CreateSecurityGroupRule](#createsecuritygrouprule) method.
+
 
 For more information, see [About Security Groups](https://docs.outscale.com/en/userguide/About-Security-Groups.html).
 

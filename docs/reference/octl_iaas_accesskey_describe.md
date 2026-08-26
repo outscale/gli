@@ -4,7 +4,7 @@ alias for api ReadAccessKeys --Filters.AccessKeyIds access_key_id
 
 ### Synopsis
 
-> *alias for api ReadAccessKeys --Filters.AccessKeyIds access_key_id*
+> alias for api ReadAccessKeys --Filters.AccessKeyIds access_key_id
 
 
 

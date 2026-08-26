@@ -4,7 +4,7 @@ Update ObjectLock configuration, alias for api PutObjectLockConfiguration --Buck
 
 ### Synopsis
 
-> *Update ObjectLock configuration, alias for api PutObjectLockConfiguration --Bucket bucket*
+> Update ObjectLock configuration, alias for api PutObjectLockConfiguration --Bucket bucket
 
 
 

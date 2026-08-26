@@ -4,7 +4,7 @@ alias for api LinkVolume --VolumeId volume_id
 
 ### Synopsis
 
-> *alias for api LinkVolume --VolumeId volume_id*
+> alias for api LinkVolume --VolumeId volume_id
 
 Attaches a Block Storage Unit (BSU) volume to a virtual machine (VM).
 

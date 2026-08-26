@@ -4,9 +4,11 @@ alias for api DeleteApiAccessRule --ApiAccessRuleId api_access_rule_id
 
 ### Synopsis
 
-> *alias for api DeleteApiAccessRule --ApiAccessRuleId api_access_rule_id*
+> alias for api DeleteApiAccessRule --ApiAccessRuleId api_access_rule_id
 
 Deletes a specified API access rule.
+
+
 
 **[IMPORTANT]**
 

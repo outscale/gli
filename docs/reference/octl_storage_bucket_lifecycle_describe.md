@@ -4,7 +4,7 @@ Display lifecycle configuration, alias for api GetBucketLifecycleConfiguration -
 
 ### Synopsis
 
-> *Display lifecycle configuration, alias for api GetBucketLifecycleConfiguration --Bucket bucket*
+> Display lifecycle configuration, alias for api GetBucketLifecycleConfiguration --Bucket bucket
 
 
 

@@ -4,7 +4,7 @@ alias for api ListAllClusters
 
 ### Synopsis
 
-> *alias for api ListAllClusters*
+> alias for api ListAllClusters
 
 
 

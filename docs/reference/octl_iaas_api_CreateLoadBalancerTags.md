@@ -8,6 +8,7 @@ Adds one or more tags to the specified load balancers.
 
 If a tag with the same key already exists for the load balancer, the tag value is replaced.
 
+
 For more information, see [About Tags](https://docs.outscale.com/en/userguide/About-Tags.html).
 
 ```

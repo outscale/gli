@@ -4,7 +4,7 @@ alias for api ReadNets --Filters.NetIds net_id
 
 ### Synopsis
 
-> *alias for api ReadNets --Filters.NetIds net_id*
+> alias for api ReadNets --Filters.NetIds net_id
 
 
 

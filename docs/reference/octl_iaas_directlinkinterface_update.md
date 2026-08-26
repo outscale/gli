@@ -4,7 +4,7 @@ alias for api UpdateDirectLinkInterface --DirectLinkInterfaceId direct_link_inte
 
 ### Synopsis
 
-> *alias for api UpdateDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id*
+> alias for api UpdateDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id
 
 Modifies the maximum transmission unit (MTU) of a DirectLink interface.
 

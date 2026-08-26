@@ -4,7 +4,7 @@ alias for api UpdateVpnConnection --VpnConnectionId vpn_connection_id
 
 ### Synopsis
 
-> *alias for api UpdateVpnConnection --VpnConnectionId vpn_connection_id*
+> alias for api UpdateVpnConnection --VpnConnectionId vpn_connection_id
 
 Modifies the specified attributes of a VPN connection.
 

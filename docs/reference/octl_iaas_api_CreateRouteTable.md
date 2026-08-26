@@ -8,6 +8,7 @@ Creates a route table for a specified Net.
 
 You can then add routes and associate this route table with a Subnet.
 
+
 For more information, see [About Route Tables](https://docs.outscale.com/en/userguide/About-Route-Tables.html).
 
 ```

@@ -27,27 +27,29 @@ import (
 //go:embed defaults.zip
 var defaults []byte
 
-func Defaults() Configs {
-	return sync.OnceValue(func() Configs {
-		r, err := zip.NewReader(bytes.NewReader(defaults), int64(len(defaults)))
+var configsOnce = sync.OnceValue(func() Configs {
+	r, err := zip.NewReader(bytes.NewReader(defaults), int64(len(defaults)))
+	if err != nil {
+		messages.ExitErr(err)
+	}
+
+	defaults := Configs{}
+	for _, f := range r.File {
+		provider := strings.TrimPrefix(strings.TrimSuffix(f.Name, ".yaml"), "defaults_")
+		rc, err := f.Open()
 		if err != nil {
 			messages.ExitErr(err)
 		}
-
-		defaults := Configs{}
-		for _, f := range r.File {
-			provider := strings.TrimPrefix(strings.TrimSuffix(f.Name, ".yaml"), "defaults_")
-			rc, err := f.Open()
-			if err != nil {
-				messages.ExitErr(err)
-			}
-			var cfg Config
-			err = yaml.NewDecoder(rc).Decode(&cfg)
-			if err != nil {
-				messages.ExitErr(err)
-			}
-			defaults[provider] = cfg
+		var cfg Config
+		err = yaml.NewDecoder(rc).Decode(&cfg)
+		if err != nil {
+			messages.ExitErr(err)
 		}
-		return defaults
-	})()
+		defaults[provider] = cfg
+	}
+	return defaults
+})
+
+func Defaults() Configs {
+	return configsOnce()
 }

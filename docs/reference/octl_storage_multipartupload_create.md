@@ -4,7 +4,7 @@ alias for api CreateMultipartUpload
 
 ### Synopsis
 
-> *alias for api CreateMultipartUpload*
+> alias for api CreateMultipartUpload
 
 
 

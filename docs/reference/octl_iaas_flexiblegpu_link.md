@@ -4,11 +4,13 @@ alias for api LinkFlexibleGpu --FlexibleGpuId fgpu_id
 
 ### Synopsis
 
-> *alias for api LinkFlexibleGpu --FlexibleGpuId fgpu_id*
+> alias for api LinkFlexibleGpu --FlexibleGpuId fgpu_id
 
 Attaches one of your allocated flexible GPUs (fGPUs) to one of your virtual machines (VMs).
 
 To complete the linking of the fGPU, you need to do a stop/start of the VM. A simple restart is not sufficient, as the linking of the fGPU is done when the VM goes through the `stopped` state. For the difference between stop/start and restart, see [About VM Lifecycle](https://docs.outscale.com/en/userguide/About-VM-Lifecycle.html).
+
+
 
 **[NOTE]**
 

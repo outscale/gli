@@ -4,7 +4,7 @@ Aggregate all costs using ReadConsumptionAccount
 
 ### Synopsis
 
-> *Aggregate all costs using ReadConsumptionAccount*
+> Aggregate all costs using ReadConsumptionAccount
 
 Gets information about the consumption of your OUTSCALE account for each billable resource within the specified time period.
 

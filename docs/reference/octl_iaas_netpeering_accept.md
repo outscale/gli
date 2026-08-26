@@ -4,11 +4,13 @@ alias for api AcceptNetPeering --NetPeeringId netpeering_id
 
 ### Synopsis
 
-> *alias for api AcceptNetPeering --NetPeeringId netpeering_id*
+> alias for api AcceptNetPeering --NetPeeringId netpeering_id
 
 Accepts a Net peering request.
 
 To accept this request, you must be the owner of the peer Net. If you do not accept the request within 7 days, the state of the Net peering becomes `expired`.
+
+
 
 **[NOTE]**
 

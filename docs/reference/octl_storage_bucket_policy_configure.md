@@ -4,7 +4,7 @@ Update Policy configuration, alias for api PutBucketPolicy --Bucket bucket
 
 ### Synopsis
 
-> *Update Policy configuration, alias for api PutBucketPolicy --Bucket bucket*
+> Update Policy configuration, alias for api PutBucketPolicy --Bucket bucket
 
 
 

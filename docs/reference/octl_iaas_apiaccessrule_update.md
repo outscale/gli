@@ -4,9 +4,11 @@ alias for api UpdateApiAccessRule --ApiAccessRuleId api_access_rule_id
 
 ### Synopsis
 
-> *alias for api UpdateApiAccessRule --ApiAccessRuleId api_access_rule_id*
+> alias for api UpdateApiAccessRule --ApiAccessRuleId api_access_rule_id
 
 Modifies a specified API access rule.
+
+
 
 **[WARNING]**
 

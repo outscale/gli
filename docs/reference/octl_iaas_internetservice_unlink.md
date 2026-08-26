@@ -4,7 +4,7 @@ alias for api UnlinkInternetService --InternetServiceId service_id
 
 ### Synopsis
 
-> *alias for api UnlinkInternetService --InternetServiceId service_id*
+> alias for api UnlinkInternetService --InternetServiceId service_id
 
 Detaches an internet service from a Net.
 

@@ -6,6 +6,7 @@ Modifies the specified attributes of a volume.
 
 Modifies the specified attributes of a volume.
 
+
 **[WARNING]**
 
 - We recommend creating a snapshot of your volume before updating it, in case any issue occurs during the process. For more information, see [Creating a Snapshot of a Volume](https://docs.outscale.com/en/userguide/Creating-a-Snapshot-of-a-Volume.html).

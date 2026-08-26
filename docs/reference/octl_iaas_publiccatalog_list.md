@@ -4,7 +4,7 @@ alias for api ReadPublicCatalog
 
 ### Synopsis
 
-> *alias for api ReadPublicCatalog*
+> alias for api ReadPublicCatalog
 
 Returns the price list of OUTSCALE products and services for the Region specified in the endpoint of the request. For more information, see [About Regions and Subregions](https://docs.outscale.com/en/userguide/About-Regions-and-Subregions.html).
 

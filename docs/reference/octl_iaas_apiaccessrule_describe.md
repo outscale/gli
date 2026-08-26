@@ -4,7 +4,7 @@ alias for api ReadApiAccessRules --Filters.ApiAccessRuleIds api_access_rule_id
 
 ### Synopsis
 
-> *alias for api ReadApiAccessRules --Filters.ApiAccessRuleIds api_access_rule_id*
+> alias for api ReadApiAccessRules --Filters.ApiAccessRuleIds api_access_rule_id
 
 
 

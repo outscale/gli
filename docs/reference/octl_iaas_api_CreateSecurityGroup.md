@@ -16,6 +16,7 @@ You can have up to 500 security groups in the public Cloud. You can create up to
 
 To add or remove rules, use the [CreateSecurityGroupRule](#createsecuritygrouprule) method.
 
+
 For more information, see [About Security Groups](https://docs.outscale.com/en/userguide/About-Security-Groups.html).
 
 ```

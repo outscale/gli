@@ -4,11 +4,12 @@ alias for api CreateInternetService
 
 ### Synopsis
 
-> *alias for api CreateInternetService*
+> alias for api CreateInternetService
 
 Creates an internet service you can use with a Net.
 
 An internet service enables virtual machines (VMs) launched in a Net to connect to the Internet. It allows routing of incoming and outgoing Internet traffic and management of public IPs.
+
 
 For more information, see [About Internet Services](https://docs.outscale.com/en/userguide/About-Internet-Services.html).
 
