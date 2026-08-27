@@ -3,6 +3,8 @@ package flags
 import (
 	"encoding/base64"
 	"os"
+
+	"github.com/outscale/octl/pkg/debug"
 )
 
 // Base64FileValue adapts File.File for use as a flag.
@@ -30,6 +32,11 @@ func (v *Base64FileValue) Type() string {
 }
 
 func (v *Base64FileValue) String() string {
+	_, err := base64.StdEncoding.DecodeString(string(v.content))
+	if err == nil {
+		debug.Println("value is already base 64 encoded")
+		return string(v.content)
+	}
 	return base64.StdEncoding.EncodeToString(v.content)
 }
 
