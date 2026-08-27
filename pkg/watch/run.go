@@ -2,12 +2,10 @@ package watch
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/output/format"
 	"github.com/outscale/octl/pkg/spinner"
 )
@@ -18,13 +16,13 @@ type RefreshMsg struct{}
 func Run[Error error](ctx context.Context, fmter format.Interface, fn func(ctx context.Context) error, interval time.Duration) error {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
-	cancel = spinner.Run(ctx, fmt.Sprintf("Refreshing every %s... Press ctrl+c to exit", interval))
-	defer cancel()
-	model, ok := fmter.(*Format)
-	if !ok {
-		messages.ExitErr(errors.New("invalid output for --watch"))
+	model, tui := fmter.(*Format)
+	var prog *tea.Program
+	if tui {
+		prog = tea.NewProgram(model)
+		cancel = spinner.Run(ctx, fmt.Sprintf("Refreshing every %s... Press ctrl+c to exit", interval), false)
+		defer cancel()
 	}
-	prog := tea.NewProgram(model)
 
 	// Start the API calling loop
 	exitErr := make(chan error, 1)
@@ -37,20 +35,28 @@ func Run[Error error](ctx context.Context, fmter format.Interface, fn func(ctx c
 				err := fn(ctx)
 				if err != nil {
 					exitErr <- err
-					prog.Quit()
+					if prog != nil {
+						prog.Quit()
+					}
 					return
 				}
-				// prog.Send(RefreshMsg{})
-				// The cursor sometimes reappears... This also forces a refresh.
-				prog.Send(tea.HideCursor())
+				if prog != nil {
+					// prog.Send(RefreshMsg{})
+					// The cursor sometimes reappears... This also forces a refresh.
+					prog.Send(tea.HideCursor())
+				}
 				time.Sleep(interval)
 			}
 		}
 	}()
 
-	// Start Bubbletea
-	if _, err := prog.Run(); err != nil {
-		return fmt.Errorf("watch: %w", err)
+	if tui {
+		// Start Bubbletea
+		if _, err := prog.Run(); err != nil {
+			return fmt.Errorf("watch: %w", err)
+		}
+	} else {
+		_ = spinner.Run(ctx, fmt.Sprintf("Refreshing every %s... Press ctrl+c to exit", interval), true)
 	}
 
 	// Forward the error from the API loop

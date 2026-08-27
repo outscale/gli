@@ -18,7 +18,7 @@ func NewRaw() *Raw {
 	return &Raw{}
 }
 
-func (p *Raw) Read(ctx context.Context, fetch FetchPage) iter.Seq[result.Result] {
+func (p *Raw) Read(ctx context.Context, fetch FetchPage, iter int) iter.Seq[result.Result] {
 	return func(yield func(result.Result) bool) {
 		vres := fetch.Call(ctx)
 		if len(vres) == 0 {
@@ -29,12 +29,12 @@ func (p *Raw) Read(ctx context.Context, fetch FetchPage) iter.Seq[result.Result]
 			return
 		}
 		if len(vres) < 2 {
-			_ = yield(result.Result{SingleEntry: true})
+			_ = yield(result.Result{SingleEntry: true, Iter: iter})
 			return
 		}
 		res := vres[0]
 		addPreview(res)
-		_ = yield(result.Result{Ok: res.Interface(), SingleEntry: true})
+		_ = yield(result.Result{Ok: res.Interface(), SingleEntry: true, Iter: iter})
 	}
 }
 

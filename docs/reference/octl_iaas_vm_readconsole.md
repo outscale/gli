@@ -6,13 +6,7 @@ alias for api ReadConsoleOutput --VmId vm_id
 
 > alias for api ReadConsoleOutput --VmId vm_id
 
-Gets the console output for a virtual machine (VM). This console is not in real-time. It is refreshed every two seconds and provides the most recent 64 KiB output.
 
-
-
-**[IMPORTANT]**
-
-On Windows VMs, the console is handled only on the first boot. It returns no output after the first boot.
 
 ```
 octl iaas vm readconsole vm_id [flags]
@@ -37,7 +31,7 @@ octl iaas vm readconsole vm_id [flags]
       --max-pages int              maximum number of pages a command can fetch (default 20)
       --no-upgrade                 do not check for new versions
   -O, --out-file string            redirect output to file
-  -o, --output string              output format (raw, json, yaml, table, csv, none, base64, text)
+  -o, --output string              output format (raw, json, yaml, table, csv, none, text)
       --payload string             JSON content for query body
       --profile string             Profile to use in profile file (by default, "default")
   -s, --silent                     Hides all information messages

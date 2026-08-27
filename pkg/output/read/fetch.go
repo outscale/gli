@@ -44,7 +44,7 @@ func (f *FetchPage) Call(ctx context.Context) []reflect.Value {
 	stopSpinner := func() {}
 	if isatty.IsTerminal(os.Stderr.Fd()) {
 		t := time.AfterFunc(200*time.Millisecond, func() {
-			stopSpinner = spinner.Run(ctx, "Waiting for server...")
+			stopSpinner = spinner.Run(ctx, "Waiting for server...", false)
 		})
 		defer t.Stop()
 	}

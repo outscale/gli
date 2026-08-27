@@ -33,7 +33,7 @@ octl iaas netaccesspoint delete net_access_point_id [net_access_point_id]... [fl
       --max-pages int              maximum number of pages a command can fetch (default 20)
       --no-upgrade                 do not check for new versions
   -O, --out-file string            redirect output to file
-  -o, --output string              output format (raw, json, yaml, table, csv, none, base64, text)
+  -o, --output string              output format (raw, json, yaml, table, csv, none, text)
       --payload string             JSON content for query body
       --profile string             Profile to use in profile file (by default, "default")
   -s, --silent                     Hides all information messages

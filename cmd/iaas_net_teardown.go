@@ -79,7 +79,7 @@ func doTeardownType(ctx context.Context, r *Resource, typ ResourceType, tmout ti
 	start := time.Now()
 	ctx, cancel := context.WithTimeout(ctx, tmout)
 	defer cancel()
-	spinCancel := spinner.Run(ctx, "Deleting "+r.String()+" ...")
+	spinCancel := spinner.Run(ctx, "Deleting "+r.String()+" ...", false)
 	err := r.delete(ctx)
 	if err != nil {
 		t := time.NewTicker(20 * time.Second)

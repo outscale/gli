@@ -33,7 +33,7 @@ func (j JSON) Filter(ctx context.Context, seq iter.Seq[result.Result]) iter.Seq[
 				_ = yield(result.Result{Error: fmt.Errorf("from JSON: %w", err)})
 				return
 			}
-			if !yield(result.Result{Ok: raw}) {
+			if !yield(result.New(v, raw)) {
 				return
 			}
 		}

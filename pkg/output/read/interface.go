@@ -12,5 +12,5 @@ import (
 )
 
 type Interface interface {
-	Read(ctx context.Context, fetch FetchPage) iter.Seq[result.Result]
+	Read(ctx context.Context, fetch FetchPage, iter int) iter.Seq[result.Result]
 }
