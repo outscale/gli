@@ -21,7 +21,7 @@ OUTSCALE IaaS management
       --max-pages int              maximum number of pages a command can fetch (default 20)
       --no-upgrade                 do not check for new versions
   -O, --out-file string            redirect output to file
-  -o, --output string              output format (raw, json, yaml, table, csv, none, base64, text)
+  -o, --output string              output format (raw, json, yaml, table, csv, none, text)
       --payload string             JSON content for query body
       --profile string             Profile to use in profile file (by default, "default")
   -s, --silent                     Hides all information messages
@@ -48,7 +48,6 @@ OUTSCALE IaaS management
 * [octl iaas catalog](octl_iaas_catalog.md)	 - catalog commands
 * [octl iaas clientgateway](octl_iaas_clientgateway.md)	 - clientgateway commands
 * [octl iaas co2emissionaccount](octl_iaas_co2emissionaccount.md)	 - co2emissionaccount commands
-* [octl iaas consoleoutput](octl_iaas_consoleoutput.md)	 - consoleoutput commands
 * [octl iaas consumptionaccount](octl_iaas_consumptionaccount.md)	 - consumptionaccount commands
 * [octl iaas dedicatedgroup](octl_iaas_dedicatedgroup.md)	 - dedicatedgroup commands
 * [octl iaas dhcpoption](octl_iaas_dhcpoption.md)	 - dhcpoption commands

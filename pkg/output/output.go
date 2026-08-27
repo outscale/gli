@@ -12,6 +12,7 @@ import (
 	"os"
 	"slices"
 
+	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/output/filter"
 	"github.com/outscale/octl/pkg/output/format"
@@ -27,6 +28,7 @@ func InjectOutput(w io.Writer) {
 }
 
 type Paginated struct {
+	iter    int
 	Read    read.Interface
 	Format  format.Interface
 	Filters []filter.Interface
@@ -34,6 +36,8 @@ type Paginated struct {
 }
 
 func (p *Paginated) Output(ctx context.Context, fetch read.FetchPage) (err error) {
+	p.iter++
+	debug.Println("starting iter", p.iter)
 	writeTo := writeTo
 	if p.WriteTo != "" {
 		fd, err := os.Create(p.WriteTo)
@@ -51,7 +55,7 @@ func (p *Paginated) Output(ctx context.Context, fetch read.FetchPage) (err error
 			}
 		}()
 	}
-	seq := p.Read.Read(ctx, fetch)
+	seq := p.Read.Read(ctx, fetch, p.iter)
 	for _, f := range p.Filters {
 		seq = f.Filter(ctx, seq)
 	}

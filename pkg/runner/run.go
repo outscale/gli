@@ -85,7 +85,7 @@ func doRun[Client any, Error error](cmd *cobra.Command, args []string, cl Client
 	c := cfg.Calls[cmd.Name()]
 	debug.Println("call", cmd.Name())
 	e := cfg.Entities[c.Entity]
-	debug.Println("entity", c.Entity)
+	debug.Println("entity", c.Entity, "content", c.Content)
 	fmter, out, err := output.NewFromFlags(cmd.Flags(), "", c.Content, e.Columns, e.Explode, e.Sort)
 	if err != nil {
 		return err

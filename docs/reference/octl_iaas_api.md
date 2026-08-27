@@ -21,7 +21,7 @@ iaas api calls
       --max-pages int              maximum number of pages a command can fetch (default 20)
       --no-upgrade                 do not check for new versions
   -O, --out-file string            redirect output to file
-  -o, --output string              output format (raw, json, yaml, table, csv, none, base64, text)
+  -o, --output string              output format (raw, json, yaml, table, csv, none, text)
       --payload string             JSON content for query body
       --profile string             Profile to use in profile file (by default, "default")
   -s, --silent                     Hides all information messages
@@ -163,7 +163,7 @@ iaas api calls
 * [octl iaas api ReadCatalog](octl_iaas_api_ReadCatalog.md)	 - Returns the price list of OUTSCALE services for the current Region.
 * [octl iaas api ReadCatalogs](octl_iaas_api_ReadCatalogs.md)	 - Returns the price list of OUTSCALE services for the current Region within a specific time period.
 * [octl iaas api ReadClientGateways](octl_iaas_api_ReadClientGateways.md)	 - Lists one or more of your client gateways.
-* [octl iaas api ReadConsoleOutput](octl_iaas_api_ReadConsoleOutput.md)	 - Gets the console output for a virtual machine (VM).
+* [octl iaas api ReadConsoleOutput](octl_iaas_api_ReadConsoleOutput.md)	 - 
 * [octl iaas api ReadConsumptionAccount](octl_iaas_api_ReadConsumptionAccount.md)	 - Gets information about the consumption of your OUTSCALE account for each billable resource within the specified time period.
 * [octl iaas api ReadDedicatedGroups](octl_iaas_api_ReadDedicatedGroups.md)	 - List one or more dedicated groups of virtual machines (VMs).
 * [octl iaas api ReadDhcpOptions](octl_iaas_api_ReadDhcpOptions.md)	 - Gets information about the content of one or more DHCP options sets.

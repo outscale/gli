@@ -431,6 +431,7 @@ contents:
     entity: clientgateway
     group: ClientGateway
   ReadConsoleOutput:
+    content: ConsoleOutput
     entity: consoleoutput
     group: Vm
   ReadConsumptionAccount:
@@ -925,7 +926,8 @@ entities:
       content: .PublicIp
     primary: ClientGatewayId
   co2emissionaccount: {}
-  consoleoutput: {}
+  consoleoutput:
+    no_aliases: true
   consumptionaccount:
     aliases:
     - consumption
@@ -1843,10 +1845,12 @@ aliases:
   - ReadConsoleOutput
   - --VmId
   - '%0'
-  - --jq
-  - .ConsoleOutput
+  - --decode
+  - --split
+  - --skip
+  - '1'
   - --output
-  - base64
+  - text
 - entity: vm
   use: states
   alias_to: ReadVmsState
@@ -2234,21 +2238,6 @@ aliases:
   - --output
   - yaml
   - --single
-- entity: consoleoutput
-  use: list
-  alias_to: ReadConsoleOutput
-  aliases:
-  - ls
-  short: alias for api ReadConsoleOutput
-  command:
-  - api
-  - ReadConsoleOutput
-  - --output
-  - table
-  flags:
-  - name: vm-id
-    alias_to: VmId
-    required: true
 - entity: dedicatedgroup
   use: list
   alias_to: ReadDedicatedGroups
@@ -7556,15 +7545,6 @@ spec:
       help: Returns the price list of OUTSCALE services for the current Region within a specific time period.
     ReadClientGateways:
       help: Lists one or more of your client gateways.
-    ReadConsoleOutput:
-      help: |-
-        Gets the console output for a virtual machine (VM). This console is not in real-time. It is refreshed every two seconds and provides the most recent 64 KiB output.
-        
-        
-        
-        **[IMPORTANT]**
-        
-        On Windows VMs, the console is handled only on the first boot. It returns no output after the first boot.
     ReadConsumptionAccount:
       help: Gets information about the consumption of your OUTSCALE account for each billable resource within the specified time period.
     ReadDedicatedGroups:

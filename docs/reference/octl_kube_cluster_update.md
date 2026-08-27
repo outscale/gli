@@ -61,7 +61,7 @@ octl kube cluster update id_or_name [id_or_name]... [flags]
       --max-pages int              maximum number of pages a command can fetch (default 20)
       --no-upgrade                 do not check for new versions
   -O, --out-file string            redirect output to file
-  -o, --output string              output format (raw, json, yaml, table, csv, none, base64, text)
+  -o, --output string              output format (raw, json, yaml, table, csv, none, text)
       --payload string             JSON content for query body
       --profile string             Profile to use in profile file (by default, "default")
       --project string             Name or ID of project

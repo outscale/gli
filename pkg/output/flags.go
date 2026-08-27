@@ -27,7 +27,7 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 	doWatch, _ := fs.GetBool("watch")
 	elapsed, _ := fs.GetBool("elapsed")
 	switch {
-	case doWatch && out != "table" && out != "csv":
+	case doWatch && out != "table" && out != "csv" && out != "text":
 		messages.Info("Switching to table...")
 		out = "table"
 	case out == "":
@@ -35,13 +35,28 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 	}
 
 	var filters []filter.Interface
+	if decode, _ := fs.GetBool("decode"); decode {
+		filters = append(filters, filter.NewDecode())
+	}
+	if split, _ := fs.GetBool("split"); split {
+		filters = append(filters, filter.NewSplit())
+	}
+	if skip, _ := fs.GetInt("skip"); skip > 0 {
+		filters = append(filters, filter.NewSkip(skip))
+	}
 	if doWatch && elapsed {
 		filters = append(filters, filter.NewElapsed())
 	}
 	filts, _ := fs.GetStringSlice("filter")
 	for _, filt := range filts {
-		name, value, _ := strings.Cut(filt, ":")
-		jqf, err := filter.NewJQ(fmt.Sprintf(`select(.%s | tostring | test("%s"))`, name, value))
+		name, value, found := strings.Cut(filt, ":")
+		var jqstr string
+		if found {
+			jqstr = fmt.Sprintf(`select(.%s | tostring | test("%s"))`, name, value)
+		} else {
+			jqstr = fmt.Sprintf(`select(. | tostring | test("%s"))`, name)
+		}
+		jqf, err := filter.NewJQ(jqstr)
 		if err != nil {
 			return nil, nil, err
 		}
@@ -71,8 +86,6 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 		fmter = format.JSON{}
 	case "yaml":
 		fmter = format.YAML{}
-	case "base64":
-		fmter = format.Base64{}
 	case "success":
 		fmter = format.Success{}
 	case "body":
@@ -112,9 +125,12 @@ func NewFromFlags(fs *pflag.FlagSet, out, contentField string, cols config.Colum
 		return nil, nil, fmt.Errorf("unknown format %q", out)
 	}
 
-	if doWatch {
+	switch {
+	case doWatch && out == "table":
 		fmter = watch.NewFormat(fmter)
-	} else { // single breaks --watch
+	case doWatch:
+		filters = append(filters, filter.NewDedup(true))
+	default: // single breaks --watch
 		single, _ := fs.GetBool("single")
 		if single {
 			fmter = format.Single{ForFormat: fmter}

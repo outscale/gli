@@ -8,7 +8,7 @@ import (
 	"github.com/outscale/octl/pkg/style"
 )
 
-func Run(ctx context.Context, text string) (cancel func()) {
+func Run(ctx context.Context, text string, foreground bool) (cancel func()) {
 	spinWait := make(chan struct{})
 	spinCtx, spinCancel := context.WithCancel(ctx)
 	spin := spinner.New().
@@ -17,6 +17,11 @@ func Run(ctx context.Context, text string) (cancel func()) {
 		Output(os.Stderr).
 		Style(style.Yellow).
 		TitleStyle(style.Faint)
+	if foreground {
+		_ = spin.Run()
+		spinCancel()
+		return
+	}
 	go func() {
 		_ = spin.Run()
 		close(spinWait)

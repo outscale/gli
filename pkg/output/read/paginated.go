@@ -28,7 +28,7 @@ func NewPaginated(contentField string, maxPages int) *Paginated {
 	}
 }
 
-func (p *Paginated) Read(ctx context.Context, fetch FetchPage) iter.Seq[result.Result] {
+func (p *Paginated) Read(ctx context.Context, fetch FetchPage, iter int) iter.Seq[result.Result] {
 	pager := PagerFor(fetch)
 	return func(yield func(result.Result) bool) {
 		fetch := fetch
@@ -36,16 +36,16 @@ func (p *Paginated) Read(ctx context.Context, fetch FetchPage) iter.Seq[result.R
 		for range p.maxPages {
 			vres := fetch.Call(ctx)
 			if len(vres) == 0 {
-				_ = yield(result.Result{Error: errors.New("no result from call")})
+				_ = yield(result.Error(errors.New("no result from call")))
 				return
 			}
 			if err, ok := vres[len(vres)-1].Interface().(error); ok && err != nil {
-				_ = yield(result.Result{Error: err})
+				_ = yield(result.Error(err))
 				return
 			}
 			if len(vres) < 2 {
 				debug.Println("not enough result")
-				_ = yield(result.Result{SingleEntry: true})
+				_ = yield(result.Result{SingleEntry: true, Iter: iter})
 				return
 			}
 			res := reflect.Indirect(vres[0])
@@ -56,16 +56,16 @@ func (p *Paginated) Read(ctx context.Context, fetch FetchPage) iter.Seq[result.R
 			addPreview(content)
 			if !content.IsValid() || !content.CanInterface() {
 				debug.Println("no content ?")
-				_ = yield(result.Result{SingleEntry: true})
+				_ = yield(result.Result{SingleEntry: true, Iter: iter})
 				return
 			}
 			if content.Kind() != reflect.Slice {
 				debug.Println("not a slice", content.Kind())
-				_ = yield(result.Result{Ok: content.Interface(), SingleEntry: true})
+				_ = yield(result.Result{Ok: content.Interface(), SingleEntry: true, Iter: iter})
 				return
 			}
 			for i := range content.Len() {
-				if !yield(result.Result{Ok: content.Index(i).Interface()}) {
+				if !yield(result.Result{Ok: content.Index(i).Interface(), Iter: iter}) {
 					debug.Println("end")
 					return
 				}

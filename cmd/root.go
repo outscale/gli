@@ -88,6 +88,12 @@ func init() {
 	rootCmd.PersistentFlags().StringSlice("filter", nil, `comma separated list of filters for results - name:value,name:value, alias for jq filter 'select(.name | tostring | test("value"))'`)
 	rootCmd.PersistentFlags().Bool("reverse", false, "reverse the order of results")
 	_ = rootCmd.PersistentFlags().MarkHidden("reverse")
+	rootCmd.PersistentFlags().Bool("split", false, "split multiline string")
+	_ = rootCmd.PersistentFlags().MarkHidden("split")
+	rootCmd.PersistentFlags().Bool("decode", false, "decode base64 content")
+	_ = rootCmd.PersistentFlags().MarkHidden("decode")
+	rootCmd.PersistentFlags().Int("skip", 0, "skip the first n results")
+	_ = rootCmd.PersistentFlags().MarkHidden("skip")
 
 	rootCmd.PersistentFlags().Bool("watch", false, "repeatedly call the API and display changes")
 	rootCmd.PersistentFlags().Bool("elapsed", true, "add elapsed time column when using --watch")
@@ -98,7 +104,7 @@ func init() {
 	rootCmd.PersistentFlags().Int("max-pages", 20, "maximum number of pages a command can fetch")
 
 	rootCmd.PersistentFlags().StringP("columns", "c", "", "columns to display - [+]<title>:<jq query for content>||<title>:<jq query for content>")
-	rootCmd.PersistentFlags().StringP("output", "o", "", "output format (raw, json, yaml, table, csv, none, base64, text)")
+	rootCmd.PersistentFlags().StringP("output", "o", "", "output format (raw, json, yaml, table, csv, none, text)")
 	rootCmd.PersistentFlags().StringP("out-file", "O", "", "redirect output to file")
 	rootCmd.PersistentFlags().Bool("single", false, "convert single entry lists to a single object")
 
@@ -109,7 +115,7 @@ func init() {
 	_ = rootCmd.PersistentFlags().MarkHidden("hooks")
 
 	_ = rootCmd.RegisterFlagCompletionFunc("output", func(_ *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {
-		return []cobra.Completion{"raw", "json", "yaml", "table", "csv", "none", "base64", "text"}, cobra.ShellCompDirectiveDefault
+		return []cobra.Completion{"raw", "json", "yaml", "table", "csv", "none", "text"}, cobra.ShellCompDirectiveDefault
 	})
 
 	_ = rootCmd.RegisterFlagCompletionFunc("profile", func(cmd *cobra.Command, _ []string, _ string) ([]cobra.Completion, cobra.ShellCompDirective) {

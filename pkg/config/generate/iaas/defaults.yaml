@@ -1,3 +1,7 @@
+contents:
+  ReadConsoleOutput:
+    content: ConsoleOutput
+    group: Vm
 entities:
   accesskey:
     aliases:
@@ -55,6 +59,8 @@ entities:
         content: ".Entries[].UnitPrice"
       - title: Flags
         content: ".Entries[].Flags"
+  consoleoutput:
+    no_aliases: true
   consumptionaccount:
     aliases:
       - consumption
@@ -716,10 +722,12 @@ aliases:
       - ReadConsoleOutput
       - --VmId
       - "%0"
-      - --jq
-      - .ConsoleOutput
+      - --decode
+      - --split
+      - --skip
+      - "1"
       - --output
-      - base64
+      - text
   - entity: vm
     use: states
     alias_to: ReadVmsState

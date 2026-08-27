@@ -14,7 +14,18 @@ import (
 type Text struct{}
 
 func (Text) Format(ctx context.Context, w io.Writer, v any) error {
-	_, err := fmt.Fprint(w, v)
+	var err error
+	switch v := v.(type) {
+	case []any:
+		for _, l := range v {
+			_, err = fmt.Fprintln(w, l)
+			if err != nil {
+				return err
+			}
+		}
+	default:
+		_, err = fmt.Fprint(w, v)
+	}
 	return err
 }
 

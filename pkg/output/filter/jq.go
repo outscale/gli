@@ -34,18 +34,18 @@ func (j JQ) Filter(ctx context.Context, seq iter.Seq[result.Result]) iter.Seq[re
 			}
 			iter := j.query.RunWithContext(ctx, v.Ok)
 			for {
-				v, ok := iter.Next()
+				newOk, ok := iter.Next()
 				if !ok {
 					break
 				}
-				if err, ok := v.(error); ok {
+				if err, ok := newOk.(error); ok {
 					if err, ok := err.(*gojq.HaltError); ok && err.Value() == nil { //nolint
 						break
 					}
 					_ = yield(result.Result{Error: fmt.Errorf("jq error: %w", err)})
 					return
 				}
-				if !yield(result.Result{Ok: v}) {
+				if !yield(result.New(v, newOk)) {
 					return
 				}
 			}

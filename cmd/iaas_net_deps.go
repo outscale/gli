@@ -118,7 +118,7 @@ func (r *Resource) addToChild(childID string, childType ResourceType, subr *Reso
 }
 
 func listResources(ctx context.Context, cl *osc.Client, netID string) (*Resource, bool, error) {
-	cancel := spinner.Run(ctx, "Building dependency tree...")
+	cancel := spinner.Run(ctx, "Building dependency tree...", false)
 	defer cancel()
 	var securityGroups []string
 	nets, err := cl.ReadNets(ctx, osc.ReadNetsRequest{Filters: &osc.FiltersNet{NetIds: &[]string{netID}}})
