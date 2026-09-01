@@ -1,14 +1,14 @@
 ## octl iaas routetable list
 
-alias for api ReadRouteTables
+Lists one or more of your route tables.
 
 ### Synopsis
-
-> alias for api ReadRouteTables
 
 Lists one or more of your route tables.
 
 In your Net, each Subnet must be associated with a route table. If a Subnet is not explicitly associated with a route table, it is implicitly associated with the main route table of the Net.
+
+> alias for ReadRouteTables
 
 ```
 octl iaas routetable list [flags]
@@ -65,5 +65,5 @@ octl iaas routetable list [flags]
 
 ### SEE ALSO
 
-* [octl iaas routetable](octl_iaas_routetable.md)	 - routetable commands
+* [octl iaas routetable](octl_iaas_routetable.md)	 - Manage RouteTable resources
 

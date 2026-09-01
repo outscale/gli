@@ -16,7 +16,7 @@ octl iaas api UpdateAccessKey [flags]
 ### Options
 
 ```
-      --AccessKeyId string       The ID of the access key.
+      --AccessKeyId string       [REQUIRED] The ID of the access key.
       --ClearExpirationDate      If true, the current expiration date is deleted and the access key is set to not expire.
       --ClearTag                 If true, the current tag of the access key is deleted.
       --DryRun                   If true, checks whether you have the required permissions to perform the action.
@@ -55,5 +55,5 @@ octl iaas api UpdateAccessKey [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

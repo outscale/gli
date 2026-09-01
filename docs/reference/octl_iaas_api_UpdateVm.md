@@ -41,8 +41,8 @@ octl iaas api UpdateVm [flags]
       --SecurityGroupIds strings                           One or more IDs of security groups for the VM.
       --ShutdownBehaviorConfiguration.GuestAction string   The action performed by the orchestrator when the VM is shut down from the guest operating system.
       --ShutdownBehaviorConfiguration.HostAction string    The action performed by the orchestrator when the VM is shut down due to a host infrastructure failure.
-      --UserData string                                    The Base64-encoded MIME user data, limited to 500 kibibytes (KiB).
-      --VmId string                                        The ID of the VM.
+      --UserData base64File                                The file storing the data or script used to add a specific configuration to the VM (max size 500 KiB).
+      --VmId string                                        [REQUIRED] The ID of the VM.
       --VmInitiatedShutdownBehavior string                 The VM behavior when you stop it.
       --VmType string                                      The type of VM.
   -h, --help                                               help for UpdateVm
@@ -76,5 +76,5 @@ octl iaas api UpdateVm [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

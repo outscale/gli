@@ -1,10 +1,8 @@
 ## octl iaas apiaccessrule create
 
-alias for api CreateApiAccessRule
+Creates a rule to allow access to the API from your OUTSCALE account.
 
 ### Synopsis
-
-> alias for api CreateApiAccessRule
 
 Creates a rule to allow access to the API from your OUTSCALE account.
 
@@ -18,6 +16,8 @@ By default, your account has a set of rules allowing global access, that you can
 
 
 For more information, see [About API Access Rules](https://docs.outscale.com/en/userguide/About-API-Access-Rules.html).
+
+> alias for CreateApiAccessRule
 
 ```
 octl iaas apiaccessrule create [flags]
@@ -61,5 +61,5 @@ octl iaas apiaccessrule create [flags]
 
 ### SEE ALSO
 
-* [octl iaas apiaccessrule](octl_iaas_apiaccessrule.md)	 - apiaccessrule commands
+* [octl iaas apiaccessrule](octl_iaas_apiaccessrule.md)	 - Manage ApiAccessRule resources
 

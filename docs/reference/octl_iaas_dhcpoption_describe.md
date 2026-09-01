@@ -1,12 +1,12 @@
 ## octl iaas dhcpoption describe
 
-alias for api ReadDhcpOptions --Filters.DhcpOptionsSetIds dhcp_options_set_id
+Gets information about the content of one or more DHCP options sets.
 
 ### Synopsis
 
-> alias for api ReadDhcpOptions --Filters.DhcpOptionsSetIds dhcp_options_set_id
+Gets information about the content of one or more DHCP options sets.
 
-
+> alias for ReadDhcpOptions --Filters.DhcpOptionsSetIds dhcp_options_set_id
 
 ```
 octl iaas dhcpoption describe dhcp_options_set_id [dhcp_options_set_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas dhcpoption describe dhcp_options_set_id [dhcp_options_set_id]... [flag
 
 ### SEE ALSO
 
-* [octl iaas dhcpoption](octl_iaas_dhcpoption.md)	 - dhcpoption commands
+* [octl iaas dhcpoption](octl_iaas_dhcpoption.md)	 - Manage DhcpOptionsSet resources
 

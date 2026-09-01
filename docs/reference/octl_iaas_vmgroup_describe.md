@@ -1,12 +1,17 @@
 ## octl iaas vmgroup describe
 
-alias for api ReadVmGroups --Filters.VmGroupIds vm_group_id
+> [WARNING] > This feature is currently under development and may not function properly.
 
 ### Synopsis
 
-> alias for api ReadVmGroups --Filters.VmGroupIds vm_group_id
+> [WARNING]
+
+> This feature is currently under development and may not function properly.
 
 
+Lists one or more group of virtual machines (VMs).
+
+> alias for ReadVmGroups --Filters.VmGroupIds vm_group_id
 
 ```
 octl iaas vmgroup describe vm_group_id [vm_group_id]... [flags]
@@ -46,5 +51,5 @@ octl iaas vmgroup describe vm_group_id [vm_group_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - vmgroup commands
+* [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - Manage VmGroup resources
 

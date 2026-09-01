@@ -1,6 +1,6 @@
 ## octl iaas clientgateway
 
-clientgateway commands
+Manage ClientGateway resources
 
 ### Options
 
@@ -37,8 +37,8 @@ clientgateway commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas clientgateway create](octl_iaas_clientgateway_create.md)	 - alias for api CreateClientGateway
-* [octl iaas clientgateway delete](octl_iaas_clientgateway_delete.md)	 - alias for api DeleteClientGateway --ClientGatewayId client_gateway_id
-* [octl iaas clientgateway describe](octl_iaas_clientgateway_describe.md)	 - alias for api ReadClientGateways --Filters.ClientGatewayIds client_gateway_id
-* [octl iaas clientgateway list](octl_iaas_clientgateway_list.md)	 - alias for api ReadClientGateways
+* [octl iaas clientgateway create](octl_iaas_clientgateway_create.md)	 - Provides information about your client gateway.
+* [octl iaas clientgateway delete](octl_iaas_clientgateway_delete.md)	 - Deletes a client gateway.
+* [octl iaas clientgateway describe](octl_iaas_clientgateway_describe.md)	 - Lists one or more of your client gateways.
+* [octl iaas clientgateway list](octl_iaas_clientgateway_list.md)	 - Lists one or more of your client gateways.
 

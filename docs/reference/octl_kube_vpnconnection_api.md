@@ -1,6 +1,6 @@
 ## octl kube vpnconnection api
 
-vpnconnection api calls
+Call vpnconnection API
 
 ### Options
 

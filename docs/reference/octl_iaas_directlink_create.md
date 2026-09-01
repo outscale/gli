@@ -1,15 +1,15 @@
 ## octl iaas directlink create
 
-alias for api CreateDirectLink
+Creates a DirectLink between a customer network and a specified DirectLink location.
 
 ### Synopsis
-
-> alias for api CreateDirectLink
 
 Creates a DirectLink between a customer network and a specified DirectLink location.
 
 
 For more information, see [About DirectLink](https://docs.outscale.com/en/userguide/About-DirectLink.html).
+
+> alias for CreateDirectLink
 
 ```
 octl iaas directlink create [flags]
@@ -52,5 +52,5 @@ octl iaas directlink create [flags]
 
 ### SEE ALSO
 
-* [octl iaas directlink](octl_iaas_directlink.md)	 - directlink commands
+* [octl iaas directlink](octl_iaas_directlink.md)	 - Manage DirectLink resources
 

@@ -15,12 +15,12 @@ octl iaas api CreatePolicy [flags]
 ### Options
 
 ```
-      --Description string   A description for the policy.
-      --Document string      The policy document, corresponding to a JSON string that contains the policy.
-      --DryRun               If true, checks whether you have the required permissions to perform the action.
-      --Path string          The path of the policy.
-      --PolicyName string    The name of the policy.
-  -h, --help                 help for CreatePolicy
+      --Description string    A description for the policy.
+      --Document fileOrJson   Either a file storing the policy document, or the policy document (in JSON format).
+      --DryRun                If true, checks whether you have the required permissions to perform the action.
+      --Path string           The path of the policy.
+      --PolicyName string     [REQUIRED] The name of the policy.
+  -h, --help                  help for CreatePolicy
 ```
 
 ### Options inherited from parent commands
@@ -51,5 +51,5 @@ octl iaas api CreatePolicy [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

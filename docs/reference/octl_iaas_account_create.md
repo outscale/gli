@@ -1,10 +1,8 @@
 ## octl iaas account create
 
-alias for api CreateAccount
+Creates an OUTSCALE account.
 
 ### Synopsis
-
-> alias for api CreateAccount
 
 Creates an OUTSCALE account.
 
@@ -16,6 +14,8 @@ Creates an OUTSCALE account.
 
 
 For more information, see [About Your Account](https://docs.outscale.com/en/userguide/About-Your-OUTSCALE-Account.html).
+
+> alias for CreateAccount
 
 ```
 octl iaas account create [flags]
@@ -69,5 +69,5 @@ octl iaas account create [flags]
 
 ### SEE ALSO
 
-* [octl iaas account](octl_iaas_account.md)	 - account commands
+* [octl iaas account](octl_iaas_account.md)	 - Manage Account resources
 

@@ -1,10 +1,8 @@
 ## octl iaas snapshotexporttask create
 
-alias for api CreateSnapshotExportTask
+Exports a snapshot to an OUTSCALE Object Storage (OOS) bucket that belongs to you.
 
 ### Synopsis
-
-> alias for api CreateSnapshotExportTask
 
 Exports a snapshot to an OUTSCALE Object Storage (OOS) bucket that belongs to you. This action enables you to create a backup of your snapshot.
 
@@ -18,6 +16,8 @@ Export tasks can only be canceled while in the `pending/queued` state.
 
 
 For more information, see [About Snapshots](https://docs.outscale.com/en/userguide/About-Snapshots.html).
+
+> alias for CreateSnapshotExportTask
 
 ```
 octl iaas snapshotexporttask create [flags]
@@ -64,5 +64,5 @@ octl iaas snapshotexporttask create [flags]
 
 ### SEE ALSO
 
-* [octl iaas snapshotexporttask](octl_iaas_snapshotexporttask.md)	 - snapshotexporttask commands
+* [octl iaas snapshotexporttask](octl_iaas_snapshotexporttask.md)	 - Manage SnapshotExportTask resources
 

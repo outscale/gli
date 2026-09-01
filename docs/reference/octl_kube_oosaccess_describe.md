@@ -1,12 +1,12 @@
 ## octl kube oosaccess describe
 
-alias for api Get
+Describe the OOS access configuration
 
 ### Synopsis
 
-> alias for api Get
+Describe the OOS access configuration
 
-
+> alias for Get oks-oos-configuration
 
 ```
 octl kube oosaccess describe [flags]
@@ -48,5 +48,5 @@ octl kube oosaccess describe [flags]
 
 ### SEE ALSO
 
-* [octl kube oosaccess](octl_kube_oosaccess.md)	 - oosaccess commands
+* [octl kube oosaccess](octl_kube_oosaccess.md)	 - Manage OOS Access resources
 

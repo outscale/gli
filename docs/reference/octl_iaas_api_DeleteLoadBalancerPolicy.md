@@ -16,8 +16,8 @@ octl iaas api DeleteLoadBalancerPolicy [flags]
 
 ```
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
-      --LoadBalancerName string   The name of the load balancer for which you want to delete a policy.
-      --PolicyName string         The name of the policy you want to delete.
+      --LoadBalancerName string   [REQUIRED] The name of the load balancer for which you want to delete a policy.
+      --PolicyName string         [REQUIRED] The name of the policy you want to delete.
   -h, --help                      help for DeleteLoadBalancerPolicy
 ```
 
@@ -49,5 +49,5 @@ octl iaas api DeleteLoadBalancerPolicy [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

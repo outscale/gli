@@ -1,6 +1,6 @@
 ## octl kube publicip
 
-publicip commands
+Manage ProjectPublicIpsIPS resources
 
 ### Options
 
@@ -37,5 +37,5 @@ publicip commands
 ### SEE ALSO
 
 * [octl kube](octl_kube.md)	 - OUTSCALE Kubernetes as a Service (OKS) management
-* [octl kube publicip describe](octl_kube_publicip_describe.md)	 - alias for api GetProjectPublicIps  id_or_name
+* [octl kube publicip describe](octl_kube_publicip_describe.md)	 - 
 

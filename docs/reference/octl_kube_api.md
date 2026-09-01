@@ -1,6 +1,6 @@
 ## octl kube api
 
-kube api calls
+Call kube API
 
 ### Options
 

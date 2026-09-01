@@ -1,6 +1,6 @@
 ## octl iaas vpnconnectionroute
 
-vpnconnectionroute commands
+Manage VpmConnectionRoute resources
 
 ### Options
 
@@ -37,5 +37,5 @@ vpnconnectionroute commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas vpnconnectionroute create](octl_iaas_vpnconnectionroute_create.md)	 - alias for api CreateVpnConnectionRoute
+* [octl iaas vpnconnectionroute create](octl_iaas_vpnconnectionroute_create.md)	 - Creates a static route to a VPN connection.
 

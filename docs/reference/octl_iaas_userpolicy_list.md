@@ -1,12 +1,12 @@
 ## octl iaas userpolicy list
 
-alias for api ReadUserPolicies
+Lists the names of inline policies included in a specified user.
 
 ### Synopsis
 
-> alias for api ReadUserPolicies
-
 Lists the names of inline policies included in a specified user.
+
+> alias for ReadUserPolicies
 
 ```
 octl iaas userpolicy list [flags]
@@ -47,5 +47,5 @@ octl iaas userpolicy list [flags]
 
 ### SEE ALSO
 
-* [octl iaas userpolicy](octl_iaas_userpolicy.md)	 - userpolicy commands
+* [octl iaas userpolicy](octl_iaas_userpolicy.md)	 - Manage UserPolicy resources
 

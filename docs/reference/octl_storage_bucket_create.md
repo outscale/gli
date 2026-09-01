@@ -1,12 +1,12 @@
 ## octl storage bucket create
 
-alias for api CreateBucket
+
 
 ### Synopsis
 
-> alias for api CreateBucket
 
 
+> alias for CreateBucket
 
 ```
 octl storage bucket create [flags]
@@ -56,5 +56,5 @@ octl storage bucket create [flags]
 
 ### SEE ALSO
 
-* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
+* [octl storage bucket](octl_storage_bucket.md)	 - Manage Bucket resources
 

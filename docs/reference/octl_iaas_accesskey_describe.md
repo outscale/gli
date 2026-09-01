@@ -1,12 +1,12 @@
 ## octl iaas accesskey describe
 
-alias for api ReadAccessKeys --Filters.AccessKeyIds access_key_id
+Lists the access key IDs of either your root user or an EIM user.
 
 ### Synopsis
 
-> alias for api ReadAccessKeys --Filters.AccessKeyIds access_key_id
+Lists the access key IDs of either your root user or an EIM user.
 
-
+> alias for ReadAccessKeys --Filters.AccessKeyIds access_key_id
 
 ```
 octl iaas accesskey describe access_key_id [access_key_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas accesskey describe access_key_id [access_key_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas accesskey](octl_iaas_accesskey.md)	 - accesskey commands
+* [octl iaas accesskey](octl_iaas_accesskey.md)	 - Manage AccessKey resources
 

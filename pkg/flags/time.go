@@ -9,6 +9,8 @@ import (
 	"github.com/outscale/osc-sdk-go/v3/pkg/iso8601"
 )
 
+const Time = "osctime"
+
 var Now = iso8601.Now
 
 // TimeValue adapts time.Time for use as a flag.
@@ -27,6 +29,11 @@ func (d *TimeValue) Set(s string) error {
 	switch s {
 	case "bom", "beginning-of-month":
 		n := Now()
+		// On the first day of the month, we look at the previous month
+		// The typical use case is bom to today, and it breaks on day 1 on many APIs
+		if n.Day() == 1 {
+			n = n.AddDate(0, -1, 0)
+		}
 		*d.t = iso8601.Day(n.Year(), n.Month(), 1)
 		return nil
 	case "t", "today":

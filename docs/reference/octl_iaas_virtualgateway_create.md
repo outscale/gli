@@ -1,10 +1,8 @@
 ## octl iaas virtualgateway create
 
-alias for api CreateVirtualGateway
+Creates a virtual gateway.
 
 ### Synopsis
-
-> alias for api CreateVirtualGateway
 
 Creates a virtual gateway.
 
@@ -12,6 +10,8 @@ A virtual gateway is the access point on the Net side of a VPN connection.
 
 
 For more information, see [About Virtual Gateways](https://docs.outscale.com/en/userguide/About-Virtual-Gateways.html).
+
+> alias for CreateVirtualGateway
 
 ```
 octl iaas virtualgateway create [flags]
@@ -52,5 +52,5 @@ octl iaas virtualgateway create [flags]
 
 ### SEE ALSO
 
-* [octl iaas virtualgateway](octl_iaas_virtualgateway.md)	 - virtualgateway commands
+* [octl iaas virtualgateway](octl_iaas_virtualgateway.md)	 - Manage VirtualGateway resources
 

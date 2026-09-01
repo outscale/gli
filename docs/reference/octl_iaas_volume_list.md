@@ -1,12 +1,12 @@
 ## octl iaas volume list
 
-alias for api ReadVolumes
+Lists one or more specified Block Storage Unit (BSU) volumes.
 
 ### Synopsis
 
-> alias for api ReadVolumes
-
 Lists one or more specified Block Storage Unit (BSU) volumes.
+
+> alias for ReadVolumes
 
 ```
 octl iaas volume list [flags]
@@ -16,12 +16,12 @@ octl iaas volume list [flags]
 
 ```
       --client-token strings                The idempotency tokens provided when creating the volumes.
-      --creation-date osctime               The dates and times at which the volumes were created, in ISO 8601 date-time format (for example, 2020-06-30T00:00:00.000Z).
+      --creation-date strings               The dates and times at which the volumes were created, in ISO 8601 date-time format (for example, 2020-06-30T00:00:00.000Z).
   -h, --help                                help for list
       --id strings                          The IDs of the volumes.
       --link-volume-delete-on-vm-deletion   Whether the volumes are deleted or not when terminating the VMs.
       --link-volume-device-name strings     The VM device names.
-      --link-volume-link-date osctime       The dates and times at which the volumes were attached, in ISO 8601 date-time format (for example, 2020-06-30T00:00:00.000Z).
+      --link-volume-link-date strings       The dates and times at which the volumes were attached, in ISO 8601 date-time format (for example, 2020-06-30T00:00:00.000Z).
       --link-volume-link-state strings      The attachment states of the volumes (attaching | detaching | attached | detached).
       --link-volume-vm-id strings           One or more IDs of VMs.
       --size ints                           The sizes of the volumes, in gibibytes (GiB).
@@ -62,5 +62,5 @@ octl iaas volume list [flags]
 
 ### SEE ALSO
 
-* [octl iaas volume](octl_iaas_volume.md)	 - volume commands
+* [octl iaas volume](octl_iaas_volume.md)	 - Manage Volume resources
 

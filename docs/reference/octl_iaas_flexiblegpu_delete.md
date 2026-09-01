@@ -1,14 +1,14 @@
 ## octl iaas flexiblegpu delete
 
-alias for api DeleteFlexibleGpu --FlexibleGpuId flexible_gpu_id
+Releases a flexible GPU (fGPU) from your OUTSCALE account.
 
 ### Synopsis
-
-> alias for api DeleteFlexibleGpu --FlexibleGpuId flexible_gpu_id
 
 Releases a flexible GPU (fGPU) from your OUTSCALE account.
 
 The fGPU becomes free to be used by someone else.
+
+> alias for DeleteFlexibleGpu --FlexibleGpuId flexible_gpu_id
 
 ```
 octl iaas flexiblegpu delete flexible_gpu_id [flexible_gpu_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas flexiblegpu delete flexible_gpu_id [flexible_gpu_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - flexiblegpu commands
+* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - Manage FlexibleGpu resources
 

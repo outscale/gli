@@ -18,14 +18,14 @@ octl iaas api CreateDirectLinkInterface [flags]
 ### Options
 
 ```
-      --DirectLinkId string                                  The ID of the existing DirectLink for which you want to create the DirectLink interface.
-      --DirectLinkInterface.BgpAsn int                       
+      --DirectLinkId string                                  [REQUIRED] The ID of the existing DirectLink for which you want to create the DirectLink interface.
+      --DirectLinkInterface.BgpAsn int                       [REQUIRED] 
       --DirectLinkInterface.BgpKey string                    
       --DirectLinkInterface.ClientPrivateIp string           
-      --DirectLinkInterface.DirectLinkInterfaceName string   
+      --DirectLinkInterface.DirectLinkInterfaceName string   [REQUIRED] 
       --DirectLinkInterface.OutscalePrivateIp string         
-      --DirectLinkInterface.VirtualGatewayId string          
-      --DirectLinkInterface.Vlan int                         
+      --DirectLinkInterface.VirtualGatewayId string          [REQUIRED] 
+      --DirectLinkInterface.Vlan int                         [REQUIRED] 
       --DryRun                                               If true, checks whether you have the required permissions to perform the action.
   -h, --help                                                 help for CreateDirectLinkInterface
 ```
@@ -58,5 +58,5 @@ octl iaas api CreateDirectLinkInterface [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

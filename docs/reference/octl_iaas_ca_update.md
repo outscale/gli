@@ -1,12 +1,12 @@
 ## octl iaas ca update
 
-alias for api UpdateCa --CaId ca_id
+Modifies the specified attribute of a Client Certificate Authority (CA).
 
 ### Synopsis
 
-> alias for api UpdateCa --CaId ca_id
-
 Modifies the specified attribute of a Client Certificate Authority (CA).
+
+> alias for UpdateCa --CaId ca_id
 
 ```
 octl iaas ca update ca_id [ca_id]... [flags]
@@ -47,5 +47,5 @@ octl iaas ca update ca_id [ca_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas ca](octl_iaas_ca.md)	 - ca commands
+* [octl iaas ca](octl_iaas_ca.md)	 - Manage Ca resources
 

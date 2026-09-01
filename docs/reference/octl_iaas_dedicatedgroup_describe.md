@@ -1,12 +1,12 @@
 ## octl iaas dedicatedgroup describe
 
-alias for api ReadDedicatedGroups --Filters.DedicatedGroupIds dedicated_group_id
+List one or more dedicated groups of virtual machines (VMs).
 
 ### Synopsis
 
-> alias for api ReadDedicatedGroups --Filters.DedicatedGroupIds dedicated_group_id
+List one or more dedicated groups of virtual machines (VMs).
 
-
+> alias for ReadDedicatedGroups --Filters.DedicatedGroupIds dedicated_group_id
 
 ```
 octl iaas dedicatedgroup describe dedicated_group_id [dedicated_group_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas dedicatedgroup describe dedicated_group_id [dedicated_group_id]... [fl
 
 ### SEE ALSO
 
-* [octl iaas dedicatedgroup](octl_iaas_dedicatedgroup.md)	 - dedicatedgroup commands
+* [octl iaas dedicatedgroup](octl_iaas_dedicatedgroup.md)	 - Manage DedicatedGroup resources
 

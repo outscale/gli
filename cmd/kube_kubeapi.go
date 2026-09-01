@@ -1,11 +1,8 @@
 package cmd
 
 import (
-	"reflect"
-	"slices"
-
 	"github.com/outscale/goutils/oks/clientset"
-	"github.com/outscale/octl/pkg/builder"
+	commandbuilder "github.com/outscale/octl/pkg/builder/command"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/flags"
 	"github.com/outscale/octl/pkg/messages"
@@ -19,19 +16,17 @@ import (
 
 func buildKubeAPI[Client any](provider string, cmd, parent *cobra.Command, getclient func(client *clientset.Clientset) Client) {
 	parent.AddCommand(cmd)
-	b := builder.NewBuilder[Client](provider, "https://docs.outscale.com/api.html")
-	b.BuildAPI(cmd, func(m reflect.Method) bool {
-		return slices.Contains([]string{"List", "Get", "Create", "Update", "Delete"}, m.Name)
-	}, runKubeAPI(func(cmd *cobra.Command, args []string, client *clientset.Clientset) error {
+	b := commandbuilder.NewBuilder(provider, "https://docs.outscale.com/api.html")
+	b.Build(cmd, runKubeAPI(func(cmd *cobra.Command, args []string, client *clientset.Clientset) error {
 		return runner.Run[Client, *osc.ErrorResponse](cmd, args, getclient(client), config.For(provider))
 	}))
+	// Add --cluster flag to api commands (no --project as there is no name to id conversion here)
 	apiCmd, _ := lo.Find(cmd.Commands(), func(c *cobra.Command) bool { return c.Name() == "api" })
-	b.Build(parent, apiCmd)
+	apiCmd.PersistentFlags().String("cluster", "", "[REQUIRED] ID of cluster")
+	_ = apiCmd.MarkPersistentFlagRequired("cluster")
+	// Add --cluster and --project to high level commands
 	for _, child := range cmd.Commands() {
-		if child.Name() == "api" {
-			child.PersistentFlags().String("cluster", "", "[REQUIRED] ID of cluster")
-			_ = child.MarkPersistentFlagRequired("cluster")
-		} else {
+		if child.Name() != "api" {
 			child.Flags().String("cluster", "", "[REQUIRED] Name or ID of cluster")
 			child.Flags().String("project", "", "Name or ID of project")
 			_ = child.MarkFlagRequired("cluster")

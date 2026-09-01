@@ -1,12 +1,12 @@
 ## octl iaas loadbalancer describe
 
-alias for api ReadLoadBalancers --Filters.LoadBalancerNames load_balancer_name
+Lists one or more load balancers and their attributes.
 
 ### Synopsis
 
-> alias for api ReadLoadBalancers --Filters.LoadBalancerNames load_balancer_name
+Lists one or more load balancers and their attributes.
 
-
+> alias for ReadLoadBalancers --Filters.LoadBalancerNames load_balancer_name
 
 ```
 octl iaas loadbalancer describe load_balancer_name [load_balancer_name]... [flags]
@@ -46,5 +46,5 @@ octl iaas loadbalancer describe load_balancer_name [load_balancer_name]... [flag
 
 ### SEE ALSO
 
-* [octl iaas loadbalancer](octl_iaas_loadbalancer.md)	 - loadbalancer commands
+* [octl iaas loadbalancer](octl_iaas_loadbalancer.md)	 - Manage LoadBalancer resources
 

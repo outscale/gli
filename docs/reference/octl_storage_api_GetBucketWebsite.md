@@ -43,5 +43,5 @@ octl storage api GetBucketWebsite [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

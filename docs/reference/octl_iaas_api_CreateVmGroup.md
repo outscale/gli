@@ -24,12 +24,12 @@ octl iaas api CreateVmGroup [flags]
       --DryRun                       If true, checks whether you have the required permissions to perform the action.
       --PositioningStrategy string   The positioning strategy of VMs on hypervisors.
       --SecurityGroupIds strings     One or more IDs of security groups for the VM group.
-      --SubnetId string              The ID of the Subnet in which you want to create the VM group.
+      --SubnetId string              [REQUIRED] The ID of the Subnet in which you want to create the VM group.
       --Tags.0.Key string            The key of the tag, between 1 and 255 characters.
       --Tags.0.Value string          The value of the tag, between 0 and 255 characters.
-      --VmCount int                  The number of VMs deployed in the VM group.
-      --VmGroupName string           The name of the VM group.
-      --VmTemplateId string          The ID of the VM template used to launch VMs in the VM group.
+      --VmCount int                  [REQUIRED] The number of VMs deployed in the VM group.
+      --VmGroupName string           [REQUIRED] The name of the VM group.
+      --VmTemplateId string          [REQUIRED] The ID of the VM template used to launch VMs in the VM group.
   -h, --help                         help for CreateVmGroup
 ```
 
@@ -61,5 +61,5 @@ octl iaas api CreateVmGroup [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

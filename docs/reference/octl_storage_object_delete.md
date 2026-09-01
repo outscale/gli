@@ -1,12 +1,12 @@
 ## octl storage object delete
 
-alias for api DeleteObject --Key key
+
 
 ### Synopsis
 
-> alias for api DeleteObject --Key key
 
 
+> alias for DeleteObject --Key key
 
 ```
 octl storage object delete key [key]... [flags]
@@ -15,15 +15,15 @@ octl storage object delete key [key]... [flags]
 ### Options
 
 ```
-      --bucket string                         [REQUIRED] The bucket name of the bucket containing the object.
-      --bypass-governance-retention           Indicates whether S3 Object Lock should bypass Governance-mode restrictions to process this operation.
-      --expected-bucket-owner string          The account ID of the expected bucket owner.
-  -h, --help                                  help for delete
-      --if-match string                       The If-Match header field makes the request method conditional on ETags.
-      --if-match-last-modified-time osctime   If present, the object is deleted only if its modification times matches the provided Timestamp .
-      --if-match-size int                     If present, the object is deleted only if its size matches the provided size in bytes.
-      --mfa string                            The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device.
-      --version-id string                     Version ID used to reference a specific version of the object.
+      --bucket string                        [REQUIRED] The bucket name of the bucket containing the object.
+      --bypass-governance-retention          Indicates whether S3 Object Lock should bypass Governance-mode restrictions to process this operation.
+      --expected-bucket-owner string         The account ID of the expected bucket owner.
+  -h, --help                                 help for delete
+      --if-match string                      The If-Match header field makes the request method conditional on ETags.
+      --if-match-last-modified-time string   If present, the object is deleted only if its modification times matches the provided Timestamp .
+      --if-match-size int                    If present, the object is deleted only if its size matches the provided size in bytes.
+      --mfa string                           The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device.
+      --version-id string                    Version ID used to reference a specific version of the object.
 ```
 
 ### Options inherited from parent commands
@@ -55,5 +55,5 @@ octl storage object delete key [key]... [flags]
 
 ### SEE ALSO
 
-* [octl storage object](octl_storage_object.md)	 - object commands
+* [octl storage object](octl_storage_object.md)	 - Manage Object resources
 

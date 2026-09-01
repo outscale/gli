@@ -15,8 +15,7 @@ octl iaas api ReadEntitiesLinkedToPolicy [flags]
 ```
       --EntitiesType strings   The type of entity linked to the policy you want to get information about.
       --FirstItem int          The item starting the list of entities requested.
-      --PolicyOrn string       The OUTSCALE Resource Name (ORN) of the policy.
-      --ResultsPerPage int     The maximum number of items that can be returned in a single response (by default, 100).
+      --PolicyOrn string       [REQUIRED] The OUTSCALE Resource Name (ORN) of the policy.
   -h, --help                   help for ReadEntitiesLinkedToPolicy
 ```
 
@@ -48,5 +47,5 @@ octl iaas api ReadEntitiesLinkedToPolicy [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

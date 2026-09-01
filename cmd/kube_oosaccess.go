@@ -8,9 +8,8 @@ import (
 
 // oksCmd represents the kubecommand
 var oosaccessCmd = &cobra.Command{
-	GroupID: "service",
-	Use:     "oosaccess",
-	Short:   "oosaccess commands",
+	Use:   "oosaccess",
+	Short: "Manage OOS Access resources",
 }
 
 func init() {

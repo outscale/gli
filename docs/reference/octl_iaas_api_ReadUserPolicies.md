@@ -14,7 +14,7 @@ octl iaas api ReadUserPolicies [flags]
 
 ```
       --DryRun            If true, checks whether you have the required permissions to perform the action.
-      --UserName string   The name of the user.
+      --UserName string   [REQUIRED] The name of the user.
   -h, --help              help for ReadUserPolicies
 ```
 
@@ -46,5 +46,5 @@ octl iaas api ReadUserPolicies [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

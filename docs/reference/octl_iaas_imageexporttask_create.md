@@ -1,10 +1,8 @@
 ## octl iaas imageexporttask create
 
-alias for api CreateImageExportTask
+Exports an OUTSCALE machine image (OMI) to an OUTSCALE Object Storage (OOS) bucket.
 
 ### Synopsis
-
-> alias for api CreateImageExportTask
 
 Exports an OUTSCALE machine image (OMI) to an OUTSCALE Object Storage (OOS) bucket.
 
@@ -24,6 +22,8 @@ To copy an OMI in the same Region, you can also use the [CreateImage](#createima
 * Export tasks can only be canceled while in the `pending/queued` state.
 
 For more information, see [About OMIs](https://docs.outscale.com/en/userguide/About-OMIs.html).
+
+> alias for CreateImageExportTask
 
 ```
 octl iaas imageexporttask create [flags]
@@ -70,5 +70,5 @@ octl iaas imageexporttask create [flags]
 
 ### SEE ALSO
 
-* [octl iaas imageexporttask](octl_iaas_imageexporttask.md)	 - imageexporttask commands
+* [octl iaas imageexporttask](octl_iaas_imageexporttask.md)	 - Manage ImageExportTask resources
 

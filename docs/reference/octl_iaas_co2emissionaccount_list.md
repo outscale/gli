@@ -1,12 +1,12 @@
 ## octl iaas co2emissionaccount list
 
-alias for api ReadCO2EmissionAccount
+Gets information about the estimated carbon footprint of your account for the current Region within the specified time period.
 
 ### Synopsis
 
-> alias for api ReadCO2EmissionAccount
-
 Gets information about the estimated carbon footprint of your account for the current Region within the specified time period.
+
+> alias for ReadCO2EmissionAccount
 
 ```
 octl iaas co2emissionaccount list [flags]
@@ -15,10 +15,10 @@ octl iaas co2emissionaccount list [flags]
 ### Options
 
 ```
-      --from-month osctime   [REQUIRED] The beginning of the time period, in ISO 8601 date format (for example, 2020-06-01).
-  -h, --help                 help for list
-      --overall              If false, returns only the CO2 emission of the specific account that sends the request.
-      --to-month osctime     [REQUIRED] The end of the time period, in ISO 8601 date format (for example, 2020-06-14).
+      --from-month string   [REQUIRED] The beginning of the time period, in ISO 8601 date format (for example, 2020-06-01).
+  -h, --help                help for list
+      --overall             If false, returns only the CO2 emission of the specific account that sends the request.
+      --to-month string     [REQUIRED] The end of the time period, in ISO 8601 date format (for example, 2020-06-14).
 ```
 
 ### Options inherited from parent commands
@@ -49,5 +49,5 @@ octl iaas co2emissionaccount list [flags]
 
 ### SEE ALSO
 
-* [octl iaas co2emissionaccount](octl_iaas_co2emissionaccount.md)	 - co2emissionaccount commands
+* [octl iaas co2emissionaccount](octl_iaas_co2emissionaccount.md)	 - Manage CO2EmissionAccount resources
 

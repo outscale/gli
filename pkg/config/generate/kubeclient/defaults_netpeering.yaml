@@ -18,7 +18,7 @@ entities:
       - title: Accepter Account
         content: .status.accepterOwnerId
     primary: Name
-contents:
+api:
   List:
     content: Items
     entity: netpeering
@@ -28,11 +28,7 @@ contents:
   Create:
     content: .
     entity: netpeering
-  Patch:
-    entity: netpeering
   Update:
-    entity: netpeering
-  UpdateStatus:
     entity: netpeering
 aliases:
 - entity: netpeering
@@ -40,7 +36,8 @@ aliases:
   alias_to: List
   aliases:
   - ls
-  short: alias for api List
+  help: List netpeerings
+  alias_help: api List
   command:
   - netpeering
   - api
@@ -56,7 +53,8 @@ aliases:
   alias_to: Get
   aliases:
   - desc
-  short: alias for api Get id
+  help: Describe a netpeering
+  alias_help: Get id
   command:
   - netpeering
   - api
@@ -74,7 +72,8 @@ aliases:
   alias_to: Create
   aliases:
   - add
-  short: alias for request api Create
+  help: Create a netpeering request
+  alias_help: request api Create
   command:
   - netpeering
   - request
@@ -97,7 +96,8 @@ aliases:
 - entity: netpeering
   use: accept id
   alias_to: Create
-  short: alias for acceptance api Create
+  help: Accept a netpeering request
+  alias_help: acceptance api Create
   command:
   - netpeering
   - acceptance
@@ -116,12 +116,13 @@ aliases:
     alias_to: ObjectMeta.Name
     default: netpeering-acceptance
 - entity: netpeering
-  use: delete id [name]...
+  use: delete id [id]...
   alias_to: Delete
   aliases:
   - del
   - rm
-  short: alias for api Delete id
+  help: Delete a NetPeering
+  alias_help: Delete id
   command:
   - netpeering
   - api

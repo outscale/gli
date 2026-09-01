@@ -1,12 +1,12 @@
 ## octl storage object retention configure
 
-Configure object retention, alias for api PutObjectRetention --Key key --Retention.Mode
+Configure object retention.
 
 ### Synopsis
 
-> Configure object retention, alias for api PutObjectRetention --Key key --Retention.Mode
+Configure object retention.
 
-
+> alias for PutObjectRetention --Key key --Retention.Mode COMPLIANCE
 
 ```
 octl storage object retention configure key [flags]
@@ -15,9 +15,9 @@ octl storage object retention configure key [flags]
 ### Options
 
 ```
-      --bucket string          [REQUIRED] The bucket name that contains the object you want to apply this Object Retention configuration to.
-  -h, --help                   help for configure
-      --retain-until osctime   [REQUIRED] The date on which this Object Lock Retention will expire.
+      --bucket string         [REQUIRED] The bucket name that contains the object you want to apply this Object Retention configuration to.
+  -h, --help                  help for configure
+      --retain-until string   The date on which this Object Lock Retention will expire.
 ```
 
 ### Options inherited from parent commands

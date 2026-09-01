@@ -37,8 +37,8 @@ cors commands
 
 ### SEE ALSO
 
-* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
-* [octl storage bucket cors configure](octl_storage_bucket_cors_configure.md)	 - Update CORS configuration, alias for api PutBucketCors --Bucket bucket
-* [octl storage bucket cors describe](octl_storage_bucket_cors_describe.md)	 - Display CORS configuration, alias for api GetBucketCors --Bucket bucket
-* [octl storage bucket cors disable](octl_storage_bucket_cors_disable.md)	 - Delete CORS configuration, alias for api DeleteBucketCors --Bucket bucket
+* [octl storage bucket](octl_storage_bucket.md)	 - Manage Bucket resources
+* [octl storage bucket cors configure](octl_storage_bucket_cors_configure.md)	 - Update CORS configuration.
+* [octl storage bucket cors describe](octl_storage_bucket_cors_describe.md)	 - Display CORS configuration.
+* [octl storage bucket cors disable](octl_storage_bucket_cors_disable.md)	 - Delete CORS configuration.
 

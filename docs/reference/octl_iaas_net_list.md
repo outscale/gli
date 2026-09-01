@@ -1,12 +1,12 @@
 ## octl iaas net list
 
-alias for api ReadNets
+Lists one or more Nets.
 
 ### Synopsis
 
-> alias for api ReadNets
-
 Lists one or more Nets.
+
+> alias for ReadNets
 
 ```
 octl iaas net list [flags]
@@ -54,5 +54,5 @@ octl iaas net list [flags]
 
 ### SEE ALSO
 
-* [octl iaas net](octl_iaas_net.md)	 - net commands
+* [octl iaas net](octl_iaas_net.md)	 - Manage Net resources
 

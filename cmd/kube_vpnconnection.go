@@ -8,9 +8,8 @@ import (
 
 // oksCmd represents the kubecommand
 var vpnconnectionCmd = &cobra.Command{
-	GroupID: "service",
-	Use:     "vpnconnection",
-	Short:   "vpnconnection commands",
+	Use:   "vpnconnection",
+	Short: "vpnconnection commands",
 }
 
 func init() {

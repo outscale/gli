@@ -1,12 +1,12 @@
 ## octl iaas entitieslinkedtopolicy list
 
-alias for api ReadEntitiesLinkedToPolicy
+Lists all entities (account, users, or user groups) linked to a specific managed policy.
 
 ### Synopsis
 
-> alias for api ReadEntitiesLinkedToPolicy
-
 Lists all entities (account, users, or user groups) linked to a specific managed policy.
+
+> alias for ReadEntitiesLinkedToPolicy
 
 ```
 octl iaas entitieslinkedtopolicy list [flags]
@@ -49,5 +49,5 @@ octl iaas entitieslinkedtopolicy list [flags]
 
 ### SEE ALSO
 
-* [octl iaas entitieslinkedtopolicy](octl_iaas_entitieslinkedtopolicy.md)	 - entitieslinkedtopolicy commands
+* [octl iaas entitieslinkedtopolicy](octl_iaas_entitieslinkedtopolicy.md)	 - Manage EntitiesLinkedToPolicy resources
 

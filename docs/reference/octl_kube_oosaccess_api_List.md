@@ -9,7 +9,14 @@ octl kube oosaccess api List [flags]
 ### Options
 
 ```
-  -h, --help   help for List
+      --FieldSelector string          
+      --LabelSelector string          
+      --Limit int                     
+      --ResourceVersion string        
+      --ResourceVersionMatch string   
+      --ShardSelector string          
+      --TimeoutSeconds int            
+  -h, --help                          help for List
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +48,5 @@ octl kube oosaccess api List [flags]
 
 ### SEE ALSO
 
-* [octl kube oosaccess api](octl_kube_oosaccess_api.md)	 - oosaccess api calls
+* [octl kube oosaccess api](octl_kube_oosaccess_api.md)	 - Call oosaccess API
 

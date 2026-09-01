@@ -21,7 +21,7 @@ octl iaas api CreateNic [flags]
       --PrivateIps.0.IsPrimary          If true, the IP is the primary private IP of the NIC.
       --PrivateIps.0.PrivateIp string   A private IP for the NIC.
       --SecurityGroupIds strings        One or more IDs of security groups for the NIC.
-      --SubnetId string                 The ID of the Subnet in which you want to create the NIC.
+      --SubnetId string                 [REQUIRED] The ID of the Subnet in which you want to create the NIC.
   -h, --help                            help for CreateNic
 ```
 
@@ -53,5 +53,5 @@ octl iaas api CreateNic [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -1,6 +1,6 @@
 ## octl iaas location
 
-location commands
+Manage Location resources
 
 ### Options
 
@@ -37,5 +37,5 @@ location commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas location list](octl_iaas_location_list.md)	 - alias for api ReadLocations
+* [octl iaas location list](octl_iaas_location_list.md)	 - Lists the locations, corresponding to datacenters, where you can set up a DirectLink.
 

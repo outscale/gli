@@ -37,8 +37,8 @@ encryption commands
 
 ### SEE ALSO
 
-* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
-* [octl storage bucket encryption describe](octl_storage_bucket_encryption_describe.md)	 - Display encryption configuration, alias for api GetBucketEncryption --Bucket bucket
-* [octl storage bucket encryption disable](octl_storage_bucket_encryption_disable.md)	 - Disable encryption, alias for api DeleteBucketEncryption --Bucket bucket
-* [octl storage bucket encryption enable](octl_storage_bucket_encryption_enable.md)	 - Enable encryption, alias for api PutBucketEncryption --Bucket bucket --ServerSideEncryptionConfiguration.Rules.0.ApplyServerSideEncryptionByDefault.SSEAlgorithm AES256
+* [octl storage bucket](octl_storage_bucket.md)	 - Manage Bucket resources
+* [octl storage bucket encryption describe](octl_storage_bucket_encryption_describe.md)	 - Display encryption configuration.
+* [octl storage bucket encryption disable](octl_storage_bucket_encryption_disable.md)	 - Disable encryption.
+* [octl storage bucket encryption enable](octl_storage_bucket_encryption_enable.md)	 - Enable encryption.
 

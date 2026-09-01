@@ -1,10 +1,8 @@
 ## octl iaas volume update
 
-alias for api UpdateVolume --VolumeId volume_id
+Modifies the specified attributes of a volume.
 
 ### Synopsis
-
-> alias for api UpdateVolume --VolumeId volume_id
 
 Modifies the specified attributes of a volume.
 
@@ -14,6 +12,8 @@ Modifies the specified attributes of a volume.
 - We recommend creating a snapshot of your volume before updating it, in case any issue occurs during the process. For more information, see [Creating a Snapshot of a Volume](https://docs.outscale.com/en/userguide/Creating-a-Snapshot-of-a-Volume.html).
 - Do not shut down or restart the virtual machine (VM) from within the guest operating system while a volume update is in progress. This interrupts the process and compromises the integrity of the volume.
 - When the modification is not instantaneous, the response displays the previous value. You can use the [ReadVolumeUpdateTasks](#readvolumeupdatetasks) method to see the progression of the update.
+
+> alias for UpdateVolume --VolumeId volume_id
 
 ```
 octl iaas volume update volume_id [volume_id]... [flags]
@@ -56,5 +56,5 @@ octl iaas volume update volume_id [volume_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas volume](octl_iaas_volume.md)	 - volume commands
+* [octl iaas volume](octl_iaas_volume.md)	 - Manage Volume resources
 

@@ -1,12 +1,12 @@
 ## octl storage bucket policy configure
 
-Update Policy configuration, alias for api PutBucketPolicy --Bucket bucket
+Update Policy configuration.
 
 ### Synopsis
 
-> Update Policy configuration, alias for api PutBucketPolicy --Bucket bucket
+Update Policy configuration.
 
-
+> alias for PutBucketPolicy --Bucket bucket
 
 ```
 octl storage bucket policy configure bucket [flags]
@@ -15,10 +15,10 @@ octl storage bucket policy configure bucket [flags]
 ### Options
 
 ```
-      --from-file fileOrJson   The file storing the policy config (JSON format, i.e. {"Version":"...","Statement":[...]})
-      --from-string string     The policy config (JSON format, i.e. {"Version":"...","Statement":[...]})
-  -h, --help                   help for configure
-      --remove-access          Set this parameter to true to confirm that you want to remove your permissions to change this bucket policy in the future.
+      --from-file string     The file storing the policy config (JSON format, i.e. {"Version":"...","Statement":[...]})
+      --from-string string   The policy config (JSON format, i.e. {"Version":"...","Statement":[...]})
+  -h, --help                 help for configure
+      --remove-access        Set this parameter to true to confirm that you want to remove your permissions to change this bucket policy in the future.
 ```
 
 ### Options inherited from parent commands

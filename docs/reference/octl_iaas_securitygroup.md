@@ -1,6 +1,6 @@
 ## octl iaas securitygroup
 
-securitygroup commands
+Manage SecurityGroup resources
 
 ### Options
 
@@ -37,8 +37,8 @@ securitygroup commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas securitygroup create](octl_iaas_securitygroup_create.md)	 - alias for api CreateSecurityGroup
-* [octl iaas securitygroup delete](octl_iaas_securitygroup_delete.md)	 - alias for api DeleteSecurityGroup --SecurityGroupId security_group_id
-* [octl iaas securitygroup describe](octl_iaas_securitygroup_describe.md)	 - alias for api ReadSecurityGroups --Filters.SecurityGroupIds security_group_id
-* [octl iaas securitygroup list](octl_iaas_securitygroup_list.md)	 - alias for api ReadSecurityGroups
+* [octl iaas securitygroup create](octl_iaas_securitygroup_create.md)	 - Creates a security group.
+* [octl iaas securitygroup delete](octl_iaas_securitygroup_delete.md)	 - Deletes a specified security group.
+* [octl iaas securitygroup describe](octl_iaas_securitygroup_describe.md)	 - Lists one or more security groups.
+* [octl iaas securitygroup list](octl_iaas_securitygroup_list.md)	 - Lists one or more security groups.
 

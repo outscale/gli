@@ -18,7 +18,6 @@ octl iaas api ReadUsers [flags]
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
       --Filters.UserIds strings   The IDs of the users.
       --FirstItem int             The item starting the list of users requested.
-      --ResultsPerPage int        The maximum number of items that can be returned in a single response (by default, 100).
   -h, --help                      help for ReadUsers
 ```
 
@@ -50,5 +49,5 @@ octl iaas api ReadUsers [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

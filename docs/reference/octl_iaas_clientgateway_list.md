@@ -1,12 +1,12 @@
 ## octl iaas clientgateway list
 
-alias for api ReadClientGateways
+Lists one or more of your client gateways.
 
 ### Synopsis
 
-> alias for api ReadClientGateways
-
 Lists one or more of your client gateways.
+
+> alias for ReadClientGateways
 
 ```
 octl iaas clientgateway list [flags]
@@ -54,5 +54,5 @@ octl iaas clientgateway list [flags]
 
 ### SEE ALSO
 
-* [octl iaas clientgateway](octl_iaas_clientgateway.md)	 - clientgateway commands
+* [octl iaas clientgateway](octl_iaas_clientgateway.md)	 - Manage ClientGateway resources
 

@@ -16,10 +16,10 @@ octl iaas api CreateDirectLink [flags]
 ### Options
 
 ```
-      --Bandwidth string        The bandwidth of the DirectLink (1Gbps | 10Gbps).
-      --DirectLinkName string   The name of the DirectLink.
+      --Bandwidth string        [REQUIRED] The bandwidth of the DirectLink (1Gbps | 10Gbps).
+      --DirectLinkName string   [REQUIRED] The name of the DirectLink.
       --DryRun                  If true, checks whether you have the required permissions to perform the action.
-      --Location string         The code of the requested location for the DirectLink, returned by the [ReadLocations](#readlocations) method.
+      --Location string         [REQUIRED] The code of the requested location for the DirectLink, returned by the [ReadLocations](#readlocations) method.
   -h, --help                    help for CreateDirectLink
 ```
 
@@ -51,5 +51,5 @@ octl iaas api CreateDirectLink [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

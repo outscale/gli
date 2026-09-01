@@ -22,7 +22,7 @@ octl iaas api UpdateSnapshot [flags]
       --PermissionsToCreateVolume.Additions.GlobalPermission     A global permission for all accounts.
       --PermissionsToCreateVolume.Removals.AccountIds strings    One or more OUTSCALE account IDs that the permission is associated with.
       --PermissionsToCreateVolume.Removals.GlobalPermission      A global permission for all accounts.
-      --SnapshotId string                                        The ID of the snapshot.
+      --SnapshotId string                                        [REQUIRED] The ID of the snapshot.
   -h, --help                                                     help for UpdateSnapshot
 ```
 
@@ -54,5 +54,5 @@ octl iaas api UpdateSnapshot [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

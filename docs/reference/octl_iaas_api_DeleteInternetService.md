@@ -16,7 +16,7 @@ octl iaas api DeleteInternetService [flags]
 
 ```
       --DryRun                     If true, checks whether you have the required permissions to perform the action.
-      --InternetServiceId string   The ID of the internet service you want to delete.
+      --InternetServiceId string   [REQUIRED] The ID of the internet service you want to delete.
   -h, --help                       help for DeleteInternetService
 ```
 
@@ -48,5 +48,5 @@ octl iaas api DeleteInternetService [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

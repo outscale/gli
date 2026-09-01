@@ -1,12 +1,12 @@
 ## octl storage bucket encryption describe
 
-Display encryption configuration, alias for api GetBucketEncryption --Bucket bucket
+Display encryption configuration.
 
 ### Synopsis
 
-> Display encryption configuration, alias for api GetBucketEncryption --Bucket bucket
+Display encryption configuration.
 
-
+> alias for GetBucketEncryption --Bucket bucket
 
 ```
 octl storage bucket encryption describe bucket [flags]

@@ -1,6 +1,6 @@
 ## octl iaas vmgroup
 
-vmgroup commands
+Manage VmGroup resources
 
 ### Options
 
@@ -37,9 +37,9 @@ vmgroup commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas vmgroup create](octl_iaas_vmgroup_create.md)	 - alias for api CreateVmGroup
-* [octl iaas vmgroup delete](octl_iaas_vmgroup_delete.md)	 - alias for api DeleteVmGroup --VmGroupId vm_group_id
-* [octl iaas vmgroup describe](octl_iaas_vmgroup_describe.md)	 - alias for api ReadVmGroups --Filters.VmGroupIds vm_group_id
-* [octl iaas vmgroup list](octl_iaas_vmgroup_list.md)	 - alias for api ReadVmGroups
-* [octl iaas vmgroup update](octl_iaas_vmgroup_update.md)	 - alias for api UpdateVmGroup --VmGroupId vm_group_id
+* [octl iaas vmgroup create](octl_iaas_vmgroup_create.md)	 - > [WARNING] > This feature is currently under development and may not function properly.
+* [octl iaas vmgroup delete](octl_iaas_vmgroup_delete.md)	 - > [WARNING] > This feature is currently under development and may not function properly.
+* [octl iaas vmgroup describe](octl_iaas_vmgroup_describe.md)	 - > [WARNING] > This feature is currently under development and may not function properly.
+* [octl iaas vmgroup list](octl_iaas_vmgroup_list.md)	 - > [WARNING] > This feature is currently under development and may not function properly.
+* [octl iaas vmgroup update](octl_iaas_vmgroup_update.md)	 - > [WARNING] > This feature is currently under development and may not function properly.
 

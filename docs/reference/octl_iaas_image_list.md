@@ -1,12 +1,12 @@
 ## octl iaas image list
 
-alias for api ReadImages
+Lists one or more OUTSCALE machine images (OMIs) you can use.
 
 ### Synopsis
 
-> alias for api ReadImages
-
 Lists one or more OUTSCALE machine images (OMIs) you can use.
+
+> alias for ReadImages
 
 ```
 octl iaas image list [flags]
@@ -73,5 +73,5 @@ octl iaas image list [flags]
 
 ### SEE ALSO
 
-* [octl iaas image](octl_iaas_image.md)	 - image commands
+* [octl iaas image](octl_iaas_image.md)	 - Manage Image resources
 

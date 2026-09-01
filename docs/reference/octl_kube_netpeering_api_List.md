@@ -9,7 +9,14 @@ octl kube netpeering api List [flags]
 ### Options
 
 ```
-  -h, --help   help for List
+      --FieldSelector string          
+      --LabelSelector string          
+      --Limit int                     
+      --ResourceVersion string        
+      --ResourceVersionMatch string   
+      --ShardSelector string          
+      --TimeoutSeconds int            
+  -h, --help                          help for List
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +48,5 @@ octl kube netpeering api List [flags]
 
 ### SEE ALSO
 
-* [octl kube netpeering api](octl_kube_netpeering_api.md)	 - netpeering api calls
+* [octl kube netpeering api](octl_kube_netpeering_api.md)	 - Call netpeering API
 

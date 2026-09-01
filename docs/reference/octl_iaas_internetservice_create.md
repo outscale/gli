@@ -1,10 +1,8 @@
 ## octl iaas internetservice create
 
-alias for api CreateInternetService
+Creates an internet service you can use with a Net.
 
 ### Synopsis
-
-> alias for api CreateInternetService
 
 Creates an internet service you can use with a Net.
 
@@ -12,6 +10,8 @@ An internet service enables virtual machines (VMs) launched in a Net to connect 
 
 
 For more information, see [About Internet Services](https://docs.outscale.com/en/userguide/About-Internet-Services.html).
+
+> alias for CreateInternetService
 
 ```
 octl iaas internetservice create [flags]
@@ -51,5 +51,5 @@ octl iaas internetservice create [flags]
 
 ### SEE ALSO
 
-* [octl iaas internetservice](octl_iaas_internetservice.md)	 - internetservice commands
+* [octl iaas internetservice](octl_iaas_internetservice.md)	 - Manage InternetService resources
 

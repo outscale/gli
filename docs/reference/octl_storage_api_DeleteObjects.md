@@ -11,7 +11,6 @@ octl storage api DeleteObjects [flags]
 ```
       --Bucket string                               [REQUIRED] The bucket name containing the objects to delete.
       --BypassGovernanceRetention                   Specifies whether you want to delete this object even if it has a Governance-type Object Lock in place.
-      --ChecksumAlgorithm string                    Indicates the algorithm used to create the checksum for the object when you use the SDK.
       --Delete.Objects.0.ETag string                An entity tag (ETag) is an identifier assigned by a web server to a specific version of a resource found at a URL.
       --Delete.Objects.0.Key string                 [REQUIRED] name of the object.
       --Delete.Objects.0.LastModifiedTime osctime   If present, the objects are deleted only if its modification times matches the provided Timestamp .
@@ -20,7 +19,6 @@ octl storage api DeleteObjects [flags]
       --Delete.Quiet                                Element to enable quiet mode for the request.
       --ExpectedBucketOwner string                  The account ID of the expected bucket owner.
       --MFA string                                  The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device.
-      --RequestPayer string                         Confirms that the requester knows that they will be charged for the request.
   -h, --help                                        help for DeleteObjects
 ```
 
@@ -53,5 +51,5 @@ octl storage api DeleteObjects [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

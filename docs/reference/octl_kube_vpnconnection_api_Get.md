@@ -9,7 +9,8 @@ octl kube vpnconnection api Get id [flags]
 ### Options
 
 ```
-  -h, --help   help for Get
+      --ResourceVersion string   
+  -h, --help                     help for Get
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +42,5 @@ octl kube vpnconnection api Get id [flags]
 
 ### SEE ALSO
 
-* [octl kube vpnconnection api](octl_kube_vpnconnection_api.md)	 - vpnconnection api calls
+* [octl kube vpnconnection api](octl_kube_vpnconnection_api.md)	 - Call vpnconnection API
 

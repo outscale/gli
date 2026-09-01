@@ -16,7 +16,6 @@ octl storage api ListMultipartUploads [flags]
       --KeyMarker string             Specifies the multipart upload after which listing should begin.
       --MaxUploads int32             Sets the maximum number of multipart uploads, from 1 to 1,000, to return in the response body.
       --Prefix string                Lists in-progress uploads only for those keys that begin with the specified prefix.
-      --RequestPayer string          Confirms that the requester knows that they will be charged for the request.
       --UploadIdMarker string        Together with key-marker, specifies the multipart upload after which listing should begin.
   -h, --help                         help for ListMultipartUploads
 ```
@@ -50,5 +49,5 @@ octl storage api ListMultipartUploads [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

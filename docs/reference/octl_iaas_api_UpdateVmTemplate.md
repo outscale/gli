@@ -22,7 +22,7 @@ octl iaas api UpdateVmTemplate [flags]
       --DryRun                  If true, checks whether you have the required permissions to perform the action.
       --Tags.0.Key string       The key of the tag, between 1 and 255 characters.
       --Tags.0.Value string     The value of the tag, between 0 and 255 characters.
-      --VmTemplateId string     The ID of the VM template you want to update.
+      --VmTemplateId string     [REQUIRED] The ID of the VM template you want to update.
       --VmTemplateName string   A new name for your VM template.
   -h, --help                    help for UpdateVmTemplate
 ```
@@ -55,5 +55,5 @@ octl iaas api UpdateVmTemplate [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -1,10 +1,8 @@
 ## octl iaas loadbalancer update
 
-alias for api UpdateLoadBalancer --LoadBalancerName load_balancer_name
+Modifies the specified attribute of a load balancer.
 
 ### Synopsis
-
-> alias for api UpdateLoadBalancer --LoadBalancerName load_balancer_name
 
 Modifies the specified attribute of a load balancer. You can specify only one attribute at a time.
 
@@ -19,6 +17,8 @@ This certificate replaces any certificate used on the same load balancer and por
 You can also replace the currently enabled policy for the load balancer with another one.
 
 If the `PolicyNames` parameter is empty, the currently enabled policy is disabled.
+
+> alias for UpdateLoadBalancer --LoadBalancerName load_balancer_name
 
 ```
 octl iaas loadbalancer update load_balancer_name [load_balancer_name]... [flags]
@@ -75,5 +75,5 @@ octl iaas loadbalancer update load_balancer_name [load_balancer_name]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas loadbalancer](octl_iaas_loadbalancer.md)	 - loadbalancer commands
+* [octl iaas loadbalancer](octl_iaas_loadbalancer.md)	 - Manage LoadBalancer resources
 

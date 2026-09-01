@@ -1,10 +1,8 @@
 ## octl iaas dhcpoption delete
 
-alias for api DeleteDhcpOptions --DhcpOptionsSetId dhcp_options_set_id
+Deletes a specified DHCP options set.
 
 ### Synopsis
-
-> alias for api DeleteDhcpOptions --DhcpOptionsSetId dhcp_options_set_id
 
 Deletes a specified DHCP options set.
 
@@ -15,6 +13,8 @@ Before deleting a DHCP options set, you must disassociate it from the Nets you a
 **[IMPORTANT]**
 
 You cannot delete the `default` set.
+
+> alias for DeleteDhcpOptions --DhcpOptionsSetId dhcp_options_set_id
 
 ```
 octl iaas dhcpoption delete dhcp_options_set_id [dhcp_options_set_id]... [flags]
@@ -54,5 +54,5 @@ octl iaas dhcpoption delete dhcp_options_set_id [dhcp_options_set_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas dhcpoption](octl_iaas_dhcpoption.md)	 - dhcpoption commands
+* [octl iaas dhcpoption](octl_iaas_dhcpoption.md)	 - Manage DhcpOptionsSet resources
 

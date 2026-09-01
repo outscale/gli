@@ -14,9 +14,9 @@ octl iaas api AddUserToUserGroup [flags]
 
 ```
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
-      --UserGroupName string   The name of the group you want to add a user to.
+      --UserGroupName string   [REQUIRED] The name of the group you want to add a user to.
       --UserGroupPath string   The path to the group.
-      --UserName string        The name of the user you want to add to the group.
+      --UserName string        [REQUIRED] The name of the user you want to add to the group.
       --UserPath string        The path to the user.
   -h, --help                   help for AddUserToUserGroup
 ```
@@ -49,5 +49,5 @@ octl iaas api AddUserToUserGroup [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

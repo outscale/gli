@@ -1,6 +1,6 @@
 ## octl iaas producttype
 
-producttype commands
+Manage ProductType resources
 
 ### Options
 
@@ -37,8 +37,8 @@ producttype commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas producttype create](octl_iaas_producttype_create.md)	 - alias for api CreateProductType
-* [octl iaas producttype delete](octl_iaas_producttype_delete.md)	 - alias for api DeleteProductType --ProductTypeId product_type_id
-* [octl iaas producttype describe](octl_iaas_producttype_describe.md)	 - alias for api ReadProductTypes --Filters.ProductTypeIds product_type_id
-* [octl iaas producttype list](octl_iaas_producttype_list.md)	 - alias for api ReadProductTypes
+* [octl iaas producttype create](octl_iaas_producttype_create.md)	 - Creates a product type you can associate with an OMI for consumption monitoring and billing purposes.
+* [octl iaas producttype delete](octl_iaas_producttype_delete.md)	 - Deletes a specified product type that belongs to you.
+* [octl iaas producttype describe](octl_iaas_producttype_describe.md)	 - Lists one or more product types.
+* [octl iaas producttype list](octl_iaas_producttype_list.md)	 - Lists one or more product types.
 

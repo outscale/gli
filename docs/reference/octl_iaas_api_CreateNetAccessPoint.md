@@ -25,9 +25,9 @@ octl iaas api CreateNetAccessPoint [flags]
 
 ```
       --DryRun                  If true, checks whether you have the required permissions to perform the action.
-      --NetId string            The ID of the Net.
+      --NetId string            [REQUIRED] The ID of the Net.
       --RouteTableIds strings   One or more IDs of route tables to use for the connection.
-      --ServiceName string      The name of the service (in the format com.outscale.region.service).
+      --ServiceName string      [REQUIRED] The name of the service (in the format com.outscale.region.service).
   -h, --help                    help for CreateNetAccessPoint
 ```
 
@@ -59,5 +59,5 @@ octl iaas api CreateNetAccessPoint [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

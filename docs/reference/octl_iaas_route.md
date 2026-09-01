@@ -1,6 +1,6 @@
 ## octl iaas route
 
-route commands
+Manage Route resources
 
 ### Options
 
@@ -37,5 +37,5 @@ route commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas route create](octl_iaas_route_create.md)	 - alias for api CreateRoute
+* [octl iaas route create](octl_iaas_route_create.md)	 - Creates a route in a specified route table within a specified Net.
 

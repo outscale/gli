@@ -17,7 +17,7 @@ octl iaas api UpdateListenerRule [flags]
 ```
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
       --HostPattern string        A host-name pattern for the rule, with a maximum length of 128 characters.
-      --ListenerRuleName string   The name of the listener rule.
+      --ListenerRuleName string   [REQUIRED] The name of the listener rule.
       --PathPattern string        A path pattern for the rule, with a maximum length of 128 characters.
   -h, --help                      help for UpdateListenerRule
 ```
@@ -50,5 +50,5 @@ octl iaas api UpdateListenerRule [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

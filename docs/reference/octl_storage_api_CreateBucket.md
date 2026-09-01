@@ -9,21 +9,16 @@ octl storage api CreateBucket [flags]
 ### Options
 
 ```
-      --ACL string                                               The canned ACL to apply to the bucket.
-      --Bucket string                                            [REQUIRED] The name of the bucket to create.
-      --CreateBucketConfiguration.Bucket.DataRedundancy string   The number of Zone (Availability Zone or Local Zone) that's used for redundancy for the bucket.
-      --CreateBucketConfiguration.Bucket.Type string             The type of bucket.
-      --CreateBucketConfiguration.Location.Name string           The name of the location where the bucket will be created.
-      --CreateBucketConfiguration.Location.Type string           The type of location where the bucket will be created.
-      --CreateBucketConfiguration.LocationConstraint string      Specifies the Region where the bucket will be created.
-      --GrantFullControl string                                  Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.
-      --GrantRead string                                         Allows grantee to list the objects in the bucket.
-      --GrantReadACP string                                      Allows grantee to read the bucket ACL.
-      --GrantWrite string                                        Allows grantee to create new objects in the bucket.
-      --GrantWriteACP string                                     Allows grantee to write the ACL for the applicable bucket.
-      --ObjectLockEnabledForBucket                               Specifies whether you want S3 Object Lock to be enabled for the new bucket.
-      --ObjectOwnership string                                   The container element for object ownership for a bucket's ownership controls.
-  -h, --help                                                     help for CreateBucket
+      --ACL string                   The canned ACL to apply to the bucket.
+      --Bucket string                [REQUIRED] The name of the bucket to create.
+      --GrantFullControl string      Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.
+      --GrantRead string             Allows grantee to list the objects in the bucket.
+      --GrantReadACP string          Allows grantee to read the bucket ACL.
+      --GrantWrite string            Allows grantee to create new objects in the bucket.
+      --GrantWriteACP string         Allows grantee to write the ACL for the applicable bucket.
+      --ObjectLockEnabledForBucket   Specifies whether you want S3 Object Lock to be enabled for the new bucket.
+      --ObjectOwnership string       The container element for object ownership for a bucket's ownership controls.
+  -h, --help                         help for CreateBucket
 ```
 
 ### Options inherited from parent commands
@@ -55,5 +50,5 @@ octl storage api CreateBucket [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

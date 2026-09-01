@@ -1,12 +1,12 @@
 ## octl iaas vm readconsole
 
-alias for api ReadConsoleOutput --VmId vm_id
+
 
 ### Synopsis
 
-> alias for api ReadConsoleOutput --VmId vm_id
 
 
+> alias for ReadConsoleOutput --VmId vm_id
 
 ```
 octl iaas vm readconsole vm_id [flags]
@@ -46,5 +46,5 @@ octl iaas vm readconsole vm_id [flags]
 
 ### SEE ALSO
 
-* [octl iaas vm](octl_iaas_vm.md)	 - vm commands
+* [octl iaas vm](octl_iaas_vm.md)	 - Manage Vm resources
 

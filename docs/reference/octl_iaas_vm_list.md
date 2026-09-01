@@ -1,14 +1,14 @@
 ## octl iaas vm list
 
-alias for api ReadVms
+Lists one or more of your virtual machines (VMs).
 
 ### Synopsis
-
-> alias for api ReadVms
 
 Lists one or more of your virtual machines (VMs).
 
 If you provide one or more VM IDs, this action returns a description for all of these VMs. If you do not provide any VM ID, this action returns a description for all of the VMs that belong to you. If you provide an invalid VM ID, an error is returned. If you provide the ID of a VM that does not belong to you, the description of this VM is not included in the response. The refresh interval for data returned by this action is one hour, meaning that a terminated VM may appear in the response.
+
+> alias for ReadVms
 
 ```
 octl iaas vm list [flags]
@@ -114,5 +114,5 @@ octl iaas vm list [flags]
 
 ### SEE ALSO
 
-* [octl iaas vm](octl_iaas_vm.md)	 - vm commands
+* [octl iaas vm](octl_iaas_vm.md)	 - Manage Vm resources
 

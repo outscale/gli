@@ -19,7 +19,7 @@ octl iaas api DeleteApiAccessRule [flags]
 ### Options
 
 ```
-      --ApiAccessRuleId string   The ID of the API access rule you want to delete.
+      --ApiAccessRuleId string   [REQUIRED] The ID of the API access rule you want to delete.
       --DryRun                   If true, checks whether you have the required permissions to perform the action.
   -h, --help                     help for DeleteApiAccessRule
 ```
@@ -52,5 +52,5 @@ octl iaas api DeleteApiAccessRule [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

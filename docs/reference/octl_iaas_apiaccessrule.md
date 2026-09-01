@@ -1,6 +1,6 @@
 ## octl iaas apiaccessrule
 
-apiaccessrule commands
+Manage ApiAccessRule resources
 
 ### Options
 
@@ -37,9 +37,9 @@ apiaccessrule commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas apiaccessrule create](octl_iaas_apiaccessrule_create.md)	 - alias for api CreateApiAccessRule
-* [octl iaas apiaccessrule delete](octl_iaas_apiaccessrule_delete.md)	 - alias for api DeleteApiAccessRule --ApiAccessRuleId api_access_rule_id
-* [octl iaas apiaccessrule describe](octl_iaas_apiaccessrule_describe.md)	 - alias for api ReadApiAccessRules --Filters.ApiAccessRuleIds api_access_rule_id
-* [octl iaas apiaccessrule list](octl_iaas_apiaccessrule_list.md)	 - alias for api ReadApiAccessRules
-* [octl iaas apiaccessrule update](octl_iaas_apiaccessrule_update.md)	 - alias for api UpdateApiAccessRule --ApiAccessRuleId api_access_rule_id
+* [octl iaas apiaccessrule create](octl_iaas_apiaccessrule_create.md)	 - Creates a rule to allow access to the API from your OUTSCALE account.
+* [octl iaas apiaccessrule delete](octl_iaas_apiaccessrule_delete.md)	 - Deletes a specified API access rule.
+* [octl iaas apiaccessrule describe](octl_iaas_apiaccessrule_describe.md)	 - Lists one or more API access rules.
+* [octl iaas apiaccessrule list](octl_iaas_apiaccessrule_list.md)	 - Lists one or more API access rules.
+* [octl iaas apiaccessrule update](octl_iaas_apiaccessrule_update.md)	 - Modifies a specified API access rule.
 

@@ -1,12 +1,12 @@
 ## octl iaas imageexporttask describe
 
-alias for api ReadImageExportTasks --Filters.TaskIds task_id
+Lists one or more image export tasks.
 
 ### Synopsis
 
-> alias for api ReadImageExportTasks --Filters.TaskIds task_id
+Lists one or more image export tasks.
 
-
+> alias for ReadImageExportTasks --Filters.TaskIds task_id
 
 ```
 octl iaas imageexporttask describe task_id [task_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas imageexporttask describe task_id [task_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas imageexporttask](octl_iaas_imageexporttask.md)	 - imageexporttask commands
+* [octl iaas imageexporttask](octl_iaas_imageexporttask.md)	 - Manage ImageExportTask resources
 

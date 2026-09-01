@@ -1,4 +1,4 @@
-contents:
+api:
   ListBuckets:
     content: Buckets
     entity: bucket
@@ -89,39 +89,14 @@ entities:
     - title: LastModified
       content: .LastModified
     primary: Key
-  acl:
-    no_aliases: true
-  cors:
-    no_aliases: true
-  encryption:
-    no_aliases: true
-  versioning:
-    no_aliases: true
-  location:
-    no_aliases: true
-  policy:
-    no_aliases: true
-  lifecycle:
-    no_aliases: true
-  website:
-    no_aliases: true
-  objectversion:
-    no_aliases: true
-  objectmetadata:
-    no_aliases: true
-  retention:
-    no_aliases: true
-  lockconfiguration:
-    no_aliases: true
-  tagging:
-    no_aliases: true
 aliases:
 - entity: bucket
   use: describe bucket
   alias_to: HeadBucket
   aliases:
   - desc
-  short: Display a bucket, alias for api HeadBucket --Bucket bucket
+  help: Display a bucket.
+  alias_help: HeadBucket --Bucket bucket
   command:
   - api
   - HeadBucket
@@ -134,7 +109,8 @@ aliases:
   alias_to: HeadObject
   aliases:
   - desc
-  short: Display an object metadata, alias for api HeadObject --Key key
+  help: Display an object metadata.
+  alias_help: HeadObject --Key key
   command:
   - api
   - HeadObject
@@ -151,7 +127,8 @@ aliases:
   alias_to: ListObjectVersions
   aliases:
   - desc
-  short: Display an object metadata, alias for api ListObjectVersions
+  help: Display an object metadata.
+  alias_help: ListObjectVersions
   command:
   - api
   - ListObjectVersions
@@ -166,7 +143,8 @@ aliases:
   alias_to: GetObject
   aliases:
   - down
-  short: Download an object to the standard output, alias for api GetObject --Key key
+  help: Download an object.
+  alias_help: GetObject --Key key
   command:
   - api
   - GetObject
@@ -184,13 +162,14 @@ aliases:
     alias_to: PartNumber
   - name: range
     alias_to: Range
-    usage: Range to download, as defined by RFC 9110 (e.g. bytes=0-500)
+    help: Range to download, as defined by RFC 9110 (e.g. bytes=0-500)
 - entity: object
   use: copy bucket_src/key_src key_dst
   alias_to: CopyObject
   aliases:
   - cp
-  short: Copy an object, alias for api CopyObject --CopySource bucket_src/key_src --Key key_dst
+  help: Copy an object.
+  alias_help: CopyObject --CopySource bucket_src/key_src --Key key_dst
   command:
   - api
   - CopyObject
@@ -226,8 +205,6 @@ aliases:
     alias_to: ContentEncoding
   - name: content-language
     alias_to: ContentLanguage
-  - name: content-length
-    alias_to: ContentLength
   - name: content-type
     alias_to: ContentType
   - name: server-side-encryption
@@ -244,7 +221,8 @@ aliases:
   alias_to: GetBucketVersioning
   aliases:
   - desc
-  short: Display versioning configuration, alias for api GetBucketVersioning --Bucket bucket
+  help: Display versioning configuration.
+  alias_help: GetBucketVersioning --Bucket bucket
   command:
   - api
   - GetBucketVersioning
@@ -256,7 +234,8 @@ aliases:
   sub_command: versioning
   use: enable bucket
   alias_to: PutBucketVersioning
-  short: Enable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Enabled
+  help: Enable versioning.
+  alias_help: PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Enabled
   command:
   - api
   - PutBucketVersioning
@@ -273,7 +252,8 @@ aliases:
     - del
     - rm
   alias_to: PutBucketVersioning
-  short: Disable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Suspended
+  help: Disable versioning.
+  alias_help: PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Suspended
   command:
   - api
   - PutBucketVersioning
@@ -289,7 +269,8 @@ aliases:
   alias_to: GetBucketEncryption
   aliases:
   - desc
-  short: Display encryption configuration, alias for api GetBucketEncryption --Bucket bucket
+  help: Display encryption configuration.
+  alias_help: GetBucketEncryption --Bucket bucket
   command:
   - api
   - GetBucketEncryption
@@ -301,7 +282,8 @@ aliases:
   sub_command: encryption
   use: enable bucket
   alias_to: PutBucketEncryption
-  short: Enable encryption, alias for api PutBucketEncryption --Bucket bucket --ServerSideEncryptionConfiguration.Rules.0.ApplyServerSideEncryptionByDefault.SSEAlgorithm AES256
+  help: Enable encryption.
+  alias_help: PutBucketEncryption --Bucket bucket --ServerSideEncryptionConfiguration.Rules.0.ApplyServerSideEncryptionByDefault.SSEAlgorithm AES256
   command:
   - api
   - PutBucketEncryption
@@ -318,7 +300,8 @@ aliases:
     - del
     - rm
   alias_to: DeleteBucketEncryption
-  short: Disable encryption, alias for api DeleteBucketEncryption --Bucket bucket
+  help: Disable encryption.
+  alias_help: DeleteBucketEncryption --Bucket bucket
   command:
   - api
   - DeleteBucketEncryption
@@ -332,7 +315,8 @@ aliases:
   alias_to: GetBucketAcl
   aliases:
   - desc
-  short: Display ACL configuration, alias for api GetBucketAcl --Bucket bucket
+  help: Display ACL configuration.
+  alias_help: GetBucketAcl --Bucket bucket
   command:
   - api
   - GetBucketAcl
@@ -347,7 +331,8 @@ aliases:
     - config
     - cfg
   alias_to: PutBucketAcl
-  short: Update ACL configuration, alias for api PutBucketAcl --Bucket bucket
+  help: Update ACL configuration.
+  alias_help: PutBucketAcl --Bucket bucket
   command:
   - api
   - PutBucketAcl
@@ -360,10 +345,10 @@ aliases:
   flags:
   - name: from-file
     alias_to: template
-    usage: 'The file storing the ACL config (JSON format, i.e. {"Grants":[...]})'
+    help: 'The file storing the ACL config (JSON format, i.e. {"Grants":[...]})'
   - name: from-string
     alias_to: payload
-    usage: 'The ACL config (JSON format, i.e. {"Grants":[...]})'
+    help: 'The ACL config (JSON format, i.e. {"Grants":[...]})'
   - name: acl
     alias_to: ACL
   - name: grant-full-control
@@ -382,7 +367,8 @@ aliases:
   alias_to: GetBucketCors
   aliases:
   - desc
-  short: Display CORS configuration, alias for api GetBucketCors --Bucket bucket
+  help: Display CORS configuration.
+  alias_help: GetBucketCors --Bucket bucket
   command:
   - api
   - GetBucketCors
@@ -397,7 +383,8 @@ aliases:
     - config
     - cfg
   alias_to: PutBucketCors
-  short: Update CORS configuration, alias for api PutBucketCors --Bucket bucket
+  help: Update CORS configuration.
+  alias_help: PutBucketCors --Bucket bucket
   command:
   - api
   - PutBucketCors
@@ -410,10 +397,10 @@ aliases:
   flags:
   - name: from-file
     alias_to: template
-    usage: 'The file storing the CORS config (JSON format, i.e. {"CORSRules":[...]})'
+    help: 'The file storing the CORS config (JSON format, i.e. {"CORSRules":[...]})'
   - name: from-string
     alias_to: payload
-    usage: 'The CORS config (JSON format, i.e. {"CORSRules":[...]})'
+    help: 'The CORS config (JSON format, i.e. {"CORSRules":[...]})'
 - entity: bucket
   sub_command: cors
   use: disable bucket
@@ -421,7 +408,8 @@ aliases:
     - del
     - rm
   alias_to: DeleteBucketCors
-  short: Delete CORS configuration, alias for api DeleteBucketCors --Bucket bucket
+  help: Delete CORS configuration.
+  alias_help: DeleteBucketCors --Bucket bucket
   command:
   - api
   - DeleteBucketCors
@@ -435,7 +423,8 @@ aliases:
   alias_to: GetBucketLifecycleConfiguration
   aliases:
   - desc
-  short: Display lifecycle configuration, alias for api GetBucketLifecycleConfiguration --Bucket bucket
+  help: Display lifecycle configuration.
+  alias_help: GetBucketLifecycleConfiguration --Bucket bucket
   command:
   - api
   - GetBucketLifecycleConfiguration
@@ -450,7 +439,8 @@ aliases:
     - config
     - cfg
   alias_to: PutBucketLifecycleConfiguration
-  short: Update Lifecycle configuration, alias for api PutBucketLifecycleConfiguration --Bucket bucket
+  help: Update lifecycle configuration.
+  alias_help: PutBucketLifecycleConfiguration --Bucket bucket
   command:
   - api
   - PutBucketLifecycleConfiguration
@@ -463,10 +453,10 @@ aliases:
   flags:
   - name: from-file
     alias_to: template
-    usage: 'The file storing the Lifecycle config (JSON format, i.e. {"Rules":[...]})'
+    help: 'The file storing the Lifecycle config (JSON format, i.e. {"Rules":[...]})'
   - name: from-string
     alias_to: payload
-    usage: 'The Lifecycle config (JSON format, i.e. {"Rules":[...]})'
+    help: 'The Lifecycle config (JSON format, i.e. {"Rules":[...]})'
 - entity: bucket
   sub_command: lifecycle
   use: disable bucket
@@ -474,7 +464,8 @@ aliases:
     - del
     - rm
   alias_to: DeleteBucketLifecycle
-  short: Delete Lifecycle configuration, alias for api DeleteBucketLifecycle --Bucket bucket
+  help: Delete lifecycle configuration.
+  alias_help: DeleteBucketLifecycle --Bucket bucket
   command:
   - api
   - DeleteBucketLifecycle
@@ -488,7 +479,8 @@ aliases:
   alias_to: GetObjectLockConfiguration
   aliases:
   - desc
-  short: Display ObjectLock configuration, alias for api GetObjectLockConfiguration --Bucket bucket
+  help: Delete ObjectLock configuration.
+  alias_help: GetObjectLockConfiguration --Bucket bucket
   command:
   - api
   - GetObjectLockConfiguration
@@ -503,7 +495,8 @@ aliases:
     - config
     - cfg
   alias_to: PutObjectLockConfiguration
-  short: Update ObjectLock configuration, alias for api PutObjectLockConfiguration --Bucket bucket
+  help: Update ObjectLock configuration.
+  alias_help: PutObjectLockConfiguration --Bucket bucket
   command:
   - api
   - PutObjectLockConfiguration
@@ -516,17 +509,18 @@ aliases:
   flags:
   - name: from-file
     alias_to: template
-    usage: 'The file storing the ObjectLock config (JSON format, i.e. {"ObjectLockEnabled":"Enabled", "Rule":{...}})'
+    help: 'The file storing the ObjectLock config (JSON format, i.e. {"ObjectLockEnabled":"Enabled", "Rule":{...}})'
   - name: from-string
     alias_to: payload
-    usage: 'The ObjectLock config (JSON format, i.e. {"ObjectLockEnabled":"Enabled", "Rule":{...}})'
+    help: 'The ObjectLock config (JSON format, i.e. {"ObjectLockEnabled":"Enabled", "Rule":{...}})'
 - entity: bucket
   sub_command: website
   use: describe bucket
   alias_to: GetBucketWebsite
   aliases:
   - desc
-  short: Display website configuration, alias for api GetBucketWebsite --Bucket bucket
+  help: Display website configuration.
+  alias_help: GetBucketWebsite --Bucket bucket
   command:
   - api
   - GetBucketWebsite
@@ -541,7 +535,8 @@ aliases:
     - config
     - cfg
   alias_to: PutBucketWebsite
-  short: Update Website configuration, alias for api PutBucketWebsite --Bucket bucket
+  help: Update website configuration.
+  alias_help: PutBucketWebsite --Bucket bucket
   command:
   - api
   - PutBucketWebsite
@@ -554,10 +549,10 @@ aliases:
   flags:
   - name: from-file
     alias_to: template
-    usage: 'The file storing the website config (JSON format, e.g. {"ErrorDocument":{...},"IndexDocument":{...},"RoutingRules":[...]})'
+    help: 'The file storing the website config (JSON format, e.g. {"ErrorDocument":{...},"IndexDocument":{...},"RoutingRules":[...]})'
   - name: from-string
     alias_to: payload
-    usage: 'The website config (JSON format, e.g. {"ErrorDocument":{...},"IndexDocument":{...},"RoutingRules":[...]})'
+    help: 'The website config (JSON format, e.g. {"ErrorDocument":{...},"IndexDocument":{...},"RoutingRules":[...]})'
 - entity: bucket
   sub_command: website
   use: disable bucket
@@ -565,7 +560,8 @@ aliases:
     - del
     - rm
   alias_to: DeleteBucketWebsite
-  short: Delete Website configuration, alias for api DeleteBucketWebsite --Bucket bucket
+  help: Delete website configuration.
+  alias_help: DeleteBucketWebsite --Bucket bucket
   command:
   - api
   - DeleteBucketWebsite
@@ -579,7 +575,8 @@ aliases:
   alias_to: GetBucketPolicy
   aliases:
   - desc
-  short: Display Policy configuration, alias for api GetBucketPolicy --Bucket bucket
+  help: Display Policy configuration.
+  alias_help: GetBucketPolicy --Bucket bucket
   command:
   - api
   - GetBucketPolicy
@@ -594,7 +591,8 @@ aliases:
     - config
     - cfg
   alias_to: PutBucketPolicy
-  short: Update Policy configuration, alias for api PutBucketPolicy --Bucket bucket
+  help: Update Policy configuration.
+  alias_help: PutBucketPolicy --Bucket bucket
   command:
   - api
   - PutBucketPolicy
@@ -605,11 +603,12 @@ aliases:
   flags:
   - name: from-file
     alias_to: Policy
-    type: file
-    usage: 'The file storing the policy config (JSON format, i.e. {"Version":"...","Statement":[...]})'
+    required: false
+    help: 'The file storing the policy config (JSON format, i.e. {"Version":"...","Statement":[...]})'
   - name: from-string
     alias_to: Policy
-    usage: 'The policy config (JSON format, i.e. {"Version":"...","Statement":[...]})'
+    required: false
+    help: 'The policy config (JSON format, i.e. {"Version":"...","Statement":[...]})'
   - name: remove-access
     alias_to: ConfirmRemoveSelfBucketAccess
 - entity: bucket
@@ -619,7 +618,8 @@ aliases:
     - del
     - rm
   alias_to: DeleteBucketPolicy
-  short: Delete Policy configuration, alias for api DeleteBucketPolicy --Bucket bucket
+  help: Delete Policy configuration.
+  alias_help: DeleteBucketPolicy --Bucket bucket
   command:
   - api
   - DeleteBucketPolicy
@@ -633,7 +633,8 @@ aliases:
   alias_to: GetObjectAcl
   aliases:
   - desc
-  short: Display ACL configuration, alias for api GetObjectAcl --Key key
+  help: Display ACL configuration.
+  alias_help: GetObjectAcl --Bucket bucket
   command:
   - api
   - GetObjectAcl
@@ -652,7 +653,8 @@ aliases:
   aliases:
   - config
   - cfg
-  short: Configure ACL, alias for api PutObjectAcl --Key key
+  help: Configure ACL.
+  alias_help: PutObjectAcl --Bucket bucket
   command:
   - api
   - PutObjectAcl
@@ -665,10 +667,10 @@ aliases:
   flags:
   - name: from-file
     alias_to: template
-    usage: 'The file storing the ACL config (JSON format, i.e. {"Grants":[...]})'
+    help: 'The file storing the ACL config (JSON format, i.e. {"Grants":[...]})'
   - name: from-string
     alias_to: payload
-    usage: 'The ACL config (JSON format, i.e. {"Grants":[...]})'
+    help: 'The ACL config (JSON format, i.e. {"Grants":[...]})'
   - name: bucket
     alias_to: Bucket
     required: true
@@ -678,7 +680,8 @@ aliases:
   alias_to: GetObjectRetention
   aliases:
   - desc
-  short: Display retention configuration, alias for api GetObjectRetention --Key key
+  help: Display object retention configuration.
+  alias_help: GetObjectRetention --Key key
   command:
   - api
   - GetObjectRetention
@@ -697,7 +700,8 @@ aliases:
   aliases:
   - config
   - cfg
-  short: Configure object retention, alias for api PutObjectRetention --Key key --Retention.Mode
+  help: Configure object retention.
+  alias_help: PutObjectRetention --Key key --Retention.Mode COMPLIANCE
   command:
   - api
   - PutObjectRetention
@@ -720,7 +724,8 @@ aliases:
   alias_to: GetObjectTagging
   aliases:
   - desc
-  short: List object tags, alias for api GetObjectTagging --Key key
+  help: List object tags.
+  alias_help: GetObjectTagging --Key key
   command:
   - api
   - GetObjectTagging
@@ -739,7 +744,8 @@ aliases:
     - config
     - cfg
   alias_to: PutObjectTagging
-  short: Add tags to an object, alias for api PutObjectTagging --Key key
+  help: Add tags to an object.
+  alias_help: PutObjectTagging --Key key
   command:
   - api
   - PutObjectTagging
@@ -752,10 +758,10 @@ aliases:
   flags:
   - name: from-file
     alias_to: template
-    usage: 'The file storing the tagging config (JSON format, i.e. {"TagSet":[{"Key":"...", "Value":"..."}]})'
+    help: 'The file storing the tagging config (JSON format, i.e. {"TagSet":[{"Key":"...", "Value":"..."}]})'
   - name: from-string
     alias_to: payload
-    usage: 'The tagging config (JSON format, i.e. {"TagSet":[{"Key":"...", "Value":"..."}]})'
+    help: 'The tagging config (JSON format, i.e. {"TagSet":[{"Key":"...", "Value":"..."}]})'
   - name: bucket
     alias_to: Bucket
     required: true
@@ -766,7 +772,8 @@ aliases:
     - del
     - rm
   alias_to: DeleteObjectTagging
-  short: Delete all tags from an object, alias for api DeleteObjectTagging --Key key
+  help: Delete all tags from an object.
+  alias_help: DeleteObjectTagging --Key key
   command:
   - api
   - DeleteObjectTagging
@@ -784,7 +791,8 @@ aliases:
   aliases:
   - del
   - rm
-  short: alias for api DeleteBucket --Bucket bucket
+  help: Delete a bucket.
+  alias_help: DeleteBucket --Bucket bucket
   command:
   - api
   - DeleteBucket

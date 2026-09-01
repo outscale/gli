@@ -1,12 +1,12 @@
 ## octl iaas user delete
 
-alias for api DeleteUser --UserName user_name
+Deletes a specified EIM user.
 
 ### Synopsis
 
-> alias for api DeleteUser --UserName user_name
-
 Deletes a specified EIM user. The EIM user must not belong to any group, nor have any key or linked policy.
+
+> alias for DeleteUser --UserName user_name
 
 ```
 octl iaas user delete user_name [user_name]... [flags]
@@ -46,5 +46,5 @@ octl iaas user delete user_name [user_name]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas user](octl_iaas_user.md)	 - user commands
+* [octl iaas user](octl_iaas_user.md)	 - Manage User resources
 

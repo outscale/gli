@@ -1,12 +1,12 @@
 ## octl iaas producttype list
 
-alias for api ReadProductTypes
+Lists one or more product types.
 
 ### Synopsis
 
-> alias for api ReadProductTypes
-
 Lists one or more product types.
+
+> alias for ReadProductTypes
 
 ```
 octl iaas producttype list [flags]
@@ -47,5 +47,5 @@ octl iaas producttype list [flags]
 
 ### SEE ALSO
 
-* [octl iaas producttype](octl_iaas_producttype.md)	 - producttype commands
+* [octl iaas producttype](octl_iaas_producttype.md)	 - Manage ProductType resources
 

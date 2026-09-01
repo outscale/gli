@@ -1,12 +1,12 @@
 ## octl iaas netpeering describe
 
-alias for api ReadNetPeerings --Filters.NetPeeringIds net_peering_id
+Lists one or more peering connections between two Nets.
 
 ### Synopsis
 
-> alias for api ReadNetPeerings --Filters.NetPeeringIds net_peering_id
+Lists one or more peering connections between two Nets.
 
-
+> alias for ReadNetPeerings --Filters.NetPeeringIds net_peering_id
 
 ```
 octl iaas netpeering describe net_peering_id [net_peering_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas netpeering describe net_peering_id [net_peering_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas netpeering](octl_iaas_netpeering.md)	 - netpeering commands
+* [octl iaas netpeering](octl_iaas_netpeering.md)	 - Manage NetPeering resources
 

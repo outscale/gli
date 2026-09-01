@@ -1,12 +1,12 @@
 ## octl storage bucket acl configure
 
-Update ACL configuration, alias for api PutBucketAcl --Bucket bucket
+Update ACL configuration.
 
 ### Synopsis
 
-> Update ACL configuration, alias for api PutBucketAcl --Bucket bucket
+Update ACL configuration.
 
-
+> alias for PutBucketAcl --Bucket bucket
 
 ```
 octl storage bucket acl configure bucket [flags]

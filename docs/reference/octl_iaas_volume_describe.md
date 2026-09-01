@@ -1,12 +1,12 @@
 ## octl iaas volume describe
 
-alias for api ReadVolumes --Filters.VolumeIds volume_id
+Lists one or more specified Block Storage Unit (BSU) volumes.
 
 ### Synopsis
 
-> alias for api ReadVolumes --Filters.VolumeIds volume_id
+Lists one or more specified Block Storage Unit (BSU) volumes.
 
-
+> alias for ReadVolumes --Filters.VolumeIds volume_id
 
 ```
 octl iaas volume describe volume_id [volume_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas volume describe volume_id [volume_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas volume](octl_iaas_volume.md)	 - volume commands
+* [octl iaas volume](octl_iaas_volume.md)	 - Manage Volume resources
 

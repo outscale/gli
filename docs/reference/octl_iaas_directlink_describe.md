@@ -1,12 +1,12 @@
 ## octl iaas directlink describe
 
-alias for api ReadDirectLinks --Filters.DirectLinkIds direct_link_id
+Lists all DirectLinks in the Region.
 
 ### Synopsis
 
-> alias for api ReadDirectLinks --Filters.DirectLinkIds direct_link_id
+Lists all DirectLinks in the Region.
 
-
+> alias for ReadDirectLinks --Filters.DirectLinkIds direct_link_id
 
 ```
 octl iaas directlink describe direct_link_id [direct_link_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas directlink describe direct_link_id [direct_link_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas directlink](octl_iaas_directlink.md)	 - directlink commands
+* [octl iaas directlink](octl_iaas_directlink.md)	 - Manage DirectLink resources
 

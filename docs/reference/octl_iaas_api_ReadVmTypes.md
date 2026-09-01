@@ -22,8 +22,6 @@ octl iaas api ReadVmTypes [flags]
       --Filters.VmTypeNames strings       The names of the VM types.
       --Filters.VolumeCounts ints         The maximum number of ephemeral storage disks.
       --Filters.VolumeSizes ints          The size of one ephemeral storage disk, in gibibytes (GiB).
-      --NextPageToken string              The token to request the next page of results.
-      --ResultsPerPage int                The maximum number of logs returned in a single response (between 1 and 1000, both included).
   -h, --help                              help for ReadVmTypes
 ```
 
@@ -55,5 +53,5 @@ octl iaas api ReadVmTypes [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

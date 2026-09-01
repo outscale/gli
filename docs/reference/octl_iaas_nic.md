@@ -1,6 +1,6 @@
 ## octl iaas nic
 
-nic commands
+Manage Nic resources
 
 ### Options
 
@@ -37,11 +37,11 @@ nic commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas nic create](octl_iaas_nic_create.md)	 - alias for api CreateNic
-* [octl iaas nic delete](octl_iaas_nic_delete.md)	 - alias for api DeleteNic --NicId nic_id
-* [octl iaas nic describe](octl_iaas_nic_describe.md)	 - alias for api ReadNics --Filters.NicIds nic_id
-* [octl iaas nic link](octl_iaas_nic_link.md)	 - alias for api LinkNic --NicId nic_id
-* [octl iaas nic list](octl_iaas_nic_list.md)	 - alias for api ReadNics
-* [octl iaas nic unlink](octl_iaas_nic_unlink.md)	 - alias for api ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNic.LinkNicId}}
-* [octl iaas nic update](octl_iaas_nic_update.md)	 - alias for api UpdateNic --NicId nic_id
+* [octl iaas nic create](octl_iaas_nic_create.md)	 - Creates a network interface card (NIC) in the specified Subnet.
+* [octl iaas nic delete](octl_iaas_nic_delete.md)	 - Deletes the specified network interface card (NIC).
+* [octl iaas nic describe](octl_iaas_nic_describe.md)	 - Lists one or more network interface cards (NICs).
+* [octl iaas nic link](octl_iaas_nic_link.md)	 - Attaches a network interface card (NIC) to a virtual machine (VM).
+* [octl iaas nic list](octl_iaas_nic_list.md)	 - Lists one or more network interface cards (NICs).
+* [octl iaas nic unlink](octl_iaas_nic_unlink.md)	 - Detaches a network interface card (NIC) from a virtual machine (VM).
+* [octl iaas nic update](octl_iaas_nic_update.md)	 - Modifies the specified network interface card (NIC).
 

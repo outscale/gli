@@ -1,6 +1,6 @@
 ## octl metadata
 
-query the metadata server
+Metadata server queries
 
 ### Synopsis
 

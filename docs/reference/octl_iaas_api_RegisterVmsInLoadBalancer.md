@@ -22,7 +22,7 @@ octl iaas api RegisterVmsInLoadBalancer [flags]
 ```
       --BackendVmIds strings      One or more IDs of backend VMs.
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
-      --LoadBalancerName string   The name of the load balancer.
+      --LoadBalancerName string   [REQUIRED] The name of the load balancer.
   -h, --help                      help for RegisterVmsInLoadBalancer
 ```
 
@@ -54,5 +54,5 @@ octl iaas api RegisterVmsInLoadBalancer [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

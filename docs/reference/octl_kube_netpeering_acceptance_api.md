@@ -1,6 +1,6 @@
 ## octl kube netpeering acceptance api
 
-acceptance api calls
+Call acceptance API
 
 ### Options
 
@@ -37,7 +37,7 @@ acceptance api calls
 
 ### SEE ALSO
 
-* [octl kube netpeering acceptance](octl_kube_netpeering_acceptance.md)	 - netpeering acceptance commands
+* [octl kube netpeering acceptance](octl_kube_netpeering_acceptance.md)	 - Manage Netpeering Acceptance resources
 * [octl kube netpeering acceptance api Create](octl_kube_netpeering_acceptance_api_Create.md)	 - 
 * [octl kube netpeering acceptance api Delete](octl_kube_netpeering_acceptance_api_Delete.md)	 - 
 * [octl kube netpeering acceptance api Get](octl_kube_netpeering_acceptance_api_Get.md)	 - 

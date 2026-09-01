@@ -1,12 +1,12 @@
 ## octl kube netpeering accept
 
-alias for acceptance api Create
+Accept a netpeering request
 
 ### Synopsis
 
+Accept a netpeering request
+
 > alias for acceptance api Create
-
-
 
 ```
 octl kube netpeering accept id [flags]
@@ -49,5 +49,5 @@ octl kube netpeering accept id [flags]
 
 ### SEE ALSO
 
-* [octl kube netpeering](octl_kube_netpeering.md)	 - netpeering commands
+* [octl kube netpeering](octl_kube_netpeering.md)	 - Manage netpeering resources
 

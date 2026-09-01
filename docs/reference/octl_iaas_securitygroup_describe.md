@@ -1,12 +1,14 @@
 ## octl iaas securitygroup describe
 
-alias for api ReadSecurityGroups --Filters.SecurityGroupIds security_group_id
+Lists one or more security groups.
 
 ### Synopsis
 
-> alias for api ReadSecurityGroups --Filters.SecurityGroupIds security_group_id
+Lists one or more security groups.
 
+You can specify either the name of the security groups or their IDs.
 
+> alias for ReadSecurityGroups --Filters.SecurityGroupIds security_group_id
 
 ```
 octl iaas securitygroup describe security_group_id [security_group_id]... [flags]
@@ -46,5 +48,5 @@ octl iaas securitygroup describe security_group_id [security_group_id]... [flags
 
 ### SEE ALSO
 
-* [octl iaas securitygroup](octl_iaas_securitygroup.md)	 - securitygroup commands
+* [octl iaas securitygroup](octl_iaas_securitygroup.md)	 - Manage SecurityGroup resources
 

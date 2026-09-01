@@ -9,7 +9,13 @@ octl kube netpeering request api Delete id [flags]
 ### Options
 
 ```
-  -h, --help   help for Delete
+      --DryRun strings                         
+      --GracePeriodSeconds int                 
+      --OrphanDependents                       
+      --Preconditions.ResourceVersion string   
+      --Preconditions.UID string               
+      --PropagationPolicy string               
+  -h, --help                                   help for Delete
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +47,5 @@ octl kube netpeering request api Delete id [flags]
 
 ### SEE ALSO
 
-* [octl kube netpeering request api](octl_kube_netpeering_request_api.md)	 - request api calls
+* [octl kube netpeering request api](octl_kube_netpeering_request_api.md)	 - Call request API
 

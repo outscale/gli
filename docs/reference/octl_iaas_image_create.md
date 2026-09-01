@@ -1,10 +1,8 @@
 ## octl iaas image create
 
-alias for api CreateImage
+Creates an OUTSCALE machine image (OMI).
 
 ### Synopsis
-
-> alias for api CreateImage
 
 Creates an OUTSCALE machine image (OMI).
 
@@ -19,6 +17,8 @@ You can use this method for different use cases:
 Registering from a bucket enables you to copy an OMI across Regions.
 
 For more information, see [About OMIs](https://docs.outscale.com/en/userguide/About-OMIs.html).
+
+> alias for CreateImage
 
 ```
 octl iaas image create [flags]
@@ -77,5 +77,5 @@ octl iaas image create [flags]
 
 ### SEE ALSO
 
-* [octl iaas image](octl_iaas_image.md)	 - image commands
+* [octl iaas image](octl_iaas_image.md)	 - Manage Image resources
 

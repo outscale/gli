@@ -20,7 +20,7 @@ var metadataCmd = &cobra.Command{
 	GroupID: "services",
 	Use:     "metadata",
 	Aliases: []string{"meta"},
-	Short:   "query the metadata server",
+	Short:   "Metadata server queries",
 	Long:    `Query the metadata server`,
 }
 

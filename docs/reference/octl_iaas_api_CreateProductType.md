@@ -13,7 +13,7 @@ octl iaas api CreateProductType [flags]
 ### Options
 
 ```
-      --Description string   The description of the product type.
+      --Description string   [REQUIRED] The description of the product type.
       --DryRun               If true, checks whether you have the required permissions to perform the action.
       --Vendor string        The vendor of the product type.
   -h, --help                 help for CreateProductType
@@ -47,5 +47,5 @@ octl iaas api CreateProductType [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

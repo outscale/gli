@@ -1,10 +1,8 @@
 ## octl iaas securitygroup create
 
-alias for api CreateSecurityGroup
+Creates a security group.
 
 ### Synopsis
-
-> alias for api CreateSecurityGroup
 
 Creates a security group.
 
@@ -20,6 +18,8 @@ To add or remove rules, use the [CreateSecurityGroupRule](#createsecuritygroupru
 
 
 For more information, see [About Security Groups](https://docs.outscale.com/en/userguide/About-Security-Groups.html).
+
+> alias for CreateSecurityGroup
 
 ```
 octl iaas securitygroup create [flags]
@@ -62,5 +62,5 @@ octl iaas securitygroup create [flags]
 
 ### SEE ALSO
 
-* [octl iaas securitygroup](octl_iaas_securitygroup.md)	 - securitygroup commands
+* [octl iaas securitygroup](octl_iaas_securitygroup.md)	 - Manage SecurityGroup resources
 

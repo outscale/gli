@@ -19,7 +19,7 @@ octl iaas api CreateUser [flags]
       --DryRun             If true, checks whether you have the required permissions to perform the action.
       --Path string        The path to the EIM user you want to create (by default, /).
       --UserEmail string   The email address of the EIM user.
-      --UserName string    The name of the EIM user.
+      --UserName string    [REQUIRED] The name of the EIM user.
   -h, --help               help for CreateUser
 ```
 
@@ -51,5 +51,5 @@ octl iaas api CreateUser [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

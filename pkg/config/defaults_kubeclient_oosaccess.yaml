@@ -1,21 +1,137 @@
-contents:
+api:
   Create:
+    use: Create
     content: .
     entity: oosaccess
+    flags:
+    - name: ObjectMeta.Name
+      kind: 24
+    - name: ObjectMeta.GenerateName
+      kind: 24
+    - name: ObjectMeta.Namespace
+      kind: 24
+    - name: ObjectMeta.SelfLink
+      kind: 24
+    - name: ObjectMeta.UID
+      kind: 24
+    - name: ObjectMeta.ResourceVersion
+      kind: 24
+    - name: ObjectMeta.DeletionTimestamp
+      kind: 24
+      customValue: fileOrJson
+    - name: ObjectMeta.DeletionGracePeriodSeconds
+      kind: 6
+    - name: ObjectMeta.Labels
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Annotations
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Finalizers
+      kind: 24
+      container: 23
+    - name: Spec.Audit.Readers
+      kind: 24
+      container: 23
+    - name: Spec.Iaas.Readers
+      kind: 24
+      container: 23
+    - name: DryRun
+      kind: 24
+      container: 23
+    - name: FieldManager
+      kind: 24
+    - name: FieldValidation
+      kind: 24
+  Delete:
+    use: Delete id
+    flags:
+    - name: GracePeriodSeconds
+      kind: 6
+    - name: Preconditions.UID
+      kind: 24
+    - name: Preconditions.ResourceVersion
+      kind: 24
+    - name: OrphanDependents
+      kind: 1
+    - name: PropagationPolicy
+      kind: 24
+    - name: DryRun
+      kind: 24
+      container: 23
   Get:
+    use: Get id
     content: .
     entity: oosaccess
+    flags:
+    - name: ResourceVersion
+      kind: 24
   List:
+    use: List
     content: Items
     entity: oosaccess
-  Patch:
-    entity: oosaccess
+    flags:
+    - name: LabelSelector
+      kind: 24
+    - name: FieldSelector
+      kind: 24
+    - name: ResourceVersion
+      kind: 24
+    - name: ResourceVersionMatch
+      kind: 24
+    - name: TimeoutSeconds
+      kind: 6
+    - name: Limit
+      kind: 6
+    - name: ShardSelector
+      kind: 24
   Update:
+    use: Update
+    content: Spec
     entity: oosaccess
-  UpdateStatus:
-    entity: oosaccess
+    flags:
+    - name: ObjectMeta.Name
+      kind: 24
+    - name: ObjectMeta.GenerateName
+      kind: 24
+    - name: ObjectMeta.Namespace
+      kind: 24
+    - name: ObjectMeta.SelfLink
+      kind: 24
+    - name: ObjectMeta.UID
+      kind: 24
+    - name: ObjectMeta.ResourceVersion
+      kind: 24
+    - name: ObjectMeta.DeletionTimestamp
+      kind: 24
+      customValue: fileOrJson
+    - name: ObjectMeta.DeletionGracePeriodSeconds
+      kind: 6
+    - name: ObjectMeta.Labels
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Annotations
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Finalizers
+      kind: 24
+      container: 23
+    - name: Spec.Audit.Readers
+      kind: 24
+      container: 23
+    - name: Spec.Iaas.Readers
+      kind: 24
+      container: 23
+    - name: DryRun
+      kind: 24
+      container: 23
+    - name: FieldManager
+      kind: 24
+    - name: FieldValidation
+      kind: 24
 entities:
   oosaccess:
+    title: Get
     columns:
     - title: Name
       content: .metadata.name
@@ -26,27 +142,13 @@ entities:
     primary: Name
 aliases:
 - entity: oosaccess
-  use: list
-  alias_to: List
-  aliases:
-  - ls
-  short: alias for api List
-  command:
-  - oosaccess
-  - api
-  - List
-  - --output
-  - table
-  flags:
-  - name: cluster
-    alias_to: cluster
-    required: true
-- entity: oosaccess
   use: describe
+  help: Describe the OOS access configuration
+  short: Describe the OOS access configuration
   alias_to: Get
   aliases:
   - desc
-  short: alias for api Get
+  alias_help: Get oks-oos-configuration
   command:
   - oosaccess
   - api
@@ -59,4 +161,3 @@ aliases:
   - name: cluster
     alias_to: cluster
     required: true
-spec: {}

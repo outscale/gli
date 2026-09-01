@@ -1,10 +1,8 @@
 ## octl iaas netaccesspoint create
 
-alias for api CreateNetAccessPoint
+Creates a Net access point to access an OUTSCALE service from this Net without using the Internet or public IPs.
 
 ### Synopsis
-
-> alias for api CreateNetAccessPoint
 
 Creates a Net access point to access an OUTSCALE service from this Net without using the Internet or public IPs.
 
@@ -18,6 +16,8 @@ When a Net access point is created, a public IP is automatically allocated to yo
  
 
 For more information, see [About Net Access Points](https://docs.outscale.com/en/userguide/About-Net-Access-Points.html).
+
+> alias for CreateNetAccessPoint
 
 ```
 octl iaas netaccesspoint create [flags]
@@ -60,5 +60,5 @@ octl iaas netaccesspoint create [flags]
 
 ### SEE ALSO
 
-* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - netaccesspoint commands
+* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - Manage NetAccessPoint resources
 

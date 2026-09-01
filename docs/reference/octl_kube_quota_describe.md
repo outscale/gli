@@ -1,12 +1,12 @@
 ## octl kube quota describe
 
-alias for api GetQuotas
+
 
 ### Synopsis
 
-> alias for api GetQuotas
 
 
+> alias for GetQuotas
 
 ```
 octl kube quota describe [flags]
@@ -46,5 +46,5 @@ octl kube quota describe [flags]
 
 ### SEE ALSO
 
-* [octl kube quota](octl_kube_quota.md)	 - quota commands
+* [octl kube quota](octl_kube_quota.md)	 - Manage ProjectQuota resources
 

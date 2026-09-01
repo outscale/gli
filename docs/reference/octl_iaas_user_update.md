@@ -1,12 +1,12 @@
 ## octl iaas user update
 
-alias for api UpdateUser --UserName user_name
+Modifies the name and/or the path of a specified EIM user.
 
 ### Synopsis
 
-> alias for api UpdateUser --UserName user_name
-
 Modifies the name and/or the path of a specified EIM user.
+
+> alias for UpdateUser --UserName user_name
 
 ```
 octl iaas user update user_name [user_name]... [flags]
@@ -49,5 +49,5 @@ octl iaas user update user_name [user_name]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas user](octl_iaas_user.md)	 - user commands
+* [octl iaas user](octl_iaas_user.md)	 - Manage User resources
 

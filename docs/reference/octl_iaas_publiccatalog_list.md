@@ -1,12 +1,12 @@
 ## octl iaas publiccatalog list
 
-alias for api ReadPublicCatalog
+Returns the price list of OUTSCALE products and services for the Region specified in the endpoint of the request.
 
 ### Synopsis
 
-> alias for api ReadPublicCatalog
-
 Returns the price list of OUTSCALE products and services for the Region specified in the endpoint of the request. For more information, see [About Regions and Subregions](https://docs.outscale.com/en/userguide/About-Regions-and-Subregions.html).
+
+> alias for ReadPublicCatalog
 
 ```
 octl iaas publiccatalog list [flags]
@@ -46,5 +46,5 @@ octl iaas publiccatalog list [flags]
 
 ### SEE ALSO
 
-* [octl iaas publiccatalog](octl_iaas_publiccatalog.md)	 - publiccatalog commands
+* [octl iaas publiccatalog](octl_iaas_publiccatalog.md)	 - Manage PublicCatalog resources
 

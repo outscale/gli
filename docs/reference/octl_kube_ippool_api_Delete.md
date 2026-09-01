@@ -9,7 +9,13 @@ octl kube ippool api Delete id [flags]
 ### Options
 
 ```
-  -h, --help   help for Delete
+      --DryRun strings                         
+      --GracePeriodSeconds int                 
+      --OrphanDependents                       
+      --Preconditions.ResourceVersion string   
+      --Preconditions.UID string               
+      --PropagationPolicy string               
+  -h, --help                                   help for Delete
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +47,5 @@ octl kube ippool api Delete id [flags]
 
 ### SEE ALSO
 
-* [octl kube ippool api](octl_kube_ippool_api.md)	 - ippool api calls
+* [octl kube ippool api](octl_kube_ippool_api.md)	 - Call ippool API
 

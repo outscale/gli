@@ -1,10 +1,8 @@
 ## octl iaas loadbalancertag create
 
-alias for api CreateLoadBalancerTags
+Adds one or more tags to the specified load balancers.
 
 ### Synopsis
-
-> alias for api CreateLoadBalancerTags
 
 Adds one or more tags to the specified load balancers.
 
@@ -12,6 +10,8 @@ If a tag with the same key already exists for the load balancer, the tag value i
 
 
 For more information, see [About Tags](https://docs.outscale.com/en/userguide/About-Tags.html).
+
+> alias for CreateLoadBalancerTags
 
 ```
 octl iaas loadbalancertag create [flags]
@@ -54,5 +54,5 @@ octl iaas loadbalancertag create [flags]
 
 ### SEE ALSO
 
-* [octl iaas loadbalancertag](octl_iaas_loadbalancertag.md)	 - loadbalancertag commands
+* [octl iaas loadbalancertag](octl_iaas_loadbalancertag.md)	 - Manage LoadBalancerTag resources
 

@@ -1,12 +1,12 @@
 ## octl storage bucket versioning describe
 
-Display versioning configuration, alias for api GetBucketVersioning --Bucket bucket
+Display versioning configuration.
 
 ### Synopsis
 
-> Display versioning configuration, alias for api GetBucketVersioning --Bucket bucket
+Display versioning configuration.
 
-
+> alias for GetBucketVersioning --Bucket bucket
 
 ```
 octl storage bucket versioning describe bucket [flags]

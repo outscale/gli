@@ -1,12 +1,12 @@
 ## octl storage object tagging describe
 
-List object tags, alias for api GetObjectTagging --Key key
+List object tags.
 
 ### Synopsis
 
-> List object tags, alias for api GetObjectTagging --Key key
+List object tags.
 
-
+> alias for GetObjectTagging --Key key
 
 ```
 octl storage object tagging describe key [flags]

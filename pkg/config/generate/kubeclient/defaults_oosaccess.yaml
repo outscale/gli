@@ -8,7 +8,7 @@ entities:
       - title: IaaS
         content: .spec.iaas.readers
     primary: Name
-contents:
+api:
   List:
     content: Items
     entity: oosaccess
@@ -18,35 +18,16 @@ contents:
   Create:
     content: .
     entity: oosaccess
-  Patch:
-    entity: oosaccess
   Update:
     entity: oosaccess
-  UpdateStatus:
-    entity: oosaccess
 aliases:
-- entity: oosaccess
-  use: list
-  alias_to: List
-  aliases:
-  - ls
-  short: alias for api List
-  command:
-  - oosaccess
-  - api
-  - List
-  - --output
-  - table
-  flags:
-  - name: cluster
-    alias_to: cluster
-    required: true
 - entity: oosaccess
   use: describe
   alias_to: Get
   aliases:
   - desc
-  short: alias for api Get
+  help: Describe the OOS access configuration
+  alias_help: Get oks-oos-configuration
   command:
   - oosaccess
   - api

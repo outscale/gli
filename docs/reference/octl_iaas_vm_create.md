@@ -1,10 +1,8 @@
 ## octl iaas vm create
 
-alias for api CreateVms
+Creates virtual machines (VMs), and then launches them.
 
 ### Synopsis
-
-> alias for api CreateVms
 
 Creates virtual machines (VMs), and then launches them.
 
@@ -25,6 +23,8 @@ When you attach a security group to a VM, it is actually attached to the primary
 
 
 For more information, see [About VMs](https://docs.outscale.com/en/userguide/About-VMs.html).
+
+> alias for CreateVms
 
 ```
 octl iaas vm create [flags]
@@ -66,7 +66,7 @@ octl iaas vm create [flags]
       --subnet-id string                                      The ID of the Subnet in which you want to create the VM.
       --tpm-enabled                                           If true, a virtual Trusted Platform Module (vTPM) is enabled on the VM.
       --type string                                           The type of VM.
-      --user-data base64File                                  The file storing the data or script used to add a specific configuration to the VM (max size 500 KiB).
+      --user-data string                                      The file storing the data or script used to add a specific configuration to the VM (max size 500 KiB).
       --volume-delete-on-vm-deletion                          If set to true, the volume is deleted when terminating the VM.
       --volume-device-name string                             The device name for the volume.
       --volume-iops int                                       The number of I/O operations per second (IOPS).
@@ -105,5 +105,5 @@ octl iaas vm create [flags]
 
 ### SEE ALSO
 
-* [octl iaas vm](octl_iaas_vm.md)	 - vm commands
+* [octl iaas vm](octl_iaas_vm.md)	 - Manage Vm resources
 

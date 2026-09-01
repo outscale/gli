@@ -1,15 +1,15 @@
 ## octl iaas nic create
 
-alias for api CreateNic
+Creates a network interface card (NIC) in the specified Subnet.
 
 ### Synopsis
-
-> alias for api CreateNic
 
 Creates a network interface card (NIC) in the specified Subnet.
 
 
 For more information, see [About NICs](https://docs.outscale.com/en/userguide/About-NICs.html).
+
+> alias for CreateNic
 
 ```
 octl iaas nic create [flags]
@@ -54,5 +54,5 @@ octl iaas nic create [flags]
 
 ### SEE ALSO
 
-* [octl iaas nic](octl_iaas_nic.md)	 - nic commands
+* [octl iaas nic](octl_iaas_nic.md)	 - Manage Nic resources
 

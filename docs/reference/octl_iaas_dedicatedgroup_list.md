@@ -1,12 +1,12 @@
 ## octl iaas dedicatedgroup list
 
-alias for api ReadDedicatedGroups
+List one or more dedicated groups of virtual machines (VMs).
 
 ### Synopsis
 
-> alias for api ReadDedicatedGroups
-
 List one or more dedicated groups of virtual machines (VMs).
+
+> alias for ReadDedicatedGroups
 
 ```
 octl iaas dedicatedgroup list [flags]
@@ -50,5 +50,5 @@ octl iaas dedicatedgroup list [flags]
 
 ### SEE ALSO
 
-* [octl iaas dedicatedgroup](octl_iaas_dedicatedgroup.md)	 - dedicatedgroup commands
+* [octl iaas dedicatedgroup](octl_iaas_dedicatedgroup.md)	 - Manage DedicatedGroup resources
 

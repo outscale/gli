@@ -1,15 +1,15 @@
 ## octl kube ippool delete
 
-alias for api Delete id
+Delete an ippool
 
 ### Synopsis
 
-> alias for api Delete id
+Delete an ippool
 
-
+> alias for Delete id
 
 ```
-octl kube ippool delete name [name]... [flags]
+octl kube ippool delete id [id]... [flags]
 ```
 
 ### Options
@@ -48,5 +48,5 @@ octl kube ippool delete name [name]... [flags]
 
 ### SEE ALSO
 
-* [octl kube ippool](octl_kube_ippool.md)	 - ippool commands
+* [octl kube ippool](octl_kube_ippool.md)	 - Manage IP pool resources
 

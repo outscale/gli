@@ -1,12 +1,12 @@
 ## octl iaas flexiblegpu catalog
 
-alias for api ReadFlexibleGpuCatalog
+Lists all flexible GPUs available in the public catalog.
 
 ### Synopsis
 
-> alias for api ReadFlexibleGpuCatalog
-
 Lists all flexible GPUs available in the public catalog.
+
+> alias for ReadFlexibleGpuCatalog
 
 ```
 octl iaas flexiblegpu catalog [flags]
@@ -46,5 +46,5 @@ octl iaas flexiblegpu catalog [flags]
 
 ### SEE ALSO
 
-* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - flexiblegpu commands
+* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - Manage FlexibleGpu resources
 

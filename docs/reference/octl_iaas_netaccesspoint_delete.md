@@ -1,14 +1,14 @@
 ## octl iaas netaccesspoint delete
 
-alias for api DeleteNetAccessPoint --NetAccessPointId net_access_point_id
+Deletes a specified Net access point.
 
 ### Synopsis
-
-> alias for api DeleteNetAccessPoint --NetAccessPointId net_access_point_id
 
 Deletes a specified Net access point.
 
 This action also deletes the corresponding routes added to the route tables you specified for the Net access point.
+
+> alias for DeleteNetAccessPoint --NetAccessPointId net_access_point_id
 
 ```
 octl iaas netaccesspoint delete net_access_point_id [net_access_point_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas netaccesspoint delete net_access_point_id [net_access_point_id]... [fl
 
 ### SEE ALSO
 
-* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - netaccesspoint commands
+* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - Manage NetAccessPoint resources
 

@@ -1,12 +1,12 @@
 ## octl iaas net describe
 
-alias for api ReadNets --Filters.NetIds net_id
+Lists one or more Nets.
 
 ### Synopsis
 
-> alias for api ReadNets --Filters.NetIds net_id
+Lists one or more Nets.
 
-
+> alias for ReadNets --Filters.NetIds net_id
 
 ```
 octl iaas net describe net_id [net_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas net describe net_id [net_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas net](octl_iaas_net.md)	 - net commands
+* [octl iaas net](octl_iaas_net.md)	 - Manage Net resources
 

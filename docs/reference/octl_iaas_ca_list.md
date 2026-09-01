@@ -1,12 +1,12 @@
 ## octl iaas ca list
 
-alias for api ReadCas
+Gets information about one or more of your Client Certificate Authorities (CAs).
 
 ### Synopsis
 
-> alias for api ReadCas
-
 Gets information about one or more of your Client Certificate Authorities (CAs).
+
+> alias for ReadCas
 
 ```
 octl iaas ca list [flags]
@@ -49,5 +49,5 @@ octl iaas ca list [flags]
 
 ### SEE ALSO
 
-* [octl iaas ca](octl_iaas_ca.md)	 - ca commands
+* [octl iaas ca](octl_iaas_ca.md)	 - Manage Ca resources
 

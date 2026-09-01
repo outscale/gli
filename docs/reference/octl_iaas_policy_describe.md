@@ -1,12 +1,12 @@
 ## octl iaas policy describe
 
-alias for api ReadPolicy --PolicyOrn policy_orn
+Lists information about a specified managed policy.
 
 ### Synopsis
 
-> alias for api ReadPolicy --PolicyOrn policy_orn
-
 Lists information about a specified managed policy.
+
+> alias for ReadPolicy --PolicyOrn policy_orn
 
 ```
 octl iaas policy describe policy_orn [flags]
@@ -46,5 +46,5 @@ octl iaas policy describe policy_orn [flags]
 
 ### SEE ALSO
 
-* [octl iaas policy](octl_iaas_policy.md)	 - policy commands
+* [octl iaas policy](octl_iaas_policy.md)	 - Manage Policy resources
 

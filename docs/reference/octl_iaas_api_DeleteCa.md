@@ -13,7 +13,7 @@ octl iaas api DeleteCa [flags]
 ### Options
 
 ```
-      --CaId string   The ID of the CA you want to delete.
+      --CaId string   [REQUIRED] The ID of the CA you want to delete.
       --DryRun        If true, checks whether you have the required permissions to perform the action.
   -h, --help          help for DeleteCa
 ```
@@ -46,5 +46,5 @@ octl iaas api DeleteCa [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

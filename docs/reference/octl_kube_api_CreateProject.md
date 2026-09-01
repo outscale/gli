@@ -13,12 +13,12 @@ octl kube api CreateProject [flags]
 ### Options
 
 ```
-      --Cidr string             CIDR block associated with the project's VPC
+      --Cidr string             [REQUIRED] CIDR block associated with the project's VPC
       --Description string      Optional description of the project
       --DisableApiTermination   Flag to prevent accidental project deletion Example: false
-      --Name string             Unique name for the project, must start with a letter and contain only lowercase letters, numbers, or hyphens Example: awesome-project
+      --Name string             [REQUIRED] Unique name for the project, must start with a letter and contain only lowercase letters, numbers, or hyphens Example: awesome-project
       --Quirks strings          
-      --Region string           Region where the project is deployed
+      --Region string           [REQUIRED] Region where the project is deployed
       --Tags stringToString      (default [])
   -h, --help                    help for CreateProject
 ```
@@ -51,5 +51,5 @@ octl kube api CreateProject [flags]
 
 ### SEE ALSO
 
-* [octl kube api](octl_kube_api.md)	 - kube api calls
+* [octl kube api](octl_kube_api.md)	 - Call kube API
 

@@ -4,9 +4,9 @@ Aggregate all GPU costs using ReadConsumptionAccount
 
 ### Synopsis
 
-> Aggregate all GPU costs using ReadConsumptionAccount
-
 Gets information about the consumption of your OUTSCALE account for each billable resource within the specified time period.
+
+> alias for ReadConsumptionAccount
 
 ```
 octl iaas consumptionaccount aggregate gpu [flags]
@@ -15,10 +15,10 @@ octl iaas consumptionaccount aggregate gpu [flags]
 ### Options
 
 ```
-      --from-date osctime   The beginning of the time period, in ISO 8601 date format (for example, 2020-06-14). (default beginning-of-month)
-  -h, --help                help for gpu
-      --overall             If false, returns only the consumption of the specific account that sends this request.
-      --to-date osctime     The end of the time period, in ISO 8601 date format (for example, 2020-06-30). (default today)
+      --from-date string   [REQUIRED] The beginning of the time period, in ISO 8601 date format (for example, 2020-06-14). (default "beginning-of-month")
+  -h, --help               help for gpu
+      --overall            If false, returns only the consumption of the specific account that sends this request.
+      --to-date string     [REQUIRED] The end of the time period, in ISO 8601 date format (for example, 2020-06-30). (default "today")
 ```
 
 ### Options inherited from parent commands

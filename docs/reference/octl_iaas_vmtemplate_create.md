@@ -1,10 +1,8 @@
 ## octl iaas vmtemplate create
 
-alias for api CreateVmTemplate
+> [WARNING] > This feature is currently under development and may not function properly.
 
 ### Synopsis
-
-> alias for api CreateVmTemplate
 
 > [WARNING]
 
@@ -14,6 +12,8 @@ alias for api CreateVmTemplate
 Creates a virtual machine (VM) template. You can then use the VM template to create VM groups.
 
 You can create up to 50 VM templates in your OUTSCALE account.
+
+> alias for CreateVmTemplate
 
 ```
 octl iaas vmtemplate create [flags]
@@ -63,5 +63,5 @@ octl iaas vmtemplate create [flags]
 
 ### SEE ALSO
 
-* [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - vmtemplate commands
+* [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - Manage VmTemplate resources
 

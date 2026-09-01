@@ -1,4 +1,4 @@
-contents:
+api:
   ReadConsoleOutput:
     content: ConsoleOutput
     group: Vm
@@ -87,6 +87,7 @@ entities:
         content: .Price
   exporttask:
     primary: ExportTaskId
+    title: ExportTask
   flexiblegpu:
     aliases:
       - fgpu
@@ -121,6 +122,10 @@ entities:
     aliases:
       - lb
       - lbu
+  loadbalancerlistener:
+    title: LoadBalancerListener
+  loadbalancerpolicy:
+    title: LoadBalancerPolicy
   loadbalancertag:
     columns:
       - title: LBU
@@ -207,6 +212,8 @@ entities:
       - title: Description
         content: ".Quotas[].Description"
     primary: QuotaName
+  route:
+    title: Route
   snapshot:
     aliases:
       - snap
@@ -226,6 +233,8 @@ entities:
   securitygroup:
     aliases:
       - sg
+  securitygrouprule:
+    title: SecurityGroupRule
   snapshotexporttask:
     primary: TaskId
   tag:
@@ -285,12 +294,14 @@ entities:
         content: ".LinkedVolumes[].DeviceName"
   volumeupdatetask:
     primary: TaskId
+  vpnconnectionroute:
+    title: VpmConnectionRoute
 aliases:
   - entity: flexiblegpu
     group: flexiblegpu
     use: catalog
     alias_to: ReadFlexibleGpuCatalog
-    short: alias for api ReadFlexibleGpuCatalog
+    alias_help: ReadFlexibleGpuCatalog
     command:
       - api
       - ReadFlexibleGpuCatalog
@@ -300,7 +311,7 @@ aliases:
     group: flexiblegpu
     use: link fgpu_id
     alias_to: LinkFlexibleGpu
-    short: alias for api LinkFlexibleGpu --FlexibleGpuId fgpu_id
+    alias_help: LinkFlexibleGpu --FlexibleGpuId fgpu_id
     command:
       - api
       - LinkFlexibleGpu
@@ -316,7 +327,7 @@ aliases:
     group: flexiblegpu
     use: unlink fgpu_id
     alias_to: UnlinkFlexibleGpu
-    short: alias for api UnlinkFlexibleGpu --FlexibleGpuId fgpu_id
+    alias_help: UnlinkFlexibleGpu --FlexibleGpuId fgpu_id
     command:
       - api
       - UnlinkFlexibleGpu
@@ -328,7 +339,7 @@ aliases:
     group: internetservice
     use: link service_id
     alias_to: LinkInternetService
-    short: alias for api LinkInternetService --InternetServiceId service_id
+    alias_help: LinkInternetService --InternetServiceId service_id
     command:
       - api
       - LinkInternetService
@@ -344,7 +355,7 @@ aliases:
     group: internetservice
     use: unlink service_id
     alias_to: UnlinkInternetService
-    short: alias for api UnlinkInternetService --InternetServiceId service_id
+    alias_help: UnlinkInternetService --InternetServiceId service_id
     command:
       - api
       - UnlinkInternetService
@@ -360,7 +371,7 @@ aliases:
     group: loadbalancer
     use: backends load_balancer_name
     alias_to: ReadVmsHealth
-    short: alias for api ReadVmsHealth --LoadBalancerName load_balancer_name
+    alias_help: ReadVmsHealth --LoadBalancerName load_balancer_name
     command:
       - api
       - ReadVmsHealth
@@ -372,7 +383,7 @@ aliases:
     group: nic
     use: link nic_id
     alias_to: LinkNic
-    short: alias for api LinkNic --NicId nic_id
+    alias_help: LinkNic --NicId nic_id
     command:
       - api
       - LinkNic
@@ -391,7 +402,7 @@ aliases:
     group: nic
     use: unlink nic_id
     alias_to: UnlinkNic
-    short: alias for api ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNic.LinkNicId}}
+    alias_help: ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNic.LinkNicId}}
     command:
       - api
       - ReadNics
@@ -411,7 +422,7 @@ aliases:
     group: netaccesspoint
     use: services
     alias_to: ReadNetAccessPointServices
-    short: alias for api ReadNetAccessPointServices
+    alias_help: ReadNetAccessPointServices
     command:
       - api
       - ReadNetAccessPointServices
@@ -421,7 +432,7 @@ aliases:
     group: netpeering
     use: accept netpeering_id
     alias_to: AcceptNetPeering
-    short: alias for api AcceptNetPeering --NetPeeringId netpeering_id
+    alias_help: AcceptNetPeering --NetPeeringId netpeering_id
     command:
       - api
       - AcceptNetPeering
@@ -433,7 +444,7 @@ aliases:
     group: netpeering
     alias_to: RejectNetPeering
     use: reject netpeering_id
-    short: alias for api RejectNetPeering --NetPeeringId netpeering_id
+    alias_help: RejectNetPeering --NetPeeringId netpeering_id
     command:
       - api
       - RejectNetPeering
@@ -447,7 +458,7 @@ aliases:
     aliases:
       - ls
     alias_to: ReadPolicies
-    short: alias for api ReadPolicies
+    alias_help: ReadPolicies
     command:
       - api
       - ReadPolicies
@@ -468,7 +479,7 @@ aliases:
     aliases:
       - desc
     alias_to: ReadPolicy
-    short: alias for api ReadPolicy --PolicyOrn policy_orn
+    alias_help: ReadPolicy --PolicyOrn policy_orn
     command:
       - api
       - ReadPolicy
@@ -480,7 +491,7 @@ aliases:
     group: policy
     use: create
     alias_to: CreatePolicy
-    short: alias for api CreatePolicy
+    alias_help: CreatePolicy
     command:
       - api
       - CreatePolicy
@@ -493,7 +504,7 @@ aliases:
         alias_to: Document
         required: true
         type: fileOrJSON
-        usage: Either a file storing the policy document or the policy document (in JSON format).
+        help: Either a file storing the policy document or the policy document (in JSON format).
       - name: path
         alias_to: Path
       - name: name
@@ -505,7 +516,7 @@ aliases:
     aliases:
       - del
     alias_to: DeletePolicy
-    short: alias for api DeletePolicy --PolicyOrn policy_orn
+    alias_help: DeletePolicy --PolicyOrn policy_orn
     command:
       - api
       - DeletePolicy
@@ -525,7 +536,7 @@ aliases:
   - entity: policy
     group: policy
     use: link policy_orn
-    short: alias for api LinkPolicy --PolicyOrn policy_orn
+    alias_help: LinkPolicy --PolicyOrn policy_orn
     alias_to: LinkPolicy
     command:
       - api
@@ -541,7 +552,7 @@ aliases:
   - entity: policy
     group: policy
     use: unlink policy_orn
-    short: alias for api UnlinkPolicy --PolicyOrn policy_orn
+    alias_help: UnlinkPolicy --PolicyOrn policy_orn
     alias_to: UnlinkPolicy
     command:
       - api
@@ -560,7 +571,7 @@ aliases:
     alias_to: ReadPolicyVersions
     aliases:
       - ls
-    short: alias for api ReadPolicyVersions --PolicyOrn policy_orn
+    alias_help: ReadPolicyVersions --PolicyOrn policy_orn
     command:
       - api
       - ReadPolicyVersions
@@ -574,7 +585,7 @@ aliases:
     aliases:
       - desc
     alias_to: ReadPolicyVersion
-    short: alias for api ReadPolicyVersion --PolicyOrn policy_orn
+    alias_help: ReadPolicyVersion --PolicyOrn policy_orn
     command:
       - api
       - ReadPolicyVersion
@@ -590,7 +601,7 @@ aliases:
     group: policyversion
     use: create policy_orn
     alias_to: CreatePolicyVersion
-    short: alias for api CreatePolicyVersion --PolicyOrn policy_orn
+    alias_help: CreatePolicyVersion --PolicyOrn policy_orn
     command:
       - api
       - CreatePolicyVersion
@@ -603,7 +614,7 @@ aliases:
         alias_to: Document
         required: true
         type: fileOrJSON
-        usage: Either a file storing the policy document, or the policy document (in JSON format).
+        help: Either a file storing the policy document, or the policy document (in JSON format).
       - name: default
         alias_to: SetAsDefault
   - entity: policyversion
@@ -612,7 +623,7 @@ aliases:
     aliases:
       - del
     alias_to: DeletePolicyVersion
-    short: alias for api DeletePolicyVersion --PolicyOrn policy_orn
+    alias_help: DeletePolicyVersion --PolicyOrn policy_orn
     command:
       - api
       - DeletePolicyVersion
@@ -642,7 +653,7 @@ aliases:
     aliases:
       - default
     alias_to: SetDefaultPolicyVersion
-    short: alias for api SetDefaultPolicyVersion --PolicyOrn policy_orn
+    alias_help: SetDefaultPolicyVersion --PolicyOrn policy_orn
     command:
       - api
       - SetDefaultPolicyVersion
@@ -658,7 +669,7 @@ aliases:
     group: volume
     use: link volume_id
     alias_to: LinkVolume
-    short: alias for api LinkVolume --VolumeId volume_id
+    alias_help: LinkVolume --VolumeId volume_id
     command:
       - api
       - LinkVolume
@@ -677,7 +688,7 @@ aliases:
     group: volume
     use: unlink volume_id
     alias_to: UnlinkVolume
-    short: alias for api UnlinkVolume --VolumeId link_volume_id
+    alias_help: UnlinkVolume --VolumeId link_volume_id
     command:
       - api
       - UnlinkVolume
@@ -692,7 +703,7 @@ aliases:
     group: vm
     use: start vm_id [vm_id]...
     alias_to: StartVms
-    short: alias for api StartVms --VmIds vm_id
+    alias_help: StartVms --VmIds vm_id
     command:
       - api
       - StartVms
@@ -704,7 +715,7 @@ aliases:
     group: vm
     use: stop vm_id [vm_id]...
     alias_to: StopVms
-    short: alias for api StopVms --VmIds vm_id
+    alias_help: StopVms --VmIds vm_id
     command:
       - api
       - StopVms
@@ -716,7 +727,7 @@ aliases:
     group: vm
     use: readconsole vm_id
     alias_to: ReadConsoleOutput
-    short: alias for api ReadConsoleOutput --VmId vm_id
+    alias_help: ReadConsoleOutput --VmId vm_id
     command:
       - api
       - ReadConsoleOutput
@@ -731,7 +742,7 @@ aliases:
   - entity: vm
     use: states
     alias_to: ReadVmsState
-    short: alias for api ReadVmsState
+    alias_help: ReadVmsState
     command:
       - api
       - ReadVmsState
@@ -742,7 +753,7 @@ aliases:
     alias_to: ReadConsumptionAccount
     aliases:
     - ls
-    short: alias for api ReadConsumptionAccount
+    alias_help: ReadConsumptionAccount
     command:
     - api
     - ReadConsumptionAccount
@@ -766,6 +777,7 @@ aliases:
     use: compute
     alias_to: ReadConsumptionAccount
     short: Aggregate all compute costs using ReadConsumptionAccount
+    alias_help: ReadConsumptionAccount
     command:
     - api
     - ReadConsumptionAccount
@@ -801,6 +813,7 @@ aliases:
     use: gpu
     alias_to: ReadConsumptionAccount
     short: Aggregate all GPU costs using ReadConsumptionAccount
+    alias_help: ReadConsumptionAccount
     command:
     - api
     - ReadConsumptionAccount
@@ -830,6 +843,7 @@ aliases:
     use: all
     alias_to: ReadConsumptionAccount
     short: Aggregate all costs using ReadConsumptionAccount
+    alias_help: ReadConsumptionAccount
     command:
     - api
     - ReadConsumptionAccount
@@ -855,7 +869,8 @@ aliases:
     alias_to: ReadApiLogs
     aliases:
     - ls
-    short: alias for api ReadApiLogs
+    short: List API call logs
+    alias_help: ReadApiLogs
     command:
     - api
     - ReadApiLogs
@@ -883,7 +898,8 @@ aliases:
   - entity: apilog
     use: tail
     alias_to: ReadApiLogs
-    short: alias for api ReadApiLogs
+    short: Streams recent API call logs (similar to tail -f)
+    alias_help: ReadApiLogs
     command:
     - api
     - ReadApiLogs

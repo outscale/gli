@@ -1,12 +1,12 @@
 ## octl storage bucket website disable
 
-Delete Website configuration, alias for api DeleteBucketWebsite --Bucket bucket
+Delete website configuration.
 
 ### Synopsis
 
-> Delete Website configuration, alias for api DeleteBucketWebsite --Bucket bucket
+Delete website configuration.
 
-
+> alias for DeleteBucketWebsite --Bucket bucket
 
 ```
 octl storage bucket website disable bucket [flags]

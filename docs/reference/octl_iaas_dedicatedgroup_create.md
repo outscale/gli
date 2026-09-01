@@ -1,15 +1,15 @@
 ## octl iaas dedicatedgroup create
 
-alias for api CreateDedicatedGroup
+Creates a dedicated group for virtual machines (VMs).
 
 ### Synopsis
-
-> alias for api CreateDedicatedGroup
 
 Creates a dedicated group for virtual machines (VMs).
 
 
 For more information, see [About Dedicated Groups](https://docs.outscale.com/en/userguide/About-Dedicated-Groups.html).
+
+> alias for CreateDedicatedGroup
 
 ```
 octl iaas dedicatedgroup create [flags]
@@ -52,5 +52,5 @@ octl iaas dedicatedgroup create [flags]
 
 ### SEE ALSO
 
-* [octl iaas dedicatedgroup](octl_iaas_dedicatedgroup.md)	 - dedicatedgroup commands
+* [octl iaas dedicatedgroup](octl_iaas_dedicatedgroup.md)	 - Manage DedicatedGroup resources
 

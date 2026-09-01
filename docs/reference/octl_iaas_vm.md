@@ -1,6 +1,6 @@
 ## octl iaas vm
 
-vm commands
+Manage Vm resources
 
 ### Options
 
@@ -37,13 +37,13 @@ vm commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas vm create](octl_iaas_vm_create.md)	 - alias for api CreateVms
-* [octl iaas vm delete](octl_iaas_vm_delete.md)	 - alias for api DeleteVms --VmIds vm_id
-* [octl iaas vm describe](octl_iaas_vm_describe.md)	 - alias for api ReadVms --Filters.VmIds vm_id
-* [octl iaas vm list](octl_iaas_vm_list.md)	 - alias for api ReadVms
-* [octl iaas vm readconsole](octl_iaas_vm_readconsole.md)	 - alias for api ReadConsoleOutput --VmId vm_id
-* [octl iaas vm start](octl_iaas_vm_start.md)	 - alias for api StartVms --VmIds vm_id
-* [octl iaas vm states](octl_iaas_vm_states.md)	 - alias for api ReadVmsState
-* [octl iaas vm stop](octl_iaas_vm_stop.md)	 - alias for api StopVms --VmIds vm_id
-* [octl iaas vm update](octl_iaas_vm_update.md)	 - alias for api UpdateVm --VmId vm_id
+* [octl iaas vm create](octl_iaas_vm_create.md)	 - Creates virtual machines (VMs), and then launches them.
+* [octl iaas vm delete](octl_iaas_vm_delete.md)	 - Terminates one or more virtual machines (VMs).
+* [octl iaas vm describe](octl_iaas_vm_describe.md)	 - Lists one or more of your virtual machines (VMs).
+* [octl iaas vm list](octl_iaas_vm_list.md)	 - Lists one or more of your virtual machines (VMs).
+* [octl iaas vm readconsole](octl_iaas_vm_readconsole.md)	 - 
+* [octl iaas vm start](octl_iaas_vm_start.md)	 - Start one or more virtual machines (VMs).
+* [octl iaas vm states](octl_iaas_vm_states.md)	 - Lists the status of one or more virtual machines (VMs).
+* [octl iaas vm stop](octl_iaas_vm_stop.md)	 - Stops one or more running virtual machines (VMs).
+* [octl iaas vm update](octl_iaas_vm_update.md)	 - Modifies the specified attributes of a virtual machine (VM).
 

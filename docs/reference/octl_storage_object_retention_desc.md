@@ -1,12 +1,12 @@
 ## octl storage object retention desc
 
-Display retention configuration, alias for api GetObjectRetention --Key key
+Display object retention configuration.
 
 ### Synopsis
 
-> Display retention configuration, alias for api GetObjectRetention --Key key
+Display object retention configuration.
 
-
+> alias for GetObjectRetention --Key key
 
 ```
 octl storage object retention desc key [flags]

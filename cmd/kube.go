@@ -8,12 +8,10 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"reflect"
-	"strings"
 
 	"github.com/google/uuid"
 	"github.com/outscale/octl/cmd/prerun"
-	"github.com/outscale/octl/pkg/builder"
+	commandbuilder "github.com/outscale/octl/pkg/builder/command"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/flags"
@@ -44,12 +42,8 @@ var projectUseCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(oksCmd)
-	b := builder.NewBuilder[oks.Client]("kube", "https://docs.outscale.com/oks.html")
-	b.BuildAPI(oksCmd, func(m reflect.Method) bool {
-		return m.Type.NumIn() >= 3 && m.Type.NumOut() == 2 && !strings.HasSuffix(m.Name, "Raw") &&
-			!strings.HasSuffix(m.Name, "WithBody")
-	}, kube)
-	b.Build(oksCmd, nil)
+	b := commandbuilder.NewBuilder("kube", "https://docs.outscale.com/oks.html")
+	b.Build(oksCmd, kube)
 
 	// Add --project flag to kube cluster commands
 	clusterCmd, _ := lo.Find(oksCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == "cluster" })

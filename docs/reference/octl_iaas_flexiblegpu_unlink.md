@@ -1,14 +1,14 @@
 ## octl iaas flexiblegpu unlink
 
-alias for api UnlinkFlexibleGpu --FlexibleGpuId fgpu_id
+Detaches a flexible GPU (fGPU) from a virtual machine (VM).
 
 ### Synopsis
-
-> alias for api UnlinkFlexibleGpu --FlexibleGpuId fgpu_id
 
 Detaches a flexible GPU (fGPU) from a virtual machine (VM).
 
 The fGPU is in the `detaching` state until the VM is stopped, after which it becomes `allocated`. It is then available again for attachment to a VM.
+
+> alias for UnlinkFlexibleGpu --FlexibleGpuId fgpu_id
 
 ```
 octl iaas flexiblegpu unlink fgpu_id [flags]
@@ -48,5 +48,5 @@ octl iaas flexiblegpu unlink fgpu_id [flags]
 
 ### SEE ALSO
 
-* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - flexiblegpu commands
+* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - Manage FlexibleGpu resources
 

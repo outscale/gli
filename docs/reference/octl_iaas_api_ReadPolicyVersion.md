@@ -13,8 +13,8 @@ octl iaas api ReadPolicyVersion [flags]
 ### Options
 
 ```
-      --PolicyOrn string   The OUTSCALE Resource Name (ORN) of the policy.
-      --VersionId string   The ID of the policy version.
+      --PolicyOrn string   [REQUIRED] The OUTSCALE Resource Name (ORN) of the policy.
+      --VersionId string   [REQUIRED] The ID of the policy version.
   -h, --help               help for ReadPolicyVersion
 ```
 
@@ -46,5 +46,5 @@ octl iaas api ReadPolicyVersion [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -14,8 +14,8 @@ octl iaas api UpdateSubnet [flags]
 
 ```
       --DryRun                If true, checks whether you have the required permissions to perform the action.
-      --MapPublicIpOnLaunch   If true, a public IP is assigned to the network interface cards (NICs) created in the specified Subnet.
-      --SubnetId string       The ID of the Subnet.
+      --MapPublicIpOnLaunch   [REQUIRED] If true, a public IP is assigned to the network interface cards (NICs) created in the specified Subnet.
+      --SubnetId string       [REQUIRED] The ID of the Subnet.
   -h, --help                  help for UpdateSubnet
 ```
 
@@ -47,5 +47,5 @@ octl iaas api UpdateSubnet [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

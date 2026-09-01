@@ -1,10 +1,8 @@
 ## octl iaas securitygrouprule create
 
-alias for api CreateSecurityGroupRule
+Adds one or more rules to a security group.
 
 ### Synopsis
-
-> alias for api CreateSecurityGroupRule
 
 Adds one or more rules to a security group.
 
@@ -31,6 +29,8 @@ Alternatively, you can use the `Rules` parameter to add several rules at the sam
 
 For more information, see [About Security Group Rules](https://docs.outscale.com/en/userguide/About-Security-Group-Rules.html).
 
+> alias for CreateSecurityGroupRule
+
 ```
 octl iaas securitygrouprule create [flags]
 ```
@@ -38,14 +38,14 @@ octl iaas securitygrouprule create [flags]
 ### Options
 
 ```
-      --account-id-to-link string                               The OUTSCALE account ID that owns the source or destination security group specified in the SecurityGroupNameToLink parameter.
       --flow string                                             [REQUIRED] The direction of the flow: Inbound or Outbound.
       --from-port-range int                                     The beginning of the port range for the TCP and UDP protocols, or an ICMP type number.
+      --group-account-id-to-link string                         The OUTSCALE account ID that owns the source or destination security group specified in the SecurityGroupNameToLink parameter.
+      --group-id string                                         [REQUIRED] The ID of the security group for which you want to create a rule.
+      --group-name-to-link string                               The ID of a source or destination security group that you want to link to the security group of the rule.
   -h, --help                                                    help for create
-      --id string                                               [REQUIRED] The ID of the security group for which you want to create a rule.
       --ip-protocol string                                      The IP protocol name (tcp, udp, icmp, or -1 for all protocols).
       --ip-range string                                         The IP range for the security group rule, in CIDR notation (for example, 10.0.0.0/16).
-      --name-to-link string                                     The ID of a source or destination security group that you want to link to the security group of the rule.
       --rule-from-port-range int                                The beginning of the port range for the TCP and UDP protocols, or an ICMP type number.
       --rule-ip-protocol string                                 The IP protocol name (tcp, udp, icmp, or -1 for all protocols).
       --rule-ip-range strings                                   One or more IP ranges for the security group rules, in CIDR notation (for example, ["10.0.0.0/24" , "10.0.1.0/24"]).
@@ -86,5 +86,5 @@ octl iaas securitygrouprule create [flags]
 
 ### SEE ALSO
 
-* [octl iaas securitygrouprule](octl_iaas_securitygrouprule.md)	 - securitygrouprule commands
+* [octl iaas securitygrouprule](octl_iaas_securitygrouprule.md)	 - Manage SecurityGroupRule resources
 

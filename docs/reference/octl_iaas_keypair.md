@@ -1,6 +1,6 @@
 ## octl iaas keypair
 
-keypair commands
+Manage Keypair resources
 
 ### Options
 
@@ -37,8 +37,8 @@ keypair commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas keypair create](octl_iaas_keypair_create.md)	 - alias for api CreateKeypair
-* [octl iaas keypair delete](octl_iaas_keypair_delete.md)	 - alias for api DeleteKeypair --KeypairId keypair_id
-* [octl iaas keypair describe](octl_iaas_keypair_describe.md)	 - alias for api ReadKeypairs --Filters.KeypairIds keypair_id
-* [octl iaas keypair list](octl_iaas_keypair_list.md)	 - alias for api ReadKeypairs
+* [octl iaas keypair create](octl_iaas_keypair_create.md)	 - Creates a keypair to use with your virtual machines (VMs).
+* [octl iaas keypair delete](octl_iaas_keypair_delete.md)	 - Deletes the specified keypair.
+* [octl iaas keypair describe](octl_iaas_keypair_describe.md)	 - Lists one or more of your keypairs.
+* [octl iaas keypair list](octl_iaas_keypair_list.md)	 - Lists one or more of your keypairs.
 

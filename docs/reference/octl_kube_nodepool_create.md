@@ -1,12 +1,12 @@
 ## octl kube nodepool create
 
-alias for api Create
+Create a nodepool
 
 ### Synopsis
 
-> alias for api Create
+Create a nodepool
 
-
+> alias for Create
 
 ```
 octl kube nodepool create [flags]
@@ -19,7 +19,7 @@ octl kube nodepool create [flags]
       --auto-upgrade-enabled               
       --autoscaling                        
       --cluster string                     [REQUIRED] Name or ID of cluster
-      --desired-nodes int                  [REQUIRED] 
+      --desired-nodes int                  
       --fgpu-model string                  
       --fgpu-operator                      
       --flavour string                     
@@ -28,10 +28,10 @@ octl kube nodepool create [flags]
       --ip-pool string                     
       --max-nodes int                      
       --min-nodes int                      
-      --name string                        [REQUIRED] 
+      --name string                        
       --node-annotations stringToString     (default [])
       --node-labels stringToString          (default [])
-      --node-type string                   [REQUIRED] 
+      --node-type string                   
       --placement-attract-cluster string   
       --placement-attract-server string    
       --placement-repulse-cluster string   
@@ -44,11 +44,7 @@ octl kube nodepool create [flags]
       --upgrade-rrule string               
       --upgrade-start-hour int             
       --upgrade-week-day string            
-      --volume-iops int                    
-      --volume-size int                    
-      --volume-snapshot string             
-      --volume-type string                 
-      --zones strings                      [REQUIRED] 
+      --zones strings                      
 ```
 
 ### Options inherited from parent commands
@@ -79,5 +75,5 @@ octl kube nodepool create [flags]
 
 ### SEE ALSO
 
-* [octl kube nodepool](octl_kube_nodepool.md)	 - nodepool commands
+* [octl kube nodepool](octl_kube_nodepool.md)	 - Manage nodepool resources
 

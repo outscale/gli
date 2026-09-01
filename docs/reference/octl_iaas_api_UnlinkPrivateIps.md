@@ -14,7 +14,7 @@ octl iaas api UnlinkPrivateIps [flags]
 
 ```
       --DryRun               If true, checks whether you have the required permissions to perform the action.
-      --NicId string         The ID of the NIC.
+      --NicId string         [REQUIRED] The ID of the NIC.
       --PrivateIps strings   One or more secondary private IPs you want to unassign from the NIC.
   -h, --help                 help for UnlinkPrivateIps
 ```
@@ -47,5 +47,5 @@ octl iaas api UnlinkPrivateIps [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

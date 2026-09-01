@@ -13,9 +13,9 @@ octl iaas api DeleteRoute [flags]
 ### Options
 
 ```
-      --DestinationIpRange string   The exact IP range for the route.
+      --DestinationIpRange string   [REQUIRED] The exact IP range for the route.
       --DryRun                      If true, checks whether you have the required permissions to perform the action.
-      --RouteTableId string         The ID of the route table from which you want to delete a route.
+      --RouteTableId string         [REQUIRED] The ID of the route table from which you want to delete a route.
   -h, --help                        help for DeleteRoute
 ```
 
@@ -47,5 +47,5 @@ octl iaas api DeleteRoute [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

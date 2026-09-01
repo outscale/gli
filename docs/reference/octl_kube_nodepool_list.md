@@ -1,12 +1,12 @@
 ## octl kube nodepool list
 
-alias for api List
+
 
 ### Synopsis
 
-> alias for api List
 
 
+> alias for List
 
 ```
 octl kube nodepool list [flags]
@@ -48,5 +48,5 @@ octl kube nodepool list [flags]
 
 ### SEE ALSO
 
-* [octl kube nodepool](octl_kube_nodepool.md)	 - nodepool commands
+* [octl kube nodepool](octl_kube_nodepool.md)	 - Manage nodepool resources
 

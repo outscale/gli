@@ -46,7 +46,7 @@ octl iaas api CreateVms [flags]
       --ClientToken string                                 A unique identifier which enables you to manage the idempotency.
       --DeletionProtection                                 If true, you cannot delete the VM unless you change this parameter back to false.
       --DryRun                                             If true, checks whether you have the required permissions to perform the action.
-      --ImageId string                                     The ID of the OMI used to create the VM.
+      --ImageId string                                     [REQUIRED] The ID of the OMI used to create the VM.
       --KeypairName string                                 The name of the keypair.
       --MaxVmsCount int                                    The maximum number of VMs you want to create.
       --MinVmsCount int                                    The minimum number of VMs you want to create.
@@ -70,7 +70,7 @@ octl iaas api CreateVms [flags]
       --ShutdownBehaviorConfiguration.HostAction string    The action performed by the orchestrator when the VM is shut down due to a host infrastructure failure.
       --SubnetId string                                    The ID of the Subnet in which you want to create the VM.
       --TpmEnabled                                         If true, a virtual Trusted Platform Module (vTPM) is enabled on the VM.
-      --UserData string                                    Data or script used to add a specific configuration to the VM.
+      --UserData base64File                                The file storing the data or script used to add a specific configuration to the VM (max size 500 KiB).
       --VmInitiatedShutdownBehavior string                 The VM behavior when you stop it.
       --VmType string                                      The type of VM.
   -h, --help                                               help for CreateVms
@@ -104,5 +104,5 @@ octl iaas api CreateVms [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

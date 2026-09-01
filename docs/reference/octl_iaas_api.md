@@ -1,6 +1,6 @@
 ## octl iaas api
 
-iaas api calls
+Call iaas API
 
 ### Options
 

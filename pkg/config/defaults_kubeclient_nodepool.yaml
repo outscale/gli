@@ -1,21 +1,325 @@
-contents:
+api:
   Create:
+    use: Create
     content: .
     entity: nodepool
+    flags:
+    - name: ObjectMeta.Name
+      kind: 24
+    - name: ObjectMeta.GenerateName
+      kind: 24
+    - name: ObjectMeta.Namespace
+      kind: 24
+    - name: ObjectMeta.SelfLink
+      kind: 24
+    - name: ObjectMeta.UID
+      kind: 24
+    - name: ObjectMeta.ResourceVersion
+      kind: 24
+    - name: ObjectMeta.DeletionTimestamp
+      kind: 24
+      customValue: fileOrJson
+    - name: ObjectMeta.DeletionGracePeriodSeconds
+      kind: 6
+    - name: ObjectMeta.Labels
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Annotations
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Finalizers
+      kind: 24
+      container: 23
+    - name: Spec.AutoHealing
+      kind: 1
+    - name: Spec.Autoscaling
+      kind: 1
+    - name: Spec.DesiredNodes
+      kind: 2
+    - name: Spec.Fgpu.K8sOperator
+      kind: 1
+    - name: Spec.Fgpu.Model
+      kind: 24
+      values:
+      - nvidia-a100
+      - nvidia-a100-80
+      - nvidia-h100
+      - nvidia-l40
+      - nvidia-m60
+      - nvidia-p100
+      - nvidia-p6
+      - nvidia-v100
+    - name: Spec.Flavour
+      kind: 24
+      values:
+      - oks.debian12
+      - oks.debian12_nvidia
+      - oks.ubuntu22
+    - name: Spec.Helms
+      kind: 24
+      container: 23
+      values:
+      - gpu-operator
+      - ingress-nginx
+      - ollama
+      - prometheus
+    - name: Spec.IpPoolName
+      kind: 24
+    - name: Spec.MaxNodes
+      kind: 2
+    - name: Spec.MinNodes
+      kind: 2
+    - name: Spec.NodeAnnotations
+      kind: 24
+      container: 21
+    - name: Spec.NodeLabels
+      kind: 24
+      container: 21
+    - name: Spec.NodeType
+      kind: 24
+    - name: Spec.PhysicalPlacement.NodeAttractCluster
+      kind: 24
+    - name: Spec.PhysicalPlacement.NodeAttractServer
+      kind: 24
+    - name: Spec.PhysicalPlacement.NodeRepulseCluster
+      kind: 24
+    - name: Spec.PhysicalPlacement.NodeRepulseServer
+      kind: 24
+    - name: Spec.Taint
+      kind: 1
+    - name: Spec.UpgradeStrategy.AutoUpgradeEnabled
+      kind: 1
+    - name: Spec.UpgradeStrategy.AutoUpgradeMaintenance.DurationHours
+      kind: 2
+    - name: Spec.UpgradeStrategy.AutoUpgradeMaintenance.Rrule
+      kind: 24
+    - name: Spec.UpgradeStrategy.AutoUpgradeMaintenance.StartHour
+      kind: 2
+    - name: Spec.UpgradeStrategy.AutoUpgradeMaintenance.WeekDay
+      kind: 24
+      values:
+      - Fri
+      - Mon
+      - Sat
+      - Sun
+      - Thu
+      - Tue
+      - Wed
+    - name: Spec.UpgradeStrategy.MaxSurge
+      kind: 2
+    - name: Spec.UpgradeStrategy.MaxUnavailable
+      kind: 2
+    - name: 'Spec.Volumes.#.Device'
+      kind: 24
+    - name: 'Spec.Volumes.#.Dir'
+      kind: 24
+    - name: 'Spec.Volumes.#.Iops'
+      kind: 2
+    - name: 'Spec.Volumes.#.Name'
+      kind: 24
+    - name: 'Spec.Volumes.#.Size'
+      kind: 2
+    - name: 'Spec.Volumes.#.Snapshot'
+      kind: 24
+    - name: 'Spec.Volumes.#.Type'
+      kind: 24
+      values:
+      - gp2
+      - io1
+      - standard
+    - name: Spec.Zones
+      kind: 24
+      container: 23
+    - name: DryRun
+      kind: 24
+      container: 23
+    - name: FieldManager
+      kind: 24
+    - name: FieldValidation
+      kind: 24
+  Delete:
+    use: Delete id
+    flags:
+    - name: GracePeriodSeconds
+      kind: 6
+    - name: Preconditions.UID
+      kind: 24
+    - name: Preconditions.ResourceVersion
+      kind: 24
+    - name: OrphanDependents
+      kind: 1
+    - name: PropagationPolicy
+      kind: 24
+    - name: DryRun
+      kind: 24
+      container: 23
   Get:
+    use: Get id
     content: .
     entity: nodepool
+    flags:
+    - name: ResourceVersion
+      kind: 24
   List:
+    use: List
     content: Items
     entity: nodepool
-  Patch:
-    entity: nodepool
+    flags:
+    - name: LabelSelector
+      kind: 24
+    - name: FieldSelector
+      kind: 24
+    - name: ResourceVersion
+      kind: 24
+    - name: ResourceVersionMatch
+      kind: 24
+    - name: TimeoutSeconds
+      kind: 6
+    - name: Limit
+      kind: 6
+    - name: ShardSelector
+      kind: 24
   Update:
+    use: Update
+    content: Spec
     entity: nodepool
-  UpdateStatus:
-    entity: nodepool
+    flags:
+    - name: ObjectMeta.Name
+      kind: 24
+    - name: ObjectMeta.GenerateName
+      kind: 24
+    - name: ObjectMeta.Namespace
+      kind: 24
+    - name: ObjectMeta.SelfLink
+      kind: 24
+    - name: ObjectMeta.UID
+      kind: 24
+    - name: ObjectMeta.ResourceVersion
+      kind: 24
+    - name: ObjectMeta.DeletionTimestamp
+      kind: 24
+      customValue: fileOrJson
+    - name: ObjectMeta.DeletionGracePeriodSeconds
+      kind: 6
+    - name: ObjectMeta.Labels
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Annotations
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Finalizers
+      kind: 24
+      container: 23
+    - name: Spec.AutoHealing
+      kind: 1
+    - name: Spec.Autoscaling
+      kind: 1
+    - name: Spec.DesiredNodes
+      kind: 2
+    - name: Spec.Fgpu.K8sOperator
+      kind: 1
+    - name: Spec.Fgpu.Model
+      kind: 24
+      values:
+      - nvidia-a100
+      - nvidia-a100-80
+      - nvidia-h100
+      - nvidia-l40
+      - nvidia-m60
+      - nvidia-p100
+      - nvidia-p6
+      - nvidia-v100
+    - name: Spec.Flavour
+      kind: 24
+      values:
+      - oks.debian12
+      - oks.debian12_nvidia
+      - oks.ubuntu22
+    - name: Spec.Helms
+      kind: 24
+      container: 23
+      values:
+      - gpu-operator
+      - ingress-nginx
+      - ollama
+      - prometheus
+    - name: Spec.IpPoolName
+      kind: 24
+    - name: Spec.MaxNodes
+      kind: 2
+    - name: Spec.MinNodes
+      kind: 2
+    - name: Spec.NodeAnnotations
+      kind: 24
+      container: 21
+    - name: Spec.NodeLabels
+      kind: 24
+      container: 21
+    - name: Spec.NodeType
+      kind: 24
+    - name: Spec.PhysicalPlacement.NodeAttractCluster
+      kind: 24
+    - name: Spec.PhysicalPlacement.NodeAttractServer
+      kind: 24
+    - name: Spec.PhysicalPlacement.NodeRepulseCluster
+      kind: 24
+    - name: Spec.PhysicalPlacement.NodeRepulseServer
+      kind: 24
+    - name: Spec.Taint
+      kind: 1
+    - name: Spec.UpgradeStrategy.AutoUpgradeEnabled
+      kind: 1
+    - name: Spec.UpgradeStrategy.AutoUpgradeMaintenance.DurationHours
+      kind: 2
+    - name: Spec.UpgradeStrategy.AutoUpgradeMaintenance.Rrule
+      kind: 24
+    - name: Spec.UpgradeStrategy.AutoUpgradeMaintenance.StartHour
+      kind: 2
+    - name: Spec.UpgradeStrategy.AutoUpgradeMaintenance.WeekDay
+      kind: 24
+      values:
+      - Fri
+      - Mon
+      - Sat
+      - Sun
+      - Thu
+      - Tue
+      - Wed
+    - name: Spec.UpgradeStrategy.MaxSurge
+      kind: 2
+    - name: Spec.UpgradeStrategy.MaxUnavailable
+      kind: 2
+    - name: 'Spec.Volumes.#.Device'
+      kind: 24
+    - name: 'Spec.Volumes.#.Dir'
+      kind: 24
+    - name: 'Spec.Volumes.#.Iops'
+      kind: 2
+    - name: 'Spec.Volumes.#.Name'
+      kind: 24
+    - name: 'Spec.Volumes.#.Size'
+      kind: 2
+    - name: 'Spec.Volumes.#.Snapshot'
+      kind: 24
+    - name: 'Spec.Volumes.#.Type'
+      kind: 24
+      values:
+      - gp2
+      - io1
+      - standard
+    - name: Spec.Zones
+      kind: 24
+      container: 23
+    - name: DryRun
+      kind: 24
+      container: 23
+    - name: FieldManager
+      kind: 24
+    - name: FieldValidation
+      kind: 24
 entities:
   nodepool:
+    title: Get
     columns:
     - title: Name
       content: .metadata.name
@@ -52,7 +356,7 @@ aliases:
   alias_to: List
   aliases:
   - ls
-  short: alias for api List
+  alias_help: List
   command:
   - nodepool
   - api
@@ -64,11 +368,13 @@ aliases:
     alias_to: cluster
     required: true
 - entity: nodepool
-  use: describe name [name]...
+  use: describe id [id]...
+  help: Describe a nodepool
+  short: Describe a nodepool
   alias_to: Get
   aliases:
   - desc
-  short: alias for api Get name
+  alias_help: Get id
   command:
   - nodepool
   - api
@@ -83,10 +389,12 @@ aliases:
     required: true
 - entity: nodepool
   use: create
+  help: Create a nodepool
+  short: Create a nodepool
   alias_to: Create
   aliases:
   - add
-  short: alias for api Create
+  alias_help: Create
   command:
   - api
   - GetNodepoolTemplate
@@ -171,12 +479,14 @@ aliases:
     alias_to: Spec.Zones
     required: true
 - entity: nodepool
-  use: delete name [name]...
+  use: delete id [id]...
+  help: Delete a nodepool
+  short: Delete a nodepool
   alias_to: Delete
   aliases:
   - del
   - rm
-  short: alias for api Delete name
+  alias_help: Delete id
   command:
   - nodepool
   - api
@@ -188,4 +498,3 @@ aliases:
   - name: cluster
     alias_to: cluster
     required: true
-spec: {}

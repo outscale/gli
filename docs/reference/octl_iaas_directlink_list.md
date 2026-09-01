@@ -1,12 +1,12 @@
 ## octl iaas directlink list
 
-alias for api ReadDirectLinks
+Lists all DirectLinks in the Region.
 
 ### Synopsis
 
-> alias for api ReadDirectLinks
-
 Lists all DirectLinks in the Region.
+
+> alias for ReadDirectLinks
 
 ```
 octl iaas directlink list [flags]
@@ -47,5 +47,5 @@ octl iaas directlink list [flags]
 
 ### SEE ALSO
 
-* [octl iaas directlink](octl_iaas_directlink.md)	 - directlink commands
+* [octl iaas directlink](octl_iaas_directlink.md)	 - Manage DirectLink resources
 

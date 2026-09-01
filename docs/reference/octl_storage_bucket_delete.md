@@ -1,12 +1,12 @@
 ## octl storage bucket delete
 
-alias for api DeleteBucket --Bucket bucket
+Delete a bucket.
 
 ### Synopsis
 
-> alias for api DeleteBucket --Bucket bucket
+Delete a bucket.
 
-
+> alias for DeleteBucket --Bucket bucket
 
 ```
 octl storage bucket delete bucket [bucket]... [flags]
@@ -48,5 +48,5 @@ octl storage bucket delete bucket [bucket]... [flags]
 
 ### SEE ALSO
 
-* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
+* [octl storage bucket](octl_storage_bucket.md)	 - Manage Bucket resources
 

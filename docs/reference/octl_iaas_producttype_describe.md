@@ -1,12 +1,12 @@
 ## octl iaas producttype describe
 
-alias for api ReadProductTypes --Filters.ProductTypeIds product_type_id
+Lists one or more product types.
 
 ### Synopsis
 
-> alias for api ReadProductTypes --Filters.ProductTypeIds product_type_id
+Lists one or more product types.
 
-
+> alias for ReadProductTypes --Filters.ProductTypeIds product_type_id
 
 ```
 octl iaas producttype describe product_type_id [product_type_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas producttype describe product_type_id [product_type_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas producttype](octl_iaas_producttype.md)	 - producttype commands
+* [octl iaas producttype](octl_iaas_producttype.md)	 - Manage ProductType resources
 

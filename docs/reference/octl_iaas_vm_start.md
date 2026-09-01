@@ -1,14 +1,14 @@
 ## octl iaas vm start
 
-alias for api StartVms --VmIds vm_id
+Start one or more virtual machines (VMs).
 
 ### Synopsis
-
-> alias for api StartVms --VmIds vm_id
 
 Start one or more virtual machines (VMs).
 
 You can start only VMs that are valid and that belong to you.
+
+> alias for StartVms --VmIds vm_id
 
 ```
 octl iaas vm start vm_id [vm_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas vm start vm_id [vm_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas vm](octl_iaas_vm.md)	 - vm commands
+* [octl iaas vm](octl_iaas_vm.md)	 - Manage Vm resources
 

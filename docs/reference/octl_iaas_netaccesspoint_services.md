@@ -1,14 +1,14 @@
 ## octl iaas netaccesspoint services
 
-alias for api ReadNetAccessPointServices
+Lists OUTSCALE services available to create Net access points.
 
 ### Synopsis
-
-> alias for api ReadNetAccessPointServices
 
 Lists OUTSCALE services available to create Net access points.
 
 For more information, see [CreateNetAccessPoint](#createnetaccesspoint).
+
+> alias for ReadNetAccessPointServices
 
 ```
 octl iaas netaccesspoint services [flags]
@@ -48,5 +48,5 @@ octl iaas netaccesspoint services [flags]
 
 ### SEE ALSO
 
-* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - netaccesspoint commands
+* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - Manage NetAccessPoint resources
 

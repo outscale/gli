@@ -1,12 +1,12 @@
 ## octl kube cluster update
 
-alias for api UpdateCluster  id_or_name
+Updates the configuration of an existing cluster by its ID.
 
 ### Synopsis
 
-> alias for api UpdateCluster  id_or_name
-
 Updates the configuration of an existing cluster by its ID. The request must include the updated cluster details in the request body. Returns the updated cluster information
+
+> alias for UpdateCluster  id_or_name
 
 ```
 octl kube cluster update id_or_name [id_or_name]... [flags]
@@ -77,5 +77,5 @@ octl kube cluster update id_or_name [id_or_name]... [flags]
 
 ### SEE ALSO
 
-* [octl kube cluster](octl_kube_cluster.md)	 - cluster commands
+* [octl kube cluster](octl_kube_cluster.md)	 - Manage Cluster resources
 

@@ -14,7 +14,7 @@ octl iaas api ReadUserGroupsPerUser [flags]
 
 ```
       --DryRun            If true, checks whether you have the required permissions to perform the action.
-      --UserName string   The name of the user.
+      --UserName string   [REQUIRED] The name of the user.
       --UserPath string   The path to the user (by default, /).
   -h, --help              help for ReadUserGroupsPerUser
 ```
@@ -47,5 +47,5 @@ octl iaas api ReadUserGroupsPerUser [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

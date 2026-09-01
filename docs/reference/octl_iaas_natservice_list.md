@@ -1,12 +1,12 @@
 ## octl iaas natservice list
 
-alias for api ReadNatServices
+Lists one or more network address translation (NAT) services.
 
 ### Synopsis
 
-> alias for api ReadNatServices
-
 Lists one or more network address translation (NAT) services.
+
+> alias for ReadNatServices
 
 ```
 octl iaas natservice list [flags]
@@ -54,5 +54,5 @@ octl iaas natservice list [flags]
 
 ### SEE ALSO
 
-* [octl iaas natservice](octl_iaas_natservice.md)	 - natservice commands
+* [octl iaas natservice](octl_iaas_natservice.md)	 - Manage NatService resources
 

@@ -9,11 +9,9 @@ octl storage api ListBuckets [flags]
 ### Options
 
 ```
-      --BucketRegion string        Limits the response to buckets that are located in the specified Amazon Web Services Region.
-      --ContinuationToken string   indicates to Amazon S3 that the list is being continued on this bucket with a token.
-      --MaxBuckets int32           Maximum number of buckets to be returned in response.
-      --Prefix string              Limits the response to bucket names that begin with the specified bucket name prefix.
-  -h, --help                       help for ListBuckets
+      --MaxBuckets int32   Maximum number of buckets to be returned in response.
+      --Prefix string      Limits the response to bucket names that begin with the specified bucket name prefix.
+  -h, --help               help for ListBuckets
 ```
 
 ### Options inherited from parent commands
@@ -45,5 +43,5 @@ octl storage api ListBuckets [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

@@ -1,6 +1,6 @@
 ## octl iaas netpeering
 
-netpeering commands
+Manage NetPeering resources
 
 ### Options
 
@@ -37,10 +37,10 @@ netpeering commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas netpeering accept](octl_iaas_netpeering_accept.md)	 - alias for api AcceptNetPeering --NetPeeringId netpeering_id
-* [octl iaas netpeering create](octl_iaas_netpeering_create.md)	 - alias for api CreateNetPeering
-* [octl iaas netpeering delete](octl_iaas_netpeering_delete.md)	 - alias for api DeleteNetPeering --NetPeeringId net_peering_id
-* [octl iaas netpeering describe](octl_iaas_netpeering_describe.md)	 - alias for api ReadNetPeerings --Filters.NetPeeringIds net_peering_id
-* [octl iaas netpeering list](octl_iaas_netpeering_list.md)	 - alias for api ReadNetPeerings
-* [octl iaas netpeering reject](octl_iaas_netpeering_reject.md)	 - alias for api RejectNetPeering --NetPeeringId netpeering_id
+* [octl iaas netpeering accept](octl_iaas_netpeering_accept.md)	 - Accepts a Net peering request.
+* [octl iaas netpeering create](octl_iaas_netpeering_create.md)	 - Requests a Net peering between a Net you own and a peer Net that belongs to you or another OUTSCALE account.
+* [octl iaas netpeering delete](octl_iaas_netpeering_delete.md)	 - Deletes a Net peering.
+* [octl iaas netpeering describe](octl_iaas_netpeering_describe.md)	 - Lists one or more peering connections between two Nets.
+* [octl iaas netpeering list](octl_iaas_netpeering_list.md)	 - Lists one or more peering connections between two Nets.
+* [octl iaas netpeering reject](octl_iaas_netpeering_reject.md)	 - Rejects a Net peering request.
 

@@ -1,6 +1,6 @@
 ## octl iaas virtualgateway
 
-virtualgateway commands
+Manage VirtualGateway resources
 
 ### Options
 
@@ -37,8 +37,8 @@ virtualgateway commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas virtualgateway create](octl_iaas_virtualgateway_create.md)	 - alias for api CreateVirtualGateway
-* [octl iaas virtualgateway delete](octl_iaas_virtualgateway_delete.md)	 - alias for api DeleteVirtualGateway --VirtualGatewayId virtual_gateway_id
-* [octl iaas virtualgateway describe](octl_iaas_virtualgateway_describe.md)	 - alias for api ReadVirtualGateways --Filters.VirtualGatewayIds virtual_gateway_id
-* [octl iaas virtualgateway list](octl_iaas_virtualgateway_list.md)	 - alias for api ReadVirtualGateways
+* [octl iaas virtualgateway create](octl_iaas_virtualgateway_create.md)	 - Creates a virtual gateway.
+* [octl iaas virtualgateway delete](octl_iaas_virtualgateway_delete.md)	 - Deletes a specified virtual gateway.
+* [octl iaas virtualgateway describe](octl_iaas_virtualgateway_describe.md)	 - Lists one or more virtual gateways.
+* [octl iaas virtualgateway list](octl_iaas_virtualgateway_list.md)	 - Lists one or more virtual gateways.
 

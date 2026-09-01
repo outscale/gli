@@ -1,15 +1,15 @@
 ## octl iaas region list
 
-alias for api ReadRegions
+Lists one or more Regions of the OUTSCALE Cloud.
 
 ### Synopsis
-
-> alias for api ReadRegions
 
 Lists one or more Regions of the OUTSCALE Cloud.
 
 
 For more information, see [About Regions and Subregions](https://docs.outscale.com/en/userguide/About-Regions-and-Subregions.html).
+
+> alias for ReadRegions
 
 ```
 octl iaas region list [flags]
@@ -49,5 +49,5 @@ octl iaas region list [flags]
 
 ### SEE ALSO
 
-* [octl iaas region](octl_iaas_region.md)	 - region commands
+* [octl iaas region](octl_iaas_region.md)	 - Manage Region resources
 

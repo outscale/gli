@@ -1,6 +1,6 @@
 ## octl iaas user
 
-user commands
+Manage User resources
 
 ### Options
 
@@ -37,8 +37,8 @@ user commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas user create](octl_iaas_user_create.md)	 - alias for api CreateUser
-* [octl iaas user delete](octl_iaas_user_delete.md)	 - alias for api DeleteUser --UserName user_name
-* [octl iaas user list](octl_iaas_user_list.md)	 - alias for api ReadUsers
-* [octl iaas user update](octl_iaas_user_update.md)	 - alias for api UpdateUser --UserName user_name
+* [octl iaas user create](octl_iaas_user_create.md)	 - Creates an EIM user for your OUTSCALE account.
+* [octl iaas user delete](octl_iaas_user_delete.md)	 - Deletes a specified EIM user.
+* [octl iaas user list](octl_iaas_user_list.md)	 - Lists all EIM users in the OUTSCALE account.
+* [octl iaas user update](octl_iaas_user_update.md)	 - Modifies the name and/or the path of a specified EIM user.
 

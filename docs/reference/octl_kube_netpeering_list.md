@@ -1,12 +1,12 @@
 ## octl kube netpeering list
 
-alias for api List
+List netpeerings
 
 ### Synopsis
 
+List netpeerings
+
 > alias for api List
-
-
 
 ```
 octl kube netpeering list [flags]
@@ -48,5 +48,5 @@ octl kube netpeering list [flags]
 
 ### SEE ALSO
 
-* [octl kube netpeering](octl_kube_netpeering.md)	 - netpeering commands
+* [octl kube netpeering](octl_kube_netpeering.md)	 - Manage netpeering resources
 

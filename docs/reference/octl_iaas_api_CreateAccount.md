@@ -23,20 +23,20 @@ octl iaas api CreateAccount [flags]
 
 ```
       --AdditionalEmails strings   One or more additional email addresses for the account.
-      --City string                The city of the account owner.
-      --CompanyName string         The name of the company for the account.
-      --Country string             The country of the account owner.
-      --CustomerId string          The ID of the customer.
+      --City string                [REQUIRED] The city of the account owner.
+      --CompanyName string         [REQUIRED] The name of the company for the account.
+      --Country string             [REQUIRED] The country of the account owner.
+      --CustomerId string          [REQUIRED] The ID of the customer.
       --DryRun                     If true, checks whether you have the required permissions to perform the action.
-      --Email string               The main email address for the account.
-      --FirstName string           The first name of the account owner.
+      --Email string               [REQUIRED] The main email address for the account.
+      --FirstName string           [REQUIRED] The first name of the account owner.
       --JobTitle string            The job title of the account owner.
-      --LastName string            The last name of the account owner.
+      --LastName string            [REQUIRED] The last name of the account owner.
       --MobileNumber string        The mobile phone number of the account owner.
       --PhoneNumber string         The landline phone number of the account owner.
       --StateProvince string       The state/province of the account.
       --VatNumber string           The value added tax (VAT) number for the account.
-      --ZipCode string             The ZIP code of the city.
+      --ZipCode string             [REQUIRED] The ZIP code of the city.
   -h, --help                       help for CreateAccount
 ```
 
@@ -68,5 +68,5 @@ octl iaas api CreateAccount [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

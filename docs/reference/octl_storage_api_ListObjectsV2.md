@@ -10,15 +10,12 @@ octl storage api ListObjectsV2 [flags]
 
 ```
       --Bucket string                      [REQUIRED] Directory buckets - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format Bucket-name.s3express-zone-id.region-code.amazonaws.com .
-      --ContinuationToken string           indicates to Amazon S3 that the list is being continued on this bucket with a token.
       --Delimiter string                   A delimiter is a character that you use to group keys.
       --EncodingType string                Encoding type used by Amazon S3 to encode the [object keys] in the response.
       --ExpectedBucketOwner string         The account ID of the expected bucket owner.
       --FetchOwner                         The owner field is not present in ListObjectsV2 by default.
-      --MaxKeys int32                      Sets the maximum number of keys returned in the response.
       --OptionalObjectAttributes strings   Specifies the optional fields that you want returned in the response.
       --Prefix string                      Limits the response to keys that begin with the specified prefix.
-      --RequestPayer string                Confirms that the requester knows that she or he will be charged for the list objects request in V2 style.
       --StartAfter string                  is where you want Amazon S3 to start listing from.
   -h, --help                               help for ListObjectsV2
 ```
@@ -52,5 +49,5 @@ octl storage api ListObjectsV2 [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

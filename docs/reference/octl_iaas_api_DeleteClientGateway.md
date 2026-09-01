@@ -15,7 +15,7 @@ octl iaas api DeleteClientGateway [flags]
 ### Options
 
 ```
-      --ClientGatewayId string   The ID of the client gateway you want to delete.
+      --ClientGatewayId string   [REQUIRED] The ID of the client gateway you want to delete.
       --DryRun                   If true, checks whether you have the required permissions to perform the action.
   -h, --help                     help for DeleteClientGateway
 ```
@@ -48,5 +48,5 @@ octl iaas api DeleteClientGateway [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

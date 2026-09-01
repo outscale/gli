@@ -22,8 +22,8 @@ octl iaas api SetDefaultPolicyVersion [flags]
 ### Options
 
 ```
-      --PolicyOrn string   The OUTSCALE Resource Name (ORN) of the policy.
-      --VersionId string   The ID of the version.
+      --PolicyOrn string   [REQUIRED] The OUTSCALE Resource Name (ORN) of the policy.
+      --VersionId string   [REQUIRED] The ID of the version.
   -h, --help               help for SetDefaultPolicyVersion
 ```
 
@@ -55,5 +55,5 @@ octl iaas api SetDefaultPolicyVersion [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

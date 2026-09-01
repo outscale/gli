@@ -10,11 +10,9 @@ octl storage api PutBucketPolicy [flags]
 
 ```
       --Bucket string                   [REQUIRED] The name of the bucket.
-      --ChecksumAlgorithm string        Indicates the algorithm used to create the checksum for the object when you use the SDK.
       --ConfirmRemoveSelfBucketAccess   Set this parameter to true to confirm that you want to remove your permissions to change this bucket policy in the future.
-      --ContentMD5 string               The MD5 hash of the request body.
       --ExpectedBucketOwner string      The account ID of the expected bucket owner.
-      --Policy string                   [REQUIRED] The bucket policy as a JSON document.
+      --Policy fileOrJson               [REQUIRED] The bucket policy as a JSON document.
   -h, --help                            help for PutBucketPolicy
 ```
 
@@ -47,5 +45,5 @@ octl storage api PutBucketPolicy [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

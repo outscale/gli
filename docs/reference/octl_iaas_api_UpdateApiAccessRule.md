@@ -21,7 +21,7 @@ octl iaas api UpdateApiAccessRule [flags]
 ### Options
 
 ```
-      --ApiAccessRuleId string   The ID of the API access rule you want to update.
+      --ApiAccessRuleId string   [REQUIRED] The ID of the API access rule you want to update.
       --CaIds strings            One or more IDs of Client Certificate Authorities (CAs).
       --Cns strings              One or more Client Certificate Common Names (CNs).
       --Description string       A new description for the API access rule.
@@ -58,5 +58,5 @@ octl iaas api UpdateApiAccessRule [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

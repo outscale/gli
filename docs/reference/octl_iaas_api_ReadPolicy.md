@@ -13,7 +13,7 @@ octl iaas api ReadPolicy [flags]
 ### Options
 
 ```
-      --PolicyOrn string   The OUTSCALE Resource Name (ORN) of the policy.
+      --PolicyOrn string   [REQUIRED] The OUTSCALE Resource Name (ORN) of the policy.
   -h, --help               help for ReadPolicy
 ```
 
@@ -45,5 +45,5 @@ octl iaas api ReadPolicy [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

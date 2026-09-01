@@ -1,12 +1,12 @@
 ## octl iaas servercertificate list
 
-alias for api ReadServerCertificates
+Lists your server certificates.
 
 ### Synopsis
 
-> alias for api ReadServerCertificates
-
 Lists your server certificates.
+
+> alias for ReadServerCertificates
 
 ```
 octl iaas servercertificate list [flags]
@@ -47,5 +47,5 @@ octl iaas servercertificate list [flags]
 
 ### SEE ALSO
 
-* [octl iaas servercertificate](octl_iaas_servercertificate.md)	 - servercertificate commands
+* [octl iaas servercertificate](octl_iaas_servercertificate.md)	 - Manage ServerCertificate resources
 

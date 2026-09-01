@@ -1,14 +1,14 @@
 ## octl iaas securitygroup list
 
-alias for api ReadSecurityGroups
+Lists one or more security groups.
 
 ### Synopsis
-
-> alias for api ReadSecurityGroups
 
 Lists one or more security groups.
 
 You can specify either the name of the security groups or their IDs.
+
+> alias for ReadSecurityGroups
 
 ```
 octl iaas securitygroup list [flags]
@@ -69,5 +69,5 @@ octl iaas securitygroup list [flags]
 
 ### SEE ALSO
 
-* [octl iaas securitygroup](octl_iaas_securitygroup.md)	 - securitygroup commands
+* [octl iaas securitygroup](octl_iaas_securitygroup.md)	 - Manage SecurityGroup resources
 

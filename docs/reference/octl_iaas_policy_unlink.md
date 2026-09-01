@@ -1,10 +1,8 @@
 ## octl iaas policy unlink
 
-alias for api UnlinkPolicy --PolicyOrn policy_orn
+Removes a managed policy from a specific user.
 
 ### Synopsis
-
-> alias for api UnlinkPolicy --PolicyOrn policy_orn
 
 Removes a managed policy from a specific user.
 
@@ -14,6 +12,8 @@ Removes a managed policy from a specific user.
 **[IMPORTANT]**
 
 A delay of up to 15 seconds can occur when attaching, detaching, or updating a managed policy.
+
+> alias for UnlinkPolicy --PolicyOrn policy_orn
 
 ```
 octl iaas policy unlink policy_orn [flags]
@@ -54,5 +54,5 @@ octl iaas policy unlink policy_orn [flags]
 
 ### SEE ALSO
 
-* [octl iaas policy](octl_iaas_policy.md)	 - policy commands
+* [octl iaas policy](octl_iaas_policy.md)	 - Manage Policy resources
 

@@ -1,12 +1,12 @@
 ## octl storage bucket lifecycle describe
 
-Display lifecycle configuration, alias for api GetBucketLifecycleConfiguration --Bucket bucket
+Display lifecycle configuration.
 
 ### Synopsis
 
-> Display lifecycle configuration, alias for api GetBucketLifecycleConfiguration --Bucket bucket
+Display lifecycle configuration.
 
-
+> alias for GetBucketLifecycleConfiguration --Bucket bucket
 
 ```
 octl storage bucket lifecycle describe bucket [flags]

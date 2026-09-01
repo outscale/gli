@@ -9,8 +9,8 @@ import (
 	"os"
 
 	"github.com/goccy/go-yaml"
+	configbuilder "github.com/outscale/octl/pkg/builder/config"
 	"github.com/outscale/octl/pkg/config"
-	"github.com/outscale/octl/pkg/config/generate/builder"
 	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/osc-sdk-go/v3/pkg/oks"
 )
@@ -27,37 +27,47 @@ func main() {
 	if err != nil {
 		messages.ExitErr(err)
 	}
-	if base.Calls == nil {
-		base.Calls = map[string]config.Call{}
+	if base.API == nil {
+		base.API = map[string]config.APICall{}
 	}
 	if base.Entities == nil {
 		base.Entities = map[string]config.Entity{}
 	}
-	if base.Spec.Calls == nil {
-		base.Spec.Calls = map[string]config.SpecCall{}
-	}
-	if base.Spec.Attributes == nil {
-		base.Spec.Attributes = map[string]config.SpecAttribute{}
-	}
 
-	cfg := builder.Config{
+	cfg := configbuilder.Config{
+		SkipSuffixes: []string{"Raw", "WithBody"},
+		SkipAlias: []string{
+			"GetCPSubregions",
+			"GetClusterTemplate",
+			"GetControlPlanePlans",
+			"GetKubeconfig",
+			"GetKubeconfigWithPubkeyNACL",
+			"GetKubernetesVersions",
+			"GetNetPeeringAcceptanceTemplate",
+			"GetNetPeeringRequestTemplate",
+			"GetNodepoolTemplate",
+			"GetProjectNets",
+			"GetProjectQuotas",
+			"GetProjectTemplate",
+			"GetQuotas",
+		},
+		AllowedNumOut:            []int{1, 2},
 		InputStructSuffix:        "Request",
 		RequiredFromFieldPointer: true,
 		FlagOverrides: map[string]config.Flag{
 			"tag": {
-				Name:  "tags",
-				Type:  "stringToString",
-				Usage: "Tags (key=value,key=value)",
+				Name: "tags",
+				Help: "Tags (key=value,key=value)",
 			},
 		},
 		IdFieldInUsage: "id_or_name",
 	}
 
-	sb := builder.NewSpecBuilder(cfg)
-	sb.BuildSpec(&base, "github.com/outscale/osc-sdk-go/v3/pkg/oks")
+	sb := configbuilder.NewSpecBuilder(cfg)
+	spec := sb.BuildSpec(&base, "github.com/outscale/osc-sdk-go/v3/pkg/oks")
 
-	b := builder.NewClientBuilder[*oks.Client](cfg)
-	b.BuildFor(&base)
+	b := configbuilder.NewClientBuilder[*oks.Client](cfg)
+	b.BuildFor(&base, spec)
 
 	fd, err := os.Create(dst) //nolint:gosec
 	if err != nil {

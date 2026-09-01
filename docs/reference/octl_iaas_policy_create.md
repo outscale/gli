@@ -1,14 +1,14 @@
 ## octl iaas policy create
 
-alias for api CreatePolicy
+Creates a managed policy to apply to a user.
 
 ### Synopsis
-
-> alias for api CreatePolicy
 
 Creates a managed policy to apply to a user.
 
 This action creates a policy version and sets v1 as the default one.
+
+> alias for CreatePolicy
 
 ```
 octl iaas policy create [flags]
@@ -17,11 +17,11 @@ octl iaas policy create [flags]
 ### Options
 
 ```
-      --description string    A description for the policy.
-      --document fileOrJson   [REQUIRED] Either a file storing the policy document or the policy document (in JSON format).
-  -h, --help                  help for create
-      --name string           [REQUIRED] The name of the policy.
-      --path string           The path of the policy.
+      --description string   A description for the policy.
+      --document string      Either a file storing the policy document or the policy document (in JSON format).
+  -h, --help                 help for create
+      --name string          [REQUIRED] The name of the policy.
+      --path string          The path of the policy.
 ```
 
 ### Options inherited from parent commands
@@ -52,5 +52,5 @@ octl iaas policy create [flags]
 
 ### SEE ALSO
 
-* [octl iaas policy](octl_iaas_policy.md)	 - policy commands
+* [octl iaas policy](octl_iaas_policy.md)	 - Manage Policy resources
 

@@ -1,12 +1,12 @@
 ## octl iaas usergroupsperuser list
 
-alias for api ReadUserGroupsPerUser
+Lists the groups a specified user belongs to.
 
 ### Synopsis
 
-> alias for api ReadUserGroupsPerUser
-
 Lists the groups a specified user belongs to.
+
+> alias for ReadUserGroupsPerUser
 
 ```
 octl iaas usergroupsperuser list [flags]
@@ -48,5 +48,5 @@ octl iaas usergroupsperuser list [flags]
 
 ### SEE ALSO
 
-* [octl iaas usergroupsperuser](octl_iaas_usergroupsperuser.md)	 - usergroupsperuser commands
+* [octl iaas usergroupsperuser](octl_iaas_usergroupsperuser.md)	 - Manage UserGroup resources
 

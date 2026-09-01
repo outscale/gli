@@ -1,12 +1,12 @@
 ## octl kube project public-ips
 
-alias for api GetProjectPublicIps id_or_name
+
 
 ### Synopsis
 
-> alias for api GetProjectPublicIps id_or_name
 
 
+> alias for GetProjectPublicIps id_or_name
 
 ```
 octl kube project public-ips id_or_name [flags]
@@ -46,5 +46,5 @@ octl kube project public-ips id_or_name [flags]
 
 ### SEE ALSO
 
-* [octl kube project](octl_kube_project.md)	 - project commands
+* [octl kube project](octl_kube_project.md)	 - Manage Project resources
 

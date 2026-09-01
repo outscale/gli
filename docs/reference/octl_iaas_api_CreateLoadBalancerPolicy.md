@@ -31,9 +31,9 @@ octl iaas api CreateLoadBalancerPolicy [flags]
       --CookieExpirationPeriod int   The lifetime of the cookie, in seconds.
       --CookieName string            The name of the application cookie used for stickiness, between 1 and 255 characters.
       --DryRun                       If true, checks whether you have the required permissions to perform the action.
-      --LoadBalancerName string      The name of the load balancer for which you want to create a policy.
-      --PolicyName string            The unique name of the policy, with a maximum length of 32 alphanumeric characters and dashes (-).
-      --PolicyType string            The type of stickiness policy you want to create: app or load_balancer.
+      --LoadBalancerName string      [REQUIRED] The name of the load balancer for which you want to create a policy.
+      --PolicyName string            [REQUIRED] The unique name of the policy, with a maximum length of 32 alphanumeric characters and dashes (-).
+      --PolicyType string            [REQUIRED] The type of stickiness policy you want to create: app or load_balancer.
   -h, --help                         help for CreateLoadBalancerPolicy
 ```
 
@@ -65,5 +65,5 @@ octl iaas api CreateLoadBalancerPolicy [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

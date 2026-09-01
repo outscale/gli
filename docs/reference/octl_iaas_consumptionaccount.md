@@ -1,6 +1,6 @@
 ## octl iaas consumptionaccount
 
-consumptionaccount commands
+Manage ConsumptionAccount resources
 
 ### Options
 
@@ -38,5 +38,5 @@ consumptionaccount commands
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
 * [octl iaas consumptionaccount aggregate](octl_iaas_consumptionaccount_aggregate.md)	 - aggregate commands
-* [octl iaas consumptionaccount list](octl_iaas_consumptionaccount_list.md)	 - alias for api ReadConsumptionAccount
+* [octl iaas consumptionaccount list](octl_iaas_consumptionaccount_list.md)	 - Gets information about the consumption of your OUTSCALE account for each billable resource within the specified time period.
 

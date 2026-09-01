@@ -1,12 +1,12 @@
 ## octl storage object acl configure
 
-Configure ACL, alias for api PutObjectAcl --Key key
+Configure ACL.
 
 ### Synopsis
 
-> Configure ACL, alias for api PutObjectAcl --Key key
+Configure ACL.
 
-
+> alias for PutObjectAcl --Bucket bucket
 
 ```
 octl storage object acl configure key [flags]

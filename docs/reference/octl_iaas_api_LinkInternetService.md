@@ -16,8 +16,8 @@ octl iaas api LinkInternetService [flags]
 
 ```
       --DryRun                     If true, checks whether you have the required permissions to perform the action.
-      --InternetServiceId string   The ID of the internet service you want to attach.
-      --NetId string               The ID of the Net to which you want to attach the internet service.
+      --InternetServiceId string   [REQUIRED] The ID of the internet service you want to attach.
+      --NetId string               [REQUIRED] The ID of the Net to which you want to attach the internet service.
   -h, --help                       help for LinkInternetService
 ```
 
@@ -49,5 +49,5 @@ octl iaas api LinkInternetService [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

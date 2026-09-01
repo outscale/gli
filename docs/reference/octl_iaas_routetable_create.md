@@ -1,10 +1,8 @@
 ## octl iaas routetable create
 
-alias for api CreateRouteTable
+Creates a route table for a specified Net.
 
 ### Synopsis
-
-> alias for api CreateRouteTable
 
 Creates a route table for a specified Net.
 
@@ -12,6 +10,8 @@ You can then add routes and associate this route table with a Subnet.
 
 
 For more information, see [About Route Tables](https://docs.outscale.com/en/userguide/About-Route-Tables.html).
+
+> alias for CreateRouteTable
 
 ```
 octl iaas routetable create [flags]
@@ -52,5 +52,5 @@ octl iaas routetable create [flags]
 
 ### SEE ALSO
 
-* [octl iaas routetable](octl_iaas_routetable.md)	 - routetable commands
+* [octl iaas routetable](octl_iaas_routetable.md)	 - Manage RouteTable resources
 

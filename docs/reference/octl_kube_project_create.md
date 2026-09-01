@@ -1,12 +1,12 @@
 ## octl kube project create
 
-alias for api CreateProject
+Creates a new project with the provided details.
 
 ### Synopsis
 
-> alias for api CreateProject
-
 Creates a new project with the provided details. The request must include the project data in the request body. Returns the details of the created project.
+
+> alias for CreateProject
 
 ```
 octl kube project create [flags]
@@ -15,13 +15,13 @@ octl kube project create [flags]
 ### Options
 
 ```
-      --cidr string               CIDR block associated with the project's VPC
+      --cidr string               [REQUIRED] CIDR block associated with the project's VPC
       --description string        Optional description of the project
       --disable-api-termination   Flag to prevent accidental project deletion Example: false
   -h, --help                      help for create
       --name string               [REQUIRED] Unique name for the project, must start with a letter and contain only lowercase letters, numbers, or hyphens Example: awesome-project
       --quirk strings             
-      --region string             Region where the project is deployed
+      --region string             [REQUIRED] Region where the project is deployed
 ```
 
 ### Options inherited from parent commands
@@ -52,5 +52,5 @@ octl kube project create [flags]
 
 ### SEE ALSO
 
-* [octl kube project](octl_kube_project.md)	 - project commands
+* [octl kube project](octl_kube_project.md)	 - Manage Project resources
 

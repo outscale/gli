@@ -1,6 +1,6 @@
 ## octl iaas flexiblegpu
 
-flexiblegpu commands
+Manage FlexibleGpu resources
 
 ### Options
 
@@ -37,12 +37,12 @@ flexiblegpu commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas flexiblegpu catalog](octl_iaas_flexiblegpu_catalog.md)	 - alias for api ReadFlexibleGpuCatalog
-* [octl iaas flexiblegpu create](octl_iaas_flexiblegpu_create.md)	 - alias for api CreateFlexibleGpu
-* [octl iaas flexiblegpu delete](octl_iaas_flexiblegpu_delete.md)	 - alias for api DeleteFlexibleGpu --FlexibleGpuId flexible_gpu_id
-* [octl iaas flexiblegpu describe](octl_iaas_flexiblegpu_describe.md)	 - alias for api ReadFlexibleGpus --Filters.FlexibleGpuIds flexible_gpu_id
-* [octl iaas flexiblegpu link](octl_iaas_flexiblegpu_link.md)	 - alias for api LinkFlexibleGpu --FlexibleGpuId fgpu_id
-* [octl iaas flexiblegpu list](octl_iaas_flexiblegpu_list.md)	 - alias for api ReadFlexibleGpus
-* [octl iaas flexiblegpu unlink](octl_iaas_flexiblegpu_unlink.md)	 - alias for api UnlinkFlexibleGpu --FlexibleGpuId fgpu_id
-* [octl iaas flexiblegpu update](octl_iaas_flexiblegpu_update.md)	 - alias for api UpdateFlexibleGpu --FlexibleGpuId flexible_gpu_id
+* [octl iaas flexiblegpu catalog](octl_iaas_flexiblegpu_catalog.md)	 - Lists all flexible GPUs available in the public catalog.
+* [octl iaas flexiblegpu create](octl_iaas_flexiblegpu_create.md)	 - Allocates a flexible GPU (fGPU) to your OUTSCALE account.
+* [octl iaas flexiblegpu delete](octl_iaas_flexiblegpu_delete.md)	 - Releases a flexible GPU (fGPU) from your OUTSCALE account.
+* [octl iaas flexiblegpu describe](octl_iaas_flexiblegpu_describe.md)	 - Lists one or more flexible GPUs (fGPUs) allocated to your OUTSCALE account.
+* [octl iaas flexiblegpu link](octl_iaas_flexiblegpu_link.md)	 - Attaches one of your allocated flexible GPUs (fGPUs) to one of your virtual machines (VMs).
+* [octl iaas flexiblegpu list](octl_iaas_flexiblegpu_list.md)	 - Lists one or more flexible GPUs (fGPUs) allocated to your OUTSCALE account.
+* [octl iaas flexiblegpu unlink](octl_iaas_flexiblegpu_unlink.md)	 - Detaches a flexible GPU (fGPU) from a virtual machine (VM).
+* [octl iaas flexiblegpu update](octl_iaas_flexiblegpu_update.md)	 - Modifies a flexible GPU (fGPU) behavior.
 

@@ -1,12 +1,12 @@
 ## octl kube cluster list
 
-alias for api ListAllClusters
+
 
 ### Synopsis
 
-> alias for api ListAllClusters
 
 
+> alias for ListAllClusters
 
 ```
 octl kube cluster list [flags]
@@ -54,5 +54,5 @@ octl kube cluster list [flags]
 
 ### SEE ALSO
 
-* [octl kube cluster](octl_kube_cluster.md)	 - cluster commands
+* [octl kube cluster](octl_kube_cluster.md)	 - Manage Cluster resources
 

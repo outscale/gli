@@ -1,12 +1,14 @@
 ## octl iaas subnet describe
 
-alias for api ReadSubnets --Filters.SubnetIds subnet_id
+Lists one or more of your Subnets.
 
 ### Synopsis
 
-> alias for api ReadSubnets --Filters.SubnetIds subnet_id
+Lists one or more of your Subnets.
 
+If you do not specify any Subnet ID, this action describes all of your Subnets.
 
+> alias for ReadSubnets --Filters.SubnetIds subnet_id
 
 ```
 octl iaas subnet describe subnet_id [subnet_id]... [flags]
@@ -46,5 +48,5 @@ octl iaas subnet describe subnet_id [subnet_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas subnet](octl_iaas_subnet.md)	 - subnet commands
+* [octl iaas subnet](octl_iaas_subnet.md)	 - Manage Subnet resources
 

@@ -40,5 +40,5 @@ octl kube project use [id_or_name] [flags]
 
 ### SEE ALSO
 
-* [octl kube project](octl_kube_project.md)	 - project commands
+* [octl kube project](octl_kube_project.md)	 - Manage Project resources
 

@@ -128,7 +128,11 @@ func TestTimeValue(t *testing.T) {
 			vts, ok := v.Value()
 			assert.True(t, ok)
 			assert.Equal(t, n.Year(), vts.Year())
-			assert.Equal(t, n.Month(), vts.Month())
+			if n.Day() == 1 {
+				assert.Equal(t, n.Month()-1, vts.Month())
+			} else {
+				assert.Equal(t, n.Month(), vts.Month())
+			}
 			assert.Equal(t, 1, vts.Day())
 		}
 	})

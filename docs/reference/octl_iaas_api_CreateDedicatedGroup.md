@@ -16,10 +16,10 @@ octl iaas api CreateDedicatedGroup [flags]
 ### Options
 
 ```
-      --CpuGeneration int      The processor generation for the VMs in the dedicated group (for example, 4).
+      --CpuGeneration int      [REQUIRED] The processor generation for the VMs in the dedicated group (for example, 4).
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
-      --Name string            A name for the dedicated group.
-      --SubregionName string   The Subregion in which you want to create the dedicated group.
+      --Name string            [REQUIRED] A name for the dedicated group.
+      --SubregionName string   [REQUIRED] The Subregion in which you want to create the dedicated group.
   -h, --help                   help for CreateDedicatedGroup
 ```
 
@@ -51,5 +51,5 @@ octl iaas api CreateDedicatedGroup [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

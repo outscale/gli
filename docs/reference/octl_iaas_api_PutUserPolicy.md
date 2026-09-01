@@ -22,11 +22,11 @@ octl iaas api PutUserPolicy [flags]
 ### Options
 
 ```
-      --DryRun                  If true, checks whether you have the required permissions to perform the action.
-      --PolicyDocument string   The policy document, corresponding to a JSON string that contains the policy.
-      --PolicyName string       The name of the policy (between 1 and 128 characters).
-      --UserName string         The name of the user.
-  -h, --help                    help for PutUserPolicy
+      --DryRun                      If true, checks whether you have the required permissions to perform the action.
+      --PolicyDocument fileOrJson   Either a file storing the policy document, or the policy document (in JSON format).
+      --PolicyName string           [REQUIRED] The name of the policy (between 1 and 128 characters).
+      --UserName string             [REQUIRED] The name of the user.
+  -h, --help                        help for PutUserPolicy
 ```
 
 ### Options inherited from parent commands
@@ -57,5 +57,5 @@ octl iaas api PutUserPolicy [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

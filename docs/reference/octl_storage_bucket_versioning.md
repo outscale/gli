@@ -37,8 +37,8 @@ versioning commands
 
 ### SEE ALSO
 
-* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
-* [octl storage bucket versioning describe](octl_storage_bucket_versioning_describe.md)	 - Display versioning configuration, alias for api GetBucketVersioning --Bucket bucket
-* [octl storage bucket versioning disable](octl_storage_bucket_versioning_disable.md)	 - Disable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Suspended
-* [octl storage bucket versioning enable](octl_storage_bucket_versioning_enable.md)	 - Enable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Enabled
+* [octl storage bucket](octl_storage_bucket.md)	 - Manage Bucket resources
+* [octl storage bucket versioning describe](octl_storage_bucket_versioning_describe.md)	 - Display versioning configuration.
+* [octl storage bucket versioning disable](octl_storage_bucket_versioning_disable.md)	 - Disable versioning.
+* [octl storage bucket versioning enable](octl_storage_bucket_versioning_enable.md)	 - Enable versioning.
 

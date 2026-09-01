@@ -16,7 +16,7 @@ octl iaas api DeletePolicy [flags]
 
 ```
       --DryRun             If true, checks whether you have the required permissions to perform the action.
-      --PolicyOrn string   The OUTSCALE Resource Name (ORN) of the policy you want to delete.
+      --PolicyOrn string   [REQUIRED] The OUTSCALE Resource Name (ORN) of the policy you want to delete.
   -h, --help               help for DeletePolicy
 ```
 
@@ -48,5 +48,5 @@ octl iaas api DeletePolicy [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

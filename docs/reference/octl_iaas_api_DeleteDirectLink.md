@@ -15,7 +15,7 @@ octl iaas api DeleteDirectLink [flags]
 ### Options
 
 ```
-      --DirectLinkId string   The ID of the DirectLink you want to delete.
+      --DirectLinkId string   [REQUIRED] The ID of the DirectLink you want to delete.
       --DryRun                If true, checks whether you have the required permissions to perform the action.
   -h, --help                  help for DeleteDirectLink
 ```
@@ -48,5 +48,5 @@ octl iaas api DeleteDirectLink [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

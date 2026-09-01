@@ -30,8 +30,8 @@ octl iaas api CreateNatService [flags]
 ```
       --ClientToken string   A unique identifier which enables you to manage the idempotency.
       --DryRun               If true, checks whether you have the required permissions to perform the action.
-      --PublicIpId string    The allocation ID of the public IP to associate with the NAT service.
-      --SubnetId string      The ID of the Subnet in which you want to create the NAT service.
+      --PublicIpId string    [REQUIRED] The allocation ID of the public IP to associate with the NAT service.
+      --SubnetId string      [REQUIRED] The ID of the Subnet in which you want to create the NAT service.
   -h, --help                 help for CreateNatService
 ```
 
@@ -63,5 +63,5 @@ octl iaas api CreateNatService [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -1,12 +1,12 @@
 ## octl storage bucket encryption disable
 
-Disable encryption, alias for api DeleteBucketEncryption --Bucket bucket
+Disable encryption.
 
 ### Synopsis
 
-> Disable encryption, alias for api DeleteBucketEncryption --Bucket bucket
+Disable encryption.
 
-
+> alias for DeleteBucketEncryption --Bucket bucket
 
 ```
 octl storage bucket encryption disable bucket [flags]

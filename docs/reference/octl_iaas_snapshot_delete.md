@@ -1,14 +1,14 @@
 ## octl iaas snapshot delete
 
-alias for api DeleteSnapshot --SnapshotId snapshot_id
+Deletes a specified snapshot.
 
 ### Synopsis
-
-> alias for api DeleteSnapshot --SnapshotId snapshot_id
 
 Deletes a specified snapshot.
 
 You cannot delete a snapshot that is currently used by an OUTSCALE machine image (OMI). To do so, you first need to delete the corresponding OMI. For more information, see the [DeleteImage](#deleteimage) method.
+
+> alias for DeleteSnapshot --SnapshotId snapshot_id
 
 ```
 octl iaas snapshot delete snapshot_id [snapshot_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas snapshot delete snapshot_id [snapshot_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas snapshot](octl_iaas_snapshot.md)	 - snapshot commands
+* [octl iaas snapshot](octl_iaas_snapshot.md)	 - Manage Snapshot resources
 

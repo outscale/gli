@@ -1,6 +1,6 @@
 ## octl kube ippool
 
-ippool commands
+Manage IP pool resources
 
 ### Options
 
@@ -37,9 +37,9 @@ ippool commands
 ### SEE ALSO
 
 * [octl kube](octl_kube.md)	 - OUTSCALE Kubernetes as a Service (OKS) management
-* [octl kube ippool api](octl_kube_ippool_api.md)	 - ippool api calls
-* [octl kube ippool create](octl_kube_ippool_create.md)	 - alias for request api Create
-* [octl kube ippool delete](octl_kube_ippool_delete.md)	 - alias for api Delete id
-* [octl kube ippool describe](octl_kube_ippool_describe.md)	 - alias for api Get
-* [octl kube ippool list](octl_kube_ippool_list.md)	 - alias for api List
+* [octl kube ippool api](octl_kube_ippool_api.md)	 - Call ippool API
+* [octl kube ippool create](octl_kube_ippool_create.md)	 - Create an ippool
+* [octl kube ippool delete](octl_kube_ippool_delete.md)	 - Delete an ippool
+* [octl kube ippool describe](octl_kube_ippool_describe.md)	 - Describe an ippool
+* [octl kube ippool list](octl_kube_ippool_list.md)	 - List ippools
 

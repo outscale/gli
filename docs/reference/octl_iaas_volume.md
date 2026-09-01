@@ -1,6 +1,6 @@
 ## octl iaas volume
 
-volume commands
+Manage Volume resources
 
 ### Options
 
@@ -37,11 +37,11 @@ volume commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas volume create](octl_iaas_volume_create.md)	 - alias for api CreateVolume
-* [octl iaas volume delete](octl_iaas_volume_delete.md)	 - alias for api DeleteVolume --VolumeId volume_id
-* [octl iaas volume describe](octl_iaas_volume_describe.md)	 - alias for api ReadVolumes --Filters.VolumeIds volume_id
-* [octl iaas volume link](octl_iaas_volume_link.md)	 - alias for api LinkVolume --VolumeId volume_id
-* [octl iaas volume list](octl_iaas_volume_list.md)	 - alias for api ReadVolumes
-* [octl iaas volume unlink](octl_iaas_volume_unlink.md)	 - alias for api UnlinkVolume --VolumeId link_volume_id
-* [octl iaas volume update](octl_iaas_volume_update.md)	 - alias for api UpdateVolume --VolumeId volume_id
+* [octl iaas volume create](octl_iaas_volume_create.md)	 - Creates a Block Storage Unit (BSU) volume in a specified Region.
+* [octl iaas volume delete](octl_iaas_volume_delete.md)	 - Deletes a specified Block Storage Unit (BSU) volume.
+* [octl iaas volume describe](octl_iaas_volume_describe.md)	 - Lists one or more specified Block Storage Unit (BSU) volumes.
+* [octl iaas volume link](octl_iaas_volume_link.md)	 - Attaches a Block Storage Unit (BSU) volume to a virtual machine (VM).
+* [octl iaas volume list](octl_iaas_volume_list.md)	 - Lists one or more specified Block Storage Unit (BSU) volumes.
+* [octl iaas volume unlink](octl_iaas_volume_unlink.md)	 - Detaches a Block Storage Unit (BSU) volume from a virtual machine (VM).
+* [octl iaas volume update](octl_iaas_volume_update.md)	 - Modifies the specified attributes of a volume.
 

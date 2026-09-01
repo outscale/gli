@@ -37,7 +37,7 @@ objectlock commands
 
 ### SEE ALSO
 
-* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
-* [octl storage bucket objectlock configure](octl_storage_bucket_objectlock_configure.md)	 - Update ObjectLock configuration, alias for api PutObjectLockConfiguration --Bucket bucket
-* [octl storage bucket objectlock describe](octl_storage_bucket_objectlock_describe.md)	 - Display ObjectLock configuration, alias for api GetObjectLockConfiguration --Bucket bucket
+* [octl storage bucket](octl_storage_bucket.md)	 - Manage Bucket resources
+* [octl storage bucket objectlock configure](octl_storage_bucket_objectlock_configure.md)	 - Update ObjectLock configuration.
+* [octl storage bucket objectlock describe](octl_storage_bucket_objectlock_describe.md)	 - Delete ObjectLock configuration.
 

@@ -13,10 +13,9 @@ octl iaas api ReadPolicyVersions [flags]
 ### Options
 
 ```
-      --FirstItem int        The item starting the list of policies requested.
-      --PolicyOrn string     The OUTSCALE Resource Name (ORN) of the policy.
-      --ResultsPerPage int   The maximum number of items that can be returned in a single response (by default, 100).
-  -h, --help                 help for ReadPolicyVersions
+      --FirstItem int      The item starting the list of policies requested.
+      --PolicyOrn string   [REQUIRED] The OUTSCALE Resource Name (ORN) of the policy.
+  -h, --help               help for ReadPolicyVersions
 ```
 
 ### Options inherited from parent commands
@@ -47,5 +46,5 @@ octl iaas api ReadPolicyVersions [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

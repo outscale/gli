@@ -1,15 +1,15 @@
 ## octl iaas dhcpoption create
 
-alias for api CreateDhcpOptions
+Creates a set of DHCP options, that you can then associate with a Net using the [UpdateNet](#updatenet) method.
 
 ### Synopsis
-
-> alias for api CreateDhcpOptions
 
 Creates a set of DHCP options, that you can then associate with a Net using the [UpdateNet](#updatenet) method.
 
 
 For more information, see [About DHCP Options](https://docs.outscale.com/en/userguide/About-DHCP-Options.html).
+
+> alias for CreateDhcpOptions
 
 ```
 octl iaas dhcpoption create [flags]
@@ -53,5 +53,5 @@ octl iaas dhcpoption create [flags]
 
 ### SEE ALSO
 
-* [octl iaas dhcpoption](octl_iaas_dhcpoption.md)	 - dhcpoption commands
+* [octl iaas dhcpoption](octl_iaas_dhcpoption.md)	 - Manage DhcpOptionsSet resources
 

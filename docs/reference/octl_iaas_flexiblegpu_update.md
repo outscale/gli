@@ -1,12 +1,12 @@
 ## octl iaas flexiblegpu update
 
-alias for api UpdateFlexibleGpu --FlexibleGpuId flexible_gpu_id
+Modifies a flexible GPU (fGPU) behavior.
 
 ### Synopsis
 
-> alias for api UpdateFlexibleGpu --FlexibleGpuId flexible_gpu_id
-
 Modifies a flexible GPU (fGPU) behavior.
+
+> alias for UpdateFlexibleGpu --FlexibleGpuId flexible_gpu_id
 
 ```
 octl iaas flexiblegpu update flexible_gpu_id [flexible_gpu_id]... [flags]
@@ -47,5 +47,5 @@ octl iaas flexiblegpu update flexible_gpu_id [flexible_gpu_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - flexiblegpu commands
+* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - Manage FlexibleGpu resources
 

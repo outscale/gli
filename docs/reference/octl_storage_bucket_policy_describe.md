@@ -1,12 +1,12 @@
 ## octl storage bucket policy describe
 
-Display Policy configuration, alias for api GetBucketPolicy --Bucket bucket
+Display Policy configuration.
 
 ### Synopsis
 
-> Display Policy configuration, alias for api GetBucketPolicy --Bucket bucket
+Display Policy configuration.
 
-
+> alias for GetBucketPolicy --Bucket bucket
 
 ```
 octl storage bucket policy describe bucket [flags]

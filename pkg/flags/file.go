@@ -6,6 +6,8 @@ import (
 	"os"
 )
 
+const FileOrJSON = "fileOrJson"
+
 var ErrInvalidFileOrJSON = errors.New("value is neither a file nor a JSON document")
 
 // FileOrJSONValue sets a flag with either a file content.
@@ -13,7 +15,7 @@ type FileOrJSONValue struct {
 	content []byte
 }
 
-func NewFileValue() *FileOrJSONValue {
+func NewFileOrJSONValue() *FileOrJSONValue {
 	return &FileOrJSONValue{}
 }
 

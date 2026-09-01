@@ -13,9 +13,9 @@ octl iaas api DeleteVpnConnectionRoute [flags]
 ### Options
 
 ```
-      --DestinationIpRange string   The network prefix of the route to delete, in CIDR notation (for example, 10.12.0.0/16).
+      --DestinationIpRange string   [REQUIRED] The network prefix of the route to delete, in CIDR notation (for example, 10.12.0.0/16).
       --DryRun                      If true, checks whether you have the required permissions to perform the action.
-      --VpnConnectionId string      The ID of the target VPN connection of the static route to delete.
+      --VpnConnectionId string      [REQUIRED] The ID of the target VPN connection of the static route to delete.
   -h, --help                        help for DeleteVpnConnectionRoute
 ```
 
@@ -47,5 +47,5 @@ octl iaas api DeleteVpnConnectionRoute [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -1,6 +1,6 @@
 ## octl iaas apilog
 
-apilog commands
+Manage ApiLog resources
 
 ### Options
 
@@ -37,6 +37,6 @@ apilog commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas apilog list](octl_iaas_apilog_list.md)	 - alias for api ReadApiLogs
-* [octl iaas apilog tail](octl_iaas_apilog_tail.md)	 - alias for api ReadApiLogs
+* [octl iaas apilog list](octl_iaas_apilog_list.md)	 - List API call logs
+* [octl iaas apilog tail](octl_iaas_apilog_tail.md)	 - Streams recent API call logs (similar to tail -f)
 

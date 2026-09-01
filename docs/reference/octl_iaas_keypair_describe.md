@@ -1,12 +1,12 @@
 ## octl iaas keypair describe
 
-alias for api ReadKeypairs --Filters.KeypairIds keypair_id
+Lists one or more of your keypairs.
 
 ### Synopsis
 
-> alias for api ReadKeypairs --Filters.KeypairIds keypair_id
+Lists one or more of your keypairs.
 
-
+> alias for ReadKeypairs --Filters.KeypairIds keypair_id
 
 ```
 octl iaas keypair describe keypair_id [keypair_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas keypair describe keypair_id [keypair_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas keypair](octl_iaas_keypair.md)	 - keypair commands
+* [octl iaas keypair](octl_iaas_keypair.md)	 - Manage Keypair resources
 

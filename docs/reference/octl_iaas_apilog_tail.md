@@ -1,10 +1,8 @@
 ## octl iaas apilog tail
 
-alias for api ReadApiLogs
+Streams recent API call logs (similar to tail -f)
 
 ### Synopsis
-
-> alias for api ReadApiLogs
 
 Lists the logs of the API calls you have performed with this OUTSCALE account.
 
@@ -16,6 +14,8 @@ By default, the retrieved interval is 48 hours. If neither of the `QueryDateBefo
 
 
 For more information, see [About OMS](https://docs.outscale.com/en/userguide/About-OMS.html).
+
+> alias for ReadApiLogs
 
 ```
 octl iaas apilog tail [flags]
@@ -61,5 +61,5 @@ octl iaas apilog tail [flags]
 
 ### SEE ALSO
 
-* [octl iaas apilog](octl_iaas_apilog.md)	 - apilog commands
+* [octl iaas apilog](octl_iaas_apilog.md)	 - Manage ApiLog resources
 

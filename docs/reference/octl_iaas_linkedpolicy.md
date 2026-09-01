@@ -1,6 +1,6 @@
 ## octl iaas linkedpolicy
 
-linkedpolicy commands
+Manage LinkedPolicy resources
 
 ### Options
 
@@ -37,5 +37,5 @@ linkedpolicy commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas linkedpolicy list](octl_iaas_linkedpolicy_list.md)	 - alias for api ReadLinkedPolicies
+* [octl iaas linkedpolicy list](octl_iaas_linkedpolicy_list.md)	 - Lists the managed policies linked to a specified user.
 

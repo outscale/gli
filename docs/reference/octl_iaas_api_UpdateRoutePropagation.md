@@ -14,9 +14,9 @@ octl iaas api UpdateRoutePropagation [flags]
 
 ```
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
-      --Enable                    If true, a virtual gateway can propagate routes to a specified route table of a Net.
-      --RouteTableId string       The ID of the route table.
-      --VirtualGatewayId string   The ID of the virtual gateway.
+      --Enable                    [REQUIRED] If true, a virtual gateway can propagate routes to a specified route table of a Net.
+      --RouteTableId string       [REQUIRED] The ID of the route table.
+      --VirtualGatewayId string   [REQUIRED] The ID of the virtual gateway.
   -h, --help                      help for UpdateRoutePropagation
 ```
 
@@ -48,5 +48,5 @@ octl iaas api UpdateRoutePropagation [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

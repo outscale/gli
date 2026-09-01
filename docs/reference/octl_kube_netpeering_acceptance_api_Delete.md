@@ -9,7 +9,13 @@ octl kube netpeering acceptance api Delete id [flags]
 ### Options
 
 ```
-  -h, --help   help for Delete
+      --DryRun strings                         
+      --GracePeriodSeconds int                 
+      --OrphanDependents                       
+      --Preconditions.ResourceVersion string   
+      --Preconditions.UID string               
+      --PropagationPolicy string               
+  -h, --help                                   help for Delete
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +47,5 @@ octl kube netpeering acceptance api Delete id [flags]
 
 ### SEE ALSO
 
-* [octl kube netpeering acceptance api](octl_kube_netpeering_acceptance_api.md)	 - acceptance api calls
+* [octl kube netpeering acceptance api](octl_kube_netpeering_acceptance_api.md)	 - Call acceptance API
 

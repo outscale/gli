@@ -16,7 +16,7 @@ octl iaas api DeleteVpnConnection [flags]
 
 ```
       --DryRun                   If true, checks whether you have the required permissions to perform the action.
-      --VpnConnectionId string   The ID of the VPN connection you want to delete.
+      --VpnConnectionId string   [REQUIRED] The ID of the VPN connection you want to delete.
   -h, --help                     help for DeleteVpnConnection
 ```
 
@@ -48,5 +48,5 @@ octl iaas api DeleteVpnConnection [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

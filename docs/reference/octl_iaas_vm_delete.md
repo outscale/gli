@@ -1,14 +1,14 @@
 ## octl iaas vm delete
 
-alias for api DeleteVms --VmIds vm_id
+Terminates one or more virtual machines (VMs).
 
 ### Synopsis
-
-> alias for api DeleteVms --VmIds vm_id
 
 Terminates one or more virtual machines (VMs).
 
 This operation is idempotent, that means that all calls succeed if you terminate a VM more than once.
+
+> alias for DeleteVms --VmIds vm_id
 
 ```
 octl iaas vm delete vm_id [vm_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas vm delete vm_id [vm_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas vm](octl_iaas_vm.md)	 - vm commands
+* [octl iaas vm](octl_iaas_vm.md)	 - Manage Vm resources
 

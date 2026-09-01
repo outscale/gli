@@ -1,12 +1,12 @@
 ## octl iaas vpnconnection list
 
-alias for api ReadVpnConnections
+Lists one or more VPN connections.
 
 ### Synopsis
 
-> alias for api ReadVpnConnections
-
 Lists one or more VPN connections.
+
+> alias for ReadVpnConnections
 
 ```
 octl iaas vpnconnection list [flags]
@@ -57,5 +57,5 @@ octl iaas vpnconnection list [flags]
 
 ### SEE ALSO
 
-* [octl iaas vpnconnection](octl_iaas_vpnconnection.md)	 - vpnconnection commands
+* [octl iaas vpnconnection](octl_iaas_vpnconnection.md)	 - Manage VpnConnection resources
 

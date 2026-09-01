@@ -1,15 +1,15 @@
 ## octl iaas quota list
 
-alias for api ReadQuotas
+Lists one or more of your quotas.
 
 ### Synopsis
-
-> alias for api ReadQuotas
 
 Lists one or more of your quotas.
 
 
 For more information, see [About Your Account](https://docs.outscale.com/en/userguide/About-Your-OUTSCALE-Account.html).
+
+> alias for ReadQuotas
 
 ```
 octl iaas quota list [flags]
@@ -53,5 +53,5 @@ octl iaas quota list [flags]
 
 ### SEE ALSO
 
-* [octl iaas quota](octl_iaas_quota.md)	 - quota commands
+* [octl iaas quota](octl_iaas_quota.md)	 - Manage Quota resources
 

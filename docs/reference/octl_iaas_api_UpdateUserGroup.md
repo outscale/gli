@@ -17,7 +17,7 @@ octl iaas api UpdateUserGroup [flags]
       --NewPath string            A new path for the group.
       --NewUserGroupName string   A new name for the user group.
       --Path string               The path to the group.
-      --UserGroupName string      The name of the group you want to update.
+      --UserGroupName string      [REQUIRED] The name of the group you want to update.
   -h, --help                      help for UpdateUserGroup
 ```
 
@@ -49,5 +49,5 @@ octl iaas api UpdateUserGroup [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

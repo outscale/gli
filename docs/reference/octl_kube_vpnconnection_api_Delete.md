@@ -9,7 +9,13 @@ octl kube vpnconnection api Delete id [flags]
 ### Options
 
 ```
-  -h, --help   help for Delete
+      --DryRun strings                         
+      --GracePeriodSeconds int                 
+      --OrphanDependents                       
+      --Preconditions.ResourceVersion string   
+      --Preconditions.UID string               
+      --PropagationPolicy string               
+  -h, --help                                   help for Delete
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +47,5 @@ octl kube vpnconnection api Delete id [flags]
 
 ### SEE ALSO
 
-* [octl kube vpnconnection api](octl_kube_vpnconnection_api.md)	 - vpnconnection api calls
+* [octl kube vpnconnection api](octl_kube_vpnconnection_api.md)	 - Call vpnconnection API
 

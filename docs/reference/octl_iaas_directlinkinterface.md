@@ -1,6 +1,6 @@
 ## octl iaas directlinkinterface
 
-directlinkinterface commands
+Manage DirectLinkInterface resources
 
 ### Options
 
@@ -37,9 +37,9 @@ directlinkinterface commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas directlinkinterface create](octl_iaas_directlinkinterface_create.md)	 - alias for api CreateDirectLinkInterface
-* [octl iaas directlinkinterface delete](octl_iaas_directlinkinterface_delete.md)	 - alias for api DeleteDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id
-* [octl iaas directlinkinterface describe](octl_iaas_directlinkinterface_describe.md)	 - alias for api ReadDirectLinkInterfaces --Filters.DirectLinkInterfaceIds direct_link_interface_id
-* [octl iaas directlinkinterface list](octl_iaas_directlinkinterface_list.md)	 - alias for api ReadDirectLinkInterfaces
-* [octl iaas directlinkinterface update](octl_iaas_directlinkinterface_update.md)	 - alias for api UpdateDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id
+* [octl iaas directlinkinterface create](octl_iaas_directlinkinterface_create.md)	 - Creates a DirectLink interface.
+* [octl iaas directlinkinterface delete](octl_iaas_directlinkinterface_delete.md)	 - Deletes a specified DirectLink interface.
+* [octl iaas directlinkinterface describe](octl_iaas_directlinkinterface_describe.md)	 - Lists one or more of your DirectLink interfaces.
+* [octl iaas directlinkinterface list](octl_iaas_directlinkinterface_list.md)	 - Lists one or more of your DirectLink interfaces.
+* [octl iaas directlinkinterface update](octl_iaas_directlinkinterface_update.md)	 - Modifies the maximum transmission unit (MTU) of a DirectLink interface.
 

@@ -14,8 +14,8 @@ octl iaas api CheckAuthentication [flags]
 
 ```
       --DryRun            If true, checks whether you have the required permissions to perform the action.
-      --Login string      The email address of the account.
-      --Password string   The password of the account.
+      --Login string      [REQUIRED] The email address of the account.
+      --Password string   [REQUIRED] The password of the account.
   -h, --help              help for CheckAuthentication
 ```
 
@@ -47,5 +47,5 @@ octl iaas api CheckAuthentication [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

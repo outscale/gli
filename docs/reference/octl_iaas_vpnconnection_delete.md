@@ -1,14 +1,14 @@
 ## octl iaas vpnconnection delete
 
-alias for api DeleteVpnConnection --VpnConnectionId vpn_connection_id
+Deletes a specified VPN connection.
 
 ### Synopsis
-
-> alias for api DeleteVpnConnection --VpnConnectionId vpn_connection_id
 
 Deletes a specified VPN connection.
 
 If you want to delete a Net and all its dependencies, we recommend to detach the virtual gateway from the Net and delete the Net before deleting the VPN connection. This enables you to delete the Net without waiting for the VPN connection to be deleted.
+
+> alias for DeleteVpnConnection --VpnConnectionId vpn_connection_id
 
 ```
 octl iaas vpnconnection delete vpn_connection_id [vpn_connection_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas vpnconnection delete vpn_connection_id [vpn_connection_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas vpnconnection](octl_iaas_vpnconnection.md)	 - vpnconnection commands
+* [octl iaas vpnconnection](octl_iaas_vpnconnection.md)	 - Manage VpnConnection resources
 

@@ -9,7 +9,8 @@ octl kube ippool api Get id [flags]
 ### Options
 
 ```
-  -h, --help   help for Get
+      --ResourceVersion string   
+  -h, --help                     help for Get
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +42,5 @@ octl kube ippool api Get id [flags]
 
 ### SEE ALSO
 
-* [octl kube ippool api](octl_kube_ippool_api.md)	 - ippool api calls
+* [octl kube ippool api](octl_kube_ippool_api.md)	 - Call ippool API
 

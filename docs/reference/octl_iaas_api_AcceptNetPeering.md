@@ -22,7 +22,7 @@ octl iaas api AcceptNetPeering [flags]
 
 ```
       --DryRun                If true, checks whether you have the required permissions to perform the action.
-      --NetPeeringId string   The ID of the Net peering you want to accept.
+      --NetPeeringId string   [REQUIRED] The ID of the Net peering you want to accept.
   -h, --help                  help for AcceptNetPeering
 ```
 
@@ -54,5 +54,5 @@ octl iaas api AcceptNetPeering [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -1,6 +1,6 @@
 ## octl iaas tag
 
-tag commands
+Manage Tag resources
 
 ### Options
 
@@ -37,6 +37,6 @@ tag commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas tag create](octl_iaas_tag_create.md)	 - alias for api CreateTags
-* [octl iaas tag list](octl_iaas_tag_list.md)	 - alias for api ReadTags
+* [octl iaas tag create](octl_iaas_tag_create.md)	 - Adds one or more tags to the specified resources.
+* [octl iaas tag list](octl_iaas_tag_list.md)	 - Lists one or more tags for your resources.
 

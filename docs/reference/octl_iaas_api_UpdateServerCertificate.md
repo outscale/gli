@@ -14,7 +14,7 @@ octl iaas api UpdateServerCertificate [flags]
 
 ```
       --DryRun           If true, checks whether you have the required permissions to perform the action.
-      --Name string      The name of the server certificate you want to modify.
+      --Name string      [REQUIRED] The name of the server certificate you want to modify.
       --NewName string   A new name for the server certificate.
       --NewPath string   A new path for the server certificate.
   -h, --help             help for UpdateServerCertificate
@@ -48,5 +48,5 @@ octl iaas api UpdateServerCertificate [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

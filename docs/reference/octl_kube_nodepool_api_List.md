@@ -9,7 +9,14 @@ octl kube nodepool api List [flags]
 ### Options
 
 ```
-  -h, --help   help for List
+      --FieldSelector string          
+      --LabelSelector string          
+      --Limit int                     
+      --ResourceVersion string        
+      --ResourceVersionMatch string   
+      --ShardSelector string          
+      --TimeoutSeconds int            
+  -h, --help                          help for List
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +48,5 @@ octl kube nodepool api List [flags]
 
 ### SEE ALSO
 
-* [octl kube nodepool api](octl_kube_nodepool_api.md)	 - nodepool api calls
+* [octl kube nodepool api](octl_kube_nodepool_api.md)	 - Call nodepool API
 

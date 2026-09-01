@@ -1,14 +1,14 @@
 ## octl iaas vm stop
 
-alias for api StopVms --VmIds vm_id
+Stops one or more running virtual machines (VMs).
 
 ### Synopsis
-
-> alias for api StopVms --VmIds vm_id
 
 Stops one or more running virtual machines (VMs).
 
 You can stop only VMs that are valid and that belong to you. Data stored in the VM RAM is lost.
+
+> alias for StopVms --VmIds vm_id
 
 ```
 octl iaas vm stop vm_id [vm_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas vm stop vm_id [vm_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas vm](octl_iaas_vm.md)	 - vm commands
+* [octl iaas vm](octl_iaas_vm.md)	 - Manage Vm resources
 

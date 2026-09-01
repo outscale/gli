@@ -1,14 +1,14 @@
 ## octl iaas subnet list
 
-alias for api ReadSubnets
+Lists one or more of your Subnets.
 
 ### Synopsis
-
-> alias for api ReadSubnets
 
 Lists one or more of your Subnets.
 
 If you do not specify any Subnet ID, this action describes all of your Subnets.
+
+> alias for ReadSubnets
 
 ```
 octl iaas subnet list [flags]
@@ -57,5 +57,5 @@ octl iaas subnet list [flags]
 
 ### SEE ALSO
 
-* [octl iaas subnet](octl_iaas_subnet.md)	 - subnet commands
+* [octl iaas subnet](octl_iaas_subnet.md)	 - Manage Subnet resources
 

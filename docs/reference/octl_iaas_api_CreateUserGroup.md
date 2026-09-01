@@ -17,7 +17,7 @@ octl iaas api CreateUserGroup [flags]
 ```
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
       --Path string            The path to the group.
-      --UserGroupName string   The name of the group.
+      --UserGroupName string   [REQUIRED] The name of the group.
   -h, --help                   help for CreateUserGroup
 ```
 
@@ -49,5 +49,5 @@ octl iaas api CreateUserGroup [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -1,12 +1,12 @@
 ## octl iaas listenerrule list
 
-alias for api ReadListenerRules
+Lists one or more listener rules.
 
 ### Synopsis
 
-> alias for api ReadListenerRules
-
 Lists one or more listener rules. By default, this action returns the full list of listener rules for the OUTSCALE account.
+
+> alias for ReadListenerRules
 
 ```
 octl iaas listenerrule list [flags]
@@ -47,5 +47,5 @@ octl iaas listenerrule list [flags]
 
 ### SEE ALSO
 
-* [octl iaas listenerrule](octl_iaas_listenerrule.md)	 - listenerrule commands
+* [octl iaas listenerrule](octl_iaas_listenerrule.md)	 - Manage ListenerRule resources
 

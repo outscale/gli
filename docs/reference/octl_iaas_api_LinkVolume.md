@@ -15,10 +15,10 @@ octl iaas api LinkVolume [flags]
 ### Options
 
 ```
-      --DeviceName string   The name of the device.
+      --DeviceName string   [REQUIRED] The name of the device.
       --DryRun              If true, checks whether you have the required permissions to perform the action.
-      --VmId string         The ID of the VM you want to attach the volume to.
-      --VolumeId string     The ID of the volume you want to attach.
+      --VmId string         [REQUIRED] The ID of the VM you want to attach the volume to.
+      --VolumeId string     [REQUIRED] The ID of the volume you want to attach.
   -h, --help                help for LinkVolume
 ```
 
@@ -50,5 +50,5 @@ octl iaas api LinkVolume [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

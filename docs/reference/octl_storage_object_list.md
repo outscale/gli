@@ -1,12 +1,12 @@
 ## octl storage object list
 
-alias for api ListObjectsV2
+
 
 ### Synopsis
 
-> alias for api ListObjectsV2
 
 
+> alias for ListObjectsV2
 
 ```
 octl storage object list [flags]
@@ -55,5 +55,5 @@ octl storage object list [flags]
 
 ### SEE ALSO
 
-* [octl storage object](octl_storage_object.md)	 - object commands
+* [octl storage object](octl_storage_object.md)	 - Manage Object resources
 

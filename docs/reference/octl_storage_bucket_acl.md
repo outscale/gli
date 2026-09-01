@@ -37,7 +37,7 @@ acl commands
 
 ### SEE ALSO
 
-* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
-* [octl storage bucket acl configure](octl_storage_bucket_acl_configure.md)	 - Update ACL configuration, alias for api PutBucketAcl --Bucket bucket
-* [octl storage bucket acl describe](octl_storage_bucket_acl_describe.md)	 - Display ACL configuration, alias for api GetBucketAcl --Bucket bucket
+* [octl storage bucket](octl_storage_bucket.md)	 - Manage Bucket resources
+* [octl storage bucket acl configure](octl_storage_bucket_acl_configure.md)	 - Update ACL configuration.
+* [octl storage bucket acl describe](octl_storage_bucket_acl_describe.md)	 - Display ACL configuration.
 

@@ -1,12 +1,12 @@
 ## octl storage object tagging delete
 
-Delete all tags from an object, alias for api DeleteObjectTagging --Key key
+Delete all tags from an object.
 
 ### Synopsis
 
-> Delete all tags from an object, alias for api DeleteObjectTagging --Key key
+Delete all tags from an object.
 
-
+> alias for DeleteObjectTagging --Key key
 
 ```
 octl storage object tagging delete key [flags]

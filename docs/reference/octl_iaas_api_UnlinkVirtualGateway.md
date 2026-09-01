@@ -16,8 +16,8 @@ octl iaas api UnlinkVirtualGateway [flags]
 
 ```
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
-      --NetId string              The ID of the Net from which you want to detach the virtual gateway.
-      --VirtualGatewayId string   The ID of the virtual gateway.
+      --NetId string              [REQUIRED] The ID of the Net from which you want to detach the virtual gateway.
+      --VirtualGatewayId string   [REQUIRED] The ID of the virtual gateway.
   -h, --help                      help for UnlinkVirtualGateway
 ```
 
@@ -49,5 +49,5 @@ octl iaas api UnlinkVirtualGateway [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -1,12 +1,15 @@
 ## octl iaas quota describe
 
-alias for api ReadQuotas --Filters.QuotaNames quota_name
+Lists one or more of your quotas.
 
 ### Synopsis
 
-> alias for api ReadQuotas --Filters.QuotaNames quota_name
+Lists one or more of your quotas.
 
 
+For more information, see [About Your Account](https://docs.outscale.com/en/userguide/About-Your-OUTSCALE-Account.html).
+
+> alias for ReadQuotas --Filters.QuotaNames quota_name
 
 ```
 octl iaas quota describe quota_name [quota_name]... [flags]
@@ -46,5 +49,5 @@ octl iaas quota describe quota_name [quota_name]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas quota](octl_iaas_quota.md)	 - quota commands
+* [octl iaas quota](octl_iaas_quota.md)	 - Manage Quota resources
 

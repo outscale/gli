@@ -1,12 +1,12 @@
 ## octl iaas image describe
 
-alias for api ReadImages --Filters.ImageIds image_id
+Lists one or more OUTSCALE machine images (OMIs) you can use.
 
 ### Synopsis
 
-> alias for api ReadImages --Filters.ImageIds image_id
+Lists one or more OUTSCALE machine images (OMIs) you can use.
 
-
+> alias for ReadImages --Filters.ImageIds image_id
 
 ```
 octl iaas image describe image_id [image_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas image describe image_id [image_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas image](octl_iaas_image.md)	 - image commands
+* [octl iaas image](octl_iaas_image.md)	 - Manage Image resources
 

@@ -1,12 +1,12 @@
 ## octl iaas snapshot describe
 
-alias for api ReadSnapshots --Filters.SnapshotIds snapshot_id
+Lists one or more snapshots that are available to you and the permissions to create volumes from them.
 
 ### Synopsis
 
-> alias for api ReadSnapshots --Filters.SnapshotIds snapshot_id
+Lists one or more snapshots that are available to you and the permissions to create volumes from them.
 
-
+> alias for ReadSnapshots --Filters.SnapshotIds snapshot_id
 
 ```
 octl iaas snapshot describe snapshot_id [snapshot_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas snapshot describe snapshot_id [snapshot_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas snapshot](octl_iaas_snapshot.md)	 - snapshot commands
+* [octl iaas snapshot](octl_iaas_snapshot.md)	 - Manage Snapshot resources
 

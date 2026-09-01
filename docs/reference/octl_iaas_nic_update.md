@@ -1,12 +1,12 @@
 ## octl iaas nic update
 
-alias for api UpdateNic --NicId nic_id
+Modifies the specified network interface card (NIC).
 
 ### Synopsis
 
-> alias for api UpdateNic --NicId nic_id
-
 Modifies the specified network interface card (NIC). You can specify only one attribute at a time.
+
+> alias for UpdateNic --NicId nic_id
 
 ```
 octl iaas nic update nic_id [nic_id]... [flags]
@@ -50,5 +50,5 @@ octl iaas nic update nic_id [nic_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas nic](octl_iaas_nic.md)	 - nic commands
+* [octl iaas nic](octl_iaas_nic.md)	 - Manage Nic resources
 

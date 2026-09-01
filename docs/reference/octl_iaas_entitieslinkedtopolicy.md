@@ -1,6 +1,6 @@
 ## octl iaas entitieslinkedtopolicy
 
-entitieslinkedtopolicy commands
+Manage EntitiesLinkedToPolicy resources
 
 ### Options
 
@@ -37,5 +37,5 @@ entitieslinkedtopolicy commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas entitieslinkedtopolicy list](octl_iaas_entitieslinkedtopolicy_list.md)	 - alias for api ReadEntitiesLinkedToPolicy
+* [octl iaas entitieslinkedtopolicy list](octl_iaas_entitieslinkedtopolicy_list.md)	 - Lists all entities (account, users, or user groups) linked to a specific managed policy.
 

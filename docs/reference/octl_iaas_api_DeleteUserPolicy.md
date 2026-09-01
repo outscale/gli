@@ -21,8 +21,8 @@ octl iaas api DeleteUserPolicy [flags]
 
 ```
       --DryRun              If true, checks whether you have the required permissions to perform the action.
-      --PolicyName string   The name of the policy document you want to delete (between 1 and 128 characters).
-      --UserName string     The name of the user you want to delete the policy from.
+      --PolicyName string   [REQUIRED] The name of the policy document you want to delete (between 1 and 128 characters).
+      --UserName string     [REQUIRED] The name of the user you want to delete the policy from.
   -h, --help                help for DeleteUserPolicy
 ```
 
@@ -54,5 +54,5 @@ octl iaas api DeleteUserPolicy [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

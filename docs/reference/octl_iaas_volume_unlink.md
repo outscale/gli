@@ -1,14 +1,14 @@
 ## octl iaas volume unlink
 
-alias for api UnlinkVolume --VolumeId link_volume_id
+Detaches a Block Storage Unit (BSU) volume from a virtual machine (VM).
 
 ### Synopsis
-
-> alias for api UnlinkVolume --VolumeId link_volume_id
 
 Detaches a Block Storage Unit (BSU) volume from a virtual machine (VM).
 
 To detach the root device of a VM, this VM must be stopped.
+
+> alias for UnlinkVolume --VolumeId link_volume_id
 
 ```
 octl iaas volume unlink volume_id [flags]
@@ -49,5 +49,5 @@ octl iaas volume unlink volume_id [flags]
 
 ### SEE ALSO
 
-* [octl iaas volume](octl_iaas_volume.md)	 - volume commands
+* [octl iaas volume](octl_iaas_volume.md)	 - Manage Volume resources
 

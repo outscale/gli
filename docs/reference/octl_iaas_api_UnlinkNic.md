@@ -16,7 +16,7 @@ octl iaas api UnlinkNic [flags]
 
 ```
       --DryRun             If true, checks whether you have the required permissions to perform the action.
-      --LinkNicId string   The ID of the attachment operation.
+      --LinkNicId string   [REQUIRED] The ID of the attachment operation.
   -h, --help               help for UnlinkNic
 ```
 
@@ -48,5 +48,5 @@ octl iaas api UnlinkNic [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -38,9 +38,9 @@ OUTSCALE Object Storage (OOS) management
 ### SEE ALSO
 
 * [octl](octl.md)	 - A modern CLI for Outscale services
-* [octl storage api](octl_storage_api.md)	 - storage api calls
-* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
-* [octl storage multipartupload](octl_storage_multipartupload.md)	 - multipartupload commands
-* [octl storage object](octl_storage_object.md)	 - object commands
-* [octl storage part](octl_storage_part.md)	 - part commands
+* [octl storage api](octl_storage_api.md)	 - Call storage API
+* [octl storage bucket](octl_storage_bucket.md)	 - Manage Bucket resources
+* [octl storage multipartupload](octl_storage_multipartupload.md)	 - Manage MultipartUpload resources
+* [octl storage object](octl_storage_object.md)	 - Manage Object resources
+* [octl storage part](octl_storage_part.md)	 - Manage Part resources
 

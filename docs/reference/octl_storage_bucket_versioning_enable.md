@@ -1,12 +1,12 @@
 ## octl storage bucket versioning enable
 
-Enable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Enabled
+Enable versioning.
 
 ### Synopsis
 
-> Enable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Enabled
+Enable versioning.
 
-
+> alias for PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Enabled
 
 ```
 octl storage bucket versioning enable bucket [flags]

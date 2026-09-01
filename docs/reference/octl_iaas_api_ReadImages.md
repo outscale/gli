@@ -41,8 +41,6 @@ octl iaas api ReadImages [flags]
       --Filters.Tags strings                            The key/value combination of the tags associated with the OMIs, in the following format: "Filters":{"Tags":["TAGKEY=TAGVALUE"]}.
       --Filters.TpmMandatory                            Whether a virtual Trusted Platform Module (vTPM) is mandatory for VMs created from this OMI (true) or not (false).
       --Filters.VirtualizationTypes strings             The virtualization types (always hvm).
-      --NextPageToken string                            The token to request the next page of results.
-      --ResultsPerPage int                              The maximum number of logs returned in a single response (between 1 and 1000, both included).
   -h, --help                                            help for ReadImages
 ```
 
@@ -74,5 +72,5 @@ octl iaas api ReadImages [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

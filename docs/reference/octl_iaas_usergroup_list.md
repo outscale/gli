@@ -1,14 +1,14 @@
 ## octl iaas usergroup list
 
-alias for api ReadUserGroups
+Lists all the user groups of the OUTSCALE account.
 
 ### Synopsis
-
-> alias for api ReadUserGroups
 
 Lists all the user groups of the OUTSCALE account.
 
 The response can be filtered using either the PathPrefix or the UserGroupIds.
+
+> alias for ReadUserGroups
 
 ```
 octl iaas usergroup list [flags]
@@ -51,5 +51,5 @@ octl iaas usergroup list [flags]
 
 ### SEE ALSO
 
-* [octl iaas usergroup](octl_iaas_usergroup.md)	 - usergroup commands
+* [octl iaas usergroup](octl_iaas_usergroup.md)	 - Manage UserGroup resources
 

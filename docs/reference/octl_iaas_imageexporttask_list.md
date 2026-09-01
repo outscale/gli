@@ -1,12 +1,12 @@
 ## octl iaas imageexporttask list
 
-alias for api ReadImageExportTasks
+Lists one or more image export tasks.
 
 ### Synopsis
 
-> alias for api ReadImageExportTasks
-
 Lists one or more image export tasks.
+
+> alias for ReadImageExportTasks
 
 ```
 octl iaas imageexporttask list [flags]
@@ -48,5 +48,5 @@ octl iaas imageexporttask list [flags]
 
 ### SEE ALSO
 
-* [octl iaas imageexporttask](octl_iaas_imageexporttask.md)	 - imageexporttask commands
+* [octl iaas imageexporttask](octl_iaas_imageexporttask.md)	 - Manage ImageExportTask resources
 

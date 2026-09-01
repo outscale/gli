@@ -1,15 +1,15 @@
 ## octl kube nodepool describe
 
-alias for api Get name
+Describe a nodepool
 
 ### Synopsis
 
-> alias for api Get name
+Describe a nodepool
 
-
+> alias for Get id
 
 ```
-octl kube nodepool describe name [name]... [flags]
+octl kube nodepool describe id [id]... [flags]
 ```
 
 ### Options
@@ -48,5 +48,5 @@ octl kube nodepool describe name [name]... [flags]
 
 ### SEE ALSO
 
-* [octl kube nodepool](octl_kube_nodepool.md)	 - nodepool commands
+* [octl kube nodepool](octl_kube_nodepool.md)	 - Manage nodepool resources
 

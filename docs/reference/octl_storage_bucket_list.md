@@ -1,12 +1,12 @@
 ## octl storage bucket list
 
-alias for api ListBuckets
+
 
 ### Synopsis
 
-> alias for api ListBuckets
 
 
+> alias for ListBuckets
 
 ```
 octl storage bucket list [flags]
@@ -49,5 +49,5 @@ octl storage bucket list [flags]
 
 ### SEE ALSO
 
-* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
+* [octl storage bucket](octl_storage_bucket.md)	 - Manage Bucket resources
 

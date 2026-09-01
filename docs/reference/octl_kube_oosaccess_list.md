@@ -2,12 +2,6 @@
 
 alias for api List
 
-### Synopsis
-
-> alias for api List
-
-
-
 ```
 octl kube oosaccess list [flags]
 ```
@@ -48,5 +42,5 @@ octl kube oosaccess list [flags]
 
 ### SEE ALSO
 
-* [octl kube oosaccess](octl_kube_oosaccess.md)	 - oosaccess commands
+* [octl kube oosaccess](octl_kube_oosaccess.md)	 - Manage OOS Access resources
 

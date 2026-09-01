@@ -13,14 +13,12 @@ octl storage api PutObjectAcl [flags]
       --AccessControlPolicy.Grants.0.Grantee.DisplayName string    Screen name of the grantee.
       --AccessControlPolicy.Grants.0.Grantee.EmailAddress string   Email address of the grantee.
       --AccessControlPolicy.Grants.0.Grantee.ID string             The canonical user ID of the grantee.
-      --AccessControlPolicy.Grants.0.Grantee.Type string           [REQUIRED] of grantee This member is required.
+      --AccessControlPolicy.Grants.0.Grantee.Type string           of grantee This member is required.
       --AccessControlPolicy.Grants.0.Grantee.URI string            of the grantee group.
       --AccessControlPolicy.Grants.0.Permission string             Specifies the permission given to the grantee.
       --AccessControlPolicy.Owner.DisplayName string               Container for the display name of the owner.
       --AccessControlPolicy.Owner.ID string                        Container for the ID of the owner.
       --Bucket string                                              [REQUIRED] The bucket name that contains the object to which you want to attach the ACL.
-      --ChecksumAlgorithm string                                   Indicates the algorithm used to create the checksum for the object when you use the SDK.
-      --ContentMD5 string                                          The base64-encoded 128-bit MD5 digest of the data.
       --ExpectedBucketOwner string                                 The account ID of the expected bucket owner.
       --GrantFullControl string                                    Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.
       --GrantRead string                                           Allows grantee to list the objects in the bucket.
@@ -28,7 +26,6 @@ octl storage api PutObjectAcl [flags]
       --GrantWrite string                                          Allows grantee to create new objects in the bucket.
       --GrantWriteACP string                                       Allows grantee to write the ACL for the applicable bucket.
       --Key string                                                 [REQUIRED] for which the PUT action was initiated.
-      --RequestPayer string                                        Confirms that the requester knows that they will be charged for the request.
       --VersionId string                                           Version ID used to reference a specific version of the object.
   -h, --help                                                       help for PutObjectAcl
 ```
@@ -62,5 +59,5 @@ octl storage api PutObjectAcl [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

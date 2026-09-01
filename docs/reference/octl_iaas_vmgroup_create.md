@@ -1,10 +1,8 @@
 ## octl iaas vmgroup create
 
-alias for api CreateVmGroup
+> [WARNING] > This feature is currently under development and may not function properly.
 
 ### Synopsis
-
-> alias for api CreateVmGroup
 
 > [WARNING]
 
@@ -14,6 +12,8 @@ alias for api CreateVmGroup
 Creates a group of virtual machines (VMs) containing the same characteristics as a specified VM template, and then launches them.
 
 You can create up to 100 VM groups in your OUTSCALE account.
+
+> alias for CreateVmGroup
 
 ```
 octl iaas vmgroup create [flags]
@@ -62,5 +62,5 @@ octl iaas vmgroup create [flags]
 
 ### SEE ALSO
 
-* [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - vmgroup commands
+* [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - Manage VmGroup resources
 

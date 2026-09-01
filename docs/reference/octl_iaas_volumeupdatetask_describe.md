@@ -1,12 +1,12 @@
 ## octl iaas volumeupdatetask describe
 
-alias for api ReadVolumeUpdateTasks --Filters.TaskIds task_id
+Lists one or more specified tasks of volume update.
 
 ### Synopsis
 
-> alias for api ReadVolumeUpdateTasks --Filters.TaskIds task_id
+Lists one or more specified tasks of volume update.
 
-
+> alias for ReadVolumeUpdateTasks --Filters.TaskIds task_id
 
 ```
 octl iaas volumeupdatetask describe task_id [task_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas volumeupdatetask describe task_id [task_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas volumeupdatetask](octl_iaas_volumeupdatetask.md)	 - volumeupdatetask commands
+* [octl iaas volumeupdatetask](octl_iaas_volumeupdatetask.md)	 - Manage VolumeUpdateTask resources
 

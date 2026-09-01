@@ -1,12 +1,12 @@
 ## octl iaas usergrouppolicy list
 
-alias for api ReadUserGroupPolicies
+Lists the names of the inline policies embedded in a specific group.
 
 ### Synopsis
 
-> alias for api ReadUserGroupPolicies
-
 Lists the names of the inline policies embedded in a specific group.
+
+> alias for ReadUserGroupPolicies
 
 ```
 octl iaas usergrouppolicy list [flags]
@@ -49,5 +49,5 @@ octl iaas usergrouppolicy list [flags]
 
 ### SEE ALSO
 
-* [octl iaas usergrouppolicy](octl_iaas_usergrouppolicy.md)	 - usergrouppolicy commands
+* [octl iaas usergrouppolicy](octl_iaas_usergrouppolicy.md)	 - Manage UserGroupPolicy resources
 

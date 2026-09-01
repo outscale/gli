@@ -20,7 +20,7 @@ octl iaas api DeleteNetPeering [flags]
 
 ```
       --DryRun                If true, checks whether you have the required permissions to perform the action.
-      --NetPeeringId string   The ID of the Net peering you want to delete.
+      --NetPeeringId string   [REQUIRED] The ID of the Net peering you want to delete.
   -h, --help                  help for DeleteNetPeering
 ```
 
@@ -52,5 +52,5 @@ octl iaas api DeleteNetPeering [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -19,7 +19,7 @@ octl iaas api UpdateImage [flags]
 ```
       --Description string                                 A new description for the image.
       --DryRun                                             If true, checks whether you have the required permissions to perform the action.
-      --ImageId string                                     The ID of the OMI you want to modify.
+      --ImageId string                                     [REQUIRED] The ID of the OMI you want to modify.
       --PermissionsToLaunch.Additions.AccountIds strings   One or more OUTSCALE account IDs that the permission is associated with.
       --PermissionsToLaunch.Additions.GlobalPermission     A global permission for all accounts.
       --PermissionsToLaunch.Removals.AccountIds strings    One or more OUTSCALE account IDs that the permission is associated with.
@@ -56,5 +56,5 @@ octl iaas api UpdateImage [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

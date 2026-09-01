@@ -13,7 +13,6 @@ octl storage api CreateMultipartUpload [flags]
       --Bucket string                       [REQUIRED] The name of the bucket where the multipart upload is initiated and where the object is uploaded.
       --BucketKeyEnabled                    Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using Key Management Service (KMS) keys (SSE-KMS).
       --CacheControl string                 Specifies caching behavior along the request/reply chain.
-      --ChecksumAlgorithm string            Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object.
       --ContentDisposition string           Specifies presentational information for the object.
       --ContentEncoding string              Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
       --ContentLanguage string              The language that the content is in.
@@ -29,14 +28,7 @@ octl storage api CreateMultipartUpload [flags]
       --ObjectLockLegalHoldStatus string    Specifies whether you want to apply a legal hold to the uploaded object.
       --ObjectLockMode string               Specifies the Object Lock mode that you want to apply to the uploaded object.
       --ObjectLockRetainUntilDate osctime   Specifies the date and time when you want the Object Lock to expire.
-      --RequestPayer string                 Confirms that the requester knows that they will be charged for the request.
-      --SSECustomerAlgorithm string         Specifies the algorithm to use when encrypting the object (for example, AES256).
-      --SSECustomerKey string               Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data.
-      --SSECustomerKeyMD5 string            Specifies the 128-bit MD5 digest of the customer-provided encryption key according to RFC 1321.
-      --SSEKMSEncryptionContext string      Specifies the Amazon Web Services KMS Encryption Context to use for object encryption.
-      --SSEKMSKeyId string                  Specifies the KMS key ID (Key ID, Key ARN, or Key Alias) to use for object encryption.
       --ServerSideEncryption string         The server-side encryption algorithm used when you store this object in Amazon S3 (for example, AES256 , aws:kms ).
-      --StorageClass string                 By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects.
       --Tagging string                      The tag-set for the object.
       --WebsiteRedirectLocation string      If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL.
   -h, --help                                help for CreateMultipartUpload
@@ -71,5 +63,5 @@ octl storage api CreateMultipartUpload [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

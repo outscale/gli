@@ -22,7 +22,7 @@ octl iaas api CreateLoadBalancerListeners [flags]
       --Listeners.0.LoadBalancerPort int          The port on which the load balancer is listening (between 1 and 65535, both included).
       --Listeners.0.LoadBalancerProtocol string   The routing protocol (HTTP | HTTPS | TCP | SSL).
       --Listeners.0.ServerCertificateId string    The OUTSCALE Resource Name (ORN) of the server certificate.
-      --LoadBalancerName string                   The name of the load balancer for which you want to create listeners.
+      --LoadBalancerName string                   [REQUIRED] The name of the load balancer for which you want to create listeners.
   -h, --help                                      help for CreateLoadBalancerListeners
 ```
 
@@ -54,5 +54,5 @@ octl iaas api CreateLoadBalancerListeners [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

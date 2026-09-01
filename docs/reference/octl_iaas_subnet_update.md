@@ -1,12 +1,12 @@
 ## octl iaas subnet update
 
-alias for api UpdateSubnet --SubnetId subnet_id
+Modifies the specified attribute of a Subnet.
 
 ### Synopsis
 
-> alias for api UpdateSubnet --SubnetId subnet_id
-
 Modifies the specified attribute of a Subnet.
+
+> alias for UpdateSubnet --SubnetId subnet_id
 
 ```
 octl iaas subnet update subnet_id [subnet_id]... [flags]
@@ -47,5 +47,5 @@ octl iaas subnet update subnet_id [subnet_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas subnet](octl_iaas_subnet.md)	 - subnet commands
+* [octl iaas subnet](octl_iaas_subnet.md)	 - Manage Subnet resources
 

@@ -1,12 +1,12 @@
 ## octl storage object versions
 
-Display an object metadata, alias for api ListObjectVersions
+Display an object metadata.
 
 ### Synopsis
 
-> Display an object metadata, alias for api ListObjectVersions
+Display an object metadata.
 
-
+> alias for ListObjectVersions
 
 ```
 octl storage object versions [flags]
@@ -48,5 +48,5 @@ octl storage object versions [flags]
 
 ### SEE ALSO
 
-* [octl storage object](octl_storage_object.md)	 - object commands
+* [octl storage object](octl_storage_object.md)	 - Manage Object resources
 

@@ -1,6 +1,6 @@
 ## octl iaas subnet
 
-subnet commands
+Manage Subnet resources
 
 ### Options
 
@@ -37,9 +37,9 @@ subnet commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas subnet create](octl_iaas_subnet_create.md)	 - alias for api CreateSubnet
-* [octl iaas subnet delete](octl_iaas_subnet_delete.md)	 - alias for api DeleteSubnet --SubnetId subnet_id
-* [octl iaas subnet describe](octl_iaas_subnet_describe.md)	 - alias for api ReadSubnets --Filters.SubnetIds subnet_id
-* [octl iaas subnet list](octl_iaas_subnet_list.md)	 - alias for api ReadSubnets
-* [octl iaas subnet update](octl_iaas_subnet_update.md)	 - alias for api UpdateSubnet --SubnetId subnet_id
+* [octl iaas subnet create](octl_iaas_subnet_create.md)	 - Creates a Subnet in an existing Net.
+* [octl iaas subnet delete](octl_iaas_subnet_delete.md)	 - Deletes a specified Subnet.
+* [octl iaas subnet describe](octl_iaas_subnet_describe.md)	 - Lists one or more of your Subnets.
+* [octl iaas subnet list](octl_iaas_subnet_list.md)	 - Lists one or more of your Subnets.
+* [octl iaas subnet update](octl_iaas_subnet_update.md)	 - Modifies the specified attribute of a Subnet.
 

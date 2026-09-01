@@ -1,12 +1,12 @@
 ## octl iaas net update
 
-alias for api UpdateNet --NetId net_id
+Associates a DHCP options set with a specified Net.
 
 ### Synopsis
 
-> alias for api UpdateNet --NetId net_id
-
 Associates a DHCP options set with a specified Net.
+
+> alias for UpdateNet --NetId net_id
 
 ```
 octl iaas net update net_id [net_id]... [flags]
@@ -47,5 +47,5 @@ octl iaas net update net_id [net_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas net](octl_iaas_net.md)	 - net commands
+* [octl iaas net](octl_iaas_net.md)	 - Manage Net resources
 

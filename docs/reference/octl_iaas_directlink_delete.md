@@ -1,14 +1,14 @@
 ## octl iaas directlink delete
 
-alias for api DeleteDirectLink --DirectLinkId direct_link_id
+Deletes a specified DirectLink.
 
 ### Synopsis
-
-> alias for api DeleteDirectLink --DirectLinkId direct_link_id
 
 Deletes a specified DirectLink.
 
 Before deleting a DirectLink, ensure that all your DirectLink interfaces related to this DirectLink are deleted.
+
+> alias for DeleteDirectLink --DirectLinkId direct_link_id
 
 ```
 octl iaas directlink delete direct_link_id [direct_link_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas directlink delete direct_link_id [direct_link_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas directlink](octl_iaas_directlink.md)	 - directlink commands
+* [octl iaas directlink](octl_iaas_directlink.md)	 - Manage DirectLink resources
 

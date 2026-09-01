@@ -1,6 +1,6 @@
 ## octl iaas dhcpoption
 
-dhcpoption commands
+Manage DhcpOptionsSet resources
 
 ### Options
 
@@ -37,8 +37,8 @@ dhcpoption commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas dhcpoption create](octl_iaas_dhcpoption_create.md)	 - alias for api CreateDhcpOptions
-* [octl iaas dhcpoption delete](octl_iaas_dhcpoption_delete.md)	 - alias for api DeleteDhcpOptions --DhcpOptionsSetId dhcp_options_set_id
-* [octl iaas dhcpoption describe](octl_iaas_dhcpoption_describe.md)	 - alias for api ReadDhcpOptions --Filters.DhcpOptionsSetIds dhcp_options_set_id
-* [octl iaas dhcpoption list](octl_iaas_dhcpoption_list.md)	 - alias for api ReadDhcpOptions
+* [octl iaas dhcpoption create](octl_iaas_dhcpoption_create.md)	 - Creates a set of DHCP options, that you can then associate with a Net using the [UpdateNet](#updatenet) method.
+* [octl iaas dhcpoption delete](octl_iaas_dhcpoption_delete.md)	 - Deletes a specified DHCP options set.
+* [octl iaas dhcpoption describe](octl_iaas_dhcpoption_describe.md)	 - Gets information about the content of one or more DHCP options sets.
+* [octl iaas dhcpoption list](octl_iaas_dhcpoption_list.md)	 - Gets information about the content of one or more DHCP options sets.
 

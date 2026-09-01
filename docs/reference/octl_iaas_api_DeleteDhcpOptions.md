@@ -21,7 +21,7 @@ octl iaas api DeleteDhcpOptions [flags]
 ### Options
 
 ```
-      --DhcpOptionsSetId string   The ID of the DHCP options set you want to delete.
+      --DhcpOptionsSetId string   [REQUIRED] The ID of the DHCP options set you want to delete.
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
   -h, --help                      help for DeleteDhcpOptions
 ```
@@ -54,5 +54,5 @@ octl iaas api DeleteDhcpOptions [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

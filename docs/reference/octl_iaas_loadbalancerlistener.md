@@ -1,6 +1,6 @@
 ## octl iaas loadbalancerlistener
 
-loadbalancerlistener commands
+Manage LoadBalancerListener resources
 
 ### Options
 
@@ -37,5 +37,5 @@ loadbalancerlistener commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas loadbalancerlistener create](octl_iaas_loadbalancerlistener_create.md)	 - alias for api CreateLoadBalancerListeners
+* [octl iaas loadbalancerlistener create](octl_iaas_loadbalancerlistener_create.md)	 - Creates one or more listeners for a specified load balancer.
 

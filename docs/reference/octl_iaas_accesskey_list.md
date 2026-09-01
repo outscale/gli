@@ -1,12 +1,12 @@
 ## octl iaas accesskey list
 
-alias for api ReadAccessKeys
+Lists the access key IDs of either your root user or an EIM user.
 
 ### Synopsis
 
-> alias for api ReadAccessKeys
-
 Lists the access key IDs of either your root user or an EIM user.
+
+> alias for ReadAccessKeys
 
 ```
 octl iaas accesskey list [flags]
@@ -50,5 +50,5 @@ octl iaas accesskey list [flags]
 
 ### SEE ALSO
 
-* [octl iaas accesskey](octl_iaas_accesskey.md)	 - accesskey commands
+* [octl iaas accesskey](octl_iaas_accesskey.md)	 - Manage AccessKey resources
 

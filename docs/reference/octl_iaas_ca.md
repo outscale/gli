@@ -1,6 +1,6 @@
 ## octl iaas ca
 
-ca commands
+Manage Ca resources
 
 ### Options
 
@@ -37,9 +37,9 @@ ca commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas ca create](octl_iaas_ca_create.md)	 - alias for api CreateCa
-* [octl iaas ca delete](octl_iaas_ca_delete.md)	 - alias for api DeleteCa --CaId ca_id
-* [octl iaas ca describe](octl_iaas_ca_describe.md)	 - alias for api ReadCas --Filters.CaIds ca_id
-* [octl iaas ca list](octl_iaas_ca_list.md)	 - alias for api ReadCas
-* [octl iaas ca update](octl_iaas_ca_update.md)	 - alias for api UpdateCa --CaId ca_id
+* [octl iaas ca create](octl_iaas_ca_create.md)	 - Creates a Client Certificate Authority (CA).
+* [octl iaas ca delete](octl_iaas_ca_delete.md)	 - Deletes a specified Client Certificate Authority (CA).
+* [octl iaas ca describe](octl_iaas_ca_describe.md)	 - Gets information about one or more of your Client Certificate Authorities (CAs).
+* [octl iaas ca list](octl_iaas_ca_list.md)	 - Gets information about one or more of your Client Certificate Authorities (CAs).
+* [octl iaas ca update](octl_iaas_ca_update.md)	 - Modifies the specified attribute of a Client Certificate Authority (CA).
 

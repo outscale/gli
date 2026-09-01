@@ -1,6 +1,6 @@
 ## octl iaas image
 
-image commands
+Manage Image resources
 
 ### Options
 
@@ -37,9 +37,9 @@ image commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas image create](octl_iaas_image_create.md)	 - alias for api CreateImage
-* [octl iaas image delete](octl_iaas_image_delete.md)	 - alias for api DeleteImage --ImageId image_id
-* [octl iaas image describe](octl_iaas_image_describe.md)	 - alias for api ReadImages --Filters.ImageIds image_id
-* [octl iaas image list](octl_iaas_image_list.md)	 - alias for api ReadImages
-* [octl iaas image update](octl_iaas_image_update.md)	 - alias for api UpdateImage --ImageId image_id
+* [octl iaas image create](octl_iaas_image_create.md)	 - Creates an OUTSCALE machine image (OMI).
+* [octl iaas image delete](octl_iaas_image_delete.md)	 - Deletes an OUTSCALE machine image (OMI) so that you cannot use it anymore to launch virtual machines (VMs).
+* [octl iaas image describe](octl_iaas_image_describe.md)	 - Lists one or more OUTSCALE machine images (OMIs) you can use.
+* [octl iaas image list](octl_iaas_image_list.md)	 - Lists one or more OUTSCALE machine images (OMIs) you can use.
+* [octl iaas image update](octl_iaas_image_update.md)	 - Modifies the access permissions for an OUTSCALE machine image (OMI).
 

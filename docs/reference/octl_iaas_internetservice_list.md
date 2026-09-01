@@ -1,14 +1,14 @@
 ## octl iaas internetservice list
 
-alias for api ReadInternetServices
+Lists one or more of your internet services.
 
 ### Synopsis
-
-> alias for api ReadInternetServices
 
 Lists one or more of your internet services.
 
 An internet service enables virtual machines (VMs) launched in a Net to connect to the Internet. It allows the routing of incoming and outgoing Internet traffic and management of public IPs.
+
+> alias for ReadInternetServices
 
 ```
 octl iaas internetservice list [flags]
@@ -54,5 +54,5 @@ octl iaas internetservice list [flags]
 
 ### SEE ALSO
 
-* [octl iaas internetservice](octl_iaas_internetservice.md)	 - internetservice commands
+* [octl iaas internetservice](octl_iaas_internetservice.md)	 - Manage InternetService resources
 

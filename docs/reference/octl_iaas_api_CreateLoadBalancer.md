@@ -28,7 +28,7 @@ octl iaas api CreateLoadBalancer [flags]
       --Listeners.0.LoadBalancerPort int          The port on which the load balancer is listening (between 1 and 65535, both included).
       --Listeners.0.LoadBalancerProtocol string   The routing protocol (HTTP | HTTPS | TCP | SSL).
       --Listeners.0.ServerCertificateId string    The OUTSCALE Resource Name (ORN) of the server certificate.
-      --LoadBalancerName string                   The unique name of the load balancer, with a maximum length of 32 alphanumeric characters and dashes (-).
+      --LoadBalancerName string                   [REQUIRED] The unique name of the load balancer, with a maximum length of 32 alphanumeric characters and dashes (-).
       --LoadBalancerType string                   The type of load balancer: internet-facing or internal.
       --PublicIp string                           (internet-facing only) The public IP you want to associate with the load balancer.
       --SecurityGroups strings                    (Net only) One or more IDs of security groups you want to assign to the load balancer.
@@ -67,5 +67,5 @@ octl iaas api CreateLoadBalancer [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

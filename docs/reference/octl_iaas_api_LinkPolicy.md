@@ -21,8 +21,8 @@ octl iaas api LinkPolicy [flags]
 
 ```
       --DryRun             If true, checks whether you have the required permissions to perform the action.
-      --PolicyOrn string   The OUTSCALE Resource Name (ORN) of the policy.
-      --UserName string    The name of the user you want to link the policy to (between 1 and 64 characters).
+      --PolicyOrn string   [REQUIRED] The OUTSCALE Resource Name (ORN) of the policy.
+      --UserName string    [REQUIRED] The name of the user you want to link the policy to (between 1 and 64 characters).
   -h, --help               help for LinkPolicy
 ```
 
@@ -54,5 +54,5 @@ octl iaas api LinkPolicy [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

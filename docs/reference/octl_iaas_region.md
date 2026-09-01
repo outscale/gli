@@ -1,6 +1,6 @@
 ## octl iaas region
 
-region commands
+Manage Region resources
 
 ### Options
 
@@ -37,5 +37,5 @@ region commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas region list](octl_iaas_region_list.md)	 - alias for api ReadRegions
+* [octl iaas region list](octl_iaas_region_list.md)	 - Lists one or more Regions of the OUTSCALE Cloud.
 

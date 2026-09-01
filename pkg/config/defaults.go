@@ -21,8 +21,11 @@ import (
 //go:generate go run generate/kube/main.go generate/kube/defaults.yaml defaults_kube.yaml
 //go:generate go run generate/kubeclient/main.go generate/kubeclient/defaults_nodepool.yaml defaults_kubeclient_nodepool.yaml v1beta2
 //go:generate go run generate/kubeclient/main.go generate/kubeclient/defaults_netpeering.yaml defaults_kubeclient_netpeering.yaml v1beta
+//go:generate go run generate/kubeclient/main.go generate/kubeclient/defaults_netpeering_acceptance.yaml defaults_kubeclient_netpeering_acceptance.yaml v1beta
+//go:generate go run generate/kubeclient/main.go generate/kubeclient/defaults_netpeering_request.yaml defaults_kubeclient_netpeering_request.yaml v1beta
 //go:generate go run generate/kubeclient/main.go generate/kubeclient/defaults_oosaccess.yaml defaults_kubeclient_oosaccess.yaml v1beta
 //go:generate go run generate/kubeclient/main.go generate/kubeclient/defaults_ippool.yaml defaults_kubeclient_ippool.yaml v1beta
+//go:generate go run generate/kubeclient/main.go generate/kubeclient/defaults_vpnconnection.yaml defaults_kubeclient_vpnconnection.yaml v1beta
 //go:generate go run generate/archive/main.go .
 //go:embed defaults.zip
 var defaults []byte

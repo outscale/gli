@@ -1,21 +1,133 @@
-contents:
+api:
   Create:
+    use: Create
     content: .
     entity: ippool
+    flags:
+    - name: ObjectMeta.Name
+      kind: 24
+    - name: ObjectMeta.GenerateName
+      kind: 24
+    - name: ObjectMeta.Namespace
+      kind: 24
+    - name: ObjectMeta.SelfLink
+      kind: 24
+    - name: ObjectMeta.UID
+      kind: 24
+    - name: ObjectMeta.ResourceVersion
+      kind: 24
+    - name: ObjectMeta.DeletionTimestamp
+      kind: 24
+      customValue: fileOrJson
+    - name: ObjectMeta.DeletionGracePeriodSeconds
+      kind: 6
+    - name: ObjectMeta.Labels
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Annotations
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Finalizers
+      kind: 24
+      container: 23
+    - name: Spec.NumAddresses
+      kind: 2
+    - name: Spec.Persistent
+      kind: 1
+    - name: DryRun
+      kind: 24
+      container: 23
+    - name: FieldManager
+      kind: 24
+    - name: FieldValidation
+      kind: 24
+  Delete:
+    use: Delete id
+    flags:
+    - name: GracePeriodSeconds
+      kind: 6
+    - name: Preconditions.UID
+      kind: 24
+    - name: Preconditions.ResourceVersion
+      kind: 24
+    - name: OrphanDependents
+      kind: 1
+    - name: PropagationPolicy
+      kind: 24
+    - name: DryRun
+      kind: 24
+      container: 23
   Get:
+    use: Get id
     content: .
     entity: ippool
+    flags:
+    - name: ResourceVersion
+      kind: 24
   List:
+    use: List
     content: Items
     entity: ippool
-  Patch:
-    entity: ippool
+    flags:
+    - name: LabelSelector
+      kind: 24
+    - name: FieldSelector
+      kind: 24
+    - name: ResourceVersion
+      kind: 24
+    - name: ResourceVersionMatch
+      kind: 24
+    - name: TimeoutSeconds
+      kind: 6
+    - name: Limit
+      kind: 6
+    - name: ShardSelector
+      kind: 24
   Update:
+    use: Update
+    content: Spec
     entity: ippool
-  UpdateStatus:
-    entity: ippool
+    flags:
+    - name: ObjectMeta.Name
+      kind: 24
+    - name: ObjectMeta.GenerateName
+      kind: 24
+    - name: ObjectMeta.Namespace
+      kind: 24
+    - name: ObjectMeta.SelfLink
+      kind: 24
+    - name: ObjectMeta.UID
+      kind: 24
+    - name: ObjectMeta.ResourceVersion
+      kind: 24
+    - name: ObjectMeta.DeletionTimestamp
+      kind: 24
+      customValue: fileOrJson
+    - name: ObjectMeta.DeletionGracePeriodSeconds
+      kind: 6
+    - name: ObjectMeta.Labels
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Annotations
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Finalizers
+      kind: 24
+      container: 23
+    - name: Spec.NumAddresses
+      kind: 2
+    - name: Spec.Persistent
+      kind: 1
+    - name: DryRun
+      kind: 24
+      container: 23
+    - name: FieldManager
+      kind: 24
+    - name: FieldValidation
+      kind: 24
 entities:
   ippool:
+    title: Get
     columns:
     - title: Name
       content: .metadata.name
@@ -29,10 +141,12 @@ entities:
 aliases:
 - entity: ippool
   use: list
+  help: List ippools
+  short: List ippools
   alias_to: List
   aliases:
   - ls
-  short: alias for api List
+  alias_help: List
   command:
   - ippool
   - api
@@ -44,11 +158,13 @@ aliases:
     alias_to: cluster
     required: true
 - entity: ippool
-  use: describe name
+  use: describe id
+  help: Describe an ippool
+  short: Describe an ippool
   alias_to: Get
   aliases:
   - desc
-  short: alias for api Get
+  alias_help: Get id
   command:
   - ippool
   - api
@@ -62,12 +178,14 @@ aliases:
     alias_to: cluster
     required: true
 - entity: ippool
-  use: delete name [name]...
+  use: delete id [id]...
+  help: Delete an ippool
+  short: Delete an ippool
   alias_to: Delete
   aliases:
   - del
   - rm
-  short: alias for api Delete id
+  alias_help: Delete id
   command:
   - ippool
   - api
@@ -81,10 +199,11 @@ aliases:
     required: true
 - entity: ippool
   use: create
+  help: Create an ippool
+  short: Create an ippool
   alias_to: Create
   aliases:
   - add
-  short: alias for request api Create
   command:
   - ippool
   - api
@@ -102,4 +221,3 @@ aliases:
   - name: num-addresses
     alias_to: Spec.NumAddresses
     required: true
-spec: {}

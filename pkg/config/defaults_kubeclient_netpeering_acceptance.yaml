@@ -1,0 +1,130 @@
+api:
+  Create:
+    use: Create
+    content: .
+    entity: netpeering_acceptance
+    flags:
+    - name: ObjectMeta.Name
+      kind: 24
+    - name: ObjectMeta.GenerateName
+      kind: 24
+    - name: ObjectMeta.Namespace
+      kind: 24
+    - name: ObjectMeta.SelfLink
+      kind: 24
+    - name: ObjectMeta.UID
+      kind: 24
+    - name: ObjectMeta.ResourceVersion
+      kind: 24
+    - name: ObjectMeta.DeletionTimestamp
+      kind: 24
+      customValue: fileOrJson
+    - name: ObjectMeta.DeletionGracePeriodSeconds
+      kind: 6
+    - name: ObjectMeta.Labels
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Annotations
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Finalizers
+      kind: 24
+      container: 23
+    - name: Spec.NetPeeringId
+      kind: 24
+    - name: DryRun
+      kind: 24
+      container: 23
+    - name: FieldManager
+      kind: 24
+    - name: FieldValidation
+      kind: 24
+  Delete:
+    use: Delete id
+    flags:
+    - name: GracePeriodSeconds
+      kind: 6
+    - name: Preconditions.UID
+      kind: 24
+    - name: Preconditions.ResourceVersion
+      kind: 24
+    - name: OrphanDependents
+      kind: 1
+    - name: PropagationPolicy
+      kind: 24
+    - name: DryRun
+      kind: 24
+      container: 23
+  Get:
+    use: Get id
+    content: .
+    entity: netpeering_acceptance
+    flags:
+    - name: ResourceVersion
+      kind: 24
+  List:
+    use: List
+    content: Items
+    entity: netpeering_acceptance
+    flags:
+    - name: LabelSelector
+      kind: 24
+    - name: FieldSelector
+      kind: 24
+    - name: ResourceVersion
+      kind: 24
+    - name: ResourceVersionMatch
+      kind: 24
+    - name: TimeoutSeconds
+      kind: 6
+    - name: Limit
+      kind: 6
+    - name: ShardSelector
+      kind: 24
+  Update:
+    use: Update
+    content: Spec
+    entity: netpeering_acceptance
+    flags:
+    - name: ObjectMeta.Name
+      kind: 24
+    - name: ObjectMeta.GenerateName
+      kind: 24
+    - name: ObjectMeta.Namespace
+      kind: 24
+    - name: ObjectMeta.SelfLink
+      kind: 24
+    - name: ObjectMeta.UID
+      kind: 24
+    - name: ObjectMeta.ResourceVersion
+      kind: 24
+    - name: ObjectMeta.DeletionTimestamp
+      kind: 24
+      customValue: fileOrJson
+    - name: ObjectMeta.DeletionGracePeriodSeconds
+      kind: 6
+    - name: ObjectMeta.Labels
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Annotations
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Finalizers
+      kind: 24
+      container: 23
+    - name: Spec.NetPeeringId
+      kind: 24
+    - name: DryRun
+      kind: 24
+      container: 23
+    - name: FieldManager
+      kind: 24
+    - name: FieldValidation
+      kind: 24
+entities:
+  netpeering_acceptance:
+    title: Get
+    columns:
+    - title: Name
+      content: .Name
+    primary: Name

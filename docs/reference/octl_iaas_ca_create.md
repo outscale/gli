@@ -1,15 +1,15 @@
 ## octl iaas ca create
 
-alias for api CreateCa
+Creates a Client Certificate Authority (CA).
 
 ### Synopsis
-
-> alias for api CreateCa
 
 Creates a Client Certificate Authority (CA).
 
 
 For more information, see [About API Access Rules](https://docs.outscale.com/en/userguide/About-API-Access-Rules.html).
+
+> alias for CreateCa
 
 ```
 octl iaas ca create [flags]
@@ -51,5 +51,5 @@ octl iaas ca create [flags]
 
 ### SEE ALSO
 
-* [octl iaas ca](octl_iaas_ca.md)	 - ca commands
+* [octl iaas ca](octl_iaas_ca.md)	 - Manage Ca resources
 

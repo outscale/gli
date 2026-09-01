@@ -34,8 +34,8 @@ octl kube api CreateCluster [flags]
       --AutoMaintenances.PatchUpgradeMaintenance.StartHour int       Hour of the day when maintenance window starts (0-23)
       --AutoMaintenances.PatchUpgradeMaintenance.Tz string           Timezone for the maintenance window
       --AutoMaintenances.PatchUpgradeMaintenance.WeekDay string      Day of the week for the maintenance window
-      --CidrPods string                                              CIDR block for Kubernetes pods network Example: 10.91.0.0/16
-      --CidrService string                                           CIDR block for Kubernetes services network Example: 10.92.0.0/16
+      --CidrPods string                                              [REQUIRED] CIDR block for Kubernetes pods network Example: 10.91.0.0/16
+      --CidrService string                                           [REQUIRED] CIDR block for Kubernetes services network Example: 10.92.0.0/16
       --ClusterDns string                                            IP address for cluster DNS service Example: 10.92.0.10
       --ControlPlanes string                                         Size of control plane deployment for the cluster
       --CpMultiAz                                                    Flag to enable multi-availability zone for the control plane
@@ -46,11 +46,11 @@ octl kube api CreateCluster [flags]
       --MaintenanceWindow.StartHour int                              Hour of the day when maintenance window starts (0-23)
       --MaintenanceWindow.Tz string                                  Timezone for the maintenance window
       --MaintenanceWindow.WeekDay string                             Day of the week for the maintenance window
-      --Name string                                                  Unique cluster name per project, must start with a letter and contain only lowercase letters, numbers, or hyphens Example: awesome-cluster
-      --ProjectId string                                             Unique identifier of the project this cluster belongs to
+      --Name string                                                  [REQUIRED] Unique cluster name per project, must start with a letter and contain only lowercase letters, numbers, or hyphens Example: awesome-cluster
+      --ProjectId string                                             [REQUIRED] Unique identifier of the project this cluster belongs to
       --Quirks strings                                               
       --Tags stringToString                                           (default [])
-      --Version string                                               Version of Kubernetes to be deployed
+      --Version string                                               [REQUIRED] Version of Kubernetes to be deployed
   -h, --help                                                         help for CreateCluster
 ```
 
@@ -82,5 +82,5 @@ octl kube api CreateCluster [flags]
 
 ### SEE ALSO
 
-* [octl kube api](octl_kube_api.md)	 - kube api calls
+* [octl kube api](octl_kube_api.md)	 - Call kube API
 

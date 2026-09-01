@@ -9,24 +9,14 @@ octl storage api UploadPart [flags]
 ### Options
 
 ```
-      --Body streamedFile             Object data.
-      --Bucket string                 [REQUIRED] The name of the bucket to which the multipart upload was initiated.
-      --ChecksumAlgorithm string      Indicates the algorithm used to create the checksum for the object when you use the SDK.
-      --ChecksumCRC32 string          This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ChecksumCRC32C string         This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ChecksumSHA1 string           This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ChecksumSHA256 string         This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ContentLength int             Size of the body in bytes.
-      --ContentMD5 string             The base64-encoded 128-bit MD5 digest of the part data.
-      --ExpectedBucketOwner string    The account ID of the expected bucket owner.
-      --Key string                    [REQUIRED] Object key for which the multipart upload was initiated.
-      --PartNumber int32              [REQUIRED] Part number of part being uploaded.
-      --RequestPayer string           Confirms that the requester knows that they will be charged for the request.
-      --SSECustomerAlgorithm string   Specifies the algorithm to use when encrypting the object (for example, AES256).
-      --SSECustomerKey string         Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data.
-      --SSECustomerKeyMD5 string      Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
-      --UploadId string               [REQUIRED] Upload ID identifying the multipart upload whose part is being uploaded.
-  -h, --help                          help for UploadPart
+      --Body streamedFile            Object data.
+      --Bucket string                [REQUIRED] The name of the bucket to which the multipart upload was initiated.
+      --ContentLength int            Size of the body in bytes.
+      --ExpectedBucketOwner string   The account ID of the expected bucket owner.
+      --Key string                   [REQUIRED] Object key for which the multipart upload was initiated.
+      --PartNumber int32             [REQUIRED] Part number of part being uploaded.
+      --UploadId string              [REQUIRED] Upload ID identifying the multipart upload whose part is being uploaded.
+  -h, --help                         help for UploadPart
 ```
 
 ### Options inherited from parent commands
@@ -58,5 +48,5 @@ octl storage api UploadPart [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

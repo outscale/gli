@@ -8,9 +8,8 @@ import (
 
 // oksCmd represents the kubecommand
 var netpeeringCmd = &cobra.Command{
-	GroupID: "service",
-	Use:     "netpeering",
-	Short:   "netpeering commands",
+	Use:   "netpeering",
+	Short: "Manage netpeering resources",
 }
 
 func init() {

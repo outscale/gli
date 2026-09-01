@@ -1,14 +1,14 @@
 ## octl iaas clientgateway delete
 
-alias for api DeleteClientGateway --ClientGatewayId client_gateway_id
+Deletes a client gateway.
 
 ### Synopsis
-
-> alias for api DeleteClientGateway --ClientGatewayId client_gateway_id
 
 Deletes a client gateway.
 
 You must delete the VPN connection before deleting the client gateway.
+
+> alias for DeleteClientGateway --ClientGatewayId client_gateway_id
 
 ```
 octl iaas clientgateway delete client_gateway_id [client_gateway_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas clientgateway delete client_gateway_id [client_gateway_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas clientgateway](octl_iaas_clientgateway.md)	 - clientgateway commands
+* [octl iaas clientgateway](octl_iaas_clientgateway.md)	 - Manage ClientGateway resources
 

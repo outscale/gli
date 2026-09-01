@@ -1,12 +1,12 @@
 ## octl iaas usergroup update
 
-alias for api UpdateUserGroup --UserGroupName user_group_name
+Modifies the name and/or the path of a specified group.
 
 ### Synopsis
 
-> alias for api UpdateUserGroup --UserGroupName user_group_name
-
 Modifies the name and/or the path of a specified group.
+
+> alias for UpdateUserGroup --UserGroupName user_group_name
 
 ```
 octl iaas usergroup update user_group_name [user_group_name]... [flags]
@@ -49,5 +49,5 @@ octl iaas usergroup update user_group_name [user_group_name]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas usergroup](octl_iaas_usergroup.md)	 - usergroup commands
+* [octl iaas usergroup](octl_iaas_usergroup.md)	 - Manage UserGroup resources
 

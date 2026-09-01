@@ -1,10 +1,8 @@
 ## octl iaas vpnconnectionroute create
 
-alias for api CreateVpnConnectionRoute
+Creates a static route to a VPN connection.
 
 ### Synopsis
-
-> alias for api CreateVpnConnectionRoute
 
 Creates a static route to a VPN connection.
 
@@ -12,6 +10,8 @@ This enables you to select the network flows sent by the virtual gateway to the 
 
 
 For more information, see [About Routing Configuration for VPN Connections](https://docs.outscale.com/en/userguide/About-Routing-Configuration-for-VPN-Connections.html).
+
+> alias for CreateVpnConnectionRoute
 
 ```
 octl iaas vpnconnectionroute create [flags]
@@ -53,5 +53,5 @@ octl iaas vpnconnectionroute create [flags]
 
 ### SEE ALSO
 
-* [octl iaas vpnconnectionroute](octl_iaas_vpnconnectionroute.md)	 - vpnconnectionroute commands
+* [octl iaas vpnconnectionroute](octl_iaas_vpnconnectionroute.md)	 - Manage VpmConnectionRoute resources
 

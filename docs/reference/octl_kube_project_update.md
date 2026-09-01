@@ -1,12 +1,12 @@
 ## octl kube project update
 
-alias for api UpdateProject  id_or_name
+Updates the details of an existing project by its ID.
 
 ### Synopsis
 
-> alias for api UpdateProject  id_or_name
-
 Updates the details of an existing project by its ID. The request must include the updated project data in the request body. Returns the updated project information.
+
+> alias for UpdateProject  id_or_name
 
 ```
 octl kube project update id_or_name [id_or_name]... [flags]
@@ -50,5 +50,5 @@ octl kube project update id_or_name [id_or_name]... [flags]
 
 ### SEE ALSO
 
-* [octl kube project](octl_kube_project.md)	 - project commands
+* [octl kube project](octl_kube_project.md)	 - Manage Project resources
 

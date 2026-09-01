@@ -20,10 +20,10 @@ octl iaas api CreateClientGateway [flags]
 ### Options
 
 ```
-      --BgpAsn int              The Autonomous System Number (ASN) used by the Border Gateway Protocol (BGP) to find the path to your client gateway through the Internet.
-      --ConnectionType string   The communication protocol used to establish tunnel with your client gateway (always ipsec.1).
+      --BgpAsn int              [REQUIRED] The Autonomous System Number (ASN) used by the Border Gateway Protocol (BGP) to find the path to your client gateway through the Internet.
+      --ConnectionType string   [REQUIRED] The communication protocol used to establish tunnel with your client gateway (always ipsec.1).
       --DryRun                  If true, checks whether you have the required permissions to perform the action.
-      --PublicIp string         The public fixed IPv4 address of your client gateway.
+      --PublicIp string         [REQUIRED] The public fixed IPv4 address of your client gateway.
   -h, --help                    help for CreateClientGateway
 ```
 
@@ -55,5 +55,5 @@ octl iaas api CreateClientGateway [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -1,6 +1,6 @@
 ## octl kube oosaccess
 
-oosaccess commands
+Manage OOS Access resources
 
 ### Options
 
@@ -37,7 +37,6 @@ oosaccess commands
 ### SEE ALSO
 
 * [octl kube](octl_kube.md)	 - OUTSCALE Kubernetes as a Service (OKS) management
-* [octl kube oosaccess api](octl_kube_oosaccess_api.md)	 - oosaccess api calls
-* [octl kube oosaccess describe](octl_kube_oosaccess_describe.md)	 - alias for api Get
-* [octl kube oosaccess list](octl_kube_oosaccess_list.md)	 - alias for api List
+* [octl kube oosaccess api](octl_kube_oosaccess_api.md)	 - Call oosaccess API
+* [octl kube oosaccess describe](octl_kube_oosaccess_describe.md)	 - Describe the OOS access configuration
 

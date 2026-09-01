@@ -7,6 +7,8 @@ import (
 	"github.com/outscale/octl/pkg/debug"
 )
 
+const Base64File = "base64File"
+
 // Base64FileValue adapts File.File for use as a flag.
 type Base64FileValue struct {
 	content []byte
@@ -32,6 +34,9 @@ func (v *Base64FileValue) Type() string {
 }
 
 func (v *Base64FileValue) String() string {
+	if len(v.content) == 0 {
+		return ""
+	}
 	_, err := base64.StdEncoding.DecodeString(string(v.content))
 	if err == nil {
 		debug.Println("value is already base 64 encoded")

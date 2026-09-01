@@ -1,10 +1,8 @@
 ## octl iaas adminpassword list
 
-alias for api ReadAdminPassword
+Gets the administrator password for a Windows running virtual machine (VM).
 
 ### Synopsis
-
-> alias for api ReadAdminPassword
 
 Gets the administrator password for a Windows running virtual machine (VM).
 
@@ -17,6 +15,8 @@ The administrator password is encrypted using the keypair you specified when lau
 * Only RSA keypairs can decrypt the password of a Windows VM.
 
 * The administrator password is generated only on the first boot of the Windows VM. It is not returned after the first boot.
+
+> alias for ReadAdminPassword
 
 ```
 octl iaas adminpassword list [flags]
@@ -57,5 +57,5 @@ octl iaas adminpassword list [flags]
 
 ### SEE ALSO
 
-* [octl iaas adminpassword](octl_iaas_adminpassword.md)	 - adminpassword commands
+* [octl iaas adminpassword](octl_iaas_adminpassword.md)	 - Manage AdminPassword resources
 

@@ -1,14 +1,14 @@
 ## octl iaas nic unlink
 
-alias for api ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNic.LinkNicId}}
+Detaches a network interface card (NIC) from a virtual machine (VM).
 
 ### Synopsis
-
-> alias for api ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNic.LinkNicId}}
 
 Detaches a network interface card (NIC) from a virtual machine (VM).
 
 The primary NIC cannot be detached.
+
+> alias for ReadNics --Filters.NicIds nic_id | UnlinkNic --LinkNicId {{.LinkNic.LinkNicId}}
 
 ```
 octl iaas nic unlink nic_id [flags]
@@ -48,5 +48,5 @@ octl iaas nic unlink nic_id [flags]
 
 ### SEE ALSO
 
-* [octl iaas nic](octl_iaas_nic.md)	 - nic commands
+* [octl iaas nic](octl_iaas_nic.md)	 - Manage Nic resources
 

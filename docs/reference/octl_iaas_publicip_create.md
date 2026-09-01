@@ -1,10 +1,8 @@
 ## octl iaas publicip create
 
-alias for api CreatePublicIp
+Acquires a public IP for your account.
 
 ### Synopsis
-
-> alias for api CreatePublicIp
 
 Acquires a public IP for your account.
 
@@ -12,6 +10,8 @@ A public IP is a static IP designed for dynamic Cloud computing. It can be assoc
 
 
 For more information, see [About Public IPs](https://docs.outscale.com/en/userguide/About-Public-IPs.html).
+
+> alias for CreatePublicIp
 
 ```
 octl iaas publicip create [flags]
@@ -51,5 +51,5 @@ octl iaas publicip create [flags]
 
 ### SEE ALSO
 
-* [octl iaas publicip](octl_iaas_publicip.md)	 - publicip commands
+* [octl iaas publicip](octl_iaas_publicip.md)	 - Manage PublicIp resources
 

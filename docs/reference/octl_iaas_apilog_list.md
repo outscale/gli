@@ -1,10 +1,8 @@
 ## octl iaas apilog list
 
-alias for api ReadApiLogs
+List API call logs
 
 ### Synopsis
-
-> alias for api ReadApiLogs
 
 Lists the logs of the API calls you have performed with this OUTSCALE account.
 
@@ -17,6 +15,8 @@ By default, the retrieved interval is 48 hours. If neither of the `QueryDateBefo
 
 For more information, see [About OMS](https://docs.outscale.com/en/userguide/About-OMS.html).
 
+> alias for ReadApiLogs
+
 ```
 octl iaas apilog list [flags]
 ```
@@ -25,9 +25,9 @@ octl iaas apilog list [flags]
 
 ```
       --access-key strings   The access keys used for the logged calls.
-      --after osctime        The date and time, or the date, after which you want to retrieve logged calls, in ISO 8601 format (for example, 2020-06-14T00:00:00.000Z or 2020-06-14).
+      --after string         The date and time, or the date, after which you want to retrieve logged calls, in ISO 8601 format (for example, 2020-06-14T00:00:00.000Z or 2020-06-14).
       --api strings          The names of the APIs of the logged calls (always oapi for the OUTSCALE API).
-      --before osctime       The date and time, or the date, before which you want to retrieve logged calls, in ISO 8601 format (for example, 2020-06-30T00:00:00.000Z or 2020-06-14).
+      --before string        The date and time, or the date, before which you want to retrieve logged calls, in ISO 8601 format (for example, 2020-06-30T00:00:00.000Z or 2020-06-14).
       --call strings         The names of the logged calls.
   -h, --help                 help for list
       --ip strings           The IPs used for the logged calls.
@@ -64,5 +64,5 @@ octl iaas apilog list [flags]
 
 ### SEE ALSO
 
-* [octl iaas apilog](octl_iaas_apilog.md)	 - apilog commands
+* [octl iaas apilog](octl_iaas_apilog.md)	 - Manage ApiLog resources
 

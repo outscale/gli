@@ -9,7 +9,14 @@ octl kube vpnconnection api List [flags]
 ### Options
 
 ```
-  -h, --help   help for List
+      --FieldSelector string          
+      --LabelSelector string          
+      --Limit int                     
+      --ResourceVersion string        
+      --ResourceVersionMatch string   
+      --ShardSelector string          
+      --TimeoutSeconds int            
+  -h, --help                          help for List
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +48,5 @@ octl kube vpnconnection api List [flags]
 
 ### SEE ALSO
 
-* [octl kube vpnconnection api](octl_kube_vpnconnection_api.md)	 - vpnconnection api calls
+* [octl kube vpnconnection api](octl_kube_vpnconnection_api.md)	 - Call vpnconnection API
 

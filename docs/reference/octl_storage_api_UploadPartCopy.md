@@ -23,10 +23,6 @@ octl storage api UploadPartCopy [flags]
       --ExpectedSourceBucketOwner string        The account ID of the expected source bucket owner.
       --Key string                              [REQUIRED] Object key for which the multipart upload was initiated.
       --PartNumber int32                        [REQUIRED] Part number of part being copied.
-      --RequestPayer string                     Confirms that the requester knows that they will be charged for the request.
-      --SSECustomerAlgorithm string             Specifies the algorithm to use when encrypting the object (for example, AES256).
-      --SSECustomerKey string                   Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data.
-      --SSECustomerKeyMD5 string                Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
       --UploadId string                         [REQUIRED] Upload ID identifying the multipart upload whose part is being copied.
   -h, --help                                    help for UploadPartCopy
 ```
@@ -60,5 +56,5 @@ octl storage api UploadPartCopy [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

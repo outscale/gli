@@ -40,5 +40,5 @@ octl metadata availability_zone [flags]
 
 ### SEE ALSO
 
-* [octl metadata](octl_metadata.md)	 - query the metadata server
+* [octl metadata](octl_metadata.md)	 - Metadata server queries
 

@@ -1,0 +1,12 @@
+api:
+  List:
+    content: Items
+    entity: netpeering_request
+  Get:
+    content: .
+    entity: netpeering_request
+  Create:
+    content: .
+    entity: netpeering_request
+  Update:
+    entity: netpeering_request

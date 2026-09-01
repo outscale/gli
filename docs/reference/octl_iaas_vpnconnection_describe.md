@@ -1,12 +1,12 @@
 ## octl iaas vpnconnection describe
 
-alias for api ReadVpnConnections --Filters.VpnConnectionIds vpn_connection_id
+Lists one or more VPN connections.
 
 ### Synopsis
 
-> alias for api ReadVpnConnections --Filters.VpnConnectionIds vpn_connection_id
+Lists one or more VPN connections.
 
-
+> alias for ReadVpnConnections --Filters.VpnConnectionIds vpn_connection_id
 
 ```
 octl iaas vpnconnection describe vpn_connection_id [vpn_connection_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas vpnconnection describe vpn_connection_id [vpn_connection_id]... [flags
 
 ### SEE ALSO
 
-* [octl iaas vpnconnection](octl_iaas_vpnconnection.md)	 - vpnconnection commands
+* [octl iaas vpnconnection](octl_iaas_vpnconnection.md)	 - Manage VpnConnection resources
 

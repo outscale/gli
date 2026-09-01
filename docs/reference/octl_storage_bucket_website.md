@@ -37,8 +37,8 @@ website commands
 
 ### SEE ALSO
 
-* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
-* [octl storage bucket website configure](octl_storage_bucket_website_configure.md)	 - Update Website configuration, alias for api PutBucketWebsite --Bucket bucket
-* [octl storage bucket website describe](octl_storage_bucket_website_describe.md)	 - Display website configuration, alias for api GetBucketWebsite --Bucket bucket
-* [octl storage bucket website disable](octl_storage_bucket_website_disable.md)	 - Delete Website configuration, alias for api DeleteBucketWebsite --Bucket bucket
+* [octl storage bucket](octl_storage_bucket.md)	 - Manage Bucket resources
+* [octl storage bucket website configure](octl_storage_bucket_website_configure.md)	 - Update website configuration.
+* [octl storage bucket website describe](octl_storage_bucket_website_describe.md)	 - Display website configuration.
+* [octl storage bucket website disable](octl_storage_bucket_website_disable.md)	 - Delete website configuration.
 

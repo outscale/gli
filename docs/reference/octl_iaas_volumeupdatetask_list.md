@@ -1,12 +1,12 @@
 ## octl iaas volumeupdatetask list
 
-alias for api ReadVolumeUpdateTasks
+Lists one or more specified tasks of volume update.
 
 ### Synopsis
 
-> alias for api ReadVolumeUpdateTasks
-
 Lists one or more specified tasks of volume update.
+
+> alias for ReadVolumeUpdateTasks
 
 ```
 octl iaas volumeupdatetask list [flags]
@@ -48,5 +48,5 @@ octl iaas volumeupdatetask list [flags]
 
 ### SEE ALSO
 
-* [octl iaas volumeupdatetask](octl_iaas_volumeupdatetask.md)	 - volumeupdatetask commands
+* [octl iaas volumeupdatetask](octl_iaas_volumeupdatetask.md)	 - Manage VolumeUpdateTask resources
 
