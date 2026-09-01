@@ -1,10 +1,8 @@
 ## octl iaas tag create
 
-alias for api CreateTags
+Adds one or more tags to the specified resources.
 
 ### Synopsis
-
-> alias for api CreateTags
 
 Adds one or more tags to the specified resources.
 
@@ -60,6 +58,8 @@ You can tag the following resources using their IDs:
 
 For more information, see [About Tags](https://docs.outscale.com/en/userguide/About-Tags.html).
 
+> alias for CreateTags
+
 ```
 octl iaas tag create [flags]
 ```
@@ -101,5 +101,5 @@ octl iaas tag create [flags]
 
 ### SEE ALSO
 
-* [octl iaas tag](octl_iaas_tag.md)	 - tag commands
+* [octl iaas tag](octl_iaas_tag.md)	 - Manage Tag resources
 

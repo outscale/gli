@@ -30,7 +30,7 @@ entities:
       - title: Last error
         content: .status.last_error.message
     primary: Name
-contents:
+api:
   List:
     content: Items
     entity: nodepool
@@ -40,11 +40,7 @@ contents:
   Create:
     content: .
     entity: nodepool
-  Patch:
-    entity: nodepool
   Update:
-    entity: nodepool
-  UpdateStatus:
     entity: nodepool
 aliases:
 - entity: nodepool
@@ -52,7 +48,7 @@ aliases:
   alias_to: List
   aliases:
   - ls
-  short: alias for api List
+  alias_help: List
   command:
   - nodepool
   - api
@@ -64,11 +60,12 @@ aliases:
     alias_to: cluster
     required: true
 - entity: nodepool
-  use: describe name [name]...
+  use: describe id [id]...
   alias_to: Get
   aliases:
   - desc
-  short: alias for api Get name
+  help: Describe a nodepool
+  alias_help: Get id
   command:
   - nodepool
   - api
@@ -86,7 +83,8 @@ aliases:
   alias_to: Create
   aliases:
   - add
-  short: alias for api Create
+  help: Create a nodepool
+  alias_help: Create
   command:
   - api
   - GetNodepoolTemplate
@@ -171,12 +169,13 @@ aliases:
     alias_to: Spec.Zones
     required: true
 - entity: nodepool
-  use: delete name [name]...
+  use: delete id [id]...
   alias_to: Delete
   aliases:
   - del
   - rm
-  short: alias for api Delete name
+  help: Delete a nodepool
+  alias_help: Delete id
   command:
   - nodepool
   - api

@@ -9,7 +9,8 @@ octl kube nodepool api Get id [flags]
 ### Options
 
 ```
-  -h, --help   help for Get
+      --ResourceVersion string   
+  -h, --help                     help for Get
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +42,5 @@ octl kube nodepool api Get id [flags]
 
 ### SEE ALSO
 
-* [octl kube nodepool api](octl_kube_nodepool_api.md)	 - nodepool api calls
+* [octl kube nodepool api](octl_kube_nodepool_api.md)	 - Call nodepool API
 

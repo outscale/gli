@@ -24,11 +24,11 @@ octl iaas api CreateVpnConnection [flags]
 ### Options
 
 ```
-      --ClientGatewayId string    The ID of the client gateway.
-      --ConnectionType string     The type of VPN connection (always ipsec.1).
+      --ClientGatewayId string    [REQUIRED] The ID of the client gateway.
+      --ConnectionType string     [REQUIRED] The type of VPN connection (always ipsec.1).
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
       --StaticRoutesOnly          By default or if false, the VPN connection uses dynamic routing with Border Gateway Protocol (BGP).
-      --VirtualGatewayId string   The ID of the virtual gateway.
+      --VirtualGatewayId string   [REQUIRED] The ID of the virtual gateway.
   -h, --help                      help for CreateVpnConnection
 ```
 
@@ -60,5 +60,5 @@ octl iaas api CreateVpnConnection [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

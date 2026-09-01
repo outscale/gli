@@ -1,12 +1,12 @@
 ## octl iaas producttype create
 
-alias for api CreateProductType
+Creates a product type you can associate with an OMI for consumption monitoring and billing purposes.
 
 ### Synopsis
 
-> alias for api CreateProductType
-
 Creates a product type you can associate with an OMI for consumption monitoring and billing purposes.
+
+> alias for CreateProductType
 
 ```
 octl iaas producttype create [flags]
@@ -48,5 +48,5 @@ octl iaas producttype create [flags]
 
 ### SEE ALSO
 
-* [octl iaas producttype](octl_iaas_producttype.md)	 - producttype commands
+* [octl iaas producttype](octl_iaas_producttype.md)	 - Manage ProductType resources
 

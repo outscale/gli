@@ -1,14 +1,14 @@
 ## octl iaas netaccesspoint update
 
-alias for api UpdateNetAccessPoint --NetAccessPointId net_access_point_id
+Modifies the attributes of a Net access point.
 
 ### Synopsis
-
-> alias for api UpdateNetAccessPoint --NetAccessPointId net_access_point_id
 
 Modifies the attributes of a Net access point.
 
 This action enables you to add or remove route tables associated with the specified Net access point.
+
+> alias for UpdateNetAccessPoint --NetAccessPointId net_access_point_id
 
 ```
 octl iaas netaccesspoint update net_access_point_id [net_access_point_id]... [flags]
@@ -50,5 +50,5 @@ octl iaas netaccesspoint update net_access_point_id [net_access_point_id]... [fl
 
 ### SEE ALSO
 
-* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - netaccesspoint commands
+* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - Manage NetAccessPoint resources
 

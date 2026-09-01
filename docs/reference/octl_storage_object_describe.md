@@ -1,12 +1,12 @@
 ## octl storage object describe
 
-Display an object metadata, alias for api HeadObject --Key key
+Display an object metadata.
 
 ### Synopsis
 
-> Display an object metadata, alias for api HeadObject --Key key
+Display an object metadata.
 
-
+> alias for HeadObject --Key key
 
 ```
 octl storage object describe key [flags]
@@ -48,5 +48,5 @@ octl storage object describe key [flags]
 
 ### SEE ALSO
 
-* [octl storage object](octl_storage_object.md)	 - object commands
+* [octl storage object](octl_storage_object.md)	 - Manage Object resources
 

@@ -21,31 +21,7 @@ entities:
       - title: Status
         content: .statuses.status
     primary: Id
-  net:
-    no_aliases: true
-  quota:
-    no_aliases: true
-  projecttemplate:
-    no_aliases: true
-  clustertemplate:
-    no_aliases: true
-  netpeeringrequesttemplate:
-    no_aliases: true
-  netpeeringacceptancetemplate:
-    no_aliases: true
-  nodepooltemplate:
-    no_aliases: true
-  controlplaneplan:
-    no_aliases: true
-  kubernetesversion:
-    no_aliases: true
-  kubeconfig:
-    no_aliases: true
-  kubeconfigwithpubkeynacl:
-    no_aliases: true
-  cpsubregion:
-    no_aliases: true
-contents:
+api:
   ListAllClusters:
     entity: cluster
     content: Clusters
@@ -77,7 +53,7 @@ aliases:
 - entity: project
   use: clusters id_or_name
   alias_to: ListClustersByProjectID
-  short: alias for api ListClustersByProjectID
+  alias_help: ListClustersByProjectID
   command:
   - api
   - ListClustersByProjectID
@@ -105,7 +81,7 @@ aliases:
   alias_to: CreateProject
   aliases:
   - add
-  short: alias for api CreateProject
+  alias_help: CreateProject
   command:
   - api
   - GetProjectTemplate
@@ -121,6 +97,7 @@ aliases:
   flags:
   - name: cidr
     alias_to: Cidr
+    required: false
   - name: description
     alias_to: Description
   - name: disable-api-termination
@@ -132,11 +109,12 @@ aliases:
     alias_to: Quirks
   - name: region
     alias_to: Region
+    required: false
 - entity: project
   use: nets id_or_name
   aliases:
     - net
-  short: alias for api GetProjectNets id_or_name
+  alias_help: GetProjectNets id_or_name
   alias_to: GetProjectNets
   command:
   - api
@@ -146,7 +124,8 @@ aliases:
   - yaml
 - entity: project
   use: quotas id_or_name
-  short: alias for api GetProjectQuotas id_or_name
+  alias_to: GetProjectQuotas
+  alias_help: GetProjectQuotas id_or_name
   command:
   - api
   - GetProjectQuotas
@@ -157,7 +136,7 @@ aliases:
   use: public-ips id_or_name
   aliases:
     - ip
-  short: alias for api GetProjectPublicIps id_or_name
+  alias_help: GetProjectPublicIps id_or_name
   alias_to: GetProjectPublicIps
   command:
   - api
@@ -170,7 +149,7 @@ aliases:
   aliases:
     - snap
     - snapshot
-  short: alias for api GetProjectSnapshots id_or_name
+  alias_help: GetProjectSnapshots id_or_name
   alias_to: GetProjectSnapshots
   command:
   - api
@@ -183,7 +162,7 @@ aliases:
   alias_to: CreateCluster
   aliases:
   - add
-  short: alias for api CreateCluster
+  alias_help: CreateCluster
   command:
   - api
   - GetClusterTemplate
@@ -237,8 +216,10 @@ aliases:
     alias_to: AutoMaintenances.PatchUpgradeMaintenance.WeekDay
   - name: cidr-pods
     alias_to: CidrPods
+    required: false
   - name: cidr-services
     alias_to: CidrService
+    required: false
   - name: control-plane
     alias_to: ControlPlanes
   - name: multi-az
@@ -266,11 +247,13 @@ aliases:
     alias_to: Quirks
   - name: tags
     alias_to: Tags
+    help: 'Tags (key=value,key=value)'
   - name: version
     alias_to: Version
+    required: false
 - entity: cluster
   use: kubeconfig id_or_name
-  short: alias for api GetKubeconfig id_or_name
+  alias_help: GetKubeconfig id_or_name
   alias_to: GetKubeconfig
   command:
   - api
@@ -289,7 +272,8 @@ aliases:
   use: describe
   aliases:
   - desc
-  short: alias for api GetQuotas
+  alias_to: GetQuotas
+  alias_help: GetQuotas
   command:
   - api
   - GetQuotas

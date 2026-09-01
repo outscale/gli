@@ -1,6 +1,6 @@
 ## octl iaas policy
 
-policy commands
+Manage Policy resources
 
 ### Options
 
@@ -37,10 +37,10 @@ policy commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas policy create](octl_iaas_policy_create.md)	 - alias for api CreatePolicy
-* [octl iaas policy delete](octl_iaas_policy_delete.md)	 - alias for api DeletePolicy --PolicyOrn policy_orn
-* [octl iaas policy describe](octl_iaas_policy_describe.md)	 - alias for api ReadPolicy --PolicyOrn policy_orn
-* [octl iaas policy link](octl_iaas_policy_link.md)	 - alias for api LinkPolicy --PolicyOrn policy_orn
-* [octl iaas policy list](octl_iaas_policy_list.md)	 - alias for api ReadPolicies
-* [octl iaas policy unlink](octl_iaas_policy_unlink.md)	 - alias for api UnlinkPolicy --PolicyOrn policy_orn
+* [octl iaas policy create](octl_iaas_policy_create.md)	 - Creates a managed policy to apply to a user.
+* [octl iaas policy delete](octl_iaas_policy_delete.md)	 - Deletes a managed policy.
+* [octl iaas policy describe](octl_iaas_policy_describe.md)	 - Lists information about a specified managed policy.
+* [octl iaas policy link](octl_iaas_policy_link.md)	 - Links a managed policy to a specific user.
+* [octl iaas policy list](octl_iaas_policy_list.md)	 - Lists all the managed policies available for your OUTSCALE account.
+* [octl iaas policy unlink](octl_iaas_policy_unlink.md)	 - Removes a managed policy from a specific user.
 

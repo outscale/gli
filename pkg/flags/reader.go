@@ -5,6 +5,8 @@ import (
 	"os"
 )
 
+const Reader = "streamedFile"
+
 // ReaderValue sets an io.Reader value from a flag.
 type ReaderValue struct {
 	path string

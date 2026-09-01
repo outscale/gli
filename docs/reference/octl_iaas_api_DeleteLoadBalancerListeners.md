@@ -14,7 +14,7 @@ octl iaas api DeleteLoadBalancerListeners [flags]
 
 ```
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
-      --LoadBalancerName string   The name of the load balancer for which you want to delete listeners.
+      --LoadBalancerName string   [REQUIRED] The name of the load balancer for which you want to delete listeners.
       --LoadBalancerPorts ints    One or more port numbers of the listeners you want to delete.
   -h, --help                      help for DeleteLoadBalancerListeners
 ```
@@ -47,5 +47,5 @@ octl iaas api DeleteLoadBalancerListeners [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

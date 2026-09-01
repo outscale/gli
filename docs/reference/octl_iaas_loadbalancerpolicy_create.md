@@ -1,10 +1,8 @@
 ## octl iaas loadbalancerpolicy create
 
-alias for api CreateLoadBalancerPolicy
+Creates a stickiness policy with sticky session lifetimes defined by the browser lifetime.
 
 ### Synopsis
-
-> alias for api CreateLoadBalancerPolicy
 
 Creates a stickiness policy with sticky session lifetimes defined by the browser lifetime.
 
@@ -23,6 +21,8 @@ The session stops being sticky if the application cookie is removed or expires, 
 
 For more information, see [About Load Balancers](https://docs.outscale.com/en/userguide/About-Load-Balancers.html).
 
+> alias for CreateLoadBalancerPolicy
+
 ```
 octl iaas loadbalancerpolicy create [flags]
 ```
@@ -33,7 +33,7 @@ octl iaas loadbalancerpolicy create [flags]
       --cookie-expiration-period int   The lifetime of the cookie, in seconds.
       --cookie-name string             The name of the application cookie used for stickiness, between 1 and 255 characters.
   -h, --help                           help for create
-      --name string                    [REQUIRED] The name of the load balancer for which you want to create a policy.
+      --load-balancer-name string      [REQUIRED] The name of the load balancer for which you want to create a policy.
       --policy-name string             [REQUIRED] The unique name of the policy, with a maximum length of 32 alphanumeric characters and dashes (-).
       --policy-type string             [REQUIRED] The type of stickiness policy you want to create: app or load_balancer.
 ```
@@ -66,5 +66,5 @@ octl iaas loadbalancerpolicy create [flags]
 
 ### SEE ALSO
 
-* [octl iaas loadbalancerpolicy](octl_iaas_loadbalancerpolicy.md)	 - loadbalancerpolicy commands
+* [octl iaas loadbalancerpolicy](octl_iaas_loadbalancerpolicy.md)	 - Manage LoadBalancerPolicy resources
 

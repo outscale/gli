@@ -18,7 +18,7 @@ octl iaas api CreateVirtualGateway [flags]
 ### Options
 
 ```
-      --ConnectionType string   The type of VPN connection supported by the virtual gateway (always ipsec.1).
+      --ConnectionType string   [REQUIRED] The type of VPN connection supported by the virtual gateway (always ipsec.1).
       --DryRun                  If true, checks whether you have the required permissions to perform the action.
   -h, --help                    help for CreateVirtualGateway
 ```
@@ -51,5 +51,5 @@ octl iaas api CreateVirtualGateway [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -1,6 +1,6 @@
 ## octl kube kubectl
 
-
+Launch kubectl commands on a cluster
 
 ### Synopsis
 

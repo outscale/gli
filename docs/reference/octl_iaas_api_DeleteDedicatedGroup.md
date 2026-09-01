@@ -24,7 +24,7 @@ octl iaas api DeleteDedicatedGroup [flags]
 ### Options
 
 ```
-      --DedicatedGroupId string   The ID of the dedicated group you want to delete.
+      --DedicatedGroupId string   [REQUIRED] The ID of the dedicated group you want to delete.
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
       --Force                     If true, forces the deletion of the dedicated group and all its dependencies.
   -h, --help                      help for DeleteDedicatedGroup
@@ -58,5 +58,5 @@ octl iaas api DeleteDedicatedGroup [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

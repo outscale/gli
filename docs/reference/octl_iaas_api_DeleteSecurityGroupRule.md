@@ -25,7 +25,7 @@ octl iaas api DeleteSecurityGroupRule [flags]
 
 ```
       --DryRun                                                     If true, checks whether you have the required permissions to perform the action.
-      --Flow string                                                The direction of the flow: Inbound or Outbound.
+      --Flow string                                                [REQUIRED] The direction of the flow: Inbound or Outbound.
       --FromPortRange int                                          The beginning of the port range for the TCP and UDP protocols, or an ICMP type number.
       --IpProtocol string                                          The IP protocol name (tcp, udp, icmp, or -1 for all protocols).
       --IpRange string                                             The IP range for the security group rule, in CIDR notation (for example, 10.0.0.0/16).
@@ -39,7 +39,7 @@ octl iaas api DeleteSecurityGroupRule [flags]
       --Rules.0.ServiceIds strings                                 One or more service IDs to allow traffic from a Net to access the corresponding OUTSCALE services.
       --Rules.0.ToPortRange int                                    The end of the port range for the TCP and UDP protocols, or an ICMP code number.
       --SecurityGroupAccountIdToUnlink string                      The OUTSCALE account ID of the owner of the security group you want to delete a rule from.
-      --SecurityGroupId string                                     The ID of the security group you want to delete a rule from.
+      --SecurityGroupId string                                     [REQUIRED] The ID of the security group you want to delete a rule from.
       --SecurityGroupNameToUnlink string                           The ID of the source security group.
       --ToPortRange int                                            The end of the port range for the TCP and UDP protocols, or an ICMP code number.
   -h, --help                                                       help for DeleteSecurityGroupRule
@@ -73,5 +73,5 @@ octl iaas api DeleteSecurityGroupRule [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

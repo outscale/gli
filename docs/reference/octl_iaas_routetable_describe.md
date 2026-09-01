@@ -1,12 +1,14 @@
 ## octl iaas routetable describe
 
-alias for api ReadRouteTables --Filters.RouteTableIds route_table_id
+Lists one or more of your route tables.
 
 ### Synopsis
 
-> alias for api ReadRouteTables --Filters.RouteTableIds route_table_id
+Lists one or more of your route tables.
 
+In your Net, each Subnet must be associated with a route table. If a Subnet is not explicitly associated with a route table, it is implicitly associated with the main route table of the Net.
 
+> alias for ReadRouteTables --Filters.RouteTableIds route_table_id
 
 ```
 octl iaas routetable describe route_table_id [route_table_id]... [flags]
@@ -46,5 +48,5 @@ octl iaas routetable describe route_table_id [route_table_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas routetable](octl_iaas_routetable.md)	 - routetable commands
+* [octl iaas routetable](octl_iaas_routetable.md)	 - Manage RouteTable resources
 

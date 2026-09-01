@@ -44,5 +44,5 @@ octl storage object presign key [flags]
 
 ### SEE ALSO
 
-* [octl storage object](octl_storage_object.md)	 - object commands
+* [octl storage object](octl_storage_object.md)	 - Manage Object resources
 

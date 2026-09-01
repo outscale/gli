@@ -1,6 +1,6 @@
 ## octl iaas unitprice
 
-unitprice commands
+Manage UnitPrice resources
 
 ### Options
 
@@ -37,5 +37,5 @@ unitprice commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas unitprice list](octl_iaas_unitprice_list.md)	 - alias for api ReadUnitPrice
+* [octl iaas unitprice list](octl_iaas_unitprice_list.md)	 - Gets unit price information for the specified parameters.
 

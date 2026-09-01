@@ -1,6 +1,6 @@
 ## octl iaas snapshotexporttask
 
-snapshotexporttask commands
+Manage SnapshotExportTask resources
 
 ### Options
 
@@ -37,7 +37,7 @@ snapshotexporttask commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas snapshotexporttask create](octl_iaas_snapshotexporttask_create.md)	 - alias for api CreateSnapshotExportTask
-* [octl iaas snapshotexporttask describe](octl_iaas_snapshotexporttask_describe.md)	 - alias for api ReadSnapshotExportTasks --Filters.TaskIds task_id
-* [octl iaas snapshotexporttask list](octl_iaas_snapshotexporttask_list.md)	 - alias for api ReadSnapshotExportTasks
+* [octl iaas snapshotexporttask create](octl_iaas_snapshotexporttask_create.md)	 - Exports a snapshot to an OUTSCALE Object Storage (OOS) bucket that belongs to you.
+* [octl iaas snapshotexporttask describe](octl_iaas_snapshotexporttask_describe.md)	 - Lists one or more snapshot export tasks.
+* [octl iaas snapshotexporttask list](octl_iaas_snapshotexporttask_list.md)	 - Lists one or more snapshot export tasks.
 

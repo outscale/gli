@@ -1,15 +1,15 @@
 ## octl iaas location list
 
-alias for api ReadLocations
+Lists the locations, corresponding to datacenters, where you can set up a DirectLink.
 
 ### Synopsis
-
-> alias for api ReadLocations
 
 Lists the locations, corresponding to datacenters, where you can set up a DirectLink.
 
 
 For more information, see [About DirectLink](https://docs.outscale.com/en/userguide/About-DirectLink.html).
+
+> alias for ReadLocations
 
 ```
 octl iaas location list [flags]
@@ -49,5 +49,5 @@ octl iaas location list [flags]
 
 ### SEE ALSO
 
-* [octl iaas location](octl_iaas_location.md)	 - location commands
+* [octl iaas location](octl_iaas_location.md)	 - Manage Location resources
 

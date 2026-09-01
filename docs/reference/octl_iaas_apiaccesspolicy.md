@@ -1,6 +1,6 @@
 ## octl iaas apiaccesspolicy
 
-apiaccesspolicy commands
+Manage ApiAccessPolicy resources
 
 ### Options
 
@@ -37,5 +37,5 @@ apiaccesspolicy commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas apiaccesspolicy list](octl_iaas_apiaccesspolicy_list.md)	 - alias for api ReadApiAccessPolicy
+* [octl iaas apiaccesspolicy list](octl_iaas_apiaccesspolicy_list.md)	 - Gets information about the API access policy of your OUTSCALE account.
 

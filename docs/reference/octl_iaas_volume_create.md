@@ -1,10 +1,8 @@
 ## octl iaas volume create
 
-alias for api CreateVolume
+Creates a Block Storage Unit (BSU) volume in a specified Region.
 
 ### Synopsis
-
-> alias for api CreateVolume
 
 Creates a Block Storage Unit (BSU) volume in a specified Region.
 
@@ -14,6 +12,8 @@ You can create the following volume types: Enterprise (`io1`) for provisioned IO
 
 
 For more information, see [About Volumes](https://docs.outscale.com/en/userguide/About-Volumes.html).
+
+> alias for CreateVolume
 
 ```
 octl iaas volume create [flags]
@@ -59,5 +59,5 @@ octl iaas volume create [flags]
 
 ### SEE ALSO
 
-* [octl iaas volume](octl_iaas_volume.md)	 - volume commands
+* [octl iaas volume](octl_iaas_volume.md)	 - Manage Volume resources
 

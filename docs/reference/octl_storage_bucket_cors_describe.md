@@ -1,12 +1,12 @@
 ## octl storage bucket cors describe
 
-Display CORS configuration, alias for api GetBucketCors --Bucket bucket
+Display CORS configuration.
 
 ### Synopsis
 
-> Display CORS configuration, alias for api GetBucketCors --Bucket bucket
+Display CORS configuration.
 
-
+> alias for GetBucketCors --Bucket bucket
 
 ```
 octl storage bucket cors describe bucket [flags]

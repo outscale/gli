@@ -37,8 +37,8 @@ lifecycle commands
 
 ### SEE ALSO
 
-* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
-* [octl storage bucket lifecycle configure](octl_storage_bucket_lifecycle_configure.md)	 - Update Lifecycle configuration, alias for api PutBucketLifecycleConfiguration --Bucket bucket
-* [octl storage bucket lifecycle describe](octl_storage_bucket_lifecycle_describe.md)	 - Display lifecycle configuration, alias for api GetBucketLifecycleConfiguration --Bucket bucket
-* [octl storage bucket lifecycle disable](octl_storage_bucket_lifecycle_disable.md)	 - Delete Lifecycle configuration, alias for api DeleteBucketLifecycle --Bucket bucket
+* [octl storage bucket](octl_storage_bucket.md)	 - Manage Bucket resources
+* [octl storage bucket lifecycle configure](octl_storage_bucket_lifecycle_configure.md)	 - Update lifecycle configuration.
+* [octl storage bucket lifecycle describe](octl_storage_bucket_lifecycle_describe.md)	 - Display lifecycle configuration.
+* [octl storage bucket lifecycle disable](octl_storage_bucket_lifecycle_disable.md)	 - Delete lifecycle configuration.
 

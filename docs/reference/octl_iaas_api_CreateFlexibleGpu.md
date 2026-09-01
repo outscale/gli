@@ -21,8 +21,8 @@ octl iaas api CreateFlexibleGpu [flags]
       --DeleteOnVmDeletion     If true, the fGPU is deleted when the VM is terminated.
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
       --Generation string      The processor generation that the fGPU must be compatible with.
-      --ModelName string       The model of fGPU you want to allocate.
-      --SubregionName string   The Subregion in which you want to create the fGPU.
+      --ModelName string       [REQUIRED] The model of fGPU you want to allocate.
+      --SubregionName string   [REQUIRED] The Subregion in which you want to create the fGPU.
   -h, --help                   help for CreateFlexibleGpu
 ```
 
@@ -54,5 +54,5 @@ octl iaas api CreateFlexibleGpu [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

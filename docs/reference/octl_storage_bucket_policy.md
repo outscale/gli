@@ -37,8 +37,8 @@ policy commands
 
 ### SEE ALSO
 
-* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
-* [octl storage bucket policy configure](octl_storage_bucket_policy_configure.md)	 - Update Policy configuration, alias for api PutBucketPolicy --Bucket bucket
-* [octl storage bucket policy describe](octl_storage_bucket_policy_describe.md)	 - Display Policy configuration, alias for api GetBucketPolicy --Bucket bucket
-* [octl storage bucket policy disable](octl_storage_bucket_policy_disable.md)	 - Delete Policy configuration, alias for api DeleteBucketPolicy --Bucket bucket
+* [octl storage bucket](octl_storage_bucket.md)	 - Manage Bucket resources
+* [octl storage bucket policy configure](octl_storage_bucket_policy_configure.md)	 - Update Policy configuration.
+* [octl storage bucket policy describe](octl_storage_bucket_policy_describe.md)	 - Display Policy configuration.
+* [octl storage bucket policy disable](octl_storage_bucket_policy_disable.md)	 - Delete Policy configuration.
 

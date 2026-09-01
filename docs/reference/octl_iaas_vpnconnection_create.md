@@ -1,10 +1,8 @@
 ## octl iaas vpnconnection create
 
-alias for api CreateVpnConnection
+Creates a VPN connection between a specified virtual gateway and a specified client gateway.
 
 ### Synopsis
-
-> alias for api CreateVpnConnection
 
 Creates a VPN connection between a specified virtual gateway and a specified client gateway.
 
@@ -18,6 +16,8 @@ This action can be done only if the virtual gateway is in the `available` state.
 
 
 For more information, see [About VPN Connections](https://docs.outscale.com/en/userguide/About-VPN-Connections.html).
+
+> alias for CreateVpnConnection
 
 ```
 octl iaas vpnconnection create [flags]
@@ -61,5 +61,5 @@ octl iaas vpnconnection create [flags]
 
 ### SEE ALSO
 
-* [octl iaas vpnconnection](octl_iaas_vpnconnection.md)	 - vpnconnection commands
+* [octl iaas vpnconnection](octl_iaas_vpnconnection.md)	 - Manage VpnConnection resources
 

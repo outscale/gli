@@ -9,7 +9,13 @@ octl kube oosaccess api Delete id [flags]
 ### Options
 
 ```
-  -h, --help   help for Delete
+      --DryRun strings                         
+      --GracePeriodSeconds int                 
+      --OrphanDependents                       
+      --Preconditions.ResourceVersion string   
+      --Preconditions.UID string               
+      --PropagationPolicy string               
+  -h, --help                                   help for Delete
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +47,5 @@ octl kube oosaccess api Delete id [flags]
 
 ### SEE ALSO
 
-* [octl kube oosaccess api](octl_kube_oosaccess_api.md)	 - oosaccess api calls
+* [octl kube oosaccess api](octl_kube_oosaccess_api.md)	 - Call oosaccess API
 

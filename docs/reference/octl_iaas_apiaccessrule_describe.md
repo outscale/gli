@@ -1,12 +1,12 @@
 ## octl iaas apiaccessrule describe
 
-alias for api ReadApiAccessRules --Filters.ApiAccessRuleIds api_access_rule_id
+Lists one or more API access rules.
 
 ### Synopsis
 
-> alias for api ReadApiAccessRules --Filters.ApiAccessRuleIds api_access_rule_id
+Lists one or more API access rules.
 
-
+> alias for ReadApiAccessRules --Filters.ApiAccessRuleIds api_access_rule_id
 
 ```
 octl iaas apiaccessrule describe api_access_rule_id [api_access_rule_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas apiaccessrule describe api_access_rule_id [api_access_rule_id]... [fla
 
 ### SEE ALSO
 
-* [octl iaas apiaccessrule](octl_iaas_apiaccessrule.md)	 - apiaccessrule commands
+* [octl iaas apiaccessrule](octl_iaas_apiaccessrule.md)	 - Manage ApiAccessRule resources
 

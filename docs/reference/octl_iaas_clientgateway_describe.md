@@ -1,12 +1,12 @@
 ## octl iaas clientgateway describe
 
-alias for api ReadClientGateways --Filters.ClientGatewayIds client_gateway_id
+Lists one or more of your client gateways.
 
 ### Synopsis
 
-> alias for api ReadClientGateways --Filters.ClientGatewayIds client_gateway_id
+Lists one or more of your client gateways.
 
-
+> alias for ReadClientGateways --Filters.ClientGatewayIds client_gateway_id
 
 ```
 octl iaas clientgateway describe client_gateway_id [client_gateway_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas clientgateway describe client_gateway_id [client_gateway_id]... [flags
 
 ### SEE ALSO
 
-* [octl iaas clientgateway](octl_iaas_clientgateway.md)	 - clientgateway commands
+* [octl iaas clientgateway](octl_iaas_clientgateway.md)	 - Manage ClientGateway resources
 

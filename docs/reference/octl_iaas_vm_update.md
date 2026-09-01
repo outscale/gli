@@ -1,10 +1,8 @@
 ## octl iaas vm update
 
-alias for api UpdateVm --VmId vm_id
+Modifies the specified attributes of a virtual machine (VM).
 
 ### Synopsis
-
-> alias for api UpdateVm --VmId vm_id
 
 Modifies the specified attributes of a virtual machine (VM).
 
@@ -19,6 +17,8 @@ You must stop the VM before modifying the following attributes:
 * `VmType`
 
 To complete the update of secure boot, you need to do a stop/start of the VM. A simple restart is not sufficient, as the update is done when the VM goes through the stopped state. For the difference between stop/start and restart, see [About VM Lifecycle](https://docs.outscale.com/en/userguide/About-VM-Lifecycle.html).
+
+> alias for UpdateVm --VmId vm_id
 
 ```
 octl iaas vm update vm_id [vm_id]... [flags]
@@ -40,7 +40,7 @@ octl iaas vm update vm_id [vm_id]... [flags]
       --shutdown-behavior-configuration-guest-action string   The action performed by the orchestrator when the VM is shut down from the guest operating system.
       --shutdown-behavior-configuration-host-action string    The action performed by the orchestrator when the VM is shut down due to a host infrastructure failure.
       --type string                                           The type of VM.
-      --user-data base64File                                  The file storing the data or script used to add a specific configuration to the VM (max size 500 KiB).
+      --user-data string                                      The file storing the data or script used to add a specific configuration to the VM (max size 500 KiB).
       --volume-delete-on-vm-deletion                          If set to true, the volume is deleted when terminating the VM.
       --volume-device-name string                             The device name for the volume.
       --volume-id string                                      The ID of the volume.
@@ -76,5 +76,5 @@ octl iaas vm update vm_id [vm_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas vm](octl_iaas_vm.md)	 - vm commands
+* [octl iaas vm](octl_iaas_vm.md)	 - Manage Vm resources
 

@@ -1,10 +1,8 @@
 ## octl iaas vmtemplate update
 
-alias for api UpdateVmTemplate --VmTemplateId vm_template_id
+> [WARNING] > This feature is currently under development and may not function properly.
 
 ### Synopsis
-
-> alias for api UpdateVmTemplate --VmTemplateId vm_template_id
 
 > [WARNING]
 
@@ -12,6 +10,8 @@ alias for api UpdateVmTemplate --VmTemplateId vm_template_id
 
 
 Modifies the specified attributes of a template of virtual machines (VMs).
+
+> alias for UpdateVmTemplate --VmTemplateId vm_template_id
 
 ```
 octl iaas vmtemplate update vm_template_id [vm_template_id]... [flags]
@@ -55,5 +55,5 @@ octl iaas vmtemplate update vm_template_id [vm_template_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - vmtemplate commands
+* [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - Manage VmTemplate resources
 

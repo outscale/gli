@@ -1,12 +1,12 @@
 ## octl iaas vmtype list
 
-alias for api ReadVmTypes
+Lists one or more predefined VM types.
 
 ### Synopsis
 
-> alias for api ReadVmTypes
-
 Lists one or more predefined VM types.
+
+> alias for ReadVmTypes
 
 ```
 octl iaas vmtype list [flags]
@@ -54,5 +54,5 @@ octl iaas vmtype list [flags]
 
 ### SEE ALSO
 
-* [octl iaas vmtype](octl_iaas_vmtype.md)	 - vmtype commands
+* [octl iaas vmtype](octl_iaas_vmtype.md)	 - Manage VmType resources
 

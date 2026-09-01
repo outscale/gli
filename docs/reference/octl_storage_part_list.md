@@ -1,12 +1,12 @@
 ## octl storage part list
 
-alias for api ListParts
+
 
 ### Synopsis
 
-> alias for api ListParts
 
 
+> alias for ListParts
 
 ```
 octl storage part list [flags]
@@ -53,5 +53,5 @@ octl storage part list [flags]
 
 ### SEE ALSO
 
-* [octl storage part](octl_storage_part.md)	 - part commands
+* [octl storage part](octl_storage_part.md)	 - Manage Part resources
 

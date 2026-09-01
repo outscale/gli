@@ -19,7 +19,6 @@ octl iaas api ReadUserGroups [flags]
       --Filters.PathPrefix string      The path prefix of the groups.
       --Filters.UserGroupIds strings   The IDs of the user groups.
       --FirstItem int                  The item starting the list of groups requested.
-      --ResultsPerPage int             The maximum number of items that can be returned in a single response (by default, 100).
   -h, --help                           help for ReadUserGroups
 ```
 
@@ -51,5 +50,5 @@ octl iaas api ReadUserGroups [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

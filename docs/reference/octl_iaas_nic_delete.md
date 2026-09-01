@@ -1,14 +1,14 @@
 ## octl iaas nic delete
 
-alias for api DeleteNic --NicId nic_id
+Deletes the specified network interface card (NIC).
 
 ### Synopsis
-
-> alias for api DeleteNic --NicId nic_id
 
 Deletes the specified network interface card (NIC).
 
 The network interface must not be attached to any virtual machine (VM).
+
+> alias for DeleteNic --NicId nic_id
 
 ```
 octl iaas nic delete nic_id [nic_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas nic delete nic_id [nic_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas nic](octl_iaas_nic.md)	 - nic commands
+* [octl iaas nic](octl_iaas_nic.md)	 - Manage Nic resources
 

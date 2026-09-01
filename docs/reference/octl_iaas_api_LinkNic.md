@@ -15,10 +15,10 @@ octl iaas api LinkNic [flags]
 ### Options
 
 ```
-      --DeviceNumber int   The index of the VM device for the NIC attachment (between 1 and 7, both included).
+      --DeviceNumber int   [REQUIRED] The index of the VM device for the NIC attachment (between 1 and 7, both included).
       --DryRun             If true, checks whether you have the required permissions to perform the action.
-      --NicId string       The ID of the NIC you want to attach.
-      --VmId string        The ID of the VM to which you want to attach the NIC.
+      --NicId string       [REQUIRED] The ID of the NIC you want to attach.
+      --VmId string        [REQUIRED] The ID of the VM to which you want to attach the NIC.
   -h, --help               help for LinkNic
 ```
 
@@ -50,5 +50,5 @@ octl iaas api LinkNic [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

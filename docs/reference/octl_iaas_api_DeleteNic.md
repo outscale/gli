@@ -16,7 +16,7 @@ octl iaas api DeleteNic [flags]
 
 ```
       --DryRun         If true, checks whether you have the required permissions to perform the action.
-      --NicId string   The ID of the NIC you want to delete.
+      --NicId string   [REQUIRED] The ID of the NIC you want to delete.
   -h, --help           help for DeleteNic
 ```
 
@@ -48,5 +48,5 @@ octl iaas api DeleteNic [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

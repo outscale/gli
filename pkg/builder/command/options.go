@@ -3,11 +3,10 @@ SPDX-FileCopyrightText: 2026 Outscale SAS <opensource@outscale.com>
 
 SPDX-License-Identifier: BSD-3-Clause
 */
-package flags
+package commandbuilder
 
 import (
 	"os"
-	"slices"
 	"strconv"
 	"strings"
 
@@ -15,26 +14,36 @@ import (
 	"github.com/samber/lo"
 )
 
-var NumEntriesInSlices = 1
+var numEntriesInSlices = map[string]int{}
 
 // We parse the command line to find index-based flags and set NumEntriesInSlices accordingly.
 // The cobra commands will be build with all the necessary flags (+1 to allow autompletion of next)
 func init() {
-	numEntries := 0
 	// count the number of flags
 	cnt := lo.CountBy(os.Args, func(arg string) bool {
-		return strings.HasPrefix(arg, "-")
+		return strings.HasPrefix(arg, "--")
 	})
 	// worst case = 1 index per flag
 	for i := range cnt {
 		idxStr := "." + strconv.Itoa(i) + "."
-		if !slices.ContainsFunc(os.Args, func(arg string) bool {
-			return strings.Contains(arg, idxStr)
-		}) {
-			break
+		for _, arg := range os.Args {
+			parts := strings.Split(strings.TrimPrefix(arg, "--"), idxStr)
+			if len(parts) == 1 {
+				continue
+			}
+			prefix := ""
+			for iarg := range len(parts) - 1 {
+				numEntriesInSlices[prefix+parts[iarg]] = i + 1
+				prefix += parts[iarg] + idxStr
+			}
 		}
-		numEntries = i + 1
 	}
-	NumEntriesInSlices = numEntries + 1
-	debug.Println("NumEntriesInSlices", NumEntriesInSlices)
+	debug.Println("NumEntriesInSlices", numEntriesInSlices)
+}
+
+func NumEntriesInSlices(prefix string) int {
+	if n, found := numEntriesInSlices[prefix]; found {
+		return n + 1
+	}
+	return 1
 }

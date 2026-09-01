@@ -42,5 +42,5 @@ octl iaas net teardown net_id [flags]
 
 ### SEE ALSO
 
-* [octl iaas net](octl_iaas_net.md)	 - net commands
+* [octl iaas net](octl_iaas_net.md)	 - Manage Net resources
 

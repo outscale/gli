@@ -9,42 +9,23 @@ octl kube ippool api Update [flags]
 ### Options
 
 ```
-      --ObjectMeta.Annotations stringToString              (default [])
-      --ObjectMeta.CreationTimestamp string               
-      --ObjectMeta.DeletionGracePeriodSeconds int         
-      --ObjectMeta.DeletionTimestamp string               
-      --ObjectMeta.Finalizers strings                     
-      --ObjectMeta.GenerateName string                    
-      --ObjectMeta.Generation int                         
-      --ObjectMeta.Labels stringToString                   (default [])
-      --ObjectMeta.ManagedFields.0.APIVersion string      
-      --ObjectMeta.ManagedFields.0.FieldsType string      
-      --ObjectMeta.ManagedFields.0.FieldsV1 string        
-      --ObjectMeta.ManagedFields.0.Manager string         
-      --ObjectMeta.ManagedFields.0.Operation string       
-      --ObjectMeta.ManagedFields.0.Subresource string     
-      --ObjectMeta.ManagedFields.0.Time string            
-      --ObjectMeta.Name string                            
-      --ObjectMeta.Namespace string                       
-      --ObjectMeta.OwnerReferences.0.APIVersion string    
-      --ObjectMeta.OwnerReferences.0.BlockOwnerDeletion   
-      --ObjectMeta.OwnerReferences.0.Controller           
-      --ObjectMeta.OwnerReferences.0.Kind string          
-      --ObjectMeta.OwnerReferences.0.Name string          
-      --ObjectMeta.OwnerReferences.0.UID string           
-      --ObjectMeta.ResourceVersion string                 
-      --ObjectMeta.SelfLink string                        
-      --ObjectMeta.UID string                             
-      --Spec.NumAddresses int                             
-      --Spec.Persistent                                   
-      --Status.LastError.Message string                   
-      --Status.LastError.Posted string                    
-      --Status.Progress.AllocatedAddresses int            
-      --Status.Progress.LinkedAddresses int               
-      --Status.Progress.UnlinkedAddresses int             
-      --TypeMeta.APIVersion string                        
-      --TypeMeta.Kind string                              
-  -h, --help                                              help for Update
+      --DryRun strings                              
+      --FieldManager string                         
+      --FieldValidation string                      
+      --ObjectMeta.Annotations stringToString        (default [])
+      --ObjectMeta.DeletionGracePeriodSeconds int   
+      --ObjectMeta.DeletionTimestamp fileOrJson     
+      --ObjectMeta.Finalizers strings               
+      --ObjectMeta.GenerateName string              
+      --ObjectMeta.Labels stringToString             (default [])
+      --ObjectMeta.Name string                      
+      --ObjectMeta.Namespace string                 
+      --ObjectMeta.ResourceVersion string           
+      --ObjectMeta.SelfLink string                  
+      --ObjectMeta.UID string                       
+      --Spec.NumAddresses int                       
+      --Spec.Persistent                             
+  -h, --help                                        help for Update
 ```
 
 ### Options inherited from parent commands
@@ -76,5 +57,5 @@ octl kube ippool api Update [flags]
 
 ### SEE ALSO
 
-* [octl kube ippool api](octl_kube_ippool_api.md)	 - ippool api calls
+* [octl kube ippool api](octl_kube_ippool_api.md)	 - Call ippool API
 

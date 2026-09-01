@@ -1,0 +1,186 @@
+api:
+  Create:
+    use: Create
+    content: .
+    entity: vpnconnection
+    flags:
+    - name: ObjectMeta.Name
+      kind: 24
+    - name: ObjectMeta.GenerateName
+      kind: 24
+    - name: ObjectMeta.Namespace
+      kind: 24
+    - name: ObjectMeta.SelfLink
+      kind: 24
+    - name: ObjectMeta.UID
+      kind: 24
+    - name: ObjectMeta.ResourceVersion
+      kind: 24
+    - name: ObjectMeta.DeletionTimestamp
+      kind: 24
+      customValue: fileOrJson
+    - name: ObjectMeta.DeletionGracePeriodSeconds
+      kind: 6
+    - name: ObjectMeta.Labels
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Annotations
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Finalizers
+      kind: 24
+      container: 23
+    - name: Spec.BgpASN
+      kind: 2
+    - name: Spec.ClientGatewayConfigurationStorage.ConfigMapName
+      kind: 24
+    - name: Spec.ClientGatewayConfigurationStorage.Namespace
+      kind: 24
+    - name: Spec.ClientGatewayConfigurationStorage.SecretName
+      kind: 24
+    - name: Spec.PublicIP
+      kind: 24
+    - name: Spec.StaticRoutesOnly
+      kind: 1
+    - name: Spec.VpnOptions.Phase2Options.PreSharedKey.SecretKey
+      kind: 24
+    - name: Spec.VpnOptions.Phase2Options.PreSharedKey.SecretName
+      kind: 24
+    - name: Spec.VpnOptions.Phase2Options.PreSharedKey.SecretNamespace
+      kind: 24
+    - name: Spec.VpnOptions.TunnelInsideIpRange
+      kind: 24
+    - name: Spec.VpnRoutes
+      kind: 24
+      container: 23
+    - name: DryRun
+      kind: 24
+      container: 23
+    - name: FieldManager
+      kind: 24
+    - name: FieldValidation
+      kind: 24
+  Delete:
+    use: Delete id
+    flags:
+    - name: GracePeriodSeconds
+      kind: 6
+    - name: Preconditions.UID
+      kind: 24
+    - name: Preconditions.ResourceVersion
+      kind: 24
+    - name: OrphanDependents
+      kind: 1
+    - name: PropagationPolicy
+      kind: 24
+    - name: DryRun
+      kind: 24
+      container: 23
+  Get:
+    use: Get id
+    content: .
+    entity: vpnconnection
+    flags:
+    - name: ResourceVersion
+      kind: 24
+  List:
+    use: List
+    content: Items
+    entity: vpnconnection
+    flags:
+    - name: LabelSelector
+      kind: 24
+    - name: FieldSelector
+      kind: 24
+    - name: ResourceVersion
+      kind: 24
+    - name: ResourceVersionMatch
+      kind: 24
+    - name: TimeoutSeconds
+      kind: 6
+    - name: Limit
+      kind: 6
+    - name: ShardSelector
+      kind: 24
+  Update:
+    use: Update
+    content: Spec
+    entity: vpnconnection
+    flags:
+    - name: ObjectMeta.Name
+      kind: 24
+    - name: ObjectMeta.GenerateName
+      kind: 24
+    - name: ObjectMeta.Namespace
+      kind: 24
+    - name: ObjectMeta.SelfLink
+      kind: 24
+    - name: ObjectMeta.UID
+      kind: 24
+    - name: ObjectMeta.ResourceVersion
+      kind: 24
+    - name: ObjectMeta.DeletionTimestamp
+      kind: 24
+      customValue: fileOrJson
+    - name: ObjectMeta.DeletionGracePeriodSeconds
+      kind: 6
+    - name: ObjectMeta.Labels
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Annotations
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Finalizers
+      kind: 24
+      container: 23
+    - name: Spec.BgpASN
+      kind: 2
+    - name: Spec.ClientGatewayConfigurationStorage.ConfigMapName
+      kind: 24
+    - name: Spec.ClientGatewayConfigurationStorage.Namespace
+      kind: 24
+    - name: Spec.ClientGatewayConfigurationStorage.SecretName
+      kind: 24
+    - name: Spec.PublicIP
+      kind: 24
+    - name: Spec.StaticRoutesOnly
+      kind: 1
+    - name: Spec.VpnOptions.Phase2Options.PreSharedKey.SecretKey
+      kind: 24
+    - name: Spec.VpnOptions.Phase2Options.PreSharedKey.SecretName
+      kind: 24
+    - name: Spec.VpnOptions.Phase2Options.PreSharedKey.SecretNamespace
+      kind: 24
+    - name: Spec.VpnOptions.TunnelInsideIpRange
+      kind: 24
+    - name: Spec.VpnRoutes
+      kind: 24
+      container: 23
+    - name: DryRun
+      kind: 24
+      container: 23
+    - name: FieldManager
+      kind: 24
+    - name: FieldValidation
+      kind: 24
+entities:
+  vpnconnection:
+    title: Get
+    columns:
+    - title: Name
+      content: .metadata.name
+    - title: VPN Connection ID
+      content: .status.vpnConnectionId
+    - title: VPN Connection State
+      content: .status.vpnConnectionState
+    - title: Client Public IP
+      content: .spec.publicIP
+    - title: Client ASN
+      content: .spec.bgpASN
+    - title: Virtual Gateway Public IP
+      content: .status.vgwTelemetries[0].OutsideIpAddress
+    - title: Virtual Gateway Tunnel State
+      content: .status.vgwTelemetries[0].State
+    - title: Virtual Gateway Tunnel State Description
+      content: .status.vgwTelemetries[0].StateDescription
+    primary: Name

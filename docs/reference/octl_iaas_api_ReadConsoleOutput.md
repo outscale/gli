@@ -10,7 +10,7 @@ octl iaas api ReadConsoleOutput [flags]
 
 ```
       --DryRun        If true, checks whether you have the required permissions to perform the action.
-      --VmId string   The ID of the VM.
+      --VmId string   [REQUIRED] The ID of the VM.
   -h, --help          help for ReadConsoleOutput
 ```
 
@@ -42,5 +42,5 @@ octl iaas api ReadConsoleOutput [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

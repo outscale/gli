@@ -37,7 +37,7 @@ retention commands
 
 ### SEE ALSO
 
-* [octl storage object](octl_storage_object.md)	 - object commands
-* [octl storage object retention configure](octl_storage_object_retention_configure.md)	 - Configure object retention, alias for api PutObjectRetention --Key key --Retention.Mode
-* [octl storage object retention desc](octl_storage_object_retention_desc.md)	 - Display retention configuration, alias for api GetObjectRetention --Key key
+* [octl storage object](octl_storage_object.md)	 - Manage Object resources
+* [octl storage object retention configure](octl_storage_object_retention_configure.md)	 - Configure object retention.
+* [octl storage object retention desc](octl_storage_object_retention_desc.md)	 - Display object retention configuration.
 

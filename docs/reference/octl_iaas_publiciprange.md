@@ -1,6 +1,6 @@
 ## octl iaas publiciprange
 
-publiciprange commands
+Manage PublicIpRange resources
 
 ### Options
 
@@ -37,5 +37,5 @@ publiciprange commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas publiciprange list](octl_iaas_publiciprange_list.md)	 - alias for api ReadPublicIpRanges
+* [octl iaas publiciprange list](octl_iaas_publiciprange_list.md)	 - Gets the public IPv4 addresses in CIDR notation for the Region specified in the endpoint of the request.
 

@@ -1,6 +1,6 @@
 ## octl iaas usergroupsperuser
 
-usergroupsperuser commands
+Manage UserGroup resources
 
 ### Options
 
@@ -37,5 +37,5 @@ usergroupsperuser commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas usergroupsperuser list](octl_iaas_usergroupsperuser_list.md)	 - alias for api ReadUserGroupsPerUser
+* [octl iaas usergroupsperuser list](octl_iaas_usergroupsperuser_list.md)	 - Lists the groups a specified user belongs to.
 

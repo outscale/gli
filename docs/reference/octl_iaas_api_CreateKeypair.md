@@ -21,10 +21,10 @@ octl iaas api CreateKeypair [flags]
 ### Options
 
 ```
-      --DryRun               If true, checks whether you have the required permissions to perform the action.
-      --KeypairName string   A unique name for the keypair, with a maximum length of 255 [ASCII printable characters](https://en.wikipedia.org/wiki/ASCII#Printable_characters).
-      --PublicKey string     The public key to import in your account, if you are importing an existing keypair.
-  -h, --help                 help for CreateKeypair
+      --DryRun                 If true, checks whether you have the required permissions to perform the action.
+      --KeypairName string     [REQUIRED] A unique name for the keypair, with a maximum length of 255 [ASCII printable characters](https://en.wikipedia.org/wiki/ASCII#Printable_characters).
+      --PublicKey base64File   The file storing the public key to import in your account, if you are importing an existing keypair.
+  -h, --help                   help for CreateKeypair
 ```
 
 ### Options inherited from parent commands
@@ -55,5 +55,5 @@ octl iaas api CreateKeypair [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

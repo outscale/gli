@@ -19,12 +19,12 @@ octl iaas api ReadVms [flags]
       --Filters.Architectures strings                         The architectures of the VMs (i386 | x86_64).
       --Filters.BlockDeviceMappingDeleteOnVmDeletion          Whether the BSU volumes are deleted when terminating the VMs.
       --Filters.BlockDeviceMappingDeviceNames strings         The device names for the BSU volumes (in the format /dev/sdX, /dev/sdXX, /dev/xvdX, or /dev/xvdXX).
-      --Filters.BlockDeviceMappingLinkDates strings           The link dates for the BSU volumes mapped to the VMs (for example, 2016-01-23T18:45:30.000Z).
+      --Filters.BlockDeviceMappingLinkDates osctime           The link dates for the BSU volumes mapped to the VMs (for example, 2016-01-23T18:45:30.000Z).
       --Filters.BlockDeviceMappingStates strings              The states for the BSU volumes (attaching | attached | detaching | detached).
       --Filters.BlockDeviceMappingVolumeIds strings           The volume IDs of the BSU volumes.
       --Filters.BootModes strings                             The boot modes of the VMs.
       --Filters.ClientTokens strings                          The idempotency tokens provided when launching the VMs.
-      --Filters.CreationDates strings                         The dates when the VMs were launched.
+      --Filters.CreationDates osctime                         The dates when the VMs were launched.
       --Filters.ImageIds strings                              The IDs of the OMIs used to launch the VMs.
       --Filters.IsSourceDestChecked                           Whether the source/destination checking is enabled (true) or disabled (false).
       --Filters.KeypairNames strings                          The names of the keypairs used when launching the VMs.
@@ -36,7 +36,7 @@ octl iaas api ReadVms [flags]
       --Filters.NicIsSourceDestChecked                        Whether the source/destination checking is enabled (true) or disabled (false).
       --Filters.NicLinkNicDeleteOnVmDeletion                  Whether the NICs are deleted when the VMs they are attached to are deleted.
       --Filters.NicLinkNicDeviceNumbers ints                  The device numbers the NICs are attached to.
-      --Filters.NicLinkNicLinkNicDates strings                The dates and times (UTC) when the NICs were attached to the VMs.
+      --Filters.NicLinkNicLinkNicDates osctime                The dates and times (UTC) when the NICs were attached to the VMs.
       --Filters.NicLinkNicLinkNicIds strings                  The IDs of the NIC attachments.
       --Filters.NicLinkNicStates strings                      The states of the attachments.
       --Filters.NicLinkNicVmAccountIds strings                The OUTSCALE account IDs of the owners of the VMs the NICs are attached to.
@@ -82,8 +82,6 @@ octl iaas api ReadVms [flags]
       --Filters.VmStateCodes ints                             The state codes of the VMs: -1 (quarantine), 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).
       --Filters.VmStateNames strings                          The state names of the VMs (pending | running | stopping | stopped | shutting-down | terminated | quarantine).
       --Filters.VmTypes strings                               The VM types (for example, t2.micro).
-      --NextPageToken string                                  The token to request the next page of results.
-      --ResultsPerPage int                                    The maximum number of logs returned in a single response (between 1 and 1000, both included).
   -h, --help                                                  help for ReadVms
 ```
 
@@ -115,5 +113,5 @@ octl iaas api ReadVms [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -1,14 +1,14 @@
 ## octl iaas user list
 
-alias for api ReadUsers
+Lists all EIM users in the OUTSCALE account.
 
 ### Synopsis
-
-> alias for api ReadUsers
 
 Lists all EIM users in the OUTSCALE account.
 
 The response can be filtered using the UserIds.
+
+> alias for ReadUsers
 
 ```
 octl iaas user list [flags]
@@ -50,5 +50,5 @@ octl iaas user list [flags]
 
 ### SEE ALSO
 
-* [octl iaas user](octl_iaas_user.md)	 - user commands
+* [octl iaas user](octl_iaas_user.md)	 - Manage User resources
 

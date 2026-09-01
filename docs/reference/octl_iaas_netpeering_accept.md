@@ -1,10 +1,8 @@
 ## octl iaas netpeering accept
 
-alias for api AcceptNetPeering --NetPeeringId netpeering_id
+Accepts a Net peering request.
 
 ### Synopsis
-
-> alias for api AcceptNetPeering --NetPeeringId netpeering_id
 
 Accepts a Net peering request.
 
@@ -15,6 +13,8 @@ To accept this request, you must be the owner of the peer Net. If you do not acc
 **[NOTE]**
 
 A peering connection between two Nets works both ways. Therefore, when an A-to-B peering connection is accepted, any pending B-to-A peering connection is automatically rejected as redundant.
+
+> alias for AcceptNetPeering --NetPeeringId netpeering_id
 
 ```
 octl iaas netpeering accept netpeering_id [flags]
@@ -54,5 +54,5 @@ octl iaas netpeering accept netpeering_id [flags]
 
 ### SEE ALSO
 
-* [octl iaas netpeering](octl_iaas_netpeering.md)	 - netpeering commands
+* [octl iaas netpeering](octl_iaas_netpeering.md)	 - Manage NetPeering resources
 

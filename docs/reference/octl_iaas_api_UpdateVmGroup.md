@@ -22,7 +22,7 @@ octl iaas api UpdateVmGroup [flags]
       --DryRun                If true, checks whether you have the required permissions to perform the action.
       --Tags.0.Key string     The key of the tag, between 1 and 255 characters.
       --Tags.0.Value string   The value of the tag, between 0 and 255 characters.
-      --VmGroupId string      The ID of the VM group you want to update.
+      --VmGroupId string      [REQUIRED] The ID of the VM group you want to update.
       --VmGroupName string    A new name for your VM group.
       --VmTemplateId string   A new VM template ID for your VM group.
   -h, --help                  help for UpdateVmGroup
@@ -56,5 +56,5 @@ octl iaas api UpdateVmGroup [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

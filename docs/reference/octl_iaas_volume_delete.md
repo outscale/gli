@@ -1,14 +1,14 @@
 ## octl iaas volume delete
 
-alias for api DeleteVolume --VolumeId volume_id
+Deletes a specified Block Storage Unit (BSU) volume.
 
 ### Synopsis
-
-> alias for api DeleteVolume --VolumeId volume_id
 
 Deletes a specified Block Storage Unit (BSU) volume.
 
 You can delete available volumes only, that is, volumes that are not attached to a virtual machine (VM).
+
+> alias for DeleteVolume --VolumeId volume_id
 
 ```
 octl iaas volume delete volume_id [volume_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas volume delete volume_id [volume_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas volume](octl_iaas_volume.md)	 - volume commands
+* [octl iaas volume](octl_iaas_volume.md)	 - Manage Volume resources
 

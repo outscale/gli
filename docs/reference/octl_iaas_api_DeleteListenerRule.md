@@ -16,7 +16,7 @@ octl iaas api DeleteListenerRule [flags]
 
 ```
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
-      --ListenerRuleName string   The name of the rule you want to delete.
+      --ListenerRuleName string   [REQUIRED] The name of the rule you want to delete.
   -h, --help                      help for DeleteListenerRule
 ```
 
@@ -48,5 +48,5 @@ octl iaas api DeleteListenerRule [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

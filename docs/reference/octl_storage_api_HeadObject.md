@@ -10,7 +10,6 @@ octl storage api HeadObject [flags]
 
 ```
       --Bucket string                       [REQUIRED] The name of the bucket that contains the object.
-      --ChecksumMode string                 To retrieve the checksum, this parameter must be enabled.
       --ExpectedBucketOwner string          The account ID of the expected bucket owner.
       --IfMatch string                      Return the object only if its entity tag (ETag) is the same as the one specified; otherwise, return a 412 (precondition failed) error.
       --IfModifiedSince osctime             Return the object only if it has been modified since the specified time; otherwise, return a 304 (not modified) error.
@@ -19,16 +18,12 @@ octl storage api HeadObject [flags]
       --Key string                          [REQUIRED] The object key.
       --PartNumber int32                    Part number of the object being read.
       --Range string                        HeadObject returns only the metadata for an object.
-      --RequestPayer string                 Confirms that the requester knows that they will be charged for the request.
       --ResponseCacheControl string         Sets the Cache-Control header of the response.
       --ResponseContentDisposition string   Sets the Content-Disposition header of the response.
       --ResponseContentEncoding string      Sets the Content-Encoding header of the response.
       --ResponseContentLanguage string      Sets the Content-Language header of the response.
       --ResponseContentType string          Sets the Content-Type header of the response.
       --ResponseExpires osctime             Sets the Expires header of the response.
-      --SSECustomerAlgorithm string         Specifies the algorithm to use when encrypting the object (for example, AES256).
-      --SSECustomerKey string               Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data.
-      --SSECustomerKeyMD5 string            Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
       --VersionId string                    Version ID used to reference a specific version of the object.
   -h, --help                                help for HeadObject
 ```
@@ -62,5 +57,5 @@ octl storage api HeadObject [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

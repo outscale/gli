@@ -12,7 +12,6 @@ octl storage api GetObjectRetention [flags]
       --Bucket string                [REQUIRED] The bucket name containing the object whose retention settings you want to retrieve.
       --ExpectedBucketOwner string   The account ID of the expected bucket owner.
       --Key string                   [REQUIRED] The key name for the object whose retention settings you want to retrieve.
-      --RequestPayer string          Confirms that the requester knows that they will be charged for the request.
       --VersionId string             The version ID for the object whose retention settings you want to retrieve.
   -h, --help                         help for GetObjectRetention
 ```
@@ -46,5 +45,5 @@ octl storage api GetObjectRetention [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

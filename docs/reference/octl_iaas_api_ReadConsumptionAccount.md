@@ -14,11 +14,11 @@ octl iaas api ReadConsumptionAccount [flags]
 
 ```
       --DryRun                If true, checks whether you have the required permissions to perform the action.
-      --FromDate osctime      The beginning of the time period, in ISO 8601 date format (for example, 2020-06-14).
+      --FromDate osctime      [REQUIRED] The beginning of the time period, in ISO 8601 date format (for example, 2020-06-14).
       --Overall               If false, returns only the consumption of the specific account that sends this request.
       --ShowPrice             If true, the response also includes the unit price of the consumed resource (UnitPrice) and the total price of the consumed resource during the specified time period (Price), in the currency of the Region's catalog.
       --ShowResourceDetails   By default or if false, returns the consumption aggregated by resource type.
-      --ToDate osctime        The end of the time period, in ISO 8601 date format (for example, 2020-06-30).
+      --ToDate osctime        [REQUIRED] The end of the time period, in ISO 8601 date format (for example, 2020-06-30).
   -h, --help                  help for ReadConsumptionAccount
 ```
 
@@ -50,5 +50,5 @@ octl iaas api ReadConsumptionAccount [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

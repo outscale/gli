@@ -1,14 +1,14 @@
 ## octl iaas internetservice delete
 
-alias for api DeleteInternetService --InternetServiceId internet_service_id
+Deletes an internet service.
 
 ### Synopsis
-
-> alias for api DeleteInternetService --InternetServiceId internet_service_id
 
 Deletes an internet service.
 
 Before deleting an internet service, you must detach it from any Net it is attached to.
+
+> alias for DeleteInternetService --InternetServiceId internet_service_id
 
 ```
 octl iaas internetservice delete internet_service_id [internet_service_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas internetservice delete internet_service_id [internet_service_id]... [f
 
 ### SEE ALSO
 
-* [octl iaas internetservice](octl_iaas_internetservice.md)	 - internetservice commands
+* [octl iaas internetservice](octl_iaas_internetservice.md)	 - Manage InternetService resources
 

@@ -16,7 +16,7 @@ octl iaas api DeleteFlexibleGpu [flags]
 
 ```
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
-      --FlexibleGpuId string   The ID of the fGPU you want to delete.
+      --FlexibleGpuId string   [REQUIRED] The ID of the fGPU you want to delete.
   -h, --help                   help for DeleteFlexibleGpu
 ```
 
@@ -48,5 +48,5 @@ octl iaas api DeleteFlexibleGpu [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

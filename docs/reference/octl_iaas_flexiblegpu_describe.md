@@ -1,12 +1,12 @@
 ## octl iaas flexiblegpu describe
 
-alias for api ReadFlexibleGpus --Filters.FlexibleGpuIds flexible_gpu_id
+Lists one or more flexible GPUs (fGPUs) allocated to your OUTSCALE account.
 
 ### Synopsis
 
-> alias for api ReadFlexibleGpus --Filters.FlexibleGpuIds flexible_gpu_id
+Lists one or more flexible GPUs (fGPUs) allocated to your OUTSCALE account.
 
-
+> alias for ReadFlexibleGpus --Filters.FlexibleGpuIds flexible_gpu_id
 
 ```
 octl iaas flexiblegpu describe flexible_gpu_id [flexible_gpu_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas flexiblegpu describe flexible_gpu_id [flexible_gpu_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - flexiblegpu commands
+* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - Manage FlexibleGpu resources
 

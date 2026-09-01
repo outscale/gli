@@ -16,7 +16,7 @@ octl iaas api DeleteNatService [flags]
 
 ```
       --DryRun                If true, checks whether you have the required permissions to perform the action.
-      --NatServiceId string   The ID of the NAT service you want to delete.
+      --NatServiceId string   [REQUIRED] The ID of the NAT service you want to delete.
   -h, --help                  help for DeleteNatService
 ```
 
@@ -48,5 +48,5 @@ octl iaas api DeleteNatService [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

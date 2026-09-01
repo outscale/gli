@@ -1,14 +1,14 @@
 ## octl iaas netpeering reject
 
-alias for api RejectNetPeering --NetPeeringId netpeering_id
+Rejects a Net peering request.
 
 ### Synopsis
-
-> alias for api RejectNetPeering --NetPeeringId netpeering_id
 
 Rejects a Net peering request.
 
 The Net peering must be in the `pending-acceptance` state to be rejected. The rejected Net peering is then in the `rejected` state.
+
+> alias for RejectNetPeering --NetPeeringId netpeering_id
 
 ```
 octl iaas netpeering reject netpeering_id [flags]
@@ -48,5 +48,5 @@ octl iaas netpeering reject netpeering_id [flags]
 
 ### SEE ALSO
 
-* [octl iaas netpeering](octl_iaas_netpeering.md)	 - netpeering commands
+* [octl iaas netpeering](octl_iaas_netpeering.md)	 - Manage NetPeering resources
 

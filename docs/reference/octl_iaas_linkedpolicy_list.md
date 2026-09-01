@@ -1,12 +1,12 @@
 ## octl iaas linkedpolicy list
 
-alias for api ReadLinkedPolicies
+Lists the managed policies linked to a specified user.
 
 ### Synopsis
 
-> alias for api ReadLinkedPolicies
-
 Lists the managed policies linked to a specified user.
+
+> alias for ReadLinkedPolicies
 
 ```
 octl iaas linkedpolicy list [flags]
@@ -49,5 +49,5 @@ octl iaas linkedpolicy list [flags]
 
 ### SEE ALSO
 
-* [octl iaas linkedpolicy](octl_iaas_linkedpolicy.md)	 - linkedpolicy commands
+* [octl iaas linkedpolicy](octl_iaas_linkedpolicy.md)	 - Manage LinkedPolicy resources
 

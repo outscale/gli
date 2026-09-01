@@ -1,6 +1,6 @@
 ## octl iaas subregion
 
-subregion commands
+Manage Subregion resources
 
 ### Options
 
@@ -37,6 +37,6 @@ subregion commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas subregion describe](octl_iaas_subregion_describe.md)	 - alias for api ReadSubregions --Filters.SubregionNames subregion_name
-* [octl iaas subregion list](octl_iaas_subregion_list.md)	 - alias for api ReadSubregions
+* [octl iaas subregion describe](octl_iaas_subregion_describe.md)	 - Lists one or more of the enabled Subregions that you can access in the current Region.
+* [octl iaas subregion list](octl_iaas_subregion_list.md)	 - Lists one or more of the enabled Subregions that you can access in the current Region.
 

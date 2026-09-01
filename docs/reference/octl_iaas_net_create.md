@@ -1,10 +1,8 @@
 ## octl iaas net create
 
-alias for api CreateNet
+Creates a Net with a specified IP range.
 
 ### Synopsis
-
-> alias for api CreateNet
 
 Creates a Net with a specified IP range.
 
@@ -12,6 +10,8 @@ The IP range (network range) of your Net must be between a /28 netmask (16 IPs) 
 
 
 For more information, see [About Nets](https://docs.outscale.com/en/userguide/About-Nets.html).
+
+> alias for CreateNet
 
 ```
 octl iaas net create [flags]
@@ -53,5 +53,5 @@ octl iaas net create [flags]
 
 ### SEE ALSO
 
-* [octl iaas net](octl_iaas_net.md)	 - net commands
+* [octl iaas net](octl_iaas_net.md)	 - Manage Net resources
 

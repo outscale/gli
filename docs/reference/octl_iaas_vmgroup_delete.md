@@ -1,10 +1,8 @@
 ## octl iaas vmgroup delete
 
-alias for api DeleteVmGroup --VmGroupId vm_group_id
+> [WARNING] > This feature is currently under development and may not function properly.
 
 ### Synopsis
-
-> alias for api DeleteVmGroup --VmGroupId vm_group_id
 
 > [WARNING]
 
@@ -12,6 +10,8 @@ alias for api DeleteVmGroup --VmGroupId vm_group_id
 
 
 Deletes a specified VM group.
+
+> alias for DeleteVmGroup --VmGroupId vm_group_id
 
 ```
 octl iaas vmgroup delete vm_group_id [vm_group_id]... [flags]
@@ -51,5 +51,5 @@ octl iaas vmgroup delete vm_group_id [vm_group_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - vmgroup commands
+* [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - Manage VmGroup resources
 

@@ -1,10 +1,8 @@
 ## octl iaas servercertificate create
 
-alias for api CreateServerCertificate
+Creates a server certificate and its matching private key.
 
 ### Synopsis
-
-> alias for api CreateServerCertificate
 
 Creates a server certificate and its matching private key.
 
@@ -25,6 +23,8 @@ This private key must not be protected by a password or a passphrase.
 
 
 For more information, see [About Server Certificates in EIM](https://docs.outscale.com/en/userguide/About-Server-Certificates-in-EIM.html).
+
+> alias for CreateServerCertificate
 
 ```
 octl iaas servercertificate create [flags]
@@ -69,5 +69,5 @@ octl iaas servercertificate create [flags]
 
 ### SEE ALSO
 
-* [octl iaas servercertificate](octl_iaas_servercertificate.md)	 - servercertificate commands
+* [octl iaas servercertificate](octl_iaas_servercertificate.md)	 - Manage ServerCertificate resources
 

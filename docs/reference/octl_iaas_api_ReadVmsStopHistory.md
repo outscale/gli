@@ -17,8 +17,6 @@ octl iaas api ReadVmsStopHistory [flags]
       --Filters.StopDateAfter osctime    The date and time (UTC), or the date, after which you want to retrieve VM stops, in ISO 8601 format (for example, 2026-06-14T00:00:00.000Z or 2026-06-14).
       --Filters.StopDateBefore osctime   The date and time (UTC), or the date, before which you want to retrieve VM stops, in ISO 8601 format (for example, 2026-06-14T00:00:00.000Z or 2026-06-14).
       --Filters.VmIds strings            The IDs of the stopped VM(s).
-      --NextPageToken string             The token to request the next page of results.
-      --ResultsPerPage int               The maximum number of logs returned in a single response (between 1 and 1000, both included).
   -h, --help                             help for ReadVmsStopHistory
 ```
 
@@ -50,5 +48,5 @@ octl iaas api ReadVmsStopHistory [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

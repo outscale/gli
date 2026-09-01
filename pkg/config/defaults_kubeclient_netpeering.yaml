@@ -1,21 +1,129 @@
-contents:
+api:
   Create:
+    use: Create
     content: .
     entity: netpeering
+    flags:
+    - name: ObjectMeta.Name
+      kind: 24
+    - name: ObjectMeta.GenerateName
+      kind: 24
+    - name: ObjectMeta.Namespace
+      kind: 24
+    - name: ObjectMeta.SelfLink
+      kind: 24
+    - name: ObjectMeta.UID
+      kind: 24
+    - name: ObjectMeta.ResourceVersion
+      kind: 24
+    - name: ObjectMeta.DeletionTimestamp
+      kind: 24
+      customValue: fileOrJson
+    - name: ObjectMeta.DeletionGracePeriodSeconds
+      kind: 6
+    - name: ObjectMeta.Labels
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Annotations
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Finalizers
+      kind: 24
+      container: 23
+    - name: Spec.NetPeeringId
+      kind: 24
+    - name: DryRun
+      kind: 24
+      container: 23
+    - name: FieldManager
+      kind: 24
+    - name: FieldValidation
+      kind: 24
+  Delete:
+    use: Delete id
+    flags:
+    - name: GracePeriodSeconds
+      kind: 6
+    - name: Preconditions.UID
+      kind: 24
+    - name: Preconditions.ResourceVersion
+      kind: 24
+    - name: OrphanDependents
+      kind: 1
+    - name: PropagationPolicy
+      kind: 24
+    - name: DryRun
+      kind: 24
+      container: 23
   Get:
+    use: Get id
     content: .
     entity: netpeering
+    flags:
+    - name: ResourceVersion
+      kind: 24
   List:
+    use: List
     content: Items
     entity: netpeering
-  Patch:
-    entity: netpeering
+    flags:
+    - name: LabelSelector
+      kind: 24
+    - name: FieldSelector
+      kind: 24
+    - name: ResourceVersion
+      kind: 24
+    - name: ResourceVersionMatch
+      kind: 24
+    - name: TimeoutSeconds
+      kind: 6
+    - name: Limit
+      kind: 6
+    - name: ShardSelector
+      kind: 24
   Update:
+    use: Update
+    content: Spec
     entity: netpeering
-  UpdateStatus:
-    entity: netpeering
+    flags:
+    - name: ObjectMeta.Name
+      kind: 24
+    - name: ObjectMeta.GenerateName
+      kind: 24
+    - name: ObjectMeta.Namespace
+      kind: 24
+    - name: ObjectMeta.SelfLink
+      kind: 24
+    - name: ObjectMeta.UID
+      kind: 24
+    - name: ObjectMeta.ResourceVersion
+      kind: 24
+    - name: ObjectMeta.DeletionTimestamp
+      kind: 24
+      customValue: fileOrJson
+    - name: ObjectMeta.DeletionGracePeriodSeconds
+      kind: 6
+    - name: ObjectMeta.Labels
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Annotations
+      kind: 24
+      container: 21
+    - name: ObjectMeta.Finalizers
+      kind: 24
+      container: 23
+    - name: Spec.NetPeeringId
+      kind: 24
+    - name: DryRun
+      kind: 24
+      container: 23
+    - name: FieldManager
+      kind: 24
+    - name: FieldValidation
+      kind: 24
 entities:
   netpeering:
+    title: Get
     columns:
     - title: Name
       content: .metadata.name
@@ -37,10 +145,12 @@ entities:
 aliases:
 - entity: netpeering
   use: list
+  help: List netpeerings
+  short: List netpeerings
   alias_to: List
   aliases:
   - ls
-  short: alias for api List
+  alias_help: api List
   command:
   - netpeering
   - api
@@ -53,10 +163,12 @@ aliases:
     required: true
 - entity: netpeering
   use: describe id
+  help: Describe a netpeering
+  short: Describe a netpeering
   alias_to: Get
   aliases:
   - desc
-  short: alias for api Get id
+  alias_help: Get id
   command:
   - netpeering
   - api
@@ -71,10 +183,12 @@ aliases:
     required: true
 - entity: netpeering
   use: create
+  help: Create a netpeering request
+  short: Create a netpeering request
   alias_to: Create
   aliases:
   - add
-  short: alias for request api Create
+  alias_help: request api Create
   command:
   - netpeering
   - request
@@ -96,8 +210,10 @@ aliases:
     alias_to: Spec.AccepterOwnerId
 - entity: netpeering
   use: accept id
+  help: Accept a netpeering request
+  short: Accept a netpeering request
   alias_to: Create
-  short: alias for acceptance api Create
+  alias_help: acceptance api Create
   command:
   - netpeering
   - acceptance
@@ -116,12 +232,14 @@ aliases:
     alias_to: ObjectMeta.Name
     default: netpeering-acceptance
 - entity: netpeering
-  use: delete id [name]...
+  use: delete id [id]...
+  help: Delete a NetPeering
+  short: Delete a NetPeering
   alias_to: Delete
   aliases:
   - del
   - rm
-  short: alias for api Delete id
+  alias_help: Delete id
   command:
   - netpeering
   - api
@@ -133,4 +251,3 @@ aliases:
   - name: cluster
     alias_to: cluster
     required: true
-spec: {}

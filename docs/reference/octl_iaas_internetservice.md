@@ -1,6 +1,6 @@
 ## octl iaas internetservice
 
-internetservice commands
+Manage InternetService resources
 
 ### Options
 
@@ -37,10 +37,10 @@ internetservice commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas internetservice create](octl_iaas_internetservice_create.md)	 - alias for api CreateInternetService
-* [octl iaas internetservice delete](octl_iaas_internetservice_delete.md)	 - alias for api DeleteInternetService --InternetServiceId internet_service_id
-* [octl iaas internetservice describe](octl_iaas_internetservice_describe.md)	 - alias for api ReadInternetServices --Filters.InternetServiceIds internet_service_id
-* [octl iaas internetservice link](octl_iaas_internetservice_link.md)	 - alias for api LinkInternetService --InternetServiceId service_id
-* [octl iaas internetservice list](octl_iaas_internetservice_list.md)	 - alias for api ReadInternetServices
-* [octl iaas internetservice unlink](octl_iaas_internetservice_unlink.md)	 - alias for api UnlinkInternetService --InternetServiceId service_id
+* [octl iaas internetservice create](octl_iaas_internetservice_create.md)	 - Creates an internet service you can use with a Net.
+* [octl iaas internetservice delete](octl_iaas_internetservice_delete.md)	 - Deletes an internet service.
+* [octl iaas internetservice describe](octl_iaas_internetservice_describe.md)	 - Lists one or more of your internet services.
+* [octl iaas internetservice link](octl_iaas_internetservice_link.md)	 - Attaches an internet service to a Net.
+* [octl iaas internetservice list](octl_iaas_internetservice_list.md)	 - Lists one or more of your internet services.
+* [octl iaas internetservice unlink](octl_iaas_internetservice_unlink.md)	 - Detaches an internet service from a Net.
 

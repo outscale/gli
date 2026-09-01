@@ -1,14 +1,14 @@
 ## octl iaas volume link
 
-alias for api LinkVolume --VolumeId volume_id
+Attaches a Block Storage Unit (BSU) volume to a virtual machine (VM).
 
 ### Synopsis
-
-> alias for api LinkVolume --VolumeId volume_id
 
 Attaches a Block Storage Unit (BSU) volume to a virtual machine (VM).
 
 The volume and the VM must be in the same Subregion. The VM can be running or stopped. The volume is attached to the specified VM device.
+
+> alias for LinkVolume --VolumeId volume_id
 
 ```
 octl iaas volume link volume_id [flags]
@@ -50,5 +50,5 @@ octl iaas volume link volume_id [flags]
 
 ### SEE ALSO
 
-* [octl iaas volume](octl_iaas_volume.md)	 - volume commands
+* [octl iaas volume](octl_iaas_volume.md)	 - Manage Volume resources
 

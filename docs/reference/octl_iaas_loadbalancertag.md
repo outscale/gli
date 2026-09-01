@@ -1,6 +1,6 @@
 ## octl iaas loadbalancertag
 
-loadbalancertag commands
+Manage LoadBalancerTag resources
 
 ### Options
 
@@ -37,6 +37,6 @@ loadbalancertag commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas loadbalancertag create](octl_iaas_loadbalancertag_create.md)	 - alias for api CreateLoadBalancerTags
-* [octl iaas loadbalancertag list](octl_iaas_loadbalancertag_list.md)	 - alias for api ReadLoadBalancerTags
+* [octl iaas loadbalancertag create](octl_iaas_loadbalancertag_create.md)	 - Adds one or more tags to the specified load balancers.
+* [octl iaas loadbalancertag list](octl_iaas_loadbalancertag_list.md)	 - Lists the tags associated with one or more specified load balancers.
 

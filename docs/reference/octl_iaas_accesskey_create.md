@@ -1,15 +1,15 @@
 ## octl iaas accesskey create
 
-alias for api CreateAccessKey
+Creates an access key for either the root user or an EIM user.
 
 ### Synopsis
-
-> alias for api CreateAccessKey
 
 Creates an access key for either the root user or an EIM user. The new key is automatically set to `ACTIVE`.
 
 
 For more information, see [About Access Keys](https://docs.outscale.com/en/userguide/About-Access-Keys.html).
+
+> alias for CreateAccessKey
 
 ```
 octl iaas accesskey create [flags]
@@ -18,10 +18,10 @@ octl iaas accesskey create [flags]
 ### Options
 
 ```
-      --expiration-date osctime   The date and time, or the date, at which you want the access key to expire, in ISO 8601 format (for example, 2020-06-14T00:00:00.000Z, or 2020-06-14).
-  -h, --help                      help for create
-      --tag string                A tag to add to the access key.
-      --user-name string          The name of the EIM user that owns the key to be created.
+      --expiration-date string   The date and time, or the date, at which you want the access key to expire, in ISO 8601 format (for example, 2020-06-14T00:00:00.000Z, or 2020-06-14).
+  -h, --help                     help for create
+      --tag string               A tag to add to the access key.
+      --user-name string         The name of the EIM user that owns the key to be created.
 ```
 
 ### Options inherited from parent commands
@@ -52,5 +52,5 @@ octl iaas accesskey create [flags]
 
 ### SEE ALSO
 
-* [octl iaas accesskey](octl_iaas_accesskey.md)	 - accesskey commands
+* [octl iaas accesskey](octl_iaas_accesskey.md)	 - Manage AccessKey resources
 

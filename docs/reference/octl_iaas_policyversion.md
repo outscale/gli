@@ -1,6 +1,6 @@
 ## octl iaas policyversion
 
-policyversion commands
+Manage PolicyVersion resources
 
 ### Options
 
@@ -37,9 +37,9 @@ policyversion commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas policyversion create](octl_iaas_policyversion_create.md)	 - alias for api CreatePolicyVersion --PolicyOrn policy_orn
-* [octl iaas policyversion delete](octl_iaas_policyversion_delete.md)	 - alias for api DeletePolicyVersion --PolicyOrn policy_orn
-* [octl iaas policyversion describe](octl_iaas_policyversion_describe.md)	 - alias for api ReadPolicyVersion --PolicyOrn policy_orn
-* [octl iaas policyversion list](octl_iaas_policyversion_list.md)	 - alias for api ReadPolicyVersions --PolicyOrn policy_orn
-* [octl iaas policyversion set-default](octl_iaas_policyversion_set-default.md)	 - alias for api SetDefaultPolicyVersion --PolicyOrn policy_orn
+* [octl iaas policyversion create](octl_iaas_policyversion_create.md)	 - Creates a version of a specified managed policy.
+* [octl iaas policyversion delete](octl_iaas_policyversion_delete.md)	 - Deletes a specified version of a managed policy, if it is not set as the default one.
+* [octl iaas policyversion describe](octl_iaas_policyversion_describe.md)	 - Lists information about a specified version of a managed policy.
+* [octl iaas policyversion list](octl_iaas_policyversion_list.md)	 - Lists information about all the policy versions of a specified managed policy.
+* [octl iaas policyversion set-default](octl_iaas_policyversion_set-default.md)	 - Sets a specified version of a managed policy as the default (operative) one.
 

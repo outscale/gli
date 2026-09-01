@@ -1,6 +1,6 @@
 ## octl storage api
 
-storage api calls
+Call storage API
 
 ### Options
 

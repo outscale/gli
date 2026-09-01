@@ -44,5 +44,5 @@ octl kube api GetNetPeeringRequestTemplate [flags]
 
 ### SEE ALSO
 
-* [octl kube api](octl_kube_api.md)	 - kube api calls
+* [octl kube api](octl_kube_api.md)	 - Call kube API
 

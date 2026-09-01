@@ -37,74 +37,74 @@ OUTSCALE IaaS management
 ### SEE ALSO
 
 * [octl](octl.md)	 - A modern CLI for Outscale services
-* [octl iaas accesskey](octl_iaas_accesskey.md)	 - accesskey commands
-* [octl iaas account](octl_iaas_account.md)	 - account commands
-* [octl iaas adminpassword](octl_iaas_adminpassword.md)	 - adminpassword commands
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
-* [octl iaas apiaccesspolicy](octl_iaas_apiaccesspolicy.md)	 - apiaccesspolicy commands
-* [octl iaas apiaccessrule](octl_iaas_apiaccessrule.md)	 - apiaccessrule commands
-* [octl iaas apilog](octl_iaas_apilog.md)	 - apilog commands
-* [octl iaas ca](octl_iaas_ca.md)	 - ca commands
-* [octl iaas catalog](octl_iaas_catalog.md)	 - catalog commands
-* [octl iaas clientgateway](octl_iaas_clientgateway.md)	 - clientgateway commands
-* [octl iaas co2emissionaccount](octl_iaas_co2emissionaccount.md)	 - co2emissionaccount commands
-* [octl iaas consumptionaccount](octl_iaas_consumptionaccount.md)	 - consumptionaccount commands
-* [octl iaas dedicatedgroup](octl_iaas_dedicatedgroup.md)	 - dedicatedgroup commands
-* [octl iaas dhcpoption](octl_iaas_dhcpoption.md)	 - dhcpoption commands
-* [octl iaas directlink](octl_iaas_directlink.md)	 - directlink commands
-* [octl iaas directlinkinterface](octl_iaas_directlinkinterface.md)	 - directlinkinterface commands
-* [octl iaas entitieslinkedtopolicy](octl_iaas_entitieslinkedtopolicy.md)	 - entitieslinkedtopolicy commands
-* [octl iaas exporttask](octl_iaas_exporttask.md)	 - exporttask commands
-* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - flexiblegpu commands
-* [octl iaas image](octl_iaas_image.md)	 - image commands
-* [octl iaas imageexporttask](octl_iaas_imageexporttask.md)	 - imageexporttask commands
-* [octl iaas internetservice](octl_iaas_internetservice.md)	 - internetservice commands
-* [octl iaas keypair](octl_iaas_keypair.md)	 - keypair commands
-* [octl iaas linkedpolicy](octl_iaas_linkedpolicy.md)	 - linkedpolicy commands
-* [octl iaas listenerrule](octl_iaas_listenerrule.md)	 - listenerrule commands
-* [octl iaas loadbalancer](octl_iaas_loadbalancer.md)	 - loadbalancer commands
-* [octl iaas loadbalancerlistener](octl_iaas_loadbalancerlistener.md)	 - loadbalancerlistener commands
-* [octl iaas loadbalancerpolicy](octl_iaas_loadbalancerpolicy.md)	 - loadbalancerpolicy commands
-* [octl iaas loadbalancertag](octl_iaas_loadbalancertag.md)	 - loadbalancertag commands
-* [octl iaas location](octl_iaas_location.md)	 - location commands
-* [octl iaas managedpolicieslinkedtousergroup](octl_iaas_managedpolicieslinkedtousergroup.md)	 - managedpolicieslinkedtousergroup commands
-* [octl iaas natservice](octl_iaas_natservice.md)	 - natservice commands
-* [octl iaas net](octl_iaas_net.md)	 - net commands
-* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - netaccesspoint commands
-* [octl iaas netpeering](octl_iaas_netpeering.md)	 - netpeering commands
-* [octl iaas nic](octl_iaas_nic.md)	 - nic commands
-* [octl iaas policy](octl_iaas_policy.md)	 - policy commands
-* [octl iaas policyversion](octl_iaas_policyversion.md)	 - policyversion commands
-* [octl iaas producttype](octl_iaas_producttype.md)	 - producttype commands
-* [octl iaas publiccatalog](octl_iaas_publiccatalog.md)	 - publiccatalog commands
-* [octl iaas publicip](octl_iaas_publicip.md)	 - publicip commands
-* [octl iaas publiciprange](octl_iaas_publiciprange.md)	 - publiciprange commands
-* [octl iaas quota](octl_iaas_quota.md)	 - quota commands
-* [octl iaas region](octl_iaas_region.md)	 - region commands
-* [octl iaas route](octl_iaas_route.md)	 - route commands
-* [octl iaas routetable](octl_iaas_routetable.md)	 - routetable commands
-* [octl iaas securitygroup](octl_iaas_securitygroup.md)	 - securitygroup commands
-* [octl iaas securitygrouprule](octl_iaas_securitygrouprule.md)	 - securitygrouprule commands
-* [octl iaas servercertificate](octl_iaas_servercertificate.md)	 - servercertificate commands
-* [octl iaas snapshot](octl_iaas_snapshot.md)	 - snapshot commands
-* [octl iaas snapshotexporttask](octl_iaas_snapshotexporttask.md)	 - snapshotexporttask commands
-* [octl iaas subnet](octl_iaas_subnet.md)	 - subnet commands
-* [octl iaas subregion](octl_iaas_subregion.md)	 - subregion commands
-* [octl iaas tag](octl_iaas_tag.md)	 - tag commands
-* [octl iaas unitprice](octl_iaas_unitprice.md)	 - unitprice commands
-* [octl iaas user](octl_iaas_user.md)	 - user commands
-* [octl iaas usergroup](octl_iaas_usergroup.md)	 - usergroup commands
-* [octl iaas usergrouppolicy](octl_iaas_usergrouppolicy.md)	 - usergrouppolicy commands
-* [octl iaas usergroupsperuser](octl_iaas_usergroupsperuser.md)	 - usergroupsperuser commands
-* [octl iaas userpolicy](octl_iaas_userpolicy.md)	 - userpolicy commands
-* [octl iaas virtualgateway](octl_iaas_virtualgateway.md)	 - virtualgateway commands
-* [octl iaas vm](octl_iaas_vm.md)	 - vm commands
-* [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - vmgroup commands
-* [octl iaas vmsstophistory](octl_iaas_vmsstophistory.md)	 - vmsstophistory commands
-* [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - vmtemplate commands
-* [octl iaas vmtype](octl_iaas_vmtype.md)	 - vmtype commands
-* [octl iaas volume](octl_iaas_volume.md)	 - volume commands
-* [octl iaas volumeupdatetask](octl_iaas_volumeupdatetask.md)	 - volumeupdatetask commands
-* [octl iaas vpnconnection](octl_iaas_vpnconnection.md)	 - vpnconnection commands
-* [octl iaas vpnconnectionroute](octl_iaas_vpnconnectionroute.md)	 - vpnconnectionroute commands
+* [octl iaas accesskey](octl_iaas_accesskey.md)	 - Manage AccessKey resources
+* [octl iaas account](octl_iaas_account.md)	 - Manage Account resources
+* [octl iaas adminpassword](octl_iaas_adminpassword.md)	 - Manage AdminPassword resources
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
+* [octl iaas apiaccesspolicy](octl_iaas_apiaccesspolicy.md)	 - Manage ApiAccessPolicy resources
+* [octl iaas apiaccessrule](octl_iaas_apiaccessrule.md)	 - Manage ApiAccessRule resources
+* [octl iaas apilog](octl_iaas_apilog.md)	 - Manage ApiLog resources
+* [octl iaas ca](octl_iaas_ca.md)	 - Manage Ca resources
+* [octl iaas catalog](octl_iaas_catalog.md)	 - Manage Catalog resources
+* [octl iaas clientgateway](octl_iaas_clientgateway.md)	 - Manage ClientGateway resources
+* [octl iaas co2emissionaccount](octl_iaas_co2emissionaccount.md)	 - Manage CO2EmissionAccount resources
+* [octl iaas consumptionaccount](octl_iaas_consumptionaccount.md)	 - Manage ConsumptionAccount resources
+* [octl iaas dedicatedgroup](octl_iaas_dedicatedgroup.md)	 - Manage DedicatedGroup resources
+* [octl iaas dhcpoption](octl_iaas_dhcpoption.md)	 - Manage DhcpOptionsSet resources
+* [octl iaas directlink](octl_iaas_directlink.md)	 - Manage DirectLink resources
+* [octl iaas directlinkinterface](octl_iaas_directlinkinterface.md)	 - Manage DirectLinkInterface resources
+* [octl iaas entitieslinkedtopolicy](octl_iaas_entitieslinkedtopolicy.md)	 - Manage EntitiesLinkedToPolicy resources
+* [octl iaas exporttask](octl_iaas_exporttask.md)	 - Manage ExportTask resources
+* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - Manage FlexibleGpu resources
+* [octl iaas image](octl_iaas_image.md)	 - Manage Image resources
+* [octl iaas imageexporttask](octl_iaas_imageexporttask.md)	 - Manage ImageExportTask resources
+* [octl iaas internetservice](octl_iaas_internetservice.md)	 - Manage InternetService resources
+* [octl iaas keypair](octl_iaas_keypair.md)	 - Manage Keypair resources
+* [octl iaas linkedpolicy](octl_iaas_linkedpolicy.md)	 - Manage LinkedPolicy resources
+* [octl iaas listenerrule](octl_iaas_listenerrule.md)	 - Manage ListenerRule resources
+* [octl iaas loadbalancer](octl_iaas_loadbalancer.md)	 - Manage LoadBalancer resources
+* [octl iaas loadbalancerlistener](octl_iaas_loadbalancerlistener.md)	 - Manage LoadBalancerListener resources
+* [octl iaas loadbalancerpolicy](octl_iaas_loadbalancerpolicy.md)	 - Manage LoadBalancerPolicy resources
+* [octl iaas loadbalancertag](octl_iaas_loadbalancertag.md)	 - Manage LoadBalancerTag resources
+* [octl iaas location](octl_iaas_location.md)	 - Manage Location resources
+* [octl iaas managedpolicieslinkedtousergroup](octl_iaas_managedpolicieslinkedtousergroup.md)	 - Manage ManagedPoliciesLinkedToUserGroup resources
+* [octl iaas natservice](octl_iaas_natservice.md)	 - Manage NatService resources
+* [octl iaas net](octl_iaas_net.md)	 - Manage Net resources
+* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - Manage NetAccessPoint resources
+* [octl iaas netpeering](octl_iaas_netpeering.md)	 - Manage NetPeering resources
+* [octl iaas nic](octl_iaas_nic.md)	 - Manage Nic resources
+* [octl iaas policy](octl_iaas_policy.md)	 - Manage Policy resources
+* [octl iaas policyversion](octl_iaas_policyversion.md)	 - Manage PolicyVersion resources
+* [octl iaas producttype](octl_iaas_producttype.md)	 - Manage ProductType resources
+* [octl iaas publiccatalog](octl_iaas_publiccatalog.md)	 - Manage PublicCatalog resources
+* [octl iaas publicip](octl_iaas_publicip.md)	 - Manage PublicIp resources
+* [octl iaas publiciprange](octl_iaas_publiciprange.md)	 - Manage PublicIpRange resources
+* [octl iaas quota](octl_iaas_quota.md)	 - Manage Quota resources
+* [octl iaas region](octl_iaas_region.md)	 - Manage Region resources
+* [octl iaas route](octl_iaas_route.md)	 - Manage Route resources
+* [octl iaas routetable](octl_iaas_routetable.md)	 - Manage RouteTable resources
+* [octl iaas securitygroup](octl_iaas_securitygroup.md)	 - Manage SecurityGroup resources
+* [octl iaas securitygrouprule](octl_iaas_securitygrouprule.md)	 - Manage SecurityGroupRule resources
+* [octl iaas servercertificate](octl_iaas_servercertificate.md)	 - Manage ServerCertificate resources
+* [octl iaas snapshot](octl_iaas_snapshot.md)	 - Manage Snapshot resources
+* [octl iaas snapshotexporttask](octl_iaas_snapshotexporttask.md)	 - Manage SnapshotExportTask resources
+* [octl iaas subnet](octl_iaas_subnet.md)	 - Manage Subnet resources
+* [octl iaas subregion](octl_iaas_subregion.md)	 - Manage Subregion resources
+* [octl iaas tag](octl_iaas_tag.md)	 - Manage Tag resources
+* [octl iaas unitprice](octl_iaas_unitprice.md)	 - Manage UnitPrice resources
+* [octl iaas user](octl_iaas_user.md)	 - Manage User resources
+* [octl iaas usergroup](octl_iaas_usergroup.md)	 - Manage UserGroup resources
+* [octl iaas usergrouppolicy](octl_iaas_usergrouppolicy.md)	 - Manage UserGroupPolicy resources
+* [octl iaas usergroupsperuser](octl_iaas_usergroupsperuser.md)	 - Manage UserGroup resources
+* [octl iaas userpolicy](octl_iaas_userpolicy.md)	 - Manage UserPolicy resources
+* [octl iaas virtualgateway](octl_iaas_virtualgateway.md)	 - Manage VirtualGateway resources
+* [octl iaas vm](octl_iaas_vm.md)	 - Manage Vm resources
+* [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - Manage VmGroup resources
+* [octl iaas vmsstophistory](octl_iaas_vmsstophistory.md)	 - Manage VmsStopHistory resources
+* [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - Manage VmTemplate resources
+* [octl iaas vmtype](octl_iaas_vmtype.md)	 - Manage VmType resources
+* [octl iaas volume](octl_iaas_volume.md)	 - Manage Volume resources
+* [octl iaas volumeupdatetask](octl_iaas_volumeupdatetask.md)	 - Manage VolumeUpdateTask resources
+* [octl iaas vpnconnection](octl_iaas_vpnconnection.md)	 - Manage VpnConnection resources
+* [octl iaas vpnconnectionroute](octl_iaas_vpnconnectionroute.md)	 - Manage VpmConnectionRoute resources
 

@@ -1,14 +1,14 @@
 ## octl iaas nic list
 
-alias for api ReadNics
+Lists one or more network interface cards (NICs).
 
 ### Synopsis
-
-> alias for api ReadNics
 
 Lists one or more network interface cards (NICs).
 
 A NIC is a virtual network interface that you can attach to a virtual machine (VM) in a Net.
+
+> alias for ReadNics
 
 ```
 octl iaas nic list [flags]
@@ -77,5 +77,5 @@ octl iaas nic list [flags]
 
 ### SEE ALSO
 
-* [octl iaas nic](octl_iaas_nic.md)	 - nic commands
+* [octl iaas nic](octl_iaas_nic.md)	 - Manage Nic resources
 

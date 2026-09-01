@@ -1,12 +1,12 @@
 ## octl storage bucket website describe
 
-Display website configuration, alias for api GetBucketWebsite --Bucket bucket
+Display website configuration.
 
 ### Synopsis
 
-> Display website configuration, alias for api GetBucketWebsite --Bucket bucket
+Display website configuration.
 
-
+> alias for GetBucketWebsite --Bucket bucket
 
 ```
 octl storage bucket website describe bucket [flags]

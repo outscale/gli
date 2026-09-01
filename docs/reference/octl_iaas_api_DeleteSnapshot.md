@@ -16,7 +16,7 @@ octl iaas api DeleteSnapshot [flags]
 
 ```
       --DryRun              If true, checks whether you have the required permissions to perform the action.
-      --SnapshotId string   The ID of the snapshot you want to delete.
+      --SnapshotId string   [REQUIRED] The ID of the snapshot you want to delete.
   -h, --help                help for DeleteSnapshot
 ```
 
@@ -48,5 +48,5 @@ octl iaas api DeleteSnapshot [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

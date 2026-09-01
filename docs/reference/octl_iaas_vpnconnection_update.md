@@ -1,12 +1,12 @@
 ## octl iaas vpnconnection update
 
-alias for api UpdateVpnConnection --VpnConnectionId vpn_connection_id
+Modifies the specified attributes of a VPN connection.
 
 ### Synopsis
 
-> alias for api UpdateVpnConnection --VpnConnectionId vpn_connection_id
-
 Modifies the specified attributes of a VPN connection.
+
+> alias for UpdateVpnConnection --VpnConnectionId vpn_connection_id
 
 ```
 octl iaas vpnconnection update vpn_connection_id [vpn_connection_id]... [flags]
@@ -63,5 +63,5 @@ octl iaas vpnconnection update vpn_connection_id [vpn_connection_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas vpnconnection](octl_iaas_vpnconnection.md)	 - vpnconnection commands
+* [octl iaas vpnconnection](octl_iaas_vpnconnection.md)	 - Manage VpnConnection resources
 

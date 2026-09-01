@@ -10,7 +10,7 @@ entities:
       - title: Unlinked
         content: .status.progress.unlinkedAddresses
     primary: Name
-contents:
+api:
   List:
     content: Items
     entity: ippool
@@ -20,11 +20,7 @@ contents:
   Create:
     content: .
     entity: ippool
-  Patch:
-    entity: ippool
   Update:
-    entity: ippool
-  UpdateStatus:
     entity: ippool
 aliases:
 - entity: ippool
@@ -32,7 +28,8 @@ aliases:
   alias_to: List
   aliases:
   - ls
-  short: alias for api List
+  help: List ippools
+  alias_help: List
   command:
   - ippool
   - api
@@ -44,11 +41,12 @@ aliases:
     alias_to: cluster
     required: true
 - entity: ippool
-  use: describe name
+  use: describe id
   alias_to: Get
   aliases:
   - desc
-  short: alias for api Get
+  help: Describe an ippool
+  alias_help: Get id
   command:
   - ippool
   - api
@@ -62,12 +60,13 @@ aliases:
     alias_to: cluster
     required: true
 - entity: ippool
-  use: delete name [name]...
+  use: delete id [id]...
+  help: Delete an ippool
   alias_to: Delete
+  alias_help: Delete id
   aliases:
   - del
   - rm
-  short: alias for api Delete id
   command:
   - ippool
   - api
@@ -81,10 +80,10 @@ aliases:
     required: true
 - entity: ippool
   use: create
+  help: Create an ippool
   alias_to: Create
   aliases:
   - add
-  short: alias for request api Create
   command:
   - ippool
   - api

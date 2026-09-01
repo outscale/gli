@@ -1,12 +1,12 @@
 ## octl iaas loadbalancer backends
 
-alias for api ReadVmsHealth --LoadBalancerName load_balancer_name
+Lists the state of one or more backend virtual machines (VMs) registered with a specified load balancer.
 
 ### Synopsis
 
-> alias for api ReadVmsHealth --LoadBalancerName load_balancer_name
-
 Lists the state of one or more backend virtual machines (VMs) registered with a specified load balancer.
+
+> alias for ReadVmsHealth --LoadBalancerName load_balancer_name
 
 ```
 octl iaas loadbalancer backends load_balancer_name [flags]
@@ -46,5 +46,5 @@ octl iaas loadbalancer backends load_balancer_name [flags]
 
 ### SEE ALSO
 
-* [octl iaas loadbalancer](octl_iaas_loadbalancer.md)	 - loadbalancer commands
+* [octl iaas loadbalancer](octl_iaas_loadbalancer.md)	 - Manage LoadBalancer resources
 

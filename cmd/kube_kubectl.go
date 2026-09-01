@@ -21,7 +21,8 @@ import (
 )
 
 var kubectlCmd = &cobra.Command{
-	Use: "kubectl [octl_flags] -- kubectl_args [kubectl_flags]",
+	Use:   "kubectl [octl_flags] -- kubectl_args [kubectl_flags]",
+	Short: "Launch kubectl commands on a cluster",
 	Long: `Launch kubectl commands on a cluster.
 Example: octl kube kubectl --cluster cluster_name -- get pods -o wide`,
 	Run: kubectl,

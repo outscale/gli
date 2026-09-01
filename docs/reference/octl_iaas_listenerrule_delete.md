@@ -1,14 +1,14 @@
 ## octl iaas listenerrule delete
 
-alias for api DeleteListenerRule --ListenerRuleName listener_rule_name
+Deletes a listener rule.
 
 ### Synopsis
-
-> alias for api DeleteListenerRule --ListenerRuleName listener_rule_name
 
 Deletes a listener rule.
 
 The previously active rule is disabled after deletion.
+
+> alias for DeleteListenerRule --ListenerRuleName listener_rule_name
 
 ```
 octl iaas listenerrule delete listener_rule_name [listener_rule_name]... [flags]
@@ -48,5 +48,5 @@ octl iaas listenerrule delete listener_rule_name [listener_rule_name]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas listenerrule](octl_iaas_listenerrule.md)	 - listenerrule commands
+* [octl iaas listenerrule](octl_iaas_listenerrule.md)	 - Manage ListenerRule resources
 

@@ -6,11 +6,9 @@ SPDX-License-Identifier: BSD-3-Clause
 package cmd
 
 import (
-	"reflect"
-	"strings"
 	"time"
 
-	"github.com/outscale/octl/pkg/builder"
+	commandbuilder "github.com/outscale/octl/pkg/builder/command"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/messages"
@@ -28,11 +26,8 @@ var iaasCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(iaasCmd)
-	b := builder.NewBuilder[osc.Client]("iaas", "https://docs.outscale.com/api.html")
-	b.BuildAPI(iaasCmd, func(m reflect.Method) bool {
-		return m.Type.NumIn() == 4 && m.Type.NumOut() == 2 && !strings.HasSuffix(m.Name, "Raw")
-	}, oapi)
-	b.Build(iaasCmd, nil)
+	b := commandbuilder.NewBuilder("iaas", "https://docs.outscale.com/api.html")
+	b.Build(iaasCmd, oapi)
 
 	cmd, _, err := iaasCmd.Find([]string{"net"})
 	if err != nil {

@@ -1,14 +1,14 @@
 ## octl iaas exporttask delete
 
-alias for api DeleteExportTask --ExportTaskId export_task_id
+Deletes an export task.
 
 ### Synopsis
-
-> alias for api DeleteExportTask --ExportTaskId export_task_id
 
 Deletes an export task.
 
 If the export task is not in the `active` or `pending` state, the command fails and an error is returned.
+
+> alias for DeleteExportTask --ExportTaskId export_task_id
 
 ```
 octl iaas exporttask delete export_task_id [export_task_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas exporttask delete export_task_id [export_task_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas exporttask](octl_iaas_exporttask.md)	 - exporttask commands
+* [octl iaas exporttask](octl_iaas_exporttask.md)	 - Manage ExportTask resources
 

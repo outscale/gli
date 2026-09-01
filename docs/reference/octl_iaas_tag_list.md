@@ -1,12 +1,12 @@
 ## octl iaas tag list
 
-alias for api ReadTags
+Lists one or more tags for your resources.
 
 ### Synopsis
 
-> alias for api ReadTags
-
 Lists one or more tags for your resources.
+
+> alias for ReadTags
 
 ```
 octl iaas tag list [flags]
@@ -50,5 +50,5 @@ octl iaas tag list [flags]
 
 ### SEE ALSO
 
-* [octl iaas tag](octl_iaas_tag.md)	 - tag commands
+* [octl iaas tag](octl_iaas_tag.md)	 - Manage Tag resources
 

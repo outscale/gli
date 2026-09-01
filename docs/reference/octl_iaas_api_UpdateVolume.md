@@ -23,7 +23,7 @@ octl iaas api UpdateVolume [flags]
       --DryRun              If true, checks whether you have the required permissions to perform the action.
       --Iops int            The new number of I/O operations per second (IOPS).
       --Size int            The new size of the volume, in gibibytes (GiB).
-      --VolumeId string     The ID of the volume you want to update.
+      --VolumeId string     [REQUIRED] The ID of the volume you want to update.
       --VolumeType string   The new type of the volume (standard | io1 | gp2).
   -h, --help                help for UpdateVolume
 ```
@@ -56,5 +56,5 @@ octl iaas api UpdateVolume [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -22,8 +22,8 @@ octl iaas api LinkFlexibleGpu [flags]
 
 ```
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
-      --FlexibleGpuId string   The ID of the fGPU you want to attach.
-      --VmId string            The ID of the VM you want to attach the fGPU to.
+      --FlexibleGpuId string   [REQUIRED] The ID of the fGPU you want to attach.
+      --VmId string            [REQUIRED] The ID of the VM you want to attach the fGPU to.
   -h, --help                   help for LinkFlexibleGpu
 ```
 
@@ -55,5 +55,5 @@ octl iaas api LinkFlexibleGpu [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

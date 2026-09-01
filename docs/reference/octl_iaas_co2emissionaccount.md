@@ -1,6 +1,6 @@
 ## octl iaas co2emissionaccount
 
-co2emissionaccount commands
+Manage CO2EmissionAccount resources
 
 ### Options
 
@@ -37,5 +37,5 @@ co2emissionaccount commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas co2emissionaccount list](octl_iaas_co2emissionaccount_list.md)	 - alias for api ReadCO2EmissionAccount
+* [octl iaas co2emissionaccount list](octl_iaas_co2emissionaccount_list.md)	 - Gets information about the estimated carbon footprint of your account for the current Region within the specified time period.
 

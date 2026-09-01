@@ -1,14 +1,14 @@
 ## octl iaas internetservice unlink
 
-alias for api UnlinkInternetService --InternetServiceId service_id
+Detaches an internet service from a Net.
 
 ### Synopsis
-
-> alias for api UnlinkInternetService --InternetServiceId service_id
 
 Detaches an internet service from a Net.
 
 This action disables and detaches an internet service from a Net. The Net must not contain virtual machines (VMs) using public IPs nor internet-facing load balancers.
+
+> alias for UnlinkInternetService --InternetServiceId service_id
 
 ```
 octl iaas internetservice unlink service_id [flags]
@@ -49,5 +49,5 @@ octl iaas internetservice unlink service_id [flags]
 
 ### SEE ALSO
 
-* [octl iaas internetservice](octl_iaas_internetservice.md)	 - internetservice commands
+* [octl iaas internetservice](octl_iaas_internetservice.md)	 - Manage InternetService resources
 

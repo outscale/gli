@@ -1,12 +1,12 @@
 ## octl iaas image delete
 
-alias for api DeleteImage --ImageId image_id
+Deletes an OUTSCALE machine image (OMI) so that you cannot use it anymore to launch virtual machines (VMs).
 
 ### Synopsis
 
-> alias for api DeleteImage --ImageId image_id
-
 Deletes an OUTSCALE machine image (OMI) so that you cannot use it anymore to launch virtual machines (VMs). However, you can still use VMs already launched from this OMI.
+
+> alias for DeleteImage --ImageId image_id
 
 ```
 octl iaas image delete image_id [image_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas image delete image_id [image_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas image](octl_iaas_image.md)	 - image commands
+* [octl iaas image](octl_iaas_image.md)	 - Manage Image resources
 

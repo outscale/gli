@@ -1,12 +1,12 @@
 ## octl kube publicip describe
 
-alias for api GetProjectPublicIps  id_or_name
+
 
 ### Synopsis
 
-> alias for api GetProjectPublicIps  id_or_name
 
 
+> alias for GetProjectPublicIps  id_or_name
 
 ```
 octl kube publicip describe id_or_name [id_or_name]... [flags]
@@ -46,5 +46,5 @@ octl kube publicip describe id_or_name [id_or_name]... [flags]
 
 ### SEE ALSO
 
-* [octl kube publicip](octl_kube_publicip.md)	 - publicip commands
+* [octl kube publicip](octl_kube_publicip.md)	 - Manage ProjectPublicIpsIPS resources
 

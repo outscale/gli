@@ -1,15 +1,15 @@
 ## octl kube nodepool delete
 
-alias for api Delete name
+Delete a nodepool
 
 ### Synopsis
 
-> alias for api Delete name
+Delete a nodepool
 
-
+> alias for Delete id
 
 ```
-octl kube nodepool delete name [name]... [flags]
+octl kube nodepool delete id [id]... [flags]
 ```
 
 ### Options
@@ -48,5 +48,5 @@ octl kube nodepool delete name [name]... [flags]
 
 ### SEE ALSO
 
-* [octl kube nodepool](octl_kube_nodepool.md)	 - nodepool commands
+* [octl kube nodepool](octl_kube_nodepool.md)	 - Manage nodepool resources
 

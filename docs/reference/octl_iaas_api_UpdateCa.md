@@ -13,7 +13,7 @@ octl iaas api UpdateCa [flags]
 ### Options
 
 ```
-      --CaId string          The ID of the CA.
+      --CaId string          [REQUIRED] The ID of the CA.
       --Description string   The description of the CA.
       --DryRun               If true, checks whether you have the required permissions to perform the action.
   -h, --help                 help for UpdateCa
@@ -47,5 +47,5 @@ octl iaas api UpdateCa [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -1,6 +1,6 @@
 ## octl iaas quota
 
-quota commands
+Manage Quota resources
 
 ### Options
 
@@ -37,6 +37,6 @@ quota commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas quota describe](octl_iaas_quota_describe.md)	 - alias for api ReadQuotas --Filters.QuotaNames quota_name
-* [octl iaas quota list](octl_iaas_quota_list.md)	 - alias for api ReadQuotas
+* [octl iaas quota describe](octl_iaas_quota_describe.md)	 - Lists one or more of your quotas.
+* [octl iaas quota list](octl_iaas_quota_list.md)	 - Lists one or more of your quotas.
 

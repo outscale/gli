@@ -1,6 +1,6 @@
 ## octl iaas catalog
 
-catalog commands
+Manage Catalog resources
 
 ### Options
 
@@ -37,5 +37,5 @@ catalog commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas catalog list](octl_iaas_catalog_list.md)	 - alias for api ReadCatalog
+* [octl iaas catalog list](octl_iaas_catalog_list.md)	 - Returns the price list of OUTSCALE services for the current Region.
 

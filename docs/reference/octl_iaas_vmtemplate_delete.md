@@ -1,10 +1,8 @@
 ## octl iaas vmtemplate delete
 
-alias for api DeleteVmTemplate --VmTemplateId vm_template_id
+> [WARNING] > This feature is currently under development and may not function properly.
 
 ### Synopsis
-
-> alias for api DeleteVmTemplate --VmTemplateId vm_template_id
 
 > [WARNING]
 
@@ -14,6 +12,8 @@ alias for api DeleteVmTemplate --VmTemplateId vm_template_id
 Deletes a virtual machine (VM) template.
 
 You cannot delete a template currently used by a VM group.
+
+> alias for DeleteVmTemplate --VmTemplateId vm_template_id
 
 ```
 octl iaas vmtemplate delete vm_template_id [vm_template_id]... [flags]
@@ -53,5 +53,5 @@ octl iaas vmtemplate delete vm_template_id [vm_template_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - vmtemplate commands
+* [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - Manage VmTemplate resources
 

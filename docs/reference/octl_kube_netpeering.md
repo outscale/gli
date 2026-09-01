@@ -1,6 +1,6 @@
 ## octl kube netpeering
 
-netpeering commands
+Manage netpeering resources
 
 ### Options
 
@@ -37,12 +37,12 @@ netpeering commands
 ### SEE ALSO
 
 * [octl kube](octl_kube.md)	 - OUTSCALE Kubernetes as a Service (OKS) management
-* [octl kube netpeering accept](octl_kube_netpeering_accept.md)	 - alias for acceptance api Create
-* [octl kube netpeering acceptance](octl_kube_netpeering_acceptance.md)	 - netpeering acceptance commands
-* [octl kube netpeering api](octl_kube_netpeering_api.md)	 - netpeering api calls
-* [octl kube netpeering create](octl_kube_netpeering_create.md)	 - alias for request api Create
-* [octl kube netpeering delete](octl_kube_netpeering_delete.md)	 - alias for api Delete id
-* [octl kube netpeering describe](octl_kube_netpeering_describe.md)	 - alias for api Get id
-* [octl kube netpeering list](octl_kube_netpeering_list.md)	 - alias for api List
-* [octl kube netpeering request](octl_kube_netpeering_request.md)	 - netpeering request commands
+* [octl kube netpeering accept](octl_kube_netpeering_accept.md)	 - Accept a netpeering request
+* [octl kube netpeering acceptance](octl_kube_netpeering_acceptance.md)	 - Manage Netpeering Acceptance resources
+* [octl kube netpeering api](octl_kube_netpeering_api.md)	 - Call netpeering API
+* [octl kube netpeering create](octl_kube_netpeering_create.md)	 - Create a netpeering request
+* [octl kube netpeering delete](octl_kube_netpeering_delete.md)	 - Delete a NetPeering
+* [octl kube netpeering describe](octl_kube_netpeering_describe.md)	 - Describe a netpeering
+* [octl kube netpeering list](octl_kube_netpeering_list.md)	 - List netpeerings
+* [octl kube netpeering request](octl_kube_netpeering_request.md)	 - Manage Netpeering Request resources
 

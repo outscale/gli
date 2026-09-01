@@ -1,12 +1,12 @@
 ## octl iaas netaccesspoint list
 
-alias for api ReadNetAccessPoints
+Lists one or more Net access points.
 
 ### Synopsis
 
-> alias for api ReadNetAccessPoints
-
 Lists one or more Net access points.
+
+> alias for ReadNetAccessPoints
 
 ```
 octl iaas netaccesspoint list [flags]
@@ -53,5 +53,5 @@ octl iaas netaccesspoint list [flags]
 
 ### SEE ALSO
 
-* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - netaccesspoint commands
+* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - Manage NetAccessPoint resources
 

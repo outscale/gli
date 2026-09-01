@@ -31,11 +31,11 @@ octl iaas api CreateImageExportTask [flags]
 
 ```
       --DryRun                                 If true, checks whether you have the required permissions to perform the action.
-      --ImageId string                         The ID of the OMI to export.
-      --OsuExport.DiskImageFormat string       The format of the export disk (qcow2 | raw).
+      --ImageId string                         [REQUIRED] The ID of the OMI to export.
+      --OsuExport.DiskImageFormat string       [REQUIRED] The format of the export disk (qcow2 | raw).
       --OsuExport.OsuApiKey.ApiKeyId string    The API key of the OOS account that enables you to access the bucket.
       --OsuExport.OsuApiKey.SecretKey string   The secret key of the OOS account that enables you to access the bucket.
-      --OsuExport.OsuBucket string             The name of the OOS bucket where you want to export the object.
+      --OsuExport.OsuBucket string             [REQUIRED] The name of the OOS bucket where you want to export the object.
       --OsuExport.OsuManifestUrl string        The URL of the manifest file.
       --OsuExport.OsuPrefix string             The prefix for the key of the OOS object.
   -h, --help                                   help for CreateImageExportTask
@@ -69,5 +69,5 @@ octl iaas api CreateImageExportTask [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

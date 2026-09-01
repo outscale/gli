@@ -82,7 +82,7 @@ func doRun[Client any, Error error](cmd *cobra.Command, args []string, cl Client
 		return fmt.Errorf("too many arguments for %s", cmd.Name())
 	}
 
-	c := cfg.Calls[cmd.Name()]
+	c := cfg.API[cmd.Name()]
 	debug.Println("call", cmd.Name())
 	e := cfg.Entities[c.Entity]
 	debug.Println("entity", c.Entity, "content", c.Content)

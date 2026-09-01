@@ -1,6 +1,7 @@
 package cmd_test
 
 import (
+	"context"
 	"crypto/sha1"
 	"encoding/hex"
 	"encoding/json"
@@ -51,7 +52,7 @@ func cluster(t *testing.T) string {
 
 	_ = run(t, []string{"kube", "cluster", "create", "--name", cluster, "--project", projectName}, nil)
 	t.Cleanup(func() {
-		_, _ = try(t.Context(), []string{"kube", "cluster", "delete", "--name", cluster}, nil)
+		_, _ = try(context.WithoutCancel(t.Context()), []string{"kube", "cluster", "delete", "--name", cluster}, nil)
 	})
 	retryUntil(t, []string{"kube", "cluster", "desc", cluster, "--jq", ".statuses", "-o", "json"}, nil, "status", "ready")
 

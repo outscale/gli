@@ -1,12 +1,12 @@
 ## octl kube cluster describe
 
-alias for api GetCluster  id_or_name
+Retrieves detailed information about a specific cluster by its ID.
 
 ### Synopsis
 
-> alias for api GetCluster  id_or_name
+Retrieves detailed information about a specific cluster by its ID. Returns the cluster details if found.
 
-
+> alias for GetCluster  id_or_name
 
 ```
 octl kube cluster describe id_or_name [id_or_name]... [flags]
@@ -47,5 +47,5 @@ octl kube cluster describe id_or_name [id_or_name]... [flags]
 
 ### SEE ALSO
 
-* [octl kube cluster](octl_kube_cluster.md)	 - cluster commands
+* [octl kube cluster](octl_kube_cluster.md)	 - Manage Cluster resources
 

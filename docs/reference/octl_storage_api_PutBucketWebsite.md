@@ -10,12 +10,10 @@ octl storage api PutBucketWebsite [flags]
 
 ```
       --Bucket string                                                                      [REQUIRED] The bucket name.
-      --ChecksumAlgorithm string                                                           Indicates the algorithm used to create the checksum for the object when you use the SDK.
-      --ContentMD5 string                                                                  The base64-encoded 128-bit MD5 digest of the data.
       --ExpectedBucketOwner string                                                         The account ID of the expected bucket owner.
-      --WebsiteConfiguration.ErrorDocument.Key string                                      [REQUIRED] The object key name to use when a 4XX class error occurs.
-      --WebsiteConfiguration.IndexDocument.Suffix string                                   [REQUIRED] A suffix that is appended to a request that is for a directory on the website endpoint.
-      --WebsiteConfiguration.RedirectAllRequestsTo.HostName string                         [REQUIRED] Name of the host where requests are redirected.
+      --WebsiteConfiguration.ErrorDocument.Key string                                      The object key name to use when a 4XX class error occurs.
+      --WebsiteConfiguration.IndexDocument.Suffix string                                   A suffix that is appended to a request that is for a directory on the website endpoint.
+      --WebsiteConfiguration.RedirectAllRequestsTo.HostName string                         Name of the host where requests are redirected.
       --WebsiteConfiguration.RedirectAllRequestsTo.Protocol string                         to use when redirecting requests.
       --WebsiteConfiguration.RoutingRules.0.Condition.HttpErrorCodeReturnedEquals string   The HTTP error code when the redirect is applied.
       --WebsiteConfiguration.RoutingRules.0.Condition.KeyPrefixEquals string               The object key name prefix when the redirect is applied.
@@ -56,5 +54,5 @@ octl storage api PutBucketWebsite [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

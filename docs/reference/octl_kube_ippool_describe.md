@@ -1,15 +1,15 @@
 ## octl kube ippool describe
 
-alias for api Get
+Describe an ippool
 
 ### Synopsis
 
-> alias for api Get
+Describe an ippool
 
-
+> alias for Get id
 
 ```
-octl kube ippool describe name [flags]
+octl kube ippool describe id [flags]
 ```
 
 ### Options
@@ -48,5 +48,5 @@ octl kube ippool describe name [flags]
 
 ### SEE ALSO
 
-* [octl kube ippool](octl_kube_ippool.md)	 - ippool commands
+* [octl kube ippool](octl_kube_ippool.md)	 - Manage IP pool resources
 

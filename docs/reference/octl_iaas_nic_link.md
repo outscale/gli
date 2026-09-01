@@ -1,14 +1,14 @@
 ## octl iaas nic link
 
-alias for api LinkNic --NicId nic_id
+Attaches a network interface card (NIC) to a virtual machine (VM).
 
 ### Synopsis
-
-> alias for api LinkNic --NicId nic_id
 
 Attaches a network interface card (NIC) to a virtual machine (VM).
 
 The interface and the VM must be in the same Subregion. The VM can be either `running` or `stopped`. The NIC must be in the `available` state. For more information, see [Attaching a NIC to a VM](https://docs.outscale.com/en/userguide/Attaching-a-NIC-to-a-VM.html).
+
+> alias for LinkNic --NicId nic_id
 
 ```
 octl iaas nic link nic_id [flags]
@@ -50,5 +50,5 @@ octl iaas nic link nic_id [flags]
 
 ### SEE ALSO
 
-* [octl iaas nic](octl_iaas_nic.md)	 - nic commands
+* [octl iaas nic](octl_iaas_nic.md)	 - Manage Nic resources
 

@@ -1,16 +1,16 @@
 ## octl iaas snapshot update
 
-alias for api UpdateSnapshot --SnapshotId snapshot_id
+Modifies the permissions for a specified snapshot.
 
 ### Synopsis
-
-> alias for api UpdateSnapshot --SnapshotId snapshot_id
 
 Modifies the permissions for a specified snapshot.
 
 You must specify either the `Additions` or the `Removals` parameter.
 
 After sharing a snapshot with an OUTSCALE account, the other account can create a copy of it that they own. For more information about copying snapshots, see [CreateSnapshot](#createsnapshot).
+
+> alias for UpdateSnapshot --SnapshotId snapshot_id
 
 ```
 octl iaas snapshot update snapshot_id [snapshot_id]... [flags]
@@ -54,5 +54,5 @@ octl iaas snapshot update snapshot_id [snapshot_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas snapshot](octl_iaas_snapshot.md)	 - snapshot commands
+* [octl iaas snapshot](octl_iaas_snapshot.md)	 - Manage Snapshot resources
 

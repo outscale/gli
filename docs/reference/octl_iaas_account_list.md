@@ -1,12 +1,12 @@
 ## octl iaas account list
 
-alias for api ReadAccounts
+Gets information about the account that sent the request.
 
 ### Synopsis
 
-> alias for api ReadAccounts
-
 Gets information about the account that sent the request.
+
+> alias for ReadAccounts
 
 ```
 octl iaas account list [flags]
@@ -46,5 +46,5 @@ octl iaas account list [flags]
 
 ### SEE ALSO
 
-* [octl iaas account](octl_iaas_account.md)	 - account commands
+* [octl iaas account](octl_iaas_account.md)	 - Manage Account resources
 

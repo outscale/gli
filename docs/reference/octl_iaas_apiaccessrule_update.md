@@ -1,10 +1,8 @@
 ## octl iaas apiaccessrule update
 
-alias for api UpdateApiAccessRule --ApiAccessRuleId api_access_rule_id
+Modifies a specified API access rule.
 
 ### Synopsis
-
-> alias for api UpdateApiAccessRule --ApiAccessRuleId api_access_rule_id
 
 Modifies a specified API access rule.
 
@@ -15,6 +13,8 @@ Modifies a specified API access rule.
 - The new rule you specify fully replaces the old rule. Therefore, for a parameter that is not specified, any previously set value is deleted.
 
 - If, as result of your modification, you no longer have access to the APIs, you will need to contact the Support team to regain access. For more information, see [Technical Support](https://docs.outscale.com/en/userguide/Technical-Support.html).
+
+> alias for UpdateApiAccessRule --ApiAccessRuleId api_access_rule_id
 
 ```
 octl iaas apiaccessrule update api_access_rule_id [api_access_rule_id]... [flags]
@@ -58,5 +58,5 @@ octl iaas apiaccessrule update api_access_rule_id [api_access_rule_id]... [flags
 
 ### SEE ALSO
 
-* [octl iaas apiaccessrule](octl_iaas_apiaccessrule.md)	 - apiaccessrule commands
+* [octl iaas apiaccessrule](octl_iaas_apiaccessrule.md)	 - Manage ApiAccessRule resources
 

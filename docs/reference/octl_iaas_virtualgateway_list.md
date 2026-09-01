@@ -1,12 +1,12 @@
 ## octl iaas virtualgateway list
 
-alias for api ReadVirtualGateways
+Lists one or more virtual gateways.
 
 ### Synopsis
 
-> alias for api ReadVirtualGateways
-
 Lists one or more virtual gateways.
+
+> alias for ReadVirtualGateways
 
 ```
 octl iaas virtualgateway list [flags]
@@ -54,5 +54,5 @@ octl iaas virtualgateway list [flags]
 
 ### SEE ALSO
 
-* [octl iaas virtualgateway](octl_iaas_virtualgateway.md)	 - virtualgateway commands
+* [octl iaas virtualgateway](octl_iaas_virtualgateway.md)	 - Manage VirtualGateway resources
 

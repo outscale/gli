@@ -1,12 +1,12 @@
 ## octl storage bucket cors disable
 
-Delete CORS configuration, alias for api DeleteBucketCors --Bucket bucket
+Delete CORS configuration.
 
 ### Synopsis
 
-> Delete CORS configuration, alias for api DeleteBucketCors --Bucket bucket
+Delete CORS configuration.
 
-
+> alias for DeleteBucketCors --Bucket bucket
 
 ```
 octl storage bucket cors disable bucket [flags]

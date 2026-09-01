@@ -1,12 +1,12 @@
 ## octl storage bucket cors configure
 
-Update CORS configuration, alias for api PutBucketCors --Bucket bucket
+Update CORS configuration.
 
 ### Synopsis
 
-> Update CORS configuration, alias for api PutBucketCors --Bucket bucket
+Update CORS configuration.
 
-
+> alias for PutBucketCors --Bucket bucket
 
 ```
 octl storage bucket cors configure bucket [flags]

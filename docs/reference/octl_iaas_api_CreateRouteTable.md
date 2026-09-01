@@ -19,7 +19,7 @@ octl iaas api CreateRouteTable [flags]
 
 ```
       --DryRun         If true, checks whether you have the required permissions to perform the action.
-      --NetId string   The ID of the Net for which you want to create a route table.
+      --NetId string   [REQUIRED] The ID of the Net for which you want to create a route table.
   -h, --help           help for CreateRouteTable
 ```
 
@@ -51,5 +51,5 @@ octl iaas api CreateRouteTable [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -1,12 +1,12 @@
 ## octl kube cluster create
 
-alias for api CreateCluster
+Creates a new cluster with the provided configuration.
 
 ### Synopsis
 
-> alias for api CreateCluster
-
 Creates a new cluster with the provided configuration. The request must include the cluster details in the request body. all clusters are associated to a project
+
+> alias for CreateCluster
 
 ```
 octl kube cluster create [flags]
@@ -16,8 +16,8 @@ octl kube cluster create [flags]
 
 ```
       --allow-from strings                  List of CIDR blocks or IP addresses allowed to access the Kubernetes API
-      --cidr-pods string                    CIDR block for Kubernetes pods network Example: 10.91.0.0/16
-      --cidr-services string                CIDR block for Kubernetes services network Example: 10.92.0.0/16
+      --cidr-pods string                    [REQUIRED] CIDR block for Kubernetes pods network Example: 10.91.0.0/16
+      --cidr-services string                [REQUIRED] CIDR block for Kubernetes services network Example: 10.92.0.0/16
       --control-plane string                Size of control plane deployment for the cluster
       --description string                  
       --disable-admission-plugins strings   List of Kubernetes admission plugins to disable
@@ -36,10 +36,10 @@ octl kube cluster create [flags]
       --oidc-issuer-url string              The URL of the provider that allows the API server to discover public signing keys.
       --oidc-username-claim string          
       --oidc-username-prefix string         
-      --project string                      Unique identifier of the project this cluster belongs to
+      --project string                      [REQUIRED] Unique identifier of the project this cluster belongs to
       --quirk strings                       
       --subregions strings                  List of subregions where control plane components are deployed
-      --tags stringToString                  (default [])
+      --tags stringToString                 Tags (key=value,key=value) (default [])
       --upgrade-minor-duration-hour int     Duration of the maintenance window in hours
       --upgrade-minor-enabled               Flag to enable or disable the maintenance window
       --upgrade-minor-start-hour int        Hour of the day when maintenance window starts (0-23)
@@ -50,7 +50,7 @@ octl kube cluster create [flags]
       --upgrade-patch-start-hour int        Hour of the day when maintenance window starts (0-23)
       --upgrade-patch-tz string             Timezone for the maintenance window
       --upgrade-patch-week-day string       Day of the week for the maintenance window
-      --version string                      Version of Kubernetes to be deployed
+      --version string                      [REQUIRED] Version of Kubernetes to be deployed
 ```
 
 ### Options inherited from parent commands
@@ -81,5 +81,5 @@ octl kube cluster create [flags]
 
 ### SEE ALSO
 
-* [octl kube cluster](octl_kube_cluster.md)	 - cluster commands
+* [octl kube cluster](octl_kube_cluster.md)	 - Manage Cluster resources
 

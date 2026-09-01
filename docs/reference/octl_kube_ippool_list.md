@@ -1,12 +1,12 @@
 ## octl kube ippool list
 
-alias for api List
+List ippools
 
 ### Synopsis
 
-> alias for api List
+List ippools
 
-
+> alias for List
 
 ```
 octl kube ippool list [flags]
@@ -48,5 +48,5 @@ octl kube ippool list [flags]
 
 ### SEE ALSO
 
-* [octl kube ippool](octl_kube_ippool.md)	 - ippool commands
+* [octl kube ippool](octl_kube_ippool.md)	 - Manage IP pool resources
 

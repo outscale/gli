@@ -14,10 +14,8 @@ octl storage api ListObjectVersions [flags]
       --EncodingType string                Encoding type used by Amazon S3 to encode the [object keys] in the response.
       --ExpectedBucketOwner string         The account ID of the expected bucket owner.
       --KeyMarker string                   Specifies the key to start with when listing objects in a bucket.
-      --MaxKeys int32                      Sets the maximum number of keys returned in the response.
       --OptionalObjectAttributes strings   Specifies the optional fields that you want returned in the response.
       --Prefix string                      Use this parameter to select only those keys that begin with the specified prefix.
-      --RequestPayer string                Confirms that the requester knows that they will be charged for the request.
       --VersionIdMarker string             Specifies the object version you want to start listing from.
   -h, --help                               help for ListObjectVersions
 ```
@@ -51,5 +49,5 @@ octl storage api ListObjectVersions [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

@@ -1,10 +1,8 @@
 ## octl iaas netpeering delete
 
-alias for api DeleteNetPeering --NetPeeringId net_peering_id
+Deletes a Net peering.
 
 ### Synopsis
-
-> alias for api DeleteNetPeering --NetPeeringId net_peering_id
 
 Deletes a Net peering.
 
@@ -13,6 +11,8 @@ If the Net peering is in the `active` state, it can be deleted either by the own
 If it is in the `pending-acceptance` state, it can be deleted only by the owner of the requester Net.
 
 If it is in the `rejected`, `failed`, or `expired` states, it cannot be deleted.
+
+> alias for DeleteNetPeering --NetPeeringId net_peering_id
 
 ```
 octl iaas netpeering delete net_peering_id [net_peering_id]... [flags]
@@ -52,5 +52,5 @@ octl iaas netpeering delete net_peering_id [net_peering_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas netpeering](octl_iaas_netpeering.md)	 - netpeering commands
+* [octl iaas netpeering](octl_iaas_netpeering.md)	 - Manage NetPeering resources
 

@@ -1,12 +1,12 @@
 ## octl iaas snapshot list
 
-alias for api ReadSnapshots
+Lists one or more snapshots that are available to you and the permissions to create volumes from them.
 
 ### Synopsis
 
-> alias for api ReadSnapshots
-
 Lists one or more snapshots that are available to you and the permissions to create volumes from them.
+
+> alias for ReadSnapshots
 
 ```
 octl iaas snapshot list [flags]
@@ -19,7 +19,7 @@ octl iaas snapshot list [flags]
       --account-id strings                               The OUTSCALE account IDs of the owners of the snapshots.
       --client-token strings                             The idempotency tokens provided when creating the snapshots.
       --description strings                              The descriptions of the snapshots.
-      --from-creation-date osctime                       The beginning of the time period, in ISO 8601 date-time format (for example, 2020-06-14T00:00:00.000Z).
+      --from-creation-date string                        The beginning of the time period, in ISO 8601 date-time format (for example, 2020-06-14T00:00:00.000Z).
   -h, --help                                             help for list
       --id strings                                       The IDs of the snapshots.
       --permission-to-create-volume-account-id strings   The OUTSCALE account IDs which have permissions to create volumes.
@@ -29,7 +29,7 @@ octl iaas snapshot list [flags]
       --tag strings                                      The key/value combination of the tags associated with the snapshots, in the following format: "Filters":{"Tags":["TAGKEY=TAGVALUE"]}.
       --tag-key strings                                  The keys of the tags associated with the snapshots.
       --tag-value strings                                The values of the tags associated with the snapshots.
-      --to-creation-date osctime                         The end of the time period, in ISO 8601 date-time format (for example, 2020-06-30T00:00:00.000Z).
+      --to-creation-date string                          The end of the time period, in ISO 8601 date-time format (for example, 2020-06-30T00:00:00.000Z).
       --volume-id strings                                The IDs of the volumes used to create the snapshots.
       --volume-size ints                                 The sizes of the volumes used to create the snapshots, in gibibytes (GiB).
 ```
@@ -62,5 +62,5 @@ octl iaas snapshot list [flags]
 
 ### SEE ALSO
 
-* [octl iaas snapshot](octl_iaas_snapshot.md)	 - snapshot commands
+* [octl iaas snapshot](octl_iaas_snapshot.md)	 - Manage Snapshot resources
 

@@ -1,12 +1,12 @@
 ## octl storage object acl describe
 
-Display ACL configuration, alias for api GetObjectAcl --Key key
+Display ACL configuration.
 
 ### Synopsis
 
-> Display ACL configuration, alias for api GetObjectAcl --Key key
+Display ACL configuration.
 
-
+> alias for GetObjectAcl --Bucket bucket
 
 ```
 octl storage object acl describe key [flags]

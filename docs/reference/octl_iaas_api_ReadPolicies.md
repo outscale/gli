@@ -18,7 +18,6 @@ octl iaas api ReadPolicies [flags]
       --Filters.PathPrefix string   The path prefix you can use to filter the results.
       --Filters.Scope string        The scope of the policies.
       --FirstItem int               The item starting the list of policies requested.
-      --ResultsPerPage int          The maximum number of items that can be returned in a single response (by default, 100).
   -h, --help                        help for ReadPolicies
 ```
 
@@ -50,5 +49,5 @@ octl iaas api ReadPolicies [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

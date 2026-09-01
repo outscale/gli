@@ -16,7 +16,7 @@ octl iaas api DeleteRouteTable [flags]
 
 ```
       --DryRun                If true, checks whether you have the required permissions to perform the action.
-      --RouteTableId string   The ID of the route table you want to delete.
+      --RouteTableId string   [REQUIRED] The ID of the route table you want to delete.
   -h, --help                  help for DeleteRouteTable
 ```
 
@@ -48,5 +48,5 @@ octl iaas api DeleteRouteTable [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

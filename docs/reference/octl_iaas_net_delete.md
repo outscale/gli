@@ -1,10 +1,8 @@
 ## octl iaas net delete
 
-alias for api DeleteNet --NetId net_id
+Deletes a specified Net.
 
 ### Synopsis
-
-> alias for api DeleteNet --NetId net_id
 
 Deletes a specified Net.
 
@@ -29,6 +27,8 @@ Before deleting the Net, you need to delete or detach all the resources associat
 * Security groups
 
 * Subnets
+
+> alias for DeleteNet --NetId net_id
 
 ```
 octl iaas net delete net_id [net_id]... [flags]
@@ -68,5 +68,5 @@ octl iaas net delete net_id [net_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas net](octl_iaas_net.md)	 - net commands
+* [octl iaas net](octl_iaas_net.md)	 - Manage Net resources
 

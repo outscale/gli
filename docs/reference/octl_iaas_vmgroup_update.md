@@ -1,10 +1,8 @@
 ## octl iaas vmgroup update
 
-alias for api UpdateVmGroup --VmGroupId vm_group_id
+> [WARNING] > This feature is currently under development and may not function properly.
 
 ### Synopsis
-
-> alias for api UpdateVmGroup --VmGroupId vm_group_id
 
 > [WARNING]
 
@@ -12,6 +10,8 @@ alias for api UpdateVmGroup --VmGroupId vm_group_id
 
 
 Modifies the specified attributes of a group of virtual machines (VMs).
+
+> alias for UpdateVmGroup --VmGroupId vm_group_id
 
 ```
 octl iaas vmgroup update vm_group_id [vm_group_id]... [flags]
@@ -56,5 +56,5 @@ octl iaas vmgroup update vm_group_id [vm_group_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - vmgroup commands
+* [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - Manage VmGroup resources
 

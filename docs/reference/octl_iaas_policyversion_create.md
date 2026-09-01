@@ -1,10 +1,8 @@
 ## octl iaas policyversion create
 
-alias for api CreatePolicyVersion --PolicyOrn policy_orn
+Creates a version of a specified managed policy.
 
 ### Synopsis
-
-> alias for api CreatePolicyVersion --PolicyOrn policy_orn
 
 Creates a version of a specified managed policy.
 
@@ -17,6 +15,8 @@ A managed policy can have up to five versions.
 
 A delay of up to 15 seconds can occur when attaching, detaching, or updating a managed policy.
 
+> alias for CreatePolicyVersion --PolicyOrn policy_orn
+
 ```
 octl iaas policyversion create policy_orn [flags]
 ```
@@ -24,9 +24,9 @@ octl iaas policyversion create policy_orn [flags]
 ### Options
 
 ```
-      --default               If set to true, the new policy version is set as the default version and becomes the operative one.
-      --document fileOrJson   [REQUIRED] Either a file storing the policy document, or the policy document (in JSON format).
-  -h, --help                  help for create
+      --default           If set to true, the new policy version is set as the default version and becomes the operative one.
+      --document string   Either a file storing the policy document, or the policy document (in JSON format).
+  -h, --help              help for create
 ```
 
 ### Options inherited from parent commands
@@ -57,5 +57,5 @@ octl iaas policyversion create policy_orn [flags]
 
 ### SEE ALSO
 
-* [octl iaas policyversion](octl_iaas_policyversion.md)	 - policyversion commands
+* [octl iaas policyversion](octl_iaas_policyversion.md)	 - Manage PolicyVersion resources
 

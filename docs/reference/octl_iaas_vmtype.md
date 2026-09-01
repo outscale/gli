@@ -1,6 +1,6 @@
 ## octl iaas vmtype
 
-vmtype commands
+Manage VmType resources
 
 ### Options
 
@@ -37,6 +37,6 @@ vmtype commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas vmtype describe](octl_iaas_vmtype_describe.md)	 - alias for api ReadVmTypes --Filters.VmTypeNames vm_type_name
-* [octl iaas vmtype list](octl_iaas_vmtype_list.md)	 - alias for api ReadVmTypes
+* [octl iaas vmtype describe](octl_iaas_vmtype_describe.md)	 - Lists one or more predefined VM types.
+* [octl iaas vmtype list](octl_iaas_vmtype_list.md)	 - Lists one or more predefined VM types.
 

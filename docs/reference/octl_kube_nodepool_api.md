@@ -1,6 +1,6 @@
 ## octl kube nodepool api
 
-nodepool api calls
+Call nodepool API
 
 ### Options
 
@@ -37,7 +37,7 @@ nodepool api calls
 
 ### SEE ALSO
 
-* [octl kube nodepool](octl_kube_nodepool.md)	 - nodepool commands
+* [octl kube nodepool](octl_kube_nodepool.md)	 - Manage nodepool resources
 * [octl kube nodepool api Create](octl_kube_nodepool_api_Create.md)	 - 
 * [octl kube nodepool api Delete](octl_kube_nodepool_api_Delete.md)	 - 
 * [octl kube nodepool api Get](octl_kube_nodepool_api_Get.md)	 - 

@@ -1,12 +1,12 @@
 ## octl storage bucket policy disable
 
-Delete Policy configuration, alias for api DeleteBucketPolicy --Bucket bucket
+Delete Policy configuration.
 
 ### Synopsis
 
-> Delete Policy configuration, alias for api DeleteBucketPolicy --Bucket bucket
+Delete Policy configuration.
 
-
+> alias for DeleteBucketPolicy --Bucket bucket
 
 ```
 octl storage bucket policy disable bucket [flags]

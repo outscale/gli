@@ -37,7 +37,7 @@ octl iaas api CreateSecurityGroupRule [flags]
 
 ```
       --DryRun                                                     If true, checks whether you have the required permissions to perform the action.
-      --Flow string                                                The direction of the flow: Inbound or Outbound.
+      --Flow string                                                [REQUIRED] The direction of the flow: Inbound or Outbound.
       --FromPortRange int                                          The beginning of the port range for the TCP and UDP protocols, or an ICMP type number.
       --IpProtocol string                                          The IP protocol name (tcp, udp, icmp, or -1 for all protocols).
       --IpRange string                                             The IP range for the security group rule, in CIDR notation (for example, 10.0.0.0/16).
@@ -51,7 +51,7 @@ octl iaas api CreateSecurityGroupRule [flags]
       --Rules.0.ServiceIds strings                                 One or more service IDs to allow traffic from a Net to access the corresponding OUTSCALE services.
       --Rules.0.ToPortRange int                                    The end of the port range for the TCP and UDP protocols, or an ICMP code number.
       --SecurityGroupAccountIdToLink string                        The OUTSCALE account ID that owns the source or destination security group specified in the SecurityGroupNameToLink parameter.
-      --SecurityGroupId string                                     The ID of the security group for which you want to create a rule.
+      --SecurityGroupId string                                     [REQUIRED] The ID of the security group for which you want to create a rule.
       --SecurityGroupNameToLink string                             The ID of a source or destination security group that you want to link to the security group of the rule.
       --ToPortRange int                                            The end of the port range for the TCP and UDP protocols, or an ICMP code number.
   -h, --help                                                       help for CreateSecurityGroupRule
@@ -85,5 +85,5 @@ octl iaas api CreateSecurityGroupRule [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

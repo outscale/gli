@@ -18,8 +18,6 @@ octl iaas api ReadTags [flags]
       --Filters.ResourceIds strings     The IDs of the resources with which the tags are associated.
       --Filters.ResourceTypes strings   The resource type (customer-gateway | dhcpoptions | flexible-gpu | image | instance | keypair | natgateway | network-interface | public-ip | route-table | security-group | snapshot | subnet | task | virtual-private-gateway | volume | vpc | vpc-endpoint | vpc-peering-connection| vpn-connection).
       --Filters.Values strings          The values of the tags that are assigned to the resources.
-      --NextPageToken string            The token to request the next page of results.
-      --ResultsPerPage int              The maximum number of logs returned in a single response (between 1 and 1000, both included).
   -h, --help                            help for ReadTags
 ```
 
@@ -51,5 +49,5 @@ octl iaas api ReadTags [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

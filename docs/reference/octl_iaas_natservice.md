@@ -1,6 +1,6 @@
 ## octl iaas natservice
 
-natservice commands
+Manage NatService resources
 
 ### Options
 
@@ -37,8 +37,8 @@ natservice commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas natservice create](octl_iaas_natservice_create.md)	 - alias for api CreateNatService
-* [octl iaas natservice delete](octl_iaas_natservice_delete.md)	 - alias for api DeleteNatService --NatServiceId nat_service_id
-* [octl iaas natservice describe](octl_iaas_natservice_describe.md)	 - alias for api ReadNatServices --Filters.NatServiceIds nat_service_id
-* [octl iaas natservice list](octl_iaas_natservice_list.md)	 - alias for api ReadNatServices
+* [octl iaas natservice create](octl_iaas_natservice_create.md)	 - Creates a network address translation (NAT) service in the specified public Subnet of a Net.
+* [octl iaas natservice delete](octl_iaas_natservice_delete.md)	 - Deletes a specified network address translation (NAT) service.
+* [octl iaas natservice describe](octl_iaas_natservice_describe.md)	 - Lists one or more network address translation (NAT) services.
+* [octl iaas natservice list](octl_iaas_natservice_list.md)	 - Lists one or more network address translation (NAT) services.
 

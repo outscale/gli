@@ -1,10 +1,8 @@
 ## octl iaas policyversion set-default
 
-alias for api SetDefaultPolicyVersion --PolicyOrn policy_orn
+Sets a specified version of a managed policy as the default (operative) one.
 
 ### Synopsis
-
-> alias for api SetDefaultPolicyVersion --PolicyOrn policy_orn
 
 Sets a specified version of a managed policy as the default (operative) one.
 
@@ -16,6 +14,8 @@ You can modify the default version of a policy at any time.
 **[IMPORTANT]**
 
 A delay of up to 15 seconds can occur when attaching, detaching, or updating a managed policy.
+
+> alias for SetDefaultPolicyVersion --PolicyOrn policy_orn
 
 ```
 octl iaas policyversion set-default policy_orn [flags]
@@ -56,5 +56,5 @@ octl iaas policyversion set-default policy_orn [flags]
 
 ### SEE ALSO
 
-* [octl iaas policyversion](octl_iaas_policyversion.md)	 - policyversion commands
+* [octl iaas policyversion](octl_iaas_policyversion.md)	 - Manage PolicyVersion resources
 

@@ -1,10 +1,8 @@
 ## octl iaas subnet create
 
-alias for api CreateSubnet
+Creates a Subnet in an existing Net.
 
 ### Synopsis
-
-> alias for api CreateSubnet
 
 Creates a Subnet in an existing Net.
 
@@ -12,6 +10,8 @@ To create a Subnet in a Net, you have to provide the ID of the Net and the IP ra
 
 
 For more information, see [About Nets](https://docs.outscale.com/en/userguide/About-Nets.html).
+
+> alias for CreateSubnet
 
 ```
 octl iaas subnet create [flags]
@@ -54,5 +54,5 @@ octl iaas subnet create [flags]
 
 ### SEE ALSO
 
-* [octl iaas subnet](octl_iaas_subnet.md)	 - subnet commands
+* [octl iaas subnet](octl_iaas_subnet.md)	 - Manage Subnet resources
 

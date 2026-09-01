@@ -21,8 +21,8 @@ octl iaas api DeleteUserGroupPolicy [flags]
 
 ```
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
-      --PolicyName string      The name of the policy document you want to delete.
-      --UserGroupName string   The name of the group.
+      --PolicyName string      [REQUIRED] The name of the policy document you want to delete.
+      --UserGroupName string   [REQUIRED] The name of the group.
       --UserGroupPath string   The path to the group.
   -h, --help                   help for DeleteUserGroupPolicy
 ```
@@ -55,5 +55,5 @@ octl iaas api DeleteUserGroupPolicy [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

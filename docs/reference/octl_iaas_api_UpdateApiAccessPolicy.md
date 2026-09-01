@@ -20,8 +20,8 @@ octl iaas api UpdateApiAccessPolicy [flags]
 
 ```
       --DryRun                              If true, checks whether you have the required permissions to perform the action.
-      --MaxAccessKeyExpirationSeconds int   The maximum possible lifetime for your access keys, in seconds (between 0 and 3153600000, both included).
-      --RequireTrustedEnv                   If true, a trusted session is activated, provided that you specify the MaxAccessKeyExpirationSeconds parameter with a value greater than 0.
+      --MaxAccessKeyExpirationSeconds int   [REQUIRED] The maximum possible lifetime for your access keys, in seconds (between 0 and 3153600000, both included).
+      --RequireTrustedEnv                   [REQUIRED] If true, a trusted session is activated, provided that you specify the MaxAccessKeyExpirationSeconds parameter with a value greater than 0.
   -h, --help                                help for UpdateApiAccessPolicy
 ```
 
@@ -53,5 +53,5 @@ octl iaas api UpdateApiAccessPolicy [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

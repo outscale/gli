@@ -1,12 +1,12 @@
 ## octl storage bucket acl describe
 
-Display ACL configuration, alias for api GetBucketAcl --Bucket bucket
+Display ACL configuration.
 
 ### Synopsis
 
-> Display ACL configuration, alias for api GetBucketAcl --Bucket bucket
+Display ACL configuration.
 
-
+> alias for GetBucketAcl --Bucket bucket
 
 ```
 octl storage bucket acl describe bucket [flags]

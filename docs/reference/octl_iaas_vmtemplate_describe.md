@@ -1,12 +1,17 @@
 ## octl iaas vmtemplate describe
 
-alias for api ReadVmTemplates --Filters.VmTemplateIds vm_template_id
+> [WARNING] > This feature is currently under development and may not function properly.
 
 ### Synopsis
 
-> alias for api ReadVmTemplates --Filters.VmTemplateIds vm_template_id
+> [WARNING]
+
+> This feature is currently under development and may not function properly.
 
 
+Lists one or more virtual machine (VM) templates.
+
+> alias for ReadVmTemplates --Filters.VmTemplateIds vm_template_id
 
 ```
 octl iaas vmtemplate describe vm_template_id [vm_template_id]... [flags]
@@ -46,5 +51,5 @@ octl iaas vmtemplate describe vm_template_id [vm_template_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - vmtemplate commands
+* [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - Manage VmTemplate resources
 

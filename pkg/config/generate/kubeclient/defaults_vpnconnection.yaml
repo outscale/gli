@@ -1,0 +1,33 @@
+entities:
+  vpnconnection:
+    columns:
+      - title: Name
+        content: .metadata.name
+      - title: VPN Connection ID
+        content: .status.vpnConnectionId
+      - title: VPN Connection State
+        content: .status.vpnConnectionState
+      - title: Client Public IP
+        content: .spec.publicIP
+      - title: Client ASN
+        content: .spec.bgpASN
+      - title: Virtual Gateway Public IP
+        content: .status.vgwTelemetries[0].OutsideIpAddress
+      - title: Virtual Gateway Tunnel State
+        content: .status.vgwTelemetries[0].State
+      - title: Virtual Gateway Tunnel State Description
+        content: .status.vgwTelemetries[0].StateDescription
+    primary: Name
+api:
+  List:
+    content: Items
+    entity: vpnconnection
+  Get:
+    content: .
+    entity: vpnconnection
+  Create:
+    content: .
+    entity: vpnconnection
+  Update:
+    entity: vpnconnection
+aliases:

@@ -1,6 +1,6 @@
 ## octl iaas vmtemplate
 
-vmtemplate commands
+Manage VmTemplate resources
 
 ### Options
 
@@ -37,9 +37,9 @@ vmtemplate commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas vmtemplate create](octl_iaas_vmtemplate_create.md)	 - alias for api CreateVmTemplate
-* [octl iaas vmtemplate delete](octl_iaas_vmtemplate_delete.md)	 - alias for api DeleteVmTemplate --VmTemplateId vm_template_id
-* [octl iaas vmtemplate describe](octl_iaas_vmtemplate_describe.md)	 - alias for api ReadVmTemplates --Filters.VmTemplateIds vm_template_id
-* [octl iaas vmtemplate list](octl_iaas_vmtemplate_list.md)	 - alias for api ReadVmTemplates
-* [octl iaas vmtemplate update](octl_iaas_vmtemplate_update.md)	 - alias for api UpdateVmTemplate --VmTemplateId vm_template_id
+* [octl iaas vmtemplate create](octl_iaas_vmtemplate_create.md)	 - > [WARNING] > This feature is currently under development and may not function properly.
+* [octl iaas vmtemplate delete](octl_iaas_vmtemplate_delete.md)	 - > [WARNING] > This feature is currently under development and may not function properly.
+* [octl iaas vmtemplate describe](octl_iaas_vmtemplate_describe.md)	 - > [WARNING] > This feature is currently under development and may not function properly.
+* [octl iaas vmtemplate list](octl_iaas_vmtemplate_list.md)	 - > [WARNING] > This feature is currently under development and may not function properly.
+* [octl iaas vmtemplate update](octl_iaas_vmtemplate_update.md)	 - > [WARNING] > This feature is currently under development and may not function properly.
 

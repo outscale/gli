@@ -1,6 +1,6 @@
 ## octl iaas dedicatedgroup
 
-dedicatedgroup commands
+Manage DedicatedGroup resources
 
 ### Options
 
@@ -37,9 +37,9 @@ dedicatedgroup commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas dedicatedgroup create](octl_iaas_dedicatedgroup_create.md)	 - alias for api CreateDedicatedGroup
-* [octl iaas dedicatedgroup delete](octl_iaas_dedicatedgroup_delete.md)	 - alias for api DeleteDedicatedGroup --DedicatedGroupId dedicated_group_id
-* [octl iaas dedicatedgroup describe](octl_iaas_dedicatedgroup_describe.md)	 - alias for api ReadDedicatedGroups --Filters.DedicatedGroupIds dedicated_group_id
-* [octl iaas dedicatedgroup list](octl_iaas_dedicatedgroup_list.md)	 - alias for api ReadDedicatedGroups
-* [octl iaas dedicatedgroup update](octl_iaas_dedicatedgroup_update.md)	 - alias for api UpdateDedicatedGroup --DedicatedGroupId dedicated_group_id
+* [octl iaas dedicatedgroup create](octl_iaas_dedicatedgroup_create.md)	 - Creates a dedicated group for virtual machines (VMs).
+* [octl iaas dedicatedgroup delete](octl_iaas_dedicatedgroup_delete.md)	 - Deletes a specified dedicated group of virtual machines (VMs).
+* [octl iaas dedicatedgroup describe](octl_iaas_dedicatedgroup_describe.md)	 - List one or more dedicated groups of virtual machines (VMs).
+* [octl iaas dedicatedgroup list](octl_iaas_dedicatedgroup_list.md)	 - List one or more dedicated groups of virtual machines (VMs).
+* [octl iaas dedicatedgroup update](octl_iaas_dedicatedgroup_update.md)	 - Modifies the name of a specified dedicated group.
 

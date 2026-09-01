@@ -1,14 +1,14 @@
 ## octl iaas natservice delete
 
-alias for api DeleteNatService --NatServiceId nat_service_id
+Deletes a specified network address translation (NAT) service.
 
 ### Synopsis
-
-> alias for api DeleteNatService --NatServiceId nat_service_id
 
 Deletes a specified network address translation (NAT) service.
 
 This action disassociates the public IP from the NAT service, but does not release this public IP from your OUTSCALE account. However, it does not delete any NAT service routes in your route tables.
+
+> alias for DeleteNatService --NatServiceId nat_service_id
 
 ```
 octl iaas natservice delete nat_service_id [nat_service_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas natservice delete nat_service_id [nat_service_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas natservice](octl_iaas_natservice.md)	 - natservice commands
+* [octl iaas natservice](octl_iaas_natservice.md)	 - Manage NatService resources
 

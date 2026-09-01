@@ -21,8 +21,8 @@ octl iaas api ScaleUpVmGroup [flags]
 
 ```
       --DryRun             If true, checks whether you have the required permissions to perform the action.
-      --VmAddition int     The number of VMs you want to add to the VM group.
-      --VmGroupId string   The ID of the VM group you want to scale up.
+      --VmAddition int     [REQUIRED] The number of VMs you want to add to the VM group.
+      --VmGroupId string   [REQUIRED] The ID of the VM group you want to scale up.
   -h, --help               help for ScaleUpVmGroup
 ```
 
@@ -54,5 +54,5 @@ octl iaas api ScaleUpVmGroup [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

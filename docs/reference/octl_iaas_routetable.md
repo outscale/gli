@@ -1,6 +1,6 @@
 ## octl iaas routetable
 
-routetable commands
+Manage RouteTable resources
 
 ### Options
 
@@ -37,8 +37,8 @@ routetable commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas routetable create](octl_iaas_routetable_create.md)	 - alias for api CreateRouteTable
-* [octl iaas routetable delete](octl_iaas_routetable_delete.md)	 - alias for api DeleteRouteTable --RouteTableId route_table_id
-* [octl iaas routetable describe](octl_iaas_routetable_describe.md)	 - alias for api ReadRouteTables --Filters.RouteTableIds route_table_id
-* [octl iaas routetable list](octl_iaas_routetable_list.md)	 - alias for api ReadRouteTables
+* [octl iaas routetable create](octl_iaas_routetable_create.md)	 - Creates a route table for a specified Net.
+* [octl iaas routetable delete](octl_iaas_routetable_delete.md)	 - Deletes a specified route table.
+* [octl iaas routetable describe](octl_iaas_routetable_describe.md)	 - Lists one or more of your route tables.
+* [octl iaas routetable list](octl_iaas_routetable_list.md)	 - Lists one or more of your route tables.
 

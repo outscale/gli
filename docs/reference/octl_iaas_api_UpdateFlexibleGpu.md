@@ -15,7 +15,7 @@ octl iaas api UpdateFlexibleGpu [flags]
 ```
       --DeleteOnVmDeletion     If true, the fGPU is deleted when the VM is terminated.
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
-      --FlexibleGpuId string   The ID of the fGPU you want to modify.
+      --FlexibleGpuId string   [REQUIRED] The ID of the fGPU you want to modify.
   -h, --help                   help for UpdateFlexibleGpu
 ```
 
@@ -47,5 +47,5 @@ octl iaas api UpdateFlexibleGpu [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

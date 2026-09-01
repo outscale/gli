@@ -1,12 +1,12 @@
 ## octl iaas vm states
 
-alias for api ReadVmsState
+Lists the status of one or more virtual machines (VMs).
 
 ### Synopsis
 
-> alias for api ReadVmsState
-
 Lists the status of one or more virtual machines (VMs).
+
+> alias for ReadVmsState
 
 ```
 octl iaas vm states [flags]
@@ -46,5 +46,5 @@ octl iaas vm states [flags]
 
 ### SEE ALSO
 
-* [octl iaas vm](octl_iaas_vm.md)	 - vm commands
+* [octl iaas vm](octl_iaas_vm.md)	 - Manage Vm resources
 

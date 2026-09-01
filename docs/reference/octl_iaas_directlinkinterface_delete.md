@@ -1,12 +1,12 @@
 ## octl iaas directlinkinterface delete
 
-alias for api DeleteDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id
+Deletes a specified DirectLink interface.
 
 ### Synopsis
 
-> alias for api DeleteDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id
-
 Deletes a specified DirectLink interface.
+
+> alias for DeleteDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id
 
 ```
 octl iaas directlinkinterface delete direct_link_interface_id [direct_link_interface_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas directlinkinterface delete direct_link_interface_id [direct_link_inter
 
 ### SEE ALSO
 
-* [octl iaas directlinkinterface](octl_iaas_directlinkinterface.md)	 - directlinkinterface commands
+* [octl iaas directlinkinterface](octl_iaas_directlinkinterface.md)	 - Manage DirectLinkInterface resources
 

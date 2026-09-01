@@ -1,14 +1,14 @@
 ## octl iaas listenerrule update
 
-alias for api UpdateListenerRule --ListenerRuleName listener_rule_name
+Updates the pattern of the listener rule.
 
 ### Synopsis
-
-> alias for api UpdateListenerRule --ListenerRuleName listener_rule_name
 
 Updates the pattern of the listener rule.
 
 This call updates the pattern matching algorithm for incoming traffic.
+
+> alias for UpdateListenerRule --ListenerRuleName listener_rule_name
 
 ```
 octl iaas listenerrule update listener_rule_name [listener_rule_name]... [flags]
@@ -50,5 +50,5 @@ octl iaas listenerrule update listener_rule_name [listener_rule_name]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas listenerrule](octl_iaas_listenerrule.md)	 - listenerrule commands
+* [octl iaas listenerrule](octl_iaas_listenerrule.md)	 - Manage ListenerRule resources
 

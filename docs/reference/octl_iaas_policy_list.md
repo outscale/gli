@@ -1,12 +1,12 @@
 ## octl iaas policy list
 
-alias for api ReadPolicies
+Lists all the managed policies available for your OUTSCALE account.
 
 ### Synopsis
 
-> alias for api ReadPolicies
-
 Lists all the managed policies available for your OUTSCALE account.
+
+> alias for ReadPolicies
 
 ```
 octl iaas policy list [flags]
@@ -50,5 +50,5 @@ octl iaas policy list [flags]
 
 ### SEE ALSO
 
-* [octl iaas policy](octl_iaas_policy.md)	 - policy commands
+* [octl iaas policy](octl_iaas_policy.md)	 - Manage Policy resources
 

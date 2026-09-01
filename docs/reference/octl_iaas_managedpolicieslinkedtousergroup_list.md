@@ -1,12 +1,12 @@
 ## octl iaas managedpolicieslinkedtousergroup list
 
-alias for api ReadManagedPoliciesLinkedToUserGroup
+Lists the managed policies linked to a specified group.
 
 ### Synopsis
 
-> alias for api ReadManagedPoliciesLinkedToUserGroup
-
 Lists the managed policies linked to a specified group.
+
+> alias for ReadManagedPoliciesLinkedToUserGroup
 
 ```
 octl iaas managedpolicieslinkedtousergroup list [flags]
@@ -50,5 +50,5 @@ octl iaas managedpolicieslinkedtousergroup list [flags]
 
 ### SEE ALSO
 
-* [octl iaas managedpolicieslinkedtousergroup](octl_iaas_managedpolicieslinkedtousergroup.md)	 - managedpolicieslinkedtousergroup commands
+* [octl iaas managedpolicieslinkedtousergroup](octl_iaas_managedpolicieslinkedtousergroup.md)	 - Manage ManagedPoliciesLinkedToUserGroup resources
 

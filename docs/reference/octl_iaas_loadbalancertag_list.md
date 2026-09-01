@@ -1,12 +1,12 @@
 ## octl iaas loadbalancertag list
 
-alias for api ReadLoadBalancerTags
+Lists the tags associated with one or more specified load balancers.
 
 ### Synopsis
 
-> alias for api ReadLoadBalancerTags
-
 Lists the tags associated with one or more specified load balancers.
+
+> alias for ReadLoadBalancerTags
 
 ```
 octl iaas loadbalancertag list [flags]
@@ -47,5 +47,5 @@ octl iaas loadbalancertag list [flags]
 
 ### SEE ALSO
 
-* [octl iaas loadbalancertag](octl_iaas_loadbalancertag.md)	 - loadbalancertag commands
+* [octl iaas loadbalancertag](octl_iaas_loadbalancertag.md)	 - Manage LoadBalancerTag resources
 

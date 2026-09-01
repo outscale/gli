@@ -1,12 +1,12 @@
 ## octl iaas policyversion describe
 
-alias for api ReadPolicyVersion --PolicyOrn policy_orn
+Lists information about a specified version of a managed policy.
 
 ### Synopsis
 
-> alias for api ReadPolicyVersion --PolicyOrn policy_orn
-
 Lists information about a specified version of a managed policy.
+
+> alias for ReadPolicyVersion --PolicyOrn policy_orn
 
 ```
 octl iaas policyversion describe policy_orn version [flags]
@@ -47,5 +47,5 @@ octl iaas policyversion describe policy_orn version [flags]
 
 ### SEE ALSO
 
-* [octl iaas policyversion](octl_iaas_policyversion.md)	 - policyversion commands
+* [octl iaas policyversion](octl_iaas_policyversion.md)	 - Manage PolicyVersion resources
 

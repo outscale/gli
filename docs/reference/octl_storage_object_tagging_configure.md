@@ -1,12 +1,12 @@
 ## octl storage object tagging configure
 
-Add tags to an object, alias for api PutObjectTagging --Key key
+Add tags to an object.
 
 ### Synopsis
 
-> Add tags to an object, alias for api PutObjectTagging --Key key
+Add tags to an object.
 
-
+> alias for PutObjectTagging --Key key
 
 ```
 octl storage object tagging configure key [flags]

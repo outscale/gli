@@ -52,7 +52,7 @@ octl [flags]
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
 * [octl kube](octl_kube.md)	 - OUTSCALE Kubernetes as a Service (OKS) management
-* [octl metadata](octl_metadata.md)	 - query the metadata server
+* [octl metadata](octl_metadata.md)	 - Metadata server queries
 * [octl profile](octl_profile.md)	 - Profile file management
 * [octl storage](octl_storage.md)	 - OUTSCALE Object Storage (OOS) management
 * [octl update](octl_update.md)	 - Update octl to the latest version

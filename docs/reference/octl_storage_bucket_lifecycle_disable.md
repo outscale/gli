@@ -1,12 +1,12 @@
 ## octl storage bucket lifecycle disable
 
-Delete Lifecycle configuration, alias for api DeleteBucketLifecycle --Bucket bucket
+Delete lifecycle configuration.
 
 ### Synopsis
 
-> Delete Lifecycle configuration, alias for api DeleteBucketLifecycle --Bucket bucket
+Delete lifecycle configuration.
 
-
+> alias for DeleteBucketLifecycle --Bucket bucket
 
 ```
 octl storage bucket lifecycle disable bucket [flags]

@@ -1,6 +1,6 @@
 ## octl iaas securitygrouprule
 
-securitygrouprule commands
+Manage SecurityGroupRule resources
 
 ### Options
 
@@ -37,5 +37,5 @@ securitygrouprule commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas securitygrouprule create](octl_iaas_securitygrouprule_create.md)	 - alias for api CreateSecurityGroupRule
+* [octl iaas securitygrouprule create](octl_iaas_securitygrouprule_create.md)	 - Adds one or more rules to a security group.
 

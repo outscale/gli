@@ -19,8 +19,8 @@ octl iaas api CreateSubnet [flags]
 
 ```
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
-      --IpRange string         The IP range in the Subnet, in CIDR notation (for example, 10.0.0.0/16).
-      --NetId string           The ID of the Net for which you want to create a Subnet.
+      --IpRange string         [REQUIRED] The IP range in the Subnet, in CIDR notation (for example, 10.0.0.0/16).
+      --NetId string           [REQUIRED] The ID of the Net for which you want to create a Subnet.
       --SubregionName string   The name of the Subregion in which you want to create the Subnet.
   -h, --help                   help for CreateSubnet
 ```
@@ -53,5 +53,5 @@ octl iaas api CreateSubnet [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

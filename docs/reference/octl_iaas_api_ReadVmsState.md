@@ -17,13 +17,11 @@ octl iaas api ReadVmsState [flags]
       --DryRun                                         If true, checks whether you have the required permissions to perform the action.
       --Filters.MaintenanceEventCodes strings          The code for the scheduled event (system-reboot | system-maintenance).
       --Filters.MaintenanceEventDescriptions strings   The description of the scheduled event.
-      --Filters.MaintenanceEventsNotAfter strings      The latest date and time (UTC) the event can end.
-      --Filters.MaintenanceEventsNotBefore strings     The earliest date and time (UTC) the event can start.
+      --Filters.MaintenanceEventsNotAfter osctime      The latest date and time (UTC) the event can end.
+      --Filters.MaintenanceEventsNotBefore osctime     The earliest date and time (UTC) the event can start.
       --Filters.SubregionNames strings                 The names of the Subregions of the VMs.
       --Filters.VmIds strings                          One or more IDs of VMs.
       --Filters.VmStates strings                       The states of the VMs (pending | running | stopping | stopped | shutting-down | terminated | quarantine).
-      --NextPageToken string                           The token to request the next page of results.
-      --ResultsPerPage int                             The maximum number of logs returned in a single response (between 1 and 1000, both included).
   -h, --help                                           help for ReadVmsState
 ```
 
@@ -55,5 +53,5 @@ octl iaas api ReadVmsState [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

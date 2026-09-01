@@ -1,12 +1,12 @@
 ## octl kube netpeering create
 
-alias for request api Create
+Create a netpeering request
 
 ### Synopsis
 
+Create a netpeering request
+
 > alias for request api Create
-
-
 
 ```
 octl kube netpeering create [flags]
@@ -49,5 +49,5 @@ octl kube netpeering create [flags]
 
 ### SEE ALSO
 
-* [octl kube netpeering](octl_kube_netpeering.md)	 - netpeering commands
+* [octl kube netpeering](octl_kube_netpeering.md)	 - Manage netpeering resources
 

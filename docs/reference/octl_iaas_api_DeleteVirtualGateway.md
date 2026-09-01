@@ -18,7 +18,7 @@ octl iaas api DeleteVirtualGateway [flags]
 
 ```
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
-      --VirtualGatewayId string   The ID of the virtual gateway you want to delete.
+      --VirtualGatewayId string   [REQUIRED] The ID of the virtual gateway you want to delete.
   -h, --help                      help for DeleteVirtualGateway
 ```
 
@@ -50,5 +50,5 @@ octl iaas api DeleteVirtualGateway [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

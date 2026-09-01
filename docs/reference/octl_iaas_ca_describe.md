@@ -1,12 +1,12 @@
 ## octl iaas ca describe
 
-alias for api ReadCas --Filters.CaIds ca_id
+Gets information about one or more of your Client Certificate Authorities (CAs).
 
 ### Synopsis
 
-> alias for api ReadCas --Filters.CaIds ca_id
+Gets information about one or more of your Client Certificate Authorities (CAs).
 
-
+> alias for ReadCas --Filters.CaIds ca_id
 
 ```
 octl iaas ca describe ca_id [ca_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas ca describe ca_id [ca_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas ca](octl_iaas_ca.md)	 - ca commands
+* [octl iaas ca](octl_iaas_ca.md)	 - Manage Ca resources
 

@@ -14,9 +14,9 @@ octl iaas api RemoveUserFromUserGroup [flags]
 
 ```
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
-      --UserGroupName string   The name of the group you want to remove the user from.
+      --UserGroupName string   [REQUIRED] The name of the group you want to remove the user from.
       --UserGroupPath string   The path to the group.
-      --UserName string        The name of the user you want to remove from the group.
+      --UserName string        [REQUIRED] The name of the user you want to remove from the group.
       --UserPath string        The path to the user (by default, /).
   -h, --help                   help for RemoveUserFromUserGroup
 ```
@@ -49,5 +49,5 @@ octl iaas api RemoveUserFromUserGroup [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

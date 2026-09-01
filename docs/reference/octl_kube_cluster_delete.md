@@ -1,12 +1,12 @@
 ## octl kube cluster delete
 
-alias for api DeleteCluster  id_or_name
+Deletes a specific cluster by its ID.
 
 ### Synopsis
 
-> alias for api DeleteCluster  id_or_name
-
 Deletes a specific cluster by its ID. Returns confirmation of the deletion.
+
+> alias for DeleteCluster  id_or_name
 
 ```
 octl kube cluster delete id_or_name [id_or_name]... [flags]
@@ -47,5 +47,5 @@ octl kube cluster delete id_or_name [id_or_name]... [flags]
 
 ### SEE ALSO
 
-* [octl kube cluster](octl_kube_cluster.md)	 - cluster commands
+* [octl kube cluster](octl_kube_cluster.md)	 - Manage Cluster resources
 

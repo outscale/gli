@@ -1,0 +1,12 @@
+api:
+  List:
+    content: Items
+    entity: netpeering_acceptance
+  Get:
+    content: .
+    entity: netpeering_acceptance
+  Create:
+    content: .
+    entity: netpeering_acceptance
+  Update:
+    entity: netpeering_acceptance

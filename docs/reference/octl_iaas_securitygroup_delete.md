@@ -1,16 +1,16 @@
 ## octl iaas securitygroup delete
 
-alias for api DeleteSecurityGroup --SecurityGroupId security_group_id
+Deletes a specified security group.
 
 ### Synopsis
-
-> alias for api DeleteSecurityGroup --SecurityGroupId security_group_id
 
 Deletes a specified security group.
 
 You can specify either the name of the security group or its ID.
 
 This action fails if the specified group is associated with a virtual machine (VM) or referenced by another security group.
+
+> alias for DeleteSecurityGroup --SecurityGroupId security_group_id
 
 ```
 octl iaas securitygroup delete security_group_id [security_group_id]... [flags]
@@ -51,5 +51,5 @@ octl iaas securitygroup delete security_group_id [security_group_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas securitygroup](octl_iaas_securitygroup.md)	 - securitygroup commands
+* [octl iaas securitygroup](octl_iaas_securitygroup.md)	 - Manage SecurityGroup resources
 

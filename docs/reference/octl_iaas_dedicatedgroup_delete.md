@@ -1,10 +1,8 @@
 ## octl iaas dedicatedgroup delete
 
-alias for api DeleteDedicatedGroup --DedicatedGroupId dedicated_group_id
+Deletes a specified dedicated group of virtual machines (VMs).
 
 ### Synopsis
-
-> alias for api DeleteDedicatedGroup --DedicatedGroupId dedicated_group_id
 
 Deletes a specified dedicated group of virtual machines (VMs).
 
@@ -18,6 +16,8 @@ If you force the deletion:
 - all VMs are terminated.
 
 - all Nets are deleted, and all resources associated with Nets are detached.
+
+> alias for DeleteDedicatedGroup --DedicatedGroupId dedicated_group_id
 
 ```
 octl iaas dedicatedgroup delete dedicated_group_id [dedicated_group_id]... [flags]
@@ -58,5 +58,5 @@ octl iaas dedicatedgroup delete dedicated_group_id [dedicated_group_id]... [flag
 
 ### SEE ALSO
 
-* [octl iaas dedicatedgroup](octl_iaas_dedicatedgroup.md)	 - dedicatedgroup commands
+* [octl iaas dedicatedgroup](octl_iaas_dedicatedgroup.md)	 - Manage DedicatedGroup resources
 

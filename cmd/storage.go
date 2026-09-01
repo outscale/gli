@@ -15,7 +15,7 @@ import (
 	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/gabriel-vasile/mimetype"
-	"github.com/outscale/octl/pkg/builder"
+	commandbuilder "github.com/outscale/octl/pkg/builder/command"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/debug"
 	"github.com/outscale/octl/pkg/flags"
@@ -44,11 +44,8 @@ var presignCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(storageCmd)
-	b := builder.NewBuilder[oos.Client]("storage", "")
-	b.BuildAPI(storageCmd, func(m reflect.Method) bool {
-		return true
-	}, callOOS)
-	b.Build(storageCmd, nil)
+	b := commandbuilder.NewBuilder("storage", "")
+	b.Build(storageCmd, callOOS)
 
 	objectCmd, _ := lo.Find(storageCmd.Commands(), func(c *cobra.Command) bool { return c.Name() == "object" })
 	objectCmd.AddCommand(presignCmd)

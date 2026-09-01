@@ -1,16 +1,16 @@
 ## octl iaas image update
 
-alias for api UpdateImage --ImageId image_id
+Modifies the access permissions for an OUTSCALE machine image (OMI).
 
 ### Synopsis
-
-> alias for api UpdateImage --ImageId image_id
 
 Modifies the access permissions for an OUTSCALE machine image (OMI).
 
 You must specify either the `Additions` or the `Removals` parameter.
 
 After sharing an OMI with an OUTSCALE account, the other account can create a copy of it that they own. For more information about copying OMIs, see [CreateImage](#createimage).
+
+> alias for UpdateImage --ImageId image_id
 
 ```
 octl iaas image update image_id [image_id]... [flags]
@@ -56,5 +56,5 @@ octl iaas image update image_id [image_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas image](octl_iaas_image.md)	 - image commands
+* [octl iaas image](octl_iaas_image.md)	 - Manage Image resources
 

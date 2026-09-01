@@ -1,10 +1,8 @@
 ## octl iaas snapshot create
 
-alias for api CreateSnapshot
+Creates a snapshot.
 
 ### Synopsis
-
-> alias for api CreateSnapshot
 
 Creates a snapshot. Snapshots are point-in-time images of a volume that you can use to back up your data or to create replicas of this volume.
 
@@ -20,6 +18,8 @@ You can use this method in three different ways:
 In case of excessive use of the snapshot creation feature on the same volume over a short period of time, 3DS OUTSCALE reserves the right to temporarily block the feature.
 
 For more information, see [About Snapshots](https://docs.outscale.com/en/userguide/About-Snapshots.html).
+
+> alias for CreateSnapshot
 
 ```
 octl iaas snapshot create [flags]
@@ -66,5 +66,5 @@ octl iaas snapshot create [flags]
 
 ### SEE ALSO
 
-* [octl iaas snapshot](octl_iaas_snapshot.md)	 - snapshot commands
+* [octl iaas snapshot](octl_iaas_snapshot.md)	 - Manage Snapshot resources
 

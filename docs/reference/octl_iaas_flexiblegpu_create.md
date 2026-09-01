@@ -1,10 +1,8 @@
 ## octl iaas flexiblegpu create
 
-alias for api CreateFlexibleGpu
+Allocates a flexible GPU (fGPU) to your OUTSCALE account.
 
 ### Synopsis
-
-> alias for api CreateFlexibleGpu
 
 Allocates a flexible GPU (fGPU) to your OUTSCALE account.
 
@@ -12,6 +10,8 @@ You can then attach this fGPU to a virtual machine (VM).
 
 
 For more information, see [About Flexible GPUs](https://docs.outscale.com/en/userguide/About-Flexible-GPUs.html).
+
+> alias for CreateFlexibleGpu
 
 ```
 octl iaas flexiblegpu create [flags]
@@ -55,5 +55,5 @@ octl iaas flexiblegpu create [flags]
 
 ### SEE ALSO
 
-* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - flexiblegpu commands
+* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - Manage FlexibleGpu resources
 

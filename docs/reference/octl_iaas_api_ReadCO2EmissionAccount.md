@@ -13,9 +13,9 @@ octl iaas api ReadCO2EmissionAccount [flags]
 ### Options
 
 ```
-      --FromMonth osctime   The beginning of the time period, in ISO 8601 date format (for example, 2020-06-01).
+      --FromMonth osctime   [REQUIRED] The beginning of the time period, in ISO 8601 date format (for example, 2020-06-01).
       --Overall             If false, returns only the CO2 emission of the specific account that sends the request.
-      --ToMonth osctime     The end of the time period, in ISO 8601 date format (for example, 2020-06-14).
+      --ToMonth osctime     [REQUIRED] The end of the time period, in ISO 8601 date format (for example, 2020-06-14).
   -h, --help                help for ReadCO2EmissionAccount
 ```
 
@@ -47,5 +47,5 @@ octl iaas api ReadCO2EmissionAccount [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

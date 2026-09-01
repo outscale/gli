@@ -9,17 +9,13 @@ octl storage api ListParts [flags]
 ### Options
 
 ```
-      --Bucket string                 [REQUIRED] The name of the bucket to which the parts are being uploaded.
-      --ExpectedBucketOwner string    The account ID of the expected bucket owner.
-      --Key string                    [REQUIRED] Object key for which the multipart upload was initiated.
-      --MaxParts int32                Sets the maximum number of parts to return.
-      --PartNumberMarker string       Specifies the part after which listing should begin.
-      --RequestPayer string           Confirms that the requester knows that they will be charged for the request.
-      --SSECustomerAlgorithm string   The server-side encryption (SSE) algorithm used to encrypt the object.
-      --SSECustomerKey string         The server-side encryption (SSE) customer managed key.
-      --SSECustomerKeyMD5 string      The MD5 server-side encryption (SSE) customer managed key.
-      --UploadId string               [REQUIRED] Upload ID identifying the multipart upload whose parts are being listed.
-  -h, --help                          help for ListParts
+      --Bucket string                [REQUIRED] The name of the bucket to which the parts are being uploaded.
+      --ExpectedBucketOwner string   The account ID of the expected bucket owner.
+      --Key string                   [REQUIRED] Object key for which the multipart upload was initiated.
+      --MaxParts int32               Sets the maximum number of parts to return.
+      --PartNumberMarker string      Specifies the part after which listing should begin.
+      --UploadId string              [REQUIRED] Upload ID identifying the multipart upload whose parts are being listed.
+  -h, --help                         help for ListParts
 ```
 
 ### Options inherited from parent commands
@@ -51,5 +47,5 @@ octl storage api ListParts [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

@@ -1,15 +1,15 @@
 ## octl iaas accesskey delete
 
-alias for api DeleteAccessKey --AccessKeyId access_key_id
+Deletes the specified access key of either the root user or an EIM user.
 
 ### Synopsis
-
-> alias for api DeleteAccessKey --AccessKeyId access_key_id
 
 Deletes the specified access key of either the root user or an EIM user.
 
 
 The access key of an EIM user must be in the `INACTIVE` state to be deleted.
+
+> alias for DeleteAccessKey --AccessKeyId access_key_id
 
 ```
 octl iaas accesskey delete access_key_id [access_key_id]... [flags]
@@ -50,5 +50,5 @@ octl iaas accesskey delete access_key_id [access_key_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas accesskey](octl_iaas_accesskey.md)	 - accesskey commands
+* [octl iaas accesskey](octl_iaas_accesskey.md)	 - Manage AccessKey resources
 

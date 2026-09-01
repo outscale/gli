@@ -17,7 +17,7 @@ octl iaas api UpdateNic [flags]
       --DryRun                       If true, checks whether you have the required permissions to perform the action.
       --LinkNic.DeleteOnVmDeletion   If true, the NIC is deleted when the VM is terminated.
       --LinkNic.LinkNicId string     The ID of the NIC attachment.
-      --NicId string                 The ID of the NIC you want to modify.
+      --NicId string                 [REQUIRED] The ID of the NIC you want to modify.
       --SecurityGroupIds strings     One or more IDs of security groups for the NIC.
   -h, --help                         help for UpdateNic
 ```
@@ -50,5 +50,5 @@ octl iaas api UpdateNic [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

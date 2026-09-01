@@ -1,6 +1,6 @@
 ## octl iaas snapshot
 
-snapshot commands
+Manage Snapshot resources
 
 ### Options
 
@@ -37,9 +37,9 @@ snapshot commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas snapshot create](octl_iaas_snapshot_create.md)	 - alias for api CreateSnapshot
-* [octl iaas snapshot delete](octl_iaas_snapshot_delete.md)	 - alias for api DeleteSnapshot --SnapshotId snapshot_id
-* [octl iaas snapshot describe](octl_iaas_snapshot_describe.md)	 - alias for api ReadSnapshots --Filters.SnapshotIds snapshot_id
-* [octl iaas snapshot list](octl_iaas_snapshot_list.md)	 - alias for api ReadSnapshots
-* [octl iaas snapshot update](octl_iaas_snapshot_update.md)	 - alias for api UpdateSnapshot --SnapshotId snapshot_id
+* [octl iaas snapshot create](octl_iaas_snapshot_create.md)	 - Creates a snapshot.
+* [octl iaas snapshot delete](octl_iaas_snapshot_delete.md)	 - Deletes a specified snapshot.
+* [octl iaas snapshot describe](octl_iaas_snapshot_describe.md)	 - Lists one or more snapshots that are available to you and the permissions to create volumes from them.
+* [octl iaas snapshot list](octl_iaas_snapshot_list.md)	 - Lists one or more snapshots that are available to you and the permissions to create volumes from them.
+* [octl iaas snapshot update](octl_iaas_snapshot_update.md)	 - Modifies the permissions for a specified snapshot.
 

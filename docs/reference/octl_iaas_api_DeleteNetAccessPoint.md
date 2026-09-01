@@ -16,7 +16,7 @@ octl iaas api DeleteNetAccessPoint [flags]
 
 ```
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
-      --NetAccessPointId string   The ID of the Net access point.
+      --NetAccessPointId string   [REQUIRED] The ID of the Net access point.
   -h, --help                      help for DeleteNetAccessPoint
 ```
 
@@ -48,5 +48,5 @@ octl iaas api DeleteNetAccessPoint [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

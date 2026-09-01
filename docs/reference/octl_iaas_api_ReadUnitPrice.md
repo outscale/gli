@@ -13,9 +13,9 @@ octl iaas api ReadUnitPrice [flags]
 ### Options
 
 ```
-      --Operation string   The operation associated with the catalog entry (for example, RunInstances-OD or CreateVolume).
-      --Service string     The service associated with the catalog entry (for example, TinaOS-FCU or TinaOS-OOS).
-      --Type string        The type associated with the catalog entry (for example, BSU:VolumeIOPS:io1 or BoxUsage:tinav6.c6r16p3).
+      --Operation string   [REQUIRED] The operation associated with the catalog entry (for example, RunInstances-OD or CreateVolume).
+      --Service string     [REQUIRED] The service associated with the catalog entry (for example, TinaOS-FCU or TinaOS-OOS).
+      --Type string        [REQUIRED] The type associated with the catalog entry (for example, BSU:VolumeIOPS:io1 or BoxUsage:tinav6.c6r16p3).
   -h, --help               help for ReadUnitPrice
 ```
 
@@ -47,5 +47,5 @@ octl iaas api ReadUnitPrice [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

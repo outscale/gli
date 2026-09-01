@@ -1,6 +1,6 @@
 ## octl kube nodepool
 
-nodepool commands
+Manage nodepool resources
 
 ### Options
 
@@ -37,9 +37,9 @@ nodepool commands
 ### SEE ALSO
 
 * [octl kube](octl_kube.md)	 - OUTSCALE Kubernetes as a Service (OKS) management
-* [octl kube nodepool api](octl_kube_nodepool_api.md)	 - nodepool api calls
-* [octl kube nodepool create](octl_kube_nodepool_create.md)	 - alias for api Create
-* [octl kube nodepool delete](octl_kube_nodepool_delete.md)	 - alias for api Delete name
-* [octl kube nodepool describe](octl_kube_nodepool_describe.md)	 - alias for api Get name
-* [octl kube nodepool list](octl_kube_nodepool_list.md)	 - alias for api List
+* [octl kube nodepool api](octl_kube_nodepool_api.md)	 - Call nodepool API
+* [octl kube nodepool create](octl_kube_nodepool_create.md)	 - Create a nodepool
+* [octl kube nodepool delete](octl_kube_nodepool_delete.md)	 - Delete a nodepool
+* [octl kube nodepool describe](octl_kube_nodepool_describe.md)	 - Describe a nodepool
+* [octl kube nodepool list](octl_kube_nodepool_list.md)	 - 
 

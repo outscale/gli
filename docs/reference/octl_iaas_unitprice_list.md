@@ -1,12 +1,12 @@
 ## octl iaas unitprice list
 
-alias for api ReadUnitPrice
+Gets unit price information for the specified parameters.
 
 ### Synopsis
 
-> alias for api ReadUnitPrice
-
 Gets unit price information for the specified parameters.
+
+> alias for ReadUnitPrice
 
 ```
 octl iaas unitprice list [flags]
@@ -49,5 +49,5 @@ octl iaas unitprice list [flags]
 
 ### SEE ALSO
 
-* [octl iaas unitprice](octl_iaas_unitprice.md)	 - unitprice commands
+* [octl iaas unitprice](octl_iaas_unitprice.md)	 - Manage UnitPrice resources
 

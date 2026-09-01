@@ -1,10 +1,8 @@
 ## octl iaas directlinkinterface create
 
-alias for api CreateDirectLinkInterface
+Creates a DirectLink interface.
 
 ### Synopsis
-
-> alias for api CreateDirectLinkInterface
 
 Creates a DirectLink interface.
 
@@ -12,6 +10,8 @@ DirectLink interfaces enable you to reach one of your Nets through a virtual gat
 
 
 For more information, see [About DirectLink](https://docs.outscale.com/en/userguide/About-DirectLink.html).
+
+> alias for CreateDirectLinkInterface
 
 ```
 octl iaas directlinkinterface create [flags]
@@ -59,5 +59,5 @@ octl iaas directlinkinterface create [flags]
 
 ### SEE ALSO
 
-* [octl iaas directlinkinterface](octl_iaas_directlinkinterface.md)	 - directlinkinterface commands
+* [octl iaas directlinkinterface](octl_iaas_directlinkinterface.md)	 - Manage DirectLinkInterface resources
 

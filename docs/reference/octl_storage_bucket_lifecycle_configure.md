@@ -1,12 +1,12 @@
 ## octl storage bucket lifecycle configure
 
-Update Lifecycle configuration, alias for api PutBucketLifecycleConfiguration --Bucket bucket
+Update lifecycle configuration.
 
 ### Synopsis
 
-> Update Lifecycle configuration, alias for api PutBucketLifecycleConfiguration --Bucket bucket
+Update lifecycle configuration.
 
-
+> alias for PutBucketLifecycleConfiguration --Bucket bucket
 
 ```
 octl storage bucket lifecycle configure bucket [flags]

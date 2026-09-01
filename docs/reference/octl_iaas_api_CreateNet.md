@@ -19,7 +19,7 @@ octl iaas api CreateNet [flags]
 
 ```
       --DryRun           If true, checks whether you have the required permissions to perform the action.
-      --IpRange string   The IP range for the Net, in CIDR notation (for example, 10.0.0.0/16).
+      --IpRange string   [REQUIRED] The IP range for the Net, in CIDR notation (for example, 10.0.0.0/16).
       --Tenancy string   The tenancy options for the VMs: - default if a VM created in a Net can be launched with any tenancy.
   -h, --help             help for CreateNet
 ```
@@ -52,5 +52,5 @@ octl iaas api CreateNet [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

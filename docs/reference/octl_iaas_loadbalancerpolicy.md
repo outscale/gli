@@ -1,6 +1,6 @@
 ## octl iaas loadbalancerpolicy
 
-loadbalancerpolicy commands
+Manage LoadBalancerPolicy resources
 
 ### Options
 
@@ -37,5 +37,5 @@ loadbalancerpolicy commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas loadbalancerpolicy create](octl_iaas_loadbalancerpolicy_create.md)	 - alias for api CreateLoadBalancerPolicy
+* [octl iaas loadbalancerpolicy create](octl_iaas_loadbalancerpolicy_create.md)	 - Creates a stickiness policy with sticky session lifetimes defined by the browser lifetime.
 

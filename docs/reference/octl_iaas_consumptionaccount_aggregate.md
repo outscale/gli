@@ -36,7 +36,7 @@ aggregate commands
 
 ### SEE ALSO
 
-* [octl iaas consumptionaccount](octl_iaas_consumptionaccount.md)	 - consumptionaccount commands
+* [octl iaas consumptionaccount](octl_iaas_consumptionaccount.md)	 - Manage ConsumptionAccount resources
 * [octl iaas consumptionaccount aggregate all](octl_iaas_consumptionaccount_aggregate_all.md)	 - Aggregate all costs using ReadConsumptionAccount
 * [octl iaas consumptionaccount aggregate compute](octl_iaas_consumptionaccount_aggregate_compute.md)	 - Aggregate all compute costs using ReadConsumptionAccount
 * [octl iaas consumptionaccount aggregate gpu](octl_iaas_consumptionaccount_aggregate_gpu.md)	 - Aggregate all GPU costs using ReadConsumptionAccount

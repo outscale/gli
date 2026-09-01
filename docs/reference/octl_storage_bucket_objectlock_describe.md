@@ -1,12 +1,12 @@
 ## octl storage bucket objectlock describe
 
-Display ObjectLock configuration, alias for api GetObjectLockConfiguration --Bucket bucket
+Delete ObjectLock configuration.
 
 ### Synopsis
 
-> Display ObjectLock configuration, alias for api GetObjectLockConfiguration --Bucket bucket
+Delete ObjectLock configuration.
 
-
+> alias for GetObjectLockConfiguration --Bucket bucket
 
 ```
 octl storage bucket objectlock describe bucket [flags]

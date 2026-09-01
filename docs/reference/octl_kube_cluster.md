@@ -1,6 +1,6 @@
 ## octl kube cluster
 
-cluster commands
+Manage Cluster resources
 
 ### Options
 
@@ -38,10 +38,10 @@ cluster commands
 ### SEE ALSO
 
 * [octl kube](octl_kube.md)	 - OUTSCALE Kubernetes as a Service (OKS) management
-* [octl kube cluster create](octl_kube_cluster_create.md)	 - alias for api CreateCluster
-* [octl kube cluster delete](octl_kube_cluster_delete.md)	 - alias for api DeleteCluster  id_or_name
-* [octl kube cluster describe](octl_kube_cluster_describe.md)	 - alias for api GetCluster  id_or_name
-* [octl kube cluster kubeconfig](octl_kube_cluster_kubeconfig.md)	 - alias for api GetKubeconfig id_or_name
-* [octl kube cluster list](octl_kube_cluster_list.md)	 - alias for api ListAllClusters
-* [octl kube cluster update](octl_kube_cluster_update.md)	 - alias for api UpdateCluster  id_or_name
+* [octl kube cluster create](octl_kube_cluster_create.md)	 - Creates a new cluster with the provided configuration.
+* [octl kube cluster delete](octl_kube_cluster_delete.md)	 - Deletes a specific cluster by its ID.
+* [octl kube cluster describe](octl_kube_cluster_describe.md)	 - Retrieves detailed information about a specific cluster by its ID.
+* [octl kube cluster kubeconfig](octl_kube_cluster_kubeconfig.md)	 - 
+* [octl kube cluster list](octl_kube_cluster_list.md)	 - 
+* [octl kube cluster update](octl_kube_cluster_update.md)	 - Updates the configuration of an existing cluster by its ID.
 

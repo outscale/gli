@@ -31,12 +31,12 @@ octl iaas api CreateServerCertificate [flags]
 ### Options
 
 ```
-      --Body string         The PEM-encoded X509 certificate.
+      --Body string         [REQUIRED] The PEM-encoded X509 certificate.
       --Chain string        The PEM-encoded intermediate certification authorities.
       --DryRun              If true, checks whether you have the required permissions to perform the action.
-      --Name string         A unique name for the certificate.
+      --Name string         [REQUIRED] A unique name for the certificate.
       --Path string         The path to the server certificate, set to a slash (/) if not specified.
-      --PrivateKey string   The PEM-encoded private key matching the certificate.
+      --PrivateKey string   [REQUIRED] The PEM-encoded private key matching the certificate.
   -h, --help                help for CreateServerCertificate
 ```
 
@@ -68,5 +68,5 @@ octl iaas api CreateServerCertificate [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

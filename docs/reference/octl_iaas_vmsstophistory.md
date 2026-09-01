@@ -1,6 +1,6 @@
 ## octl iaas vmsstophistory
 
-vmsstophistory commands
+Manage VmsStopHistory resources
 
 ### Options
 
@@ -37,5 +37,5 @@ vmsstophistory commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas vmsstophistory list](octl_iaas_vmsstophistory_list.md)	 - alias for api ReadVmsStopHistory
+* [octl iaas vmsstophistory list](octl_iaas_vmsstophistory_list.md)	 - Lists the stop history of one or more VMs.
 

@@ -1,6 +1,6 @@
 ## octl iaas adminpassword
 
-adminpassword commands
+Manage AdminPassword resources
 
 ### Options
 
@@ -37,5 +37,5 @@ adminpassword commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas adminpassword list](octl_iaas_adminpassword_list.md)	 - alias for api ReadAdminPassword
+* [octl iaas adminpassword list](octl_iaas_adminpassword_list.md)	 - Gets the administrator password for a Windows running virtual machine (VM).
 

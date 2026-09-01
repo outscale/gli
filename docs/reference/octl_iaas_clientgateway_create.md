@@ -1,10 +1,8 @@
 ## octl iaas clientgateway create
 
-alias for api CreateClientGateway
+Provides information about your client gateway.
 
 ### Synopsis
-
-> alias for api CreateClientGateway
 
 Provides information about your client gateway.
 
@@ -14,6 +12,8 @@ To open a tunnel to the client gateway, you must provide the communication proto
 
 
 For more information, see [About Client Gateways](https://docs.outscale.com/en/userguide/About-Client-Gateways.html).
+
+> alias for CreateClientGateway
 
 ```
 octl iaas clientgateway create [flags]
@@ -56,5 +56,5 @@ octl iaas clientgateway create [flags]
 
 ### SEE ALSO
 
-* [octl iaas clientgateway](octl_iaas_clientgateway.md)	 - clientgateway commands
+* [octl iaas clientgateway](octl_iaas_clientgateway.md)	 - Manage ClientGateway resources
 

@@ -15,8 +15,7 @@ octl iaas api ReadUserGroupPolicies [flags]
 ```
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
       --FirstItem int          The item starting the list of policies requested.
-      --ResultsPerPage int     The maximum number of items that can be returned in a single response (by default, 100).
-      --UserGroupName string   The name of the group.
+      --UserGroupName string   [REQUIRED] The name of the group.
       --UserGroupPath string   The path to the group.
   -h, --help                   help for ReadUserGroupPolicies
 ```
@@ -49,5 +48,5 @@ octl iaas api ReadUserGroupPolicies [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

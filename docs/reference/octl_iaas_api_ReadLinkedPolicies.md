@@ -16,8 +16,7 @@ octl iaas api ReadLinkedPolicies [flags]
       --DryRun                      If true, checks whether you have the required permissions to perform the action.
       --Filters.PathPrefix string   The path prefix of the policies.
       --FirstItem int               The item starting the list of policies requested.
-      --ResultsPerPage int          The maximum number of items that can be returned in a single response (by default, 100).
-      --UserName string             The name of the user the policies are linked to.
+      --UserName string             [REQUIRED] The name of the user the policies are linked to.
   -h, --help                        help for ReadLinkedPolicies
 ```
 
@@ -49,5 +48,5 @@ octl iaas api ReadLinkedPolicies [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

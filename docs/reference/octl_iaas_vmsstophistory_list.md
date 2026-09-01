@@ -1,12 +1,12 @@
 ## octl iaas vmsstophistory list
 
-alias for api ReadVmsStopHistory
+Lists the stop history of one or more VMs.
 
 ### Synopsis
 
-> alias for api ReadVmsStopHistory
-
 Lists the stop history of one or more VMs.
+
+> alias for ReadVmsStopHistory
 
 ```
 octl iaas vmsstophistory list [flags]
@@ -15,11 +15,11 @@ octl iaas vmsstophistory list [flags]
 ### Options
 
 ```
-  -h, --help                       help for list
-      --state-reason strings       The reason explaining why the VM stopped.
-      --stop-date-after osctime    The date and time (UTC), or the date, after which you want to retrieve VM stops, in ISO 8601 format (for example, 2026-06-14T00:00:00.000Z or 2026-06-14).
-      --stop-date-before osctime   The date and time (UTC), or the date, before which you want to retrieve VM stops, in ISO 8601 format (for example, 2026-06-14T00:00:00.000Z or 2026-06-14).
-      --vm-id strings              The IDs of the stopped VM(s).
+  -h, --help                      help for list
+      --state-reason strings      The reason explaining why the VM stopped.
+      --stop-date-after string    The date and time (UTC), or the date, after which you want to retrieve VM stops, in ISO 8601 format (for example, 2026-06-14T00:00:00.000Z or 2026-06-14).
+      --stop-date-before string   The date and time (UTC), or the date, before which you want to retrieve VM stops, in ISO 8601 format (for example, 2026-06-14T00:00:00.000Z or 2026-06-14).
+      --vm-id strings             The IDs of the stopped VM(s).
 ```
 
 ### Options inherited from parent commands
@@ -50,5 +50,5 @@ octl iaas vmsstophistory list [flags]
 
 ### SEE ALSO
 
-* [octl iaas vmsstophistory](octl_iaas_vmsstophistory.md)	 - vmsstophistory commands
+* [octl iaas vmsstophistory](octl_iaas_vmsstophistory.md)	 - Manage VmsStopHistory resources
 

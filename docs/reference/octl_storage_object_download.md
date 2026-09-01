@@ -1,12 +1,12 @@
 ## octl storage object download
 
-Download an object to the standard output, alias for api GetObject --Key key
+Download an object.
 
 ### Synopsis
 
-> Download an object to the standard output, alias for api GetObject --Key key
+Download an object.
 
-
+> alias for GetObject --Key key
 
 ```
 octl storage object download key [flags]
@@ -51,5 +51,5 @@ octl storage object download key [flags]
 
 ### SEE ALSO
 
-* [octl storage object](octl_storage_object.md)	 - object commands
+* [octl storage object](octl_storage_object.md)	 - Manage Object resources
 

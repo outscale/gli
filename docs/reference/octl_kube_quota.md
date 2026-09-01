@@ -1,6 +1,6 @@
 ## octl kube quota
 
-quota commands
+Manage ProjectQuota resources
 
 ### Options
 
@@ -37,5 +37,5 @@ quota commands
 ### SEE ALSO
 
 * [octl kube](octl_kube.md)	 - OUTSCALE Kubernetes as a Service (OKS) management
-* [octl kube quota describe](octl_kube_quota_describe.md)	 - alias for api GetQuotas
+* [octl kube quota describe](octl_kube_quota_describe.md)	 - 
 

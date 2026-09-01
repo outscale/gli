@@ -1,10 +1,8 @@
 ## octl iaas natservice create
 
-alias for api CreateNatService
+Creates a network address translation (NAT) service in the specified public Subnet of a Net.
 
 ### Synopsis
-
-> alias for api CreateNatService
 
 Creates a network address translation (NAT) service in the specified public Subnet of a Net.
 
@@ -22,6 +20,8 @@ You cannot modify the public IP associated with a NAT service after its creation
 
 
 For more information, see [About NAT Services](https://docs.outscale.com/en/userguide/About-NAT-Services.html).
+
+> alias for CreateNatService
 
 ```
 octl iaas natservice create [flags]
@@ -64,5 +64,5 @@ octl iaas natservice create [flags]
 
 ### SEE ALSO
 
-* [octl iaas natservice](octl_iaas_natservice.md)	 - natservice commands
+* [octl iaas natservice](octl_iaas_natservice.md)	 - Manage NatService resources
 

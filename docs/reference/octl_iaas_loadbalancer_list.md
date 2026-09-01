@@ -1,12 +1,12 @@
 ## octl iaas loadbalancer list
 
-alias for api ReadLoadBalancers
+Lists one or more load balancers and their attributes.
 
 ### Synopsis
 
-> alias for api ReadLoadBalancers
-
 Lists one or more load balancers and their attributes.
+
+> alias for ReadLoadBalancers
 
 ```
 octl iaas loadbalancer list [flags]
@@ -48,5 +48,5 @@ octl iaas loadbalancer list [flags]
 
 ### SEE ALSO
 
-* [octl iaas loadbalancer](octl_iaas_loadbalancer.md)	 - loadbalancer commands
+* [octl iaas loadbalancer](octl_iaas_loadbalancer.md)	 - Manage LoadBalancer resources
 

@@ -22,8 +22,6 @@ octl iaas api ReadNets [flags]
       --Filters.TagKeys strings             The keys of the tags associated with the Nets.
       --Filters.TagValues strings           The values of the tags associated with the Nets.
       --Filters.Tags strings                The key/value combination of the tags associated with the Nets, in the following format: "Filters":{"Tags":["TAGKEY=TAGVALUE"]}.
-      --NextPageToken string                The token to request the next page of results.
-      --ResultsPerPage int                  The maximum number of logs returned in a single response (between 1 and 1000, both included).
   -h, --help                                help for ReadNets
 ```
 
@@ -55,5 +53,5 @@ octl iaas api ReadNets [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

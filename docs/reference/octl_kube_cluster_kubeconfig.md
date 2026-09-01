@@ -1,12 +1,12 @@
 ## octl kube cluster kubeconfig
 
-alias for api GetKubeconfig id_or_name
+
 
 ### Synopsis
 
-> alias for api GetKubeconfig id_or_name
 
 
+> alias for GetKubeconfig id_or_name
 
 ```
 octl kube cluster kubeconfig id_or_name [flags]
@@ -50,5 +50,5 @@ octl kube cluster kubeconfig id_or_name [flags]
 
 ### SEE ALSO
 
-* [octl kube cluster](octl_kube_cluster.md)	 - cluster commands
+* [octl kube cluster](octl_kube_cluster.md)	 - Manage Cluster resources
 

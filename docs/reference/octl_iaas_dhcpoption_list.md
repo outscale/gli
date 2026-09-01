@@ -1,12 +1,12 @@
 ## octl iaas dhcpoption list
 
-alias for api ReadDhcpOptions
+Gets information about the content of one or more DHCP options sets.
 
 ### Synopsis
 
-> alias for api ReadDhcpOptions
-
 Gets information about the content of one or more DHCP options sets.
+
+> alias for ReadDhcpOptions
 
 ```
 octl iaas dhcpoption list [flags]
@@ -55,5 +55,5 @@ octl iaas dhcpoption list [flags]
 
 ### SEE ALSO
 
-* [octl iaas dhcpoption](octl_iaas_dhcpoption.md)	 - dhcpoption commands
+* [octl iaas dhcpoption](octl_iaas_dhcpoption.md)	 - Manage DhcpOptionsSet resources
 

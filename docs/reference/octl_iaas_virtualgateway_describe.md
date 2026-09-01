@@ -1,12 +1,12 @@
 ## octl iaas virtualgateway describe
 
-alias for api ReadVirtualGateways --Filters.VirtualGatewayIds virtual_gateway_id
+Lists one or more virtual gateways.
 
 ### Synopsis
 
-> alias for api ReadVirtualGateways --Filters.VirtualGatewayIds virtual_gateway_id
+Lists one or more virtual gateways.
 
-
+> alias for ReadVirtualGateways --Filters.VirtualGatewayIds virtual_gateway_id
 
 ```
 octl iaas virtualgateway describe virtual_gateway_id [virtual_gateway_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas virtualgateway describe virtual_gateway_id [virtual_gateway_id]... [fl
 
 ### SEE ALSO
 
-* [octl iaas virtualgateway](octl_iaas_virtualgateway.md)	 - virtualgateway commands
+* [octl iaas virtualgateway](octl_iaas_virtualgateway.md)	 - Manage VirtualGateway resources
 

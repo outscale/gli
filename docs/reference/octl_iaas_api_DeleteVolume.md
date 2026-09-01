@@ -16,7 +16,7 @@ octl iaas api DeleteVolume [flags]
 
 ```
       --DryRun            If true, checks whether you have the required permissions to perform the action.
-      --VolumeId string   The ID of the volume you want to delete.
+      --VolumeId string   [REQUIRED] The ID of the volume you want to delete.
   -h, --help              help for DeleteVolume
 ```
 
@@ -48,5 +48,5 @@ octl iaas api DeleteVolume [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

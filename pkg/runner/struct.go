@@ -219,10 +219,11 @@ func setValueInt64(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
 }
 
 func setValueString(arg reflect.Value, fs *pflag.FlagSet, flag string) error {
-	ss, err := fs.GetString(flag)
-	if err != nil {
-		return fmt.Errorf("invalid %s value: %w", flag, err)
+	f := fs.Lookup(flag)
+	if f == nil {
+		return nil
 	}
+	ss := f.Value.String()
 	debug.Println("setValueString", flag, ss)
 	arg.Set(reflect.ValueOf(ss).Convert(arg.Type()))
 	return nil

@@ -14,7 +14,7 @@ octl iaas api DeleteServerCertificate [flags]
 
 ```
       --DryRun        If true, checks whether you have the required permissions to perform the action.
-      --Name string   The name of the server certificate you want to delete.
+      --Name string   [REQUIRED] The name of the server certificate you want to delete.
   -h, --help          help for DeleteServerCertificate
 ```
 
@@ -46,5 +46,5 @@ octl iaas api DeleteServerCertificate [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

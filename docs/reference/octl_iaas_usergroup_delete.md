@@ -1,10 +1,8 @@
 ## octl iaas usergroup delete
 
-alias for api DeleteUserGroup --UserGroupName user_group_name
+Deletes a specified user group.
 
 ### Synopsis
-
-> alias for api DeleteUserGroup --UserGroupName user_group_name
 
 Deletes a specified user group.
 
@@ -14,6 +12,8 @@ Deletes a specified user group.
 The user group must be empty of any user and must not have any linked policy. Otherwise, you need to force the deletion.
 
 If you force the deletion, all inline policies will be deleted with the user group.
+
+> alias for DeleteUserGroup --UserGroupName user_group_name
 
 ```
 octl iaas usergroup delete user_group_name [user_group_name]... [flags]
@@ -55,5 +55,5 @@ octl iaas usergroup delete user_group_name [user_group_name]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas usergroup](octl_iaas_usergroup.md)	 - usergroup commands
+* [octl iaas usergroup](octl_iaas_usergroup.md)	 - Manage UserGroup resources
 

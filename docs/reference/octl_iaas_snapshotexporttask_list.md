@@ -1,12 +1,12 @@
 ## octl iaas snapshotexporttask list
 
-alias for api ReadSnapshotExportTasks
+Lists one or more snapshot export tasks.
 
 ### Synopsis
 
-> alias for api ReadSnapshotExportTasks
-
 Lists one or more snapshot export tasks.
+
+> alias for ReadSnapshotExportTasks
 
 ```
 octl iaas snapshotexporttask list [flags]
@@ -48,5 +48,5 @@ octl iaas snapshotexporttask list [flags]
 
 ### SEE ALSO
 
-* [octl iaas snapshotexporttask](octl_iaas_snapshotexporttask.md)	 - snapshotexporttask commands
+* [octl iaas snapshotexporttask](octl_iaas_snapshotexporttask.md)	 - Manage SnapshotExportTask resources
 

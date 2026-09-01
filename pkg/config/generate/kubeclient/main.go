@@ -7,10 +7,13 @@ package main
 
 import (
 	"os"
+	"strings"
 
 	"github.com/goccy/go-yaml"
+	oksv1beta "github.com/outscale/goutils/oks/clientset/typed/oks.dev/v1beta"
+	oksv1beta2 "github.com/outscale/goutils/oks/clientset/typed/oks.dev/v1beta2"
+	configbuilder "github.com/outscale/octl/pkg/builder/config"
 	"github.com/outscale/octl/pkg/config"
-	"github.com/outscale/octl/pkg/config/generate/builder"
 	"github.com/outscale/octl/pkg/messages"
 )
 
@@ -27,31 +30,53 @@ func main() {
 	if err != nil {
 		messages.ExitErr(err)
 	}
-	if base.Calls == nil {
-		base.Calls = map[string]config.Call{}
+	if base.API == nil {
+		base.API = map[string]config.APICall{}
 	}
 	if base.Entities == nil {
 		base.Entities = map[string]config.Entity{}
 	}
-	if base.Spec.Calls == nil {
-		base.Spec.Calls = map[string]config.SpecCall{}
+
+	cfg := configbuilder.Config{
+		AllowedNumOut: []int{1, 2},
+		SkipMethods:   []string{"DeleteCollection", "Patch", "UpdateStatus", "Watch"},
+		SkipAlias:     []string{"List", "Get", "Create", "Delete"},
+		SkipFlagsPrefixes: map[string][]string{
+			"*": {
+				"TypeMeta",
+				"ObjectMeta.ManagedFields", "ObjectMeta.OwnerReferences", "ObjectMeta.CreationTimestamp", "ObjectMeta.Generation",
+				"Status", "Watch", "SendInitialEvents", "AllowWatchBookmarks", "Continue", "IgnoreStoreReadErrorWithClusterBreakingPotential",
+			},
+		},
+		IdFieldInUsage: "id",
 	}
-	if base.Spec.Attributes == nil {
-		base.Spec.Attributes = map[string]config.SpecAttribute{}
+
+	sb := configbuilder.NewSpecBuilder(cfg)
+	spec := sb.BuildSpec(&base, "github.com/outscale/goutils/oks/apis/oks.dev/"+version)
+
+	switch {
+	case strings.Contains(src, "nodepool"):
+		b := configbuilder.NewClientBuilder[oksv1beta2.NodePoolInterface](cfg)
+		b.BuildFor(&base, spec)
+	case strings.Contains(src, "netpeering_request"):
+		b := configbuilder.NewClientBuilder[oksv1beta.NetPeeringRequestInterface](cfg)
+		b.BuildFor(&base, spec)
+	case strings.Contains(src, "netpeering_acceptance"):
+		b := configbuilder.NewClientBuilder[oksv1beta.NetPeeringAcceptanceInterface](cfg)
+		b.BuildFor(&base, spec)
+	case strings.Contains(src, "netpeering"):
+		b := configbuilder.NewClientBuilder[oksv1beta.NetPeeringInterface](cfg)
+		b.BuildFor(&base, spec)
+	case strings.Contains(src, "ippool"):
+		b := configbuilder.NewClientBuilder[oksv1beta.IPPoolInterface](cfg)
+		b.BuildFor(&base, spec)
+	case strings.Contains(src, "oosaccess"):
+		b := configbuilder.NewClientBuilder[oksv1beta.OOSAccessInterface](cfg)
+		b.BuildFor(&base, spec)
+	case strings.Contains(src, "vpnconnection"):
+		b := configbuilder.NewClientBuilder[oksv1beta.VpnConnectionInterface](cfg)
+		b.BuildFor(&base, spec)
 	}
-
-	cfg := builder.Config{
-		RequiredFromFieldPointer: true,
-		IdFieldInUsage:           "id_or_name",
-	}
-
-	sb := builder.NewSpecBuilder(cfg)
-	sb.BuildSpec(&base, "github.com/outscale/goutils/oks/apis/oks.dev/"+version)
-
-	// Aliases are too specific, we do not generate them automatically
-	// b := builder.NewClientBuilder[oksv1beta2.NodePoolInterface](cfg)
-	// b.BuildFor(&base)
-
 	fd, err := os.Create(dst) //nolint:gosec
 	if err != nil {
 		messages.ExitErr(err)

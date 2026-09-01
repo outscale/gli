@@ -1,14 +1,14 @@
 ## octl iaas usergroup create
 
-alias for api CreateUserGroup
+Creates a group to which you can add users.
 
 ### Synopsis
-
-> alias for api CreateUserGroup
 
 Creates a group to which you can add users.
 
 You can also add an inline policy or link a managed policy to the group, which is applied to all its users.
+
+> alias for CreateUserGroup
 
 ```
 octl iaas usergroup create [flags]
@@ -50,5 +50,5 @@ octl iaas usergroup create [flags]
 
 ### SEE ALSO
 
-* [octl iaas usergroup](octl_iaas_usergroup.md)	 - usergroup commands
+* [octl iaas usergroup](octl_iaas_usergroup.md)	 - Manage UserGroup resources
 

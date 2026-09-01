@@ -1,6 +1,6 @@
 ## octl kube project
 
-project commands
+Manage Project resources
 
 ### Options
 
@@ -37,15 +37,15 @@ project commands
 ### SEE ALSO
 
 * [octl kube](octl_kube.md)	 - OUTSCALE Kubernetes as a Service (OKS) management
-* [octl kube project clusters](octl_kube_project_clusters.md)	 - alias for api ListClustersByProjectID
-* [octl kube project create](octl_kube_project_create.md)	 - alias for api CreateProject
-* [octl kube project delete](octl_kube_project_delete.md)	 - alias for api DeleteProject  id_or_name
-* [octl kube project describe](octl_kube_project_describe.md)	 - alias for api GetProject  id_or_name
-* [octl kube project list](octl_kube_project_list.md)	 - alias for api ListProjects
-* [octl kube project nets](octl_kube_project_nets.md)	 - alias for api GetProjectNets id_or_name
-* [octl kube project public-ips](octl_kube_project_public-ips.md)	 - alias for api GetProjectPublicIps id_or_name
-* [octl kube project quotas](octl_kube_project_quotas.md)	 - alias for api GetProjectQuotas id_or_name
-* [octl kube project snapshots](octl_kube_project_snapshots.md)	 - alias for api GetProjectSnapshots id_or_name
-* [octl kube project update](octl_kube_project_update.md)	 - alias for api UpdateProject  id_or_name
+* [octl kube project clusters](octl_kube_project_clusters.md)	 - 
+* [octl kube project create](octl_kube_project_create.md)	 - Creates a new project with the provided details.
+* [octl kube project delete](octl_kube_project_delete.md)	 - Deletes a specific project by its ID.
+* [octl kube project describe](octl_kube_project_describe.md)	 - Retrieves detailed information about a specific project by its ID.
+* [octl kube project list](octl_kube_project_list.md)	 - Retrieves a list of all projects with optional filters for name, status, CIDR, and deletion status.
+* [octl kube project nets](octl_kube_project_nets.md)	 - 
+* [octl kube project public-ips](octl_kube_project_public-ips.md)	 - 
+* [octl kube project quotas](octl_kube_project_quotas.md)	 - 
+* [octl kube project snapshots](octl_kube_project_snapshots.md)	 - 
+* [octl kube project update](octl_kube_project_update.md)	 - Updates the details of an existing project by its ID.
 * [octl kube project use](octl_kube_project_use.md)	 - Set a default project for cluster commands, reset it without args
 

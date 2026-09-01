@@ -37,16 +37,16 @@ OUTSCALE Kubernetes as a Service (OKS) management
 ### SEE ALSO
 
 * [octl](octl.md)	 - A modern CLI for Outscale services
-* [octl kube api](octl_kube_api.md)	 - kube api calls
-* [octl kube cluster](octl_kube_cluster.md)	 - cluster commands
-* [octl kube ippool](octl_kube_ippool.md)	 - ippool commands
-* [octl kube kubectl](octl_kube_kubectl.md)	 - 
-* [octl kube netpeering](octl_kube_netpeering.md)	 - netpeering commands
-* [octl kube nodepool](octl_kube_nodepool.md)	 - nodepool commands
-* [octl kube oosaccess](octl_kube_oosaccess.md)	 - oosaccess commands
-* [octl kube project](octl_kube_project.md)	 - project commands
-* [octl kube publicip](octl_kube_publicip.md)	 - publicip commands
-* [octl kube quota](octl_kube_quota.md)	 - quota commands
+* [octl kube api](octl_kube_api.md)	 - Call kube API
+* [octl kube cluster](octl_kube_cluster.md)	 - Manage Cluster resources
+* [octl kube ippool](octl_kube_ippool.md)	 - Manage IP pool resources
+* [octl kube kubectl](octl_kube_kubectl.md)	 - Launch kubectl commands on a cluster
+* [octl kube netpeering](octl_kube_netpeering.md)	 - Manage netpeering resources
+* [octl kube nodepool](octl_kube_nodepool.md)	 - Manage nodepool resources
+* [octl kube oosaccess](octl_kube_oosaccess.md)	 - Manage OOS Access resources
+* [octl kube project](octl_kube_project.md)	 - Manage Project resources
+* [octl kube publicip](octl_kube_publicip.md)	 - Manage ProjectPublicIpsIPS resources
+* [octl kube quota](octl_kube_quota.md)	 - Manage ProjectQuota resources
 * [octl kube secret](octl_kube_secret.md)	 - Create secret for CCM or CSI driver deployment
 * [octl kube vpnconnection](octl_kube_vpnconnection.md)	 - vpnconnection commands
 

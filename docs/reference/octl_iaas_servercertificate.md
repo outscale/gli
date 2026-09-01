@@ -1,6 +1,6 @@
 ## octl iaas servercertificate
 
-servercertificate commands
+Manage ServerCertificate resources
 
 ### Options
 
@@ -37,6 +37,6 @@ servercertificate commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas servercertificate create](octl_iaas_servercertificate_create.md)	 - alias for api CreateServerCertificate
-* [octl iaas servercertificate list](octl_iaas_servercertificate_list.md)	 - alias for api ReadServerCertificates
+* [octl iaas servercertificate create](octl_iaas_servercertificate_create.md)	 - Creates a server certificate and its matching private key.
+* [octl iaas servercertificate list](octl_iaas_servercertificate_list.md)	 - Lists your server certificates.
 

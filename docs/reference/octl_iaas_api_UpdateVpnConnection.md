@@ -16,7 +16,7 @@ octl iaas api UpdateVpnConnection [flags]
       --ClientGatewayId string                                        The ID of the client gateway.
       --DryRun                                                        If true, checks whether you have the required permissions to perform the action.
       --VirtualGatewayId string                                       The ID of the virtual gateway.
-      --VpnConnectionId string                                        The ID of the VPN connection you want to modify.
+      --VpnConnectionId string                                        [REQUIRED] The ID of the VPN connection you want to modify.
       --VpnOptions.Phase1Options.DpdTimeoutAction string              This parameter is not available.
       --VpnOptions.Phase1Options.DpdTimeoutSeconds int                This parameter is not available.
       --VpnOptions.Phase1Options.IkeVersions strings                  This parameter is not available.
@@ -63,5 +63,5 @@ octl iaas api UpdateVpnConnection [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

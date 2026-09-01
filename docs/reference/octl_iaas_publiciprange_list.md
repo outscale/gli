@@ -1,12 +1,12 @@
 ## octl iaas publiciprange list
 
-alias for api ReadPublicIpRanges
+Gets the public IPv4 addresses in CIDR notation for the Region specified in the endpoint of the request.
 
 ### Synopsis
 
-> alias for api ReadPublicIpRanges
-
 Gets the public IPv4 addresses in CIDR notation for the Region specified in the endpoint of the request. For more information, see [About Regions and Subregions](https://docs.outscale.com/en/userguide/About-Regions-and-Subregions.html).
+
+> alias for ReadPublicIpRanges
 
 ```
 octl iaas publiciprange list [flags]
@@ -46,5 +46,5 @@ octl iaas publiciprange list [flags]
 
 ### SEE ALSO
 
-* [octl iaas publiciprange](octl_iaas_publiciprange.md)	 - publiciprange commands
+* [octl iaas publiciprange](octl_iaas_publiciprange.md)	 - Manage PublicIpRange resources
 

@@ -1,6 +1,6 @@
 ## octl kube ippool api
 
-ippool api calls
+Call ippool API
 
 ### Options
 
@@ -37,7 +37,7 @@ ippool api calls
 
 ### SEE ALSO
 
-* [octl kube ippool](octl_kube_ippool.md)	 - ippool commands
+* [octl kube ippool](octl_kube_ippool.md)	 - Manage IP pool resources
 * [octl kube ippool api Create](octl_kube_ippool_api_Create.md)	 - 
 * [octl kube ippool api Delete](octl_kube_ippool_api_Delete.md)	 - 
 * [octl kube ippool api Get](octl_kube_ippool_api_Get.md)	 - 

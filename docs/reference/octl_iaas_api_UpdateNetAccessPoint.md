@@ -17,7 +17,7 @@ octl iaas api UpdateNetAccessPoint [flags]
 ```
       --AddRouteTableIds strings      One or more IDs of route tables to associate with the specified Net access point.
       --DryRun                        If true, checks whether you have the required permissions to perform the action.
-      --NetAccessPointId string       The ID of the Net access point.
+      --NetAccessPointId string       [REQUIRED] The ID of the Net access point.
       --RemoveRouteTableIds strings   One or more IDs of route tables to disassociate from the specified Net access point.
   -h, --help                          help for UpdateNetAccessPoint
 ```
@@ -50,5 +50,5 @@ octl iaas api UpdateNetAccessPoint [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

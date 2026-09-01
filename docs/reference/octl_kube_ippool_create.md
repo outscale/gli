@@ -1,12 +1,10 @@
 ## octl kube ippool create
 
-alias for request api Create
+Create an ippool
 
 ### Synopsis
 
-> alias for request api Create
-
-
+Create an ippool
 
 ```
 octl kube ippool create [flags]
@@ -17,8 +15,8 @@ octl kube ippool create [flags]
 ```
       --cluster string      [REQUIRED] Name or ID of cluster
   -h, --help                help for create
-      --name string         [REQUIRED] 
-      --num-addresses int   [REQUIRED] 
+      --name string         
+      --num-addresses int   
       --project string      Name or ID of project
 ```
 
@@ -50,5 +48,5 @@ octl kube ippool create [flags]
 
 ### SEE ALSO
 
-* [octl kube ippool](octl_kube_ippool.md)	 - ippool commands
+* [octl kube ippool](octl_kube_ippool.md)	 - Manage IP pool resources
 

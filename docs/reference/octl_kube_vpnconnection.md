@@ -37,5 +37,5 @@ vpnconnection commands
 ### SEE ALSO
 
 * [octl kube](octl_kube.md)	 - OUTSCALE Kubernetes as a Service (OKS) management
-* [octl kube vpnconnection api](octl_kube_vpnconnection_api.md)	 - vpnconnection api calls
+* [octl kube vpnconnection api](octl_kube_vpnconnection_api.md)	 - Call vpnconnection API
 

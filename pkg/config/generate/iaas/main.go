@@ -9,8 +9,9 @@ import (
 	"os"
 
 	"github.com/goccy/go-yaml"
+	configbuilder "github.com/outscale/octl/pkg/builder/config"
 	"github.com/outscale/octl/pkg/config"
-	"github.com/outscale/octl/pkg/config/generate/builder"
+	"github.com/outscale/octl/pkg/flags"
 	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/osc-sdk-go/v3/pkg/osc"
 )
@@ -27,23 +28,47 @@ func main() {
 	if err != nil {
 		messages.ExitErr(err)
 	}
-	if base.Calls == nil {
-		base.Calls = map[string]config.Call{}
+	if base.API == nil {
+		base.API = map[string]config.APICall{}
 	}
 	if base.Entities == nil {
 		base.Entities = map[string]config.Entity{}
 	}
-	if base.Spec.Calls == nil {
-		base.Spec.Calls = map[string]config.SpecCall{}
-	}
-	if base.Spec.Attributes == nil {
-		base.Spec.Attributes = map[string]config.SpecAttribute{}
-	}
 
-	cfg := builder.Config{
+	cfg := configbuilder.Config{
+		SkipSuffixes: []string{"Raw", "WithBody"},
+		SkipAlias: []string{
+			"ReadConsoleOutput",
+			"ReadFlexibleGpuCatalog",
+			"ReadVmsHealth",
+			"ReadVmsState",
+			"ReadNetAccessPointServices",
+			"DeletePolicy",
+			"CreatePolicyVersion",
+			"DeletePolicyVersion",
+			"ReadPolicyVersion",
+			"ReadPolicyVersions",
+			"ReadUserGroup",
+		},
+		AllowedNumOut: []int{1, 2},
+		TypeName: map[string]string{
+			"DhcpOption":        "DhcpOptionsSet",
+			"UserGroupsPerUser": "UserGroup",
+		},
 		InputStructSuffix: "Request",
 		ReadFlagPrefixes:  []string{"Filters."},
-		SkipFlagsPrefixes: []string{"DryRun", "NextPageToken", "ResultsPerPage"},
+		SkipFlagsPrefixes: map[string][]string{
+			"*": {
+				"dry-run",
+				"NextPageToken",
+				"ResultsPerPage",
+			},
+		},
+		StripFlagsPrefixes: map[string][]string{
+			"securitygrouprule": {
+				"security-",
+			},
+		},
 		PriorityFields: []string{
 			"State",
 			"PublicIp",
@@ -60,21 +85,21 @@ func main() {
 			"Email",
 		},
 		FlagOverrides: map[string]config.Flag{
-			"public-key": {
-				Type:  "base64File",
-				Usage: "The file storing the public key to import in your account, if you are importing an existing keypair.",
+			"PublicKey": {
+				CustomValue: flags.Base64File,
+				Help:        "The file storing the public key to import in your account, if you are importing an existing keypair.",
 			},
-			"user-data": {
-				Type:  "base64File",
-				Usage: "The file storing the data or script used to add a specific configuration to the VM (max size 500 KiB).",
+			"UserData": {
+				CustomValue: flags.Base64File,
+				Help:        "The file storing the data or script used to add a specific configuration to the VM (max size 500 KiB).",
 			},
-			"policy-document": {
-				Type:  "fileOrJSON",
-				Usage: "Either a file storing the policy document, or the policy document (in JSON format).",
+			"PolicyDocument": {
+				CustomValue: flags.FileOrJSON,
+				Help:        "Either a file storing the policy document, or the policy document (in JSON format).",
 			},
-			"document": {
-				Type:  "fileOrJSON",
-				Usage: "Either a file storing the policy document, or the policy document (in JSON format).",
+			"Document": {
+				CustomValue: flags.FileOrJSON,
+				Help:        "Either a file storing the policy document, or the policy document (in JSON format).",
 			},
 		},
 		FlagReplaces: []string{
@@ -85,11 +110,11 @@ func main() {
 		RequiredFromFieldPointer: true,
 	}
 
-	sb := builder.NewSpecBuilder(cfg)
-	sb.BuildSpec(&base, "github.com/outscale/osc-sdk-go/v3/pkg/osc")
+	sb := configbuilder.NewSpecBuilder(cfg)
+	spec := sb.BuildSpec(&base, "github.com/outscale/osc-sdk-go/v3/pkg/osc")
 
-	b := builder.NewClientBuilder[*osc.Client](cfg)
-	b.BuildFor(&base)
+	b := configbuilder.NewClientBuilder[*osc.Client](cfg)
+	b.BuildFor(&base, spec)
 
 	fd, err := os.Create(dst) //nolint:gosec
 	if err != nil {

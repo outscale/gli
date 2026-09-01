@@ -1,10 +1,8 @@
 ## octl iaas keypair create
 
-alias for api CreateKeypair
+Creates a keypair to use with your virtual machines (VMs).
 
 ### Synopsis
-
-> alias for api CreateKeypair
 
 Creates a keypair to use with your virtual machines (VMs).
 
@@ -16,6 +14,8 @@ When you save the returned private key, make sure you replace the `\n` escape se
 
 For more information, see [About Keypairs](https://docs.outscale.com/en/userguide/About-Keypairs.html).
 
+> alias for CreateKeypair
+
 ```
 octl iaas keypair create [flags]
 ```
@@ -23,9 +23,9 @@ octl iaas keypair create [flags]
 ### Options
 
 ```
-  -h, --help                    help for create
-      --name string             [REQUIRED] A unique name for the keypair, with a maximum length of 255 [ASCII printable characters](https://en.wikipedia.org/wiki/ASCII#Printable_characters).
-      --public-key base64File   The file storing the public key to import in your account, if you are importing an existing keypair.
+  -h, --help                help for create
+      --name string         [REQUIRED] A unique name for the keypair, with a maximum length of 255 [ASCII printable characters](https://en.wikipedia.org/wiki/ASCII#Printable_characters).
+      --public-key string   The file storing the public key to import in your account, if you are importing an existing keypair.
 ```
 
 ### Options inherited from parent commands
@@ -56,5 +56,5 @@ octl iaas keypair create [flags]
 
 ### SEE ALSO
 
-* [octl iaas keypair](octl_iaas_keypair.md)	 - keypair commands
+* [octl iaas keypair](octl_iaas_keypair.md)	 - Manage Keypair resources
 

@@ -22,7 +22,7 @@ octl iaas api DeleteProductType [flags]
 ```
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
       --Force                  If true, forces the deletion of the product type associated with one or more OMIs.
-      --ProductTypeId string   The ID of the product type you want to delete.
+      --ProductTypeId string   [REQUIRED] The ID of the product type you want to delete.
   -h, --help                   help for DeleteProductType
 ```
 
@@ -54,5 +54,5 @@ octl iaas api DeleteProductType [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

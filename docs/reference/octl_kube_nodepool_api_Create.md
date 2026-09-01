@@ -9,29 +9,17 @@ octl kube nodepool api Create [flags]
 ### Options
 
 ```
+      --DryRun strings                                                  
+      --FieldManager string                                             
+      --FieldValidation string                                          
       --ObjectMeta.Annotations stringToString                            (default [])
-      --ObjectMeta.CreationTimestamp string                             
       --ObjectMeta.DeletionGracePeriodSeconds int                       
-      --ObjectMeta.DeletionTimestamp string                             
+      --ObjectMeta.DeletionTimestamp fileOrJson                         
       --ObjectMeta.Finalizers strings                                   
       --ObjectMeta.GenerateName string                                  
-      --ObjectMeta.Generation int                                       
       --ObjectMeta.Labels stringToString                                 (default [])
-      --ObjectMeta.ManagedFields.0.APIVersion string                    
-      --ObjectMeta.ManagedFields.0.FieldsType string                    
-      --ObjectMeta.ManagedFields.0.FieldsV1 string                      
-      --ObjectMeta.ManagedFields.0.Manager string                       
-      --ObjectMeta.ManagedFields.0.Operation string                     
-      --ObjectMeta.ManagedFields.0.Subresource string                   
-      --ObjectMeta.ManagedFields.0.Time string                          
       --ObjectMeta.Name string                                          
       --ObjectMeta.Namespace string                                     
-      --ObjectMeta.OwnerReferences.0.APIVersion string                  
-      --ObjectMeta.OwnerReferences.0.BlockOwnerDeletion                 
-      --ObjectMeta.OwnerReferences.0.Controller                         
-      --ObjectMeta.OwnerReferences.0.Kind string                        
-      --ObjectMeta.OwnerReferences.0.Name string                        
-      --ObjectMeta.OwnerReferences.0.UID string                         
       --ObjectMeta.ResourceVersion string                               
       --ObjectMeta.SelfLink string                                      
       --ObjectMeta.UID string                                           
@@ -68,19 +56,6 @@ octl kube nodepool api Create [flags]
       --Spec.Volumes.0.Snapshot string                                  
       --Spec.Volumes.0.Type string                                      
       --Spec.Zones strings                                              
-      --Status.LastError.Message string                                 
-      --Status.LastError.Posted string                                  
-      --Status.Progress.Attached int                                    
-      --Status.Progress.Pending int                                     
-      --Status.Progress.Ready int                                       
-      --Status.Progress.Running int                                     
-      --Status.Progress.ShuttingDown int                                
-      --Status.Progress.Stopped int                                     
-      --Status.Progress.Stopping int                                    
-      --Status.State.Expires string                                     
-      --Status.State.Name string                                        
-      --TypeMeta.APIVersion string                                      
-      --TypeMeta.Kind string                                            
   -h, --help                                                            help for Create
 ```
 
@@ -113,5 +88,5 @@ octl kube nodepool api Create [flags]
 
 ### SEE ALSO
 
-* [octl kube nodepool api](octl_kube_nodepool_api.md)	 - nodepool api calls
+* [octl kube nodepool api](octl_kube_nodepool_api.md)	 - Call nodepool API
 

@@ -1,6 +1,6 @@
 ## octl iaas accesskey
 
-accesskey commands
+Manage AccessKey resources
 
 ### Options
 
@@ -37,9 +37,9 @@ accesskey commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas accesskey create](octl_iaas_accesskey_create.md)	 - alias for api CreateAccessKey
-* [octl iaas accesskey delete](octl_iaas_accesskey_delete.md)	 - alias for api DeleteAccessKey --AccessKeyId access_key_id
-* [octl iaas accesskey describe](octl_iaas_accesskey_describe.md)	 - alias for api ReadAccessKeys --Filters.AccessKeyIds access_key_id
-* [octl iaas accesskey list](octl_iaas_accesskey_list.md)	 - alias for api ReadAccessKeys
-* [octl iaas accesskey update](octl_iaas_accesskey_update.md)	 - alias for api UpdateAccessKey --AccessKeyId access_key_id
+* [octl iaas accesskey create](octl_iaas_accesskey_create.md)	 - Creates an access key for either the root user or an EIM user.
+* [octl iaas accesskey delete](octl_iaas_accesskey_delete.md)	 - Deletes the specified access key of either the root user or an EIM user.
+* [octl iaas accesskey describe](octl_iaas_accesskey_describe.md)	 - Lists the access key IDs of either your root user or an EIM user.
+* [octl iaas accesskey list](octl_iaas_accesskey_list.md)	 - Lists the access key IDs of either your root user or an EIM user.
+* [octl iaas accesskey update](octl_iaas_accesskey_update.md)	 - Modifies the attributes of the specified access key of either the root user or an EIM user.
 

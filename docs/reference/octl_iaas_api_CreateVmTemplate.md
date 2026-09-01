@@ -20,17 +20,17 @@ octl iaas api CreateVmTemplate [flags]
 ### Options
 
 ```
-      --CpuCores int            The number of vCores to use for each VM.
-      --CpuGeneration string    The processor generation to use for each VM (for example, v4).
+      --CpuCores int            [REQUIRED] The number of vCores to use for each VM.
+      --CpuGeneration string    [REQUIRED] The processor generation to use for each VM (for example, v4).
       --CpuPerformance string   The performance of the VMs.
       --Description string      A description for the VM template.
       --DryRun                  If true, checks whether you have the required permissions to perform the action.
-      --ImageId string          The ID of the OMI to use for each VM.
+      --ImageId string          [REQUIRED] The ID of the OMI to use for each VM.
       --KeypairName string      The name of the keypair to use for each VM.
-      --Ram int                 The amount of RAM to use for each VM.
+      --Ram int                 [REQUIRED] The amount of RAM to use for each VM.
       --Tags.0.Key string       The key of the tag, between 1 and 255 characters.
       --Tags.0.Value string     The value of the tag, between 0 and 255 characters.
-      --VmTemplateName string   The name of the VM template.
+      --VmTemplateName string   [REQUIRED] The name of the VM template.
   -h, --help                    help for CreateVmTemplate
 ```
 
@@ -62,5 +62,5 @@ octl iaas api CreateVmTemplate [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

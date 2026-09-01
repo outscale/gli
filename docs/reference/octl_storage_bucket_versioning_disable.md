@@ -1,12 +1,12 @@
 ## octl storage bucket versioning disable
 
-Disable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Suspended
+Disable versioning.
 
 ### Synopsis
 
-> Disable versioning, alias for api PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Suspended
+Disable versioning.
 
-
+> alias for PutBucketVersioning --Bucket bucket --VersioningConfiguration.Status Suspended
 
 ```
 octl storage bucket versioning disable bucket [flags]

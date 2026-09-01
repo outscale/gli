@@ -1,15 +1,15 @@
 ## octl iaas loadbalancerlistener create
 
-alias for api CreateLoadBalancerListeners
+Creates one or more listeners for a specified load balancer.
 
 ### Synopsis
-
-> alias for api CreateLoadBalancerListeners
 
 Creates one or more listeners for a specified load balancer.
 
 
 For more information, see [About Load Balancers](https://docs.outscale.com/en/userguide/About-Load-Balancers.html).
+
+> alias for CreateLoadBalancerListeners
 
 ```
 octl iaas loadbalancerlistener create [flags]
@@ -24,7 +24,7 @@ octl iaas loadbalancerlistener create [flags]
       --listener-load-balancer-port int          The port on which the load balancer is listening (between 1 and 65535, both included).
       --listener-load-balancer-protocol string   The routing protocol (HTTP | HTTPS | TCP | SSL).
       --listener-server-certificate-id string    The OUTSCALE Resource Name (ORN) of the server certificate.
-      --name string                              [REQUIRED] The name of the load balancer for which you want to create listeners.
+      --load-balancer-name string                [REQUIRED] The name of the load balancer for which you want to create listeners.
 ```
 
 ### Options inherited from parent commands
@@ -55,5 +55,5 @@ octl iaas loadbalancerlistener create [flags]
 
 ### SEE ALSO
 
-* [octl iaas loadbalancerlistener](octl_iaas_loadbalancerlistener.md)	 - loadbalancerlistener commands
+* [octl iaas loadbalancerlistener](octl_iaas_loadbalancerlistener.md)	 - Manage LoadBalancerListener resources
 

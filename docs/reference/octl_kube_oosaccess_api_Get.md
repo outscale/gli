@@ -9,7 +9,8 @@ octl kube oosaccess api Get id [flags]
 ### Options
 
 ```
-  -h, --help   help for Get
+      --ResourceVersion string   
+  -h, --help                     help for Get
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +42,5 @@ octl kube oosaccess api Get id [flags]
 
 ### SEE ALSO
 
-* [octl kube oosaccess api](octl_kube_oosaccess_api.md)	 - oosaccess api calls
+* [octl kube oosaccess api](octl_kube_oosaccess_api.md)	 - Call oosaccess API
 

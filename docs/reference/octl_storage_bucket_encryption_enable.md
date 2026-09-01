@@ -1,12 +1,12 @@
 ## octl storage bucket encryption enable
 
-Enable encryption, alias for api PutBucketEncryption --Bucket bucket --ServerSideEncryptionConfiguration.Rules.0.ApplyServerSideEncryptionByDefault.SSEAlgorithm AES256
+Enable encryption.
 
 ### Synopsis
 
-> Enable encryption, alias for api PutBucketEncryption --Bucket bucket --ServerSideEncryptionConfiguration.Rules.0.ApplyServerSideEncryptionByDefault.SSEAlgorithm AES256
+Enable encryption.
 
-
+> alias for PutBucketEncryption --Bucket bucket --ServerSideEncryptionConfiguration.Rules.0.ApplyServerSideEncryptionByDefault.SSEAlgorithm AES256
 
 ```
 octl storage bucket encryption enable bucket [flags]

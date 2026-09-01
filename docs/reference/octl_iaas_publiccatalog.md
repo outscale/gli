@@ -1,6 +1,6 @@
 ## octl iaas publiccatalog
 
-publiccatalog commands
+Manage PublicCatalog resources
 
 ### Options
 
@@ -37,5 +37,5 @@ publiccatalog commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas publiccatalog list](octl_iaas_publiccatalog_list.md)	 - alias for api ReadPublicCatalog
+* [octl iaas publiccatalog list](octl_iaas_publiccatalog_list.md)	 - Returns the price list of OUTSCALE products and services for the Region specified in the endpoint of the request.
 

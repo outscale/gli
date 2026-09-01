@@ -17,7 +17,7 @@ octl iaas api UpdateUser [flags]
       --NewPath string        A new path for the EIM user.
       --NewUserEmail string   A new email address for the EIM user.
       --NewUserName string    A new name for the EIM user.
-      --UserName string       The name of the EIM user you want to modify.
+      --UserName string       [REQUIRED] The name of the EIM user you want to modify.
   -h, --help                  help for UpdateUser
 ```
 
@@ -49,5 +49,5 @@ octl iaas api UpdateUser [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

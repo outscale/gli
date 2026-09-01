@@ -1,10 +1,8 @@
 ## octl iaas vmtemplate list
 
-alias for api ReadVmTemplates
+> [WARNING] > This feature is currently under development and may not function properly.
 
 ### Synopsis
-
-> alias for api ReadVmTemplates
 
 > [WARNING]
 
@@ -12,6 +10,8 @@ alias for api ReadVmTemplates
 
 
 Lists one or more virtual machine (VM) templates.
+
+> alias for ReadVmTemplates
 
 ```
 octl iaas vmtemplate list [flags]
@@ -63,5 +63,5 @@ octl iaas vmtemplate list [flags]
 
 ### SEE ALSO
 
-* [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - vmtemplate commands
+* [octl iaas vmtemplate](octl_iaas_vmtemplate.md)	 - Manage VmTemplate resources
 

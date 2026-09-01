@@ -15,7 +15,7 @@ octl iaas api LinkPrivateIps [flags]
 ```
       --AllowRelink                   If true, allows an IP that is already assigned to another NIC in the same Subnet to be assigned to the NIC you specified.
       --DryRun                        If true, checks whether you have the required permissions to perform the action.
-      --NicId string                  The ID of the NIC.
+      --NicId string                  [REQUIRED] The ID of the NIC.
       --PrivateIps strings            The secondary private IP or IPs you want to assign to the NIC within the IP range of the Subnet.
       --SecondaryPrivateIpCount int   The number of secondary private IPs to assign to the NIC.
   -h, --help                          help for LinkPrivateIps
@@ -49,5 +49,5 @@ octl iaas api LinkPrivateIps [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

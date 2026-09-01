@@ -21,8 +21,8 @@ octl iaas api LinkManagedPolicyToUserGroup [flags]
 
 ```
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
-      --PolicyOrn string       The OUTSCALE Resource Name (ORN) of the policy.
-      --UserGroupName string   The name of the group you want to link the policy to.
+      --PolicyOrn string       [REQUIRED] The OUTSCALE Resource Name (ORN) of the policy.
+      --UserGroupName string   [REQUIRED] The name of the group you want to link the policy to.
   -h, --help                   help for LinkManagedPolicyToUserGroup
 ```
 
@@ -54,5 +54,5 @@ octl iaas api LinkManagedPolicyToUserGroup [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

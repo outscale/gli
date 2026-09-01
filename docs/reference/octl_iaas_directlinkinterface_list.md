@@ -1,12 +1,12 @@
 ## octl iaas directlinkinterface list
 
-alias for api ReadDirectLinkInterfaces
+Lists one or more of your DirectLink interfaces.
 
 ### Synopsis
 
-> alias for api ReadDirectLinkInterfaces
-
 Lists one or more of your DirectLink interfaces.
+
+> alias for ReadDirectLinkInterfaces
 
 ```
 octl iaas directlinkinterface list [flags]
@@ -48,5 +48,5 @@ octl iaas directlinkinterface list [flags]
 
 ### SEE ALSO
 
-* [octl iaas directlinkinterface](octl_iaas_directlinkinterface.md)	 - directlinkinterface commands
+* [octl iaas directlinkinterface](octl_iaas_directlinkinterface.md)	 - Manage DirectLinkInterface resources
 

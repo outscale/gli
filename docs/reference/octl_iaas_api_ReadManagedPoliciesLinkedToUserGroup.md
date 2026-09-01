@@ -17,8 +17,7 @@ octl iaas api ReadManagedPoliciesLinkedToUserGroup [flags]
       --Filters.PathPrefix string      The path prefix of the groups.
       --Filters.UserGroupIds strings   The IDs of the user groups.
       --FirstItem int                  The item starting the list of policies requested.
-      --ResultsPerPage int             The maximum number of items that can be returned in a single response (by default, 100).
-      --UserGroupName string           The name of the group.
+      --UserGroupName string           [REQUIRED] The name of the group.
   -h, --help                           help for ReadManagedPoliciesLinkedToUserGroup
 ```
 
@@ -50,5 +49,5 @@ octl iaas api ReadManagedPoliciesLinkedToUserGroup [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

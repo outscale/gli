@@ -25,8 +25,6 @@ octl iaas api ReadVpnConnections [flags]
       --Filters.Tags strings                       The key/value combination of the tags associated with the VPN connections, in the following format: "Filters":{"Tags":["TAGKEY=TAGVALUE"]}.
       --Filters.VirtualGatewayIds strings          The IDs of the virtual gateways.
       --Filters.VpnConnectionIds strings           The IDs of the VPN connections.
-      --NextPageToken string                       The token to request the next page of results.
-      --ResultsPerPage int                         The maximum number of logs returned in a single response (between 1 and 1000, both included).
   -h, --help                                       help for ReadVpnConnections
 ```
 
@@ -58,5 +56,5 @@ octl iaas api ReadVpnConnections [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

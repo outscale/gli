@@ -8,13 +8,12 @@ import (
 
 // oksCmd represents the kubecommand
 var netpeeringacceptanceCmd = &cobra.Command{
-	GroupID: "service",
-	Use:     "acceptance",
-	Short:   "netpeering acceptance commands",
+	Use:   "acceptance",
+	Short: "Manage Netpeering Acceptance resources",
 }
 
 func init() {
-	buildKubeAPI("kubeclient_netpeeringacceptances", netpeeringacceptanceCmd, netpeeringCmd, func(client *clientset.Clientset) oksv1beta.NetPeeringAcceptanceInterface {
+	buildKubeAPI("kubeclient_netpeering_acceptance", netpeeringacceptanceCmd, netpeeringCmd, func(client *clientset.Clientset) oksv1beta.NetPeeringAcceptanceInterface {
 		return client.OksV1beta().NetPeeringAcceptances()
 	})
 }

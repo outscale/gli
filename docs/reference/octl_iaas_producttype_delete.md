@@ -1,10 +1,8 @@
 ## octl iaas producttype delete
 
-alias for api DeleteProductType --ProductTypeId product_type_id
+Deletes a specified product type that belongs to you.
 
 ### Synopsis
-
-> alias for api DeleteProductType --ProductTypeId product_type_id
 
 Deletes a specified product type that belongs to you.
 
@@ -14,6 +12,8 @@ Deletes a specified product type that belongs to you.
 The product type must not be associated with one or more OMIs to be deleted. Otherwise, you need to force the deletion.
 
 If you force the deletion, the product type is deleted and remains associated with the OMIs.
+
+> alias for DeleteProductType --ProductTypeId product_type_id
 
 ```
 octl iaas producttype delete product_type_id [product_type_id]... [flags]
@@ -54,5 +54,5 @@ octl iaas producttype delete product_type_id [product_type_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas producttype](octl_iaas_producttype.md)	 - producttype commands
+* [octl iaas producttype](octl_iaas_producttype.md)	 - Manage ProductType resources
 

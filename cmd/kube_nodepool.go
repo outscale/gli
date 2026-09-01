@@ -8,9 +8,8 @@ import (
 
 // oksCmd represents the kubecommand
 var nodepoolCmd = &cobra.Command{
-	GroupID: "service",
 	Use:     "nodepool",
-	Short:   "nodepool commands",
+	Short:   "Manage nodepool resources",
 	Aliases: []string{"np"},
 }
 

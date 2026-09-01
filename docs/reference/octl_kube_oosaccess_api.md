@@ -1,6 +1,6 @@
 ## octl kube oosaccess api
 
-oosaccess api calls
+Call oosaccess API
 
 ### Options
 
@@ -37,7 +37,7 @@ oosaccess api calls
 
 ### SEE ALSO
 
-* [octl kube oosaccess](octl_kube_oosaccess.md)	 - oosaccess commands
+* [octl kube oosaccess](octl_kube_oosaccess.md)	 - Manage OOS Access resources
 * [octl kube oosaccess api Create](octl_kube_oosaccess_api_Create.md)	 - 
 * [octl kube oosaccess api Delete](octl_kube_oosaccess_api_Delete.md)	 - 
 * [octl kube oosaccess api Get](octl_kube_oosaccess_api_Get.md)	 - 

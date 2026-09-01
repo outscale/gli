@@ -9,29 +9,17 @@ octl kube vpnconnection api Update [flags]
 ### Options
 
 ```
+      --DryRun strings                                                      
+      --FieldManager string                                                 
+      --FieldValidation string                                              
       --ObjectMeta.Annotations stringToString                                (default [])
-      --ObjectMeta.CreationTimestamp string                                 
       --ObjectMeta.DeletionGracePeriodSeconds int                           
-      --ObjectMeta.DeletionTimestamp string                                 
+      --ObjectMeta.DeletionTimestamp fileOrJson                             
       --ObjectMeta.Finalizers strings                                       
       --ObjectMeta.GenerateName string                                      
-      --ObjectMeta.Generation int                                           
       --ObjectMeta.Labels stringToString                                     (default [])
-      --ObjectMeta.ManagedFields.0.APIVersion string                        
-      --ObjectMeta.ManagedFields.0.FieldsType string                        
-      --ObjectMeta.ManagedFields.0.FieldsV1 string                          
-      --ObjectMeta.ManagedFields.0.Manager string                           
-      --ObjectMeta.ManagedFields.0.Operation string                         
-      --ObjectMeta.ManagedFields.0.Subresource string                       
-      --ObjectMeta.ManagedFields.0.Time string                              
       --ObjectMeta.Name string                                              
       --ObjectMeta.Namespace string                                         
-      --ObjectMeta.OwnerReferences.0.APIVersion string                      
-      --ObjectMeta.OwnerReferences.0.BlockOwnerDeletion                     
-      --ObjectMeta.OwnerReferences.0.Controller                             
-      --ObjectMeta.OwnerReferences.0.Kind string                            
-      --ObjectMeta.OwnerReferences.0.Name string                            
-      --ObjectMeta.OwnerReferences.0.UID string                             
       --ObjectMeta.ResourceVersion string                                   
       --ObjectMeta.SelfLink string                                          
       --ObjectMeta.UID string                                               
@@ -46,13 +34,6 @@ octl kube vpnconnection api Update [flags]
       --Spec.VpnOptions.Phase2Options.PreSharedKey.SecretNamespace string   
       --Spec.VpnOptions.TunnelInsideIpRange string                          
       --Spec.VpnRoutes strings                                              
-      --Status.ClientGatewayId string                                       
-      --Status.ClientGatewayState string                                    
-      --Status.VirtualGatewayId string                                      
-      --Status.VirtualGatewayLinkState string                               
-      --Status.VirtualGatewayState string                                   
-      --TypeMeta.APIVersion string                                          
-      --TypeMeta.Kind string                                                
   -h, --help                                                                help for Update
 ```
 
@@ -85,5 +66,5 @@ octl kube vpnconnection api Update [flags]
 
 ### SEE ALSO
 
-* [octl kube vpnconnection api](octl_kube_vpnconnection_api.md)	 - vpnconnection api calls
+* [octl kube vpnconnection api](octl_kube_vpnconnection_api.md)	 - Call vpnconnection API
 

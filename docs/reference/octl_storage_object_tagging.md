@@ -37,8 +37,8 @@ tagging commands
 
 ### SEE ALSO
 
-* [octl storage object](octl_storage_object.md)	 - object commands
-* [octl storage object tagging configure](octl_storage_object_tagging_configure.md)	 - Add tags to an object, alias for api PutObjectTagging --Key key
-* [octl storage object tagging delete](octl_storage_object_tagging_delete.md)	 - Delete all tags from an object, alias for api DeleteObjectTagging --Key key
-* [octl storage object tagging describe](octl_storage_object_tagging_describe.md)	 - List object tags, alias for api GetObjectTagging --Key key
+* [octl storage object](octl_storage_object.md)	 - Manage Object resources
+* [octl storage object tagging configure](octl_storage_object_tagging_configure.md)	 - Add tags to an object.
+* [octl storage object tagging delete](octl_storage_object_tagging_delete.md)	 - Delete all tags from an object.
+* [octl storage object tagging describe](octl_storage_object_tagging_describe.md)	 - List object tags.
 

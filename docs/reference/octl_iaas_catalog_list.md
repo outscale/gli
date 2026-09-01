@@ -1,12 +1,12 @@
 ## octl iaas catalog list
 
-alias for api ReadCatalog
+Returns the price list of OUTSCALE services for the current Region.
 
 ### Synopsis
 
-> alias for api ReadCatalog
-
 Returns the price list of OUTSCALE services for the current Region.
+
+> alias for ReadCatalog
 
 ```
 octl iaas catalog list [flags]
@@ -46,5 +46,5 @@ octl iaas catalog list [flags]
 
 ### SEE ALSO
 
-* [octl iaas catalog](octl_iaas_catalog.md)	 - catalog commands
+* [octl iaas catalog](octl_iaas_catalog.md)	 - Manage Catalog resources
 

@@ -1,10 +1,8 @@
 ## octl iaas loadbalancer create
 
-alias for api CreateLoadBalancer
+Creates a load balancer.
 
 ### Synopsis
-
-> alias for api CreateLoadBalancer
 
 Creates a load balancer.
 
@@ -16,6 +14,8 @@ You must specify either the `Subnets` or the `SubregionNames` parameters.
 
 
 For more information, see [About Load Balancers](https://docs.outscale.com/en/userguide/About-Load-Balancers.html).
+
+> alias for CreateLoadBalancer
 
 ```
 octl iaas loadbalancer create [flags]
@@ -68,5 +68,5 @@ octl iaas loadbalancer create [flags]
 
 ### SEE ALSO
 
-* [octl iaas loadbalancer](octl_iaas_loadbalancer.md)	 - loadbalancer commands
+* [octl iaas loadbalancer](octl_iaas_loadbalancer.md)	 - Manage LoadBalancer resources
 

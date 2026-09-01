@@ -1,14 +1,14 @@
 ## octl iaas policy delete
 
-alias for api DeletePolicy --PolicyOrn policy_orn
+Deletes a managed policy.
 
 ### Synopsis
-
-> alias for api DeletePolicy --PolicyOrn policy_orn
 
 Deletes a managed policy.
 
 Before deleting a managed policy, you must unlink all users linked to it and delete all the versions of the policy, except the default one, using the `DeletePolicyVersion` method.
+
+> alias for DeletePolicy --PolicyOrn policy_orn
 
 ```
 octl iaas policy delete policy_orn [flags]
@@ -48,5 +48,5 @@ octl iaas policy delete policy_orn [flags]
 
 ### SEE ALSO
 
-* [octl iaas policy](octl_iaas_policy.md)	 - policy commands
+* [octl iaas policy](octl_iaas_policy.md)	 - Manage Policy resources
 

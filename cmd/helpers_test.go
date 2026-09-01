@@ -16,6 +16,7 @@ const tmout = 20 * time.Minute
 
 func run(t *testing.T, args []string, input []byte) []byte {
 	t.Helper()
+	t.Log("Running", args)
 	res, err := try(t.Context(), args, input)
 	require.NoError(t, err)
 	return res
@@ -23,6 +24,7 @@ func run(t *testing.T, args []string, input []byte) []byte {
 
 func runWithError(t *testing.T, args []string, input []byte) {
 	t.Helper()
+	t.Log("Running", args)
 	_, err := try(t.Context(), args, input)
 	require.Error(t, err)
 }
@@ -41,6 +43,7 @@ func try(ctx context.Context, args []string, input []byte) ([]byte, error) {
 
 func retry(t *testing.T, args []string, input []byte) {
 	t.Helper()
+	t.Log("Trying", args)
 	ctx, cancel := context.WithTimeout(t.Context(), tmout)
 	defer cancel()
 LOOPRETRY:
@@ -62,6 +65,7 @@ LOOPRETRY:
 
 func retryUntil(t *testing.T, args []string, input []byte, expectKey, expectValue string) {
 	t.Helper()
+	t.Log("Trying", args)
 	ctx, cancel := context.WithTimeout(t.Context(), tmout)
 	defer cancel()
 LOOPRETRY:

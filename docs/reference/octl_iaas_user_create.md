@@ -1,15 +1,15 @@
 ## octl iaas user create
 
-alias for api CreateUser
+Creates an EIM user for your OUTSCALE account.
 
 ### Synopsis
-
-> alias for api CreateUser
 
 Creates an EIM user for your OUTSCALE account.
 
 
 For more information, see [About EIM Users](https://docs.outscale.com/en/userguide/About-EIM-Users.html).
+
+> alias for CreateUser
 
 ```
 octl iaas user create [flags]
@@ -52,5 +52,5 @@ octl iaas user create [flags]
 
 ### SEE ALSO
 
-* [octl iaas user](octl_iaas_user.md)	 - user commands
+* [octl iaas user](octl_iaas_user.md)	 - Manage User resources
 

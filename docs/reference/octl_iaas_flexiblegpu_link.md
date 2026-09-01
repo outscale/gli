@@ -1,10 +1,8 @@
 ## octl iaas flexiblegpu link
 
-alias for api LinkFlexibleGpu --FlexibleGpuId fgpu_id
+Attaches one of your allocated flexible GPUs (fGPUs) to one of your virtual machines (VMs).
 
 ### Synopsis
-
-> alias for api LinkFlexibleGpu --FlexibleGpuId fgpu_id
 
 Attaches one of your allocated flexible GPUs (fGPUs) to one of your virtual machines (VMs).
 
@@ -15,6 +13,8 @@ To complete the linking of the fGPU, you need to do a stop/start of the VM. A si
 **[NOTE]**
 
 You can attach fGPUs only to VMs with the `highest` (1) performance flag. For more information see [About Flexible GPUs](https://docs.outscale.com/en/userguide/About-Flexible-GPUs.html) and [VM Types](https://docs.outscale.com/en/userguide/VM-Types.html).
+
+> alias for LinkFlexibleGpu --FlexibleGpuId fgpu_id
 
 ```
 octl iaas flexiblegpu link fgpu_id [flags]
@@ -55,5 +55,5 @@ octl iaas flexiblegpu link fgpu_id [flags]
 
 ### SEE ALSO
 
-* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - flexiblegpu commands
+* [octl iaas flexiblegpu](octl_iaas_flexiblegpu.md)	 - Manage FlexibleGpu resources
 

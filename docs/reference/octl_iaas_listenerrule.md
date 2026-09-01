@@ -1,6 +1,6 @@
 ## octl iaas listenerrule
 
-listenerrule commands
+Manage ListenerRule resources
 
 ### Options
 
@@ -37,9 +37,9 @@ listenerrule commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas listenerrule create](octl_iaas_listenerrule_create.md)	 - alias for api CreateListenerRule
-* [octl iaas listenerrule delete](octl_iaas_listenerrule_delete.md)	 - alias for api DeleteListenerRule --ListenerRuleName listener_rule_name
-* [octl iaas listenerrule describe](octl_iaas_listenerrule_describe.md)	 - alias for api ReadListenerRules --Filters.ListenerRuleNames listener_rule_name
-* [octl iaas listenerrule list](octl_iaas_listenerrule_list.md)	 - alias for api ReadListenerRules
-* [octl iaas listenerrule update](octl_iaas_listenerrule_update.md)	 - alias for api UpdateListenerRule --ListenerRuleName listener_rule_name
+* [octl iaas listenerrule create](octl_iaas_listenerrule_create.md)	 - Creates a rule for traffic redirection for the specified listener.
+* [octl iaas listenerrule delete](octl_iaas_listenerrule_delete.md)	 - Deletes a listener rule.
+* [octl iaas listenerrule describe](octl_iaas_listenerrule_describe.md)	 - Lists one or more listener rules.
+* [octl iaas listenerrule list](octl_iaas_listenerrule_list.md)	 - Lists one or more listener rules.
+* [octl iaas listenerrule update](octl_iaas_listenerrule_update.md)	 - Updates the pattern of the listener rule.
 

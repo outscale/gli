@@ -22,10 +22,10 @@ octl iaas api CreatePolicyVersion [flags]
 ### Options
 
 ```
-      --Document string    The policy document, corresponding to a JSON string that contains the policy.
-      --PolicyOrn string   The OUTSCALE Resource Name (ORN) of the policy.
-      --SetAsDefault       If set to true, the new policy version is set as the default version and becomes the operative one.
-  -h, --help               help for CreatePolicyVersion
+      --Document fileOrJson   Either a file storing the policy document, or the policy document (in JSON format).
+      --PolicyOrn string      [REQUIRED] The OUTSCALE Resource Name (ORN) of the policy.
+      --SetAsDefault          If set to true, the new policy version is set as the default version and becomes the operative one.
+  -h, --help                  help for CreatePolicyVersion
 ```
 
 ### Options inherited from parent commands
@@ -56,5 +56,5 @@ octl iaas api CreatePolicyVersion [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -16,7 +16,7 @@ octl iaas api DeleteAccessKey [flags]
 ### Options
 
 ```
-      --AccessKeyId string   The ID of the access key you want to delete.
+      --AccessKeyId string   [REQUIRED] The ID of the access key you want to delete.
       --DryRun               If true, checks whether you have the required permissions to perform the action.
       --UserName string      The name of the EIM user the access key you want to delete is associated with.
   -h, --help                 help for DeleteAccessKey
@@ -50,5 +50,5 @@ octl iaas api DeleteAccessKey [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

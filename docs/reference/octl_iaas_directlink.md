@@ -1,6 +1,6 @@
 ## octl iaas directlink
 
-directlink commands
+Manage DirectLink resources
 
 ### Options
 
@@ -37,8 +37,8 @@ directlink commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas directlink create](octl_iaas_directlink_create.md)	 - alias for api CreateDirectLink
-* [octl iaas directlink delete](octl_iaas_directlink_delete.md)	 - alias for api DeleteDirectLink --DirectLinkId direct_link_id
-* [octl iaas directlink describe](octl_iaas_directlink_describe.md)	 - alias for api ReadDirectLinks --Filters.DirectLinkIds direct_link_id
-* [octl iaas directlink list](octl_iaas_directlink_list.md)	 - alias for api ReadDirectLinks
+* [octl iaas directlink create](octl_iaas_directlink_create.md)	 - Creates a DirectLink between a customer network and a specified DirectLink location.
+* [octl iaas directlink delete](octl_iaas_directlink_delete.md)	 - Deletes a specified DirectLink.
+* [octl iaas directlink describe](octl_iaas_directlink_describe.md)	 - Lists all DirectLinks in the Region.
+* [octl iaas directlink list](octl_iaas_directlink_list.md)	 - Lists all DirectLinks in the Region.
 

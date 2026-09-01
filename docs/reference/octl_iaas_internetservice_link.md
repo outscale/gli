@@ -1,14 +1,14 @@
 ## octl iaas internetservice link
 
-alias for api LinkInternetService --InternetServiceId service_id
+Attaches an internet service to a Net.
 
 ### Synopsis
-
-> alias for api LinkInternetService --InternetServiceId service_id
 
 Attaches an internet service to a Net.
 
 To enable the connection between the Internet and a Net, you must attach an internet service to this Net.
+
+> alias for LinkInternetService --InternetServiceId service_id
 
 ```
 octl iaas internetservice link service_id [flags]
@@ -49,5 +49,5 @@ octl iaas internetservice link service_id [flags]
 
 ### SEE ALSO
 
-* [octl iaas internetservice](octl_iaas_internetservice.md)	 - internetservice commands
+* [octl iaas internetservice](octl_iaas_internetservice.md)	 - Manage InternetService resources
 

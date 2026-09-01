@@ -1,14 +1,14 @@
 ## octl iaas publicip list
 
-alias for api ReadPublicIps
+Lists one or more public IPs allocated to your OUTSCALE account.
 
 ### Synopsis
-
-> alias for api ReadPublicIps
 
 Lists one or more public IPs allocated to your OUTSCALE account.
 
 By default, this action returns information about all your public IPs: available or associated with a virtual machine (VM), a network interface card (NIC) or a NAT service.
+
+> alias for ReadPublicIps
 
 ```
 octl iaas publicip list [flags]
@@ -59,5 +59,5 @@ octl iaas publicip list [flags]
 
 ### SEE ALSO
 
-* [octl iaas publicip](octl_iaas_publicip.md)	 - publicip commands
+* [octl iaas publicip](octl_iaas_publicip.md)	 - Manage PublicIp resources
 

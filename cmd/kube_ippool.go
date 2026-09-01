@@ -8,9 +8,8 @@ import (
 
 // oksCmd represents the kubecommand
 var ippoolCmd = &cobra.Command{
-	GroupID: "service",
-	Use:     "ippool",
-	Short:   "ippool commands",
+	Use:   "ippool",
+	Short: "Manage IP pool resources",
 }
 
 func init() {

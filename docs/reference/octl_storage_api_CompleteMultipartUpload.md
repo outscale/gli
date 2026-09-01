@@ -10,10 +10,6 @@ octl storage api CompleteMultipartUpload [flags]
 
 ```
       --Bucket string                                   [REQUIRED] Name of the bucket to which the multipart upload was initiated.
-      --ChecksumCRC32 string                            This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ChecksumCRC32C string                           This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ChecksumSHA1 string                             This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-      --ChecksumSHA256 string                           This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
       --ExpectedBucketOwner string                      The account ID of the expected bucket owner.
       --IfMatch string                                  Uploads the object only if the ETag (entity tag) value provided during the WRITE operation matches the ETag of the object in S3.
       --IfNoneMatch string                              Uploads the object only if the object key name does not already exist in the bucket specified.
@@ -24,10 +20,6 @@ octl storage api CompleteMultipartUpload [flags]
       --MultipartUpload.Parts.0.ChecksumSHA256 string   The base64-encoded, 256-bit SHA-256 digest of the object.
       --MultipartUpload.Parts.0.ETag string             Entity tag returned when the part was uploaded.
       --MultipartUpload.Parts.0.PartNumber int32        Part number that identifies the part.
-      --RequestPayer string                             Confirms that the requester knows that they will be charged for the request.
-      --SSECustomerAlgorithm string                     The server-side encryption (SSE) algorithm used to encrypt the object.
-      --SSECustomerKey string                           The server-side encryption (SSE) customer managed key.
-      --SSECustomerKeyMD5 string                        The MD5 server-side encryption (SSE) customer managed key.
       --UploadId string                                 [REQUIRED] ID for the initiated multipart upload.
   -h, --help                                            help for CompleteMultipartUpload
 ```
@@ -61,5 +53,5 @@ octl storage api CompleteMultipartUpload [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

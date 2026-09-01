@@ -1,6 +1,6 @@
 ## octl storage multipartupload
 
-multipartupload commands
+Manage MultipartUpload resources
 
 ### Options
 
@@ -38,6 +38,6 @@ multipartupload commands
 ### SEE ALSO
 
 * [octl storage](octl_storage.md)	 - OUTSCALE Object Storage (OOS) management
-* [octl storage multipartupload create](octl_storage_multipartupload_create.md)	 - alias for api CreateMultipartUpload
-* [octl storage multipartupload list](octl_storage_multipartupload_list.md)	 - alias for api ListMultipartUploads
+* [octl storage multipartupload create](octl_storage_multipartupload_create.md)	 - 
+* [octl storage multipartupload list](octl_storage_multipartupload_list.md)	 - 
 

@@ -1,10 +1,8 @@
 ## octl iaas vmgroup list
 
-alias for api ReadVmGroups
+> [WARNING] > This feature is currently under development and may not function properly.
 
 ### Synopsis
-
-> alias for api ReadVmGroups
 
 > [WARNING]
 
@@ -12,6 +10,8 @@ alias for api ReadVmGroups
 
 
 Lists one or more group of virtual machines (VMs).
+
+> alias for ReadVmGroups
 
 ```
 octl iaas vmgroup list [flags]
@@ -61,5 +61,5 @@ octl iaas vmgroup list [flags]
 
 ### SEE ALSO
 
-* [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - vmgroup commands
+* [octl iaas vmgroup](octl_iaas_vmgroup.md)	 - Manage VmGroup resources
 

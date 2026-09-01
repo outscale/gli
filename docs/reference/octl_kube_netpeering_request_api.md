@@ -1,6 +1,6 @@
 ## octl kube netpeering request api
 
-request api calls
+Call request API
 
 ### Options
 
@@ -37,7 +37,7 @@ request api calls
 
 ### SEE ALSO
 
-* [octl kube netpeering request](octl_kube_netpeering_request.md)	 - netpeering request commands
+* [octl kube netpeering request](octl_kube_netpeering_request.md)	 - Manage Netpeering Request resources
 * [octl kube netpeering request api Create](octl_kube_netpeering_request_api_Create.md)	 - 
 * [octl kube netpeering request api Delete](octl_kube_netpeering_request_api_Delete.md)	 - 
 * [octl kube netpeering request api Get](octl_kube_netpeering_request_api_Get.md)	 - 

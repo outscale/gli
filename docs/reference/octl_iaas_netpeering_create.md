@@ -1,10 +1,8 @@
 ## octl iaas netpeering create
 
-alias for api CreateNetPeering
+Requests a Net peering between a Net you own and a peer Net that belongs to you or another OUTSCALE account.
 
 ### Synopsis
-
-> alias for api CreateNetPeering
 
 Requests a Net peering between a Net you own and a peer Net that belongs to you or another OUTSCALE account.
 
@@ -19,6 +17,8 @@ This action creates a Net peering that remains in the `pending-acceptance` state
 * A peering connection between two Nets works both ways. If an A-to-B connection is already created and accepted, creating a B-to-A connection is not necessary and would be automatically rejected.
 
 For more information, see [About Net Peerings](https://docs.outscale.com/en/userguide/About-Net-Peerings.html).
+
+> alias for CreateNetPeering
 
 ```
 octl iaas netpeering create [flags]
@@ -61,5 +61,5 @@ octl iaas netpeering create [flags]
 
 ### SEE ALSO
 
-* [octl iaas netpeering](octl_iaas_netpeering.md)	 - netpeering commands
+* [octl iaas netpeering](octl_iaas_netpeering.md)	 - Manage NetPeering resources
 

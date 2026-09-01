@@ -1,14 +1,14 @@
 ## octl iaas routetable delete
 
-alias for api DeleteRouteTable --RouteTableId route_table_id
+Deletes a specified route table.
 
 ### Synopsis
-
-> alias for api DeleteRouteTable --RouteTableId route_table_id
 
 Deletes a specified route table.
 
 Before deleting a route table, you must disassociate it from any Subnet. You cannot delete the main route table.
+
+> alias for DeleteRouteTable --RouteTableId route_table_id
 
 ```
 octl iaas routetable delete route_table_id [route_table_id]... [flags]
@@ -48,5 +48,5 @@ octl iaas routetable delete route_table_id [route_table_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas routetable](octl_iaas_routetable.md)	 - routetable commands
+* [octl iaas routetable](octl_iaas_routetable.md)	 - Manage RouteTable resources
 

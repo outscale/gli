@@ -33,13 +33,13 @@ octl iaas api UpdateRoute [flags]
 ### Options
 
 ```
-      --DestinationIpRange string   The IP range used for the destination match, in CIDR notation (for example, 10.0.0.0/24).
+      --DestinationIpRange string   [REQUIRED] The IP range used for the destination match, in CIDR notation (for example, 10.0.0.0/24).
       --DryRun                      If true, checks whether you have the required permissions to perform the action.
       --GatewayId string            The ID of an internet service or virtual gateway attached to your Net.
       --NatServiceId string         The ID of a NAT service.
       --NetPeeringId string         The ID of a Net peering.
       --NicId string                The ID of a network interface card (NIC).
-      --RouteTableId string         The ID of the route table.
+      --RouteTableId string         [REQUIRED] The ID of the route table.
       --VmId string                 The ID of a NAT VM in your Net.
   -h, --help                        help for UpdateRoute
 ```
@@ -72,5 +72,5 @@ octl iaas api UpdateRoute [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

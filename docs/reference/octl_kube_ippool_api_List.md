@@ -9,7 +9,14 @@ octl kube ippool api List [flags]
 ### Options
 
 ```
-  -h, --help   help for List
+      --FieldSelector string          
+      --LabelSelector string          
+      --Limit int                     
+      --ResourceVersion string        
+      --ResourceVersionMatch string   
+      --ShardSelector string          
+      --TimeoutSeconds int            
+  -h, --help                          help for List
 ```
 
 ### Options inherited from parent commands
@@ -41,5 +48,5 @@ octl kube ippool api List [flags]
 
 ### SEE ALSO
 
-* [octl kube ippool api](octl_kube_ippool_api.md)	 - ippool api calls
+* [octl kube ippool api](octl_kube_ippool_api.md)	 - Call ippool API
 

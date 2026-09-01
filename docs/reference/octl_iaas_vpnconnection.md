@@ -1,6 +1,6 @@
 ## octl iaas vpnconnection
 
-vpnconnection commands
+Manage VpnConnection resources
 
 ### Options
 
@@ -37,9 +37,9 @@ vpnconnection commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas vpnconnection create](octl_iaas_vpnconnection_create.md)	 - alias for api CreateVpnConnection
-* [octl iaas vpnconnection delete](octl_iaas_vpnconnection_delete.md)	 - alias for api DeleteVpnConnection --VpnConnectionId vpn_connection_id
-* [octl iaas vpnconnection describe](octl_iaas_vpnconnection_describe.md)	 - alias for api ReadVpnConnections --Filters.VpnConnectionIds vpn_connection_id
-* [octl iaas vpnconnection list](octl_iaas_vpnconnection_list.md)	 - alias for api ReadVpnConnections
-* [octl iaas vpnconnection update](octl_iaas_vpnconnection_update.md)	 - alias for api UpdateVpnConnection --VpnConnectionId vpn_connection_id
+* [octl iaas vpnconnection create](octl_iaas_vpnconnection_create.md)	 - Creates a VPN connection between a specified virtual gateway and a specified client gateway.
+* [octl iaas vpnconnection delete](octl_iaas_vpnconnection_delete.md)	 - Deletes a specified VPN connection.
+* [octl iaas vpnconnection describe](octl_iaas_vpnconnection_describe.md)	 - Lists one or more VPN connections.
+* [octl iaas vpnconnection list](octl_iaas_vpnconnection_list.md)	 - Lists one or more VPN connections.
+* [octl iaas vpnconnection update](octl_iaas_vpnconnection_update.md)	 - Modifies the specified attributes of a VPN connection.
 

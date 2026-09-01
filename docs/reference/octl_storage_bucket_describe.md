@@ -1,12 +1,12 @@
 ## octl storage bucket describe
 
-Display a bucket, alias for api HeadBucket --Bucket bucket
+Display a bucket.
 
 ### Synopsis
 
-> Display a bucket, alias for api HeadBucket --Bucket bucket
+Display a bucket.
 
-
+> alias for HeadBucket --Bucket bucket
 
 ```
 octl storage bucket describe bucket [flags]
@@ -47,5 +47,5 @@ octl storage bucket describe bucket [flags]
 
 ### SEE ALSO
 
-* [octl storage bucket](octl_storage_bucket.md)	 - bucket commands
+* [octl storage bucket](octl_storage_bucket.md)	 - Manage Bucket resources
 

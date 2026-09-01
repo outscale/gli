@@ -1,10 +1,8 @@
 ## octl iaas listenerrule create
 
-alias for api CreateListenerRule
+Creates a rule for traffic redirection for the specified listener.
 
 ### Synopsis
-
-> alias for api CreateListenerRule
 
 Creates a rule for traffic redirection for the specified listener. Each rule must have either the `HostNamePattern` or `PathPattern` parameter specified. Rules are treated in priority order, from the highest value to the lowest value.
 
@@ -12,6 +10,8 @@ Once the rule is created, you need to register backend VMs with it. For more inf
 
 
 For more information, see [About Load Balancers](https://docs.outscale.com/en/userguide/About-Load-Balancers.html).
+
+> alias for CreateListenerRule
 
 ```
 octl iaas listenerrule create [flags]
@@ -59,5 +59,5 @@ octl iaas listenerrule create [flags]
 
 ### SEE ALSO
 
-* [octl iaas listenerrule](octl_iaas_listenerrule.md)	 - listenerrule commands
+* [octl iaas listenerrule](octl_iaas_listenerrule.md)	 - Manage ListenerRule resources
 

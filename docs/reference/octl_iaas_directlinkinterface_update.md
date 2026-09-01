@@ -1,12 +1,12 @@
 ## octl iaas directlinkinterface update
 
-alias for api UpdateDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id
+Modifies the maximum transmission unit (MTU) of a DirectLink interface.
 
 ### Synopsis
 
-> alias for api UpdateDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id
-
 Modifies the maximum transmission unit (MTU) of a DirectLink interface.
+
+> alias for UpdateDirectLinkInterface --DirectLinkInterfaceId direct_link_interface_id
 
 ```
 octl iaas directlinkinterface update direct_link_interface_id [direct_link_interface_id]... [flags]
@@ -47,5 +47,5 @@ octl iaas directlinkinterface update direct_link_interface_id [direct_link_inter
 
 ### SEE ALSO
 
-* [octl iaas directlinkinterface](octl_iaas_directlinkinterface.md)	 - directlinkinterface commands
+* [octl iaas directlinkinterface](octl_iaas_directlinkinterface.md)	 - Manage DirectLinkInterface resources
 

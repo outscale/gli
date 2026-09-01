@@ -17,7 +17,6 @@ octl storage api DeleteObject [flags]
       --IfMatchSize int                   If present, the object is deleted only if its size matches the provided size in bytes.
       --Key string                        [REQUIRED] name of the object to delete.
       --MFA string                        The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device.
-      --RequestPayer string               Confirms that the requester knows that they will be charged for the request.
       --VersionId string                  Version ID used to reference a specific version of the object.
   -h, --help                              help for DeleteObject
 ```
@@ -51,5 +50,5 @@ octl storage api DeleteObject [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

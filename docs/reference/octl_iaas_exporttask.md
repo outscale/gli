@@ -1,6 +1,6 @@
 ## octl iaas exporttask
 
-exporttask commands
+Manage ExportTask resources
 
 ### Options
 
@@ -37,5 +37,5 @@ exporttask commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas exporttask delete](octl_iaas_exporttask_delete.md)	 - alias for api DeleteExportTask --ExportTaskId export_task_id
+* [octl iaas exporttask delete](octl_iaas_exporttask_delete.md)	 - Deletes an export task.
 

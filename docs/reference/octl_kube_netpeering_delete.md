@@ -1,15 +1,15 @@
 ## octl kube netpeering delete
 
-alias for api Delete id
+Delete a NetPeering
 
 ### Synopsis
 
-> alias for api Delete id
+Delete a NetPeering
 
-
+> alias for Delete id
 
 ```
-octl kube netpeering delete id [name]... [flags]
+octl kube netpeering delete id [id]... [flags]
 ```
 
 ### Options
@@ -48,5 +48,5 @@ octl kube netpeering delete id [name]... [flags]
 
 ### SEE ALSO
 
-* [octl kube netpeering](octl_kube_netpeering.md)	 - netpeering commands
+* [octl kube netpeering](octl_kube_netpeering.md)	 - Manage netpeering resources
 

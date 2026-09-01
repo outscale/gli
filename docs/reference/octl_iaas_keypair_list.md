@@ -1,12 +1,12 @@
 ## octl iaas keypair list
 
-alias for api ReadKeypairs
+Lists one or more of your keypairs.
 
 ### Synopsis
 
-> alias for api ReadKeypairs
-
 Lists one or more of your keypairs.
+
+> alias for ReadKeypairs
 
 ```
 octl iaas keypair list [flags]
@@ -53,5 +53,5 @@ octl iaas keypair list [flags]
 
 ### SEE ALSO
 
-* [octl iaas keypair](octl_iaas_keypair.md)	 - keypair commands
+* [octl iaas keypair](octl_iaas_keypair.md)	 - Manage Keypair resources
 

@@ -1,10 +1,8 @@
 ## octl iaas policyversion delete
 
-alias for api DeletePolicyVersion --PolicyOrn policy_orn
+Deletes a specified version of a managed policy, if it is not set as the default one.
 
 ### Synopsis
-
-> alias for api DeletePolicyVersion --PolicyOrn policy_orn
 
 Deletes a specified version of a managed policy, if it is not set as the default one.
 
@@ -14,6 +12,8 @@ Deletes a specified version of a managed policy, if it is not set as the default
 **[IMPORTANT]**
 
 A delay of up to 15 seconds can occur when attaching, detaching, or updating a managed policy.
+
+> alias for DeletePolicyVersion --PolicyOrn policy_orn
 
 ```
 octl iaas policyversion delete policy_orn [flags]
@@ -54,5 +54,5 @@ octl iaas policyversion delete policy_orn [flags]
 
 ### SEE ALSO
 
-* [octl iaas policyversion](octl_iaas_policyversion.md)	 - policyversion commands
+* [octl iaas policyversion](octl_iaas_policyversion.md)	 - Manage PolicyVersion resources
 

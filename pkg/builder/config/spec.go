@@ -1,17 +1,49 @@
-package builder
+package configbuilder
 
 import (
 	"fmt"
 	"go/ast"
 	"strings"
 
-	"dario.cat/mergo"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/descriptions"
 	"github.com/outscale/octl/pkg/messages"
 	"github.com/samber/lo"
 	"golang.org/x/tools/go/packages"
 )
+
+type SpecCall struct {
+	Group string
+	Help  string
+}
+
+type SpecAttribute struct {
+	Help     string
+	Required bool
+}
+
+type Spec struct {
+	Calls      map[string]SpecCall      `yaml:"calls,omitempty"`
+	Attributes map[string]SpecAttribute `yaml:"attributes,omitempty"`
+}
+
+func (s Spec) ForCall(name string) SpecCall {
+	if s.Calls == nil {
+		return SpecCall{}
+	}
+	return s.Calls[name]
+}
+
+func (s Spec) ForAttribute(call, name string) SpecAttribute {
+	if s.Attributes == nil {
+		return SpecAttribute{}
+	}
+	return s.Attributes[call+"."+name]
+}
+
+func (s *Spec) SetAttribute(call, name string, spec SpecAttribute) {
+	s.Attributes[call+"."+name] = spec
+}
 
 type SpecBuilder struct {
 	cfg Config
@@ -21,7 +53,7 @@ func NewSpecBuilder(cfg Config) *SpecBuilder {
 	return &SpecBuilder{cfg: cfg}
 }
 
-func (b *SpecBuilder) BuildSpec(base *config.Config, pkgNames ...string) {
+func (b *SpecBuilder) BuildSpec(base *config.Config, pkgNames ...string) Spec {
 	pkgs, err := packages.Load(&packages.Config{
 		Mode: packages.NeedSyntax | packages.LoadFiles,
 	}, pkgNames...)
@@ -29,6 +61,11 @@ func (b *SpecBuilder) BuildSpec(base *config.Config, pkgNames ...string) {
 		messages.ExitErr(err)
 	}
 	fmt.Println("*** fetching calls from AST")
+	spec := Spec{
+		Calls:      map[string]SpecCall{},
+		Attributes: map[string]SpecAttribute{},
+	}
+
 	for _, file := range pkgs[0].Syntax {
 		ast.Inspect(file, func(n ast.Node) bool {
 			if stmt, ok := n.(*ast.FuncDecl); ok && stmt.Recv != nil {
@@ -45,8 +82,7 @@ func (b *SpecBuilder) BuildSpec(base *config.Config, pkgNames ...string) {
 				if stmt.Type.Results == nil {
 					return false
 				}
-				if _, found := base.Calls[method]; !found {
-					_, _, entity := names(method)
+				if _, found := base.API[method]; !found {
 					var group string
 					if stmt.Doc != nil {
 						groupComment, found := lo.Find(stmt.Doc.List, func(c *ast.Comment) bool {
@@ -56,19 +92,10 @@ func (b *SpecBuilder) BuildSpec(base *config.Config, pkgNames ...string) {
 							_, group, _ = strings.Cut(groupComment.Text, " ")
 						}
 					}
-					call := base.Calls[method]
-					newCall := config.Call{
-						Entity: entity,
-						Group:  group,
-					}
-					err := mergo.Merge(&call, newCall)
-					if err != nil {
-						messages.ExitErr(err)
-					}
-					base.Calls[method] = call
 					txt := strings.TrimSpace(strings.TrimPrefix(stmt.Doc.Text(), method))
-					base.Spec.Calls[method] = config.SpecCall{
-						Help: descriptions.Clean(txt),
+					spec.Calls[method] = SpecCall{
+						Group: group,
+						Help:  descriptions.Clean(txt),
 					}
 				}
 			}
@@ -104,7 +131,7 @@ func (b *SpecBuilder) BuildSpec(base *config.Config, pkgNames ...string) {
 								required = b.cfg.RequiredFromComment(doc)
 							}
 							if help != "" || required {
-								base.Spec.SetAttribute(typeName, flag, config.SpecAttribute{Help: help, Required: required})
+								spec.SetAttribute(typeName, flag, SpecAttribute{Help: help, Required: required})
 							}
 							return false
 						}
@@ -116,4 +143,5 @@ func (b *SpecBuilder) BuildSpec(base *config.Config, pkgNames ...string) {
 			})
 		}
 	}
+	return spec
 }

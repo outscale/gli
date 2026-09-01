@@ -37,7 +37,7 @@ octl iaas api UpdateLoadBalancer [flags]
       --HealthCheck.Protocol string          The protocol for the URL of the VM (HTTP | HTTPS | TCP | SSL).
       --HealthCheck.Timeout int              The maximum waiting time for a response before considering the VM as unhealthy, in seconds (between 2 and 60 both included).
       --HealthCheck.UnhealthyThreshold int   The number of consecutive failed requests before considering the VM as unhealthy (between 2 and 10 both included).
-      --LoadBalancerName string              The name of the load balancer.
+      --LoadBalancerName string              [REQUIRED] The name of the load balancer.
       --LoadBalancerPort int                 The port on which the load balancer is listening (between 1 and 65535, both included).
       --PolicyNames strings                  The name of the policy you want to enable for the listener.
       --PublicIp string                      (internet-facing only) The public IP you want to associate with the load balancer.
@@ -75,5 +75,5 @@ octl iaas api UpdateLoadBalancer [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

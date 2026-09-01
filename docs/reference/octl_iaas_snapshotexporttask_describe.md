@@ -1,12 +1,12 @@
 ## octl iaas snapshotexporttask describe
 
-alias for api ReadSnapshotExportTasks --Filters.TaskIds task_id
+Lists one or more snapshot export tasks.
 
 ### Synopsis
 
-> alias for api ReadSnapshotExportTasks --Filters.TaskIds task_id
+Lists one or more snapshot export tasks.
 
-
+> alias for ReadSnapshotExportTasks --Filters.TaskIds task_id
 
 ```
 octl iaas snapshotexporttask describe task_id [task_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas snapshotexporttask describe task_id [task_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas snapshotexporttask](octl_iaas_snapshotexporttask.md)	 - snapshotexporttask commands
+* [octl iaas snapshotexporttask](octl_iaas_snapshotexporttask.md)	 - Manage SnapshotExportTask resources
 

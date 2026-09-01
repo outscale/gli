@@ -21,8 +21,8 @@ octl iaas api UnlinkPolicy [flags]
 
 ```
       --DryRun             If true, checks whether you have the required permissions to perform the action.
-      --PolicyOrn string   The OUTSCALE Resource Name (ORN) of the policy.
-      --UserName string    The name of the user you want to detach the policy from.
+      --PolicyOrn string   [REQUIRED] The OUTSCALE Resource Name (ORN) of the policy.
+      --UserName string    [REQUIRED] The name of the user you want to detach the policy from.
   -h, --help               help for UnlinkPolicy
 ```
 
@@ -54,5 +54,5 @@ octl iaas api UnlinkPolicy [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

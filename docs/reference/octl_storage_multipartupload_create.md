@@ -1,12 +1,12 @@
 ## octl storage multipartupload create
 
-alias for api CreateMultipartUpload
+
 
 ### Synopsis
 
-> alias for api CreateMultipartUpload
 
 
+> alias for CreateMultipartUpload
 
 ```
 octl storage multipartupload create [flags]
@@ -15,29 +15,29 @@ octl storage multipartupload create [flags]
 ### Options
 
 ```
-      --acl string                              The canned ACL to apply to the object.
-      --bucket string                           [REQUIRED] The name of the bucket where the multipart upload is initiated and where the object is uploaded.
-      --bucket-key-enabled                      Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using Key Management Service (KMS) keys (SSE-KMS).
-      --cache-control string                    Specifies caching behavior along the request/reply chain.
-      --content-disposition string              Specifies presentational information for the object.
-      --content-encoding string                 Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
-      --content-language string                 The language that the content is in.
-      --content-type string                     A standard MIME type describing the format of the object data.
-      --expected-bucket-owner string            The account ID of the expected bucket owner.
-      --expire osctime                          The date and time at which the object is no longer cacheable.
-      --grant-full-control string               Specify access permissions explicitly to give the grantee READ, READ_ACP, and WRITE_ACP permissions on the object.
-      --grant-read string                       Specify access permissions explicitly to allow grantee to read the object data and its metadata.
-      --grant-read-acp string                   Specify access permissions explicitly to allows grantee to read the object ACL.
-      --grant-write-acp string                  Specify access permissions explicitly to allows grantee to allow grantee to write the ACL for the applicable object.
-  -h, --help                                    help for create
-      --key string                              [REQUIRED] Object key for which the multipart upload is to be initiated.
-      --metadatum stringToString                A map of metadata to store with the object in S3. (default [])
-      --object-lock-legal-hold-status string    Specifies whether you want to apply a legal hold to the uploaded object.
-      --object-lock-mode string                 Specifies the Object Lock mode that you want to apply to the uploaded object.
-      --object-lock-retain-until-date osctime   Specifies the date and time when you want the Object Lock to expire.
-      --server-side-encryption string           The server-side encryption algorithm used when you store this object in Amazon S3 (for example, AES256 , aws:kms ).
-      --tagging string                          The tag-set for the object.
-      --website-redirect-location string        If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL.
+      --acl string                             The canned ACL to apply to the object.
+      --bucket string                          [REQUIRED] The name of the bucket where the multipart upload is initiated and where the object is uploaded.
+      --bucket-key-enabled                     Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using Key Management Service (KMS) keys (SSE-KMS).
+      --cache-control string                   Specifies caching behavior along the request/reply chain.
+      --content-disposition string             Specifies presentational information for the object.
+      --content-encoding string                Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
+      --content-language string                The language that the content is in.
+      --content-type string                    A standard MIME type describing the format of the object data.
+      --expected-bucket-owner string           The account ID of the expected bucket owner.
+      --expire string                          The date and time at which the object is no longer cacheable.
+      --grant-full-control string              Specify access permissions explicitly to give the grantee READ, READ_ACP, and WRITE_ACP permissions on the object.
+      --grant-read string                      Specify access permissions explicitly to allow grantee to read the object data and its metadata.
+      --grant-read-acp string                  Specify access permissions explicitly to allows grantee to read the object ACL.
+      --grant-write-acp string                 Specify access permissions explicitly to allows grantee to allow grantee to write the ACL for the applicable object.
+  -h, --help                                   help for create
+      --key string                             [REQUIRED] Object key for which the multipart upload is to be initiated.
+      --metadatum stringToString               A map of metadata to store with the object in S3. (default [])
+      --object-lock-legal-hold-status string   Specifies whether you want to apply a legal hold to the uploaded object.
+      --object-lock-mode string                Specifies the Object Lock mode that you want to apply to the uploaded object.
+      --object-lock-retain-until-date string   Specifies the date and time when you want the Object Lock to expire.
+      --server-side-encryption string          The server-side encryption algorithm used when you store this object in Amazon S3 (for example, AES256 , aws:kms ).
+      --tagging string                         The tag-set for the object.
+      --website-redirect-location string       If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL.
 ```
 
 ### Options inherited from parent commands
@@ -69,5 +69,5 @@ octl storage multipartupload create [flags]
 
 ### SEE ALSO
 
-* [octl storage multipartupload](octl_storage_multipartupload.md)	 - multipartupload commands
+* [octl storage multipartupload](octl_storage_multipartupload.md)	 - Manage MultipartUpload resources
 

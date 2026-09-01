@@ -1,12 +1,12 @@
 ## octl kube project describe
 
-alias for api GetProject  id_or_name
+Retrieves detailed information about a specific project by its ID.
 
 ### Synopsis
 
-> alias for api GetProject  id_or_name
+Retrieves detailed information about a specific project by its ID. Returns the details of the project if found.
 
-
+> alias for GetProject  id_or_name
 
 ```
 octl kube project describe id_or_name [id_or_name]... [flags]
@@ -46,5 +46,5 @@ octl kube project describe id_or_name [id_or_name]... [flags]
 
 ### SEE ALSO
 
-* [octl kube project](octl_kube_project.md)	 - project commands
+* [octl kube project](octl_kube_project.md)	 - Manage Project resources
 

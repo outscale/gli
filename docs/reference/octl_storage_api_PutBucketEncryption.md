@@ -10,11 +10,9 @@ octl storage api PutBucketEncryption [flags]
 
 ```
       --Bucket string                                                                                        [REQUIRED] Specifies default encryption for a bucket using server-side encryption with different key options.
-      --ChecksumAlgorithm string                                                                             Indicates the algorithm used to create the checksum for the object when you use the SDK.
-      --ContentMD5 string                                                                                    The base64-encoded 128-bit MD5 digest of the server-side encryption configuration.
       --ExpectedBucketOwner string                                                                           The account ID of the expected bucket owner.
       --ServerSideEncryptionConfiguration.Rules.0.ApplyServerSideEncryptionByDefault.KMSMasterKeyID string   Amazon Web Services Key Management Service (KMS) customer managed key ID to use for the default encryption.
-      --ServerSideEncryptionConfiguration.Rules.0.ApplyServerSideEncryptionByDefault.SSEAlgorithm string     [REQUIRED] Server-side encryption algorithm to use for the default encryption.
+      --ServerSideEncryptionConfiguration.Rules.0.ApplyServerSideEncryptionByDefault.SSEAlgorithm string     Server-side encryption algorithm to use for the default encryption.
       --ServerSideEncryptionConfiguration.Rules.0.BucketKeyEnabled                                           Specifies whether Amazon S3 should use an S3 Bucket Key with server-side encryption using KMS (SSE-KMS) for new objects in the bucket.
   -h, --help                                                                                                 help for PutBucketEncryption
 ```
@@ -48,5 +46,5 @@ octl storage api PutBucketEncryption [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

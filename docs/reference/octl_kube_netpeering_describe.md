@@ -1,12 +1,12 @@
 ## octl kube netpeering describe
 
-alias for api Get id
+Describe a netpeering
 
 ### Synopsis
 
-> alias for api Get id
+Describe a netpeering
 
-
+> alias for Get id
 
 ```
 octl kube netpeering describe id [flags]
@@ -48,5 +48,5 @@ octl kube netpeering describe id [flags]
 
 ### SEE ALSO
 
-* [octl kube netpeering](octl_kube_netpeering.md)	 - netpeering commands
+* [octl kube netpeering](octl_kube_netpeering.md)	 - Manage netpeering resources
 

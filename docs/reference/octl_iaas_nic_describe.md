@@ -1,12 +1,14 @@
 ## octl iaas nic describe
 
-alias for api ReadNics --Filters.NicIds nic_id
+Lists one or more network interface cards (NICs).
 
 ### Synopsis
 
-> alias for api ReadNics --Filters.NicIds nic_id
+Lists one or more network interface cards (NICs).
 
+A NIC is a virtual network interface that you can attach to a virtual machine (VM) in a Net.
 
+> alias for ReadNics --Filters.NicIds nic_id
 
 ```
 octl iaas nic describe nic_id [nic_id]... [flags]
@@ -46,5 +48,5 @@ octl iaas nic describe nic_id [nic_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas nic](octl_iaas_nic.md)	 - nic commands
+* [octl iaas nic](octl_iaas_nic.md)	 - Manage Nic resources
 

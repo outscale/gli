@@ -21,7 +21,7 @@ octl iaas api DeleteVmTemplate [flags]
 
 ```
       --DryRun                If true, checks whether you have the required permissions to perform the action.
-      --VmTemplateId string   The ID of the VM template you want to delete.
+      --VmTemplateId string   [REQUIRED] The ID of the VM template you want to delete.
   -h, --help                  help for DeleteVmTemplate
 ```
 
@@ -53,5 +53,5 @@ octl iaas api DeleteVmTemplate [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

@@ -13,9 +13,9 @@ octl iaas api UpdateNet [flags]
 ### Options
 
 ```
-      --DhcpOptionsSetId string   The ID of the DHCP options set (or default if you want to associate the default one).
+      --DhcpOptionsSetId string   [REQUIRED] The ID of the DHCP options set (or default if you want to associate the default one).
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
-      --NetId string              The ID of the Net.
+      --NetId string              [REQUIRED] The ID of the Net.
   -h, --help                      help for UpdateNet
 ```
 
@@ -47,5 +47,5 @@ octl iaas api UpdateNet [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

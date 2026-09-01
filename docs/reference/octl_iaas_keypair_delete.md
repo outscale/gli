@@ -1,14 +1,14 @@
 ## octl iaas keypair delete
 
-alias for api DeleteKeypair --KeypairId keypair_id
+Deletes the specified keypair.
 
 ### Synopsis
-
-> alias for api DeleteKeypair --KeypairId keypair_id
 
 Deletes the specified keypair.
 
 This action deletes the public key stored by 3DS OUTSCALE, thus deleting the keypair.
+
+> alias for DeleteKeypair --KeypairId keypair_id
 
 ```
 octl iaas keypair delete keypair_id [keypair_id]... [flags]
@@ -49,5 +49,5 @@ octl iaas keypair delete keypair_id [keypair_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas keypair](octl_iaas_keypair.md)	 - keypair commands
+* [octl iaas keypair](octl_iaas_keypair.md)	 - Manage Keypair resources
 

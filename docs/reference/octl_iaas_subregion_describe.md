@@ -1,12 +1,16 @@
 ## octl iaas subregion describe
 
-alias for api ReadSubregions --Filters.SubregionNames subregion_name
+Lists one or more of the enabled Subregions that you can access in the current Region.
 
 ### Synopsis
 
-> alias for api ReadSubregions --Filters.SubregionNames subregion_name
+Lists one or more of the enabled Subregions that you can access in the current Region.
 
 
+
+For more information, see [About Regions and Subregions](https://docs.outscale.com/en/userguide/About-Regions-and-Subregions.html).
+
+> alias for ReadSubregions --Filters.SubregionNames subregion_name
 
 ```
 octl iaas subregion describe subregion_name [subregion_name]... [flags]
@@ -46,5 +50,5 @@ octl iaas subregion describe subregion_name [subregion_name]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas subregion](octl_iaas_subregion.md)	 - subregion commands
+* [octl iaas subregion](octl_iaas_subregion.md)	 - Manage Subregion resources
 

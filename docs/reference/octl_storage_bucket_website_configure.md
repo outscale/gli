@@ -1,12 +1,12 @@
 ## octl storage bucket website configure
 
-Update Website configuration, alias for api PutBucketWebsite --Bucket bucket
+Update website configuration.
 
 ### Synopsis
 
-> Update Website configuration, alias for api PutBucketWebsite --Bucket bucket
+Update website configuration.
 
-
+> alias for PutBucketWebsite --Bucket bucket
 
 ```
 octl storage bucket website configure bucket [flags]

@@ -11,11 +11,8 @@ octl storage api PutObjectRetention [flags]
 ```
       --Bucket string                       [REQUIRED] The bucket name that contains the object you want to apply this Object Retention configuration to.
       --BypassGovernanceRetention           Indicates whether this action should bypass Governance-mode restrictions.
-      --ChecksumAlgorithm string            Indicates the algorithm used to create the checksum for the object when you use the SDK.
-      --ContentMD5 string                   The MD5 hash for the request body.
       --ExpectedBucketOwner string          The account ID of the expected bucket owner.
       --Key string                          [REQUIRED] The key name for the object that you want to apply this Object Retention configuration to.
-      --RequestPayer string                 Confirms that the requester knows that they will be charged for the request.
       --Retention.Mode string               Indicates the Retention mode for the specified object.
       --Retention.RetainUntilDate osctime   The date on which this Object Lock Retention will expire.
       --VersionId string                    The version ID for the object that you want to apply this Object Retention configuration to.
@@ -51,5 +48,5 @@ octl storage api PutObjectRetention [flags]
 
 ### SEE ALSO
 
-* [octl storage api](octl_storage_api.md)	 - storage api calls
+* [octl storage api](octl_storage_api.md)	 - Call storage API
 

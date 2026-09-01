@@ -1,12 +1,12 @@
 ## octl storage bucket objectlock configure
 
-Update ObjectLock configuration, alias for api PutObjectLockConfiguration --Bucket bucket
+Update ObjectLock configuration.
 
 ### Synopsis
 
-> Update ObjectLock configuration, alias for api PutObjectLockConfiguration --Bucket bucket
+Update ObjectLock configuration.
 
-
+> alias for PutObjectLockConfiguration --Bucket bucket
 
 ```
 octl storage bucket objectlock configure bucket [flags]

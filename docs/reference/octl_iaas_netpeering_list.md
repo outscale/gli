@@ -1,12 +1,12 @@
 ## octl iaas netpeering list
 
-alias for api ReadNetPeerings
+Lists one or more peering connections between two Nets.
 
 ### Synopsis
 
-> alias for api ReadNetPeerings
-
 Lists one or more peering connections between two Nets.
+
+> alias for ReadNetPeerings
 
 ```
 octl iaas netpeering list [flags]
@@ -18,7 +18,7 @@ octl iaas netpeering list [flags]
       --accepter-net-account-id strings   The OUTSCALE account IDs of the owners of the peer Nets.
       --accepter-net-ip-range strings     The IP ranges of the peer Nets, in CIDR notation (for example, 10.0.0.0/24).
       --accepter-net-net-id strings       The IDs of the peer Nets.
-      --expiration-date osctime           The dates and times at which the Net peerings expire, in ISO 8601 date-time format (for example, 2020-06-14T00:00:00.000Z).
+      --expiration-date strings           The dates and times at which the Net peerings expire, in ISO 8601 date-time format (for example, 2020-06-14T00:00:00.000Z).
   -h, --help                              help for list
       --id strings                        The IDs of the Net peerings.
       --source-net-account-id strings     The OUTSCALE account IDs of the owners of the peer Nets.
@@ -59,5 +59,5 @@ octl iaas netpeering list [flags]
 
 ### SEE ALSO
 
-* [octl iaas netpeering](octl_iaas_netpeering.md)	 - netpeering commands
+* [octl iaas netpeering](octl_iaas_netpeering.md)	 - Manage NetPeering resources
 

@@ -1,10 +1,8 @@
 ## octl iaas subnet delete
 
-alias for api DeleteSubnet --SubnetId subnet_id
+Deletes a specified Subnet.
 
 ### Synopsis
-
-> alias for api DeleteSubnet --SubnetId subnet_id
 
 Deletes a specified Subnet.
 
@@ -19,6 +17,8 @@ Before deleting the Subnet, you need to delete all resources associated with the
 * NAT services
 
 * Load balancers
+
+> alias for DeleteSubnet --SubnetId subnet_id
 
 ```
 octl iaas subnet delete subnet_id [subnet_id]... [flags]
@@ -58,5 +58,5 @@ octl iaas subnet delete subnet_id [subnet_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas subnet](octl_iaas_subnet.md)	 - subnet commands
+* [octl iaas subnet](octl_iaas_subnet.md)	 - Manage Subnet resources
 

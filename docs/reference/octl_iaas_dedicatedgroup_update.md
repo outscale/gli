@@ -1,12 +1,12 @@
 ## octl iaas dedicatedgroup update
 
-alias for api UpdateDedicatedGroup --DedicatedGroupId dedicated_group_id
+Modifies the name of a specified dedicated group.
 
 ### Synopsis
 
-> alias for api UpdateDedicatedGroup --DedicatedGroupId dedicated_group_id
-
 Modifies the name of a specified dedicated group.
+
+> alias for UpdateDedicatedGroup --DedicatedGroupId dedicated_group_id
 
 ```
 octl iaas dedicatedgroup update dedicated_group_id [dedicated_group_id]... [flags]
@@ -47,5 +47,5 @@ octl iaas dedicatedgroup update dedicated_group_id [dedicated_group_id]... [flag
 
 ### SEE ALSO
 
-* [octl iaas dedicatedgroup](octl_iaas_dedicatedgroup.md)	 - dedicatedgroup commands
+* [octl iaas dedicatedgroup](octl_iaas_dedicatedgroup.md)	 - Manage DedicatedGroup resources
 

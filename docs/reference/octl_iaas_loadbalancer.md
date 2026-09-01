@@ -1,6 +1,6 @@
 ## octl iaas loadbalancer
 
-loadbalancer commands
+Manage LoadBalancer resources
 
 ### Options
 
@@ -37,10 +37,10 @@ loadbalancer commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas loadbalancer backends](octl_iaas_loadbalancer_backends.md)	 - alias for api ReadVmsHealth --LoadBalancerName load_balancer_name
-* [octl iaas loadbalancer create](octl_iaas_loadbalancer_create.md)	 - alias for api CreateLoadBalancer
-* [octl iaas loadbalancer delete](octl_iaas_loadbalancer_delete.md)	 - alias for api DeleteLoadBalancer --LoadBalancerName load_balancer_name
-* [octl iaas loadbalancer describe](octl_iaas_loadbalancer_describe.md)	 - alias for api ReadLoadBalancers --Filters.LoadBalancerNames load_balancer_name
-* [octl iaas loadbalancer list](octl_iaas_loadbalancer_list.md)	 - alias for api ReadLoadBalancers
-* [octl iaas loadbalancer update](octl_iaas_loadbalancer_update.md)	 - alias for api UpdateLoadBalancer --LoadBalancerName load_balancer_name
+* [octl iaas loadbalancer backends](octl_iaas_loadbalancer_backends.md)	 - Lists the state of one or more backend virtual machines (VMs) registered with a specified load balancer.
+* [octl iaas loadbalancer create](octl_iaas_loadbalancer_create.md)	 - Creates a load balancer.
+* [octl iaas loadbalancer delete](octl_iaas_loadbalancer_delete.md)	 - Deletes a specified load balancer.
+* [octl iaas loadbalancer describe](octl_iaas_loadbalancer_describe.md)	 - Lists one or more load balancers and their attributes.
+* [octl iaas loadbalancer list](octl_iaas_loadbalancer_list.md)	 - Lists one or more load balancers and their attributes.
+* [octl iaas loadbalancer update](octl_iaas_loadbalancer_update.md)	 - Modifies the specified attribute of a load balancer.
 

@@ -1,6 +1,6 @@
 ## octl iaas publicip
 
-publicip commands
+Manage PublicIp resources
 
 ### Options
 
@@ -37,8 +37,8 @@ publicip commands
 ### SEE ALSO
 
 * [octl iaas](octl_iaas.md)	 - OUTSCALE IaaS management
-* [octl iaas publicip create](octl_iaas_publicip_create.md)	 - alias for api CreatePublicIp
-* [octl iaas publicip delete](octl_iaas_publicip_delete.md)	 - alias for api DeletePublicIp --PublicIpId public_ip_id
-* [octl iaas publicip describe](octl_iaas_publicip_describe.md)	 - alias for api ReadPublicIps --Filters.PublicIpIds public_ip_id
-* [octl iaas publicip list](octl_iaas_publicip_list.md)	 - alias for api ReadPublicIps
+* [octl iaas publicip create](octl_iaas_publicip_create.md)	 - Acquires a public IP for your account.
+* [octl iaas publicip delete](octl_iaas_publicip_delete.md)	 - Releases a public IP.
+* [octl iaas publicip describe](octl_iaas_publicip_describe.md)	 - Lists one or more public IPs allocated to your OUTSCALE account.
+* [octl iaas publicip list](octl_iaas_publicip_list.md)	 - Lists one or more public IPs allocated to your OUTSCALE account.
 

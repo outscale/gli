@@ -1,12 +1,12 @@
 ## octl iaas netaccesspoint describe
 
-alias for api ReadNetAccessPoints --Filters.NetAccessPointIds net_access_point_id
+Lists one or more Net access points.
 
 ### Synopsis
 
-> alias for api ReadNetAccessPoints --Filters.NetAccessPointIds net_access_point_id
+Lists one or more Net access points.
 
-
+> alias for ReadNetAccessPoints --Filters.NetAccessPointIds net_access_point_id
 
 ```
 octl iaas netaccesspoint describe net_access_point_id [net_access_point_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas netaccesspoint describe net_access_point_id [net_access_point_id]... [
 
 ### SEE ALSO
 
-* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - netaccesspoint commands
+* [octl iaas netaccesspoint](octl_iaas_netaccesspoint.md)	 - Manage NetAccessPoint resources
 

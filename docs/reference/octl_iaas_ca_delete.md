@@ -1,12 +1,12 @@
 ## octl iaas ca delete
 
-alias for api DeleteCa --CaId ca_id
+Deletes a specified Client Certificate Authority (CA).
 
 ### Synopsis
 
-> alias for api DeleteCa --CaId ca_id
-
 Deletes a specified Client Certificate Authority (CA).
+
+> alias for DeleteCa --CaId ca_id
 
 ```
 octl iaas ca delete ca_id [ca_id]... [flags]
@@ -46,5 +46,5 @@ octl iaas ca delete ca_id [ca_id]... [flags]
 
 ### SEE ALSO
 
-* [octl iaas ca](octl_iaas_ca.md)	 - ca commands
+* [octl iaas ca](octl_iaas_ca.md)	 - Manage Ca resources
 

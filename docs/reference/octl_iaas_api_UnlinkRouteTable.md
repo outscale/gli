@@ -16,7 +16,7 @@ octl iaas api UnlinkRouteTable [flags]
 
 ```
       --DryRun                    If true, checks whether you have the required permissions to perform the action.
-      --LinkRouteTableId string   The ID of the association between the route table and the Subnet.
+      --LinkRouteTableId string   [REQUIRED] The ID of the association between the route table and the Subnet.
   -h, --help                      help for UnlinkRouteTable
 ```
 
@@ -48,5 +48,5 @@ octl iaas api UnlinkRouteTable [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

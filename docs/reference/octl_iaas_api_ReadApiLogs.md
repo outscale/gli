@@ -32,8 +32,6 @@ octl iaas api ReadApiLogs [flags]
       --Filters.QueryUserAgents strings    The user agents of the HTTP requests of the logged calls.
       --Filters.RequestIds strings         The request IDs provided in the responses of the logged calls.
       --Filters.ResponseStatusCodes ints   The HTTP status codes of the logged calls.
-      --NextPageToken string               The token to request the next page of results.
-      --ResultsPerPage int                 The maximum number of logs returned in a single response (between 1 and 1000, both included).
       --With.AccountId                     If true, the OUTSCALE account ID is displayed.
       --With.CallDuration                  If true, the duration of the call is displayed.
       --With.QueryAccessKey                If true, the access key is displayed.
@@ -81,5 +79,5 @@ octl iaas api ReadApiLogs [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

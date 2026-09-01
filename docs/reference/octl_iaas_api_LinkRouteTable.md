@@ -16,8 +16,8 @@ octl iaas api LinkRouteTable [flags]
 
 ```
       --DryRun                If true, checks whether you have the required permissions to perform the action.
-      --RouteTableId string   The ID of the route table.
-      --SubnetId string       The ID of the Subnet.
+      --RouteTableId string   [REQUIRED] The ID of the route table.
+      --SubnetId string       [REQUIRED] The ID of the Subnet.
   -h, --help                  help for LinkRouteTable
 ```
 
@@ -49,5 +49,5 @@ octl iaas api LinkRouteTable [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

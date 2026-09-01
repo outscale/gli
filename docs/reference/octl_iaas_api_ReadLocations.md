@@ -16,10 +16,8 @@ octl iaas api ReadLocations [flags]
 ### Options
 
 ```
-      --DryRun                 If true, checks whether you have the required permissions to perform the action.
-      --NextPageToken string   The token to request the next page of results.
-      --ResultsPerPage int     The maximum number of logs returned in a single response (between 1 and 1000, both included).
-  -h, --help                   help for ReadLocations
+      --DryRun   If true, checks whether you have the required permissions to perform the action.
+  -h, --help     help for ReadLocations
 ```
 
 ### Options inherited from parent commands
@@ -50,5 +48,5 @@ octl iaas api ReadLocations [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

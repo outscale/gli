@@ -1,12 +1,12 @@
 ## octl storage multipartupload list
 
-alias for api ListMultipartUploads
+
 
 ### Synopsis
 
-> alias for api ListMultipartUploads
 
 
+> alias for ListMultipartUploads
 
 ```
 octl storage multipartupload list [flags]
@@ -55,5 +55,5 @@ octl storage multipartupload list [flags]
 
 ### SEE ALSO
 
-* [octl storage multipartupload](octl_storage_multipartupload.md)	 - multipartupload commands
+* [octl storage multipartupload](octl_storage_multipartupload.md)	 - Manage MultipartUpload resources
 

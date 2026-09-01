@@ -1,15 +1,15 @@
 ## octl iaas apiaccesspolicy list
 
-alias for api ReadApiAccessPolicy
+Gets information about the API access policy of your OUTSCALE account.
 
 ### Synopsis
-
-> alias for api ReadApiAccessPolicy
 
 Gets information about the API access policy of your OUTSCALE account.
 
 
 For more information, see [About Your API Access Policy](https://docs.outscale.com/en/userguide/About-Your-API-Access-Policy.html).
+
+> alias for ReadApiAccessPolicy
 
 ```
 octl iaas apiaccesspolicy list [flags]
@@ -49,5 +49,5 @@ octl iaas apiaccesspolicy list [flags]
 
 ### SEE ALSO
 
-* [octl iaas apiaccesspolicy](octl_iaas_apiaccesspolicy.md)	 - apiaccesspolicy commands
+* [octl iaas apiaccesspolicy](octl_iaas_apiaccesspolicy.md)	 - Manage ApiAccessPolicy resources
 

@@ -1,6 +1,6 @@
 ## octl storage part
 
-part commands
+Manage Part resources
 
 ### Options
 
@@ -38,5 +38,5 @@ part commands
 ### SEE ALSO
 
 * [octl storage](octl_storage.md)	 - OUTSCALE Object Storage (OOS) management
-* [octl storage part list](octl_storage_part_list.md)	 - alias for api ListParts
+* [octl storage part list](octl_storage_part_list.md)	 - 
 

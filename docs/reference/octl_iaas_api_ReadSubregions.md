@@ -21,8 +21,6 @@ octl iaas api ReadSubregions [flags]
       --Filters.RegionNames strings      The names of the Regions containing the Subregions.
       --Filters.States strings           The states of the Subregions.
       --Filters.SubregionNames strings   The names of the Subregions.
-      --NextPageToken string             The token to request the next page of results.
-      --ResultsPerPage int               The maximum number of logs returned in a single response (between 1 and 1000, both included).
   -h, --help                             help for ReadSubregions
 ```
 
@@ -54,5 +52,5 @@ octl iaas api ReadSubregions [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 

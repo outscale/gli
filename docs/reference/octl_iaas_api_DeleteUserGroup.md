@@ -23,7 +23,7 @@ octl iaas api DeleteUserGroup [flags]
       --DryRun                 If true, checks whether you have the required permissions to perform the action.
       --Force                  If true, forces the deletion of the user group even if it is not empty.
       --Path string            The path to the group.
-      --UserGroupName string   The name of the group you want to delete.
+      --UserGroupName string   [REQUIRED] The name of the group you want to delete.
   -h, --help                   help for DeleteUserGroup
 ```
 
@@ -55,5 +55,5 @@ octl iaas api DeleteUserGroup [flags]
 
 ### SEE ALSO
 
-* [octl iaas api](octl_iaas_api.md)	 - iaas api calls
+* [octl iaas api](octl_iaas_api.md)	 - Call iaas API
 
