@@ -105,5 +105,5 @@ OUTSCALE IaaS management
 * [octl iaas volume](octl_iaas_volume.md)	 - Manage Volume resources
 * [octl iaas volumeupdatetask](octl_iaas_volumeupdatetask.md)	 - Manage VolumeUpdateTask resources
 * [octl iaas vpnconnection](octl_iaas_vpnconnection.md)	 - Manage VpnConnection resources
-* [octl iaas vpnconnectionroute](octl_iaas_vpnconnectionroute.md)	 - Manage VpmConnectionRoute resources
+* [octl iaas vpnconnectionroute](octl_iaas_vpnconnectionroute.md)	 - Manage VpnConnectionRoute resources
 
