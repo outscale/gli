@@ -723,6 +723,9 @@ aliases:
       - "%*"
       - --output
       - success
+    flags:
+      - name: force
+        alias_to: ForceStop
   - entity: vm
     group: vm
     use: readconsole vm_id

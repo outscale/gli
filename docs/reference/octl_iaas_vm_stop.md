@@ -17,7 +17,8 @@ octl iaas vm stop vm_id [vm_id]... [flags]
 ### Options
 
 ```
-  -h, --help   help for stop
+      --force   Forces the VM to stop.
+  -h, --help    help for stop
 ```
 
 ### Options inherited from parent commands
