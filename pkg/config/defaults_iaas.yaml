@@ -8309,7 +8309,7 @@ entities:
       content: .State
     primary: VpnConnectionId
   vpnconnectionroute:
-    title: VpmConnectionRoute
+    title: VpnConnectionRoute
 aliases:
 - entity: flexiblegpu
   use: catalog

@@ -53,5 +53,5 @@ octl iaas vpnconnectionroute create [flags]
 
 ### SEE ALSO
 
-* [octl iaas vpnconnectionroute](octl_iaas_vpnconnectionroute.md)	 - Manage VpmConnectionRoute resources
+* [octl iaas vpnconnectionroute](octl_iaas_vpnconnectionroute.md)	 - Manage VpnConnectionRoute resources
 

@@ -1,6 +1,6 @@
 ## octl iaas vpnconnectionroute
 
-Manage VpmConnectionRoute resources
+Manage VpnConnectionRoute resources
 
 ### Options
 
