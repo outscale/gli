@@ -16,7 +16,7 @@ require (
 	github.com/charmbracelet/huh/spinner v0.0.0-20260216111231-bffc99a26329
 	github.com/charmbracelet/lipgloss v1.1.1-0.20250404203927-76690c660834
 	github.com/charmbracelet/x/term v0.2.2
-	github.com/gabriel-vasile/mimetype v1.4.14
+	github.com/gabriel-vasile/mimetype v1.4.15
 	github.com/gobuffalo/flect v1.0.3
 	github.com/goccy/go-yaml v1.19.3-0.20260226144344-f167b933f7d0
 	github.com/google/uuid v1.6.0
