@@ -185,11 +185,20 @@ func TestIAASAliases(t *testing.T) {
 		require.NotNil(t, resp.Vms)
 		require.NotEmpty(t, *resp.Vms)
 		vmId := (*resp.Vms)[0].VmId
-		data := run(t, []string{"iaas", "vm", "describe", vmId, "-o", "json"}, nil)
 		var vm osc.Vm
-		err := json.Unmarshal(data, &vm)
-		require.NoError(t, err)
+		runJSON(t, []string{"iaas", "vm", "describe", vmId, "-o", "json"}, nil, &vm)
 		assert.Equal(t, vmId, vm.VmId)
+	})
+	t.Run("alias to slice flags work", func(t *testing.T) {
+		resp := osc.ReadVmsResponse{}
+		runJSON(t, []string{"iaas", "api", "ReadVms"}, nil, &resp)
+		require.NotNil(t, resp.Vms)
+		require.NotEmpty(t, *resp.Vms)
+		vmId := (*resp.Vms)[0].VmId
+		_ = run(t, []string{"iaas", "tag", "create", "--resource-id", vmId, "--key", "foo", "--value", "bar"}, nil)
+		var vm osc.Vm
+		runJSON(t, []string{"iaas", "vm", "describe", vmId, "-o", "json"}, nil, &vm)
+		assert.Contains(t, vm.Tags, osc.ResourceTag{Key: "foo", Value: "bar"})
 	})
 }
 

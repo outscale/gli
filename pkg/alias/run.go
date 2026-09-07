@@ -148,6 +148,7 @@ func userArgs(cmd *cobra.Command, fs config.FlagSet, skipUserFlags bool) []strin
 		case found:
 			newFlag = nf.AliasTo
 		}
+		newFlag = strings.ReplaceAll(newFlag, ".#.", ".0.")
 		if f.Changed || flags.HasDefault(f) {
 			if svalue, ok := f.Value.(pflag.SliceValue); ok {
 				userArgs = append(userArgs, "--"+newFlag+"="+strings.Join(svalue.GetSlice(), ","))
@@ -173,7 +174,8 @@ func execAlias(rootPath string, command []string, userArgs []string, cmd *cobra.
 			if isFlag && slices.ContainsFunc(
 				userArgs, func(uf string) bool {
 					return strings.HasPrefix(uf, arg+"=")
-				}) {
+				},
+			) {
 				skipnextvalue = true
 				continue
 			}
