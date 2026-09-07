@@ -2,7 +2,7 @@ module github.com/outscale/octl
 
 go 1.26.0
 
-toolchain go1.26.6
+toolchain go1.27.1
 
 require (
 	dario.cat/mergo v1.0.2
@@ -23,6 +23,7 @@ require (
 	github.com/itchyny/gojq v0.12.19
 	github.com/mattn/go-isatty v0.0.21
 	github.com/minio/selfupdate v0.6.0
+	github.com/oapi-codegen/runtime v1.6.0
 	github.com/outscale/goutils/oks v0.0.2
 	github.com/outscale/goutils/sdk v0.0.6
 	github.com/outscale/osc-sdk-go/v3 v3.0.0-rc.4
@@ -157,7 +158,6 @@ require (
 	github.com/muesli/termenv v0.16.0 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f // indirect
-	github.com/oapi-codegen/runtime v1.6.0 // indirect
 	github.com/oklog/ulid v1.3.1 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
 	github.com/peterbourgon/diskv v2.0.1+incompatible // indirect
