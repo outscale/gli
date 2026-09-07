@@ -13,6 +13,8 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/outscale/goutils/sdk/sanitize"
 )
 
 type VerboseLogger struct{}
@@ -30,7 +32,7 @@ func (VerboseLogger) RequestHttp(ctx context.Context, req *http.Request) {
 		bodyReader, err := req.GetBody()
 		if err == nil {
 			bodyBytes, _ := io.ReadAll(bodyReader)
-			fmt.Fprintf(os.Stderr, "%s\n\n", string(bodyBytes))
+			fmt.Fprintf(os.Stderr, "%s\n\n", sanitize.Sanitize(string(bodyBytes)))
 		}
 	}
 	fmt.Fprint(os.Stderr, "- REQUEST -------------------\n\n")
@@ -42,7 +44,7 @@ func (VerboseLogger) ResponseHttp(ctx context.Context, resp *http.Response, d ti
 	fmt.Fprintln(os.Stderr)
 	bodyBytes, _ := io.ReadAll(resp.Body)
 	resp.Body = io.NopCloser(bytes.NewBuffer(bodyBytes))
-	fmt.Fprintf(os.Stderr, "%s\n\n", string(bodyBytes))
+	fmt.Fprintf(os.Stderr, "%s\n\n", sanitize.Sanitize(string(bodyBytes)))
 	fmt.Fprint(os.Stderr, "- RESPONSE ------------------\n\n")
 }
 

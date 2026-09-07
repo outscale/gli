@@ -155,28 +155,28 @@ func TestProfilePriority(t *testing.T) {
 		var p profile.Profile
 		runJSON(t, []string{"profile", "current", "-o", "json"}, nil, &p)
 		assert.Equal(t, "env_ak", p.AccessKey)
-		assert.Equal(t, "env_sk", p.SecretKey)
+		assert.Equal(t, "en...sk", p.SecretKey)
 		assert.Equal(t, "env_region", p.Region)
 	})
 	t.Run("If --profile is set, profile is loaded", func(t *testing.T) {
 		var p profile.Profile
 		runJSON(t, []string{"profile", "current", "-o", "json", "--profile", "test_priority"}, nil, &p)
 		assert.Equal(t, "profile_ak", p.AccessKey)
-		assert.Equal(t, "profile_sk", p.SecretKey)
+		assert.Equal(t, "pr...sk", p.SecretKey)
 		assert.Equal(t, "profile_region", p.Region)
 	})
 	t.Run("If --config is set, profile is loaded", func(t *testing.T) {
 		var p profile.Profile
 		runJSON(t, []string{"profile", "current", "-o", "json", "--config", cfg}, nil, &p)
 		assert.Equal(t, "profile_ak", p.AccessKey)
-		assert.Equal(t, "profile_sk", p.SecretKey)
+		assert.Equal(t, "pr...sk", p.SecretKey)
 		assert.Equal(t, "profile_region", p.Region)
 	})
 	t.Run("If --config and --profile are set, profile is loaded", func(t *testing.T) {
 		var p profile.Profile
 		runJSON(t, []string{"profile", "current", "-o", "json", "--profile", "test_priority", "--config", cfg}, nil, &p)
 		assert.Equal(t, "profile_ak", p.AccessKey)
-		assert.Equal(t, "profile_sk", p.SecretKey)
+		assert.Equal(t, "pr...sk", p.SecretKey)
 		assert.Equal(t, "profile_region", p.Region)
 	})
 	t.Run("An alternate config file can be used", func(t *testing.T) {
@@ -197,7 +197,7 @@ func TestProfilePriority(t *testing.T) {
 		var p profile.Profile
 		runJSON(t, []string{"profile", "current", "-o", "json", "--config", cfg}, nil, &p)
 		assert.Equal(t, "priority_ak", p.AccessKey)
-		assert.Equal(t, "priority_sk", p.SecretKey)
+		assert.Equal(t, "pr...sk", p.SecretKey)
 		assert.Equal(t, "priority_region", p.Region)
 	})
 }
