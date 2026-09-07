@@ -13,6 +13,7 @@ import (
 	"slices"
 
 	"github.com/charmbracelet/huh"
+	"github.com/outscale/goutils/sdk/sanitize"
 	"github.com/outscale/octl/pkg/config"
 	"github.com/outscale/octl/pkg/messages"
 	"github.com/outscale/octl/pkg/output"
@@ -20,6 +21,8 @@ import (
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 )
+
+var sanitizer = sanitize.New(sanitize.MatchPIIFields, sanitize.MatchSensitiveFields, sanitize.KeepFirst2Last2)
 
 // profileCmd represents the profile command
 var profileCmd = &cobra.Command{
@@ -127,7 +130,7 @@ func listProfiles(cmd *cobra.Command, _ []string) {
 		func(a, b profileEntry) int {
 			return cmp.Compare(a.Name, b.Name)
 		})
-	_ = out.Format(cmd.Context(), os.Stdout, lst)
+	_ = out.Format(cmd.Context(), os.Stdout, sanitizer.Sanitize(lst))
 }
 
 func currentProfile(cmd *cobra.Command, _ []string) {
@@ -146,7 +149,8 @@ func currentProfile(cmd *cobra.Command, _ []string) {
 			return prof.AccessKey == p.AccessKey && prof.Region == p.Region
 		})
 	}
-	_ = out.Format(cmd.Context(), os.Stdout, profileEntry{Name: name, Profile: prof, Default: prof.Default})
+	_ = out.Format(cmd.Context(), os.Stdout,
+		sanitizer.Sanitize(profileEntry{Name: name, Profile: prof, Default: prof.Default}))
 }
 
 func addProfile(cmd *cobra.Command, args []string) {
